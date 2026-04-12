@@ -1,0 +1,4355 @@
+{
+  "version": "2.8",
+  "metadata": {
+    "name": "BURL",
+    "author": "RAM",
+    "date": "2026-04-10",
+    "theme": "light",
+    "heartbeat": 50,
+    "elements": 466,
+    "palette": {
+      "bg": "#FAF7F2",
+      "surface": "#FFFFFF",
+      "text": "#1C1410",
+      "accent": "#4A7C59",
+      "accent2": "#C4714A"
+    }
+  },
+  "screens": [
+    {
+      "name": "Dashboard",
+      "svg": "390x844",
+      "elements": [
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "w": 390,
+          "h": 44,
+          "fill": "#FAF7F2"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 28,
+          "content": "9:41",
+          "size": 12,
+          "fill": "#1C1410",
+          "fw": 600
+        },
+        {
+          "type": "text",
+          "x": 370,
+          "y": 28,
+          "content": "●●● WiFi 100%",
+          "size": 10,
+          "fill": "#4A3F36",
+          "anchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 44,
+          "w": 390,
+          "h": 72,
+          "fill": "#FAF7F2"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 78,
+          "content": "Good morning, Sam.",
+          "size": 18,
+          "fill": "#1C1410",
+          "fw": 700,
+          "font": "serif"
+        },
+        {
+          "type": "circle",
+          "cx": 355,
+          "cy": 62,
+          "r": 18,
+          "fill": "#EDE7DD"
+        },
+        {
+          "type": "text",
+          "x": 355,
+          "y": 67,
+          "content": "S",
+          "size": 14,
+          "fill": "#4A7C59",
+          "fw": 700,
+          "anchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 124,
+          "w": 220,
+          "h": 140,
+          "fill": "#4A7C59",
+          "rx": 16
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 152,
+          "content": "MONTHLY REVENUE",
+          "size": 8,
+          "fill": "rgba(255,255,255,0.65)",
+          "fw": 600,
+          "ls": 1.5
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 200,
+          "content": "$14,280",
+          "size": 36,
+          "fill": "#FFFFFF",
+          "fw": 800,
+          "font": "serif"
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 222,
+          "content": "↑ 18% vs last month",
+          "size": 11,
+          "fill": "rgba(255,255,255,0.75)",
+          "fw": 500
+        },
+        {
+          "type": "circle",
+          "cx": 196,
+          "cy": 124,
+          "r": 60,
+          "fill": "rgba(255,255,255,0.08)",
+          "opacity": 1
+        },
+        {
+          "type": "rect",
+          "x": 244,
+          "y": 124,
+          "w": 130,
+          "h": 65,
+          "fill": "#EDE7DD",
+          "rx": 16
+        },
+        {
+          "type": "text",
+          "x": 259,
+          "y": 148,
+          "content": "HOURS LOGGED",
+          "size": 8,
+          "fill": "#9C8F85",
+          "fw": 600,
+          "ls": 1.2
+        },
+        {
+          "type": "text",
+          "x": 259,
+          "y": 174,
+          "content": "124h",
+          "size": 24,
+          "fill": "#1C1410",
+          "fw": 800
+        },
+        {
+          "type": "rect",
+          "x": 244,
+          "y": 197,
+          "w": 130,
+          "h": 67,
+          "fill": "#F2EDE5",
+          "rx": 16
+        },
+        {
+          "type": "text",
+          "x": 259,
+          "y": 221,
+          "content": "PROJECTS",
+          "size": 8,
+          "fill": "#9C8F85",
+          "fw": 600,
+          "ls": 1.2
+        },
+        {
+          "type": "text",
+          "x": 259,
+          "y": 248,
+          "content": "6",
+          "size": 28,
+          "fill": "#C4714A",
+          "fw": 800
+        },
+        {
+          "type": "text",
+          "x": 284,
+          "y": 248,
+          "content": "active",
+          "size": 12,
+          "fill": "#4A3F36",
+          "fw": 400
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 272,
+          "w": 130,
+          "h": 90,
+          "fill": "#F2EDE5",
+          "rx": 16
+        },
+        {
+          "type": "text",
+          "x": 31,
+          "y": 296,
+          "content": "INVOICES",
+          "size": 8,
+          "fill": "#9C8F85",
+          "fw": 600,
+          "ls": 1.2
+        },
+        {
+          "type": "text",
+          "x": 31,
+          "y": 330,
+          "content": "3",
+          "size": 32,
+          "fill": "#8B6FAE",
+          "fw": 800
+        },
+        {
+          "type": "text",
+          "x": 52,
+          "y": 330,
+          "content": "due",
+          "size": 12,
+          "fill": "#4A3F36"
+        },
+        {
+          "type": "text",
+          "x": 31,
+          "y": 350,
+          "content": "$6,400 pending",
+          "size": 10,
+          "fill": "#9C8F85"
+        },
+        {
+          "type": "rect",
+          "x": 154,
+          "y": 272,
+          "w": 220,
+          "h": 90,
+          "fill": "#FFFFFF",
+          "rx": 16,
+          "stroke": "#E0D8CE",
+          "sw": 1
+        },
+        {
+          "type": "text",
+          "x": 169,
+          "y": 296,
+          "content": "TOP CLIENT",
+          "size": 8,
+          "fill": "#9C8F85",
+          "fw": 600,
+          "ls": 1.2
+        },
+        {
+          "type": "text",
+          "x": 169,
+          "y": 326,
+          "content": "Meridian Studio",
+          "size": 14,
+          "fill": "#1C1410",
+          "fw": 700
+        },
+        {
+          "type": "text",
+          "x": 169,
+          "y": 344,
+          "content": "$4,200 this month",
+          "size": 11,
+          "fill": "#9C8F85"
+        },
+        {
+          "type": "rect",
+          "x": 169,
+          "y": 354,
+          "w": 180,
+          "h": 4,
+          "fill": "#E0D8CE",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 169,
+          "y": 354,
+          "w": 126,
+          "h": 4,
+          "fill": "#4A7C59",
+          "rx": 2
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 388,
+          "content": "RECENT ACTIVITY",
+          "size": 9,
+          "fill": "#9C8F85",
+          "fw": 600,
+          "ls": 1.5
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 402,
+          "w": 358,
+          "h": 50,
+          "fill": "#FFFFFF",
+          "rx": 12,
+          "stroke": "#E0D8CE",
+          "sw": 1
+        },
+        {
+          "type": "circle",
+          "cx": 38,
+          "cy": 427,
+          "r": 6,
+          "fill": "#4A7C59"
+        },
+        {
+          "type": "text",
+          "x": 54,
+          "y": 420,
+          "content": "Invoice #047 sent",
+          "size": 13,
+          "fill": "#1C1410",
+          "fw": 600
+        },
+        {
+          "type": "text",
+          "x": 54,
+          "y": 437,
+          "content": "Meridian Studio",
+          "size": 11,
+          "fill": "#9C8F85"
+        },
+        {
+          "type": "text",
+          "x": 362,
+          "y": 427,
+          "content": "+$2,100",
+          "size": 12,
+          "fill": "#4A7C59",
+          "fw": 700,
+          "anchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 460,
+          "w": 358,
+          "h": 50,
+          "fill": "#FFFFFF",
+          "rx": 12,
+          "stroke": "#E0D8CE",
+          "sw": 1
+        },
+        {
+          "type": "circle",
+          "cx": 38,
+          "cy": 485,
+          "r": 6,
+          "fill": "#4A3F36"
+        },
+        {
+          "type": "text",
+          "x": 54,
+          "y": 478,
+          "content": "6h logged",
+          "size": 13,
+          "fill": "#1C1410",
+          "fw": 600
+        },
+        {
+          "type": "text",
+          "x": 54,
+          "y": 495,
+          "content": "Apex Rebranding",
+          "size": 11,
+          "fill": "#9C8F85"
+        },
+        {
+          "type": "text",
+          "x": 362,
+          "y": 485,
+          "content": "Brand project",
+          "size": 12,
+          "fill": "#4A3F36",
+          "fw": 700,
+          "anchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 518,
+          "w": 358,
+          "h": 50,
+          "fill": "#FFFFFF",
+          "rx": 12,
+          "stroke": "#E0D8CE",
+          "sw": 1
+        },
+        {
+          "type": "circle",
+          "cx": 38,
+          "cy": 543,
+          "r": 6,
+          "fill": "#4A7C59"
+        },
+        {
+          "type": "text",
+          "x": 54,
+          "y": 536,
+          "content": "Invoice #046 paid",
+          "size": 13,
+          "fill": "#1C1410",
+          "fw": 600
+        },
+        {
+          "type": "text",
+          "x": 54,
+          "y": 553,
+          "content": "Verde Co.",
+          "size": 11,
+          "fill": "#9C8F85"
+        },
+        {
+          "type": "text",
+          "x": 362,
+          "y": 543,
+          "content": "+$1,800",
+          "size": 12,
+          "fill": "#4A7C59",
+          "fw": 700,
+          "anchor": "end"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 580,
+          "content": "UPCOMING",
+          "size": 9,
+          "fill": "#9C8F85",
+          "fw": 600,
+          "ls": 1.5
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 596,
+          "w": 358,
+          "h": 44,
+          "fill": "#FFFFFF",
+          "rx": 10,
+          "stroke": "#E0D8CE",
+          "sw": 1
+        },
+        {
+          "type": "rect",
+          "x": 24,
+          "y": 608,
+          "w": 20,
+          "h": 20,
+          "fill": "#EDE7DD",
+          "rx": 6
+        },
+        {
+          "type": "text",
+          "x": 34,
+          "y": 622,
+          "content": "◎",
+          "size": 10,
+          "fill": "#4A7C59",
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 54,
+          "y": 616,
+          "content": "Client call — Meridian",
+          "size": 12,
+          "fill": "#1C1410",
+          "fw": 600
+        },
+        {
+          "type": "text",
+          "x": 54,
+          "y": 632,
+          "content": "Today 3:00 PM",
+          "size": 10,
+          "fill": "#9C8F85"
+        },
+        {
+          "type": "text",
+          "x": 366,
+          "y": 624,
+          "content": "›",
+          "size": 16,
+          "fill": "#9C8F85",
+          "anchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 648,
+          "w": 358,
+          "h": 44,
+          "fill": "#FFFFFF",
+          "rx": 10,
+          "stroke": "#E0D8CE",
+          "sw": 1
+        },
+        {
+          "type": "rect",
+          "x": 24,
+          "y": 660,
+          "w": 20,
+          "h": 20,
+          "fill": "#EDE7DD",
+          "rx": 6
+        },
+        {
+          "type": "text",
+          "x": 34,
+          "y": 674,
+          "content": "◈",
+          "size": 10,
+          "fill": "#4A7C59",
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 54,
+          "y": 668,
+          "content": "Invoice #047 due",
+          "size": 12,
+          "fill": "#1C1410",
+          "fw": 600
+        },
+        {
+          "type": "text",
+          "x": 54,
+          "y": 684,
+          "content": "Apr 14",
+          "size": 10,
+          "fill": "#9C8F85"
+        },
+        {
+          "type": "text",
+          "x": 366,
+          "y": 676,
+          "content": "›",
+          "size": 16,
+          "fill": "#9C8F85",
+          "anchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 704,
+          "w": 358,
+          "h": 44,
+          "fill": "#4A7C59",
+          "rx": 22
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 731,
+          "content": "+ Log Time",
+          "size": 13,
+          "fill": "#FFF",
+          "fw": 700,
+          "anchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 764,
+          "w": 390,
+          "h": 80,
+          "fill": "#FFFFFF"
+        },
+        {
+          "type": "line",
+          "x1": 0,
+          "y1": 764,
+          "x2": 390,
+          "y2": 764,
+          "stroke": "#E0D8CE",
+          "sw": 1
+        },
+        {
+          "type": "text",
+          "x": 39,
+          "y": 792,
+          "content": "⌂",
+          "size": 20,
+          "fill": "#4A7C59",
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 39,
+          "y": 816,
+          "content": "Home",
+          "size": 9,
+          "fill": "#4A7C59",
+          "fw": 700,
+          "anchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 27,
+          "y": 766,
+          "w": 24,
+          "h": 3,
+          "fill": "#4A7C59",
+          "rx": 2
+        },
+        {
+          "type": "text",
+          "x": 117,
+          "y": 792,
+          "content": "◷",
+          "size": 20,
+          "fill": "#9C8F85",
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 117,
+          "y": 816,
+          "content": "Time",
+          "size": 9,
+          "fill": "#9C8F85",
+          "fw": 400,
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 792,
+          "content": "◈",
+          "size": 20,
+          "fill": "#9C8F85",
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 816,
+          "content": "Projects",
+          "size": 9,
+          "fill": "#9C8F85",
+          "fw": 400,
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 273,
+          "y": 792,
+          "content": "◎",
+          "size": 20,
+          "fill": "#9C8F85",
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 273,
+          "y": 816,
+          "content": "Revenue",
+          "size": 9,
+          "fill": "#9C8F85",
+          "fw": 400,
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 351,
+          "y": 792,
+          "content": "○",
+          "size": 20,
+          "fill": "#9C8F85",
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 351,
+          "y": 816,
+          "content": "Goals",
+          "size": 9,
+          "fill": "#9C8F85",
+          "fw": 400,
+          "anchor": "middle"
+        }
+      ]
+    },
+    {
+      "name": "Time Log",
+      "svg": "390x844",
+      "elements": [
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "w": 390,
+          "h": 44,
+          "fill": "#FAF7F2"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 28,
+          "content": "9:41",
+          "size": 12,
+          "fill": "#1C1410",
+          "fw": 600
+        },
+        {
+          "type": "text",
+          "x": 370,
+          "y": 28,
+          "content": "●●● WiFi 100%",
+          "size": 10,
+          "fill": "#4A3F36",
+          "anchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 44,
+          "w": 390,
+          "h": 800,
+          "fill": "#FAF7F2"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 82,
+          "content": "Time Log",
+          "size": 24,
+          "fill": "#1C1410",
+          "fw": 800,
+          "font": "serif"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 102,
+          "content": "Week of Apr 7–13",
+          "size": 12,
+          "fill": "#9C8F85"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 118,
+          "w": 358,
+          "h": 130,
+          "fill": "#FFFFFF",
+          "rx": 16,
+          "stroke": "#E0D8CE",
+          "sw": 1
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 140,
+          "content": "Weekly Hours — 38.5h",
+          "size": 11,
+          "fill": "#1C1410",
+          "fw": 600,
+          "anchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 28,
+          "y": 200,
+          "w": 36,
+          "h": 80,
+          "fill": "#EDE7DD",
+          "rx": 6
+        },
+        {
+          "type": "text",
+          "x": 46,
+          "y": 194,
+          "content": "8",
+          "size": 9,
+          "fill": "#4A3F36",
+          "fw": 600,
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 46,
+          "y": 294,
+          "content": "M",
+          "size": 10,
+          "fill": "#9C8F85",
+          "fw": 400,
+          "anchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 82,
+          "y": 215,
+          "w": 36,
+          "h": 65,
+          "fill": "#EDE7DD",
+          "rx": 6
+        },
+        {
+          "type": "text",
+          "x": 100,
+          "y": 209,
+          "content": "6.5",
+          "size": 9,
+          "fill": "#4A3F36",
+          "fw": 600,
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 100,
+          "y": 294,
+          "content": "T",
+          "size": 10,
+          "fill": "#9C8F85",
+          "fw": 400,
+          "anchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 136,
+          "y": 190,
+          "w": 36,
+          "h": 90,
+          "fill": "#EDE7DD",
+          "rx": 6
+        },
+        {
+          "type": "text",
+          "x": 154,
+          "y": 184,
+          "content": "9",
+          "size": 9,
+          "fill": "#4A3F36",
+          "fw": 600,
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 154,
+          "y": 294,
+          "content": "W",
+          "size": 10,
+          "fill": "#9C8F85",
+          "fw": 400,
+          "anchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 190,
+          "y": 210,
+          "w": 36,
+          "h": 70,
+          "fill": "#EDE7DD",
+          "rx": 6
+        },
+        {
+          "type": "text",
+          "x": 208,
+          "y": 204,
+          "content": "7",
+          "size": 9,
+          "fill": "#4A3F36",
+          "fw": 600,
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 208,
+          "y": 294,
+          "content": "T",
+          "size": 10,
+          "fill": "#9C8F85",
+          "fw": 400,
+          "anchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 244,
+          "y": 230,
+          "w": 36,
+          "h": 50,
+          "fill": "#4A7C59",
+          "rx": 6
+        },
+        {
+          "type": "text",
+          "x": 262,
+          "y": 224,
+          "content": "5",
+          "size": 9,
+          "fill": "#4A7C59",
+          "fw": 600,
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 262,
+          "y": 294,
+          "content": "F",
+          "size": 10,
+          "fill": "#4A7C59",
+          "fw": 700,
+          "anchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 298,
+          "y": 250,
+          "w": 36,
+          "h": 30,
+          "fill": "#EDE7DD",
+          "rx": 6
+        },
+        {
+          "type": "text",
+          "x": 316,
+          "y": 244,
+          "content": "3",
+          "size": 9,
+          "fill": "#4A3F36",
+          "fw": 600,
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 316,
+          "y": 294,
+          "content": "S",
+          "size": 10,
+          "fill": "#9C8F85",
+          "fw": 400,
+          "anchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 352,
+          "y": 280,
+          "w": 36,
+          "h": 0,
+          "fill": "#EDE7DD",
+          "rx": 6
+        },
+        {
+          "type": "text",
+          "x": 370,
+          "y": 294,
+          "content": "S",
+          "size": 10,
+          "fill": "#9C8F85",
+          "fw": 400,
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 270,
+          "content": "TODAY'S SESSIONS",
+          "size": 9,
+          "fill": "#9C8F85",
+          "fw": 600,
+          "ls": 1.5
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 285,
+          "w": 358,
+          "h": 64,
+          "fill": "#FFFFFF",
+          "rx": 12,
+          "stroke": "#E0D8CE",
+          "sw": 1
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 285,
+          "w": 4,
+          "h": 64,
+          "fill": "#4A7C59"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 285,
+          "w": 4,
+          "h": 64,
+          "fill": "#4A7C59",
+          "rx": 2
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 307,
+          "content": "Meridian Studio",
+          "size": 13,
+          "fill": "#1C1410",
+          "fw": 700
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 325,
+          "content": "Brand guidelines doc",
+          "size": 11,
+          "fill": "#9C8F85"
+        },
+        {
+          "type": "text",
+          "x": 362,
+          "y": 307,
+          "content": "2h 15m",
+          "size": 13,
+          "fill": "#1C1410",
+          "fw": 700,
+          "anchor": "end"
+        },
+        {
+          "type": "text",
+          "x": 362,
+          "y": 325,
+          "content": "9:00 AM",
+          "size": 10,
+          "fill": "#9C8F85",
+          "anchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 357,
+          "w": 358,
+          "h": 64,
+          "fill": "#FFFFFF",
+          "rx": 12,
+          "stroke": "#E0D8CE",
+          "sw": 1
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 357,
+          "w": 4,
+          "h": 64,
+          "fill": "#C4714A"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 357,
+          "w": 4,
+          "h": 64,
+          "fill": "#C4714A",
+          "rx": 2
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 379,
+          "content": "Apex Rebranding",
+          "size": 13,
+          "fill": "#1C1410",
+          "fw": 700
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 397,
+          "content": "Logo iterations",
+          "size": 11,
+          "fill": "#9C8F85"
+        },
+        {
+          "type": "text",
+          "x": 362,
+          "y": 379,
+          "content": "1h 45m",
+          "size": 13,
+          "fill": "#1C1410",
+          "fw": 700,
+          "anchor": "end"
+        },
+        {
+          "type": "text",
+          "x": 362,
+          "y": 397,
+          "content": "11:30 AM",
+          "size": 10,
+          "fill": "#9C8F85",
+          "anchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 429,
+          "w": 358,
+          "h": 64,
+          "fill": "#FFFFFF",
+          "rx": 12,
+          "stroke": "#E0D8CE",
+          "sw": 1
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 429,
+          "w": 4,
+          "h": 64,
+          "fill": "#8B6FAE"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 429,
+          "w": 4,
+          "h": 64,
+          "fill": "#8B6FAE",
+          "rx": 2
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 451,
+          "content": "Personal",
+          "size": 13,
+          "fill": "#1C1410",
+          "fw": 700
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 469,
+          "content": "Admin & invoicing",
+          "size": 11,
+          "fill": "#9C8F85"
+        },
+        {
+          "type": "text",
+          "x": 362,
+          "y": 451,
+          "content": "45m",
+          "size": 13,
+          "fill": "#1C1410",
+          "fw": 700,
+          "anchor": "end"
+        },
+        {
+          "type": "text",
+          "x": 362,
+          "y": 469,
+          "content": "2:00 PM",
+          "size": 10,
+          "fill": "#9C8F85",
+          "anchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 506,
+          "w": 358,
+          "h": 64,
+          "fill": "#4A7C59",
+          "rx": 16
+        },
+        {
+          "type": "circle",
+          "cx": 42,
+          "cy": 538,
+          "r": 12,
+          "fill": "rgba(255,255,255,0.2)"
+        },
+        {
+          "type": "text",
+          "x": 42,
+          "y": 543,
+          "content": "▶",
+          "size": 10,
+          "fill": "#FFF",
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 64,
+          "y": 526,
+          "content": "Verde Co. — UX review",
+          "size": 13,
+          "fill": "#FFF",
+          "fw": 700
+        },
+        {
+          "type": "text",
+          "x": 64,
+          "y": 544,
+          "content": "Running: 0h 23m",
+          "size": 11,
+          "fill": "rgba(255,255,255,0.75)"
+        },
+        {
+          "type": "rect",
+          "x": 330,
+          "y": 521,
+          "w": 40,
+          "h": 34,
+          "fill": "rgba(255,255,255,0.2)",
+          "rx": 10
+        },
+        {
+          "type": "text",
+          "x": 350,
+          "y": 542,
+          "content": "■",
+          "size": 14,
+          "fill": "#FFF",
+          "anchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 584,
+          "w": 358,
+          "h": 60,
+          "fill": "#F2EDE5",
+          "rx": 12
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 606,
+          "content": "Weekly goal: 40h",
+          "size": 12,
+          "fill": "#1C1410",
+          "fw": 600
+        },
+        {
+          "type": "text",
+          "x": 362,
+          "y": 606,
+          "content": "38.5 / 40h",
+          "size": 12,
+          "fill": "#4A7C59",
+          "fw": 700,
+          "anchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 32,
+          "y": 618,
+          "w": 326,
+          "h": 8,
+          "fill": "#E0D8CE",
+          "rx": 4
+        },
+        {
+          "type": "rect",
+          "x": 32,
+          "y": 618,
+          "w": 313.77500000000003,
+          "h": 8,
+          "fill": "#4A7C59",
+          "rx": 4
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 640,
+          "content": "96% complete — almost there!",
+          "size": 10,
+          "fill": "#9C8F85",
+          "fw": 500
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 656,
+          "w": 358,
+          "h": 56,
+          "fill": "#F2EDE5",
+          "rx": 12
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 678,
+          "content": "Avg hourly rate",
+          "size": 12,
+          "fill": "#1C1410",
+          "fw": 600
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 696,
+          "content": "Based on 38.5h / $14,280 earned",
+          "size": 10,
+          "fill": "#9C8F85"
+        },
+        {
+          "type": "text",
+          "x": 362,
+          "y": 678,
+          "content": "$371 / hr",
+          "size": 16,
+          "fill": "#4A7C59",
+          "fw": 800,
+          "anchor": "end"
+        },
+        {
+          "type": "circle",
+          "cx": 30,
+          "cy": 730,
+          "r": 14,
+          "fill": "#4A7C59"
+        },
+        {
+          "type": "text",
+          "x": 30,
+          "y": 735,
+          "content": "M",
+          "size": 9,
+          "fill": "#FFF",
+          "fw": 600,
+          "anchor": "middle"
+        },
+        {
+          "type": "circle",
+          "cx": 76,
+          "cy": 730,
+          "r": 14,
+          "fill": "#4A7C59"
+        },
+        {
+          "type": "text",
+          "x": 76,
+          "y": 735,
+          "content": "T",
+          "size": 9,
+          "fill": "#FFF",
+          "fw": 600,
+          "anchor": "middle"
+        },
+        {
+          "type": "circle",
+          "cx": 122,
+          "cy": 730,
+          "r": 14,
+          "fill": "#4A7C59"
+        },
+        {
+          "type": "text",
+          "x": 122,
+          "y": 735,
+          "content": "W",
+          "size": 9,
+          "fill": "#FFF",
+          "fw": 600,
+          "anchor": "middle"
+        },
+        {
+          "type": "circle",
+          "cx": 168,
+          "cy": 730,
+          "r": 14,
+          "fill": "#4A7C59"
+        },
+        {
+          "type": "text",
+          "x": 168,
+          "y": 735,
+          "content": "T",
+          "size": 9,
+          "fill": "#FFF",
+          "fw": 600,
+          "anchor": "middle"
+        },
+        {
+          "type": "circle",
+          "cx": 214,
+          "cy": 730,
+          "r": 14,
+          "fill": "#4A7C59"
+        },
+        {
+          "type": "text",
+          "x": 214,
+          "y": 735,
+          "content": "F",
+          "size": 9,
+          "fill": "#FFF",
+          "fw": 600,
+          "anchor": "middle"
+        },
+        {
+          "type": "circle",
+          "cx": 260,
+          "cy": 730,
+          "r": 14,
+          "fill": "#4A7C59"
+        },
+        {
+          "type": "text",
+          "x": 260,
+          "y": 735,
+          "content": "S",
+          "size": 9,
+          "fill": "#FFF",
+          "fw": 600,
+          "anchor": "middle"
+        },
+        {
+          "type": "circle",
+          "cx": 306,
+          "cy": 730,
+          "r": 14,
+          "fill": "#EDE7DD"
+        },
+        {
+          "type": "text",
+          "x": 306,
+          "y": 735,
+          "content": "S",
+          "size": 9,
+          "fill": "#9C8F85",
+          "fw": 600,
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 370,
+          "y": 730,
+          "content": "This week",
+          "size": 10,
+          "fill": "#9C8F85",
+          "anchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 764,
+          "w": 390,
+          "h": 80,
+          "fill": "#FFFFFF"
+        },
+        {
+          "type": "line",
+          "x1": 0,
+          "y1": 764,
+          "x2": 390,
+          "y2": 764,
+          "stroke": "#E0D8CE",
+          "sw": 1
+        },
+        {
+          "type": "text",
+          "x": 39,
+          "y": 792,
+          "content": "⌂",
+          "size": 20,
+          "fill": "#9C8F85",
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 39,
+          "y": 816,
+          "content": "Home",
+          "size": 9,
+          "fill": "#9C8F85",
+          "fw": 400,
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 117,
+          "y": 792,
+          "content": "◷",
+          "size": 20,
+          "fill": "#4A7C59",
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 117,
+          "y": 816,
+          "content": "Time",
+          "size": 9,
+          "fill": "#4A7C59",
+          "fw": 700,
+          "anchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 105,
+          "y": 766,
+          "w": 24,
+          "h": 3,
+          "fill": "#4A7C59",
+          "rx": 2
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 792,
+          "content": "◈",
+          "size": 20,
+          "fill": "#9C8F85",
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 816,
+          "content": "Projects",
+          "size": 9,
+          "fill": "#9C8F85",
+          "fw": 400,
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 273,
+          "y": 792,
+          "content": "◎",
+          "size": 20,
+          "fill": "#9C8F85",
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 273,
+          "y": 816,
+          "content": "Revenue",
+          "size": 9,
+          "fill": "#9C8F85",
+          "fw": 400,
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 351,
+          "y": 792,
+          "content": "○",
+          "size": 20,
+          "fill": "#9C8F85",
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 351,
+          "y": 816,
+          "content": "Goals",
+          "size": 9,
+          "fill": "#9C8F85",
+          "fw": 400,
+          "anchor": "middle"
+        }
+      ]
+    },
+    {
+      "name": "Projects",
+      "svg": "390x844",
+      "elements": [
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "w": 390,
+          "h": 44,
+          "fill": "#FAF7F2"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 28,
+          "content": "9:41",
+          "size": 12,
+          "fill": "#1C1410",
+          "fw": 600
+        },
+        {
+          "type": "text",
+          "x": 370,
+          "y": 28,
+          "content": "●●● WiFi 100%",
+          "size": 10,
+          "fill": "#4A3F36",
+          "anchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 44,
+          "w": 390,
+          "h": 800,
+          "fill": "#FAF7F2"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 82,
+          "content": "Projects",
+          "size": 24,
+          "fill": "#1C1410",
+          "fw": 800,
+          "font": "serif"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 94,
+          "w": 60,
+          "h": 28,
+          "fill": "#FFFFFF",
+          "rx": 14,
+          "stroke": "#E0D8CE",
+          "sw": 1
+        },
+        {
+          "type": "text",
+          "x": 46,
+          "y": 113,
+          "content": "All",
+          "size": 11,
+          "fill": "#4A3F36",
+          "fw": 400,
+          "anchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 84,
+          "y": 94,
+          "w": 60,
+          "h": 28,
+          "fill": "#4A7C59",
+          "rx": 14,
+          "stroke": "#E0D8CE"
+        },
+        {
+          "type": "text",
+          "x": 114,
+          "y": 113,
+          "content": "Active",
+          "size": 11,
+          "fill": "#FFF",
+          "fw": 700,
+          "anchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 152,
+          "y": 94,
+          "w": 60,
+          "h": 28,
+          "fill": "#FFFFFF",
+          "rx": 14,
+          "stroke": "#E0D8CE",
+          "sw": 1
+        },
+        {
+          "type": "text",
+          "x": 182,
+          "y": 113,
+          "content": "Pending",
+          "size": 11,
+          "fill": "#4A3F36",
+          "fw": 400,
+          "anchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 220,
+          "y": 94,
+          "w": 60,
+          "h": 28,
+          "fill": "#FFFFFF",
+          "rx": 14,
+          "stroke": "#E0D8CE",
+          "sw": 1
+        },
+        {
+          "type": "text",
+          "x": 250,
+          "y": 113,
+          "content": "Done",
+          "size": 11,
+          "fill": "#4A3F36",
+          "fw": 400,
+          "anchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 132,
+          "w": 358,
+          "h": 90,
+          "fill": "#FFFFFF",
+          "rx": 14,
+          "stroke": "#E0D8CE",
+          "sw": 1
+        },
+        {
+          "type": "circle",
+          "cx": 36,
+          "cy": 156,
+          "r": 8,
+          "fill": "#4A7C59"
+        },
+        {
+          "type": "text",
+          "x": 52,
+          "y": 160,
+          "content": "Meridian Studio",
+          "size": 14,
+          "fill": "#1C1410",
+          "fw": 700
+        },
+        {
+          "type": "text",
+          "x": 52,
+          "y": 178,
+          "content": "Brand Identity",
+          "size": 11,
+          "fill": "#9C8F85"
+        },
+        {
+          "type": "text",
+          "x": 362,
+          "y": 160,
+          "content": "$4,200",
+          "size": 13,
+          "fill": "#1C1410",
+          "fw": 700,
+          "anchor": "end"
+        },
+        {
+          "type": "text",
+          "x": 362,
+          "y": 178,
+          "content": "of $7,000",
+          "size": 10,
+          "fill": "#9C8F85",
+          "anchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 24,
+          "y": 196,
+          "w": 334,
+          "h": 6,
+          "fill": "#E0D8CE",
+          "rx": 3
+        },
+        {
+          "type": "rect",
+          "x": 24,
+          "y": 196,
+          "w": 217.1,
+          "h": 6,
+          "fill": "#4A7C59",
+          "rx": 3
+        },
+        {
+          "type": "text",
+          "x": 24,
+          "y": 214,
+          "content": "65% complete",
+          "size": 9,
+          "fill": "#9C8F85"
+        },
+        {
+          "type": "text",
+          "x": 362,
+          "y": 214,
+          "content": "Active",
+          "size": 9,
+          "fill": "#4A7C59",
+          "fw": 600,
+          "anchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 232,
+          "w": 358,
+          "h": 90,
+          "fill": "#FFFFFF",
+          "rx": 14,
+          "stroke": "#E0D8CE",
+          "sw": 1
+        },
+        {
+          "type": "circle",
+          "cx": 36,
+          "cy": 256,
+          "r": 8,
+          "fill": "#C4714A"
+        },
+        {
+          "type": "text",
+          "x": 52,
+          "y": 260,
+          "content": "Apex Rebranding",
+          "size": 14,
+          "fill": "#1C1410",
+          "fw": 700
+        },
+        {
+          "type": "text",
+          "x": 52,
+          "y": 278,
+          "content": "Logo Design",
+          "size": 11,
+          "fill": "#9C8F85"
+        },
+        {
+          "type": "text",
+          "x": 362,
+          "y": 260,
+          "content": "$1,600",
+          "size": 13,
+          "fill": "#1C1410",
+          "fw": 700,
+          "anchor": "end"
+        },
+        {
+          "type": "text",
+          "x": 362,
+          "y": 278,
+          "content": "of $4,000",
+          "size": 10,
+          "fill": "#9C8F85",
+          "anchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 24,
+          "y": 296,
+          "w": 334,
+          "h": 6,
+          "fill": "#E0D8CE",
+          "rx": 3
+        },
+        {
+          "type": "rect",
+          "x": 24,
+          "y": 296,
+          "w": 133.6,
+          "h": 6,
+          "fill": "#C4714A",
+          "rx": 3
+        },
+        {
+          "type": "text",
+          "x": 24,
+          "y": 314,
+          "content": "40% complete",
+          "size": 9,
+          "fill": "#9C8F85"
+        },
+        {
+          "type": "text",
+          "x": 362,
+          "y": 314,
+          "content": "Active",
+          "size": 9,
+          "fill": "#C4714A",
+          "fw": 600,
+          "anchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 332,
+          "w": 358,
+          "h": 90,
+          "fill": "#FFFFFF",
+          "rx": 14,
+          "stroke": "#E0D8CE",
+          "sw": 1
+        },
+        {
+          "type": "circle",
+          "cx": 36,
+          "cy": 356,
+          "r": 8,
+          "fill": "#8B6FAE"
+        },
+        {
+          "type": "text",
+          "x": 52,
+          "y": 360,
+          "content": "Verde Co.",
+          "size": 14,
+          "fill": "#1C1410",
+          "fw": 700
+        },
+        {
+          "type": "text",
+          "x": 52,
+          "y": 378,
+          "content": "UX Strategy",
+          "size": 11,
+          "fill": "#9C8F85"
+        },
+        {
+          "type": "text",
+          "x": 362,
+          "y": 360,
+          "content": "$3,400",
+          "size": 13,
+          "fill": "#1C1410",
+          "fw": 700,
+          "anchor": "end"
+        },
+        {
+          "type": "text",
+          "x": 362,
+          "y": 378,
+          "content": "of $4,000",
+          "size": 10,
+          "fill": "#9C8F85",
+          "anchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 24,
+          "y": 396,
+          "w": 334,
+          "h": 6,
+          "fill": "#E0D8CE",
+          "rx": 3
+        },
+        {
+          "type": "rect",
+          "x": 24,
+          "y": 396,
+          "w": 283.9,
+          "h": 6,
+          "fill": "#8B6FAE",
+          "rx": 3
+        },
+        {
+          "type": "text",
+          "x": 24,
+          "y": 414,
+          "content": "85% complete",
+          "size": 9,
+          "fill": "#9C8F85"
+        },
+        {
+          "type": "text",
+          "x": 362,
+          "y": 414,
+          "content": "Active",
+          "size": 9,
+          "fill": "#8B6FAE",
+          "fw": 600,
+          "anchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 432,
+          "w": 358,
+          "h": 90,
+          "fill": "#FFFFFF",
+          "rx": 14,
+          "stroke": "#E0D8CE",
+          "sw": 1
+        },
+        {
+          "type": "circle",
+          "cx": 36,
+          "cy": 456,
+          "r": 8,
+          "fill": "#6BA882"
+        },
+        {
+          "type": "text",
+          "x": 52,
+          "y": 460,
+          "content": "Lakewood Foods",
+          "size": 14,
+          "fill": "#1C1410",
+          "fw": 700
+        },
+        {
+          "type": "text",
+          "x": 52,
+          "y": 478,
+          "content": "Packaging",
+          "size": 11,
+          "fill": "#9C8F85"
+        },
+        {
+          "type": "text",
+          "x": 362,
+          "y": 460,
+          "content": "$800",
+          "size": 13,
+          "fill": "#1C1410",
+          "fw": 700,
+          "anchor": "end"
+        },
+        {
+          "type": "text",
+          "x": 362,
+          "y": 478,
+          "content": "of $5,000",
+          "size": 10,
+          "fill": "#9C8F85",
+          "anchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 24,
+          "y": 496,
+          "w": 334,
+          "h": 6,
+          "fill": "#E0D8CE",
+          "rx": 3
+        },
+        {
+          "type": "rect",
+          "x": 24,
+          "y": 496,
+          "w": 66.8,
+          "h": 6,
+          "fill": "#6BA882",
+          "rx": 3
+        },
+        {
+          "type": "text",
+          "x": 24,
+          "y": 514,
+          "content": "20% complete",
+          "size": 9,
+          "fill": "#9C8F85"
+        },
+        {
+          "type": "text",
+          "x": 362,
+          "y": 514,
+          "content": "Active",
+          "size": 9,
+          "fill": "#6BA882",
+          "fw": 600,
+          "anchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 532,
+          "w": 358,
+          "h": 90,
+          "fill": "#FFFFFF",
+          "rx": 14,
+          "stroke": "#E0D8CE",
+          "sw": 1
+        },
+        {
+          "type": "circle",
+          "cx": 36,
+          "cy": 556,
+          "r": 8,
+          "fill": "#C4714A"
+        },
+        {
+          "type": "text",
+          "x": 52,
+          "y": 560,
+          "content": "Crest Media",
+          "size": 14,
+          "fill": "#1C1410",
+          "fw": 700
+        },
+        {
+          "type": "text",
+          "x": 52,
+          "y": 578,
+          "content": "Motion",
+          "size": 11,
+          "fill": "#9C8F85"
+        },
+        {
+          "type": "text",
+          "x": 362,
+          "y": 560,
+          "content": "$2,800",
+          "size": 13,
+          "fill": "#1C1410",
+          "fw": 700,
+          "anchor": "end"
+        },
+        {
+          "type": "text",
+          "x": 362,
+          "y": 578,
+          "content": "of $5,500",
+          "size": 10,
+          "fill": "#9C8F85",
+          "anchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 24,
+          "y": 596,
+          "w": 334,
+          "h": 6,
+          "fill": "#E0D8CE",
+          "rx": 3
+        },
+        {
+          "type": "rect",
+          "x": 24,
+          "y": 596,
+          "w": 183.70000000000002,
+          "h": 6,
+          "fill": "#C4714A",
+          "rx": 3
+        },
+        {
+          "type": "text",
+          "x": 24,
+          "y": 614,
+          "content": "55% complete",
+          "size": 9,
+          "fill": "#9C8F85"
+        },
+        {
+          "type": "text",
+          "x": 362,
+          "y": 614,
+          "content": "Active",
+          "size": 9,
+          "fill": "#C4714A",
+          "fw": 600,
+          "anchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 764,
+          "w": 390,
+          "h": 80,
+          "fill": "#FFFFFF"
+        },
+        {
+          "type": "line",
+          "x1": 0,
+          "y1": 764,
+          "x2": 390,
+          "y2": 764,
+          "stroke": "#E0D8CE",
+          "sw": 1
+        },
+        {
+          "type": "text",
+          "x": 39,
+          "y": 792,
+          "content": "⌂",
+          "size": 20,
+          "fill": "#9C8F85",
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 39,
+          "y": 816,
+          "content": "Home",
+          "size": 9,
+          "fill": "#9C8F85",
+          "fw": 400,
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 117,
+          "y": 792,
+          "content": "◷",
+          "size": 20,
+          "fill": "#9C8F85",
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 117,
+          "y": 816,
+          "content": "Time",
+          "size": 9,
+          "fill": "#9C8F85",
+          "fw": 400,
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 792,
+          "content": "◈",
+          "size": 20,
+          "fill": "#4A7C59",
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 816,
+          "content": "Projects",
+          "size": 9,
+          "fill": "#4A7C59",
+          "fw": 700,
+          "anchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 183,
+          "y": 766,
+          "w": 24,
+          "h": 3,
+          "fill": "#4A7C59",
+          "rx": 2
+        },
+        {
+          "type": "text",
+          "x": 273,
+          "y": 792,
+          "content": "◎",
+          "size": 20,
+          "fill": "#9C8F85",
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 273,
+          "y": 816,
+          "content": "Revenue",
+          "size": 9,
+          "fill": "#9C8F85",
+          "fw": 400,
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 351,
+          "y": 792,
+          "content": "○",
+          "size": 20,
+          "fill": "#9C8F85",
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 351,
+          "y": 816,
+          "content": "Goals",
+          "size": 9,
+          "fill": "#9C8F85",
+          "fw": 400,
+          "anchor": "middle"
+        }
+      ]
+    },
+    {
+      "name": "Revenue",
+      "svg": "390x844",
+      "elements": [
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "w": 390,
+          "h": 44,
+          "fill": "#FAF7F2"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 28,
+          "content": "9:41",
+          "size": 12,
+          "fill": "#1C1410",
+          "fw": 600
+        },
+        {
+          "type": "text",
+          "x": 370,
+          "y": 28,
+          "content": "●●● WiFi 100%",
+          "size": 10,
+          "fill": "#4A3F36",
+          "anchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 44,
+          "w": 390,
+          "h": 800,
+          "fill": "#FAF7F2"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 82,
+          "content": "Revenue",
+          "size": 24,
+          "fill": "#1C1410",
+          "fw": 800,
+          "font": "serif"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 102,
+          "content": "April 2026",
+          "size": 12,
+          "fill": "#9C8F85"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 116,
+          "w": 358,
+          "h": 110,
+          "fill": "#4A7C59",
+          "rx": 20
+        },
+        {
+          "type": "circle",
+          "cx": 330,
+          "cy": 146,
+          "r": 55,
+          "fill": "rgba(255,255,255,0.07)"
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 148,
+          "content": "TOTAL EARNED",
+          "size": 9,
+          "fill": "rgba(255,255,255,0.65)",
+          "fw": 600,
+          "ls": 1.5
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 192,
+          "content": "$14,280",
+          "size": 42,
+          "fill": "#FFFFFF",
+          "fw": 900,
+          "font": "serif"
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 214,
+          "content": "vs last month  $12,100  ↑ 18%",
+          "size": 11,
+          "fill": "rgba(255,255,255,0.7)"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 244,
+          "content": "BY CATEGORY",
+          "size": 9,
+          "fill": "#9C8F85",
+          "fw": 600,
+          "ls": 1.5
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 276,
+          "content": "Brand Identity",
+          "size": 13,
+          "fill": "#1C1410",
+          "fw": 600
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 292,
+          "content": "40% of total",
+          "size": 10,
+          "fill": "#9C8F85"
+        },
+        {
+          "type": "text",
+          "x": 370,
+          "y": 276,
+          "content": "$5,800",
+          "size": 13,
+          "fill": "#1C1410",
+          "fw": 700,
+          "anchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 298,
+          "w": 350,
+          "h": 5,
+          "fill": "#E0D8CE",
+          "rx": 2.5
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 298,
+          "w": 140,
+          "h": 5,
+          "fill": "#4A7C59",
+          "rx": 2.5
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 328,
+          "content": "UX / Strategy",
+          "size": 13,
+          "fill": "#1C1410",
+          "fw": 600
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 344,
+          "content": "24% of total",
+          "size": 10,
+          "fill": "#9C8F85"
+        },
+        {
+          "type": "text",
+          "x": 370,
+          "y": 328,
+          "content": "$3,400",
+          "size": 13,
+          "fill": "#1C1410",
+          "fw": 700,
+          "anchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 350,
+          "w": 350,
+          "h": 5,
+          "fill": "#E0D8CE",
+          "rx": 2.5
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 350,
+          "w": 84,
+          "h": 5,
+          "fill": "#8B6FAE",
+          "rx": 2.5
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 380,
+          "content": "Motion Design",
+          "size": 13,
+          "fill": "#1C1410",
+          "fw": 600
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 396,
+          "content": "20% of total",
+          "size": 10,
+          "fill": "#9C8F85"
+        },
+        {
+          "type": "text",
+          "x": 370,
+          "y": 380,
+          "content": "$2,800",
+          "size": 13,
+          "fill": "#1C1410",
+          "fw": 700,
+          "anchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 402,
+          "w": 350,
+          "h": 5,
+          "fill": "#E0D8CE",
+          "rx": 2.5
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 402,
+          "w": 70,
+          "h": 5,
+          "fill": "#C4714A",
+          "rx": 2.5
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 432,
+          "content": "Packaging",
+          "size": 13,
+          "fill": "#1C1410",
+          "fw": 600
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 448,
+          "content": "10% of total",
+          "size": 10,
+          "fill": "#9C8F85"
+        },
+        {
+          "type": "text",
+          "x": 370,
+          "y": 432,
+          "content": "$1,480",
+          "size": 13,
+          "fill": "#1C1410",
+          "fw": 700,
+          "anchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 454,
+          "w": 350,
+          "h": 5,
+          "fill": "#E0D8CE",
+          "rx": 2.5
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 454,
+          "w": 35,
+          "h": 5,
+          "fill": "#6BA882",
+          "rx": 2.5
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 484,
+          "content": "Consulting",
+          "size": 13,
+          "fill": "#1C1410",
+          "fw": 600
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 500,
+          "content": "6% of total",
+          "size": 10,
+          "fill": "#9C8F85"
+        },
+        {
+          "type": "text",
+          "x": 370,
+          "y": 484,
+          "content": "$800",
+          "size": 13,
+          "fill": "#1C1410",
+          "fw": 700,
+          "anchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 506,
+          "w": 350,
+          "h": 5,
+          "fill": "#E0D8CE",
+          "rx": 2.5
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 506,
+          "w": 21,
+          "h": 5,
+          "fill": "#EDE7DD",
+          "rx": 2.5
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 530,
+          "content": "6-MONTH TREND",
+          "size": 9,
+          "fill": "#9C8F85",
+          "fw": 600,
+          "ls": 1.5
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 544,
+          "w": 358,
+          "h": 110,
+          "fill": "#FFFFFF",
+          "rx": 14,
+          "stroke": "#E0D8CE",
+          "sw": 1
+        },
+        {
+          "type": "rect",
+          "x": 30,
+          "y": 590.2666666666667,
+          "w": 40,
+          "h": 43.733333333333334,
+          "fill": "#EDE7DD",
+          "rx": 4
+        },
+        {
+          "type": "text",
+          "x": 50,
+          "y": 648,
+          "content": "Nov",
+          "size": 8,
+          "fill": "#9C8F85",
+          "fw": 400,
+          "anchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 88,
+          "y": 573.2,
+          "w": 40,
+          "h": 60.8,
+          "fill": "#EDE7DD",
+          "rx": 4
+        },
+        {
+          "type": "text",
+          "x": 108,
+          "y": 648,
+          "content": "Dec",
+          "size": 8,
+          "fill": "#9C8F85",
+          "fw": 400,
+          "anchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 146,
+          "y": 582.8,
+          "w": 40,
+          "h": 51.2,
+          "fill": "#EDE7DD",
+          "rx": 4
+        },
+        {
+          "type": "text",
+          "x": 166,
+          "y": 648,
+          "content": "Jan",
+          "size": 8,
+          "fill": "#9C8F85",
+          "fw": 400,
+          "anchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 204,
+          "y": 576.4,
+          "w": 40,
+          "h": 57.599999999999994,
+          "fill": "#EDE7DD",
+          "rx": 4
+        },
+        {
+          "type": "text",
+          "x": 224,
+          "y": 648,
+          "content": "Feb",
+          "size": 8,
+          "fill": "#9C8F85",
+          "fw": 400,
+          "anchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 262,
+          "y": 569.4666666666667,
+          "w": 40,
+          "h": 64.53333333333333,
+          "fill": "#EDE7DD",
+          "rx": 4
+        },
+        {
+          "type": "text",
+          "x": 282,
+          "y": 648,
+          "content": "Mar",
+          "size": 8,
+          "fill": "#9C8F85",
+          "fw": 400,
+          "anchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 320,
+          "y": 557.84,
+          "w": 40,
+          "h": 76.16,
+          "fill": "#4A7C59",
+          "rx": 4
+        },
+        {
+          "type": "text",
+          "x": 340,
+          "y": 648,
+          "content": "Apr",
+          "size": 8,
+          "fill": "#4A7C59",
+          "fw": 700,
+          "anchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 664,
+          "w": 358,
+          "h": 48,
+          "fill": "#F2EDE5",
+          "rx": 12
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 682,
+          "content": "Year-to-date total",
+          "size": 12,
+          "fill": "#1C1410",
+          "fw": 600
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 700,
+          "content": "Jan – Apr 2026",
+          "size": 10,
+          "fill": "#9C8F85"
+        },
+        {
+          "type": "text",
+          "x": 362,
+          "y": 682,
+          "content": "$68,200",
+          "size": 18,
+          "fill": "#4A7C59",
+          "fw": 800,
+          "anchor": "end"
+        },
+        {
+          "type": "line",
+          "x1": 260,
+          "y1": 718,
+          "x2": 280,
+          "y2": 714,
+          "stroke": "#4A7C59",
+          "sw": 2
+        },
+        {
+          "type": "circle",
+          "cx": 260,
+          "cy": 718,
+          "r": 3,
+          "fill": "#4A7C59"
+        },
+        {
+          "type": "line",
+          "x1": 280,
+          "y1": 714,
+          "x2": 300,
+          "y2": 716,
+          "stroke": "#4A7C59",
+          "sw": 2
+        },
+        {
+          "type": "circle",
+          "cx": 280,
+          "cy": 714,
+          "r": 3,
+          "fill": "#4A7C59"
+        },
+        {
+          "type": "line",
+          "x1": 300,
+          "y1": 716,
+          "x2": 320,
+          "y2": 710,
+          "stroke": "#4A7C59",
+          "sw": 2
+        },
+        {
+          "type": "circle",
+          "cx": 300,
+          "cy": 716,
+          "r": 3,
+          "fill": "#4A7C59"
+        },
+        {
+          "type": "line",
+          "x1": 320,
+          "y1": 710,
+          "x2": 340,
+          "y2": 708,
+          "stroke": "#4A7C59",
+          "sw": 2
+        },
+        {
+          "type": "circle",
+          "cx": 320,
+          "cy": 710,
+          "r": 3,
+          "fill": "#4A7C59"
+        },
+        {
+          "type": "line",
+          "x1": 340,
+          "y1": 708,
+          "x2": 360,
+          "y2": 700,
+          "stroke": "#4A7C59",
+          "sw": 2
+        },
+        {
+          "type": "circle",
+          "cx": 340,
+          "cy": 708,
+          "r": 3,
+          "fill": "#4A7C59"
+        },
+        {
+          "type": "circle",
+          "cx": 360,
+          "cy": 700,
+          "r": 3,
+          "fill": "#4A7C59"
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 764,
+          "w": 390,
+          "h": 80,
+          "fill": "#FFFFFF"
+        },
+        {
+          "type": "line",
+          "x1": 0,
+          "y1": 764,
+          "x2": 390,
+          "y2": 764,
+          "stroke": "#E0D8CE",
+          "sw": 1
+        },
+        {
+          "type": "text",
+          "x": 39,
+          "y": 792,
+          "content": "⌂",
+          "size": 20,
+          "fill": "#9C8F85",
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 39,
+          "y": 816,
+          "content": "Home",
+          "size": 9,
+          "fill": "#9C8F85",
+          "fw": 400,
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 117,
+          "y": 792,
+          "content": "◷",
+          "size": 20,
+          "fill": "#9C8F85",
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 117,
+          "y": 816,
+          "content": "Time",
+          "size": 9,
+          "fill": "#9C8F85",
+          "fw": 400,
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 792,
+          "content": "◈",
+          "size": 20,
+          "fill": "#9C8F85",
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 816,
+          "content": "Projects",
+          "size": 9,
+          "fill": "#9C8F85",
+          "fw": 400,
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 273,
+          "y": 792,
+          "content": "◎",
+          "size": 20,
+          "fill": "#4A7C59",
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 273,
+          "y": 816,
+          "content": "Revenue",
+          "size": 9,
+          "fill": "#4A7C59",
+          "fw": 700,
+          "anchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 261,
+          "y": 766,
+          "w": 24,
+          "h": 3,
+          "fill": "#4A7C59",
+          "rx": 2
+        },
+        {
+          "type": "text",
+          "x": 351,
+          "y": 792,
+          "content": "○",
+          "size": 20,
+          "fill": "#9C8F85",
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 351,
+          "y": 816,
+          "content": "Goals",
+          "size": 9,
+          "fill": "#9C8F85",
+          "fw": 400,
+          "anchor": "middle"
+        }
+      ]
+    },
+    {
+      "name": "Invoices",
+      "svg": "390x844",
+      "elements": [
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "w": 390,
+          "h": 44,
+          "fill": "#FAF7F2"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 28,
+          "content": "9:41",
+          "size": 12,
+          "fill": "#1C1410",
+          "fw": 600
+        },
+        {
+          "type": "text",
+          "x": 370,
+          "y": 28,
+          "content": "●●● WiFi 100%",
+          "size": 10,
+          "fill": "#4A3F36",
+          "anchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 44,
+          "w": 390,
+          "h": 800,
+          "fill": "#FAF7F2"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 82,
+          "content": "Invoices",
+          "size": 24,
+          "fill": "#1C1410",
+          "fw": 800,
+          "font": "serif"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 96,
+          "w": 114,
+          "h": 56,
+          "fill": "#FFFFFF",
+          "rx": 12,
+          "stroke": "#E0D8CE",
+          "sw": 1
+        },
+        {
+          "type": "text",
+          "x": 73,
+          "y": 122,
+          "content": "$6,400",
+          "size": 16,
+          "fill": "#C4714A",
+          "fw": 800,
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 73,
+          "y": 140,
+          "content": "Pending",
+          "size": 9,
+          "fill": "#9C8F85",
+          "fw": 600,
+          "anchor": "middle",
+          "ls": 1.2
+        },
+        {
+          "type": "rect",
+          "x": 138,
+          "y": 96,
+          "w": 114,
+          "h": 56,
+          "fill": "#FFFFFF",
+          "rx": 12,
+          "stroke": "#E0D8CE",
+          "sw": 1
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 122,
+          "content": "$7,880",
+          "size": 16,
+          "fill": "#4A7C59",
+          "fw": 800,
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 140,
+          "content": "Paid",
+          "size": 9,
+          "fill": "#9C8F85",
+          "fw": 600,
+          "anchor": "middle",
+          "ls": 1.2
+        },
+        {
+          "type": "rect",
+          "x": 260,
+          "y": 96,
+          "w": 114,
+          "h": 56,
+          "fill": "#FFFFFF",
+          "rx": 12,
+          "stroke": "#E0D8CE",
+          "sw": 1
+        },
+        {
+          "type": "text",
+          "x": 317,
+          "y": 122,
+          "content": "$2,000",
+          "size": 16,
+          "fill": "#9C8F85",
+          "fw": 800,
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 317,
+          "y": 140,
+          "content": "Draft",
+          "size": 9,
+          "fill": "#9C8F85",
+          "fw": 600,
+          "anchor": "middle",
+          "ls": 1.2
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 168,
+          "content": "ALL INVOICES",
+          "size": 9,
+          "fill": "#9C8F85",
+          "fw": 600,
+          "ls": 1.5
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 182,
+          "w": 358,
+          "h": 68,
+          "fill": "#FFFFFF",
+          "rx": 12,
+          "stroke": "#E0D8CE",
+          "sw": 1
+        },
+        {
+          "type": "rect",
+          "x": 24,
+          "y": 192,
+          "w": 40,
+          "h": 20,
+          "fill": "#EDE7DD",
+          "rx": 6
+        },
+        {
+          "type": "text",
+          "x": 44,
+          "y": 206,
+          "content": "#047",
+          "size": 9,
+          "fill": "#4A3F36",
+          "fw": 700,
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 74,
+          "y": 206,
+          "content": "Meridian Studio",
+          "size": 13,
+          "fill": "#1C1410",
+          "fw": 700
+        },
+        {
+          "type": "text",
+          "x": 74,
+          "y": 224,
+          "content": "Brand guidelines",
+          "size": 10,
+          "fill": "#9C8F85"
+        },
+        {
+          "type": "text",
+          "x": 362,
+          "y": 206,
+          "content": "$2,100",
+          "size": 13,
+          "fill": "#1C1410",
+          "fw": 700,
+          "anchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 306,
+          "y": 228,
+          "w": 56,
+          "h": 16,
+          "fill": "transparent",
+          "rx": 8,
+          "stroke": "#C4714A",
+          "sw": 1
+        },
+        {
+          "type": "text",
+          "x": 334,
+          "y": 240,
+          "content": "Sent",
+          "size": 8,
+          "fill": "#C4714A",
+          "fw": 600,
+          "anchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 258,
+          "w": 358,
+          "h": 68,
+          "fill": "#FFFFFF",
+          "rx": 12,
+          "stroke": "#E0D8CE",
+          "sw": 1
+        },
+        {
+          "type": "rect",
+          "x": 24,
+          "y": 268,
+          "w": 40,
+          "h": 20,
+          "fill": "#EDE7DD",
+          "rx": 6
+        },
+        {
+          "type": "text",
+          "x": 44,
+          "y": 282,
+          "content": "#046",
+          "size": 9,
+          "fill": "#4A3F36",
+          "fw": 700,
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 74,
+          "y": 282,
+          "content": "Verde Co.",
+          "size": 13,
+          "fill": "#1C1410",
+          "fw": 700
+        },
+        {
+          "type": "text",
+          "x": 74,
+          "y": 300,
+          "content": "UX Strategy Phase 1",
+          "size": 10,
+          "fill": "#9C8F85"
+        },
+        {
+          "type": "text",
+          "x": 362,
+          "y": 282,
+          "content": "$1,800",
+          "size": 13,
+          "fill": "#1C1410",
+          "fw": 700,
+          "anchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 306,
+          "y": 304,
+          "w": 56,
+          "h": 16,
+          "fill": "transparent",
+          "rx": 8,
+          "stroke": "#4A7C59",
+          "sw": 1
+        },
+        {
+          "type": "text",
+          "x": 334,
+          "y": 316,
+          "content": "Paid",
+          "size": 8,
+          "fill": "#4A7C59",
+          "fw": 600,
+          "anchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 334,
+          "w": 358,
+          "h": 68,
+          "fill": "#FFFFFF",
+          "rx": 12,
+          "stroke": "#E0D8CE",
+          "sw": 1
+        },
+        {
+          "type": "rect",
+          "x": 24,
+          "y": 344,
+          "w": 40,
+          "h": 20,
+          "fill": "#EDE7DD",
+          "rx": 6
+        },
+        {
+          "type": "text",
+          "x": 44,
+          "y": 358,
+          "content": "#045",
+          "size": 9,
+          "fill": "#4A3F36",
+          "fw": 700,
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 74,
+          "y": 358,
+          "content": "Apex Rebranding",
+          "size": 13,
+          "fill": "#1C1410",
+          "fw": 700
+        },
+        {
+          "type": "text",
+          "x": 74,
+          "y": 376,
+          "content": "Logo concepts",
+          "size": 10,
+          "fill": "#9C8F85"
+        },
+        {
+          "type": "text",
+          "x": 362,
+          "y": 358,
+          "content": "$1,600",
+          "size": 13,
+          "fill": "#1C1410",
+          "fw": 700,
+          "anchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 306,
+          "y": 380,
+          "w": 56,
+          "h": 16,
+          "fill": "transparent",
+          "rx": 8,
+          "stroke": "#C4714A",
+          "sw": 1
+        },
+        {
+          "type": "text",
+          "x": 334,
+          "y": 392,
+          "content": "Pending",
+          "size": 8,
+          "fill": "#C4714A",
+          "fw": 600,
+          "anchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 410,
+          "w": 358,
+          "h": 68,
+          "fill": "#FFFFFF",
+          "rx": 12,
+          "stroke": "#E0D8CE",
+          "sw": 1
+        },
+        {
+          "type": "rect",
+          "x": 24,
+          "y": 420,
+          "w": 40,
+          "h": 20,
+          "fill": "#EDE7DD",
+          "rx": 6
+        },
+        {
+          "type": "text",
+          "x": 44,
+          "y": 434,
+          "content": "#044",
+          "size": 9,
+          "fill": "#4A3F36",
+          "fw": 700,
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 74,
+          "y": 434,
+          "content": "Lakewood Foods",
+          "size": 13,
+          "fill": "#1C1410",
+          "fw": 700
+        },
+        {
+          "type": "text",
+          "x": 74,
+          "y": 452,
+          "content": "Packaging Round 1",
+          "size": 10,
+          "fill": "#9C8F85"
+        },
+        {
+          "type": "text",
+          "x": 362,
+          "y": 434,
+          "content": "$2,000",
+          "size": 13,
+          "fill": "#1C1410",
+          "fw": 700,
+          "anchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 306,
+          "y": 456,
+          "w": 56,
+          "h": 16,
+          "fill": "transparent",
+          "rx": 8,
+          "stroke": "#9C8F85",
+          "sw": 1
+        },
+        {
+          "type": "text",
+          "x": 334,
+          "y": 468,
+          "content": "Draft",
+          "size": 8,
+          "fill": "#9C8F85",
+          "fw": 600,
+          "anchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 486,
+          "w": 358,
+          "h": 68,
+          "fill": "#FFFFFF",
+          "rx": 12,
+          "stroke": "#E0D8CE",
+          "sw": 1
+        },
+        {
+          "type": "rect",
+          "x": 24,
+          "y": 496,
+          "w": 40,
+          "h": 20,
+          "fill": "#EDE7DD",
+          "rx": 6
+        },
+        {
+          "type": "text",
+          "x": 44,
+          "y": 510,
+          "content": "#043",
+          "size": 9,
+          "fill": "#4A3F36",
+          "fw": 700,
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 74,
+          "y": 510,
+          "content": "Crest Media",
+          "size": 13,
+          "fill": "#1C1410",
+          "fw": 700
+        },
+        {
+          "type": "text",
+          "x": 74,
+          "y": 528,
+          "content": "Motion reel edit",
+          "size": 10,
+          "fill": "#9C8F85"
+        },
+        {
+          "type": "text",
+          "x": 362,
+          "y": 510,
+          "content": "$2,800",
+          "size": 13,
+          "fill": "#1C1410",
+          "fw": 700,
+          "anchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 306,
+          "y": 532,
+          "w": 56,
+          "h": 16,
+          "fill": "transparent",
+          "rx": 8,
+          "stroke": "#4A7C59",
+          "sw": 1
+        },
+        {
+          "type": "text",
+          "x": 334,
+          "y": 544,
+          "content": "Paid",
+          "size": 8,
+          "fill": "#4A7C59",
+          "fw": 600,
+          "anchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 562,
+          "w": 358,
+          "h": 68,
+          "fill": "#FFFFFF",
+          "rx": 12,
+          "stroke": "#E0D8CE",
+          "sw": 1
+        },
+        {
+          "type": "rect",
+          "x": 24,
+          "y": 572,
+          "w": 40,
+          "h": 20,
+          "fill": "#EDE7DD",
+          "rx": 6
+        },
+        {
+          "type": "text",
+          "x": 44,
+          "y": 586,
+          "content": "#042",
+          "size": 9,
+          "fill": "#4A3F36",
+          "fw": 700,
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 74,
+          "y": 586,
+          "content": "Meridian Studio",
+          "size": 13,
+          "fill": "#1C1410",
+          "fw": 700
+        },
+        {
+          "type": "text",
+          "x": 74,
+          "y": 604,
+          "content": "Discovery session",
+          "size": 10,
+          "fill": "#9C8F85"
+        },
+        {
+          "type": "text",
+          "x": 362,
+          "y": 586,
+          "content": "$900",
+          "size": 13,
+          "fill": "#1C1410",
+          "fw": 700,
+          "anchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 306,
+          "y": 608,
+          "w": 56,
+          "h": 16,
+          "fill": "transparent",
+          "rx": 8,
+          "stroke": "#4A7C59",
+          "sw": 1
+        },
+        {
+          "type": "text",
+          "x": 334,
+          "y": 620,
+          "content": "Paid",
+          "size": 8,
+          "fill": "#4A7C59",
+          "fw": 600,
+          "anchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 764,
+          "w": 390,
+          "h": 80,
+          "fill": "#FFFFFF"
+        },
+        {
+          "type": "line",
+          "x1": 0,
+          "y1": 764,
+          "x2": 390,
+          "y2": 764,
+          "stroke": "#E0D8CE",
+          "sw": 1
+        },
+        {
+          "type": "text",
+          "x": 39,
+          "y": 792,
+          "content": "⌂",
+          "size": 20,
+          "fill": "#9C8F85",
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 39,
+          "y": 816,
+          "content": "Home",
+          "size": 9,
+          "fill": "#9C8F85",
+          "fw": 400,
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 117,
+          "y": 792,
+          "content": "◷",
+          "size": 20,
+          "fill": "#9C8F85",
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 117,
+          "y": 816,
+          "content": "Time",
+          "size": 9,
+          "fill": "#9C8F85",
+          "fw": 400,
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 792,
+          "content": "◈",
+          "size": 20,
+          "fill": "#4A7C59",
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 816,
+          "content": "Projects",
+          "size": 9,
+          "fill": "#4A7C59",
+          "fw": 700,
+          "anchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 183,
+          "y": 766,
+          "w": 24,
+          "h": 3,
+          "fill": "#4A7C59",
+          "rx": 2
+        },
+        {
+          "type": "text",
+          "x": 273,
+          "y": 792,
+          "content": "◎",
+          "size": 20,
+          "fill": "#9C8F85",
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 273,
+          "y": 816,
+          "content": "Revenue",
+          "size": 9,
+          "fill": "#9C8F85",
+          "fw": 400,
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 351,
+          "y": 792,
+          "content": "○",
+          "size": 20,
+          "fill": "#9C8F85",
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 351,
+          "y": 816,
+          "content": "Goals",
+          "size": 9,
+          "fill": "#9C8F85",
+          "fw": 400,
+          "anchor": "middle"
+        }
+      ]
+    },
+    {
+      "name": "Goals",
+      "svg": "390x844",
+      "elements": [
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "w": 390,
+          "h": 44,
+          "fill": "#FAF7F2"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 28,
+          "content": "9:41",
+          "size": 12,
+          "fill": "#1C1410",
+          "fw": 600
+        },
+        {
+          "type": "text",
+          "x": 370,
+          "y": 28,
+          "content": "●●● WiFi 100%",
+          "size": 10,
+          "fill": "#4A3F36",
+          "anchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 44,
+          "w": 390,
+          "h": 800,
+          "fill": "#FAF7F2"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 82,
+          "content": "Goals",
+          "size": 24,
+          "fill": "#1C1410",
+          "fw": 800,
+          "font": "serif"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 102,
+          "content": "Your milestones",
+          "size": 12,
+          "fill": "#9C8F85"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 116,
+          "w": 358,
+          "h": 150,
+          "fill": "#FFFFFF",
+          "rx": 20,
+          "stroke": "#E0D8CE",
+          "sw": 1
+        },
+        {
+          "type": "circle",
+          "cx": 95,
+          "cy": 196,
+          "r": 50,
+          "fill": "#EDE7DD"
+        },
+        {
+          "type": "circle",
+          "cx": 95,
+          "cy": 196,
+          "r": 50,
+          "fill": "transparent",
+          "stroke": "#E0D8CE",
+          "sw": 12
+        },
+        {
+          "type": "circle",
+          "cx": 95,
+          "cy": 196,
+          "r": 50,
+          "fill": "transparent",
+          "opacity": 0.9,
+          "stroke": "#4A7C59",
+          "sw": 12
+        },
+        {
+          "type": "text",
+          "x": 95,
+          "y": 190,
+          "content": "57%",
+          "size": 18,
+          "fill": "#1C1410",
+          "fw": 800,
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 95,
+          "y": 208,
+          "content": "annual",
+          "size": 9,
+          "fill": "#9C8F85",
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 178,
+          "y": 148,
+          "content": "Annual Revenue Goal",
+          "size": 13,
+          "fill": "#1C1410",
+          "fw": 700
+        },
+        {
+          "type": "text",
+          "x": 178,
+          "y": 166,
+          "content": "$120,000 target",
+          "size": 11,
+          "fill": "#9C8F85"
+        },
+        {
+          "type": "text",
+          "x": 178,
+          "y": 196,
+          "content": "$68,200",
+          "size": 24,
+          "fill": "#4A7C59",
+          "fw": 800
+        },
+        {
+          "type": "text",
+          "x": 178,
+          "y": 218,
+          "content": "earned so far",
+          "size": 11,
+          "fill": "#9C8F85"
+        },
+        {
+          "type": "text",
+          "x": 178,
+          "y": 238,
+          "content": "$51,800 remaining",
+          "size": 10,
+          "fill": "#4A3F36",
+          "fw": 500
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 282,
+          "content": "MILESTONES",
+          "size": 9,
+          "fill": "#9C8F85",
+          "fw": 600,
+          "ls": 1.5
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 298,
+          "w": 358,
+          "h": 52,
+          "fill": "#F7F2EA",
+          "rx": 12,
+          "stroke": "#E0D8CE",
+          "sw": 1
+        },
+        {
+          "type": "rect",
+          "x": 28,
+          "y": 310,
+          "w": 28,
+          "h": 28,
+          "fill": "#4A7C59",
+          "rx": 8
+        },
+        {
+          "type": "text",
+          "x": 42,
+          "y": 328,
+          "content": "★",
+          "size": 12,
+          "fill": "#FFF",
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 66,
+          "y": 322,
+          "content": "First $10K Month",
+          "size": 13,
+          "fill": "#1C1410",
+          "fw": 700
+        },
+        {
+          "type": "text",
+          "x": 66,
+          "y": 338,
+          "content": "Feb 2026",
+          "size": 10,
+          "fill": "#4A7C59"
+        },
+        {
+          "type": "rect",
+          "x": 322,
+          "y": 312,
+          "w": 44,
+          "h": 22,
+          "fill": "#4A7C59",
+          "rx": 11
+        },
+        {
+          "type": "text",
+          "x": 344,
+          "y": 327,
+          "content": "✓ Done",
+          "size": 9,
+          "fill": "#FFF",
+          "fw": 700,
+          "anchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 358,
+          "w": 358,
+          "h": 52,
+          "fill": "#F7F2EA",
+          "rx": 12,
+          "stroke": "#E0D8CE",
+          "sw": 1
+        },
+        {
+          "type": "rect",
+          "x": 28,
+          "y": 370,
+          "w": 28,
+          "h": 28,
+          "fill": "#4A7C59",
+          "rx": 8
+        },
+        {
+          "type": "text",
+          "x": 42,
+          "y": 388,
+          "content": "◷",
+          "size": 12,
+          "fill": "#FFF",
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 66,
+          "y": 382,
+          "content": "100 Hours Tracked",
+          "size": 13,
+          "fill": "#1C1410",
+          "fw": 700
+        },
+        {
+          "type": "text",
+          "x": 66,
+          "y": 398,
+          "content": "Mar 2026",
+          "size": 10,
+          "fill": "#4A7C59"
+        },
+        {
+          "type": "rect",
+          "x": 322,
+          "y": 372,
+          "w": 44,
+          "h": 22,
+          "fill": "#4A7C59",
+          "rx": 11
+        },
+        {
+          "type": "text",
+          "x": 344,
+          "y": 387,
+          "content": "✓ Done",
+          "size": 9,
+          "fill": "#FFF",
+          "fw": 700,
+          "anchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 418,
+          "w": 358,
+          "h": 52,
+          "fill": "#F7F2EA",
+          "rx": 12,
+          "stroke": "#E0D8CE",
+          "sw": 1
+        },
+        {
+          "type": "rect",
+          "x": 28,
+          "y": 430,
+          "w": 28,
+          "h": 28,
+          "fill": "#4A7C59",
+          "rx": 8
+        },
+        {
+          "type": "text",
+          "x": 42,
+          "y": 448,
+          "content": "◈",
+          "size": 12,
+          "fill": "#FFF",
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 66,
+          "y": 442,
+          "content": "First Retainer",
+          "size": 13,
+          "fill": "#1C1410",
+          "fw": 700
+        },
+        {
+          "type": "text",
+          "x": 66,
+          "y": 458,
+          "content": "Mar 2026",
+          "size": 10,
+          "fill": "#4A7C59"
+        },
+        {
+          "type": "rect",
+          "x": 322,
+          "y": 432,
+          "w": 44,
+          "h": 22,
+          "fill": "#4A7C59",
+          "rx": 11
+        },
+        {
+          "type": "text",
+          "x": 344,
+          "y": 447,
+          "content": "✓ Done",
+          "size": 9,
+          "fill": "#FFF",
+          "fw": 700,
+          "anchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 478,
+          "w": 358,
+          "h": 52,
+          "fill": "#FFFFFF",
+          "rx": 12,
+          "stroke": "#E0D8CE",
+          "sw": 1
+        },
+        {
+          "type": "rect",
+          "x": 28,
+          "y": 490,
+          "w": 28,
+          "h": 28,
+          "fill": "#EDE7DD",
+          "rx": 8
+        },
+        {
+          "type": "text",
+          "x": 42,
+          "y": 508,
+          "content": "◎",
+          "size": 12,
+          "fill": "#9C8F85",
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 66,
+          "y": 502,
+          "content": "$50K Annual",
+          "size": 13,
+          "fill": "#1C1410",
+          "fw": 500
+        },
+        {
+          "type": "text",
+          "x": 66,
+          "y": 518,
+          "content": "On track",
+          "size": 10,
+          "fill": "#9C8F85"
+        },
+        {
+          "type": "rect",
+          "x": 322,
+          "y": 492,
+          "w": 44,
+          "h": 22,
+          "fill": "#EDE7DD",
+          "rx": 11
+        },
+        {
+          "type": "text",
+          "x": 344,
+          "y": 507,
+          "content": "Soon",
+          "size": 9,
+          "fill": "#9C8F85",
+          "fw": 600,
+          "anchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 538,
+          "w": 358,
+          "h": 52,
+          "fill": "#FFFFFF",
+          "rx": 12,
+          "stroke": "#E0D8CE",
+          "sw": 1
+        },
+        {
+          "type": "rect",
+          "x": 28,
+          "y": 550,
+          "w": 28,
+          "h": 28,
+          "fill": "#EDE7DD",
+          "rx": 8
+        },
+        {
+          "type": "text",
+          "x": 42,
+          "y": 568,
+          "content": "△",
+          "size": 12,
+          "fill": "#9C8F85",
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 66,
+          "y": 562,
+          "content": "First $15K Month",
+          "size": 13,
+          "fill": "#1C1410",
+          "fw": 500
+        },
+        {
+          "type": "text",
+          "x": 66,
+          "y": 578,
+          "content": "Set goal",
+          "size": 10,
+          "fill": "#9C8F85"
+        },
+        {
+          "type": "rect",
+          "x": 322,
+          "y": 552,
+          "w": 44,
+          "h": 22,
+          "fill": "#EDE7DD",
+          "rx": 11
+        },
+        {
+          "type": "text",
+          "x": 344,
+          "y": 567,
+          "content": "Soon",
+          "size": 9,
+          "fill": "#9C8F85",
+          "fw": 600,
+          "anchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 764,
+          "w": 390,
+          "h": 80,
+          "fill": "#FFFFFF"
+        },
+        {
+          "type": "line",
+          "x1": 0,
+          "y1": 764,
+          "x2": 390,
+          "y2": 764,
+          "stroke": "#E0D8CE",
+          "sw": 1
+        },
+        {
+          "type": "text",
+          "x": 39,
+          "y": 792,
+          "content": "⌂",
+          "size": 20,
+          "fill": "#9C8F85",
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 39,
+          "y": 816,
+          "content": "Home",
+          "size": 9,
+          "fill": "#9C8F85",
+          "fw": 400,
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 117,
+          "y": 792,
+          "content": "◷",
+          "size": 20,
+          "fill": "#9C8F85",
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 117,
+          "y": 816,
+          "content": "Time",
+          "size": 9,
+          "fill": "#9C8F85",
+          "fw": 400,
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 792,
+          "content": "◈",
+          "size": 20,
+          "fill": "#9C8F85",
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 816,
+          "content": "Projects",
+          "size": 9,
+          "fill": "#9C8F85",
+          "fw": 400,
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 273,
+          "y": 792,
+          "content": "◎",
+          "size": 20,
+          "fill": "#9C8F85",
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 273,
+          "y": 816,
+          "content": "Revenue",
+          "size": 9,
+          "fill": "#9C8F85",
+          "fw": 400,
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 351,
+          "y": 792,
+          "content": "○",
+          "size": 20,
+          "fill": "#4A7C59",
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 351,
+          "y": 816,
+          "content": "Goals",
+          "size": 9,
+          "fill": "#4A7C59",
+          "fw": 700,
+          "anchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 339,
+          "y": 766,
+          "w": 24,
+          "h": 3,
+          "fill": "#4A7C59",
+          "rx": 2
+        }
+      ]
+    }
+  ]
+}

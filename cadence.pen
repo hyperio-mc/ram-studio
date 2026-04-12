@@ -1,0 +1,767 @@
+{
+  "version": "2.8",
+  "meta": {
+    "name": "CADENCE",
+    "tagline": "Schedule with your biology.",
+    "archetype": "cognitive-performance-scheduler",
+    "author": "RAM Design Heartbeat",
+    "created": "2026-04-01T12:08:43.166Z",
+    "theme": "light"
+  },
+  "palette": {
+    "bg": "#F5F1EC",
+    "bgGrad1": "#EBF4F1",
+    "bgGrad2": "#F5F1EC",
+    "bgGrad3": "#FDE8DC",
+    "surface": "rgba(255,255,255,0.72)",
+    "surfaceStrong": "rgba(255,255,255,0.90)",
+    "surfaceAlt": "rgba(62,123,110,0.07)",
+    "glass": "rgba(255,255,255,0.55)",
+    "glassBorder": "rgba(255,255,255,0.80)",
+    "text": "#1A1512",
+    "textMuted": "rgba(26,21,18,0.44)",
+    "textSoft": "rgba(26,21,18,0.24)",
+    "accent": "#3E7B6E",
+    "accentSoft": "rgba(62,123,110,0.10)",
+    "accentMid": "rgba(62,123,110,0.22)",
+    "accent2": "#C4572A",
+    "accent2Soft": "rgba(196,87,42,0.10)",
+    "green": "#2E7D5A",
+    "greenSoft": "rgba(46,125,90,0.10)",
+    "amber": "#C17B2A",
+    "amberSoft": "rgba(193,123,42,0.10)",
+    "red": "#B94040",
+    "redSoft": "rgba(185,64,64,0.09)",
+    "border": "rgba(26,21,18,0.07)",
+    "borderStrong": "rgba(26,21,18,0.13)"
+  },
+  "darkPalette": {
+    "bg": "#0E100F",
+    "surface": "rgba(255,255,255,0.06)",
+    "surfaceAlt": "rgba(62,123,110,0.08)",
+    "glass": "rgba(255,255,255,0.05)",
+    "glassBorder": "rgba(255,255,255,0.10)",
+    "text": "#F0EDE8",
+    "textMuted": "rgba(240,237,232,0.45)",
+    "accent": "#5FB8A7",
+    "accent2": "#E07B50",
+    "green": "#4DBA87",
+    "amber": "#E0A840",
+    "red": "#E06060",
+    "border": "rgba(240,237,232,0.07)"
+  },
+  "typography": {
+    "fontFamily": "'Inter', system-ui, -apple-system, sans-serif",
+    "displayFamily": "'DM Serif Display', 'Georgia', serif",
+    "scale": {
+      "xs": 10,
+      "sm": 11,
+      "base": 13,
+      "md": 14,
+      "lg": 17,
+      "xl": 22,
+      "xxl": 32,
+      "hero": 52,
+      "display": 68
+    }
+  },
+  "screens": [
+    {
+      "id": "today",
+      "label": "Today",
+      "description": "Energy forecast ribbon + peak block + daily readiness score",
+      "gradientField": {
+        "from": "#EBF4F1",
+        "via": "#F5F1EC",
+        "to": "#FDE8DC",
+        "angle": 138
+      },
+      "components": [
+        {
+          "type": "glass-topbar",
+          "title": "CADENCE",
+          "subtitle": "Wednesday, Apr 1",
+          "glassStyle": true,
+          "rightItems": [
+            {
+              "type": "icon-btn",
+              "icon": "settings"
+            },
+            {
+              "type": "avatar-badge",
+              "initials": "RK",
+              "label": "Rakis"
+            }
+          ]
+        },
+        {
+          "type": "readiness-hero",
+          "eyebrow": "TODAY'S READINESS",
+          "score": 84,
+          "scoreMax": 100,
+          "scoreLabel": "Optimal",
+          "scoreColor": "#3E7B6E",
+          "supporting": "Your peak cognition window opens in 28 min",
+          "ringColor": "#3E7B6E",
+          "ringTrack": "rgba(62,123,110,0.14)",
+          "glassCard": true,
+          "gradientBleed": {
+            "color1": "#EBF4F1",
+            "color2": "#FDE8DC",
+            "opacity": 0.55
+          }
+        },
+        {
+          "type": "energy-ribbon",
+          "label": "ENERGY FORECAST — TODAY",
+          "hours": [
+            {
+              "t": "6am",
+              "e": 0.38,
+              "zone": "warm-up"
+            },
+            {
+              "t": "7am",
+              "e": 0.55,
+              "zone": "warm-up"
+            },
+            {
+              "t": "8am",
+              "e": 0.72,
+              "zone": "rising"
+            },
+            {
+              "t": "9am",
+              "e": 0.91,
+              "zone": "peak",
+              "highlight": true
+            },
+            {
+              "t": "10am",
+              "e": 0.96,
+              "zone": "peak",
+              "highlight": true,
+              "current": true
+            },
+            {
+              "t": "11am",
+              "e": 0.94,
+              "zone": "peak",
+              "highlight": true
+            },
+            {
+              "t": "12pm",
+              "e": 0.78,
+              "zone": "sustain"
+            },
+            {
+              "t": "1pm",
+              "e": 0.52,
+              "zone": "dip"
+            },
+            {
+              "t": "2pm",
+              "e": 0.41,
+              "zone": "dip"
+            },
+            {
+              "t": "3pm",
+              "e": 0.61,
+              "zone": "recovery"
+            },
+            {
+              "t": "4pm",
+              "e": 0.74,
+              "zone": "second-wind"
+            },
+            {
+              "t": "5pm",
+              "e": 0.62,
+              "zone": "wind-down"
+            },
+            {
+              "t": "6pm",
+              "e": 0.44,
+              "zone": "wind-down"
+            }
+          ],
+          "peakZone": {
+            "start": "9am",
+            "end": "12pm",
+            "color": "#3E7B6E"
+          },
+          "dipZone": {
+            "start": "1pm",
+            "end": "3pm",
+            "color": "#C4572A"
+          }
+        },
+        {
+          "type": "next-block-card",
+          "eyebrow": "NEXT OPTIMAL BLOCK",
+          "blockType": "Deep Work",
+          "blockIcon": "zap",
+          "timeRange": "10:00 – 11:30 AM",
+          "duration": "90 min",
+          "energyLevel": "96/100",
+          "suggestion": "Ideal for writing, strategy, or code",
+          "ctaLabel": "Start Session",
+          "accentColor": "#3E7B6E"
+        },
+        {
+          "type": "stats-row-3",
+          "items": [
+            {
+              "label": "FOCUS TODAY",
+              "value": "2h 14m",
+              "sub": "2 sessions",
+              "icon": "activity"
+            },
+            {
+              "label": "SLEEP SCORE",
+              "value": "82",
+              "sub": "6h 48m",
+              "icon": "eye"
+            },
+            {
+              "label": "MEETINGS",
+              "value": "3",
+              "sub": "Scheduled",
+              "icon": "calendar"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "focus",
+      "label": "Focus",
+      "description": "Active deep work timer with ambient state indicator and biometrics",
+      "gradientField": {
+        "from": "#E8F2EF",
+        "via": "#F5F1EC",
+        "to": "#E8F2EF",
+        "angle": 160
+      },
+      "components": [
+        {
+          "type": "glass-topbar",
+          "title": "FOCUS",
+          "subtitle": "Session Active",
+          "statusDot": {
+            "color": "#3E7B6E",
+            "pulse": true
+          },
+          "rightItems": [
+            {
+              "type": "text-btn",
+              "label": "End"
+            }
+          ]
+        },
+        {
+          "type": "session-timer-hero",
+          "elapsed": "34:22",
+          "totalTarget": "90:00",
+          "pct": 0.38,
+          "sessionType": "Deep Work",
+          "ringColor": "#3E7B6E",
+          "ringTrack": "rgba(62,123,110,0.12)",
+          "innerLabel": "ELAPSED",
+          "glassCard": true,
+          "breatheAnimation": true
+        },
+        {
+          "type": "ambient-state",
+          "label": "AMBIENT STATE",
+          "state": "Flow",
+          "stateIcon": "zap",
+          "stateColor": "#3E7B6E",
+          "sub": "Entering deep focus — minimize interruptions",
+          "indicators": [
+            {
+              "label": "HRV",
+              "value": "68 ms",
+              "trend": "up",
+              "good": true
+            },
+            {
+              "label": "COHERENCE",
+              "value": "High",
+              "trend": "up",
+              "good": true
+            },
+            {
+              "label": "DISTRACTS",
+              "value": "1",
+              "trend": "down",
+              "good": true
+            }
+          ]
+        },
+        {
+          "type": "session-intent-card",
+          "label": "SESSION INTENT",
+          "intent": "Finish product spec draft",
+          "projectTag": "Cadence v2.0",
+          "tagColor": "#3E7B6E",
+          "progressBar": {
+            "pct": 0.38,
+            "color": "#3E7B6E"
+          }
+        },
+        {
+          "type": "quick-actions-row",
+          "items": [
+            {
+              "icon": "pause",
+              "label": "Pause"
+            },
+            {
+              "icon": "alert",
+              "label": "Interrupt"
+            },
+            {
+              "icon": "check",
+              "label": "Complete"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "weekly",
+      "label": "Weekly",
+      "description": "7-day energy heatmap with focus outcomes and meeting load",
+      "gradientField": {
+        "from": "#F5F1EC",
+        "via": "#EBF4F1",
+        "to": "#F5F1EC",
+        "angle": 90
+      },
+      "components": [
+        {
+          "type": "glass-topbar",
+          "title": "WEEKLY",
+          "subtitle": "Mar 26 – Apr 1",
+          "glassStyle": true,
+          "rightItems": [
+            {
+              "type": "icon-btn",
+              "icon": "chevron-left"
+            },
+            {
+              "type": "icon-btn",
+              "icon": "chevron-right"
+            }
+          ]
+        },
+        {
+          "type": "week-energy-grid",
+          "label": "ENERGY HEATMAP",
+          "days": [
+            {
+              "d": "M",
+              "date": "26",
+              "cells": [
+                0.3,
+                0.5,
+                0.8,
+                0.95,
+                0.92,
+                0.85,
+                0.7,
+                0.5,
+                0.4,
+                0.55,
+                0.7,
+                0.5,
+                0.3
+              ],
+              "focus": 3.2,
+              "quality": 88
+            },
+            {
+              "d": "T",
+              "date": "27",
+              "cells": [
+                0.4,
+                0.6,
+                0.85,
+                0.9,
+                0.88,
+                0.82,
+                0.6,
+                0.38,
+                0.35,
+                0.6,
+                0.72,
+                0.45,
+                0.25
+              ],
+              "focus": 2.8,
+              "quality": 82
+            },
+            {
+              "d": "W",
+              "date": "28",
+              "cells": [
+                0.35,
+                0.55,
+                0.75,
+                0.88,
+                0.9,
+                0.78,
+                0.65,
+                0.42,
+                0.38,
+                0.58,
+                0.7,
+                0.5,
+                0.3
+              ],
+              "focus": 3,
+              "quality": 79
+            },
+            {
+              "d": "T",
+              "date": "29",
+              "cells": [
+                0.28,
+                0.45,
+                0.7,
+                0.82,
+                0.8,
+                0.75,
+                0.55,
+                0.32,
+                0.28,
+                0.5,
+                0.65,
+                0.4,
+                0.2
+              ],
+              "focus": 1.5,
+              "quality": 65,
+              "meetingHeavy": true
+            },
+            {
+              "d": "F",
+              "date": "30",
+              "cells": [
+                0.35,
+                0.5,
+                0.78,
+                0.88,
+                0.85,
+                0.72,
+                0.6,
+                0.4,
+                0.35,
+                0.55,
+                0.68,
+                0.45,
+                0.2
+              ],
+              "focus": 2.4,
+              "quality": 74
+            },
+            {
+              "d": "S",
+              "date": "31",
+              "cells": [
+                0.2,
+                0.3,
+                0.5,
+                0.65,
+                0.7,
+                0.68,
+                0.6,
+                0.5,
+                0.45,
+                0.55,
+                0.5,
+                0.35,
+                0.2
+              ],
+              "focus": 0.5,
+              "quality": 70,
+              "rest": true
+            },
+            {
+              "d": "S",
+              "date": "1",
+              "cells": [
+                0.3,
+                0.5,
+                0.7,
+                0.92,
+                0.96,
+                0.94,
+                0.78,
+                0.52,
+                0.41,
+                0.61,
+                0.74,
+                0.62,
+                0.44
+              ],
+              "focus": 0,
+              "quality": 84,
+              "today": true
+            }
+          ],
+          "peakColor": "#3E7B6E",
+          "dipColor": "#C4572A",
+          "restColor": "rgba(62,123,110,0.25)"
+        },
+        {
+          "type": "week-summary-cards",
+          "items": [
+            {
+              "label": "TOTAL FOCUS",
+              "value": "13.4h",
+              "sub": "↑ 12% vs last week",
+              "trend": "up",
+              "color": "#3E7B6E"
+            },
+            {
+              "label": "PEAK SESSIONS",
+              "value": "11",
+              "sub": "In optimal window",
+              "trend": "up",
+              "color": "#3E7B6E"
+            },
+            {
+              "label": "MEETING LOAD",
+              "value": "34%",
+              "sub": "↓ 6% vs last week",
+              "trend": "down",
+              "color": "#2E7D5A"
+            },
+            {
+              "label": "BEST DAY",
+              "value": "Mon",
+              "sub": "Readiness 88/100",
+              "trend": "",
+              "color": "#C17B2A"
+            }
+          ]
+        },
+        {
+          "type": "focus-quality-bar",
+          "label": "DAILY FOCUS QUALITY",
+          "days": [
+            "M",
+            "T",
+            "W",
+            "T",
+            "F",
+            "S",
+            "S"
+          ],
+          "values": [
+            88,
+            82,
+            79,
+            65,
+            74,
+            70,
+            84
+          ],
+          "accentColor": "#3E7B6E",
+          "lowColor": "#C4572A",
+          "threshold": 70
+        }
+      ]
+    },
+    {
+      "id": "insights",
+      "label": "Insights",
+      "description": "AI-generated pattern analysis: peak hour identification, recovery patterns, anomalies",
+      "gradientField": {
+        "from": "#FDE8DC",
+        "via": "#F5F1EC",
+        "to": "#EBF4F1",
+        "angle": 145
+      },
+      "components": [
+        {
+          "type": "glass-topbar",
+          "title": "INSIGHTS",
+          "subtitle": "4 new this week",
+          "glassStyle": true,
+          "rightItems": [
+            {
+              "type": "icon-btn",
+              "icon": "filter"
+            }
+          ]
+        },
+        {
+          "type": "insight-hero-card",
+          "eyebrow": "WEEKLY PATTERN",
+          "headline": "You peak 42 min\nearlier than average",
+          "body": "Your sharpest cognition starts at 9:08 AM — 42 minutes before the typical knowledge worker's peak. Your morning ramp is faster too.",
+          "category": "Chronotype",
+          "categoryColor": "#3E7B6E",
+          "icon": "zap",
+          "glassCard": true,
+          "gradientBleed": {
+            "color1": "#EBF4F1",
+            "color2": "#FDE8DC",
+            "opacity": 0.6
+          }
+        },
+        {
+          "type": "insight-cards-list",
+          "items": [
+            {
+              "icon": "moon",
+              "category": "RECOVERY",
+              "title": "Sleep consistency improving",
+              "body": "Sleep variance down 18 min this week vs last. More consistent bed times = more predictable peak windows.",
+              "trend": "+12% coherence",
+              "trendColor": "#2E7D5A"
+            },
+            {
+              "icon": "alert",
+              "category": "ATTENTION",
+              "title": "Thursday meetings cost you 2.4h",
+              "body": "Back-to-back meetings Thu 1–4pm pushed your focus into low-energy zones. Consider blocking Thu mornings.",
+              "trend": "Reclaim 2.4h",
+              "trendColor": "#C4572A"
+            },
+            {
+              "icon": "activity",
+              "category": "PATTERN",
+              "title": "Post-lunch walk = 38% output boost",
+              "body": "On days with a 15+ min walk at 1pm, your 3pm energy rebounds to 0.72 vs 0.42 without it.",
+              "trend": "↑ 38% output",
+              "trendColor": "#2E7D5A"
+            }
+          ]
+        },
+        {
+          "type": "ai-recommendation",
+          "label": "CADENCE RECOMMENDS",
+          "recommendation": "Block 9–11:30 AM Tue–Thu as protected Deep Work. You've lost 6.8h of peak time to meetings this month.",
+          "ctaLabel": "Apply to Calendar",
+          "accentColor": "#3E7B6E"
+        }
+      ]
+    },
+    {
+      "id": "profile",
+      "label": "Profile",
+      "description": "Chronotype profile, preferences, calibration history",
+      "gradientField": {
+        "from": "#F5F1EC",
+        "via": "#FDE8DC",
+        "to": "#F5F1EC",
+        "angle": 165
+      },
+      "components": [
+        {
+          "type": "glass-topbar",
+          "title": "PROFILE",
+          "subtitle": "Calibrated 3 days ago",
+          "glassStyle": true
+        },
+        {
+          "type": "profile-hero",
+          "name": "Rakis K.",
+          "avatarInitials": "RK",
+          "avatarColor": "#3E7B6E",
+          "chronotypeLabel": "Morning Lion",
+          "chronotypeIcon": "sunrise",
+          "chronotypeSub": "Top 18% for morning peak clarity",
+          "streak": 14,
+          "streakLabel": "day streak",
+          "glassCard": true
+        },
+        {
+          "type": "chronotype-card",
+          "label": "YOUR CHRONOTYPE",
+          "type_label": "Morning Lion",
+          "peak": "9:00 – 11:30 AM",
+          "secondary": "3:30 – 5:00 PM",
+          "sleep": "10:45 PM – 6:30 AM",
+          "description": "You think fastest in the first 2.5 hours after full wakefulness. Protect this window ruthlessly.",
+          "accentColor": "#3E7B6E",
+          "trackColors": {
+            "peak": "#3E7B6E",
+            "secondary": "#C17B2A",
+            "rest": "rgba(62,123,110,0.20)"
+          }
+        },
+        {
+          "type": "preferences-list",
+          "label": "PREFERENCES",
+          "items": [
+            {
+              "label": "Session length",
+              "value": "90 min",
+              "icon": "clock"
+            },
+            {
+              "label": "Break duration",
+              "value": "15 min",
+              "icon": "pause"
+            },
+            {
+              "label": "Daily focus goal",
+              "value": "4 hours",
+              "icon": "target"
+            },
+            {
+              "label": "Calendar integration",
+              "value": "Google Cal",
+              "icon": "calendar"
+            },
+            {
+              "label": "Notifications",
+              "value": "Gentle nudges",
+              "icon": "bell"
+            }
+          ]
+        },
+        {
+          "type": "calibration-cta",
+          "label": "RECALIBRATE",
+          "body": "Take the 5-minute assessment to sharpen your energy model.",
+          "ctaLabel": "Start Calibration",
+          "accentColor": "#3E7B6E",
+          "lastCalibrated": "Mar 29, 2026"
+        }
+      ]
+    }
+  ],
+  "navigation": [
+    {
+      "id": "today",
+      "label": "Today",
+      "icon": "home"
+    },
+    {
+      "id": "focus",
+      "label": "Focus",
+      "icon": "zap"
+    },
+    {
+      "id": "weekly",
+      "label": "Weekly",
+      "icon": "calendar"
+    },
+    {
+      "id": "insights",
+      "label": "Insights",
+      "icon": "activity"
+    },
+    {
+      "id": "profile",
+      "label": "Profile",
+      "icon": "user"
+    }
+  ]
+}

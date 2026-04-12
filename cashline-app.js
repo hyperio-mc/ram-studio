@@ -1,0 +1,326 @@
+const fs = require('fs');
+const path = require('path');
+
+// ── Cashline v1.pen ──────────────────────────────────────────────────────────
+// Light-theme cash flow intelligence app for consultants & solopreneurs
+// Inspired by: Midday.ai (godly.website) + Linear's agent-tasks sidebar paradigm
+
+const design = {
+  meta: {
+    version: "2.8",
+    name: "Cashline",
+    description: "Real-time cash flow intelligence for independent consultants",
+    created: new Date().toISOString(),
+    theme: "light",
+    inspiration: "Midday.ai financial design (godly.website) + Linear agent-first UX patterns"
+  },
+
+  palette: {
+    bg: "#F5F3EE",
+    surface: "#FFFFFF",
+    surfaceAlt: "#EBE9E3",
+    text: "#1A1714",
+    textMuted: "rgba(26,23,20,0.45)",
+    accent: "#2563EB",
+    accentSoft: "rgba(37,99,235,0.10)",
+    success: "#059669",
+    successSoft: "rgba(5,150,105,0.10)",
+    warning: "#D97706",
+    warningSoft: "rgba(217,119,6,0.10)",
+    danger: "#DC2626",
+    dangerSoft: "rgba(220,38,38,0.08)",
+    border: "rgba(26,23,20,0.09)",
+    shadow: "rgba(26,23,20,0.06)"
+  },
+
+  typography: {
+    display: { family: "Inter", weight: 700, size: 32, tracking: "-0.03em" },
+    heading: { family: "Inter", weight: 600, size: 20, tracking: "-0.02em" },
+    body: { family: "Inter", weight: 400, size: 14, tracking: "-0.005em" },
+    mono: { family: "Berkeley Mono, JetBrains Mono, monospace", weight: 500, size: 13 },
+    label: { family: "Inter", weight: 500, size: 11, tracking: "0.08em" }
+  },
+
+  screens: [
+    {
+      id: "pulse",
+      name: "Pulse",
+      icon: "activity",
+      layout: "dashboard",
+      sections: [
+        {
+          type: "hero-metric",
+          label: "NET POSITION · MARCH 2026",
+          value: "$48,320",
+          delta: "+$6,140",
+          deltaLabel: "vs last month",
+          sentiment: "positive"
+        },
+        {
+          type: "stat-row",
+          items: [
+            { label: "30-DAY RUNWAY", value: "94 days", icon: "clock", sentiment: "positive" },
+            { label: "OUTSTANDING", value: "$12,500", icon: "alert", sentiment: "warning" },
+            { label: "THIS MONTH IN", value: "$19,200", icon: "arrow-up", sentiment: "positive" }
+          ]
+        },
+        {
+          type: "signal-banner",
+          label: "AI SIGNAL",
+          text: "3 invoices past 14 days — nudge now to avoid 30-day mark",
+          action: "Review",
+          sentiment: "warning"
+        },
+        {
+          type: "feed",
+          label: "RECENT ACTIVITY",
+          items: [
+            { date: "Today", label: "Stripe payout · Acme Corp Q1", amount: "+$8,400", type: "in" },
+            { date: "Today", label: "AWS · Cloud infrastructure", amount: "-$312", type: "out" },
+            { date: "Yesterday", label: "Invoice #INV-047 sent · Palta", amount: "$4,500", type: "pending" },
+            { date: "Mar 23", label: "Figma · Annual plan", amount: "-$600", type: "out" },
+            { date: "Mar 22", label: "Stripe payout · Reflex Studio", amount: "+$6,300", type: "in" }
+          ]
+        }
+      ]
+    },
+    {
+      id: "cashflow",
+      name: "Cashflow",
+      icon: "chart",
+      layout: "chart-focus",
+      sections: [
+        {
+          type: "period-toggle",
+          options: ["7D", "30D", "90D", "1Y"],
+          active: "30D"
+        },
+        {
+          type: "area-chart",
+          label: "PROJECTED VS ACTUAL",
+          series: [
+            {
+              id: "actual",
+              label: "Actual",
+              color: "#2563EB",
+              data: [32800, 35100, 33600, 38200, 36800, 40100, 42180, 44600, 41900, 44320, 46800, 48320]
+            },
+            {
+              id: "projected",
+              label: "Projected",
+              color: "#059669",
+              dashed: true,
+              data: [33000, 35500, 34000, 38000, 37200, 40500, 43000, 45000, 43000, 45500, 47200, 49800]
+            }
+          ]
+        },
+        {
+          type: "breakdown-list",
+          label: "MONTH BREAKDOWN",
+          items: [
+            { label: "Client Revenue", amount: "$19,200", pct: 100, color: "#2563EB" },
+            { label: "Recurring Costs", amount: "-$4,820", pct: 25, color: "#DC2626" },
+            { label: "Tools & Software", amount: "-$1,240", pct: 6, color: "#D97706" },
+            { label: "Tax Reserve (22%)", amount: "-$4,224", pct: 22, color: "#6B7280" }
+          ]
+        },
+        {
+          type: "projected-callout",
+          label: "END OF MONTH FORECAST",
+          value: "$8,916",
+          note: "Based on current projects and recurring expenses"
+        }
+      ]
+    },
+    {
+      id: "signals",
+      name: "Signals",
+      icon: "zap",
+      layout: "agent-feed",
+      badge: "4",
+      sections: [
+        {
+          type: "section-header",
+          label: "AI SIGNALS",
+          sub: "Patterns detected by your financial agent · Updated 2m ago"
+        },
+        {
+          type: "signal-card",
+          priority: "high",
+          icon: "alert",
+          title: "Invoice cluster aging",
+          body: "INV-044, INV-045, INV-047 haven't been paid. Combined: $12,500. At 30+ days, collection probability drops 18%.",
+          action: "Send reminders",
+          sentiment: "warning",
+          timestamp: "Detected 2h ago"
+        },
+        {
+          type: "signal-card",
+          priority: "medium",
+          icon: "chart",
+          title: "Q1 revenue ahead of target",
+          body: "You've hit 94% of your Q1 goal with 6 days remaining. Stretch target of $52K is achievable if Palta pays this week.",
+          action: "View Q1 report",
+          sentiment: "positive",
+          timestamp: "Detected 6h ago"
+        },
+        {
+          type: "signal-card",
+          priority: "medium",
+          icon: "eye",
+          title: "Tool spend increased 34%",
+          body: "Software costs rose from $924 → $1,240 MoM. New additions: Cursor Pro, Raycast Pro, Linear. Worth reviewing.",
+          action: "Review tools",
+          sentiment: "neutral",
+          timestamp: "Detected yesterday"
+        },
+        {
+          type: "signal-card",
+          priority: "low",
+          icon: "calendar",
+          title: "Tax estimate due in 18 days",
+          body: "Q1 estimated tax of ~$4,224 is due Apr 15. Your reserve account has $4,800 — you're covered.",
+          action: "View reserve",
+          sentiment: "positive",
+          timestamp: "Detected 2 days ago"
+        },
+        {
+          type: "agent-note",
+          label: "HOW SIGNALS WORK",
+          text: "Your financial agent monitors transactions, invoice status, and project data continuously. Signals are ranked by urgency and financial impact."
+        }
+      ]
+    },
+    {
+      id: "projects",
+      name: "Projects",
+      icon: "layers",
+      layout: "list-detail",
+      sections: [
+        {
+          type: "overview-row",
+          items: [
+            { label: "ACTIVE PROJECTS", value: "4" },
+            { label: "BILLED THIS MO", value: "$19,200" },
+            { label: "AVG RATE", value: "$180/hr" }
+          ]
+        },
+        {
+          type: "project-list",
+          items: [
+            {
+              client: "Acme Corp",
+              project: "Product design system",
+              status: "active",
+              hours: "48h",
+              billed: "$8,640",
+              health: "on-track"
+            },
+            {
+              client: "Palta",
+              project: "iOS onboarding redesign",
+              status: "invoiced",
+              hours: "25h",
+              billed: "$4,500",
+              health: "pending-payment"
+            },
+            {
+              client: "Reflex Studio",
+              project: "Brand identity & web",
+              status: "active",
+              hours: "35h",
+              billed: "$6,300",
+              health: "on-track"
+            },
+            {
+              client: "Merkle",
+              project: "Data viz consultation",
+              status: "scoping",
+              hours: "—",
+              billed: "—",
+              health: "upcoming"
+            }
+          ]
+        },
+        {
+          type: "time-bar",
+          label: "HOURS THIS WEEK",
+          entries: [
+            { day: "Mon", hours: 6 },
+            { day: "Tue", hours: 7.5 },
+            { day: "Wed", hours: 5 },
+            { day: "Thu", hours: 8 },
+            { day: "Fri", hours: 4, partial: true }
+          ]
+        }
+      ]
+    },
+    {
+      id: "invoice",
+      name: "Invoice",
+      icon: "share",
+      layout: "form",
+      sections: [
+        {
+          type: "form-header",
+          label: "NEW INVOICE",
+          sub: "INV-048 · Draft"
+        },
+        {
+          type: "form-field",
+          label: "CLIENT",
+          value: "Merkle Inc.",
+          type: "select"
+        },
+        {
+          type: "form-field",
+          label: "PROJECT",
+          value: "Data viz consultation",
+          type: "text"
+        },
+        {
+          type: "line-items",
+          label: "LINE ITEMS",
+          items: [
+            { description: "UX Research & Analysis", qty: "12h", rate: "$180", total: "$2,160" },
+            { description: "Workshop facilitation", qty: "4h", rate: "$180", total: "$720" }
+          ],
+          total: "$2,880"
+        },
+        {
+          type: "payment-terms",
+          label: "PAYMENT TERMS",
+          value: "Net 14",
+          options: ["Immediate", "Net 7", "Net 14", "Net 30"]
+        },
+        {
+          type: "cta-row",
+          primary: { label: "Send Invoice", icon: "send" },
+          secondary: { label: "Save draft" }
+        },
+        {
+          type: "ai-suggest",
+          label: "AGENT SUGGESTION",
+          text: "Based on Merkle's history, Net 14 typically converts — they've paid on time on 3 of 3 past invoices."
+        }
+      ]
+    }
+  ],
+
+  nav: [
+    { id: "pulse", label: "Pulse", icon: "activity" },
+    { id: "cashflow", label: "Cashflow", icon: "chart" },
+    { id: "signals", label: "Signals", icon: "zap", badge: "4" },
+    { id: "projects", label: "Projects", icon: "layers" },
+    { id: "invoice", label: "Invoice", icon: "share" }
+  ]
+};
+
+// ── Write .pen file ──────────────────────────────────────────────────────────
+const outputPath = path.join(__dirname, 'cashline.pen');
+fs.writeFileSync(outputPath, JSON.stringify(design, null, 2));
+console.log('✓ cashline.pen written');
+console.log('  Screens:', design.screens.length);
+console.log('  Theme: LIGHT (cream #F5F3EE)');
+console.log('  Palette: Blue accent + Emerald success + Warm cream bg');
+console.log('  Inspiration: Midday.ai (godly.website) + Linear agent-tasks sidebar');

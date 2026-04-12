@@ -1,0 +1,5113 @@
+{
+  "version": "2.8",
+  "metadata": {
+    "name": "THESIS — AI Research Assistant",
+    "author": "RAM",
+    "date": "2026-04-08T20:35:36.600Z",
+    "theme": "light",
+    "heartbeat": 43,
+    "elements": 535,
+    "palette": {
+      "BG": "#FAF8F3",
+      "SURF": "#FFFFFF",
+      "TEXT": "#2A1A0E",
+      "TERRA": "#B85C38",
+      "INDIGO": "#4B4BA0",
+      "MUTED": "#8A7B6E",
+      "BORDER": "#E4DDD4"
+    },
+    "inspiration": [
+      "AfterQuery (lapa.ninja/ai) — CMU Serif + terracotta on lavender-white",
+      "Stripe Sessions (godly.website) — ultra-light Söhne (weight 250) on parchment",
+      "Tavus (lapa.ninja/ai) — retro serif + warm parchment editorial warmth"
+    ]
+  },
+  "screens": [
+    {
+      "id": "screen-1",
+      "name": "Search",
+      "width": 390,
+      "height": 844,
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 390 844\"/>",
+      "elements": [
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "fill": "#FAF8F3"
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 44,
+          "fill": "#FAF8F3"
+        },
+        {
+          "type": "text",
+          "x": 16,
+          "y": 28,
+          "content": "9:41",
+          "fontSize": 13,
+          "fill": "#2A1A0E",
+          "fontWeight": "500"
+        },
+        {
+          "type": "text",
+          "x": 374,
+          "y": 28,
+          "content": "●●●",
+          "fontSize": 10,
+          "fill": "#2A1A0E",
+          "textAnchor": "end",
+          "opacity": 0.6
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 75,
+          "content": "THESIS",
+          "fontSize": 13,
+          "fill": "#2A1A0E",
+          "fontWeight": "700",
+          "textAnchor": "middle",
+          "letterSpacing": 3
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 92,
+          "content": "AI Research Assistant",
+          "fontSize": 11,
+          "fill": "#8A7B6E",
+          "textAnchor": "middle",
+          "letterSpacing": 0.5
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 155,
+          "content": "Find the",
+          "fontSize": 42,
+          "fill": "#2A1A0E",
+          "fontWeight": "300",
+          "fontFamily": "Georgia, serif"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 200,
+          "content": "research",
+          "fontSize": 42,
+          "fill": "#B85C38",
+          "fontWeight": "300",
+          "fontFamily": "Georgia, serif"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 245,
+          "content": "that matters.",
+          "fontSize": 42,
+          "fill": "#2A1A0E",
+          "fontWeight": "300",
+          "fontFamily": "Georgia, serif"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 273,
+          "content": "Synthesize literature across 200M+ papers",
+          "fontSize": 13,
+          "fill": "#8A7B6E",
+          "fontFamily": "Georgia, serif"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 295,
+          "width": 350,
+          "height": 52,
+          "fill": "#FFFFFF",
+          "rx": 8,
+          "stroke": "#E4DDD4",
+          "strokeWidth": 1.5
+        },
+        {
+          "type": "circle",
+          "cx": 46,
+          "cy": 321,
+          "r": 9,
+          "fill": "none",
+          "stroke": "#8A7B6E",
+          "strokeWidth": 1.5
+        },
+        {
+          "type": "line",
+          "x1": 52,
+          "y1": 327,
+          "x2": 58,
+          "y2": 333,
+          "stroke": "#8A7B6E",
+          "strokeWidth": 1.5
+        },
+        {
+          "type": "text",
+          "x": 68,
+          "y": 325,
+          "content": "Search by topic, author, or question...",
+          "fontSize": 13,
+          "fill": "#8A7B6E",
+          "opacity": 0.7
+        },
+        {
+          "type": "rect",
+          "x": 326,
+          "y": 303,
+          "width": 36,
+          "height": 36,
+          "fill": "#B85C38",
+          "rx": 6
+        },
+        {
+          "type": "text",
+          "x": 344,
+          "y": 326,
+          "content": "→",
+          "fontSize": 16,
+          "fill": "#FFFFFF",
+          "fontWeight": "600",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 368,
+          "content": "RECENT SEARCHES",
+          "fontSize": 9,
+          "fill": "#B85C38",
+          "fontWeight": "700",
+          "letterSpacing": 1.5
+        },
+        {
+          "type": "line",
+          "x1": 20,
+          "y1": 372,
+          "x2": 132.5,
+          "y2": 372,
+          "stroke": "#B85C38",
+          "strokeWidth": 1,
+          "opacity": 0.4
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 390,
+          "width": 350,
+          "height": 36,
+          "fill": "#F3EFE6",
+          "rx": 6
+        },
+        {
+          "type": "text",
+          "x": 38,
+          "y": 413,
+          "content": "◷",
+          "fontSize": 11,
+          "fill": "#8A7B6E"
+        },
+        {
+          "type": "text",
+          "x": 58,
+          "y": 413,
+          "content": "Transformer attention mechanisms in NLP",
+          "fontSize": 12,
+          "fill": "#2A1A0E",
+          "opacity": 0.85
+        },
+        {
+          "type": "text",
+          "x": 362,
+          "y": 413,
+          "content": "↗",
+          "fontSize": 12,
+          "fill": "#8A7B6E",
+          "textAnchor": "end",
+          "opacity": 0.6
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 434,
+          "width": 350,
+          "height": 36,
+          "fill": "#F3EFE6",
+          "rx": 6
+        },
+        {
+          "type": "text",
+          "x": 38,
+          "y": 457,
+          "content": "◷",
+          "fontSize": 11,
+          "fill": "#8A7B6E"
+        },
+        {
+          "type": "text",
+          "x": 58,
+          "y": 457,
+          "content": "CRISPR therapeutic delivery methods",
+          "fontSize": 12,
+          "fill": "#2A1A0E",
+          "opacity": 0.85
+        },
+        {
+          "type": "text",
+          "x": 362,
+          "y": 457,
+          "content": "↗",
+          "fontSize": 12,
+          "fill": "#8A7B6E",
+          "textAnchor": "end",
+          "opacity": 0.6
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 478,
+          "width": 350,
+          "height": 36,
+          "fill": "#F3EFE6",
+          "rx": 6
+        },
+        {
+          "type": "text",
+          "x": 38,
+          "y": 501,
+          "content": "◷",
+          "fontSize": 11,
+          "fill": "#8A7B6E"
+        },
+        {
+          "type": "text",
+          "x": 58,
+          "y": 501,
+          "content": "Carbon capture biomimicry approaches",
+          "fontSize": 12,
+          "fill": "#2A1A0E",
+          "opacity": 0.85
+        },
+        {
+          "type": "text",
+          "x": 362,
+          "y": 501,
+          "content": "↗",
+          "fontSize": 12,
+          "fill": "#8A7B6E",
+          "textAnchor": "end",
+          "opacity": 0.6
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 529,
+          "content": "TRENDING IN RESEARCH",
+          "fontSize": 9,
+          "fill": "#B85C38",
+          "fontWeight": "700",
+          "letterSpacing": 1.5
+        },
+        {
+          "type": "line",
+          "x1": 20,
+          "y1": 533,
+          "x2": 170,
+          "y2": 533,
+          "stroke": "#B85C38",
+          "strokeWidth": 1,
+          "opacity": 0.4
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 550,
+          "width": 350,
+          "height": 58,
+          "fill": "#FFFFFF",
+          "rx": 8,
+          "stroke": "#E4DDD4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rect",
+          "x": 32,
+          "y": 560,
+          "width": 34,
+          "height": 18,
+          "fill": "#4B4BA0",
+          "rx": 4,
+          "opacity": 0.12
+        },
+        {
+          "type": "text",
+          "x": 49,
+          "y": 573,
+          "content": "AI",
+          "fontSize": 9,
+          "fill": "#4B4BA0",
+          "fontWeight": "700",
+          "textAnchor": "middle",
+          "letterSpacing": 0.5
+        },
+        {
+          "type": "text",
+          "x": 74,
+          "y": 573,
+          "content": "Large language models in science",
+          "fontSize": 12,
+          "fill": "#2A1A0E"
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 594,
+          "content": "2.4k papers",
+          "fontSize": 10,
+          "fill": "#8A7B6E"
+        },
+        {
+          "type": "rect",
+          "x": 330,
+          "y": 589,
+          "width": 40,
+          "height": 4,
+          "fill": "#E4DDD4",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 330,
+          "y": 589,
+          "width": 40,
+          "height": 4,
+          "fill": "#B85C38",
+          "rx": 2,
+          "opacity": 0.5
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 618,
+          "width": 350,
+          "height": 58,
+          "fill": "#FFFFFF",
+          "rx": 8,
+          "stroke": "#E4DDD4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rect",
+          "x": 32,
+          "y": 628,
+          "width": 34,
+          "height": 18,
+          "fill": "#4B4BA0",
+          "rx": 4,
+          "opacity": 0.12
+        },
+        {
+          "type": "text",
+          "x": 49,
+          "y": 641,
+          "content": "BIO",
+          "fontSize": 9,
+          "fill": "#4B4BA0",
+          "fontWeight": "700",
+          "textAnchor": "middle",
+          "letterSpacing": 0.5
+        },
+        {
+          "type": "text",
+          "x": 74,
+          "y": 641,
+          "content": "mRNA delivery mechanisms",
+          "fontSize": 12,
+          "fill": "#2A1A0E"
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 662,
+          "content": "1.8k papers",
+          "fontSize": 10,
+          "fill": "#8A7B6E"
+        },
+        {
+          "type": "rect",
+          "x": 330,
+          "y": 657,
+          "width": 40,
+          "height": 4,
+          "fill": "#E4DDD4",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 330,
+          "y": 657,
+          "width": 30,
+          "height": 4,
+          "fill": "#B85C38",
+          "rx": 2,
+          "opacity": 0.5
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 686,
+          "width": 350,
+          "height": 58,
+          "fill": "#FFFFFF",
+          "rx": 8,
+          "stroke": "#E4DDD4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rect",
+          "x": 32,
+          "y": 696,
+          "width": 34,
+          "height": 18,
+          "fill": "#4B4BA0",
+          "rx": 4,
+          "opacity": 0.12
+        },
+        {
+          "type": "text",
+          "x": 49,
+          "y": 709,
+          "content": "ENV",
+          "fontSize": 9,
+          "fill": "#4B4BA0",
+          "fontWeight": "700",
+          "textAnchor": "middle",
+          "letterSpacing": 0.5
+        },
+        {
+          "type": "text",
+          "x": 74,
+          "y": 709,
+          "content": "Ocean carbon sequestration",
+          "fontSize": 12,
+          "fill": "#2A1A0E"
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 730,
+          "content": "943 papers",
+          "fontSize": 10,
+          "fill": "#8A7B6E"
+        },
+        {
+          "type": "rect",
+          "x": 330,
+          "y": 725,
+          "width": 40,
+          "height": 4,
+          "fill": "#E4DDD4",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 330,
+          "y": 725,
+          "width": 20,
+          "height": 4,
+          "fill": "#B85C38",
+          "rx": 2,
+          "opacity": 0.5
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 764,
+          "width": 390,
+          "height": 80,
+          "fill": "#FFFFFF"
+        },
+        {
+          "type": "line",
+          "x1": 0,
+          "y1": 764,
+          "x2": 390,
+          "y2": 764,
+          "stroke": "#E4DDD4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 49,
+          "y": 791,
+          "content": "◎",
+          "fontSize": 18,
+          "fill": "#B85C38",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 49,
+          "y": 814,
+          "content": "Search",
+          "fontSize": 10,
+          "fill": "#B85C38",
+          "fontWeight": "600",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 122,
+          "y": 791,
+          "content": "⊟",
+          "fontSize": 18,
+          "fill": "#8A7B6E",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 122,
+          "y": 814,
+          "content": "Library",
+          "fontSize": 10,
+          "fill": "#8A7B6E",
+          "fontWeight": "400",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 791,
+          "content": "⊕",
+          "fontSize": 18,
+          "fill": "#8A7B6E",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 814,
+          "content": "Synthesis",
+          "fontSize": 10,
+          "fill": "#8A7B6E",
+          "fontWeight": "400",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 268,
+          "y": 791,
+          "content": "◉",
+          "fontSize": 18,
+          "fill": "#8A7B6E",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 268,
+          "y": 814,
+          "content": "Profile",
+          "fontSize": 10,
+          "fill": "#8A7B6E",
+          "fontWeight": "400",
+          "textAnchor": "middle"
+        }
+      ]
+    },
+    {
+      "id": "screen-2",
+      "name": "Results",
+      "width": 390,
+      "height": 844,
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 390 844\"/>",
+      "elements": [
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "fill": "#FAF8F3"
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 44,
+          "fill": "#FAF8F3"
+        },
+        {
+          "type": "text",
+          "x": 16,
+          "y": 28,
+          "content": "9:41",
+          "fontSize": 13,
+          "fill": "#2A1A0E",
+          "fontWeight": "500"
+        },
+        {
+          "type": "text",
+          "x": 374,
+          "y": 28,
+          "content": "●●●",
+          "fontSize": 10,
+          "fill": "#2A1A0E",
+          "textAnchor": "end",
+          "opacity": 0.6
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 75,
+          "content": "←",
+          "fontSize": 18,
+          "fill": "#2A1A0E"
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 75,
+          "content": "Results",
+          "fontSize": 15,
+          "fill": "#2A1A0E",
+          "fontWeight": "600",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 88,
+          "width": 350,
+          "height": 32,
+          "fill": "#F3EFE6",
+          "rx": 16
+        },
+        {
+          "type": "circle",
+          "cx": 36,
+          "cy": 104,
+          "r": 6,
+          "fill": "#B85C38",
+          "opacity": 0.2
+        },
+        {
+          "type": "text",
+          "x": 48,
+          "y": 109,
+          "content": "Transformer attention mechanisms in NLP",
+          "fontSize": 11,
+          "fill": "#2A1A0E"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 132,
+          "width": 28,
+          "height": 24,
+          "fill": "#B85C38",
+          "rx": 12
+        },
+        {
+          "type": "text",
+          "x": 34,
+          "y": 148,
+          "content": "All",
+          "fontSize": 10,
+          "fill": "#FFFFFF",
+          "fontWeight": "600",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 56,
+          "y": 132,
+          "width": 70,
+          "height": 24,
+          "fill": "#F3EFE6",
+          "rx": 12
+        },
+        {
+          "type": "text",
+          "x": 91,
+          "y": 148,
+          "content": "Since 2023",
+          "fontSize": 10,
+          "fill": "#8A7B6E",
+          "fontWeight": "400",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 134,
+          "y": 132,
+          "width": 72,
+          "height": 24,
+          "fill": "#F3EFE6",
+          "rx": 12
+        },
+        {
+          "type": "text",
+          "x": 170,
+          "y": 148,
+          "content": "High cited",
+          "fontSize": 10,
+          "fill": "#8A7B6E",
+          "fontWeight": "400",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 214,
+          "y": 132,
+          "width": 80,
+          "height": 24,
+          "fill": "#F3EFE6",
+          "rx": 12
+        },
+        {
+          "type": "text",
+          "x": 254,
+          "y": 148,
+          "content": "Open access",
+          "fontSize": 10,
+          "fill": "#8A7B6E",
+          "fontWeight": "400",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 174,
+          "content": "3,421 papers",
+          "fontSize": 12,
+          "fill": "#8A7B6E"
+        },
+        {
+          "type": "text",
+          "x": 370,
+          "y": 174,
+          "content": "Sort ↓",
+          "fontSize": 11,
+          "fill": "#B85C38",
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 186,
+          "width": 350,
+          "height": 184,
+          "fill": "#FFFFFF",
+          "rx": 10,
+          "stroke": "#E4DDD4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 186,
+          "width": 343,
+          "height": 3,
+          "fill": "#B85C38",
+          "rx": 1.5,
+          "opacity": 0.6
+        },
+        {
+          "type": "rect",
+          "x": 310,
+          "y": 198,
+          "width": 44,
+          "height": 18,
+          "fill": "#B85C38",
+          "rx": 9,
+          "opacity": 0.1
+        },
+        {
+          "type": "text",
+          "x": 332,
+          "y": 211,
+          "content": "98%",
+          "fontSize": 10,
+          "fill": "#B85C38",
+          "fontWeight": "700",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 220,
+          "content": "Attention Is All You",
+          "fontSize": 13,
+          "fill": "#2A1A0E",
+          "fontWeight": "600",
+          "fontFamily": "Georgia, serif"
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 236,
+          "content": "Need",
+          "fontSize": 13,
+          "fill": "#2A1A0E",
+          "fontWeight": "600",
+          "fontFamily": "Georgia, serif"
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 254,
+          "content": "Vaswani, A., Shazeer, N., et al.",
+          "fontSize": 10,
+          "fill": "#8A7B6E"
+        },
+        {
+          "type": "rect",
+          "x": 32,
+          "y": 268,
+          "width": 80,
+          "height": 16,
+          "fill": "#F3EFE6",
+          "rx": 4
+        },
+        {
+          "type": "text",
+          "x": 72,
+          "y": 280,
+          "content": "NeurIPS 2017",
+          "fontSize": 9,
+          "fill": "#4B4BA0",
+          "fontWeight": "500",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 296,
+          "content": "We propose a new network architecture, the Transformer, base...",
+          "fontSize": 11,
+          "fill": "#2A1A0E",
+          "opacity": 0.65
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 322,
+          "content": "◇ 97,421 citations",
+          "fontSize": 10,
+          "fill": "#8A7B6E"
+        },
+        {
+          "type": "text",
+          "x": 338,
+          "y": 322,
+          "content": "★ Saved",
+          "fontSize": 11,
+          "fill": "#B85C38",
+          "textAnchor": "end"
+        },
+        {
+          "type": "line",
+          "x1": 32,
+          "y1": 338,
+          "x2": 358,
+          "y2": 338,
+          "stroke": "#E4DDD4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 354,
+          "content": "Read Abstract",
+          "fontSize": 11,
+          "fill": "#4B4BA0"
+        },
+        {
+          "type": "text",
+          "x": 160,
+          "y": 354,
+          "content": "·",
+          "fontSize": 11,
+          "fill": "#E4DDD4"
+        },
+        {
+          "type": "text",
+          "x": 170,
+          "y": 354,
+          "content": "Add to Synthesis",
+          "fontSize": 11,
+          "fill": "#4B4BA0"
+        },
+        {
+          "type": "text",
+          "x": 316,
+          "y": 354,
+          "content": "PDF →",
+          "fontSize": 11,
+          "fill": "#B85C38",
+          "fontWeight": "600"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 380,
+          "width": 350,
+          "height": 184,
+          "fill": "#FFFFFF",
+          "rx": 10,
+          "stroke": "#E4DDD4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 380,
+          "width": 329,
+          "height": 3,
+          "fill": "#B85C38",
+          "rx": 1.5,
+          "opacity": 0.6
+        },
+        {
+          "type": "rect",
+          "x": 310,
+          "y": 392,
+          "width": 44,
+          "height": 18,
+          "fill": "#B85C38",
+          "rx": 9,
+          "opacity": 0.1
+        },
+        {
+          "type": "text",
+          "x": 332,
+          "y": 405,
+          "content": "94%",
+          "fontSize": 10,
+          "fill": "#B85C38",
+          "fontWeight": "700",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 414,
+          "content": "BERT: Pre-training Deep Bidirectional",
+          "fontSize": 13,
+          "fill": "#2A1A0E",
+          "fontWeight": "600",
+          "fontFamily": "Georgia, serif"
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 430,
+          "content": "Transformers",
+          "fontSize": 13,
+          "fill": "#2A1A0E",
+          "fontWeight": "600",
+          "fontFamily": "Georgia, serif"
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 448,
+          "content": "Devlin, J., Chang, M., et al.",
+          "fontSize": 10,
+          "fill": "#8A7B6E"
+        },
+        {
+          "type": "rect",
+          "x": 32,
+          "y": 462,
+          "width": 80,
+          "height": 16,
+          "fill": "#F3EFE6",
+          "rx": 4
+        },
+        {
+          "type": "text",
+          "x": 72,
+          "y": 474,
+          "content": "NAACL 2019",
+          "fontSize": 9,
+          "fill": "#4B4BA0",
+          "fontWeight": "500",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 490,
+          "content": "We introduce BERT, a new language model pre-training approac...",
+          "fontSize": 11,
+          "fill": "#2A1A0E",
+          "opacity": 0.65
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 516,
+          "content": "◇ 62,108 citations",
+          "fontSize": 10,
+          "fill": "#8A7B6E"
+        },
+        {
+          "type": "text",
+          "x": 338,
+          "y": 516,
+          "content": "☆ Save",
+          "fontSize": 11,
+          "fill": "#8A7B6E",
+          "textAnchor": "end"
+        },
+        {
+          "type": "line",
+          "x1": 32,
+          "y1": 532,
+          "x2": 358,
+          "y2": 532,
+          "stroke": "#E4DDD4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 548,
+          "content": "Read Abstract",
+          "fontSize": 11,
+          "fill": "#4B4BA0"
+        },
+        {
+          "type": "text",
+          "x": 160,
+          "y": 548,
+          "content": "·",
+          "fontSize": 11,
+          "fill": "#E4DDD4"
+        },
+        {
+          "type": "text",
+          "x": 170,
+          "y": 548,
+          "content": "Add to Synthesis",
+          "fontSize": 11,
+          "fill": "#4B4BA0"
+        },
+        {
+          "type": "text",
+          "x": 316,
+          "y": 548,
+          "content": "PDF →",
+          "fontSize": 11,
+          "fill": "#B85C38",
+          "fontWeight": "600"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 574,
+          "width": 350,
+          "height": 184,
+          "fill": "#FFFFFF",
+          "rx": 10,
+          "stroke": "#E4DDD4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 574,
+          "width": 319,
+          "height": 3,
+          "fill": "#B85C38",
+          "rx": 1.5,
+          "opacity": 0.6
+        },
+        {
+          "type": "rect",
+          "x": 310,
+          "y": 586,
+          "width": 44,
+          "height": 18,
+          "fill": "#B85C38",
+          "rx": 9,
+          "opacity": 0.1
+        },
+        {
+          "type": "text",
+          "x": 332,
+          "y": 599,
+          "content": "91%",
+          "fontSize": 10,
+          "fill": "#B85C38",
+          "fontWeight": "700",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 608,
+          "content": "Language Models are Few-Shot",
+          "fontSize": 13,
+          "fill": "#2A1A0E",
+          "fontWeight": "600",
+          "fontFamily": "Georgia, serif"
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 624,
+          "content": "Learners",
+          "fontSize": 13,
+          "fill": "#2A1A0E",
+          "fontWeight": "600",
+          "fontFamily": "Georgia, serif"
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 642,
+          "content": "Brown, T., Mann, B., et al.",
+          "fontSize": 10,
+          "fill": "#8A7B6E"
+        },
+        {
+          "type": "rect",
+          "x": 32,
+          "y": 656,
+          "width": 80,
+          "height": 16,
+          "fill": "#F3EFE6",
+          "rx": 4
+        },
+        {
+          "type": "text",
+          "x": 72,
+          "y": 668,
+          "content": "NeurIPS 2020",
+          "fontSize": 9,
+          "fill": "#4B4BA0",
+          "fontWeight": "500",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 684,
+          "content": "We demonstrate that scaling language models greatly improves...",
+          "fontSize": 11,
+          "fill": "#2A1A0E",
+          "opacity": 0.65
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 710,
+          "content": "◇ 41,882 citations",
+          "fontSize": 10,
+          "fill": "#8A7B6E"
+        },
+        {
+          "type": "text",
+          "x": 338,
+          "y": 710,
+          "content": "★ Saved",
+          "fontSize": 11,
+          "fill": "#B85C38",
+          "textAnchor": "end"
+        },
+        {
+          "type": "line",
+          "x1": 32,
+          "y1": 726,
+          "x2": 358,
+          "y2": 726,
+          "stroke": "#E4DDD4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 742,
+          "content": "Read Abstract",
+          "fontSize": 11,
+          "fill": "#4B4BA0"
+        },
+        {
+          "type": "text",
+          "x": 160,
+          "y": 742,
+          "content": "·",
+          "fontSize": 11,
+          "fill": "#E4DDD4"
+        },
+        {
+          "type": "text",
+          "x": 170,
+          "y": 742,
+          "content": "Add to Synthesis",
+          "fontSize": 11,
+          "fill": "#4B4BA0"
+        },
+        {
+          "type": "text",
+          "x": 316,
+          "y": 742,
+          "content": "PDF →",
+          "fontSize": 11,
+          "fill": "#B85C38",
+          "fontWeight": "600"
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 764,
+          "width": 390,
+          "height": 80,
+          "fill": "#FFFFFF"
+        },
+        {
+          "type": "line",
+          "x1": 0,
+          "y1": 764,
+          "x2": 390,
+          "y2": 764,
+          "stroke": "#E4DDD4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 49,
+          "y": 791,
+          "content": "◎",
+          "fontSize": 18,
+          "fill": "#B85C38",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 49,
+          "y": 814,
+          "content": "Search",
+          "fontSize": 10,
+          "fill": "#B85C38",
+          "fontWeight": "600",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 122,
+          "y": 791,
+          "content": "⊟",
+          "fontSize": 18,
+          "fill": "#8A7B6E",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 122,
+          "y": 814,
+          "content": "Library",
+          "fontSize": 10,
+          "fill": "#8A7B6E",
+          "fontWeight": "400",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 791,
+          "content": "⊕",
+          "fontSize": 18,
+          "fill": "#8A7B6E",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 814,
+          "content": "Synthesis",
+          "fontSize": 10,
+          "fill": "#8A7B6E",
+          "fontWeight": "400",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 268,
+          "y": 791,
+          "content": "◉",
+          "fontSize": 18,
+          "fill": "#8A7B6E",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 268,
+          "y": 814,
+          "content": "Profile",
+          "fontSize": 10,
+          "fill": "#8A7B6E",
+          "fontWeight": "400",
+          "textAnchor": "middle"
+        }
+      ]
+    },
+    {
+      "id": "screen-3",
+      "name": "Paper Detail",
+      "width": 390,
+      "height": 844,
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 390 844\"/>",
+      "elements": [
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "fill": "#FAF8F3"
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 44,
+          "fill": "#FAF8F3"
+        },
+        {
+          "type": "text",
+          "x": 16,
+          "y": 28,
+          "content": "9:41",
+          "fontSize": 13,
+          "fill": "#2A1A0E",
+          "fontWeight": "500"
+        },
+        {
+          "type": "text",
+          "x": 374,
+          "y": 28,
+          "content": "●●●",
+          "fontSize": 10,
+          "fill": "#2A1A0E",
+          "textAnchor": "end",
+          "opacity": 0.6
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 75,
+          "content": "←",
+          "fontSize": 18,
+          "fill": "#2A1A0E"
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 75,
+          "content": "Paper Detail",
+          "fontSize": 15,
+          "fill": "#2A1A0E",
+          "fontWeight": "600",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 370,
+          "y": 75,
+          "content": "⋯",
+          "fontSize": 18,
+          "fill": "#8A7B6E",
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 90,
+          "width": 48,
+          "height": 20,
+          "fill": "#B85C38",
+          "rx": 10,
+          "opacity": 0.1
+        },
+        {
+          "type": "text",
+          "x": 44,
+          "y": 104,
+          "content": "98% match",
+          "fontSize": 10,
+          "fill": "#B85C38",
+          "fontWeight": "600",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 76,
+          "y": 90,
+          "width": 68,
+          "height": 20,
+          "fill": "#4B4BA0",
+          "rx": 10,
+          "opacity": 0.1
+        },
+        {
+          "type": "text",
+          "x": 110,
+          "y": 104,
+          "content": "NeurIPS 2017",
+          "fontSize": 10,
+          "fill": "#4B4BA0",
+          "fontWeight": "500",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 152,
+          "y": 90,
+          "width": 68,
+          "height": 20,
+          "fill": "#5A7A4A",
+          "rx": 10,
+          "opacity": 0.1
+        },
+        {
+          "type": "text",
+          "x": 186,
+          "y": 104,
+          "content": "Open Access",
+          "fontSize": 10,
+          "fill": "#5A7A4A",
+          "fontWeight": "500",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 135,
+          "content": "Attention Is All",
+          "fontSize": 24,
+          "fill": "#2A1A0E",
+          "fontWeight": "400",
+          "fontFamily": "Georgia, serif"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 163,
+          "content": "You Need",
+          "fontSize": 24,
+          "fill": "#2A1A0E",
+          "fontWeight": "400",
+          "fontFamily": "Georgia, serif"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 185,
+          "content": "Vaswani, Shazeer, Parmar, Uszkoreit et al., 2017",
+          "fontSize": 11,
+          "fill": "#8A7B6E"
+        },
+        {
+          "type": "line",
+          "x1": 20,
+          "y1": 198,
+          "x2": 370,
+          "y2": 198,
+          "stroke": "#E4DDD4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 64,
+          "y": 220,
+          "content": "97,421",
+          "fontSize": 16,
+          "fill": "#2A1A0E",
+          "fontWeight": "600",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 64,
+          "y": 235,
+          "content": "Citations",
+          "fontSize": 9,
+          "fill": "#8A7B6E",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "line",
+          "x1": 107,
+          "y1": 208,
+          "x2": 107,
+          "y2": 242,
+          "stroke": "#E4DDD4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 152,
+          "y": 220,
+          "content": "2017",
+          "fontSize": 16,
+          "fill": "#2A1A0E",
+          "fontWeight": "600",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 152,
+          "y": 235,
+          "content": "Published",
+          "fontSize": 9,
+          "fill": "#8A7B6E",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "line",
+          "x1": 195,
+          "y1": 208,
+          "x2": 195,
+          "y2": 242,
+          "stroke": "#E4DDD4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 240,
+          "y": 220,
+          "content": "15",
+          "fontSize": 16,
+          "fill": "#2A1A0E",
+          "fontWeight": "600",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 240,
+          "y": 235,
+          "content": "Pages",
+          "fontSize": 9,
+          "fill": "#8A7B6E",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "line",
+          "x1": 283,
+          "y1": 208,
+          "x2": 283,
+          "y2": 242,
+          "stroke": "#E4DDD4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 328,
+          "y": 220,
+          "content": "94",
+          "fontSize": 16,
+          "fill": "#2A1A0E",
+          "fontWeight": "600",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 328,
+          "y": 235,
+          "content": "Ref. papers",
+          "fontSize": 9,
+          "fill": "#8A7B6E",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "line",
+          "x1": 20,
+          "y1": 248,
+          "x2": 370,
+          "y2": 248,
+          "stroke": "#E4DDD4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 258,
+          "width": 350,
+          "height": 118,
+          "fill": "#F3EFE6",
+          "rx": 8
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 258,
+          "width": 3,
+          "height": 118,
+          "fill": "#B85C38",
+          "rx": 1.5
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 278,
+          "content": "AI Summary",
+          "fontSize": 10,
+          "fill": "#B85C38",
+          "fontWeight": "700",
+          "letterSpacing": 1
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 296,
+          "content": "This landmark paper introduces the Transformer",
+          "fontSize": 12,
+          "fill": "#2A1A0E",
+          "fontFamily": "Georgia, serif",
+          "opacity": 0.85
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 312,
+          "content": "architecture, eliminating recurrence in favor of",
+          "fontSize": 12,
+          "fill": "#2A1A0E",
+          "fontFamily": "Georgia, serif",
+          "opacity": 0.85
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 328,
+          "content": "self-attention. Achieves SOTA on WMT 2014",
+          "fontSize": 12,
+          "fill": "#2A1A0E",
+          "fontFamily": "Georgia, serif",
+          "opacity": 0.85
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 344,
+          "content": "EN-DE with 28.4 BLEU. Now the backbone of",
+          "fontSize": 12,
+          "fill": "#2A1A0E",
+          "fontFamily": "Georgia, serif",
+          "opacity": 0.85
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 360,
+          "content": "nearly all modern language models.",
+          "fontSize": 12,
+          "fill": "#2A1A0E",
+          "fontFamily": "Georgia, serif",
+          "opacity": 0.85
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 390,
+          "content": "KEY CONCEPTS",
+          "fontSize": 9,
+          "fill": "#B85C38",
+          "fontWeight": "700",
+          "letterSpacing": 1.5
+        },
+        {
+          "type": "line",
+          "x1": 20,
+          "y1": 394,
+          "x2": 110,
+          "y2": 394,
+          "stroke": "#B85C38",
+          "strokeWidth": 1,
+          "opacity": 0.4
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 410,
+          "width": 114,
+          "height": 20,
+          "fill": "#F3EFE6",
+          "rx": 10,
+          "stroke": "#E4DDD4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 77,
+          "y": 424,
+          "content": "Self-Attention",
+          "fontSize": 10,
+          "fill": "#2A1A0E",
+          "textAnchor": "middle",
+          "opacity": 0.8
+        },
+        {
+          "type": "rect",
+          "x": 142,
+          "y": 410,
+          "width": 156,
+          "height": 20,
+          "fill": "#F3EFE6",
+          "rx": 10,
+          "stroke": "#E4DDD4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 220,
+          "y": 424,
+          "content": "Multi-Head Attention",
+          "fontSize": 10,
+          "fill": "#2A1A0E",
+          "textAnchor": "middle",
+          "opacity": 0.8
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 428,
+          "width": 149,
+          "height": 20,
+          "fill": "#F3EFE6",
+          "rx": 10,
+          "stroke": "#E4DDD4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 94.5,
+          "y": 442,
+          "content": "Positional Encoding",
+          "fontSize": 10,
+          "fill": "#2A1A0E",
+          "textAnchor": "middle",
+          "opacity": 0.8
+        },
+        {
+          "type": "rect",
+          "x": 177,
+          "y": 410,
+          "width": 121,
+          "height": 20,
+          "fill": "#F3EFE6",
+          "rx": 10,
+          "stroke": "#E4DDD4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 237.5,
+          "y": 424,
+          "content": "Encoder-Decoder",
+          "fontSize": 10,
+          "fill": "#2A1A0E",
+          "textAnchor": "middle",
+          "opacity": 0.8
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 428,
+          "width": 142,
+          "height": 20,
+          "fill": "#F3EFE6",
+          "rx": 10,
+          "stroke": "#E4DDD4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 91,
+          "y": 442,
+          "content": "Scaled Dot-Product",
+          "fontSize": 10,
+          "fill": "#2A1A0E",
+          "textAnchor": "middle",
+          "opacity": 0.8
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 458,
+          "content": "RELATED PAPERS",
+          "fontSize": 9,
+          "fill": "#B85C38",
+          "fontWeight": "700",
+          "letterSpacing": 1.5
+        },
+        {
+          "type": "line",
+          "x1": 20,
+          "y1": 462,
+          "x2": 125,
+          "y2": 462,
+          "stroke": "#B85C38",
+          "strokeWidth": 1,
+          "opacity": 0.4
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 474,
+          "width": 350,
+          "height": 48,
+          "fill": "#FFFFFF",
+          "rx": 8,
+          "stroke": "#E4DDD4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 494,
+          "content": "01",
+          "fontSize": 11,
+          "fill": "#B85C38",
+          "fontWeight": "700",
+          "fontFamily": "Georgia, serif",
+          "opacity": 0.7
+        },
+        {
+          "type": "line",
+          "x1": 52,
+          "y1": 484,
+          "x2": 52,
+          "y2": 512,
+          "stroke": "#E4DDD4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 62,
+          "y": 496,
+          "content": "BERT: Bidirectional Transformers",
+          "fontSize": 12,
+          "fill": "#2A1A0E"
+        },
+        {
+          "type": "text",
+          "x": 62,
+          "y": 510,
+          "content": "◇ 62k citations",
+          "fontSize": 10,
+          "fill": "#8A7B6E"
+        },
+        {
+          "type": "text",
+          "x": 362,
+          "y": 503,
+          "content": "→",
+          "fontSize": 13,
+          "fill": "#8A7B6E",
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 530,
+          "width": 350,
+          "height": 48,
+          "fill": "#FFFFFF",
+          "rx": 8,
+          "stroke": "#E4DDD4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 550,
+          "content": "02",
+          "fontSize": 11,
+          "fill": "#B85C38",
+          "fontWeight": "700",
+          "fontFamily": "Georgia, serif",
+          "opacity": 0.7
+        },
+        {
+          "type": "line",
+          "x1": 52,
+          "y1": 540,
+          "x2": 52,
+          "y2": 568,
+          "stroke": "#E4DDD4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 62,
+          "y": 552,
+          "content": "GPT-3: Language Models as Few-Shot Learners",
+          "fontSize": 12,
+          "fill": "#2A1A0E"
+        },
+        {
+          "type": "text",
+          "x": 62,
+          "y": 566,
+          "content": "◇ 41k citations",
+          "fontSize": 10,
+          "fill": "#8A7B6E"
+        },
+        {
+          "type": "text",
+          "x": 362,
+          "y": 559,
+          "content": "→",
+          "fontSize": 13,
+          "fill": "#8A7B6E",
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 586,
+          "width": 350,
+          "height": 48,
+          "fill": "#FFFFFF",
+          "rx": 8,
+          "stroke": "#E4DDD4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 606,
+          "content": "03",
+          "fontSize": 11,
+          "fill": "#B85C38",
+          "fontWeight": "700",
+          "fontFamily": "Georgia, serif",
+          "opacity": 0.7
+        },
+        {
+          "type": "line",
+          "x1": 52,
+          "y1": 596,
+          "x2": 52,
+          "y2": 624,
+          "stroke": "#E4DDD4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 62,
+          "y": 608,
+          "content": "Vision Transformer (ViT)",
+          "fontSize": 12,
+          "fill": "#2A1A0E"
+        },
+        {
+          "type": "text",
+          "x": 62,
+          "y": 622,
+          "content": "◇ 28k citations",
+          "fontSize": 10,
+          "fill": "#8A7B6E"
+        },
+        {
+          "type": "text",
+          "x": 362,
+          "y": 615,
+          "content": "→",
+          "fontSize": 13,
+          "fill": "#8A7B6E",
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 726,
+          "width": 167,
+          "height": 42,
+          "fill": "#B85C38",
+          "rx": 8
+        },
+        {
+          "type": "text",
+          "x": 104,
+          "y": 752,
+          "content": "Add to Synthesis",
+          "fontSize": 13,
+          "fill": "#FFFFFF",
+          "fontWeight": "600",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 196,
+          "y": 726,
+          "width": 174,
+          "height": 42,
+          "fill": "#FFFFFF",
+          "rx": 8,
+          "stroke": "#E4DDD4",
+          "strokeWidth": 1.5
+        },
+        {
+          "type": "text",
+          "x": 283,
+          "y": 752,
+          "content": "Read Full PDF →",
+          "fontSize": 13,
+          "fill": "#2A1A0E",
+          "fontWeight": "500",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 764,
+          "width": 390,
+          "height": 80,
+          "fill": "#FFFFFF"
+        },
+        {
+          "type": "line",
+          "x1": 0,
+          "y1": 764,
+          "x2": 390,
+          "y2": 764,
+          "stroke": "#E4DDD4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 49,
+          "y": 791,
+          "content": "◎",
+          "fontSize": 18,
+          "fill": "#B85C38",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 49,
+          "y": 814,
+          "content": "Search",
+          "fontSize": 10,
+          "fill": "#B85C38",
+          "fontWeight": "600",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 122,
+          "y": 791,
+          "content": "⊟",
+          "fontSize": 18,
+          "fill": "#8A7B6E",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 122,
+          "y": 814,
+          "content": "Library",
+          "fontSize": 10,
+          "fill": "#8A7B6E",
+          "fontWeight": "400",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 791,
+          "content": "⊕",
+          "fontSize": 18,
+          "fill": "#8A7B6E",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 814,
+          "content": "Synthesis",
+          "fontSize": 10,
+          "fill": "#8A7B6E",
+          "fontWeight": "400",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 268,
+          "y": 791,
+          "content": "◉",
+          "fontSize": 18,
+          "fill": "#8A7B6E",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 268,
+          "y": 814,
+          "content": "Profile",
+          "fontSize": 10,
+          "fill": "#8A7B6E",
+          "fontWeight": "400",
+          "textAnchor": "middle"
+        }
+      ]
+    },
+    {
+      "id": "screen-4",
+      "name": "Synthesis",
+      "width": 390,
+      "height": 844,
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 390 844\"/>",
+      "elements": [
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "fill": "#FAF8F3"
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 44,
+          "fill": "#FAF8F3"
+        },
+        {
+          "type": "text",
+          "x": 16,
+          "y": 28,
+          "content": "9:41",
+          "fontSize": 13,
+          "fill": "#2A1A0E",
+          "fontWeight": "500"
+        },
+        {
+          "type": "text",
+          "x": 374,
+          "y": 28,
+          "content": "●●●",
+          "fontSize": 10,
+          "fill": "#2A1A0E",
+          "textAnchor": "end",
+          "opacity": 0.6
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 75,
+          "content": "←",
+          "fontSize": 18,
+          "fill": "#2A1A0E"
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 75,
+          "content": "Synthesis",
+          "fontSize": 15,
+          "fill": "#2A1A0E",
+          "fontWeight": "600",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 370,
+          "y": 75,
+          "content": "↑ Export",
+          "fontSize": 13,
+          "fill": "#B85C38",
+          "fontWeight": "600",
+          "textAnchor": "end"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 104,
+          "content": "Transformer attention mechanisms in NLP",
+          "fontSize": 14,
+          "fill": "#2A1A0E",
+          "fontWeight": "600"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 122,
+          "content": "12 papers · Updated just now · 43 cited works",
+          "fontSize": 11,
+          "fill": "#8A7B6E"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 132,
+          "width": 350,
+          "height": 4,
+          "fill": "#E4DDD4",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 132,
+          "width": 322,
+          "height": 4,
+          "fill": "#B85C38",
+          "rx": 2,
+          "opacity": 0.6
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 150,
+          "content": "INTRODUCTION",
+          "fontSize": 9,
+          "fill": "#B85C38",
+          "fontWeight": "700",
+          "letterSpacing": 1.5
+        },
+        {
+          "type": "line",
+          "x1": 20,
+          "y1": 154,
+          "x2": 110,
+          "y2": 154,
+          "stroke": "#B85C38",
+          "strokeWidth": 1,
+          "opacity": 0.4
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 162,
+          "width": 350,
+          "height": 90,
+          "fill": "#FFFFFF",
+          "rx": 8,
+          "stroke": "#E4DDD4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 162,
+          "width": 3,
+          "height": 90,
+          "fill": "#4B4BA0",
+          "rx": 1.5
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 180,
+          "content": "Transformer architectures have fundamentally",
+          "fontSize": 12,
+          "fill": "#2A1A0E",
+          "fontFamily": "Georgia, serif",
+          "opacity": 0.85
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 196,
+          "content": "reshaped natural language processing since",
+          "fontSize": 12,
+          "fill": "#2A1A0E",
+          "fontFamily": "Georgia, serif",
+          "opacity": 0.85
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 212,
+          "content": "Vaswani et al. (2017) [1]. The elimination of",
+          "fontSize": 12,
+          "fill": "#2A1A0E",
+          "fontFamily": "Georgia, serif",
+          "opacity": 0.85
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 228,
+          "content": "recurrence enabled unprecedented parallelism",
+          "fontSize": 12,
+          "fill": "#2A1A0E",
+          "fontFamily": "Georgia, serif",
+          "opacity": 0.85
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 244,
+          "content": "and scale in language model training.",
+          "fontSize": 12,
+          "fill": "#2A1A0E",
+          "fontFamily": "Georgia, serif",
+          "opacity": 0.85
+        },
+        {
+          "type": "rect",
+          "x": 319,
+          "y": 216,
+          "width": 36,
+          "height": 18,
+          "fill": "#B85C38",
+          "rx": 4,
+          "opacity": 0.1
+        },
+        {
+          "type": "text",
+          "x": 337,
+          "y": 229,
+          "content": "[1]",
+          "fontSize": 10,
+          "fill": "#B85C38",
+          "fontWeight": "600",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 268,
+          "content": "KEY FINDINGS",
+          "fontSize": 9,
+          "fill": "#B85C38",
+          "fontWeight": "700",
+          "letterSpacing": 1.5
+        },
+        {
+          "type": "line",
+          "x1": 20,
+          "y1": 272,
+          "x2": 110,
+          "y2": 272,
+          "stroke": "#B85C38",
+          "strokeWidth": 1,
+          "opacity": 0.4
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 280,
+          "width": 350,
+          "height": 108,
+          "fill": "#FFFFFF",
+          "rx": 8,
+          "stroke": "#E4DDD4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 280,
+          "width": 3,
+          "height": 108,
+          "fill": "#5A7A4A",
+          "rx": 1.5
+        },
+        {
+          "type": "circle",
+          "cx": 31,
+          "cy": 302,
+          "r": 4,
+          "fill": "#5A7A4A",
+          "opacity": 0.3
+        },
+        {
+          "type": "text",
+          "x": 42,
+          "y": 306,
+          "content": "Self-attention captures long-range dependencies that RNNs miss",
+          "fontSize": 11,
+          "fill": "#2A1A0E",
+          "opacity": 0.85
+        },
+        {
+          "type": "circle",
+          "cx": 31,
+          "cy": 332,
+          "r": 4,
+          "fill": "#5A7A4A",
+          "opacity": 0.3
+        },
+        {
+          "type": "text",
+          "x": 42,
+          "y": 336,
+          "content": "Multi-head attention enables attending to multiple positions",
+          "fontSize": 11,
+          "fill": "#2A1A0E",
+          "opacity": 0.85
+        },
+        {
+          "type": "circle",
+          "cx": 31,
+          "cy": 362,
+          "r": 4,
+          "fill": "#5A7A4A",
+          "opacity": 0.3
+        },
+        {
+          "type": "text",
+          "x": 42,
+          "y": 366,
+          "content": "Pre-training + fine-tuning paradigm democratised NLP capabilities",
+          "fontSize": 11,
+          "fill": "#2A1A0E",
+          "opacity": 0.85
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 402,
+          "content": "RESEARCH GAPS",
+          "fontSize": 9,
+          "fill": "#B85C38",
+          "fontWeight": "700",
+          "letterSpacing": 1.5
+        },
+        {
+          "type": "line",
+          "x1": 20,
+          "y1": 406,
+          "x2": 117.5,
+          "y2": 406,
+          "stroke": "#B85C38",
+          "strokeWidth": 1,
+          "opacity": 0.4
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 414,
+          "width": 350,
+          "height": 88,
+          "fill": "#FFFFFF",
+          "rx": 8,
+          "stroke": "#E4DDD4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 414,
+          "width": 3,
+          "height": 88,
+          "fill": "#B85C38",
+          "rx": 1.5
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 432,
+          "content": "Despite advances, computational complexity of",
+          "fontSize": 12,
+          "fill": "#2A1A0E",
+          "fontFamily": "Georgia, serif",
+          "opacity": 0.85
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 448,
+          "content": "attention (O(n²)) remains a constraint for long",
+          "fontSize": 12,
+          "fill": "#2A1A0E",
+          "fontFamily": "Georgia, serif",
+          "opacity": 0.85
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 464,
+          "content": "sequences. Sparse attention variants [8][12]",
+          "fontSize": 12,
+          "fill": "#2A1A0E",
+          "fontFamily": "Georgia, serif",
+          "opacity": 0.85
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 480,
+          "content": "address this partially but consensus is lacking.",
+          "fontSize": 12,
+          "fill": "#2A1A0E",
+          "fontFamily": "Georgia, serif",
+          "opacity": 0.85
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 514,
+          "content": "SOURCES (12)",
+          "fontSize": 9,
+          "fill": "#B85C38",
+          "fontWeight": "700",
+          "letterSpacing": 1.5
+        },
+        {
+          "type": "line",
+          "x1": 20,
+          "y1": 518,
+          "x2": 110,
+          "y2": 518,
+          "stroke": "#B85C38",
+          "strokeWidth": 1,
+          "opacity": 0.4
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 530,
+          "width": 350,
+          "height": 28,
+          "fill": "#F3EFE6",
+          "rx": 6
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 548,
+          "content": "[1] Vaswani et al., 2017 — Attention Is All You Need",
+          "fontSize": 11,
+          "fill": "#2A1A0E",
+          "opacity": 0.75
+        },
+        {
+          "type": "text",
+          "x": 362,
+          "y": 548,
+          "content": "↗",
+          "fontSize": 11,
+          "fill": "#B85C38",
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 566,
+          "width": 350,
+          "height": 28,
+          "fill": "#F3EFE6",
+          "rx": 6
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 584,
+          "content": "[2] Devlin et al., 2019 — BERT",
+          "fontSize": 11,
+          "fill": "#2A1A0E",
+          "opacity": 0.75
+        },
+        {
+          "type": "text",
+          "x": 362,
+          "y": 584,
+          "content": "↗",
+          "fontSize": 11,
+          "fill": "#B85C38",
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 602,
+          "width": 350,
+          "height": 28,
+          "fill": "#F3EFE6",
+          "rx": 6
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 620,
+          "content": "[3] Brown et al., 2020 — GPT-3",
+          "fontSize": 11,
+          "fill": "#2A1A0E",
+          "opacity": 0.75
+        },
+        {
+          "type": "text",
+          "x": 362,
+          "y": 620,
+          "content": "↗",
+          "fontSize": 11,
+          "fill": "#B85C38",
+          "textAnchor": "end"
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 642,
+          "content": "+ 9 more papers",
+          "fontSize": 11,
+          "fill": "#B85C38",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 660,
+          "width": 350,
+          "height": 46,
+          "fill": "#B85C38",
+          "rx": 8
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 689,
+          "content": "Export as PDF · Word · BibTeX",
+          "fontSize": 14,
+          "fill": "#FFFFFF",
+          "fontWeight": "600",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 716,
+          "width": 97,
+          "height": 26,
+          "fill": "#FFFFFF",
+          "rx": 13,
+          "stroke": "#E4DDD4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 68.5,
+          "y": 733,
+          "content": "Add Section",
+          "fontSize": 11,
+          "fill": "#2A1A0E",
+          "textAnchor": "middle",
+          "opacity": 0.75
+        },
+        {
+          "type": "rect",
+          "x": 125,
+          "y": 716,
+          "width": 90,
+          "height": 26,
+          "fill": "#FFFFFF",
+          "rx": 13,
+          "stroke": "#E4DDD4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 170,
+          "y": 733,
+          "content": "AI Rewrite",
+          "fontSize": 11,
+          "fill": "#2A1A0E",
+          "textAnchor": "middle",
+          "opacity": 0.75
+        },
+        {
+          "type": "rect",
+          "x": 223,
+          "y": 716,
+          "width": 90,
+          "height": 26,
+          "fill": "#FFFFFF",
+          "rx": 13,
+          "stroke": "#E4DDD4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 268,
+          "y": 733,
+          "content": "Check Gaps",
+          "fontSize": 11,
+          "fill": "#2A1A0E",
+          "textAnchor": "middle",
+          "opacity": 0.75
+        },
+        {
+          "type": "rect",
+          "x": 321,
+          "y": 716,
+          "width": 118,
+          "height": 26,
+          "fill": "#FFFFFF",
+          "rx": 13,
+          "stroke": "#E4DDD4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 380,
+          "y": 733,
+          "content": "Citation Style",
+          "fontSize": 11,
+          "fill": "#2A1A0E",
+          "textAnchor": "middle",
+          "opacity": 0.75
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 764,
+          "width": 390,
+          "height": 80,
+          "fill": "#FFFFFF"
+        },
+        {
+          "type": "line",
+          "x1": 0,
+          "y1": 764,
+          "x2": 390,
+          "y2": 764,
+          "stroke": "#E4DDD4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 49,
+          "y": 791,
+          "content": "◎",
+          "fontSize": 18,
+          "fill": "#8A7B6E",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 49,
+          "y": 814,
+          "content": "Search",
+          "fontSize": 10,
+          "fill": "#8A7B6E",
+          "fontWeight": "400",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 122,
+          "y": 791,
+          "content": "⊟",
+          "fontSize": 18,
+          "fill": "#8A7B6E",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 122,
+          "y": 814,
+          "content": "Library",
+          "fontSize": 10,
+          "fill": "#8A7B6E",
+          "fontWeight": "400",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 791,
+          "content": "⊕",
+          "fontSize": 18,
+          "fill": "#B85C38",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 814,
+          "content": "Synthesis",
+          "fontSize": 10,
+          "fill": "#B85C38",
+          "fontWeight": "600",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 268,
+          "y": 791,
+          "content": "◉",
+          "fontSize": 18,
+          "fill": "#8A7B6E",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 268,
+          "y": 814,
+          "content": "Profile",
+          "fontSize": 10,
+          "fill": "#8A7B6E",
+          "fontWeight": "400",
+          "textAnchor": "middle"
+        }
+      ]
+    },
+    {
+      "id": "screen-5",
+      "name": "Library",
+      "width": 390,
+      "height": 844,
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 390 844\"/>",
+      "elements": [
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "fill": "#FAF8F3"
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 44,
+          "fill": "#FAF8F3"
+        },
+        {
+          "type": "text",
+          "x": 16,
+          "y": 28,
+          "content": "9:41",
+          "fontSize": 13,
+          "fill": "#2A1A0E",
+          "fontWeight": "500"
+        },
+        {
+          "type": "text",
+          "x": 374,
+          "y": 28,
+          "content": "●●●",
+          "fontSize": 10,
+          "fill": "#2A1A0E",
+          "textAnchor": "end",
+          "opacity": 0.6
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 75,
+          "content": "My Library",
+          "fontSize": 16,
+          "fill": "#2A1A0E",
+          "fontWeight": "600",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 370,
+          "y": 75,
+          "content": "+ New",
+          "fontSize": 13,
+          "fill": "#B85C38",
+          "fontWeight": "600",
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 90,
+          "width": 350,
+          "height": 64,
+          "fill": "#FFFFFF",
+          "rx": 10,
+          "stroke": "#E4DDD4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 62,
+          "y": 118,
+          "content": "28",
+          "fontSize": 20,
+          "fill": "#B85C38",
+          "fontWeight": "700",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 62,
+          "y": 136,
+          "content": "Saved Papers",
+          "fontSize": 10,
+          "fill": "#8A7B6E",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "line",
+          "x1": 112,
+          "y1": 102,
+          "x2": 112,
+          "y2": 142,
+          "stroke": "#E4DDD4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 172,
+          "y": 118,
+          "content": "4",
+          "fontSize": 20,
+          "fill": "#B85C38",
+          "fontWeight": "700",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 172,
+          "y": 136,
+          "content": "Syntheses",
+          "fontSize": 10,
+          "fill": "#8A7B6E",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "line",
+          "x1": 222,
+          "y1": 102,
+          "x2": 222,
+          "y2": 142,
+          "stroke": "#E4DDD4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 282,
+          "y": 118,
+          "content": "3",
+          "fontSize": 20,
+          "fill": "#B85C38",
+          "fontWeight": "700",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 282,
+          "y": 136,
+          "content": "Collections",
+          "fontSize": 10,
+          "fill": "#8A7B6E",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 168,
+          "content": "COLLECTIONS",
+          "fontSize": 9,
+          "fill": "#B85C38",
+          "fontWeight": "700",
+          "letterSpacing": 1.5
+        },
+        {
+          "type": "line",
+          "x1": 20,
+          "y1": 172,
+          "x2": 102.5,
+          "y2": 172,
+          "stroke": "#B85C38",
+          "strokeWidth": 1,
+          "opacity": 0.4
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 184,
+          "width": 350,
+          "height": 48,
+          "fill": "#FFFFFF",
+          "rx": 8,
+          "stroke": "#E4DDD4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 184,
+          "width": 4,
+          "height": 48,
+          "fill": "#4B4BA0",
+          "rx": 2
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 204,
+          "content": "NLP & Transformers",
+          "fontSize": 13,
+          "fill": "#2A1A0E",
+          "fontWeight": "600"
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 220,
+          "content": "12 papers",
+          "fontSize": 11,
+          "fill": "#8A7B6E"
+        },
+        {
+          "type": "text",
+          "x": 362,
+          "y": 213,
+          "content": "→",
+          "fontSize": 14,
+          "fill": "#8A7B6E",
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 320,
+          "y": 214.15988075222435,
+          "width": 6,
+          "height": 7.840119247775637,
+          "fill": "#4B4BA0",
+          "rx": 2,
+          "opacity": 0.25
+        },
+        {
+          "type": "rect",
+          "x": 330,
+          "y": 206.64087986645075,
+          "width": 6,
+          "height": 15.359120133549261,
+          "fill": "#4B4BA0",
+          "rx": 2,
+          "opacity": 0.25
+        },
+        {
+          "type": "rect",
+          "x": 340,
+          "y": 209.16621945038108,
+          "width": 6,
+          "height": 12.833780549618925,
+          "fill": "#4B4BA0",
+          "rx": 2,
+          "opacity": 0.25
+        },
+        {
+          "type": "rect",
+          "x": 350,
+          "y": 211.91559170708123,
+          "width": 6,
+          "height": 10.084408292918761,
+          "fill": "#4B4BA0",
+          "rx": 2,
+          "opacity": 0.25
+        },
+        {
+          "type": "rect",
+          "x": 360,
+          "y": 217.15112417090555,
+          "width": 6,
+          "height": 4.848875829094462,
+          "fill": "#4B4BA0",
+          "rx": 2,
+          "opacity": 0.25
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 242,
+          "width": 350,
+          "height": 48,
+          "fill": "#FFFFFF",
+          "rx": 8,
+          "stroke": "#E4DDD4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 242,
+          "width": 4,
+          "height": 48,
+          "fill": "#5A7A4A",
+          "rx": 2
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 262,
+          "content": "CRISPR Delivery",
+          "fontSize": 13,
+          "fill": "#2A1A0E",
+          "fontWeight": "600"
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 278,
+          "content": "8 papers",
+          "fontSize": 11,
+          "fill": "#8A7B6E"
+        },
+        {
+          "type": "text",
+          "x": 362,
+          "y": 271,
+          "content": "→",
+          "fontSize": 14,
+          "fill": "#8A7B6E",
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 320,
+          "y": 274.5538312541602,
+          "width": 6,
+          "height": 5.446168745839819,
+          "fill": "#5A7A4A",
+          "rx": 2,
+          "opacity": 0.25
+        },
+        {
+          "type": "rect",
+          "x": 330,
+          "y": 262.9138677462969,
+          "width": 6,
+          "height": 17.08613225370313,
+          "fill": "#5A7A4A",
+          "rx": 2,
+          "opacity": 0.25
+        },
+        {
+          "type": "rect",
+          "x": 340,
+          "y": 268.5473486348784,
+          "width": 6,
+          "height": 11.452651365121588,
+          "fill": "#5A7A4A",
+          "rx": 2,
+          "opacity": 0.25
+        },
+        {
+          "type": "rect",
+          "x": 350,
+          "y": 274.9097105989137,
+          "width": 6,
+          "height": 5.090289401086292,
+          "fill": "#5A7A4A",
+          "rx": 2,
+          "opacity": 0.25
+        },
+        {
+          "type": "rect",
+          "x": 360,
+          "y": 271.30700072149307,
+          "width": 6,
+          "height": 8.692999278506909,
+          "fill": "#5A7A4A",
+          "rx": 2,
+          "opacity": 0.25
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 300,
+          "width": 350,
+          "height": 48,
+          "fill": "#FFFFFF",
+          "rx": 8,
+          "stroke": "#E4DDD4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 300,
+          "width": 4,
+          "height": 48,
+          "fill": "#B85C38",
+          "rx": 2
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 320,
+          "content": "Climate Science",
+          "fontSize": 13,
+          "fill": "#2A1A0E",
+          "fontWeight": "600"
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 336,
+          "content": "5 papers",
+          "fontSize": 11,
+          "fill": "#8A7B6E"
+        },
+        {
+          "type": "text",
+          "x": 362,
+          "y": 329,
+          "content": "→",
+          "fontSize": 14,
+          "fill": "#8A7B6E",
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 320,
+          "y": 333.04092540778106,
+          "width": 6,
+          "height": 4.959074592218935,
+          "fill": "#B85C38",
+          "rx": 2,
+          "opacity": 0.25
+        },
+        {
+          "type": "rect",
+          "x": 330,
+          "y": 321.2218592748039,
+          "width": 6,
+          "height": 16.77814072519612,
+          "fill": "#B85C38",
+          "rx": 2,
+          "opacity": 0.25
+        },
+        {
+          "type": "rect",
+          "x": 340,
+          "y": 329.8324551763127,
+          "width": 6,
+          "height": 8.16754482368729,
+          "fill": "#B85C38",
+          "rx": 2,
+          "opacity": 0.25
+        },
+        {
+          "type": "rect",
+          "x": 350,
+          "y": 326.3623415795826,
+          "width": 6,
+          "height": 11.637658420417392,
+          "fill": "#B85C38",
+          "rx": 2,
+          "opacity": 0.25
+        },
+        {
+          "type": "rect",
+          "x": 360,
+          "y": 330.6543593752711,
+          "width": 6,
+          "height": 7.345640624728874,
+          "fill": "#B85C38",
+          "rx": 2,
+          "opacity": 0.25
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 362,
+          "content": "RECENTLY SAVED",
+          "fontSize": 9,
+          "fill": "#B85C38",
+          "fontWeight": "700",
+          "letterSpacing": 1.5
+        },
+        {
+          "type": "line",
+          "x1": 20,
+          "y1": 366,
+          "x2": 125,
+          "y2": 366,
+          "stroke": "#B85C38",
+          "strokeWidth": 1,
+          "opacity": 0.4
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 378,
+          "width": 350,
+          "height": 62,
+          "fill": "#FFFFFF",
+          "rx": 8,
+          "stroke": "#E4DDD4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 378,
+          "width": 350,
+          "height": 3,
+          "fill": "#E4DDD4",
+          "rx": 1.5
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 378,
+          "width": 280,
+          "height": 3,
+          "fill": "#5A7A4A",
+          "rx": 1.5,
+          "opacity": 0.7
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 400,
+          "content": "Attention Is All You Need",
+          "fontSize": 12,
+          "fill": "#2A1A0E",
+          "fontWeight": "600",
+          "fontFamily": "Georgia, serif"
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 416,
+          "content": "NeurIPS 2017",
+          "fontSize": 10,
+          "fill": "#8A7B6E"
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 430,
+          "content": "· 80% read",
+          "fontSize": 10,
+          "fill": "#5A7A4A",
+          "opacity": 1
+        },
+        {
+          "type": "text",
+          "x": 362,
+          "y": 410,
+          "content": "★",
+          "fontSize": 14,
+          "fill": "#B85C38",
+          "textAnchor": "end",
+          "opacity": 0.85
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 450,
+          "width": 350,
+          "height": 62,
+          "fill": "#FFFFFF",
+          "rx": 8,
+          "stroke": "#E4DDD4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 450,
+          "width": 350,
+          "height": 3,
+          "fill": "#E4DDD4",
+          "rx": 1.5
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 450,
+          "width": 158,
+          "height": 3,
+          "fill": "#5A7A4A",
+          "rx": 1.5,
+          "opacity": 0.7
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 472,
+          "content": "BERT: Bidirectional Transformers for Language",
+          "fontSize": 12,
+          "fill": "#2A1A0E",
+          "fontWeight": "600",
+          "fontFamily": "Georgia, serif"
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 488,
+          "content": "NAACL 2019",
+          "fontSize": 10,
+          "fill": "#8A7B6E"
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 502,
+          "content": "· 45% read",
+          "fontSize": 10,
+          "fill": "#5A7A4A",
+          "opacity": 1
+        },
+        {
+          "type": "text",
+          "x": 362,
+          "y": 482,
+          "content": "★",
+          "fontSize": 14,
+          "fill": "#B85C38",
+          "textAnchor": "end",
+          "opacity": 0.85
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 522,
+          "width": 350,
+          "height": 62,
+          "fill": "#FFFFFF",
+          "rx": 8,
+          "stroke": "#E4DDD4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 522,
+          "width": 350,
+          "height": 3,
+          "fill": "#E4DDD4",
+          "rx": 1.5
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 522,
+          "width": 70,
+          "height": 3,
+          "fill": "#5A7A4A",
+          "rx": 1.5,
+          "opacity": 0.7
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 544,
+          "content": "Efficient Transformers: A Survey",
+          "fontSize": 12,
+          "fill": "#2A1A0E",
+          "fontWeight": "600",
+          "fontFamily": "Georgia, serif"
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 560,
+          "content": "ACM Computing 2022",
+          "fontSize": 10,
+          "fill": "#8A7B6E"
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 574,
+          "content": "· 20% read",
+          "fontSize": 10,
+          "fill": "#5A7A4A",
+          "opacity": 1
+        },
+        {
+          "type": "text",
+          "x": 362,
+          "y": 554,
+          "content": "★",
+          "fontSize": 14,
+          "fill": "#B85C38",
+          "textAnchor": "end",
+          "opacity": 0.85
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 594,
+          "width": 350,
+          "height": 62,
+          "fill": "#FFFFFF",
+          "rx": 8,
+          "stroke": "#E4DDD4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 594,
+          "width": 350,
+          "height": 3,
+          "fill": "#E4DDD4",
+          "rx": 1.5
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 616,
+          "content": "FlashAttention: Fast Exact Attention",
+          "fontSize": 12,
+          "fill": "#2A1A0E",
+          "fontWeight": "600",
+          "fontFamily": "Georgia, serif"
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 632,
+          "content": "NeurIPS 2022",
+          "fontSize": 10,
+          "fill": "#8A7B6E"
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 646,
+          "content": "· Unread",
+          "fontSize": 10,
+          "fill": "#8A7B6E",
+          "opacity": 0.6
+        },
+        {
+          "type": "text",
+          "x": 362,
+          "y": 626,
+          "content": "★",
+          "fontSize": 14,
+          "fill": "#B85C38",
+          "textAnchor": "end",
+          "opacity": 0.85
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 764,
+          "width": 390,
+          "height": 80,
+          "fill": "#FFFFFF"
+        },
+        {
+          "type": "line",
+          "x1": 0,
+          "y1": 764,
+          "x2": 390,
+          "y2": 764,
+          "stroke": "#E4DDD4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 49,
+          "y": 791,
+          "content": "◎",
+          "fontSize": 18,
+          "fill": "#8A7B6E",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 49,
+          "y": 814,
+          "content": "Search",
+          "fontSize": 10,
+          "fill": "#8A7B6E",
+          "fontWeight": "400",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 122,
+          "y": 791,
+          "content": "⊟",
+          "fontSize": 18,
+          "fill": "#B85C38",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 122,
+          "y": 814,
+          "content": "Library",
+          "fontSize": 10,
+          "fill": "#B85C38",
+          "fontWeight": "600",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 791,
+          "content": "⊕",
+          "fontSize": 18,
+          "fill": "#8A7B6E",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 814,
+          "content": "Synthesis",
+          "fontSize": 10,
+          "fill": "#8A7B6E",
+          "fontWeight": "400",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 268,
+          "y": 791,
+          "content": "◉",
+          "fontSize": 18,
+          "fill": "#8A7B6E",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 268,
+          "y": 814,
+          "content": "Profile",
+          "fontSize": 10,
+          "fill": "#8A7B6E",
+          "fontWeight": "400",
+          "textAnchor": "middle"
+        }
+      ]
+    },
+    {
+      "id": "screen-6",
+      "name": "Profile",
+      "width": 390,
+      "height": 844,
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 390 844\"/>",
+      "elements": [
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "fill": "#FAF8F3"
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 44,
+          "fill": "#FAF8F3"
+        },
+        {
+          "type": "text",
+          "x": 16,
+          "y": 28,
+          "content": "9:41",
+          "fontSize": 13,
+          "fill": "#2A1A0E",
+          "fontWeight": "500"
+        },
+        {
+          "type": "text",
+          "x": 374,
+          "y": 28,
+          "content": "●●●",
+          "fontSize": 10,
+          "fill": "#2A1A0E",
+          "textAnchor": "end",
+          "opacity": 0.6
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 75,
+          "content": "Your Profile",
+          "fontSize": 15,
+          "fill": "#2A1A0E",
+          "fontWeight": "600",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 370,
+          "y": 75,
+          "content": "⚙",
+          "fontSize": 18,
+          "fill": "#8A7B6E",
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 90,
+          "width": 350,
+          "height": 100,
+          "fill": "#FFFFFF",
+          "rx": 12,
+          "stroke": "#E4DDD4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "circle",
+          "cx": 72,
+          "cy": 140,
+          "r": 30,
+          "fill": "#F3EFE6"
+        },
+        {
+          "type": "text",
+          "x": 72,
+          "y": 145,
+          "content": "◉",
+          "fontSize": 22,
+          "fill": "#B85C38",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 120,
+          "y": 126,
+          "content": "Dr. Amara Osei",
+          "fontSize": 16,
+          "fill": "#2A1A0E",
+          "fontWeight": "600"
+        },
+        {
+          "type": "text",
+          "x": 120,
+          "y": 144,
+          "content": "AI & Cognitive Systems",
+          "fontSize": 12,
+          "fill": "#8A7B6E"
+        },
+        {
+          "type": "text",
+          "x": 120,
+          "y": 160,
+          "content": "MIT CSAIL · Cambridge, MA",
+          "fontSize": 11,
+          "fill": "#8A7B6E",
+          "opacity": 0.7
+        },
+        {
+          "type": "rect",
+          "x": 304,
+          "y": 110,
+          "width": 54,
+          "height": 22,
+          "fill": "#B85C38",
+          "rx": 11,
+          "opacity": 0.1
+        },
+        {
+          "type": "text",
+          "x": 331,
+          "y": 125,
+          "content": "Pro Plan",
+          "fontSize": 10,
+          "fill": "#B85C38",
+          "fontWeight": "600",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 200,
+          "width": 80,
+          "height": 58,
+          "fill": "#FFFFFF",
+          "rx": 8,
+          "stroke": "#E4DDD4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 60,
+          "y": 224,
+          "content": "847",
+          "fontSize": 18,
+          "fill": "#2A1A0E",
+          "fontWeight": "700",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 60,
+          "y": 240,
+          "content": "Searches",
+          "fontSize": 9,
+          "fill": "#8A7B6E",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 108,
+          "y": 200,
+          "width": 80,
+          "height": 58,
+          "fill": "#FFFFFF",
+          "rx": 8,
+          "stroke": "#E4DDD4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 148,
+          "y": 224,
+          "content": "28",
+          "fontSize": 18,
+          "fill": "#2A1A0E",
+          "fontWeight": "700",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 148,
+          "y": 240,
+          "content": "Papers Saved",
+          "fontSize": 9,
+          "fill": "#8A7B6E",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 196,
+          "y": 200,
+          "width": 80,
+          "height": 58,
+          "fill": "#FFFFFF",
+          "rx": 8,
+          "stroke": "#E4DDD4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 236,
+          "y": 224,
+          "content": "6",
+          "fontSize": 18,
+          "fill": "#2A1A0E",
+          "fontWeight": "700",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 236,
+          "y": 240,
+          "content": "Syntheses",
+          "fontSize": 9,
+          "fill": "#8A7B6E",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 284,
+          "y": 200,
+          "width": 80,
+          "height": 58,
+          "fill": "#FFFFFF",
+          "rx": 8,
+          "stroke": "#E4DDD4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 324,
+          "y": 224,
+          "content": "4",
+          "fontSize": 18,
+          "fill": "#2A1A0E",
+          "fontWeight": "700",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 324,
+          "y": 240,
+          "content": "Exports",
+          "fontSize": 9,
+          "fill": "#8A7B6E",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 272,
+          "content": "RESEARCH INTERESTS",
+          "fontSize": 9,
+          "fill": "#B85C38",
+          "fontWeight": "700",
+          "letterSpacing": 1.5
+        },
+        {
+          "type": "line",
+          "x1": 20,
+          "y1": 276,
+          "x2": 155,
+          "y2": 276,
+          "stroke": "#B85C38",
+          "strokeWidth": 1,
+          "opacity": 0.4
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 286,
+          "width": 167,
+          "height": 22,
+          "fill": "#F3EFE6",
+          "rx": 11,
+          "stroke": "#E4DDD4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 103.5,
+          "y": 301,
+          "content": "Large Language Models",
+          "fontSize": 10,
+          "fill": "#2A1A0E",
+          "textAnchor": "middle",
+          "opacity": 0.8
+        },
+        {
+          "type": "rect",
+          "x": 195,
+          "y": 286,
+          "width": 160,
+          "height": 22,
+          "fill": "#F3EFE6",
+          "rx": 11,
+          "stroke": "#E4DDD4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 275,
+          "y": 301,
+          "content": "Attention Mechanisms",
+          "fontSize": 10,
+          "fill": "#2A1A0E",
+          "textAnchor": "middle",
+          "opacity": 0.8
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 316,
+          "width": 195,
+          "height": 22,
+          "fill": "#F3EFE6",
+          "rx": 11,
+          "stroke": "#E4DDD4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 117.5,
+          "y": 331,
+          "content": "Computational Linguistics",
+          "fontSize": 10,
+          "fill": "#2A1A0E",
+          "textAnchor": "middle",
+          "opacity": 0.8
+        },
+        {
+          "type": "rect",
+          "x": 223,
+          "y": 316,
+          "width": 132,
+          "height": 22,
+          "fill": "#F3EFE6",
+          "rx": 11,
+          "stroke": "#E4DDD4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 289,
+          "y": 331,
+          "content": "Knowledge Graphs",
+          "fontSize": 10,
+          "fill": "#2A1A0E",
+          "textAnchor": "middle",
+          "opacity": 0.8
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 346,
+          "width": 118,
+          "height": 22,
+          "fill": "#F3EFE6",
+          "rx": 11,
+          "stroke": "#E4DDD4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 79,
+          "y": 361,
+          "content": "NLP Benchmarks",
+          "fontSize": 10,
+          "fill": "#2A1A0E",
+          "textAnchor": "middle",
+          "opacity": 0.8
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 342,
+          "content": "READING ACTIVITY (12 WEEKS)",
+          "fontSize": 9,
+          "fill": "#B85C38",
+          "fontWeight": "700",
+          "letterSpacing": 1.5
+        },
+        {
+          "type": "line",
+          "x1": 20,
+          "y1": 346,
+          "x2": 222.5,
+          "y2": 346,
+          "stroke": "#B85C38",
+          "strokeWidth": 1,
+          "opacity": 0.4
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 358,
+          "width": 22,
+          "height": 10,
+          "fill": "#E4DDD4",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 370,
+          "width": 22,
+          "height": 10,
+          "fill": "#E4DDD4",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 382,
+          "width": 22,
+          "height": 10,
+          "fill": "#B85C38",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 394,
+          "width": 22,
+          "height": 10,
+          "fill": "#B85C38",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 406,
+          "width": 22,
+          "height": 10,
+          "fill": "rgba(184,92,56,0.2)",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 418,
+          "width": 22,
+          "height": 10,
+          "fill": "rgba(184,92,56,0.5)",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 430,
+          "width": 22,
+          "height": 10,
+          "fill": "#B85C38",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 48,
+          "y": 358,
+          "width": 22,
+          "height": 10,
+          "fill": "#B85C38",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 48,
+          "y": 370,
+          "width": 22,
+          "height": 10,
+          "fill": "#E4DDD4",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 48,
+          "y": 382,
+          "width": 22,
+          "height": 10,
+          "fill": "#E4DDD4",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 48,
+          "y": 394,
+          "width": 22,
+          "height": 10,
+          "fill": "rgba(184,92,56,0.5)",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 48,
+          "y": 406,
+          "width": 22,
+          "height": 10,
+          "fill": "rgba(184,92,56,0.5)",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 48,
+          "y": 418,
+          "width": 22,
+          "height": 10,
+          "fill": "rgba(184,92,56,0.5)",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 48,
+          "y": 430,
+          "width": 22,
+          "height": 10,
+          "fill": "#B85C38",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 76,
+          "y": 358,
+          "width": 22,
+          "height": 10,
+          "fill": "#E4DDD4",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 76,
+          "y": 370,
+          "width": 22,
+          "height": 10,
+          "fill": "rgba(184,92,56,0.2)",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 76,
+          "y": 382,
+          "width": 22,
+          "height": 10,
+          "fill": "rgba(184,92,56,0.2)",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 76,
+          "y": 394,
+          "width": 22,
+          "height": 10,
+          "fill": "#B85C38",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 76,
+          "y": 406,
+          "width": 22,
+          "height": 10,
+          "fill": "#B85C38",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 76,
+          "y": 418,
+          "width": 22,
+          "height": 10,
+          "fill": "rgba(184,92,56,0.2)",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 76,
+          "y": 430,
+          "width": 22,
+          "height": 10,
+          "fill": "rgba(184,92,56,0.2)",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 104,
+          "y": 358,
+          "width": 22,
+          "height": 10,
+          "fill": "rgba(184,92,56,0.5)",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 104,
+          "y": 370,
+          "width": 22,
+          "height": 10,
+          "fill": "rgba(184,92,56,0.2)",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 104,
+          "y": 382,
+          "width": 22,
+          "height": 10,
+          "fill": "rgba(184,92,56,0.2)",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 104,
+          "y": 394,
+          "width": 22,
+          "height": 10,
+          "fill": "#B85C38",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 104,
+          "y": 406,
+          "width": 22,
+          "height": 10,
+          "fill": "rgba(184,92,56,0.2)",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 104,
+          "y": 418,
+          "width": 22,
+          "height": 10,
+          "fill": "rgba(184,92,56,0.2)",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 104,
+          "y": 430,
+          "width": 22,
+          "height": 10,
+          "fill": "rgba(184,92,56,0.2)",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 132,
+          "y": 358,
+          "width": 22,
+          "height": 10,
+          "fill": "rgba(184,92,56,0.5)",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 132,
+          "y": 370,
+          "width": 22,
+          "height": 10,
+          "fill": "#E4DDD4",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 132,
+          "y": 382,
+          "width": 22,
+          "height": 10,
+          "fill": "#B85C38",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 132,
+          "y": 394,
+          "width": 22,
+          "height": 10,
+          "fill": "rgba(184,92,56,0.5)",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 132,
+          "y": 406,
+          "width": 22,
+          "height": 10,
+          "fill": "rgba(184,92,56,0.2)",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 132,
+          "y": 418,
+          "width": 22,
+          "height": 10,
+          "fill": "rgba(184,92,56,0.2)",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 132,
+          "y": 430,
+          "width": 22,
+          "height": 10,
+          "fill": "#B85C38",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 160,
+          "y": 358,
+          "width": 22,
+          "height": 10,
+          "fill": "rgba(184,92,56,0.5)",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 160,
+          "y": 370,
+          "width": 22,
+          "height": 10,
+          "fill": "#B85C38",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 160,
+          "y": 382,
+          "width": 22,
+          "height": 10,
+          "fill": "#B85C38",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 160,
+          "y": 394,
+          "width": 22,
+          "height": 10,
+          "fill": "#B85C38",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 160,
+          "y": 406,
+          "width": 22,
+          "height": 10,
+          "fill": "#B85C38",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 160,
+          "y": 418,
+          "width": 22,
+          "height": 10,
+          "fill": "#B85C38",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 160,
+          "y": 430,
+          "width": 22,
+          "height": 10,
+          "fill": "rgba(184,92,56,0.5)",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 188,
+          "y": 358,
+          "width": 22,
+          "height": 10,
+          "fill": "#B85C38",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 188,
+          "y": 370,
+          "width": 22,
+          "height": 10,
+          "fill": "#E4DDD4",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 188,
+          "y": 382,
+          "width": 22,
+          "height": 10,
+          "fill": "#E4DDD4",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 188,
+          "y": 394,
+          "width": 22,
+          "height": 10,
+          "fill": "rgba(184,92,56,0.5)",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 188,
+          "y": 406,
+          "width": 22,
+          "height": 10,
+          "fill": "rgba(184,92,56,0.5)",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 188,
+          "y": 418,
+          "width": 22,
+          "height": 10,
+          "fill": "rgba(184,92,56,0.5)",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 188,
+          "y": 430,
+          "width": 22,
+          "height": 10,
+          "fill": "#B85C38",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 216,
+          "y": 358,
+          "width": 22,
+          "height": 10,
+          "fill": "#E4DDD4",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 216,
+          "y": 370,
+          "width": 22,
+          "height": 10,
+          "fill": "#E4DDD4",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 216,
+          "y": 382,
+          "width": 22,
+          "height": 10,
+          "fill": "#E4DDD4",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 216,
+          "y": 394,
+          "width": 22,
+          "height": 10,
+          "fill": "rgba(184,92,56,0.2)",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 216,
+          "y": 406,
+          "width": 22,
+          "height": 10,
+          "fill": "rgba(184,92,56,0.5)",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 216,
+          "y": 418,
+          "width": 22,
+          "height": 10,
+          "fill": "rgba(184,92,56,0.5)",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 216,
+          "y": 430,
+          "width": 22,
+          "height": 10,
+          "fill": "#B85C38",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 244,
+          "y": 358,
+          "width": 22,
+          "height": 10,
+          "fill": "rgba(184,92,56,0.2)",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 244,
+          "y": 370,
+          "width": 22,
+          "height": 10,
+          "fill": "#E4DDD4",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 244,
+          "y": 382,
+          "width": 22,
+          "height": 10,
+          "fill": "#B85C38",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 244,
+          "y": 394,
+          "width": 22,
+          "height": 10,
+          "fill": "rgba(184,92,56,0.2)",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 244,
+          "y": 406,
+          "width": 22,
+          "height": 10,
+          "fill": "#B85C38",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 244,
+          "y": 418,
+          "width": 22,
+          "height": 10,
+          "fill": "#B85C38",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 244,
+          "y": 430,
+          "width": 22,
+          "height": 10,
+          "fill": "rgba(184,92,56,0.5)",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 272,
+          "y": 358,
+          "width": 22,
+          "height": 10,
+          "fill": "#E4DDD4",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 272,
+          "y": 370,
+          "width": 22,
+          "height": 10,
+          "fill": "#B85C38",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 272,
+          "y": 382,
+          "width": 22,
+          "height": 10,
+          "fill": "#B85C38",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 272,
+          "y": 394,
+          "width": 22,
+          "height": 10,
+          "fill": "rgba(184,92,56,0.5)",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 272,
+          "y": 406,
+          "width": 22,
+          "height": 10,
+          "fill": "#B85C38",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 272,
+          "y": 418,
+          "width": 22,
+          "height": 10,
+          "fill": "rgba(184,92,56,0.5)",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 272,
+          "y": 430,
+          "width": 22,
+          "height": 10,
+          "fill": "rgba(184,92,56,0.2)",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 300,
+          "y": 358,
+          "width": 22,
+          "height": 10,
+          "fill": "rgba(184,92,56,0.2)",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 300,
+          "y": 370,
+          "width": 22,
+          "height": 10,
+          "fill": "#B85C38",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 300,
+          "y": 382,
+          "width": 22,
+          "height": 10,
+          "fill": "#E4DDD4",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 300,
+          "y": 394,
+          "width": 22,
+          "height": 10,
+          "fill": "#B85C38",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 300,
+          "y": 406,
+          "width": 22,
+          "height": 10,
+          "fill": "rgba(184,92,56,0.2)",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 300,
+          "y": 418,
+          "width": 22,
+          "height": 10,
+          "fill": "rgba(184,92,56,0.2)",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 300,
+          "y": 430,
+          "width": 22,
+          "height": 10,
+          "fill": "#B85C38",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 328,
+          "y": 358,
+          "width": 22,
+          "height": 10,
+          "fill": "#B85C38",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 328,
+          "y": 370,
+          "width": 22,
+          "height": 10,
+          "fill": "#B85C38",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 328,
+          "y": 382,
+          "width": 22,
+          "height": 10,
+          "fill": "rgba(184,92,56,0.5)",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 328,
+          "y": 394,
+          "width": 22,
+          "height": 10,
+          "fill": "#B85C38",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 328,
+          "y": 406,
+          "width": 22,
+          "height": 10,
+          "fill": "#B85C38",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 328,
+          "y": 418,
+          "width": 22,
+          "height": 10,
+          "fill": "#E4DDD4",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 328,
+          "y": 430,
+          "width": 22,
+          "height": 10,
+          "fill": "#E4DDD4",
+          "rx": 2
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 450,
+          "content": "RECOMMENDED FOR YOU",
+          "fontSize": 9,
+          "fill": "#B85C38",
+          "fontWeight": "700",
+          "letterSpacing": 1.5
+        },
+        {
+          "type": "line",
+          "x1": 20,
+          "y1": 454,
+          "x2": 162.5,
+          "y2": 454,
+          "stroke": "#B85C38",
+          "strokeWidth": 1,
+          "opacity": 0.4
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 466,
+          "width": 350,
+          "height": 66,
+          "fill": "#FFFFFF",
+          "rx": 8,
+          "stroke": "#E4DDD4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 486,
+          "content": "FlashAttention-2: Faster Attention",
+          "fontSize": 12,
+          "fill": "#2A1A0E",
+          "fontWeight": "600",
+          "fontFamily": "Georgia, serif"
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 502,
+          "content": "ICLR 2024",
+          "fontSize": 10,
+          "fill": "#8A7B6E"
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 518,
+          "content": "Based on your Transformer searches",
+          "fontSize": 10,
+          "fill": "#4B4BA0",
+          "opacity": 0.8
+        },
+        {
+          "type": "text",
+          "x": 362,
+          "y": 500,
+          "content": "+ Save",
+          "fontSize": 11,
+          "fill": "#B85C38",
+          "fontWeight": "600",
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 542,
+          "width": 350,
+          "height": 66,
+          "fill": "#FFFFFF",
+          "rx": 8,
+          "stroke": "#E4DDD4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 562,
+          "content": "Mamba: Linear-Time Sequence Modeling",
+          "fontSize": 12,
+          "fill": "#2A1A0E",
+          "fontWeight": "600",
+          "fontFamily": "Georgia, serif"
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 578,
+          "content": "arXiv 2023",
+          "fontSize": 10,
+          "fill": "#8A7B6E"
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 594,
+          "content": "Trending in your field",
+          "fontSize": 10,
+          "fill": "#4B4BA0",
+          "opacity": 0.8
+        },
+        {
+          "type": "text",
+          "x": 362,
+          "y": 576,
+          "content": "+ Save",
+          "fontSize": 11,
+          "fill": "#B85C38",
+          "fontWeight": "600",
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 618,
+          "width": 350,
+          "height": 66,
+          "fill": "#FFFFFF",
+          "rx": 8,
+          "stroke": "#E4DDD4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 638,
+          "content": "Mistral 7B: Open Language Model",
+          "fontSize": 12,
+          "fill": "#2A1A0E",
+          "fontWeight": "600",
+          "fontFamily": "Georgia, serif"
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 654,
+          "content": "arXiv 2023",
+          "fontSize": 10,
+          "fill": "#8A7B6E"
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 670,
+          "content": "Related to BERT in your library",
+          "fontSize": 10,
+          "fill": "#4B4BA0",
+          "opacity": 0.8
+        },
+        {
+          "type": "text",
+          "x": 362,
+          "y": 652,
+          "content": "+ Save",
+          "fontSize": 11,
+          "fill": "#B85C38",
+          "fontWeight": "600",
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 764,
+          "width": 390,
+          "height": 80,
+          "fill": "#FFFFFF"
+        },
+        {
+          "type": "line",
+          "x1": 0,
+          "y1": 764,
+          "x2": 390,
+          "y2": 764,
+          "stroke": "#E4DDD4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 49,
+          "y": 791,
+          "content": "◎",
+          "fontSize": 18,
+          "fill": "#8A7B6E",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 49,
+          "y": 814,
+          "content": "Search",
+          "fontSize": 10,
+          "fill": "#8A7B6E",
+          "fontWeight": "400",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 122,
+          "y": 791,
+          "content": "⊟",
+          "fontSize": 18,
+          "fill": "#8A7B6E",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 122,
+          "y": 814,
+          "content": "Library",
+          "fontSize": 10,
+          "fill": "#8A7B6E",
+          "fontWeight": "400",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 791,
+          "content": "⊕",
+          "fontSize": 18,
+          "fill": "#8A7B6E",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 814,
+          "content": "Synthesis",
+          "fontSize": 10,
+          "fill": "#8A7B6E",
+          "fontWeight": "400",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 268,
+          "y": 791,
+          "content": "◉",
+          "fontSize": 18,
+          "fill": "#B85C38",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 268,
+          "y": 814,
+          "content": "Profile",
+          "fontSize": 10,
+          "fill": "#B85C38",
+          "fontWeight": "600",
+          "textAnchor": "middle"
+        }
+      ]
+    }
+  ]
+}

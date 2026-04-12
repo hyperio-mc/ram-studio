@@ -1,0 +1,537 @@
+{
+  "version": "2.8",
+  "meta": {
+    "name": "Solvent",
+    "tagline": "Know your runway. Own your numbers.",
+    "archetype": "finance-health-tracker",
+    "author": "RAM Design Heartbeat",
+    "created": "2026-04-03T22:09:52.058Z",
+    "theme": "light"
+  },
+  "palette": {
+    "bg": "#F5F0E8",
+    "surface": "#FFFDF8",
+    "surfaceAlt": "#ECE9E0",
+    "surfaceHover": "#F0EDE4",
+    "text": "#1C1814",
+    "textMuted": "rgba(28,24,20,0.48)",
+    "accent": "#C85A2A",
+    "accent2": "#2E7D52",
+    "accentSoft": "rgba(200,90,42,0.10)",
+    "accent2Soft": "rgba(46,125,82,0.10)",
+    "border": "rgba(28,24,20,0.08)",
+    "borderStrong": "rgba(28,24,20,0.16)",
+    "borderAccent": "rgba(200,90,42,0.22)",
+    "statusGreen": "#1F7A45",
+    "statusOrange": "#B45309",
+    "statusRed": "#B91C1C",
+    "statusGreenSoft": "rgba(31,122,69,0.10)",
+    "statusOrangeSoft": "rgba(180,83,9,0.10)",
+    "statusRedSoft": "rgba(185,28,28,0.10)"
+  },
+  "darkPalette": {
+    "bg": "#141210",
+    "surface": "#1E1B18",
+    "surfaceAlt": "#262320",
+    "text": "#EDE8E0",
+    "textMuted": "rgba(237,232,224,0.45)",
+    "accent": "#E8734A",
+    "accent2": "#4DAA79",
+    "accentSoft": "rgba(232,115,74,0.12)",
+    "accent2Soft": "rgba(77,170,121,0.12)",
+    "border": "rgba(237,232,224,0.08)",
+    "borderStrong": "rgba(237,232,224,0.15)",
+    "statusGreen": "#4DAA79",
+    "statusOrange": "#E8A84A",
+    "statusRed": "#E05E5E"
+  },
+  "typography": {
+    "fontFamily": "'Inter', system-ui, -apple-system, sans-serif",
+    "displayFamily": "'Georgia', 'Times New Roman', serif",
+    "scale": {
+      "xs": 10,
+      "sm": 11,
+      "base": 13,
+      "md": 14,
+      "lg": 17,
+      "xl": 22,
+      "xxl": 32,
+      "hero": 48
+    }
+  },
+  "screens": [
+    {
+      "id": "overview",
+      "label": "Overview",
+      "description": "Financial health score — big serif number, key metrics, cash in/out, recent transactions",
+      "components": [
+        {
+          "type": "page-header",
+          "eyebrow": "FRIDAY, APR 3 · Q2 WEEK 1",
+          "title": "Good morning, Alex.",
+          "style": "editorial-warm"
+        },
+        {
+          "type": "health-score-hero",
+          "label": "FINANCIAL HEALTH",
+          "score": 78,
+          "maxScore": 100,
+          "grade": "Solid",
+          "trend": "+4 pts from last month",
+          "breakdown": [
+            {
+              "label": "Cash Runway",
+              "score": 82,
+              "note": "4.2 months"
+            },
+            {
+              "label": "Invoice Health",
+              "score": 74,
+              "note": "2 overdue"
+            },
+            {
+              "label": "Expense Control",
+              "score": 79,
+              "note": "On target"
+            }
+          ],
+          "style": "serif-score"
+        },
+        {
+          "type": "metric-row-3",
+          "items": [
+            {
+              "label": "Runway",
+              "value": "4.2mo",
+              "delta": "+0.3",
+              "up": true
+            },
+            {
+              "label": "MTD Income",
+              "value": "$8,400",
+              "delta": "+12%",
+              "up": true
+            },
+            {
+              "label": "Outstanding",
+              "value": "$5,200",
+              "delta": "2 invoices",
+              "up": false
+            }
+          ]
+        },
+        {
+          "type": "cash-flow-bars",
+          "label": "THIS MONTH",
+          "items": [
+            {
+              "label": "Money in",
+              "amount": "$8,400",
+              "pct": 84,
+              "color": "statusGreen"
+            },
+            {
+              "label": "Money out",
+              "amount": "$4,210",
+              "pct": 42,
+              "color": "statusOrange"
+            },
+            {
+              "label": "Net",
+              "amount": "+$4,190",
+              "pct": 42,
+              "color": "accent2"
+            }
+          ]
+        },
+        {
+          "type": "transaction-list",
+          "label": "RECENT",
+          "items": [
+            {
+              "name": "Stripe — Acme Corp",
+              "amount": "+$3,200",
+              "date": "Apr 2",
+              "category": "Invoice"
+            },
+            {
+              "name": "Figma subscription",
+              "amount": "-$45",
+              "date": "Apr 1",
+              "category": "Tools"
+            },
+            {
+              "name": "AWS compute",
+              "amount": "-$128",
+              "date": "Apr 1",
+              "category": "Infra"
+            },
+            {
+              "name": "Freelance — Dev work",
+              "amount": "+$2,400",
+              "date": "Mar 31",
+              "category": "Invoice"
+            },
+            {
+              "name": "Notion Pro",
+              "amount": "-$20",
+              "date": "Mar 31",
+              "category": "Tools"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cashflow",
+      "label": "Cash Flow",
+      "description": "Monthly income vs expenses with category breakdown and 12-week trend",
+      "components": [
+        {
+          "type": "section-header",
+          "label": "APRIL 2026",
+          "sub": "3 of 30 days",
+          "action": {
+            "label": "Export",
+            "icon": "share"
+          }
+        },
+        {
+          "type": "twin-metrics",
+          "left": {
+            "label": "Income",
+            "value": "$8,400",
+            "sub": "Goal: $12,000 · 70% there",
+            "pct": 70,
+            "color": "statusGreen"
+          },
+          "right": {
+            "label": "Expenses",
+            "value": "$4,210",
+            "sub": "Budget: $5,500 · 77% used",
+            "pct": 77,
+            "color": "statusOrange"
+          }
+        },
+        {
+          "type": "category-breakdown",
+          "label": "INCOME SOURCES",
+          "items": [
+            {
+              "label": "Project invoices",
+              "amount": "$6,800",
+              "pct": 81
+            },
+            {
+              "label": "Retainer — Studio M",
+              "amount": "$1,200",
+              "pct": 14
+            },
+            {
+              "label": "Other / Misc",
+              "amount": "$400",
+              "pct": 5
+            }
+          ]
+        },
+        {
+          "type": "category-breakdown",
+          "label": "TOP EXPENSES",
+          "items": [
+            {
+              "label": "Contractor fees",
+              "amount": "$2,100",
+              "pct": 50
+            },
+            {
+              "label": "SaaS & Tools",
+              "amount": "$680",
+              "pct": 16
+            },
+            {
+              "label": "Cloud infra",
+              "amount": "$410",
+              "pct": 10
+            },
+            {
+              "label": "Travel & meals",
+              "amount": "$320",
+              "pct": 8
+            },
+            {
+              "label": "Other",
+              "amount": "$700",
+              "pct": 17
+            }
+          ]
+        },
+        {
+          "type": "trend-callout",
+          "icon": "↑",
+          "text": "Income is 18% above your 3-month average. Your contractor spend is rising — watch the margin on Project Fenway.",
+          "style": "editorial-insight"
+        }
+      ]
+    },
+    {
+      "id": "projects",
+      "label": "Projects",
+      "description": "Active project tracker with invoice status and per-project earnings",
+      "components": [
+        {
+          "type": "section-header",
+          "label": "ACTIVE PROJECTS",
+          "sub": "5 open · $21,500 pipeline",
+          "action": {
+            "label": "+ New",
+            "icon": "plus"
+          }
+        },
+        {
+          "type": "project-cards",
+          "projects": [
+            {
+              "name": "Fenway Platform",
+              "client": "Acme Corp",
+              "status": "In progress",
+              "earned": "$9,600",
+              "total": "$18,000",
+              "pct": 53,
+              "nextMilestone": "MVP delivery — Apr 18",
+              "invoiced": "$6,400",
+              "invoiceStatus": "paid"
+            },
+            {
+              "name": "Brand Identity",
+              "client": "Studio Marble",
+              "status": "Review",
+              "earned": "$3,200",
+              "total": "$4,800",
+              "pct": 67,
+              "nextMilestone": "Final delivery — Apr 10",
+              "invoiced": "$2,400",
+              "invoiceStatus": "paid"
+            },
+            {
+              "name": "Data Dashboard",
+              "client": "Lumen Analytics",
+              "status": "Blocked",
+              "earned": "$0",
+              "total": "$7,500",
+              "pct": 20,
+              "nextMilestone": "Kickoff delayed",
+              "invoiced": "$2,500",
+              "invoiceStatus": "overdue"
+            },
+            {
+              "name": "Mobile App Design",
+              "client": "Vesta Health",
+              "status": "In progress",
+              "earned": "$2,100",
+              "total": "$9,000",
+              "pct": 23,
+              "nextMilestone": "Wireframes — Apr 14",
+              "invoiced": "$0",
+              "invoiceStatus": "pending"
+            }
+          ]
+        },
+        {
+          "type": "pipeline-summary",
+          "items": [
+            {
+              "label": "Earned to date",
+              "value": "$14,900"
+            },
+            {
+              "label": "Remaining pipeline",
+              "value": "$21,500"
+            },
+            {
+              "label": "Invoiced & unpaid",
+              "value": "$5,200"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "insights",
+      "label": "Insights",
+      "description": "AI-generated plain-English financial narrative — the editorial core of Solvent",
+      "components": [
+        {
+          "type": "section-header",
+          "label": "WEEKLY BRIEF",
+          "sub": "Apr 3 · Generated 6:00 AM",
+          "style": "editorial"
+        },
+        {
+          "type": "narrative-block",
+          "headline": "You're tracking well, with one thing to watch.",
+          "body": "Your net income for March came in at $12,840 — up 22% from February. Most of that came from two large project closes (Fenway Milestone 2 and Studio Marble retainer renewal). However, contractor spend increased $800 month-over-month. If that holds in April, your margin on Fenway drops from 58% to 51%.",
+          "style": "long-form-editorial"
+        },
+        {
+          "type": "insight-cards",
+          "items": [
+            {
+              "icon": "alert",
+              "label": "Watch",
+              "title": "Lumen Analytics invoice overdue",
+              "body": "$2,500 deposit — 14 days past due. Follow up before project work continues.",
+              "severity": "warning"
+            },
+            {
+              "icon": "check",
+              "label": "Good",
+              "title": "Tax reserve is on track",
+              "body": "You've set aside $3,420 of your $3,800 target. One more transfer will complete Q1.",
+              "severity": "positive"
+            },
+            {
+              "icon": "zap",
+              "label": "Opportunity",
+              "title": "Retainer renewal window open",
+              "body": "Studio Marble's 6-month retainer expires May 1. Previous renewal was auto-signed late — worth acting now.",
+              "severity": "neutral"
+            }
+          ]
+        },
+        {
+          "type": "tax-reserve-bar",
+          "label": "Q1 TAX RESERVE",
+          "current": 3420,
+          "target": 3800,
+          "pct": 90,
+          "note": "$380 remaining to hit target"
+        },
+        {
+          "type": "tags-row",
+          "label": "TRENDS THIS MONTH",
+          "items": [
+            "Income ↑18%",
+            "Tools spend stable",
+            "Contractor ↑22%",
+            "Runway extended"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "accounts",
+      "label": "Accounts",
+      "description": "Connected bank accounts, integrations, and data sync status",
+      "components": [
+        {
+          "type": "section-header",
+          "label": "CONNECTED ACCOUNTS",
+          "sub": "Last synced 6:03 AM"
+        },
+        {
+          "type": "account-list",
+          "items": [
+            {
+              "name": "Mercury Business",
+              "type": "Checking",
+              "balance": "$18,240",
+              "status": "synced",
+              "bank": "Mercury"
+            },
+            {
+              "name": "Mercury Savings",
+              "type": "Savings — Tax reserve",
+              "balance": "$3,420",
+              "status": "synced",
+              "bank": "Mercury"
+            },
+            {
+              "name": "Stripe Balance",
+              "type": "Payments",
+              "balance": "$5,200",
+              "status": "synced",
+              "bank": "Stripe"
+            },
+            {
+              "name": "Wise Multi-currency",
+              "type": "International",
+              "balance": "$1,840",
+              "status": "synced",
+              "bank": "Wise"
+            }
+          ]
+        },
+        {
+          "type": "metric-row-3",
+          "items": [
+            {
+              "label": "Total cash",
+              "value": "$28,700"
+            },
+            {
+              "label": "Receivable",
+              "value": "$5,200"
+            },
+            {
+              "label": "Tax reserved",
+              "value": "$3,420"
+            }
+          ]
+        },
+        {
+          "type": "integration-list",
+          "label": "INTEGRATIONS",
+          "items": [
+            {
+              "name": "Stripe",
+              "status": "active",
+              "detail": "Invoices + payouts synced"
+            },
+            {
+              "name": "QuickBooks",
+              "status": "active",
+              "detail": "Categories exported weekly"
+            },
+            {
+              "name": "Notion",
+              "status": "active",
+              "detail": "Weekly brief auto-posted"
+            },
+            {
+              "name": "Gusto",
+              "status": "inactive",
+              "detail": "Not connected"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "nav": [
+    {
+      "id": "overview",
+      "label": "Overview",
+      "icon": "home"
+    },
+    {
+      "id": "cashflow",
+      "label": "Flow",
+      "icon": "activity"
+    },
+    {
+      "id": "projects",
+      "label": "Projects",
+      "icon": "list"
+    },
+    {
+      "id": "insights",
+      "label": "Insights",
+      "icon": "star"
+    },
+    {
+      "id": "accounts",
+      "label": "Accounts",
+      "icon": "layers"
+    }
+  ]
+}

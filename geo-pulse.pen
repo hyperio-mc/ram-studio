@@ -1,0 +1,3880 @@
+{
+  "version": "2.8",
+  "variables": {
+    "bg": {
+      "type": "color",
+      "value": "#080b12"
+    },
+    "panel": {
+      "type": "color",
+      "value": "#0d1117"
+    },
+    "border": {
+      "type": "color",
+      "value": "#161b22"
+    },
+    "accent": {
+      "type": "color",
+      "value": "#00ff88"
+    },
+    "accentDim": {
+      "type": "color",
+      "value": "#003322"
+    },
+    "blue": {
+      "type": "color",
+      "value": "#58a6ff"
+    },
+    "blueDim": {
+      "type": "color",
+      "value": "#0d2040"
+    },
+    "orange": {
+      "type": "color",
+      "value": "#ff6b35"
+    },
+    "orangeDim": {
+      "type": "color",
+      "value": "#3d1a0a"
+    },
+    "text": {
+      "type": "color",
+      "value": "#e6edf3"
+    },
+    "muted": {
+      "type": "color",
+      "value": "#8b949e"
+    },
+    "red": {
+      "type": "color",
+      "value": "#f85149"
+    },
+    "yellow": {
+      "type": "color",
+      "value": "#d29922"
+    },
+    "purple": {
+      "type": "color",
+      "value": "#bc8cff"
+    }
+  },
+  "children": [
+    {
+      "type": "frame",
+      "name": "Pulse — Live Dashboard",
+      "x": 0,
+      "y": 0,
+      "width": 375,
+      "height": 812,
+      "fill": "$bg",
+      "clip": true,
+      "children": [
+        {
+          "type": "frame",
+          "x": 0,
+          "y": 0,
+          "width": 375,
+          "height": 44,
+          "fill": "$panel",
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "$border"
+          },
+          "children": [
+            {
+              "type": "text",
+              "content": "> pulse",
+              "x": 12,
+              "y": 12,
+              "width": 70,
+              "height": 20,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 13,
+              "fontWeight": "800",
+              "fill": "$accent",
+              "textAlign": "left",
+              "letterSpacing": 1,
+              "id": "n625"
+            },
+            {
+              "type": "text",
+              "content": "SurrealDB  v",
+              "x": 150,
+              "y": 14,
+              "width": 110,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "left",
+              "id": "n626"
+            },
+            {
+              "type": "frame",
+              "x": 295,
+              "y": 8,
+              "width": 70,
+              "height": 28,
+              "fill": "$accent",
+              "children": [
+                {
+                  "type": "text",
+                  "content": "RUN SCAN",
+                  "x": 0,
+                  "y": 8,
+                  "width": 70,
+                  "height": 12,
+                  "textGrowth": "fixed-width-height",
+                  "fontSize": 9,
+                  "fontWeight": "700",
+                  "fill": "$bg",
+                  "textAlign": "center",
+                  "letterSpacing": 0.8,
+                  "id": "n628"
+                }
+              ],
+              "id": "n627"
+            }
+          ],
+          "id": "n624"
+        },
+        {
+          "type": "rectangle",
+          "x": 0,
+          "y": 44,
+          "width": 375,
+          "height": 1,
+          "fill": "$accent",
+          "opacity": 0.3,
+          "id": "n629"
+        },
+        {
+          "type": "text",
+          "content": "73",
+          "x": 0,
+          "y": 60,
+          "width": 375,
+          "height": 96,
+          "textGrowth": "fixed-width-height",
+          "fontSize": 96,
+          "fontWeight": "900",
+          "fill": "$accent",
+          "textAlign": "center",
+          "id": "n630"
+        },
+        {
+          "type": "text",
+          "content": "GEO SCORE",
+          "x": 0,
+          "y": 158,
+          "width": 375,
+          "height": 14,
+          "textGrowth": "fixed-width-height",
+          "fontSize": 11,
+          "fontWeight": "600",
+          "fill": "$muted",
+          "textAlign": "center",
+          "letterSpacing": 2,
+          "id": "n631"
+        },
+        {
+          "type": "frame",
+          "x": 139.5,
+          "y": 60,
+          "width": 96,
+          "height": 96,
+          "fill": "#00000000",
+          "cornerRadius": 48,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "$accent"
+          },
+          "children": [],
+          "id": "n632"
+        },
+        {
+          "type": "frame",
+          "x": 0,
+          "y": 200,
+          "width": 375,
+          "height": 40,
+          "fill": "$panel",
+          "children": [
+            {
+              "type": "text",
+              "content": "MENTION 68%",
+              "x": 12,
+              "y": 12,
+              "width": 80,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "700",
+              "fill": "$accent",
+              "textAlign": "left",
+              "id": "n634"
+            },
+            {
+              "type": "text",
+              "content": "|",
+              "x": 96,
+              "y": 12,
+              "width": 10,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "left",
+              "id": "n635"
+            },
+            {
+              "type": "text",
+              "content": "POSITION 81",
+              "x": 108,
+              "y": 12,
+              "width": 80,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "700",
+              "fill": "$blue",
+              "textAlign": "left",
+              "id": "n636"
+            },
+            {
+              "type": "text",
+              "content": "|",
+              "x": 190,
+              "y": 12,
+              "width": 10,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "left",
+              "id": "n637"
+            },
+            {
+              "type": "text",
+              "content": "ACCURACY 91",
+              "x": 202,
+              "y": 12,
+              "width": 82,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "700",
+              "fill": "$accent",
+              "textAlign": "left",
+              "id": "n638"
+            },
+            {
+              "type": "text",
+              "content": "|",
+              "x": 286,
+              "y": 12,
+              "width": 10,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "left",
+              "id": "n639"
+            },
+            {
+              "type": "text",
+              "content": "SOV 34%",
+              "x": 298,
+              "y": 12,
+              "width": 64,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "700",
+              "fill": "$yellow",
+              "textAlign": "left",
+              "id": "n640"
+            }
+          ],
+          "id": "n633"
+        },
+        {
+          "type": "frame",
+          "x": 16,
+          "y": 256,
+          "width": 168,
+          "height": 68,
+          "fill": "$panel",
+          "cornerRadius": 4,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "$border"
+          },
+          "children": [
+            {
+              "type": "text",
+              "content": "GPT-4o",
+              "x": 10,
+              "y": 8,
+              "width": 120,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "600",
+              "fill": "$text",
+              "textAlign": "left",
+              "id": "n642"
+            },
+            {
+              "type": "text",
+              "content": "78",
+              "x": 10,
+              "y": 26,
+              "width": 80,
+              "height": 28,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 28,
+              "fontWeight": "700",
+              "fill": "$blue",
+              "textAlign": "left",
+              "id": "n643"
+            },
+            {
+              "type": "text",
+              "content": "vs avg +3",
+              "x": 10,
+              "y": 52,
+              "width": 100,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "left",
+              "id": "n644"
+            }
+          ],
+          "id": "n641"
+        },
+        {
+          "type": "frame",
+          "x": 199,
+          "y": 256,
+          "width": 168,
+          "height": 68,
+          "fill": "$panel",
+          "cornerRadius": 4,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "$border"
+          },
+          "children": [
+            {
+              "type": "text",
+              "content": "Claude 3.5",
+              "x": 10,
+              "y": 8,
+              "width": 120,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "600",
+              "fill": "$text",
+              "textAlign": "left",
+              "id": "n646"
+            },
+            {
+              "type": "text",
+              "content": "71",
+              "x": 10,
+              "y": 26,
+              "width": 80,
+              "height": 28,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 28,
+              "fontWeight": "700",
+              "fill": "$accent",
+              "textAlign": "left",
+              "id": "n647"
+            },
+            {
+              "type": "text",
+              "content": "vs avg +1",
+              "x": 10,
+              "y": 52,
+              "width": 100,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "left",
+              "id": "n648"
+            }
+          ],
+          "id": "n645"
+        },
+        {
+          "type": "frame",
+          "x": 16,
+          "y": 332,
+          "width": 168,
+          "height": 68,
+          "fill": "$panel",
+          "cornerRadius": 4,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "$border"
+          },
+          "children": [
+            {
+              "type": "text",
+              "content": "Perplexity",
+              "x": 10,
+              "y": 8,
+              "width": 120,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "600",
+              "fill": "$text",
+              "textAlign": "left",
+              "id": "n650"
+            },
+            {
+              "type": "text",
+              "content": "82",
+              "x": 10,
+              "y": 26,
+              "width": 80,
+              "height": 28,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 28,
+              "fontWeight": "700",
+              "fill": "$accent",
+              "textAlign": "left",
+              "id": "n651"
+            },
+            {
+              "type": "text",
+              "content": "vs avg +6",
+              "x": 10,
+              "y": 52,
+              "width": 100,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "left",
+              "id": "n652"
+            }
+          ],
+          "id": "n649"
+        },
+        {
+          "type": "frame",
+          "x": 199,
+          "y": 332,
+          "width": 168,
+          "height": 68,
+          "fill": "$panel",
+          "cornerRadius": 4,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "$border"
+          },
+          "children": [
+            {
+              "type": "text",
+              "content": "Gemini",
+              "x": 10,
+              "y": 8,
+              "width": 120,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "600",
+              "fill": "$text",
+              "textAlign": "left",
+              "id": "n654"
+            },
+            {
+              "type": "text",
+              "content": "65",
+              "x": 10,
+              "y": 26,
+              "width": 80,
+              "height": 28,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 28,
+              "fontWeight": "700",
+              "fill": "$yellow",
+              "textAlign": "left",
+              "id": "n655"
+            },
+            {
+              "type": "text",
+              "content": "vs avg -4",
+              "x": 10,
+              "y": 52,
+              "width": 100,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "left",
+              "id": "n656"
+            }
+          ],
+          "id": "n653"
+        },
+        {
+          "type": "frame",
+          "x": 16,
+          "y": 408,
+          "width": 168,
+          "height": 68,
+          "fill": "$panel",
+          "cornerRadius": 4,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "$border"
+          },
+          "children": [
+            {
+              "type": "text",
+              "content": "Grok",
+              "x": 10,
+              "y": 8,
+              "width": 120,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "600",
+              "fill": "$text",
+              "textAlign": "left",
+              "id": "n658"
+            },
+            {
+              "type": "text",
+              "content": "68",
+              "x": 10,
+              "y": 26,
+              "width": 80,
+              "height": 28,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 28,
+              "fontWeight": "700",
+              "fill": "$orange",
+              "textAlign": "left",
+              "id": "n659"
+            },
+            {
+              "type": "text",
+              "content": "vs avg +2",
+              "x": 10,
+              "y": 52,
+              "width": 100,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "left",
+              "id": "n660"
+            }
+          ],
+          "id": "n657"
+        },
+        {
+          "type": "frame",
+          "x": 199,
+          "y": 408,
+          "width": 168,
+          "height": 68,
+          "fill": "$panel",
+          "cornerRadius": 4,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "$border"
+          },
+          "children": [
+            {
+              "type": "text",
+              "content": "DeepSeek",
+              "x": 10,
+              "y": 8,
+              "width": 120,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "600",
+              "fill": "$text",
+              "textAlign": "left",
+              "id": "n662"
+            },
+            {
+              "type": "text",
+              "content": "59",
+              "x": 10,
+              "y": 26,
+              "width": 80,
+              "height": 28,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 28,
+              "fontWeight": "700",
+              "fill": "$muted",
+              "textAlign": "left",
+              "id": "n663"
+            },
+            {
+              "type": "text",
+              "content": "vs avg new",
+              "x": 10,
+              "y": 52,
+              "width": 100,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "left",
+              "id": "n664"
+            }
+          ],
+          "id": "n661"
+        },
+        {
+          "type": "text",
+          "content": "SCORE TREND / 30D",
+          "x": 16,
+          "y": 490,
+          "width": 200,
+          "height": 14,
+          "textGrowth": "fixed-width-height",
+          "fontSize": 9,
+          "fontWeight": "700",
+          "fill": "$muted",
+          "textAlign": "left",
+          "letterSpacing": 1.5,
+          "id": "n665"
+        },
+        {
+          "type": "frame",
+          "x": 16,
+          "y": 508,
+          "width": 343,
+          "height": 120,
+          "fill": "$panel",
+          "cornerRadius": 4,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "$border"
+          },
+          "children": [
+            {
+              "type": "rectangle",
+              "x": 10,
+              "y": 70,
+              "width": 4,
+              "height": 30,
+              "fill": "$yellow",
+              "opacity": 0.8,
+              "id": "n667"
+            },
+            {
+              "type": "rectangle",
+              "x": 21,
+              "y": 64,
+              "width": 4,
+              "height": 36,
+              "fill": "$yellow",
+              "opacity": 0.8,
+              "id": "n668"
+            },
+            {
+              "type": "rectangle",
+              "x": 32,
+              "y": 72,
+              "width": 4,
+              "height": 28,
+              "fill": "$red",
+              "opacity": 0.8,
+              "id": "n669"
+            },
+            {
+              "type": "rectangle",
+              "x": 43,
+              "y": 60,
+              "width": 4,
+              "height": 40,
+              "fill": "$yellow",
+              "opacity": 0.8,
+              "id": "n670"
+            },
+            {
+              "type": "rectangle",
+              "x": 54,
+              "y": 69,
+              "width": 4,
+              "height": 31,
+              "fill": "$yellow",
+              "opacity": 0.8,
+              "id": "n671"
+            },
+            {
+              "type": "rectangle",
+              "x": 65,
+              "y": 63,
+              "width": 4,
+              "height": 37,
+              "fill": "$yellow",
+              "opacity": 0.8,
+              "id": "n672"
+            },
+            {
+              "type": "rectangle",
+              "x": 76,
+              "y": 72,
+              "width": 4,
+              "height": 28,
+              "fill": "$red",
+              "opacity": 0.8,
+              "id": "n673"
+            },
+            {
+              "type": "rectangle",
+              "x": 87,
+              "y": 62,
+              "width": 4,
+              "height": 38,
+              "fill": "$yellow",
+              "opacity": 0.8,
+              "id": "n674"
+            },
+            {
+              "type": "rectangle",
+              "x": 98,
+              "y": 57,
+              "width": 4,
+              "height": 43,
+              "fill": "$yellow",
+              "opacity": 0.8,
+              "id": "n675"
+            },
+            {
+              "type": "rectangle",
+              "x": 109,
+              "y": 65,
+              "width": 4,
+              "height": 35,
+              "fill": "$yellow",
+              "opacity": 0.8,
+              "id": "n676"
+            },
+            {
+              "type": "rectangle",
+              "x": 120,
+              "y": 61,
+              "width": 4,
+              "height": 39,
+              "fill": "$yellow",
+              "opacity": 0.8,
+              "id": "n677"
+            },
+            {
+              "type": "rectangle",
+              "x": 131,
+              "y": 66,
+              "width": 4,
+              "height": 34,
+              "fill": "$yellow",
+              "opacity": 0.8,
+              "id": "n678"
+            },
+            {
+              "type": "rectangle",
+              "x": 142,
+              "y": 56,
+              "width": 4,
+              "height": 44,
+              "fill": "$yellow",
+              "opacity": 0.8,
+              "id": "n679"
+            },
+            {
+              "type": "rectangle",
+              "x": 153,
+              "y": 60,
+              "width": 4,
+              "height": 40,
+              "fill": "$yellow",
+              "opacity": 0.8,
+              "id": "n680"
+            },
+            {
+              "type": "rectangle",
+              "x": 164,
+              "y": 63,
+              "width": 4,
+              "height": 37,
+              "fill": "$yellow",
+              "opacity": 0.8,
+              "id": "n681"
+            },
+            {
+              "type": "rectangle",
+              "x": 175,
+              "y": 55,
+              "width": 4,
+              "height": 45,
+              "fill": "$accent",
+              "opacity": 0.8,
+              "id": "n682"
+            },
+            {
+              "type": "rectangle",
+              "x": 186,
+              "y": 61,
+              "width": 4,
+              "height": 39,
+              "fill": "$yellow",
+              "opacity": 0.8,
+              "id": "n683"
+            },
+            {
+              "type": "rectangle",
+              "x": 197,
+              "y": 54,
+              "width": 4,
+              "height": 46,
+              "fill": "$accent",
+              "opacity": 0.8,
+              "id": "n684"
+            },
+            {
+              "type": "rectangle",
+              "x": 208,
+              "y": 55,
+              "width": 4,
+              "height": 45,
+              "fill": "$accent",
+              "opacity": 0.8,
+              "id": "n685"
+            },
+            {
+              "type": "rectangle",
+              "x": 219,
+              "y": 58,
+              "width": 4,
+              "height": 42,
+              "fill": "$yellow",
+              "opacity": 0.8,
+              "id": "n686"
+            },
+            {
+              "type": "rectangle",
+              "x": 230,
+              "y": 50,
+              "width": 4,
+              "height": 50,
+              "fill": "$accent",
+              "opacity": 0.8,
+              "id": "n687"
+            },
+            {
+              "type": "rectangle",
+              "x": 241,
+              "y": 54,
+              "width": 4,
+              "height": 46,
+              "fill": "$accent",
+              "opacity": 0.8,
+              "id": "n688"
+            },
+            {
+              "type": "rectangle",
+              "x": 252,
+              "y": 58,
+              "width": 4,
+              "height": 42,
+              "fill": "$yellow",
+              "opacity": 0.8,
+              "id": "n689"
+            },
+            {
+              "type": "rectangle",
+              "x": 263,
+              "y": 46,
+              "width": 4,
+              "height": 54,
+              "fill": "$accent",
+              "opacity": 0.8,
+              "id": "n690"
+            },
+            {
+              "type": "rectangle",
+              "x": 274,
+              "y": 52,
+              "width": 4,
+              "height": 48,
+              "fill": "$accent",
+              "opacity": 0.8,
+              "id": "n691"
+            },
+            {
+              "type": "rectangle",
+              "x": 285,
+              "y": 49,
+              "width": 4,
+              "height": 51,
+              "fill": "$accent",
+              "opacity": 0.8,
+              "id": "n692"
+            },
+            {
+              "type": "rectangle",
+              "x": 296,
+              "y": 54,
+              "width": 4,
+              "height": 46,
+              "fill": "$accent",
+              "opacity": 0.8,
+              "id": "n693"
+            },
+            {
+              "type": "rectangle",
+              "x": 307,
+              "y": 48,
+              "width": 4,
+              "height": 52,
+              "fill": "$accent",
+              "opacity": 0.8,
+              "id": "n694"
+            },
+            {
+              "type": "rectangle",
+              "x": 318,
+              "y": 45,
+              "width": 4,
+              "height": 55,
+              "fill": "$accent",
+              "opacity": 0.8,
+              "id": "n695"
+            },
+            {
+              "type": "rectangle",
+              "x": 329,
+              "y": 48,
+              "width": 4,
+              "height": 52,
+              "fill": "$accent",
+              "opacity": 0.8,
+              "id": "n696"
+            }
+          ],
+          "id": "n666"
+        },
+        {
+          "type": "frame",
+          "x": 0,
+          "y": 640,
+          "width": 375,
+          "height": 40,
+          "fill": "$orangeDim",
+          "children": [
+            {
+              "type": "text",
+              "content": "! ALERT: Gemini hallucination detected — click to review",
+              "x": 12,
+              "y": 12,
+              "width": 351,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "600",
+              "fill": "$orange",
+              "textAlign": "left",
+              "id": "n698"
+            }
+          ],
+          "id": "n697"
+        },
+        {
+          "type": "frame",
+          "x": 16,
+          "y": 688,
+          "width": 343,
+          "height": 20,
+          "fill": "#00000000",
+          "children": [
+            {
+              "type": "text",
+              "content": "RUN #2847  --  09:14  --  90 prompts  --  $0.43",
+              "x": 0,
+              "y": 2,
+              "width": 343,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "left",
+              "id": "n700"
+            }
+          ],
+          "id": "n699"
+        },
+        {
+          "type": "frame",
+          "x": 16,
+          "y": 712,
+          "width": 343,
+          "height": 20,
+          "fill": "#00000000",
+          "children": [
+            {
+              "type": "text",
+              "content": "RUN #2846  --  08:02  --  90 prompts  --  $0.41",
+              "x": 0,
+              "y": 2,
+              "width": 343,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "left",
+              "id": "n702"
+            }
+          ],
+          "id": "n701"
+        },
+        {
+          "type": "frame",
+          "x": 0,
+          "y": 764,
+          "width": 375,
+          "height": 48,
+          "fill": "$panel",
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "$border"
+          },
+          "children": [
+            {
+              "type": "rectangle",
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 1,
+              "fill": "$border",
+              "id": "n704"
+            },
+            {
+              "type": "text",
+              "content": "dashboard",
+              "x": 10,
+              "y": 16,
+              "width": 60,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$accent",
+              "textAlign": "left",
+              "id": "n705"
+            },
+            {
+              "type": "text",
+              "content": "|",
+              "x": 72,
+              "y": 16,
+              "width": 10,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$border",
+              "textAlign": "left",
+              "id": "n706"
+            },
+            {
+              "type": "text",
+              "content": "scan",
+              "x": 84,
+              "y": 16,
+              "width": 36,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "left",
+              "id": "n707"
+            },
+            {
+              "type": "text",
+              "content": "|",
+              "x": 122,
+              "y": 16,
+              "width": 10,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$border",
+              "textAlign": "left",
+              "id": "n708"
+            },
+            {
+              "type": "text",
+              "content": "prompts",
+              "x": 134,
+              "y": 16,
+              "width": 54,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "left",
+              "id": "n709"
+            },
+            {
+              "type": "text",
+              "content": "|",
+              "x": 190,
+              "y": 16,
+              "width": 10,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$border",
+              "textAlign": "left",
+              "id": "n710"
+            },
+            {
+              "type": "text",
+              "content": "intel",
+              "x": 202,
+              "y": 16,
+              "width": 38,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "left",
+              "id": "n711"
+            },
+            {
+              "type": "text",
+              "content": "|",
+              "x": 242,
+              "y": 16,
+              "width": 10,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$border",
+              "textAlign": "left",
+              "id": "n712"
+            },
+            {
+              "type": "text",
+              "content": "alerts",
+              "x": 254,
+              "y": 16,
+              "width": 44,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "left",
+              "id": "n713"
+            }
+          ],
+          "id": "n703"
+        }
+      ],
+      "id": "n623"
+    },
+    {
+      "type": "frame",
+      "name": "Pulse — Run Scan Terminal",
+      "x": 425,
+      "y": 0,
+      "width": 375,
+      "height": 812,
+      "fill": "$bg",
+      "clip": true,
+      "children": [
+        {
+          "type": "frame",
+          "x": 0,
+          "y": 0,
+          "width": 375,
+          "height": 44,
+          "fill": "$panel",
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "$border"
+          },
+          "children": [
+            {
+              "type": "text",
+              "content": "> pulse",
+              "x": 12,
+              "y": 12,
+              "width": 70,
+              "height": 20,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 13,
+              "fontWeight": "800",
+              "fill": "$accent",
+              "textAlign": "left",
+              "letterSpacing": 1,
+              "id": "n716"
+            },
+            {
+              "type": "text",
+              "content": "SurrealDB  v",
+              "x": 150,
+              "y": 14,
+              "width": 110,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "left",
+              "id": "n717"
+            },
+            {
+              "type": "frame",
+              "x": 295,
+              "y": 8,
+              "width": 70,
+              "height": 28,
+              "fill": "$accent",
+              "children": [
+                {
+                  "type": "text",
+                  "content": "RUN SCAN",
+                  "x": 0,
+                  "y": 8,
+                  "width": 70,
+                  "height": 12,
+                  "textGrowth": "fixed-width-height",
+                  "fontSize": 9,
+                  "fontWeight": "700",
+                  "fill": "$bg",
+                  "textAlign": "center",
+                  "letterSpacing": 0.8,
+                  "id": "n719"
+                }
+              ],
+              "id": "n718"
+            }
+          ],
+          "id": "n715"
+        },
+        {
+          "type": "frame",
+          "x": 16,
+          "y": 56,
+          "width": 343,
+          "height": 564,
+          "fill": "$panel",
+          "cornerRadius": 8,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "$border"
+          },
+          "children": [
+            {
+              "type": "frame",
+              "x": 0,
+              "y": 0,
+              "width": 343,
+              "height": 32,
+              "fill": "#0d1117",
+              "cornerRadius": 8,
+              "children": [
+                {
+                  "type": "ellipse",
+                  "x": 11,
+                  "y": 11,
+                  "width": 10,
+                  "height": 10,
+                  "fill": "$red",
+                  "id": "n722"
+                },
+                {
+                  "type": "ellipse",
+                  "x": 25,
+                  "y": 11,
+                  "width": 10,
+                  "height": 10,
+                  "fill": "$yellow",
+                  "id": "n723"
+                },
+                {
+                  "type": "ellipse",
+                  "x": 39,
+                  "y": 11,
+                  "width": 10,
+                  "height": 10,
+                  "fill": "$accent",
+                  "id": "n724"
+                },
+                {
+                  "type": "text",
+                  "content": "geo-scan --brand surrealdb",
+                  "x": 107.5,
+                  "y": 10,
+                  "width": 160,
+                  "height": 12,
+                  "textGrowth": "fixed-width-height",
+                  "fontSize": 9,
+                  "fontWeight": "400",
+                  "fill": "$muted",
+                  "textAlign": "center",
+                  "id": "n725"
+                }
+              ],
+              "id": "n721"
+            },
+            {
+              "type": "text",
+              "content": "$ geo scan --brand surrealdb --pack database-selection",
+              "x": 10,
+              "y": 40,
+              "width": 323,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$accent",
+              "textAlign": "left",
+              "id": "n726"
+            },
+            {
+              "type": "text",
+              "content": "Initializing scan runner...",
+              "x": 10,
+              "y": 66,
+              "width": 323,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "left",
+              "id": "n727"
+            },
+            {
+              "type": "text",
+              "content": "[INFO] Loading 15 prompts from pack",
+              "x": 10,
+              "y": 92,
+              "width": 323,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "left",
+              "id": "n728"
+            },
+            {
+              "type": "text",
+              "content": "[INFO] Platforms: gpt-4o, claude-3.5, perplexity",
+              "x": 10,
+              "y": 118,
+              "width": 323,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$blue",
+              "textAlign": "left",
+              "id": "n729"
+            },
+            {
+              "type": "text",
+              "content": "[RUN]  Prompt 1/15...",
+              "x": 10,
+              "y": 144,
+              "width": 323,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "left",
+              "id": "n730"
+            },
+            {
+              "type": "text",
+              "content": "[OK]   gpt-4o: mentioned=true score=88",
+              "x": 10,
+              "y": 170,
+              "width": 323,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$accent",
+              "textAlign": "left",
+              "id": "n731"
+            },
+            {
+              "type": "text",
+              "content": "[OK]   claude-3.5: mentioned=true score=76",
+              "x": 10,
+              "y": 196,
+              "width": 323,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$accent",
+              "textAlign": "left",
+              "id": "n732"
+            },
+            {
+              "type": "text",
+              "content": "[OK]   perplexity: mentioned=true score=91",
+              "x": 10,
+              "y": 222,
+              "width": 323,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$accent",
+              "textAlign": "left",
+              "id": "n733"
+            },
+            {
+              "type": "text",
+              "content": "[RUN]  Prompt 2/15...",
+              "x": 10,
+              "y": 248,
+              "width": 323,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "left",
+              "id": "n734"
+            },
+            {
+              "type": "text",
+              "content": "[OK]   gpt-4o: mentioned=true score=71",
+              "x": 10,
+              "y": 274,
+              "width": 323,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$accent",
+              "textAlign": "left",
+              "id": "n735"
+            },
+            {
+              "type": "text",
+              "content": "[WARN] claude-3.5: sentiment=mixed score=52",
+              "x": 10,
+              "y": 300,
+              "width": 323,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$yellow",
+              "textAlign": "left",
+              "id": "n736"
+            },
+            {
+              "type": "text",
+              "content": "[OK]   perplexity: mentioned=false score=0",
+              "x": 10,
+              "y": 326,
+              "width": 323,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$red",
+              "textAlign": "left",
+              "id": "n737"
+            },
+            {
+              "type": "text",
+              "content": "[RUN]  Prompt 3/15...",
+              "x": 10,
+              "y": 352,
+              "width": 323,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "left",
+              "id": "n738"
+            },
+            {
+              "type": "text",
+              "content": "[OK]   gpt-4o: mentioned=true score=64",
+              "x": 10,
+              "y": 378,
+              "width": 323,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$accent",
+              "textAlign": "left",
+              "id": "n739"
+            },
+            {
+              "type": "text",
+              "content": "...",
+              "x": 10,
+              "y": 404,
+              "width": 323,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "left",
+              "id": "n740"
+            },
+            {
+              "type": "text",
+              "content": "[COMPLETE] 15/15 prompts processed",
+              "x": 10,
+              "y": 430,
+              "width": 323,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$accent",
+              "textAlign": "left",
+              "id": "n741"
+            },
+            {
+              "type": "text",
+              "content": "[RESULT]   Overall GEO Score: 73/100 (+4)",
+              "x": 10,
+              "y": 456,
+              "width": 323,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "700",
+              "fill": "$accent",
+              "textAlign": "left",
+              "id": "n742"
+            },
+            {
+              "type": "text",
+              "content": "Scan cost: $0.43 | Duration: 2m 18s",
+              "x": 10,
+              "y": 482,
+              "width": 323,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "left",
+              "id": "n743"
+            },
+            {
+              "type": "frame",
+              "x": 10,
+              "y": 508,
+              "width": 8,
+              "height": 14,
+              "fill": "$accent",
+              "children": [],
+              "id": "n744"
+            }
+          ],
+          "id": "n720"
+        },
+        {
+          "type": "frame",
+          "x": 16,
+          "y": 632,
+          "width": 343,
+          "height": 80,
+          "fill": "$panel",
+          "cornerRadius": 6,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "$border"
+          },
+          "children": [
+            {
+              "type": "text",
+              "content": "SCAN COMPLETE",
+              "x": 12,
+              "y": 10,
+              "width": 200,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 11,
+              "fontWeight": "700",
+              "fill": "$accent",
+              "textAlign": "left",
+              "letterSpacing": 1,
+              "id": "n746"
+            },
+            {
+              "type": "text",
+              "content": "+4 pts improvement this week",
+              "x": 12,
+              "y": 28,
+              "width": 240,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "400",
+              "fill": "$accent",
+              "textAlign": "left",
+              "id": "n747"
+            },
+            {
+              "type": "text",
+              "content": "15 prompts  |  3 platforms  |  $0.43",
+              "x": 12,
+              "y": 48,
+              "width": 260,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "left",
+              "id": "n748"
+            }
+          ],
+          "id": "n745"
+        },
+        {
+          "type": "frame",
+          "x": 0,
+          "y": 764,
+          "width": 375,
+          "height": 48,
+          "fill": "$panel",
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "$border"
+          },
+          "children": [
+            {
+              "type": "rectangle",
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 1,
+              "fill": "$border",
+              "id": "n750"
+            },
+            {
+              "type": "text",
+              "content": "dashboard",
+              "x": 10,
+              "y": 16,
+              "width": 60,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$accent",
+              "textAlign": "left",
+              "id": "n751"
+            },
+            {
+              "type": "text",
+              "content": "|",
+              "x": 72,
+              "y": 16,
+              "width": 10,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$border",
+              "textAlign": "left",
+              "id": "n752"
+            },
+            {
+              "type": "text",
+              "content": "scan",
+              "x": 84,
+              "y": 16,
+              "width": 36,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "left",
+              "id": "n753"
+            },
+            {
+              "type": "text",
+              "content": "|",
+              "x": 122,
+              "y": 16,
+              "width": 10,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$border",
+              "textAlign": "left",
+              "id": "n754"
+            },
+            {
+              "type": "text",
+              "content": "prompts",
+              "x": 134,
+              "y": 16,
+              "width": 54,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "left",
+              "id": "n755"
+            },
+            {
+              "type": "text",
+              "content": "|",
+              "x": 190,
+              "y": 16,
+              "width": 10,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$border",
+              "textAlign": "left",
+              "id": "n756"
+            },
+            {
+              "type": "text",
+              "content": "intel",
+              "x": 202,
+              "y": 16,
+              "width": 38,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "left",
+              "id": "n757"
+            },
+            {
+              "type": "text",
+              "content": "|",
+              "x": 242,
+              "y": 16,
+              "width": 10,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$border",
+              "textAlign": "left",
+              "id": "n758"
+            },
+            {
+              "type": "text",
+              "content": "alerts",
+              "x": 254,
+              "y": 16,
+              "width": 44,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "left",
+              "id": "n759"
+            }
+          ],
+          "id": "n749"
+        }
+      ],
+      "id": "n714"
+    },
+    {
+      "type": "frame",
+      "name": "Pulse — Accuracy Report",
+      "x": 850,
+      "y": 0,
+      "width": 375,
+      "height": 812,
+      "fill": "$bg",
+      "clip": true,
+      "children": [
+        {
+          "type": "frame",
+          "x": 0,
+          "y": 0,
+          "width": 375,
+          "height": 44,
+          "fill": "$panel",
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "$border"
+          },
+          "children": [
+            {
+              "type": "text",
+              "content": "> pulse",
+              "x": 12,
+              "y": 12,
+              "width": 70,
+              "height": 20,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 13,
+              "fontWeight": "800",
+              "fill": "$accent",
+              "textAlign": "left",
+              "letterSpacing": 1,
+              "id": "n762"
+            },
+            {
+              "type": "text",
+              "content": "SurrealDB  v",
+              "x": 150,
+              "y": 14,
+              "width": 110,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "left",
+              "id": "n763"
+            },
+            {
+              "type": "frame",
+              "x": 295,
+              "y": 8,
+              "width": 70,
+              "height": 28,
+              "fill": "$accent",
+              "children": [
+                {
+                  "type": "text",
+                  "content": "RUN SCAN",
+                  "x": 0,
+                  "y": 8,
+                  "width": 70,
+                  "height": 12,
+                  "textGrowth": "fixed-width-height",
+                  "fontSize": 9,
+                  "fontWeight": "700",
+                  "fill": "$bg",
+                  "textAlign": "center",
+                  "letterSpacing": 0.8,
+                  "id": "n765"
+                }
+              ],
+              "id": "n764"
+            }
+          ],
+          "id": "n761"
+        },
+        {
+          "type": "text",
+          "content": "ACCURACY REPORT",
+          "x": 16,
+          "y": 58,
+          "width": 280,
+          "height": 18,
+          "textGrowth": "fixed-width-height",
+          "fontSize": 14,
+          "fontWeight": "700",
+          "fill": "$text",
+          "textAlign": "left",
+          "letterSpacing": 0.5,
+          "id": "n766"
+        },
+        {
+          "type": "text",
+          "content": "Factual claims detected in AI responses",
+          "x": 16,
+          "y": 78,
+          "width": 343,
+          "height": 14,
+          "textGrowth": "fixed-width-height",
+          "fontSize": 10,
+          "fontWeight": "400",
+          "fill": "$muted",
+          "textAlign": "left",
+          "id": "n767"
+        },
+        {
+          "type": "frame",
+          "x": 16,
+          "y": 100,
+          "width": 106,
+          "height": 36,
+          "fill": "$blueDim",
+          "cornerRadius": 6,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "$blue"
+          },
+          "children": [
+            {
+              "type": "text",
+              "content": "12 CLAIMS",
+              "x": 0,
+              "y": 10,
+              "width": 106,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "700",
+              "fill": "$blue",
+              "textAlign": "center",
+              "letterSpacing": 0.5,
+              "id": "n769"
+            }
+          ],
+          "id": "n768"
+        },
+        {
+          "type": "frame",
+          "x": 130,
+          "y": 100,
+          "width": 100,
+          "height": 36,
+          "fill": "$accentDim",
+          "cornerRadius": 6,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "$accent"
+          },
+          "children": [
+            {
+              "type": "text",
+              "content": "10 VERIFIED",
+              "x": 0,
+              "y": 10,
+              "width": 100,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "700",
+              "fill": "$accent",
+              "textAlign": "center",
+              "letterSpacing": 0.5,
+              "id": "n771"
+            }
+          ],
+          "id": "n770"
+        },
+        {
+          "type": "frame",
+          "x": 238,
+          "y": 100,
+          "width": 80,
+          "height": 36,
+          "fill": "#2a0a0a",
+          "cornerRadius": 6,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "$red"
+          },
+          "children": [
+            {
+              "type": "text",
+              "content": "2 FLAGS",
+              "x": 0,
+              "y": 10,
+              "width": 80,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "700",
+              "fill": "$red",
+              "textAlign": "center",
+              "letterSpacing": 0.5,
+              "id": "n773"
+            }
+          ],
+          "id": "n772"
+        },
+        {
+          "type": "frame",
+          "x": 16,
+          "y": 152,
+          "width": 343,
+          "height": 88,
+          "fill": "$panel",
+          "cornerRadius": 6,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "$border"
+          },
+          "children": [
+            {
+              "type": "rectangle",
+              "x": 0,
+              "y": 0,
+              "width": 4,
+              "height": 88,
+              "fill": "$accent",
+              "id": "n775"
+            },
+            {
+              "type": "frame",
+              "x": 271,
+              "y": 10,
+              "width": 68,
+              "height": 20,
+              "fill": "$accentDim",
+              "cornerRadius": 4,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "$accent"
+              },
+              "children": [
+                {
+                  "type": "text",
+                  "content": "VERIFIED",
+                  "x": 0,
+                  "y": 4,
+                  "width": 68,
+                  "height": 12,
+                  "textGrowth": "fixed-width-height",
+                  "fontSize": 8,
+                  "fontWeight": "700",
+                  "fill": "$accent",
+                  "textAlign": "center",
+                  "id": "n777"
+                }
+              ],
+              "id": "n776"
+            },
+            {
+              "type": "text",
+              "content": "SurrealDB supports ACID transactions",
+              "x": 12,
+              "y": 10,
+              "width": 259,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "600",
+              "fill": "$text",
+              "textAlign": "left",
+              "id": "n778"
+            },
+            {
+              "type": "text",
+              "content": "Verified against docs.surrealdb.com/transactions",
+              "x": 12,
+              "y": 30,
+              "width": 323,
+              "height": 40,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "left",
+              "lineHeight": 1.5,
+              "id": "n779"
+            }
+          ],
+          "id": "n774"
+        },
+        {
+          "type": "frame",
+          "x": 16,
+          "y": 248,
+          "width": 343,
+          "height": 88,
+          "fill": "$panel",
+          "cornerRadius": 6,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "$border"
+          },
+          "children": [
+            {
+              "type": "rectangle",
+              "x": 0,
+              "y": 0,
+              "width": 4,
+              "height": 88,
+              "fill": "$accent",
+              "id": "n781"
+            },
+            {
+              "type": "frame",
+              "x": 271,
+              "y": 10,
+              "width": 68,
+              "height": 20,
+              "fill": "$accentDim",
+              "cornerRadius": 4,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "$accent"
+              },
+              "children": [
+                {
+                  "type": "text",
+                  "content": "VERIFIED",
+                  "x": 0,
+                  "y": 4,
+                  "width": 68,
+                  "height": 12,
+                  "textGrowth": "fixed-width-height",
+                  "fontSize": 8,
+                  "fontWeight": "700",
+                  "fill": "$accent",
+                  "textAlign": "center",
+                  "id": "n783"
+                }
+              ],
+              "id": "n782"
+            },
+            {
+              "type": "text",
+              "content": "Multi-model: documents, graphs, key-value",
+              "x": 12,
+              "y": 10,
+              "width": 259,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "600",
+              "fill": "$text",
+              "textAlign": "left",
+              "id": "n784"
+            },
+            {
+              "type": "text",
+              "content": "Verified against surrealdb.com/features",
+              "x": 12,
+              "y": 30,
+              "width": 323,
+              "height": 40,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "left",
+              "lineHeight": 1.5,
+              "id": "n785"
+            }
+          ],
+          "id": "n780"
+        },
+        {
+          "type": "frame",
+          "x": 16,
+          "y": 344,
+          "width": 343,
+          "height": 88,
+          "fill": "$panel",
+          "cornerRadius": 6,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "$border"
+          },
+          "children": [
+            {
+              "type": "rectangle",
+              "x": 0,
+              "y": 0,
+              "width": 4,
+              "height": 88,
+              "fill": "$red",
+              "id": "n787"
+            },
+            {
+              "type": "frame",
+              "x": 271,
+              "y": 10,
+              "width": 68,
+              "height": 20,
+              "fill": "#2a0a0a",
+              "cornerRadius": 4,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "$red"
+              },
+              "children": [
+                {
+                  "type": "text",
+                  "content": "FLAG",
+                  "x": 0,
+                  "y": 4,
+                  "width": 68,
+                  "height": 12,
+                  "textGrowth": "fixed-width-height",
+                  "fontSize": 8,
+                  "fontWeight": "700",
+                  "fill": "$red",
+                  "textAlign": "center",
+                  "id": "n789"
+                }
+              ],
+              "id": "n788"
+            },
+            {
+              "type": "text",
+              "content": "SurrealDB does not support transactions",
+              "x": 12,
+              "y": 10,
+              "width": 259,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "600",
+              "fill": "$text",
+              "textAlign": "left",
+              "id": "n790"
+            },
+            {
+              "type": "text",
+              "content": "HALLUCINATION: Detected in Gemini 1.5. Actual: full ACID support.",
+              "x": 12,
+              "y": 30,
+              "width": 323,
+              "height": 40,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$red",
+              "textAlign": "left",
+              "lineHeight": 1.5,
+              "id": "n791"
+            }
+          ],
+          "id": "n786"
+        },
+        {
+          "type": "frame",
+          "x": 16,
+          "y": 440,
+          "width": 343,
+          "height": 88,
+          "fill": "$panel",
+          "cornerRadius": 6,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "$border"
+          },
+          "children": [
+            {
+              "type": "rectangle",
+              "x": 0,
+              "y": 0,
+              "width": 4,
+              "height": 88,
+              "fill": "$accent",
+              "id": "n793"
+            },
+            {
+              "type": "frame",
+              "x": 271,
+              "y": 10,
+              "width": 68,
+              "height": 20,
+              "fill": "$accentDim",
+              "cornerRadius": 4,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "$accent"
+              },
+              "children": [
+                {
+                  "type": "text",
+                  "content": "VERIFIED",
+                  "x": 0,
+                  "y": 4,
+                  "width": 68,
+                  "height": 12,
+                  "textGrowth": "fixed-width-height",
+                  "fontSize": 8,
+                  "fontWeight": "700",
+                  "fill": "$accent",
+                  "textAlign": "center",
+                  "id": "n795"
+                }
+              ],
+              "id": "n794"
+            },
+            {
+              "type": "text",
+              "content": "Written in Rust with WebAssembly support",
+              "x": 12,
+              "y": 10,
+              "width": 259,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "600",
+              "fill": "$text",
+              "textAlign": "left",
+              "id": "n796"
+            },
+            {
+              "type": "text",
+              "content": "Verified against github.com/surrealdb/surrealdb",
+              "x": 12,
+              "y": 30,
+              "width": 323,
+              "height": 40,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "left",
+              "lineHeight": 1.5,
+              "id": "n797"
+            }
+          ],
+          "id": "n792"
+        },
+        {
+          "type": "frame",
+          "x": 16,
+          "y": 536,
+          "width": 343,
+          "height": 88,
+          "fill": "$panel",
+          "cornerRadius": 6,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "$border"
+          },
+          "children": [
+            {
+              "type": "rectangle",
+              "x": 0,
+              "y": 0,
+              "width": 4,
+              "height": 88,
+              "fill": "$red",
+              "id": "n799"
+            },
+            {
+              "type": "frame",
+              "x": 271,
+              "y": 10,
+              "width": 68,
+              "height": 20,
+              "fill": "#2a0a0a",
+              "cornerRadius": 4,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "$red"
+              },
+              "children": [
+                {
+                  "type": "text",
+                  "content": "FLAG",
+                  "x": 0,
+                  "y": 4,
+                  "width": 68,
+                  "height": 12,
+                  "textGrowth": "fixed-width-height",
+                  "fontSize": 8,
+                  "fontWeight": "700",
+                  "fill": "$red",
+                  "textAlign": "center",
+                  "id": "n801"
+                }
+              ],
+              "id": "n800"
+            },
+            {
+              "type": "text",
+              "content": "SurrealDB requires separate vector database",
+              "x": 12,
+              "y": 10,
+              "width": 259,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "600",
+              "fill": "$text",
+              "textAlign": "left",
+              "id": "n802"
+            },
+            {
+              "type": "text",
+              "content": "Outdated: native vector search available since v2.0+",
+              "x": 12,
+              "y": 30,
+              "width": 323,
+              "height": 40,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$red",
+              "textAlign": "left",
+              "lineHeight": 1.5,
+              "id": "n803"
+            }
+          ],
+          "id": "n798"
+        },
+        {
+          "type": "frame",
+          "x": 16,
+          "y": 632,
+          "width": 343,
+          "height": 88,
+          "fill": "$panel",
+          "cornerRadius": 6,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "$border"
+          },
+          "children": [
+            {
+              "type": "rectangle",
+              "x": 0,
+              "y": 0,
+              "width": 4,
+              "height": 88,
+              "fill": "$accent",
+              "id": "n805"
+            },
+            {
+              "type": "frame",
+              "x": 271,
+              "y": 10,
+              "width": 68,
+              "height": 20,
+              "fill": "$accentDim",
+              "cornerRadius": 4,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "$accent"
+              },
+              "children": [
+                {
+                  "type": "text",
+                  "content": "VERIFIED",
+                  "x": 0,
+                  "y": 4,
+                  "width": 68,
+                  "height": 12,
+                  "textGrowth": "fixed-width-height",
+                  "fontSize": 8,
+                  "fontWeight": "700",
+                  "fill": "$accent",
+                  "textAlign": "center",
+                  "id": "n807"
+                }
+              ],
+              "id": "n806"
+            },
+            {
+              "type": "text",
+              "content": "Real-time subscriptions via LIVE SELECT",
+              "x": 12,
+              "y": 10,
+              "width": 259,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "600",
+              "fill": "$text",
+              "textAlign": "left",
+              "id": "n808"
+            },
+            {
+              "type": "text",
+              "content": "Verified against docs.surrealdb.com/surrealql/statements/live",
+              "x": 12,
+              "y": 30,
+              "width": 323,
+              "height": 40,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "left",
+              "lineHeight": 1.5,
+              "id": "n809"
+            }
+          ],
+          "id": "n804"
+        },
+        {
+          "type": "frame",
+          "x": 16,
+          "y": 730,
+          "width": 343,
+          "height": 80,
+          "fill": "$orangeDim",
+          "cornerRadius": 8,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "$orange"
+          },
+          "children": [
+            {
+              "type": "text",
+              "content": "2 issues need attention.",
+              "x": 12,
+              "y": 10,
+              "width": 240,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 11,
+              "fontWeight": "600",
+              "fill": "$orange",
+              "textAlign": "left",
+              "id": "n811"
+            },
+            {
+              "type": "text",
+              "content": "Export correction kit to share with content team.",
+              "x": 12,
+              "y": 28,
+              "width": 315,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$text",
+              "textAlign": "left",
+              "id": "n812"
+            },
+            {
+              "type": "frame",
+              "x": 12,
+              "y": 48,
+              "width": 120,
+              "height": 24,
+              "fill": "$orange",
+              "cornerRadius": 4,
+              "children": [
+                {
+                  "type": "text",
+                  "content": "EXPORT FIXES",
+                  "x": 0,
+                  "y": 6,
+                  "width": 120,
+                  "height": 12,
+                  "textGrowth": "fixed-width-height",
+                  "fontSize": 9,
+                  "fontWeight": "700",
+                  "fill": "$bg",
+                  "textAlign": "center",
+                  "letterSpacing": 0.5,
+                  "id": "n814"
+                }
+              ],
+              "id": "n813"
+            }
+          ],
+          "id": "n810"
+        },
+        {
+          "type": "frame",
+          "x": 0,
+          "y": 764,
+          "width": 375,
+          "height": 48,
+          "fill": "$panel",
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "$border"
+          },
+          "children": [
+            {
+              "type": "rectangle",
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 1,
+              "fill": "$border",
+              "id": "n816"
+            },
+            {
+              "type": "text",
+              "content": "dashboard",
+              "x": 10,
+              "y": 16,
+              "width": 60,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$accent",
+              "textAlign": "left",
+              "id": "n817"
+            },
+            {
+              "type": "text",
+              "content": "|",
+              "x": 72,
+              "y": 16,
+              "width": 10,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$border",
+              "textAlign": "left",
+              "id": "n818"
+            },
+            {
+              "type": "text",
+              "content": "scan",
+              "x": 84,
+              "y": 16,
+              "width": 36,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "left",
+              "id": "n819"
+            },
+            {
+              "type": "text",
+              "content": "|",
+              "x": 122,
+              "y": 16,
+              "width": 10,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$border",
+              "textAlign": "left",
+              "id": "n820"
+            },
+            {
+              "type": "text",
+              "content": "prompts",
+              "x": 134,
+              "y": 16,
+              "width": 54,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "left",
+              "id": "n821"
+            },
+            {
+              "type": "text",
+              "content": "|",
+              "x": 190,
+              "y": 16,
+              "width": 10,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$border",
+              "textAlign": "left",
+              "id": "n822"
+            },
+            {
+              "type": "text",
+              "content": "intel",
+              "x": 202,
+              "y": 16,
+              "width": 38,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "left",
+              "id": "n823"
+            },
+            {
+              "type": "text",
+              "content": "|",
+              "x": 242,
+              "y": 16,
+              "width": 10,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$border",
+              "textAlign": "left",
+              "id": "n824"
+            },
+            {
+              "type": "text",
+              "content": "alerts",
+              "x": 254,
+              "y": 16,
+              "width": 44,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "left",
+              "id": "n825"
+            }
+          ],
+          "id": "n815"
+        }
+      ],
+      "id": "n760"
+    },
+    {
+      "type": "frame",
+      "name": "Pulse — SOV Battle",
+      "x": 1275,
+      "y": 0,
+      "width": 375,
+      "height": 812,
+      "fill": "$bg",
+      "clip": true,
+      "children": [
+        {
+          "type": "frame",
+          "x": 0,
+          "y": 0,
+          "width": 375,
+          "height": 44,
+          "fill": "$panel",
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "$border"
+          },
+          "children": [
+            {
+              "type": "text",
+              "content": "> pulse",
+              "x": 12,
+              "y": 12,
+              "width": 70,
+              "height": 20,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 13,
+              "fontWeight": "800",
+              "fill": "$accent",
+              "textAlign": "left",
+              "letterSpacing": 1,
+              "id": "n828"
+            },
+            {
+              "type": "text",
+              "content": "SurrealDB  v",
+              "x": 150,
+              "y": 14,
+              "width": 110,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "left",
+              "id": "n829"
+            },
+            {
+              "type": "frame",
+              "x": 295,
+              "y": 8,
+              "width": 70,
+              "height": 28,
+              "fill": "$accent",
+              "children": [
+                {
+                  "type": "text",
+                  "content": "RUN SCAN",
+                  "x": 0,
+                  "y": 8,
+                  "width": 70,
+                  "height": 12,
+                  "textGrowth": "fixed-width-height",
+                  "fontSize": 9,
+                  "fontWeight": "700",
+                  "fill": "$bg",
+                  "textAlign": "center",
+                  "letterSpacing": 0.8,
+                  "id": "n831"
+                }
+              ],
+              "id": "n830"
+            }
+          ],
+          "id": "n827"
+        },
+        {
+          "type": "text",
+          "content": "SHARE OF VOICE",
+          "x": 16,
+          "y": 58,
+          "width": 260,
+          "height": 18,
+          "textGrowth": "fixed-width-height",
+          "fontSize": 14,
+          "fontWeight": "700",
+          "fill": "$text",
+          "textAlign": "left",
+          "letterSpacing": 0.5,
+          "id": "n832"
+        },
+        {
+          "type": "frame",
+          "x": 16,
+          "y": 82,
+          "width": 79,
+          "height": 28,
+          "fill": "#00000000",
+          "children": [
+            {
+              "type": "text",
+              "content": "SurrealDB",
+              "x": 0,
+              "y": 6,
+              "width": 79,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "700",
+              "fill": "$accent",
+              "textAlign": "center",
+              "id": "n834"
+            },
+            {
+              "type": "rectangle",
+              "x": 0,
+              "y": 26,
+              "width": 79,
+              "height": 2,
+              "fill": "$accent",
+              "id": "n835"
+            }
+          ],
+          "id": "n833"
+        },
+        {
+          "type": "frame",
+          "x": 104,
+          "y": 82,
+          "width": 65,
+          "height": 28,
+          "fill": "#00000000",
+          "children": [
+            {
+              "type": "text",
+              "content": "MongoDB",
+              "x": 0,
+              "y": 6,
+              "width": 65,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "center",
+              "id": "n837"
+            }
+          ],
+          "id": "n836"
+        },
+        {
+          "type": "frame",
+          "x": 179,
+          "y": 82,
+          "width": 86,
+          "height": 28,
+          "fill": "#00000000",
+          "children": [
+            {
+              "type": "text",
+              "content": "PostgreSQL",
+              "x": 0,
+              "y": 6,
+              "width": 86,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "center",
+              "id": "n839"
+            }
+          ],
+          "id": "n838"
+        },
+        {
+          "type": "frame",
+          "x": 278,
+          "y": 82,
+          "width": 51,
+          "height": 28,
+          "fill": "#00000000",
+          "children": [
+            {
+              "type": "text",
+              "content": "Neo4j",
+              "x": 0,
+              "y": 6,
+              "width": 51,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "center",
+              "id": "n841"
+            }
+          ],
+          "id": "n840"
+        },
+        {
+          "type": "text",
+          "content": "34%",
+          "x": 16,
+          "y": 128,
+          "width": 200,
+          "height": 64,
+          "textGrowth": "fixed-width-height",
+          "fontSize": 64,
+          "fontWeight": "900",
+          "fill": "$accent",
+          "textAlign": "left",
+          "id": "n842"
+        },
+        {
+          "type": "text",
+          "content": "Share of Voice",
+          "x": 16,
+          "y": 196,
+          "width": 180,
+          "height": 16,
+          "textGrowth": "fixed-width-height",
+          "fontSize": 11,
+          "fontWeight": "400",
+          "fill": "$muted",
+          "textAlign": "left",
+          "id": "n843"
+        },
+        {
+          "type": "text",
+          "content": "vs MongoDB 28%",
+          "x": 220,
+          "y": 148,
+          "width": 120,
+          "height": 14,
+          "textGrowth": "fixed-width-height",
+          "fontSize": 10,
+          "fontWeight": "400",
+          "fill": "$muted",
+          "textAlign": "left",
+          "id": "n844"
+        },
+        {
+          "type": "frame",
+          "x": 16,
+          "y": 220,
+          "width": 343,
+          "height": 24,
+          "fill": "$panel",
+          "children": [
+            {
+              "type": "text",
+              "content": "PROMPT CATEGORY",
+              "x": 10,
+              "y": 5,
+              "width": 130,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 8,
+              "fontWeight": "700",
+              "fill": "$muted",
+              "textAlign": "left",
+              "letterSpacing": 0.5,
+              "id": "n846"
+            },
+            {
+              "type": "text",
+              "content": "YOU",
+              "x": 148,
+              "y": 5,
+              "width": 40,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 8,
+              "fontWeight": "700",
+              "fill": "$muted",
+              "textAlign": "right",
+              "id": "n847"
+            },
+            {
+              "type": "text",
+              "content": "#1 COMP",
+              "x": 196,
+              "y": 5,
+              "width": 70,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 8,
+              "fontWeight": "700",
+              "fill": "$muted",
+              "textAlign": "left",
+              "id": "n848"
+            },
+            {
+              "type": "text",
+              "content": "DELTA",
+              "x": 299,
+              "y": 5,
+              "width": 36,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 8,
+              "fontWeight": "700",
+              "fill": "$muted",
+              "textAlign": "right",
+              "id": "n849"
+            }
+          ],
+          "id": "n845"
+        },
+        {
+          "type": "frame",
+          "x": 16,
+          "y": 244,
+          "width": 343,
+          "height": 44,
+          "fill": "$panel",
+          "children": [
+            {
+              "type": "text",
+              "content": "database selection",
+              "x": 10,
+              "y": 15,
+              "width": 130,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$text",
+              "textAlign": "left",
+              "id": "n851"
+            },
+            {
+              "type": "text",
+              "content": "34%",
+              "x": 148,
+              "y": 15,
+              "width": 40,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "700",
+              "fill": "$accent",
+              "textAlign": "right",
+              "id": "n852"
+            },
+            {
+              "type": "text",
+              "content": "MongoDB 28%",
+              "x": 196,
+              "y": 15,
+              "width": 90,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "left",
+              "id": "n853"
+            },
+            {
+              "type": "text",
+              "content": "+6%",
+              "x": 299,
+              "y": 15,
+              "width": 36,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "700",
+              "fill": "$accent",
+              "textAlign": "right",
+              "id": "n854"
+            }
+          ],
+          "id": "n850"
+        },
+        {
+          "type": "frame",
+          "x": 16,
+          "y": 296,
+          "width": 343,
+          "height": 44,
+          "fill": "$bg",
+          "children": [
+            {
+              "type": "text",
+              "content": "ai backends",
+              "x": 10,
+              "y": 15,
+              "width": 130,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$text",
+              "textAlign": "left",
+              "id": "n856"
+            },
+            {
+              "type": "text",
+              "content": "41%",
+              "x": 148,
+              "y": 15,
+              "width": 40,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "700",
+              "fill": "$accent",
+              "textAlign": "right",
+              "id": "n857"
+            },
+            {
+              "type": "text",
+              "content": "Supabase 22%",
+              "x": 196,
+              "y": 15,
+              "width": 90,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "left",
+              "id": "n858"
+            },
+            {
+              "type": "text",
+              "content": "+19%",
+              "x": 299,
+              "y": 15,
+              "width": 36,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "700",
+              "fill": "$accent",
+              "textAlign": "right",
+              "id": "n859"
+            }
+          ],
+          "id": "n855"
+        },
+        {
+          "type": "frame",
+          "x": 16,
+          "y": 348,
+          "width": 343,
+          "height": 44,
+          "fill": "$panel",
+          "children": [
+            {
+              "type": "text",
+              "content": "graph data",
+              "x": 10,
+              "y": 15,
+              "width": 130,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$text",
+              "textAlign": "left",
+              "id": "n861"
+            },
+            {
+              "type": "text",
+              "content": "28%",
+              "x": 148,
+              "y": 15,
+              "width": 40,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "700",
+              "fill": "$accent",
+              "textAlign": "right",
+              "id": "n862"
+            },
+            {
+              "type": "text",
+              "content": "Neo4j 45%",
+              "x": 196,
+              "y": 15,
+              "width": 90,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "left",
+              "id": "n863"
+            },
+            {
+              "type": "text",
+              "content": "-17%",
+              "x": 299,
+              "y": 15,
+              "width": 36,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "700",
+              "fill": "$red",
+              "textAlign": "right",
+              "id": "n864"
+            }
+          ],
+          "id": "n860"
+        },
+        {
+          "type": "frame",
+          "x": 16,
+          "y": 400,
+          "width": 343,
+          "height": 44,
+          "fill": "$bg",
+          "children": [
+            {
+              "type": "text",
+              "content": "real-time",
+              "x": 10,
+              "y": 15,
+              "width": 130,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$text",
+              "textAlign": "left",
+              "id": "n866"
+            },
+            {
+              "type": "text",
+              "content": "38%",
+              "x": 148,
+              "y": 15,
+              "width": 40,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "700",
+              "fill": "$accent",
+              "textAlign": "right",
+              "id": "n867"
+            },
+            {
+              "type": "text",
+              "content": "Supabase 31%",
+              "x": 196,
+              "y": 15,
+              "width": 90,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "left",
+              "id": "n868"
+            },
+            {
+              "type": "text",
+              "content": "+7%",
+              "x": 299,
+              "y": 15,
+              "width": 36,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "700",
+              "fill": "$accent",
+              "textAlign": "right",
+              "id": "n869"
+            }
+          ],
+          "id": "n865"
+        },
+        {
+          "type": "frame",
+          "x": 16,
+          "y": 452,
+          "width": 343,
+          "height": 44,
+          "fill": "$panel",
+          "children": [
+            {
+              "type": "text",
+              "content": "rust backend",
+              "x": 10,
+              "y": 15,
+              "width": 130,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$text",
+              "textAlign": "left",
+              "id": "n871"
+            },
+            {
+              "type": "text",
+              "content": "52%",
+              "x": 148,
+              "y": 15,
+              "width": 40,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "700",
+              "fill": "$accent",
+              "textAlign": "right",
+              "id": "n872"
+            },
+            {
+              "type": "text",
+              "content": "PgSQL 20%",
+              "x": 196,
+              "y": 15,
+              "width": 90,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "left",
+              "id": "n873"
+            },
+            {
+              "type": "text",
+              "content": "+32%",
+              "x": 299,
+              "y": 15,
+              "width": 36,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "700",
+              "fill": "$accent",
+              "textAlign": "right",
+              "id": "n874"
+            }
+          ],
+          "id": "n870"
+        },
+        {
+          "type": "frame",
+          "x": 16,
+          "y": 504,
+          "width": 343,
+          "height": 44,
+          "fill": "$bg",
+          "children": [
+            {
+              "type": "text",
+              "content": "vector search",
+              "x": 10,
+              "y": 15,
+              "width": 130,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$text",
+              "textAlign": "left",
+              "id": "n876"
+            },
+            {
+              "type": "text",
+              "content": "29%",
+              "x": 148,
+              "y": 15,
+              "width": 40,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "700",
+              "fill": "$accent",
+              "textAlign": "right",
+              "id": "n877"
+            },
+            {
+              "type": "text",
+              "content": "Pinecone 38%",
+              "x": 196,
+              "y": 15,
+              "width": 90,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "left",
+              "id": "n878"
+            },
+            {
+              "type": "text",
+              "content": "-9%",
+              "x": 299,
+              "y": 15,
+              "width": 36,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "700",
+              "fill": "$red",
+              "textAlign": "right",
+              "id": "n879"
+            }
+          ],
+          "id": "n875"
+        },
+        {
+          "type": "frame",
+          "x": 16,
+          "y": 556,
+          "width": 343,
+          "height": 44,
+          "fill": "$panel",
+          "children": [
+            {
+              "type": "text",
+              "content": "multi-model",
+              "x": 10,
+              "y": 15,
+              "width": 130,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$text",
+              "textAlign": "left",
+              "id": "n881"
+            },
+            {
+              "type": "text",
+              "content": "67%",
+              "x": 148,
+              "y": 15,
+              "width": 40,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "700",
+              "fill": "$accent",
+              "textAlign": "right",
+              "id": "n882"
+            },
+            {
+              "type": "text",
+              "content": "MongoDB 18%",
+              "x": 196,
+              "y": 15,
+              "width": 90,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "left",
+              "id": "n883"
+            },
+            {
+              "type": "text",
+              "content": "+49%",
+              "x": 299,
+              "y": 15,
+              "width": 36,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "700",
+              "fill": "$accent",
+              "textAlign": "right",
+              "id": "n884"
+            }
+          ],
+          "id": "n880"
+        },
+        {
+          "type": "frame",
+          "x": 16,
+          "y": 612,
+          "width": 343,
+          "height": 80,
+          "fill": "$accentDim",
+          "cornerRadius": 8,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "$accent"
+          },
+          "children": [
+            {
+              "type": "text",
+              "content": "Opportunity: Graph Data category.",
+              "x": 12,
+              "y": 10,
+              "width": 315,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "700",
+              "fill": "$accent",
+              "textAlign": "left",
+              "id": "n886"
+            },
+            {
+              "type": "text",
+              "content": "Neo4j leads 45% vs your 28%. Target: create content",
+              "x": 12,
+              "y": 28,
+              "width": 319,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$text",
+              "textAlign": "left",
+              "id": "n887"
+            },
+            {
+              "type": "text",
+              "content": "comparing SurrealDB + Neo4j graph capabilities.",
+              "x": 12,
+              "y": 44,
+              "width": 319,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "left",
+              "id": "n888"
+            }
+          ],
+          "id": "n885"
+        },
+        {
+          "type": "frame",
+          "x": 16,
+          "y": 708,
+          "width": 343,
+          "height": 36,
+          "fill": "$panel",
+          "cornerRadius": 4,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "$border"
+          },
+          "children": [
+            {
+              "type": "frame",
+              "x": 2,
+              "y": 2,
+              "width": 60,
+              "height": 32,
+              "fill": "$accent",
+              "cornerRadius": 4,
+              "children": [
+                {
+                  "type": "text",
+                  "content": "7D",
+                  "x": 0,
+                  "y": 9,
+                  "width": 60,
+                  "height": 14,
+                  "textGrowth": "fixed-width-height",
+                  "fontSize": 9,
+                  "fontWeight": "700",
+                  "fill": "$bg",
+                  "textAlign": "center",
+                  "id": "n891"
+                }
+              ],
+              "id": "n890"
+            },
+            {
+              "type": "text",
+              "content": "30D",
+              "x": 72,
+              "y": 10,
+              "width": 60,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "center",
+              "id": "n892"
+            },
+            {
+              "type": "text",
+              "content": "90D",
+              "x": 140,
+              "y": 10,
+              "width": 60,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "center",
+              "id": "n893"
+            },
+            {
+              "type": "text",
+              "content": "ALL",
+              "x": 208,
+              "y": 10,
+              "width": 60,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "center",
+              "id": "n894"
+            }
+          ],
+          "id": "n889"
+        },
+        {
+          "type": "frame",
+          "x": 0,
+          "y": 764,
+          "width": 375,
+          "height": 48,
+          "fill": "$panel",
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "$border"
+          },
+          "children": [
+            {
+              "type": "rectangle",
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 1,
+              "fill": "$border",
+              "id": "n896"
+            },
+            {
+              "type": "text",
+              "content": "dashboard",
+              "x": 10,
+              "y": 16,
+              "width": 60,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$accent",
+              "textAlign": "left",
+              "id": "n897"
+            },
+            {
+              "type": "text",
+              "content": "|",
+              "x": 72,
+              "y": 16,
+              "width": 10,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$border",
+              "textAlign": "left",
+              "id": "n898"
+            },
+            {
+              "type": "text",
+              "content": "scan",
+              "x": 84,
+              "y": 16,
+              "width": 36,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "left",
+              "id": "n899"
+            },
+            {
+              "type": "text",
+              "content": "|",
+              "x": 122,
+              "y": 16,
+              "width": 10,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$border",
+              "textAlign": "left",
+              "id": "n900"
+            },
+            {
+              "type": "text",
+              "content": "prompts",
+              "x": 134,
+              "y": 16,
+              "width": 54,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "left",
+              "id": "n901"
+            },
+            {
+              "type": "text",
+              "content": "|",
+              "x": 190,
+              "y": 16,
+              "width": 10,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$border",
+              "textAlign": "left",
+              "id": "n902"
+            },
+            {
+              "type": "text",
+              "content": "intel",
+              "x": 202,
+              "y": 16,
+              "width": 38,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "left",
+              "id": "n903"
+            },
+            {
+              "type": "text",
+              "content": "|",
+              "x": 242,
+              "y": 16,
+              "width": 10,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$border",
+              "textAlign": "left",
+              "id": "n904"
+            },
+            {
+              "type": "text",
+              "content": "alerts",
+              "x": 254,
+              "y": 16,
+              "width": 44,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "left",
+              "id": "n905"
+            }
+          ],
+          "id": "n895"
+        }
+      ],
+      "id": "n826"
+    }
+  ]
+}

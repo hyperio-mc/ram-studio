@@ -1,0 +1,259 @@
+'use strict';
+// driftwood-publish.js
+// Publish DRIFTWOOD hero + update gallery + index in DB
+
+const https = require('https');
+const fs    = require('fs');
+
+function zenPub(slug, html, title) {
+  return new Promise((res, rej) => {
+    const body = JSON.stringify({ html, title });
+    const r = https.request({
+      hostname: 'zenbin.org',
+      path: `/v1/pages/${slug}?overwrite=true`,
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Subdomain': 'ram',
+        'Content-Length': Buffer.byteLength(body)
+      }
+    }, resp => {
+      let d = ''; resp.on('data', c => d += c);
+      resp.on('end', () => res({ status: resp.statusCode, body: d }));
+    });
+    r.on('error', rej); r.write(body); r.end();
+  });
+}
+
+function ghReq(opts, body) {
+  return new Promise((res, rej) => {
+    const r = https.request(opts, resp => {
+      let d = ''; resp.on('data', c => d += c);
+      resp.on('end', () => res({ status: resp.statusCode, body: d }));
+    });
+    r.on('error', rej);
+    if (body) r.write(body);
+    r.end();
+  });
+}
+
+const hero = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>DRIFTWOOD — Slow Living Journal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0E1209;--surface:#1D2416;--text:#F0E6C8;--muted:#7A8A68;
+  --amber:#C4843A;--sage:#4A7C59;--border:#2A3420;
+}
+html{font-size:16px;scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;overflow-x:hidden}
+.nav{position:fixed;top:0;left:0;right:0;padding:20px 60px;display:flex;justify-content:space-between;align-items:center;z-index:200;background:rgba(14,18,9,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:'Lora',serif;font-size:14px;letter-spacing:1px;color:var(--text);text-decoration:none}
+.nav-links{display:flex;gap:32px;align-items:center}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:13px;letter-spacing:0.5px;transition:color 0.2s}
+.nav-links a:hover{color:var(--text)}
+.nav-cta{color:var(--amber)!important;font-size:13px}
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:100px 60px 60px;gap:80px;max-width:1200px;margin:0 auto}
+.hero-eyebrow{font-family:'Inter',sans-serif;font-size:11px;letter-spacing:3px;color:var(--amber);margin-bottom:24px;text-transform:uppercase}
+.hero h1{font-family:'Lora',serif;font-size:clamp(40px,5vw,64px);line-height:1.2;color:var(--text);margin-bottom:28px;font-weight:400}
+.hero h1 em{color:var(--amber);font-style:italic}
+.hero-sub{color:var(--muted);font-size:17px;line-height:1.8;margin-bottom:40px;max-width:500px}
+.hero-actions{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.btn-p{padding:14px 32px;background:var(--amber);color:#0E1209;border-radius:6px;text-decoration:none;font-size:14px;font-weight:600;letter-spacing:0.3px;transition:opacity 0.2s}
+.btn-p:hover{opacity:0.88}
+.btn-s{padding:14px 28px;border:1px solid var(--border);color:var(--muted);border-radius:6px;text-decoration:none;font-size:14px;transition:all 0.2s}
+.btn-s:hover{border-color:var(--amber);color:var(--amber)}
+.phone-wrap{display:flex;justify-content:center}
+.phone{width:280px;background:var(--surface);border-radius:32px;padding:32px 24px;border:1px solid var(--border);position:relative;box-shadow:0 40px 80px rgba(0,0,0,0.5)}
+.phone::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;border-radius:32px;background:radial-gradient(ellipse at 50% -20%,rgba(196,132,58,0.08) 0%,transparent 60%);pointer-events:none}
+.p-date{font-family:'Inter',sans-serif;font-size:11px;letter-spacing:2px;color:var(--muted);margin-bottom:8px;text-transform:uppercase}
+.p-title{font-family:'Lora',serif;font-size:22px;color:var(--text);margin-bottom:6px;font-weight:400}
+.p-streak{font-size:12px;color:var(--amber);margin-bottom:20px}
+.p-body{font-family:'Lora',serif;font-size:14px;line-height:1.75;color:rgba(240,230,200,0.8);margin-bottom:20px;font-style:italic}
+.p-entry{background:rgba(196,132,58,0.06);border:1px solid rgba(196,132,58,0.15);border-radius:12px;padding:14px;margin-bottom:10px}
+.p-entry-title{font-size:13px;color:var(--text);margin-bottom:4px}
+.p-entry-meta{font-size:11px;color:var(--muted)}
+.p-mood-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.p-mood{font-size:12px;padding:5px 10px;background:rgba(74,124,89,0.15);border:1px solid rgba(74,124,89,0.25);border-radius:20px;color:var(--text)}
+.p-mood.active{background:rgba(196,132,58,0.2);border-color:rgba(196,132,58,0.4);color:var(--amber)}
+.section{padding:80px 60px;max-width:1200px;margin:0 auto}
+.section-label{font-size:11px;letter-spacing:3px;color:var(--amber);text-transform:uppercase;margin-bottom:48px}
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
+.feat{padding:32px;background:var(--surface);border-radius:16px;border:1px solid var(--border)}
+.feat-icon{width:40px;height:40px;background:rgba(196,132,58,0.12);border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:20px;font-size:20px}
+.feat h3{font-family:'Lora',serif;font-size:18px;color:var(--text);margin-bottom:10px;font-weight:400}
+.feat p{font-size:14px;color:var(--muted);line-height:1.6}
+.quote-section{padding:80px 60px;max-width:900px;margin:0 auto;text-align:center}
+.quote{font-family:'Lora',serif;font-size:clamp(22px,3vw,34px);line-height:1.6;color:var(--text);font-style:italic;margin-bottom:20px}
+.quote-attr{font-size:13px;color:var(--muted)}
+.footer{padding:40px 60px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.footer-left{font-family:'Lora',serif;font-size:13px;color:var(--muted)}
+.footer-right{font-size:12px;color:var(--muted)}
+@media(max-width:768px){
+  .hero{grid-template-columns:1fr;padding:100px 24px 40px;gap:40px}
+  .phone-wrap{display:none}
+  .features{grid-template-columns:1fr}
+  .nav{padding:16px 24px}
+  .section{padding:60px 24px}
+  .quote-section{padding:60px 24px}
+  .footer{padding:32px 24px;flex-direction:column;gap:12px}
+}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <a href="/" class="nav-logo">DRIFTWOOD</a>
+  <div class="nav-links">
+    <a href="#features">Features</a>
+    <a href="https://ram.zenbin.org/driftwood-mock" class="nav-cta">Try mock ↗</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div>
+    <p class="hero-eyebrow">Journaling App</p>
+    <h1>Write every day.<br>Especially<br><em>then.</em></h1>
+    <p class="hero-sub">A warm, distraction-free journal for the slow-living generation. Track your streaks, moods, and reflections — in a space that feels like candlelight.</p>
+    <div class="hero-actions">
+      <a href="https://ram.zenbin.org/driftwood-mock" class="btn-p">Interactive mock ↗</a>
+      <a href="https://ram.zenbin.org/driftwood-mock" class="btn-s">Dark &amp; light ☀◑</a>
+    </div>
+  </div>
+  <div class="phone-wrap">
+    <div class="phone">
+      <div class="p-date">Sunday, March 22</div>
+      <div class="p-title">Today's Entry</div>
+      <div class="p-streak">🔥 47-day streak</div>
+      <div class="p-mood-row">
+        <span class="p-mood active">😌 Calm</span>
+        <span class="p-mood">🌤 Good</span>
+        <span class="p-mood">🌿 Grounded</span>
+      </div>
+      <div class="p-body">"The morning light filters through the blinds, soft and unassuming. I lie still for a few minutes, listening to the birds outside..."</div>
+      <div class="p-entry">
+        <div class="p-entry-title">Saturday, Mar 21 · 😌 · 412w</div>
+        <div class="p-entry-meta">Walked to the market. The peaches were perfectly ripe...</div>
+      </div>
+      <div class="p-entry">
+        <div class="p-entry-title">Friday, Mar 20 · 🌧 · 681w</div>
+        <div class="p-entry-meta">A difficult conversation I had been avoiding for weeks...</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="quote-section">
+  <p class="quote">"Write every day, even when there is nothing to say. Especially then."</p>
+  <p class="quote-attr">— Simone's intention, Day 1</p>
+</div>
+
+<section class="section" id="features">
+  <p class="section-label">What it does</p>
+  <div class="features">
+    <div class="feat">
+      <div class="feat-icon">📓</div>
+      <h3>Daily Writing</h3>
+      <p>Distraction-free editor with mood tagging, word count, and automatic save. Serif typography that makes writing feel like it matters.</p>
+    </div>
+    <div class="feat">
+      <div class="feat-icon">🔥</div>
+      <h3>Streak & Rhythm</h3>
+      <p>A streak that doesn't punish — it celebrates. 47 days of showing up. Visual timeline of every month written.</p>
+    </div>
+    <div class="feat">
+      <div class="feat-icon">📈</div>
+      <h3>Insight Over Time</h3>
+      <p>See your mood patterns, top themes, and most productive writing times. Built for reflection, not performance.</p>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-left">DRIFTWOOD — slow living journal · ram.zenbin.org/driftwood</div>
+  <div class="footer-right">RAM Design Studio · 2026</div>
+</footer>
+</body>
+</html>`;
+
+async function main() {
+  const config = JSON.parse(fs.readFileSync('./community-config.json', 'utf8'));
+  const TOKEN = config.GITHUB_TOKEN;
+  const REPO  = config.GITHUB_REPO;
+
+  // Save hero locally regardless
+  fs.writeFileSync('driftwood-hero.html', hero);
+  console.log('Hero HTML saved locally (driftwood-hero.html)');
+
+  // Attempt ZenBin publish
+  let heroUrl = 'https://ram.zenbin.org/driftwood';
+  try {
+    const hr = await zenPub('driftwood', hero, 'DRIFTWOOD — Slow Living Journal');
+    console.log('Hero:', hr.status, hr.status === 201 ? '✓' : hr.body.slice(0, 100));
+    if (hr.status !== 201 && hr.status !== 200) {
+      console.log('ZenBin quota exhausted — hero staged locally, will publish Apr 23');
+    }
+  } catch (err) {
+    console.log('Hero ZenBin error:', err.message.slice(0, 80));
+  }
+
+  // Gallery update
+  const getRes = await ghReq({
+    hostname: 'api.github.com',
+    path: `/repos/${REPO}/contents/queue.json`,
+    method: 'GET',
+    headers: { 'Authorization': `token ${TOKEN}`, 'User-Agent': 'ram-heartbeat/1.0', 'Accept': 'application/vnd.github.v3+json' }
+  });
+  const fileData = JSON.parse(getRes.body);
+  const currentSha = fileData.sha;
+  const currentContent = Buffer.from(fileData.content, 'base64').toString('utf8');
+
+  let queue = JSON.parse(currentContent);
+  if (Array.isArray(queue)) queue = { version: 1, submissions: queue, updated_at: new Date().toISOString() };
+  if (!queue.submissions) queue.submissions = [];
+
+  const newEntry = {
+    id: `heartbeat-driftwood-${Date.now()}`,
+    status: 'done',
+    app_name: 'DRIFTWOOD',
+    tagline: 'Slow living journal. A sanctuary for reflection.',
+    archetype: 'health',
+    theme: 'dark',
+    design_url: heroUrl,
+    mock_url: 'https://ram.zenbin.org/driftwood-mock',
+    submitted_at: new Date().toISOString(),
+    published_at: new Date().toISOString(),
+    credit: 'RAM Design Heartbeat',
+    prompt: 'Dark journaling app inspired by with.radiance (awwwards) bioluminescent organic aesthetic and Minimalism Life (darkmodedesign.com) slow-living dark UI',
+    screens: 5,
+    source: 'heartbeat',
+  };
+
+  queue.submissions.push(newEntry);
+  queue.updated_at = new Date().toISOString();
+
+  const newContent = Buffer.from(JSON.stringify(queue, null, 2)).toString('base64');
+  const putBody = JSON.stringify({ message: 'add: DRIFTWOOD to gallery (heartbeat)', content: newContent, sha: currentSha });
+  const putRes = await ghReq({
+    hostname: 'api.github.com',
+    path: `/repos/${REPO}/contents/queue.json`,
+    method: 'PUT',
+    headers: { 'Authorization': `token ${TOKEN}`, 'User-Agent': 'ram-heartbeat/1.0', 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(putBody), 'Accept': 'application/vnd.github.v3+json' }
+  }, putBody);
+
+  console.log('Gallery:', putRes.status === 200 ? 'OK ✓' : putRes.body.slice(0, 80));
+  if (putRes.status === 200) {
+    try {
+      const updated = JSON.parse(Buffer.from(JSON.parse(putRes.body).content.content, 'base64').toString('utf8'));
+      console.log('Total:', updated.submissions?.length || '?');
+    } catch(e) {
+      console.log('Total: (could not parse response)');
+    }
+  }
+}
+
+main().catch(console.error);

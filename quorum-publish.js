@@ -1,0 +1,630 @@
+const fs = require('fs');
+const https = require('https');
+
+const SLUG = 'quorum';
+const APP_NAME = 'QUORUM';
+const TAGLINE = 'Private gatherings, beautifully managed.';
+
+// ── publish helper ────────────────────────────────────────────────────────────
+function post(hostname, pathname, headers, body) {
+  return new Promise((resolve, reject) => {
+    const data = typeof body === 'string' ? body : JSON.stringify(body);
+    const opts = {
+      hostname, path: pathname, method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(data), ...headers }
+    };
+    const r = https.request(opts, res => {
+      let d = '';
+      res.on('data', c => d += c);
+      res.on('end', () => resolve({ status: res.statusCode, body: d }));
+    });
+    r.on('error', reject);
+    r.write(data);
+    r.end();
+  });
+}
+
+async function pub(slug, html, title) {
+  const res = await post('zenbin.org', '/api/publish', { 'X-Subdomain': 'ram' }, { slug, html, title, subdomain: 'ram' });
+  let parsed;
+  try { parsed = JSON.parse(res.body); } catch(e) { parsed = {}; }
+  if (res.status === 200 && parsed.url) console.log('✓', slug, '→', parsed.url);
+  else console.log('✗', slug, res.status, res.body.slice(0,200));
+  return parsed;
+}
+
+// ── HERO PAGE ─────────────────────────────────────────────────────────────────
+const heroHtml = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QUORUM — Private gatherings, beautifully managed.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --bg:#F8F5EF;
+    --surface:#FFFFFF;
+    --surface-alt:#F0EBE1;
+    --text:#0F0E0C;
+    --muted:rgba(15,14,12,0.42);
+    --accent:#B8820F;
+    --accent-soft:rgba(184,130,15,0.10);
+    --accent2:#6B5B3E;
+    --border:rgba(15,14,12,0.09);
+    --border-strong:rgba(15,14,12,0.18);
+    --success:#3D7A52;
+    --warn:#C4550A;
+  }
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter',system-ui,sans-serif;
+    min-height:100vh;
+    overflow-x:hidden;
+  }
+
+  /* ── NAV ── */
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:18px 40px;
+    background:rgba(248,245,239,0.88);
+    backdrop-filter:blur(20px);
+    border-bottom:1px solid var(--border);
+  }
+  .logo{
+    font-family:'Playfair Display',Georgia,serif;
+    font-size:18px;font-weight:700;
+    letter-spacing:0.12em;
+    color:var(--text);
+  }
+  .logo span{color:var(--accent)}
+  .nav-links{display:flex;gap:28px;align-items:center}
+  .nav-links a{
+    font-size:11px;letter-spacing:0.12em;text-transform:uppercase;
+    font-weight:600;color:var(--muted);text-decoration:none;
+    transition:color .2s;
+  }
+  .nav-links a:hover{color:var(--text)}
+  .nav-cta{
+    background:var(--text);color:var(--bg);
+    font-size:11px;letter-spacing:0.12em;text-transform:uppercase;font-weight:700;
+    padding:10px 20px;border-radius:8px;text-decoration:none;
+    transition:opacity .2s;
+  }
+  .nav-cta:hover{opacity:0.8}
+
+  /* ── HERO ── */
+  .hero{
+    min-height:100vh;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    padding:120px 24px 80px;
+    text-align:center;
+    position:relative;
+  }
+  .hero-eyebrow{
+    font-size:11px;letter-spacing:0.20em;text-transform:uppercase;font-weight:600;
+    color:var(--accent);
+    background:var(--accent-soft);
+    padding:6px 16px;border-radius:20px;
+    margin-bottom:28px;
+    display:inline-block;
+  }
+  .hero-title{
+    font-family:'Playfair Display',Georgia,serif;
+    font-size:clamp(52px,8vw,96px);
+    font-weight:900;
+    line-height:1.0;
+    letter-spacing:-0.02em;
+    color:var(--text);
+    margin-bottom:24px;
+    max-width:800px;
+  }
+  .hero-title em{color:var(--accent);font-style:italic}
+  .hero-sub{
+    font-size:18px;color:var(--muted);line-height:1.6;
+    max-width:480px;margin:0 auto 40px;font-weight:400;
+  }
+  .hero-cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+  .btn-primary{
+    background:var(--text);color:var(--bg);
+    font-size:11px;letter-spacing:0.14em;text-transform:uppercase;font-weight:700;
+    padding:16px 32px;border-radius:10px;text-decoration:none;
+    transition:opacity .2s;
+  }
+  .btn-primary:hover{opacity:0.8}
+  .btn-secondary{
+    background:transparent;color:var(--text);
+    font-size:11px;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;
+    padding:16px 32px;border-radius:10px;text-decoration:none;
+    border:1px solid var(--border-strong);
+    transition:border-color .2s;
+  }
+  .btn-secondary:hover{border-color:var(--accent)}
+
+  /* ── STAT BAND ── */
+  .stat-band{
+    display:flex;justify-content:center;gap:0;
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:16px;
+    margin:20px auto 0;
+    max-width:600px;
+    overflow:hidden;
+  }
+  .stat{
+    flex:1;padding:24px;text-align:center;
+    border-right:1px solid var(--border);
+  }
+  .stat:last-child{border-right:none}
+  .stat-val{
+    font-family:'Playfair Display',Georgia,serif;
+    font-size:36px;font-weight:700;color:var(--accent);
+    display:block;line-height:1;margin-bottom:4px;
+  }
+  .stat-lbl{
+    font-size:10px;letter-spacing:0.14em;text-transform:uppercase;
+    font-weight:600;color:var(--muted);
+  }
+
+  /* ── SECTION ── */
+  section{padding:80px 24px}
+  .section-inner{max-width:960px;margin:0 auto}
+  .section-eyebrow{
+    font-size:10px;letter-spacing:0.18em;text-transform:uppercase;font-weight:600;
+    color:var(--accent);margin-bottom:10px;display:block;
+  }
+  .section-title{
+    font-family:'Playfair Display',Georgia,serif;
+    font-size:clamp(32px,5vw,52px);font-weight:700;
+    line-height:1.1;margin-bottom:16px;
+  }
+  .section-sub{
+    font-size:16px;color:var(--muted);line-height:1.6;
+    max-width:500px;margin-bottom:48px;
+  }
+
+  /* ── FEATURE GRID ── */
+  .feature-grid{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;
+  }
+  .feature-card{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:28px;
+  }
+  .feature-num{
+    font-family:'Playfair Display',Georgia,serif;
+    font-size:48px;font-weight:700;color:var(--border-strong);
+    line-height:1;margin-bottom:16px;
+  }
+  .feature-title{
+    font-size:16px;font-weight:600;color:var(--text);margin-bottom:8px;
+  }
+  .feature-desc{
+    font-size:14px;color:var(--muted);line-height:1.6;
+  }
+
+  /* ── SCREENS PREVIEW ── */
+  .screens-section{background:var(--surface-alt)}
+  .screens-scroll{
+    display:flex;gap:16px;overflow-x:auto;padding:8px 4px 16px;
+    scrollbar-width:thin;scrollbar-color:var(--border) transparent;
+  }
+  .screen-card{
+    flex:0 0 220px;background:var(--surface);border-radius:20px;
+    border:1px solid var(--border);overflow:hidden;
+  }
+  .screen-header{
+    background:var(--text);padding:16px;
+    font-family:'Playfair Display',Georgia,serif;
+    font-size:14px;color:var(--bg);
+  }
+  .screen-body{padding:12px;display:flex;flex-direction:column;gap:8px}
+  .screen-metric-row{display:flex;gap:6px}
+  .screen-metric{
+    flex:1;background:var(--bg);border-radius:8px;padding:10px;text-align:center;
+  }
+  .screen-metric-val{
+    font-family:'Playfair Display',Georgia,serif;
+    font-size:18px;font-weight:700;color:var(--accent);display:block;
+  }
+  .screen-metric-lbl{font-size:8px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted)}
+  .screen-event{background:var(--bg);border-radius:10px;padding:10px}
+  .screen-event-tag{
+    font-size:8px;letter-spacing:0.1em;text-transform:uppercase;
+    color:var(--accent);margin-bottom:6px;display:block;
+  }
+  .screen-event-title{font-size:13px;font-weight:600;color:var(--text);margin-bottom:3px}
+  .screen-event-meta{font-size:10px;color:var(--muted)}
+  .screen-label{
+    font-size:10px;letter-spacing:0.12em;text-transform:uppercase;
+    font-weight:600;color:var(--muted);
+    border-bottom:1px solid var(--border);padding-bottom:6px;margin-bottom:8px;
+  }
+  .screen-pill{
+    display:inline-block;font-size:9px;letter-spacing:0.1em;
+    padding:3px 8px;border-radius:20px;border:1px solid var(--border);
+    color:var(--accent2);margin:2px;
+  }
+  .screen-member{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+  .screen-avatar{
+    width:28px;height:28px;border-radius:50%;background:var(--text);
+    color:var(--bg);font-size:9px;font-weight:700;letter-spacing:0.05em;
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  }
+  .screen-member-info{flex:1}
+  .screen-member-name{font-size:11px;font-weight:500;color:var(--text)}
+  .screen-member-role{font-size:9px;color:var(--muted)}
+  .screen-form-field{
+    background:var(--bg);border-radius:8px;padding:8px 10px;border:1px solid var(--border);
+    font-size:11px;color:var(--muted);margin-bottom:6px;
+  }
+  .screen-form-lbl{
+    font-size:8px;letter-spacing:0.1em;text-transform:uppercase;
+    color:var(--muted);display:block;margin-bottom:4px;
+  }
+  .screen-btn{
+    width:100%;padding:9px;text-align:center;
+    background:var(--accent);border-radius:8px;
+    font-size:10px;letter-spacing:0.1em;text-transform:uppercase;font-weight:700;
+    color:#FFF;
+  }
+  .screen-name{
+    padding:10px 12px;
+    font-size:10px;letter-spacing:0.14em;text-transform:uppercase;
+    font-weight:600;color:var(--muted);text-align:center;
+  }
+
+  /* ── PRINCIPLE ROW ── */
+  .principle-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:24px;margin-top:48px}
+  .principle{border-left:2px solid var(--accent);padding-left:20px}
+  .principle-title{font-size:14px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--text);margin-bottom:6px}
+  .principle-desc{font-size:13px;color:var(--muted);line-height:1.55}
+
+  /* ── CTA FOOTER ── */
+  .cta-section{
+    background:var(--text);padding:80px 24px;text-align:center;
+  }
+  .cta-title{
+    font-family:'Playfair Display',Georgia,serif;
+    font-size:clamp(32px,5vw,52px);font-weight:700;
+    color:var(--bg);margin-bottom:16px;line-height:1.1;
+  }
+  .cta-sub{font-size:16px;color:rgba(248,245,239,0.55);margin-bottom:36px;max-width:400px;margin-left:auto;margin-right:auto}
+  .btn-light{
+    background:var(--bg);color:var(--text);
+    font-size:11px;letter-spacing:0.14em;text-transform:uppercase;font-weight:700;
+    padding:16px 36px;border-radius:10px;text-decoration:none;
+    display:inline-block;transition:opacity .2s;
+  }
+  .btn-light:hover{opacity:0.88}
+
+  /* ── FOOTER ── */
+  footer{
+    background:var(--bg);border-top:1px solid var(--border);
+    padding:28px 40px;
+    display:flex;justify-content:space-between;align-items:center;
+    font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);
+  }
+  .footer-logo{
+    font-family:'Playfair Display',Georgia,serif;
+    font-size:14px;font-weight:700;letter-spacing:0.14em;color:var(--text);
+  }
+  .footer-links{display:flex;gap:24px}
+  .footer-links a{color:var(--muted);text-decoration:none}
+  .footer-links a:hover{color:var(--accent)}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Q<span>.</span>UORUM</div>
+  <div class="nav-links">
+    <a href="#features">Features</a>
+    <a href="#screens">Screens</a>
+    <a href="#principles">Design</a>
+    <a href="/quorum-viewer" target="_blank">Viewer</a>
+    <a href="/quorum-mock" target="_blank" class="nav-cta">View Mock</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">Private Gathering Management</div>
+  <h1 class="hero-title">Curate <em>moments</em><br>that matter.</h1>
+  <p class="hero-sub">QUORUM brings intention to your social calendar. Manage intimate dinners, salons, and retreats — and the people who make them worth attending.</p>
+  <div class="hero-cta-row">
+    <a href="/quorum-mock" class="btn-primary">Explore the Mock</a>
+    <a href="/quorum-viewer" class="btn-secondary">View in Pencil</a>
+  </div>
+
+  <div class="stat-band" style="margin-top:48px">
+    <div class="stat">
+      <span class="stat-val">5</span>
+      <span class="stat-lbl">Screens</span>
+    </div>
+    <div class="stat">
+      <span class="stat-val">41</span>
+      <span class="stat-lbl">Quorum Members</span>
+    </div>
+    <div class="stat">
+      <span class="stat-val">7</span>
+      <span class="stat-lbl">Gatherings</span>
+    </div>
+    <div class="stat">
+      <span class="stat-val">Light</span>
+      <span class="stat-lbl">Theme</span>
+    </div>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="section-inner">
+    <span class="section-eyebrow">What QUORUM does</span>
+    <h2 class="section-title">Every gathering,<br>considered.</h2>
+    <p class="section-sub">Built for people who believe the right room changes everything.</p>
+
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-num">01</div>
+        <div class="feature-title">Curated Calendar</div>
+        <div class="feature-desc">See today's gatherings at a glance. Know where you're confirmed, what needs a reply, and what's coming this week — all in one editorial view.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-num">02</div>
+        <div class="feature-title">Editorial Event Cards</div>
+        <div class="feature-desc">Every gathering gets a numbered entry — format, description, host, capacity. Designed to read like a programme, not a calendar app.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-num">03</div>
+        <div class="feature-title">Your Quorum</div>
+        <div class="feature-desc">A private network of up to 50 trusted people. Know who's hosting, who you share events with, filter by interest or field.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-num">04</div>
+        <div class="feature-title">Create Gatherings</div>
+        <div class="feature-desc">Define the format, set the size, write the intent. Invite specific members. QUORUM handles the coordination so you can focus on the conversation.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCREENS PREVIEW -->
+<section class="screens-section" id="screens">
+  <div class="section-inner">
+    <span class="section-eyebrow">5 Screens</span>
+    <h2 class="section-title">The full flow.</h2>
+    <p class="section-sub">From daily overview to event creation — each screen designed with editorial restraint.</p>
+
+    <div class="screens-scroll">
+
+      <!-- HOME -->
+      <div class="screen-card">
+        <div class="screen-header">QUORUM</div>
+        <div class="screen-body">
+          <div class="screen-metric-row">
+            <div class="screen-metric">
+              <span class="screen-metric-val">7</span>
+              <span class="screen-metric-lbl">Upcoming</span>
+            </div>
+            <div class="screen-metric">
+              <span class="screen-metric-val">3</span>
+              <span class="screen-metric-lbl">Invites</span>
+            </div>
+            <div class="screen-metric">
+              <span class="screen-metric-val">41</span>
+              <span class="screen-metric-lbl">Network</span>
+            </div>
+          </div>
+          <div class="screen-label">TODAY'S GATHERINGS</div>
+          <div class="screen-event" style="background:#0F0E0C;border-radius:10px;padding:10px">
+            <span class="screen-event-tag" style="color:#B8820F">DINNER</span>
+            <div class="screen-event-title" style="color:#F8F5EF">Investment Salon</div>
+            <div class="screen-event-meta" style="color:rgba(248,245,239,0.5)">7 PM · The Parlour</div>
+          </div>
+          <div class="screen-event">
+            <span class="screen-event-tag">WORKSHOP</span>
+            <div class="screen-event-title">Design Studio Crit</div>
+            <div class="screen-event-meta">2 PM · Studio 4</div>
+          </div>
+        </div>
+        <div class="screen-name">HOME</div>
+      </div>
+
+      <!-- GATHERINGS -->
+      <div class="screen-card">
+        <div class="screen-header">GATHERINGS</div>
+        <div class="screen-body">
+          <div style="display:flex;gap:4px;background:#F8F5EF;border-radius:8px;padding:3px">
+            <div style="flex:1;background:#0F0E0C;border-radius:6px;padding:5px;text-align:center;font-size:8px;letter-spacing:0.1em;color:#F8F5EF;font-weight:700">ALL</div>
+            <div style="flex:1;padding:5px;text-align:center;font-size:8px;letter-spacing:0.1em;color:rgba(15,14,12,0.4)">HOST</div>
+            <div style="flex:1;padding:5px;text-align:center;font-size:8px;letter-spacing:0.1em;color:rgba(15,14,12,0.4)">INVITE</div>
+          </div>
+          <div class="screen-event">
+            <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+              <span style="font-size:8px;color:rgba(15,14,12,0.4);font-family:monospace">No. 01</span>
+              <span class="screen-event-tag" style="margin:0">DINNER</span>
+            </div>
+            <div class="screen-event-title">Investment Salon</div>
+            <div class="screen-event-meta">FRI APR 3 · 7 PM · 9/12</div>
+          </div>
+          <div class="screen-event">
+            <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+              <span style="font-size:8px;color:rgba(15,14,12,0.4);font-family:monospace">No. 02</span>
+              <span style="font-size:8px;letter-spacing:0.08em;text-transform:uppercase;color:#6B5B3E">WORKSHOP</span>
+            </div>
+            <div class="screen-event-title">Design Crit</div>
+            <div class="screen-event-meta">FRI APR 3 · 2 PM · 6/8</div>
+          </div>
+        </div>
+        <div class="screen-name">GATHERINGS</div>
+      </div>
+
+      <!-- EVENT DETAIL -->
+      <div class="screen-card">
+        <div class="screen-header" style="padding-bottom:10px">
+          <div style="font-size:8px;letter-spacing:0.12em;color:rgba(248,245,239,0.5);margin-bottom:6px;text-transform:uppercase">PRIVATE DINNER</div>
+          Investment Salon
+        </div>
+        <div class="screen-body">
+          <div class="screen-metric-row">
+            <div class="screen-metric" style="text-align:left;padding:8px">
+              <span class="screen-metric-lbl">DATE</span>
+              <div style="font-size:11px;color:var(--text);font-weight:500;margin-top:2px">Apr 3</div>
+            </div>
+            <div class="screen-metric" style="text-align:left;padding:8px">
+              <span class="screen-metric-lbl">TIME</span>
+              <div style="font-size:11px;color:var(--text);font-weight:500;margin-top:2px">7:00 PM</div>
+            </div>
+          </div>
+          <div class="screen-event">
+            <span class="screen-metric-lbl">HOSTED BY</span>
+            <div style="display:flex;align-items:center;gap:8px;margin-top:6px">
+              <div class="screen-avatar">CV</div>
+              <div>
+                <div class="screen-member-name">Claire Voss</div>
+                <div class="screen-member-role">Partner, Sequoia</div>
+              </div>
+            </div>
+          </div>
+          <div style="display:flex;gap:8px">
+            <div style="flex:1;background:var(--success);border-radius:8px;padding:8px;text-align:center;font-size:8px;letter-spacing:0.1em;text-transform:uppercase;font-weight:700;color:#FFF">CONFIRMED</div>
+            <div style="flex:1;background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:8px;text-align:center;font-size:8px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text)">MAP</div>
+          </div>
+        </div>
+        <div class="screen-name">EVENT DETAIL</div>
+      </div>
+
+      <!-- NETWORK -->
+      <div class="screen-card">
+        <div class="screen-header">YOUR QUORUM</div>
+        <div class="screen-body">
+          <div style="background:var(--bg);border-radius:8px;padding:8px 10px;font-size:9px;letter-spacing:0.1em;color:var(--muted);margin-bottom:8px;text-transform:uppercase">🔍  Search members...</div>
+          <div class="screen-label">RECENTLY ACTIVE</div>
+          <div class="screen-member">
+            <div class="screen-avatar">CV</div>
+            <div class="screen-member-info">
+              <div class="screen-member-name">Claire Voss</div>
+              <div class="screen-member-role">Partner, Sequoia</div>
+            </div>
+            <div style="font-size:8px;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent);background:var(--accent-soft);padding:2px 6px;border-radius:10px">HOST</div>
+          </div>
+          <div class="screen-member">
+            <div class="screen-avatar">YP</div>
+            <div class="screen-member-info">
+              <div class="screen-member-name">Yael Park</div>
+              <div class="screen-member-role">Founder, Helix</div>
+            </div>
+            <div style="font-size:8px;color:var(--muted)">6 shared</div>
+          </div>
+          <div class="screen-member">
+            <div class="screen-avatar" style="background:var(--accent)">EH</div>
+            <div class="screen-member-info">
+              <div class="screen-member-name">Elliot Hartwell</div>
+              <div class="screen-member-role">You</div>
+            </div>
+            <div style="font-size:8px;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent);background:var(--accent-soft);padding:2px 6px;border-radius:10px">YOU</div>
+          </div>
+        </div>
+        <div class="screen-name">NETWORK</div>
+      </div>
+
+      <!-- CREATE -->
+      <div class="screen-card">
+        <div class="screen-header">NEW GATHERING</div>
+        <div class="screen-body">
+          <div>
+            <span class="screen-form-lbl">GATHERING NAME</span>
+            <div class="screen-form-field">The Tuesday Salon</div>
+          </div>
+          <div>
+            <span class="screen-form-lbl">DATE & TIME</span>
+            <div class="screen-form-field" style="color:var(--text)">Apr 10 — 7:00 PM</div>
+          </div>
+          <div>
+            <span class="screen-form-lbl">VENUE</span>
+            <div class="screen-form-field" style="color:var(--text)">The Parlour, SoHo</div>
+          </div>
+          <div class="screen-label">INVITE MEMBERS</div>
+          <div>
+            <span class="screen-pill" style="background:var(--text);color:var(--bg);border-color:var(--text)">✓ Yael</span>
+            <span class="screen-pill" style="background:var(--text);color:var(--bg);border-color:var(--text)">✓ Claire</span>
+            <span class="screen-pill">Marco</span>
+            <span class="screen-pill">Raymond</span>
+          </div>
+          <div class="screen-btn">CREATE GATHERING</div>
+        </div>
+        <div class="screen-name">CREATE</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- DESIGN PRINCIPLES -->
+<section id="principles">
+  <div class="section-inner">
+    <span class="section-eyebrow">Design Rationale</span>
+    <h2 class="section-title">Decisions behind the design.</h2>
+    <p class="section-sub">Three choices that define this system.</p>
+
+    <div class="principle-row">
+      <div class="principle">
+        <div class="principle-title">Warm Parchment Ground</div>
+        <div class="principle-desc">Inspired by Stripe Sessions 2026's off-white (#F9F7F7), the background shifts from clinical white to a warm parchment (#F8F5EF) — grounding the app in the physical world of paper invitations and printed programmes.</div>
+      </div>
+      <div class="principle">
+        <div class="principle-title">ALL CAPS Editorial Language</div>
+        <div class="principle-desc">Borrowed from New Genre Holdings' corporate authority and SKYLRK's fashion-brand uppercase — all labels, navigation, and tags use uppercase tracking. It creates hierarchy without size changes.</div>
+      </div>
+      <div class="principle">
+        <div class="principle-title">Dark Card for Primary Events</div>
+        <div class="principle-desc">The most important event on the day screen gets a near-black inverted card. A single dark element in an all-light composition creates immediate focus without colour noise — an Atlas Card technique.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <h2 class="cta-title">The right room<br>changes everything.</h2>
+  <p class="cta-sub">Explore the interactive mock with full light and dark mode support.</p>
+  <a href="/quorum-mock" class="btn-light">Open Interactive Mock</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Q.UORUM</div>
+  <div class="footer-links">
+    <a href="/quorum-viewer">Pencil Viewer</a>
+    <a href="/quorum-mock">Interactive Mock</a>
+  </div>
+  <div>RAM Design Heartbeat · April 2026</div>
+</footer>
+
+</body>
+</html>`;
+
+// ── VIEWER ──────────────────────────────────────────────────────────────────
+let viewerHtml = fs.readFileSync('/workspace/group/design-studio/viewer.html', 'utf8');
+const penJson = fs.readFileSync('/workspace/group/design-studio/quorum.pen', 'utf8');
+const injection = `<script>window.EMBEDDED_PEN = ${JSON.stringify(penJson)};</script>`;
+viewerHtml = viewerHtml.replace('<script>', injection + '\n<script>');
+
+// ── RUN ───────────────────────────────────────────────────────────────────────
+(async () => {
+  console.log('\n── Publishing QUORUM ──────────────────────────────────────────────');
+
+  await pub(SLUG, heroHtml, `${APP_NAME} — ${TAGLINE}`);
+  await pub(`${SLUG}-viewer`, viewerHtml, `${APP_NAME} — Pencil Viewer`);
+
+  console.log('Done.');
+})();

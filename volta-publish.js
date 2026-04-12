@@ -1,0 +1,334 @@
+#!/usr/bin/env node
+'use strict';
+
+const fs    = require('fs');
+const https = require('https');
+
+const SLUG      = 'volta-travel';
+const APP_NAME  = 'VOLTA';
+const TAGLINE   = 'Journeys, elevated.';
+const SUBDOMAIN = 'ram';
+
+function post(hostname, pathname, headers, body) {
+  return new Promise((resolve, reject) => {
+    const data = typeof body === 'string' ? body : JSON.stringify(body);
+    const opts = {
+      hostname, path: pathname, method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(data), ...headers },
+    };
+    const r = https.request(opts, res => {
+      let d = '';
+      res.on('data', c => d += c);
+      res.on('end', () => resolve({ status: res.statusCode, body: d }));
+    });
+    r.on('error', reject);
+    r.write(data);
+    r.end();
+  });
+}
+
+async function publish(slug, html, title) {
+  const config = JSON.parse(fs.readFileSync('/workspace/group/design-studio/community-config.json', 'utf8'));
+  const res = await post('zenbin.org', '/api/publish', {
+    'X-Subdomain': SUBDOMAIN,
+    'X-API-Key':   config.ZENBIN_API_KEY || config.API_KEY || '',
+  }, { slug, html, title });
+  let j;
+  try { j = JSON.parse(res.body); } catch { j = {}; }
+  if (res.status !== 200) console.warn('Publish warning:', res.status, res.body.slice(0,200));
+  return j.url || `https://${SUBDOMAIN}.zenbin.org/${slug}`;
+}
+
+// ── HERO HTML ────────────────────────────────────────────────────────────────
+const heroHtml = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>VOLTA — Journeys, elevated.</title>
+  <meta name="description" content="VOLTA is a members-only luxury travel intelligence app. Primetime dining access, curated hotel rates, and a personal concierge — all in one place.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #090807; --surface: #131110; --surface2: #1A1714; --surface-alt: #221E1B;
+      --text: #EDE5D8; --muted: rgba(237,229,216,0.42);
+      --accent: #C49A5E; --accent2: #7EA38E;
+      --accent-soft: rgba(196,154,94,0.12);
+      --border: rgba(237,229,216,0.08); --border-strong: rgba(237,229,216,0.14);
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; line-height: 1.6; }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 48px; background: rgba(9,8,7,0.88);
+      backdrop-filter: blur(16px); border-bottom: 1px solid var(--border);
+    }
+    .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 300; color: var(--accent); letter-spacing: 10px; }
+    .nav-links { display: flex; gap: 40px; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; font-weight: 500; transition: color .2s; }
+    .nav-links a:hover { color: var(--text); }
+    .nav-cta { padding: 9px 24px; border: 1px solid var(--accent); color: var(--accent); font-size: 9px; letter-spacing: 3px; text-transform: uppercase; font-weight: 600; text-decoration: none; transition: all .2s; }
+    .nav-cta:hover { background: var(--accent); color: var(--bg); }
+
+    .hero {
+      min-height: 100vh; display: flex; align-items: flex-end;
+      padding: 130px 48px 90px; position: relative; overflow: hidden;
+      background: linear-gradient(160deg, #0f1c18 0%, #090807 55%, #12100d 100%);
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 65% 25%, rgba(196,154,94,0.07) 0%, transparent 65%);
+    }
+    .hero-content { position: relative; z-index: 1; max-width: 680px; }
+    .hero-eyebrow { font-size: 9px; color: var(--accent); letter-spacing: 4px; text-transform: uppercase; font-weight: 600; margin-bottom: 22px; display: flex; align-items: center; gap: 14px; }
+    .hero-eyebrow span { display: inline-block; width: 36px; height: 1px; background: var(--accent); }
+    .hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(72px, 12vw, 130px); font-weight: 300; line-height: 0.92; color: var(--text); letter-spacing: 8px; margin-bottom: 32px; }
+    .hero-sub { font-size: 16px; color: var(--muted); line-height: 1.75; max-width: 460px; margin-bottom: 48px; }
+    .hero-actions { display: flex; gap: 16px; align-items: center; }
+    .btn-primary { padding: 15px 36px; background: var(--accent); color: var(--bg); font-size: 9px; letter-spacing: 3px; text-transform: uppercase; font-weight: 700; text-decoration: none; }
+    .btn-ghost { padding: 15px 36px; border: 1px solid var(--border-strong); color: var(--muted); font-size: 9px; letter-spacing: 3px; text-transform: uppercase; font-weight: 500; text-decoration: none; transition: all .2s; }
+    .btn-ghost:hover { border-color: var(--text); color: var(--text); }
+
+    section { padding: 100px 48px; }
+    .label { font-size: 9px; color: var(--accent); letter-spacing: 4px; text-transform: uppercase; font-weight: 600; margin-bottom: 16px; }
+    .title { font-family: 'Cormorant Garamond', serif; font-size: clamp(36px, 5vw, 60px); font-weight: 300; line-height: 1.1; letter-spacing: 2px; margin-bottom: 18px; }
+    .body-text { font-size: 15px; color: var(--muted); line-height: 1.8; max-width: 520px; }
+    .divider { width: 100%; height: 1px; background: var(--border); margin: 0; }
+
+    .features { background: var(--surface); }
+    .features-intro { max-width: 580px; margin-bottom: 72px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1px; background: var(--border); }
+    .feature-card { padding: 44px 36px; background: var(--bg); transition: background .2s; }
+    .feature-card:hover { background: var(--surface2); }
+    .f-icon { font-size: 9px; color: var(--accent); letter-spacing: 4px; text-transform: uppercase; font-weight: 600; margin-bottom: 18px; }
+    .f-name { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 400; margin-bottom: 14px; letter-spacing: 1px; }
+    .f-desc { font-size: 13px; color: var(--muted); line-height: 1.7; }
+
+    .screens-section {}
+    .screens-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-top: 56px; }
+    .screen-card { border: 1px solid var(--border); border-radius: 10px; overflow: hidden; transition: transform .25s, border-color .25s; }
+    .screen-card:hover { transform: translateY(-4px); border-color: var(--border-strong); }
+    .screen-top { padding: 12px 16px; font-size: 9px; color: var(--muted); letter-spacing: 3px; text-transform: uppercase; background: var(--surface); border-bottom: 1px solid var(--border); }
+    .screen-body { height: 180px; background: var(--surface2); display: flex; align-items: center; justify-content: center; }
+    .screen-body span { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 300; color: var(--accent); letter-spacing: 4px; }
+
+    .tiers { background: var(--surface); }
+    .tiers-intro { max-width: 580px; margin-bottom: 64px; }
+    .tiers-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: var(--border); }
+    .tier-card { padding: 40px 32px; background: var(--bg); }
+    .tier-card.highlight { border-top: 2px solid var(--accent); background: rgba(196,154,94,0.03); }
+    .tier-badge { font-size: 9px; color: var(--accent); letter-spacing: 4px; text-transform: uppercase; font-weight: 600; margin-bottom: 10px; }
+    .tier-name { font-family: 'Cormorant Garamond', serif; font-size: 34px; font-weight: 300; margin-bottom: 24px; letter-spacing: 1px; }
+    .tier-list { list-style: none; }
+    .tier-list li { font-size: 13px; color: var(--muted); padding: 7px 0; border-bottom: 1px solid var(--border); }
+    .tier-list li::before { content: '— '; color: var(--accent); }
+
+    .quote-wrap { text-align: center; padding: 130px 48px; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .quote { font-family: 'Cormorant Garamond', serif; font-size: clamp(28px, 4vw, 54px); font-weight: 300; line-height: 1.3; max-width: 800px; margin: 0 auto 24px; font-style: italic; }
+    .quote-attr { font-size: 9px; color: var(--accent); letter-spacing: 4px; text-transform: uppercase; }
+
+    .cta-section { text-align: center; background: var(--surface); }
+    .cta-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(40px, 7vw, 88px); font-weight: 300; letter-spacing: 4px; margin-bottom: 20px; }
+    .cta-sub { font-size: 14px; color: var(--muted); margin-bottom: 42px; }
+    .cta-note { font-size: 11px; color: var(--muted); margin-top: 22px; letter-spacing: 1px; }
+
+    footer { padding: 48px 48px 30px; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--border); flex-wrap: wrap; gap: 20px; }
+    .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 16px; font-weight: 300; color: var(--muted); letter-spacing: 8px; }
+    .footer-links { display: flex; gap: 28px; }
+    .footer-links a { font-size: 10px; color: var(--muted); text-decoration: none; letter-spacing: 2px; text-transform: uppercase; }
+    .footer-copy { font-size: 11px; color: rgba(237,229,216,0.25); }
+
+    .credit { background: rgba(196,154,94,0.04); border-top: 1px solid var(--border); padding: 18px 48px; text-align: center; font-size: 10px; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; }
+    .credit a { color: var(--accent); text-decoration: none; }
+
+    @media(max-width:768px){
+      nav{padding:16px 20px;} .nav-links{display:none;}
+      .hero{padding:100px 20px 60px;} section{padding:70px 20px;}
+      .screens-row{grid-template-columns:repeat(2,1fr);}
+      .tiers-grid{grid-template-columns:1fr;}
+      footer{flex-direction:column;text-align:center;}
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo">VOLTA</span>
+  <div class="nav-links">
+    <a href="#features">Features</a>
+    <a href="#screens">Screens</a>
+    <a href="#tiers">Membership</a>
+  </div>
+  <a href="#cta" class="nav-cta">Request Invite</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-content">
+    <p class="hero-eyebrow"><span></span>Members Only · Invitation Required</p>
+    <h1 class="hero-title">VOLTA</h1>
+    <p class="hero-sub">A private travel intelligence platform. Primetime dining access, curated hotel rates, and a personal concierge who handles every detail before you arrive.</p>
+    <div class="hero-actions">
+      <a href="#cta" class="btn-primary">Request Invitation</a>
+      <a href="#screens" class="btn-ghost">See the Experience</a>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="features" id="features">
+  <div class="features-intro">
+    <p class="label">The Platform</p>
+    <h2 class="title">Every luxury experience,<br>in one place.</h2>
+    <p class="body-text">Volta curates the world's finest dining, hotels, and experiences — then gives Obsidian members access that simply isn't available anywhere else.</p>
+  </div>
+  <div class="grid-4">
+    <div class="feature-card">
+      <p class="f-icon">DINING</p>
+      <h3 class="f-name">Primetime Tables</h3>
+      <p class="f-desc">Access the most sought-after restaurants during peak hours. Waitlist priority, same-day cancellations, and counter seat reservations at Michelin-starred institutions worldwide.</p>
+    </div>
+    <div class="feature-card">
+      <p class="f-icon">HOTELS</p>
+      <h3 class="f-name">Curated Stays</h3>
+      <p class="f-desc">Member rates at 420 partner properties — Aman, Peninsula, Rosewood. Points redemption, 4th night free, and complimentary spa access at every stay.</p>
+    </div>
+    <div class="feature-card">
+      <p class="f-icon">EXPERIENCES</p>
+      <h3 class="f-name">Exclusive Access</h3>
+      <p class="f-desc">Front-row at sold-out concerts. Backstage at fashion weeks. Private gallery openings and championship sporting events unavailable to the general public.</p>
+    </div>
+    <div class="feature-card">
+      <p class="f-icon">CONCIERGE</p>
+      <h3 class="f-name">Personal Service</h3>
+      <p class="f-desc">Message your dedicated concierge team 24/7. Helicopter transfers, bespoke itineraries, private car services — handled before you even board the plane.</p>
+    </div>
+  </div>
+</section>
+
+<section class="screens-section" id="screens">
+  <p class="label">The Application</p>
+  <h2 class="title">Five screens.<br>Everything you need.</h2>
+  <p class="body-text">Designed with editorial restraint — warm gold on near-black, uppercase spatial labels, and atmospheric destination photography.</p>
+  <div class="screens-row">
+    <div class="screen-card">
+      <div class="screen-top">Today</div>
+      <div class="screen-body"><span>KYOTO</span></div>
+    </div>
+    <div class="screen-card">
+      <div class="screen-top">Dining</div>
+      <div class="screen-body"><span>SÉZANNE</span></div>
+    </div>
+    <div class="screen-card">
+      <div class="screen-top">Hotels</div>
+      <div class="screen-body"><span>AMAN</span></div>
+    </div>
+    <div class="screen-card">
+      <div class="screen-top">Concierge</div>
+      <div class="screen-body"><span>◎</span></div>
+    </div>
+    <div class="screen-card">
+      <div class="screen-top">Member</div>
+      <div class="screen-body"><span>✦</span></div>
+    </div>
+  </div>
+  <p style="margin-top:28px;font-size:13px;color:var(--muted)">
+    Interactive prototype →
+    <a href="/volta-travel-viewer" style="color:var(--accent);text-decoration:none">ram.zenbin.org/volta-travel-viewer</a>
+  </p>
+</section>
+
+<section class="quote-wrap">
+  <blockquote class="quote">"The best design is that which becomes invisible — what remains is only the experience."</blockquote>
+  <p class="quote-attr">Volta Design Philosophy · 2026</p>
+</section>
+
+<section class="tiers" id="tiers">
+  <div class="tiers-intro">
+    <p class="label">Membership</p>
+    <h2 class="title">Three tiers.<br>One standard.</h2>
+  </div>
+  <div class="tiers-grid">
+    <div class="tier-card">
+      <p class="tier-badge">Entry</p>
+      <h3 class="tier-name">Platinum</h3>
+      <ul class="tier-list">
+        <li>Priority dining access</li>
+        <li>Member hotel rates (8–12%)</li>
+        <li>Concierge (business hours)</li>
+        <li>12,000 pts / year</li>
+      </ul>
+    </div>
+    <div class="tier-card highlight">
+      <p class="tier-badge">Current ✦</p>
+      <h3 class="tier-name">Obsidian</h3>
+      <ul class="tier-list">
+        <li>Primetime tables + same-day cancel</li>
+        <li>4th night free at partner hotels</li>
+        <li>24/7 personal concierge</li>
+        <li>Events, fashion, gallery access</li>
+        <li>$2,400/yr wellness credits</li>
+        <li>48,000+ pts / year</li>
+      </ul>
+    </div>
+    <div class="tier-card">
+      <p class="tier-badge">Pinnacle</p>
+      <h3 class="tier-name">Apex</h3>
+      <ul class="tier-list">
+        <li>Counter seats at Michelin ✦✦✦</li>
+        <li>Private aircraft & helicopter</li>
+        <li>Dedicated travel architect</li>
+        <li>Unlimited experiences + early access</li>
+        <li>Invitation only</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section" id="cta">
+  <p class="label">Invitation</p>
+  <h2 class="cta-title">Begin your journey.</h2>
+  <p class="cta-sub">Applications reviewed within 3 business days. Membership by invitation only.</p>
+  <a href="#" class="btn-primary">Request Invitation</a>
+  <p class="cta-note">Current waitlist: 847 applicants · Acceptance rate: 12%</p>
+</section>
+
+<footer>
+  <span class="footer-logo">V O L T A</span>
+  <div class="footer-links">
+    <a href="#">Dining</a>
+    <a href="#">Hotels</a>
+    <a href="#">Concierge</a>
+    <a href="#">Membership</a>
+    <a href="#">Privacy</a>
+  </div>
+  <span class="footer-copy">© 2026 Volta. All rights reserved.</span>
+</footer>
+<div class="credit">
+  Designed by <a href="#">RAM Design Heartbeat</a> ·
+  Inspired by Atlas Card via godly.website · April 7 2026 ·
+  Dark theme · Luxury concierge archetype
+</div>
+
+</body>
+</html>`;
+
+// ── VIEWER ───────────────────────────────────────────────────────────────────
+const penJson   = fs.readFileSync('/workspace/group/design-studio/volta.pen', 'utf8');
+let viewerHtml  = fs.readFileSync('/workspace/group/design-studio/viewer.html', 'utf8');
+const injection = `<script>window.EMBEDDED_PEN = ${JSON.stringify(penJson)};</script>`;
+viewerHtml      = viewerHtml.replace('<script>', injection + '\n<script>');
+
+(async () => {
+  console.log('Publishing hero page…');
+  const heroUrl = await publish(SLUG, heroHtml, `${APP_NAME} — ${TAGLINE}`);
+  console.log('Hero:', heroUrl);
+
+  console.log('Publishing viewer…');
+  const viewerUrl = await publish(`${SLUG}-viewer`, viewerHtml, `${APP_NAME} — Interactive Viewer`);
+  console.log('Viewer:', viewerUrl);
+})();

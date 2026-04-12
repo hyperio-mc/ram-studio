@@ -1,0 +1,3501 @@
+{
+  "version": "2.8",
+  "name": "Convene Redesign",
+  "themes": {
+    "mode": [
+      "light",
+      "dark"
+    ]
+  },
+  "variables": {
+    "color.bg": {
+      "type": "color",
+      "value": "#09090b"
+    },
+    "color.surface": {
+      "type": "color",
+      "value": "#111116"
+    },
+    "color.primary": {
+      "type": "color",
+      "value": "#7c3aed"
+    },
+    "color.teal": {
+      "type": "color",
+      "value": "#14b8a6"
+    },
+    "color.text": {
+      "type": "color",
+      "value": "#e8eaf0"
+    },
+    "color.muted": {
+      "type": "color",
+      "value": "#71717a"
+    }
+  },
+  "children": [
+    {
+      "type": "frame",
+      "name": "Landing Page",
+      "width": 1280,
+      "height": 800,
+      "fill": "#09090b",
+      "layout": "vertical",
+      "gap": 0,
+      "children": [
+        {
+          "type": "frame",
+          "name": "nav",
+          "width": 1280,
+          "height": 60,
+          "fill": {
+            "type": "color",
+            "color": "#09090b",
+            "opacity": 0.95
+          },
+          "layout": "horizontal",
+          "alignItems": "center",
+          "justifyContent": "space_between",
+          "padding": [
+            0,
+            40,
+            0,
+            40
+          ],
+          "stroke": {
+            "fill": "#1e1e2a",
+            "thickness": 1
+          },
+          "children": [
+            {
+              "type": "frame",
+              "name": "row",
+              "layout": "horizontal",
+              "gap": 10,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "rectangle",
+                  "width": 28,
+                  "height": 28,
+                  "fill": "#7c3aed",
+                  "cornerRadius": 8
+                },
+                {
+                  "type": "text",
+                  "content": "Convene",
+                  "fontSize": 15,
+                  "fontWeight": "700",
+                  "fill": "#ffffff"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "name": "row",
+              "layout": "horizontal",
+              "gap": 24,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "content": "How it works",
+                  "fontSize": 13,
+                  "fill": "#71717a"
+                },
+                {
+                  "type": "text",
+                  "content": "Pricing",
+                  "fontSize": 13,
+                  "fill": "#71717a"
+                },
+                {
+                  "type": "frame",
+                  "name": "btn",
+                  "layout": "horizontal",
+                  "width": 148,
+                  "height": 36,
+                  "fill": "#7c3aed",
+                  "cornerRadius": 10,
+                  "alignItems": "center",
+                  "justifyContent": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "content": "Create meeting",
+                      "fontSize": 13,
+                      "fontWeight": "600",
+                      "fill": "#ffffff",
+                      "textAlign": "center"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "name": "content",
+          "layout": "horizontal",
+          "width": 1280,
+          "height": 740,
+          "alignItems": "center",
+          "justifyContent": "center",
+          "gap": 80,
+          "padding": [
+            0,
+            80,
+            0,
+            80
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "name": "col",
+              "layout": "vertical",
+              "gap": 24,
+              "children": [
+                {
+                  "type": "frame",
+                  "name": "tag",
+                  "layout": "horizontal",
+                  "padding": [
+                    4,
+                    10,
+                    4,
+                    10
+                  ],
+                  "fill": {
+                    "type": "color",
+                    "color": "#7c3aed",
+                    "opacity": 0.12
+                  },
+                  "cornerRadius": 99,
+                  "stroke": {
+                    "fill": {
+                      "type": "color",
+                      "color": "#a78bfa",
+                      "opacity": 0.3
+                    },
+                    "thickness": 1
+                  },
+                  "children": [
+                    {
+                      "type": "text",
+                      "content": "Fast · Free · No sign-up",
+                      "fontSize": 11,
+                      "fontWeight": "600",
+                      "fill": "#a78bfa"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "content": "Find time to\nmeet, fast",
+                  "fontSize": 52,
+                  "fontWeight": "800",
+                  "fill": "#ffffff",
+                  "width": 460
+                },
+                {
+                  "type": "text",
+                  "content": "Share a link. Participants mark their availability.\nConvene finds the best time. Done in 48 hours.",
+                  "fontSize": 15,
+                  "fill": "#a1a1aa",
+                  "width": 420
+                },
+                {
+                  "type": "frame",
+                  "name": "row",
+                  "layout": "horizontal",
+                  "gap": 12,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "name": "row",
+                      "layout": "horizontal",
+                      "gap": -8,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "name": "av-S",
+                          "width": 32,
+                          "height": 32,
+                          "fill": {
+                            "type": "color",
+                            "color": "#14b8a6",
+                            "opacity": 0.2
+                          },
+                          "cornerRadius": 16,
+                          "layout": "horizontal",
+                          "alignItems": "center",
+                          "justifyContent": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "content": "S",
+                              "fontSize": 11.2,
+                              "fontWeight": "700",
+                              "fill": "#14b8a6",
+                              "textAlign": "center"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "name": "av-M",
+                          "width": 32,
+                          "height": 32,
+                          "fill": {
+                            "type": "color",
+                            "color": "#a78bfa",
+                            "opacity": 0.2
+                          },
+                          "cornerRadius": 16,
+                          "layout": "horizontal",
+                          "alignItems": "center",
+                          "justifyContent": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "content": "M",
+                              "fontSize": 11.2,
+                              "fontWeight": "700",
+                              "fill": "#a78bfa",
+                              "textAlign": "center"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "name": "av-J",
+                          "width": 32,
+                          "height": 32,
+                          "fill": {
+                            "type": "color",
+                            "color": "#ec4899",
+                            "opacity": 0.2
+                          },
+                          "cornerRadius": 16,
+                          "layout": "horizontal",
+                          "alignItems": "center",
+                          "justifyContent": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "content": "J",
+                              "fontSize": 11.2,
+                              "fontWeight": "700",
+                              "fill": "#ec4899",
+                              "textAlign": "center"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "content": "Join 2,400+ teams who skip the email chains",
+                      "fontSize": 12,
+                      "fill": "#71717a"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "name": "card",
+              "layout": "vertical",
+              "fill": "#111116",
+              "cornerRadius": 14,
+              "stroke": {
+                "fill": "#1e1e2a",
+                "thickness": 1
+              },
+              "padding": 24,
+              "gap": 14,
+              "width": 388,
+              "children": [
+                {
+                  "type": "text",
+                  "content": "New meeting",
+                  "fontSize": 18,
+                  "fontWeight": "700",
+                  "fill": "#ffffff"
+                },
+                {
+                  "type": "text",
+                  "content": "Takes 30 seconds to set up.",
+                  "fontSize": 13,
+                  "fill": "#71717a"
+                },
+                {
+                  "type": "rectangle",
+                  "width": 340,
+                  "height": 1,
+                  "fill": "#1e1e2a"
+                },
+                {
+                  "type": "frame",
+                  "name": "col",
+                  "layout": "vertical",
+                  "gap": 6,
+                  "children": [
+                    {
+                      "type": "text",
+                      "content": "Meeting title",
+                      "fontSize": 12,
+                      "fontWeight": "500",
+                      "fill": "#a1a1aa"
+                    },
+                    {
+                      "type": "frame",
+                      "name": "input",
+                      "layout": "horizontal",
+                      "width": 360,
+                      "height": 48,
+                      "fill": "#18181f",
+                      "cornerRadius": 10,
+                      "stroke": {
+                        "fill": "#2a2a3a",
+                        "thickness": 1
+                      },
+                      "alignItems": "center",
+                      "padding": [
+                        0,
+                        16,
+                        0,
+                        16
+                      ],
+                      "gap": 8,
+                      "children": [
+                        {
+                          "type": "text",
+                          "content": "📋",
+                          "fontSize": 15,
+                          "fill": "#71717a"
+                        },
+                        {
+                          "type": "text",
+                          "content": "e.g. Q2 Planning",
+                          "fontSize": 14,
+                          "fill": "#71717a"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "name": "col",
+                  "layout": "vertical",
+                  "gap": 6,
+                  "children": [
+                    {
+                      "type": "text",
+                      "content": "Your email",
+                      "fontSize": 12,
+                      "fontWeight": "500",
+                      "fill": "#a1a1aa"
+                    },
+                    {
+                      "type": "frame",
+                      "name": "input",
+                      "layout": "horizontal",
+                      "width": 360,
+                      "height": 48,
+                      "fill": "#18181f",
+                      "cornerRadius": 10,
+                      "stroke": {
+                        "fill": "#2a2a3a",
+                        "thickness": 1
+                      },
+                      "alignItems": "center",
+                      "padding": [
+                        0,
+                        16,
+                        0,
+                        16
+                      ],
+                      "gap": 8,
+                      "children": [
+                        {
+                          "type": "text",
+                          "content": "✉",
+                          "fontSize": 15,
+                          "fill": "#71717a"
+                        },
+                        {
+                          "type": "text",
+                          "content": "you@company.com",
+                          "fontSize": 14,
+                          "fill": "#71717a"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "name": "row",
+                  "layout": "horizontal",
+                  "gap": 12,
+                  "alignItems": "start",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "name": "col",
+                      "layout": "vertical",
+                      "gap": 6,
+                      "width": 158,
+                      "children": [
+                        {
+                          "type": "text",
+                          "content": "Start date",
+                          "fontSize": 12,
+                          "fontWeight": "500",
+                          "fill": "#a1a1aa"
+                        },
+                        {
+                          "type": "frame",
+                          "name": "input",
+                          "layout": "horizontal",
+                          "width": 360,
+                          "height": 48,
+                          "fill": "#18181f",
+                          "cornerRadius": 10,
+                          "stroke": {
+                            "fill": "#2a2a3a",
+                            "thickness": 1
+                          },
+                          "alignItems": "center",
+                          "padding": [
+                            0,
+                            16,
+                            0,
+                            16
+                          ],
+                          "gap": 8,
+                          "children": [
+                            {
+                              "type": "text",
+                              "content": "📅",
+                              "fontSize": 15,
+                              "fill": "#71717a"
+                            },
+                            {
+                              "type": "text",
+                              "content": "Mar 15",
+                              "fontSize": 14,
+                              "fill": "#71717a"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "name": "col",
+                      "layout": "vertical",
+                      "gap": 6,
+                      "width": 158,
+                      "children": [
+                        {
+                          "type": "text",
+                          "content": "End date",
+                          "fontSize": 12,
+                          "fontWeight": "500",
+                          "fill": "#a1a1aa"
+                        },
+                        {
+                          "type": "frame",
+                          "name": "input",
+                          "layout": "horizontal",
+                          "width": 360,
+                          "height": 48,
+                          "fill": "#18181f",
+                          "cornerRadius": 10,
+                          "stroke": {
+                            "fill": "#2a2a3a",
+                            "thickness": 1
+                          },
+                          "alignItems": "center",
+                          "padding": [
+                            0,
+                            16,
+                            0,
+                            16
+                          ],
+                          "gap": 8,
+                          "children": [
+                            {
+                              "type": "text",
+                              "content": "📅",
+                              "fontSize": 15,
+                              "fill": "#71717a"
+                            },
+                            {
+                              "type": "text",
+                              "content": "Mar 20",
+                              "fontSize": 14,
+                              "fill": "#71717a"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "name": "btn",
+                  "layout": "horizontal",
+                  "width": 340,
+                  "height": 48,
+                  "fill": "#7c3aed",
+                  "cornerRadius": 10,
+                  "alignItems": "center",
+                  "justifyContent": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "content": "Create meeting link →",
+                      "fontSize": 13,
+                      "fontWeight": "600",
+                      "fill": "#ffffff",
+                      "textAlign": "center"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "content": "Session expires in 48 hours · No account required",
+                  "fontSize": 11,
+                  "fill": "#71717a",
+                  "textAlign": "center",
+                  "width": 340
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "x": 0,
+      "y": 0
+    },
+    {
+      "type": "frame",
+      "name": "Join Meeting",
+      "width": 1280,
+      "height": 800,
+      "fill": "#09090b",
+      "layout": "vertical",
+      "gap": 0,
+      "children": [
+        {
+          "type": "frame",
+          "name": "nav",
+          "width": 1280,
+          "height": 60,
+          "fill": {
+            "type": "color",
+            "color": "#09090b",
+            "opacity": 0.95
+          },
+          "layout": "horizontal",
+          "alignItems": "center",
+          "justifyContent": "space_between",
+          "padding": [
+            0,
+            40,
+            0,
+            40
+          ],
+          "stroke": {
+            "fill": "#1e1e2a",
+            "thickness": 1
+          },
+          "children": [
+            {
+              "type": "frame",
+              "name": "row",
+              "layout": "horizontal",
+              "gap": 10,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "rectangle",
+                  "width": 28,
+                  "height": 28,
+                  "fill": "#7c3aed",
+                  "cornerRadius": 8
+                },
+                {
+                  "type": "text",
+                  "content": "Convene",
+                  "fontSize": 15,
+                  "fontWeight": "700",
+                  "fill": "#ffffff"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "name": "row",
+              "layout": "horizontal",
+              "gap": 24,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "content": "How it works",
+                  "fontSize": 13,
+                  "fill": "#71717a"
+                },
+                {
+                  "type": "text",
+                  "content": "Pricing",
+                  "fontSize": 13,
+                  "fill": "#71717a"
+                },
+                {
+                  "type": "frame",
+                  "name": "btn",
+                  "layout": "horizontal",
+                  "width": 148,
+                  "height": 36,
+                  "fill": "#7c3aed",
+                  "cornerRadius": 10,
+                  "alignItems": "center",
+                  "justifyContent": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "content": "Create meeting",
+                      "fontSize": 13,
+                      "fontWeight": "600",
+                      "fill": "#ffffff",
+                      "textAlign": "center"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "name": "content",
+          "layout": "horizontal",
+          "width": 1280,
+          "height": 740,
+          "alignItems": "start",
+          "padding": [
+            48,
+            80,
+            48,
+            80
+          ],
+          "gap": 64,
+          "children": [
+            {
+              "type": "frame",
+              "name": "col",
+              "layout": "vertical",
+              "gap": 20,
+              "width": 520,
+              "children": [
+                {
+                  "type": "frame",
+                  "name": "timer",
+                  "layout": "horizontal",
+                  "padding": [
+                    6,
+                    12,
+                    6,
+                    12
+                  ],
+                  "fill": {
+                    "type": "color",
+                    "color": "#f59e0b",
+                    "opacity": 0.1
+                  },
+                  "cornerRadius": 8,
+                  "stroke": {
+                    "fill": {
+                      "type": "color",
+                      "color": "#f59e0b",
+                      "opacity": 0.25
+                    },
+                    "thickness": 1
+                  },
+                  "gap": 6,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "content": "⏱",
+                      "fontSize": 13
+                    },
+                    {
+                      "type": "text",
+                      "content": "Closes in 47h 52m",
+                      "fontSize": 12,
+                      "fontWeight": "600",
+                      "fill": "#f59e0b"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "content": "Design Review",
+                  "fontSize": 36,
+                  "fontWeight": "800",
+                  "fill": "#ffffff",
+                  "width": 500
+                },
+                {
+                  "type": "text",
+                  "content": "Organised by alex@company.com",
+                  "fontSize": 13,
+                  "fill": "#71717a"
+                },
+                {
+                  "type": "rectangle",
+                  "width": 500,
+                  "height": 1,
+                  "fill": "#1e1e2a"
+                },
+                {
+                  "type": "frame",
+                  "name": "card",
+                  "layout": "vertical",
+                  "fill": "#111116",
+                  "cornerRadius": 14,
+                  "stroke": {
+                    "fill": "#1e1e2a",
+                    "thickness": 1
+                  },
+                  "padding": 24,
+                  "gap": 12,
+                  "width": 500,
+                  "children": [
+                    {
+                      "type": "text",
+                      "content": "Meeting details",
+                      "fontSize": 13,
+                      "fontWeight": "600",
+                      "fill": "#a1a1aa"
+                    },
+                    {
+                      "type": "frame",
+                      "name": "row",
+                      "layout": "horizontal",
+                      "gap": 8,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "content": "📅",
+                          "fontSize": 13
+                        },
+                        {
+                          "type": "text",
+                          "content": "Mar 15–20, 2026",
+                          "fontSize": 13,
+                          "fill": "#e8eaf0"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "name": "row",
+                      "layout": "horizontal",
+                      "gap": 8,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "content": "🕐",
+                          "fontSize": 13
+                        },
+                        {
+                          "type": "text",
+                          "content": "9:00 AM – 5:00 PM",
+                          "fontSize": 13,
+                          "fill": "#e8eaf0"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "name": "row",
+                      "layout": "horizontal",
+                      "gap": 8,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "content": "👥",
+                          "fontSize": 13
+                        },
+                        {
+                          "type": "text",
+                          "content": "3 people responded so far",
+                          "fontSize": 13,
+                          "fill": "#e8eaf0"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "name": "col",
+                  "layout": "vertical",
+                  "gap": 8,
+                  "children": [
+                    {
+                      "type": "text",
+                      "content": "Your name",
+                      "fontSize": 12,
+                      "fontWeight": "500",
+                      "fill": "#a1a1aa"
+                    },
+                    {
+                      "type": "frame",
+                      "name": "name-input",
+                      "layout": "horizontal",
+                      "width": 500,
+                      "height": 48,
+                      "fill": "#18181f",
+                      "cornerRadius": 10,
+                      "stroke": {
+                        "fill": "#a78bfa",
+                        "thickness": 1.5
+                      },
+                      "alignItems": "center",
+                      "padding": [
+                        0,
+                        16,
+                        0,
+                        16
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "content": "Enter your name",
+                          "fontSize": 14,
+                          "fill": "#71717a"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "content": "Then select your available times on the calendar →",
+                      "fontSize": 12,
+                      "fill": "#71717a"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "name": "col",
+              "layout": "vertical",
+              "gap": 20,
+              "width": 560,
+              "children": [
+                {
+                  "type": "frame",
+                  "name": "row",
+                  "layout": "horizontal",
+                  "gap": 12,
+                  "alignItems": "center",
+                  "justifyContent": "space_between",
+                  "width": 560,
+                  "children": [
+                    {
+                      "type": "text",
+                      "content": "Select your available times",
+                      "fontSize": 15,
+                      "fontWeight": "600",
+                      "fill": "#e8eaf0"
+                    },
+                    {
+                      "type": "frame",
+                      "name": "hint",
+                      "layout": "horizontal",
+                      "padding": [
+                        4,
+                        10,
+                        4,
+                        10
+                      ],
+                      "fill": "#18181f",
+                      "cornerRadius": 6,
+                      "children": [
+                        {
+                          "type": "text",
+                          "content": "Click to toggle",
+                          "fontSize": 11,
+                          "fill": "#71717a"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "name": "row",
+                  "layout": "horizontal",
+                  "gap": 12,
+                  "alignItems": "start",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "name": "col",
+                      "layout": "vertical",
+                      "gap": 8,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "name": "col",
+                          "layout": "vertical",
+                          "gap": 2,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "content": "Mon",
+                              "fontSize": 11,
+                              "fill": "#71717a",
+                              "textAlign": "center"
+                            },
+                            {
+                              "type": "text",
+                              "content": "15",
+                              "fontSize": 16,
+                              "fontWeight": "600",
+                              "fill": "#e8eaf0",
+                              "textAlign": "center"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "name": "slot",
+                          "layout": "horizontal",
+                          "width": 72,
+                          "height": 32,
+                          "fill": "#18181f",
+                          "cornerRadius": 8,
+                          "alignItems": "center",
+                          "justifyContent": "center",
+                          "stroke": {
+                            "fill": "#2a2a3a",
+                            "thickness": 1
+                          },
+                          "children": [
+                            {
+                              "type": "text",
+                              "content": "9:00",
+                              "fontSize": 11,
+                              "fontWeight": "400",
+                              "fill": "#a1a1aa",
+                              "textAlign": "center"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "name": "slot",
+                          "layout": "horizontal",
+                          "width": 72,
+                          "height": 32,
+                          "fill": {
+                            "type": "color",
+                            "color": "#7c3aed",
+                            "opacity": 1
+                          },
+                          "cornerRadius": 8,
+                          "alignItems": "center",
+                          "justifyContent": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "content": "10:00",
+                              "fontSize": 11,
+                              "fontWeight": "600",
+                              "fill": "#ffffff",
+                              "textAlign": "center"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "name": "slot",
+                          "layout": "horizontal",
+                          "width": 72,
+                          "height": 32,
+                          "fill": {
+                            "type": "color",
+                            "color": "#7c3aed",
+                            "opacity": 1
+                          },
+                          "cornerRadius": 8,
+                          "alignItems": "center",
+                          "justifyContent": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "content": "11:00",
+                              "fontSize": 11,
+                              "fontWeight": "600",
+                              "fill": "#ffffff",
+                              "textAlign": "center"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "name": "slot",
+                          "layout": "horizontal",
+                          "width": 72,
+                          "height": 32,
+                          "fill": "#18181f",
+                          "cornerRadius": 8,
+                          "alignItems": "center",
+                          "justifyContent": "center",
+                          "stroke": {
+                            "fill": "#2a2a3a",
+                            "thickness": 1
+                          },
+                          "children": [
+                            {
+                              "type": "text",
+                              "content": "1:00",
+                              "fontSize": 11,
+                              "fontWeight": "400",
+                              "fill": "#a1a1aa",
+                              "textAlign": "center"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "name": "slot",
+                          "layout": "horizontal",
+                          "width": 72,
+                          "height": 32,
+                          "fill": "#18181f",
+                          "cornerRadius": 8,
+                          "alignItems": "center",
+                          "justifyContent": "center",
+                          "stroke": {
+                            "fill": "#2a2a3a",
+                            "thickness": 1
+                          },
+                          "children": [
+                            {
+                              "type": "text",
+                              "content": "2:00",
+                              "fontSize": 11,
+                              "fontWeight": "400",
+                              "fill": "#a1a1aa",
+                              "textAlign": "center"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "name": "slot",
+                          "layout": "horizontal",
+                          "width": 72,
+                          "height": 32,
+                          "fill": "#18181f",
+                          "cornerRadius": 8,
+                          "alignItems": "center",
+                          "justifyContent": "center",
+                          "stroke": {
+                            "fill": "#2a2a3a",
+                            "thickness": 1
+                          },
+                          "children": [
+                            {
+                              "type": "text",
+                              "content": "3:00",
+                              "fontSize": 11,
+                              "fontWeight": "400",
+                              "fill": "#a1a1aa",
+                              "textAlign": "center"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "name": "col",
+                      "layout": "vertical",
+                      "gap": 8,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "name": "col",
+                          "layout": "vertical",
+                          "gap": 2,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "content": "Tue",
+                              "fontSize": 11,
+                              "fill": "#71717a",
+                              "textAlign": "center"
+                            },
+                            {
+                              "type": "text",
+                              "content": "16",
+                              "fontSize": 16,
+                              "fontWeight": "600",
+                              "fill": "#a78bfa",
+                              "textAlign": "center"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "name": "slot",
+                          "layout": "horizontal",
+                          "width": 72,
+                          "height": 32,
+                          "fill": {
+                            "type": "color",
+                            "color": "#7c3aed",
+                            "opacity": 1
+                          },
+                          "cornerRadius": 8,
+                          "alignItems": "center",
+                          "justifyContent": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "content": "9:00",
+                              "fontSize": 11,
+                              "fontWeight": "600",
+                              "fill": "#ffffff",
+                              "textAlign": "center"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "name": "slot",
+                          "layout": "horizontal",
+                          "width": 72,
+                          "height": 32,
+                          "fill": {
+                            "type": "color",
+                            "color": "#7c3aed",
+                            "opacity": 1
+                          },
+                          "cornerRadius": 8,
+                          "alignItems": "center",
+                          "justifyContent": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "content": "10:00",
+                              "fontSize": 11,
+                              "fontWeight": "600",
+                              "fill": "#ffffff",
+                              "textAlign": "center"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "name": "slot",
+                          "layout": "horizontal",
+                          "width": 72,
+                          "height": 32,
+                          "fill": "#18181f",
+                          "cornerRadius": 8,
+                          "alignItems": "center",
+                          "justifyContent": "center",
+                          "stroke": {
+                            "fill": "#2a2a3a",
+                            "thickness": 1
+                          },
+                          "children": [
+                            {
+                              "type": "text",
+                              "content": "11:00",
+                              "fontSize": 11,
+                              "fontWeight": "400",
+                              "fill": "#a1a1aa",
+                              "textAlign": "center"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "name": "slot",
+                          "layout": "horizontal",
+                          "width": 72,
+                          "height": 32,
+                          "fill": {
+                            "type": "color",
+                            "color": "#7c3aed",
+                            "opacity": 1
+                          },
+                          "cornerRadius": 8,
+                          "alignItems": "center",
+                          "justifyContent": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "content": "1:00",
+                              "fontSize": 11,
+                              "fontWeight": "600",
+                              "fill": "#ffffff",
+                              "textAlign": "center"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "name": "slot",
+                          "layout": "horizontal",
+                          "width": 72,
+                          "height": 32,
+                          "fill": {
+                            "type": "color",
+                            "color": "#7c3aed",
+                            "opacity": 1
+                          },
+                          "cornerRadius": 8,
+                          "alignItems": "center",
+                          "justifyContent": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "content": "2:00",
+                              "fontSize": 11,
+                              "fontWeight": "600",
+                              "fill": "#ffffff",
+                              "textAlign": "center"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "name": "slot",
+                          "layout": "horizontal",
+                          "width": 72,
+                          "height": 32,
+                          "fill": "#18181f",
+                          "cornerRadius": 8,
+                          "alignItems": "center",
+                          "justifyContent": "center",
+                          "stroke": {
+                            "fill": "#2a2a3a",
+                            "thickness": 1
+                          },
+                          "children": [
+                            {
+                              "type": "text",
+                              "content": "3:00",
+                              "fontSize": 11,
+                              "fontWeight": "400",
+                              "fill": "#a1a1aa",
+                              "textAlign": "center"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "name": "col",
+                      "layout": "vertical",
+                      "gap": 8,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "name": "col",
+                          "layout": "vertical",
+                          "gap": 2,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "content": "Wed",
+                              "fontSize": 11,
+                              "fill": "#71717a",
+                              "textAlign": "center"
+                            },
+                            {
+                              "type": "text",
+                              "content": "17",
+                              "fontSize": 16,
+                              "fontWeight": "600",
+                              "fill": "#e8eaf0",
+                              "textAlign": "center"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "name": "slot",
+                          "layout": "horizontal",
+                          "width": 72,
+                          "height": 32,
+                          "fill": "#18181f",
+                          "cornerRadius": 8,
+                          "alignItems": "center",
+                          "justifyContent": "center",
+                          "stroke": {
+                            "fill": "#2a2a3a",
+                            "thickness": 1
+                          },
+                          "children": [
+                            {
+                              "type": "text",
+                              "content": "9:00",
+                              "fontSize": 11,
+                              "fontWeight": "400",
+                              "fill": "#a1a1aa",
+                              "textAlign": "center"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "name": "slot",
+                          "layout": "horizontal",
+                          "width": 72,
+                          "height": 32,
+                          "fill": "#18181f",
+                          "cornerRadius": 8,
+                          "alignItems": "center",
+                          "justifyContent": "center",
+                          "stroke": {
+                            "fill": "#2a2a3a",
+                            "thickness": 1
+                          },
+                          "children": [
+                            {
+                              "type": "text",
+                              "content": "10:00",
+                              "fontSize": 11,
+                              "fontWeight": "400",
+                              "fill": "#a1a1aa",
+                              "textAlign": "center"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "name": "slot",
+                          "layout": "horizontal",
+                          "width": 72,
+                          "height": 32,
+                          "fill": "#18181f",
+                          "cornerRadius": 8,
+                          "alignItems": "center",
+                          "justifyContent": "center",
+                          "stroke": {
+                            "fill": "#2a2a3a",
+                            "thickness": 1
+                          },
+                          "children": [
+                            {
+                              "type": "text",
+                              "content": "11:00",
+                              "fontSize": 11,
+                              "fontWeight": "400",
+                              "fill": "#a1a1aa",
+                              "textAlign": "center"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "name": "slot",
+                          "layout": "horizontal",
+                          "width": 72,
+                          "height": 32,
+                          "fill": "#18181f",
+                          "cornerRadius": 8,
+                          "alignItems": "center",
+                          "justifyContent": "center",
+                          "stroke": {
+                            "fill": "#2a2a3a",
+                            "thickness": 1
+                          },
+                          "children": [
+                            {
+                              "type": "text",
+                              "content": "1:00",
+                              "fontSize": 11,
+                              "fontWeight": "400",
+                              "fill": "#a1a1aa",
+                              "textAlign": "center"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "name": "slot",
+                          "layout": "horizontal",
+                          "width": 72,
+                          "height": 32,
+                          "fill": {
+                            "type": "color",
+                            "color": "#7c3aed",
+                            "opacity": 1
+                          },
+                          "cornerRadius": 8,
+                          "alignItems": "center",
+                          "justifyContent": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "content": "2:00",
+                              "fontSize": 11,
+                              "fontWeight": "600",
+                              "fill": "#ffffff",
+                              "textAlign": "center"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "name": "slot",
+                          "layout": "horizontal",
+                          "width": 72,
+                          "height": 32,
+                          "fill": {
+                            "type": "color",
+                            "color": "#7c3aed",
+                            "opacity": 1
+                          },
+                          "cornerRadius": 8,
+                          "alignItems": "center",
+                          "justifyContent": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "content": "3:00",
+                              "fontSize": 11,
+                              "fontWeight": "600",
+                              "fill": "#ffffff",
+                              "textAlign": "center"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "name": "col",
+                      "layout": "vertical",
+                      "gap": 8,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "name": "col",
+                          "layout": "vertical",
+                          "gap": 2,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "content": "Thu",
+                              "fontSize": 11,
+                              "fill": "#71717a",
+                              "textAlign": "center"
+                            },
+                            {
+                              "type": "text",
+                              "content": "18",
+                              "fontSize": 16,
+                              "fontWeight": "600",
+                              "fill": "#e8eaf0",
+                              "textAlign": "center"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "name": "slot",
+                          "layout": "horizontal",
+                          "width": 72,
+                          "height": 32,
+                          "fill": {
+                            "type": "color",
+                            "color": "#7c3aed",
+                            "opacity": 1
+                          },
+                          "cornerRadius": 8,
+                          "alignItems": "center",
+                          "justifyContent": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "content": "9:00",
+                              "fontSize": 11,
+                              "fontWeight": "600",
+                              "fill": "#ffffff",
+                              "textAlign": "center"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "name": "slot",
+                          "layout": "horizontal",
+                          "width": 72,
+                          "height": 32,
+                          "fill": "#18181f",
+                          "cornerRadius": 8,
+                          "alignItems": "center",
+                          "justifyContent": "center",
+                          "stroke": {
+                            "fill": "#2a2a3a",
+                            "thickness": 1
+                          },
+                          "children": [
+                            {
+                              "type": "text",
+                              "content": "10:00",
+                              "fontSize": 11,
+                              "fontWeight": "400",
+                              "fill": "#a1a1aa",
+                              "textAlign": "center"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "name": "slot",
+                          "layout": "horizontal",
+                          "width": 72,
+                          "height": 32,
+                          "fill": "#18181f",
+                          "cornerRadius": 8,
+                          "alignItems": "center",
+                          "justifyContent": "center",
+                          "stroke": {
+                            "fill": "#2a2a3a",
+                            "thickness": 1
+                          },
+                          "children": [
+                            {
+                              "type": "text",
+                              "content": "11:00",
+                              "fontSize": 11,
+                              "fontWeight": "400",
+                              "fill": "#a1a1aa",
+                              "textAlign": "center"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "name": "slot",
+                          "layout": "horizontal",
+                          "width": 72,
+                          "height": 32,
+                          "fill": "#18181f",
+                          "cornerRadius": 8,
+                          "alignItems": "center",
+                          "justifyContent": "center",
+                          "stroke": {
+                            "fill": "#2a2a3a",
+                            "thickness": 1
+                          },
+                          "children": [
+                            {
+                              "type": "text",
+                              "content": "1:00",
+                              "fontSize": 11,
+                              "fontWeight": "400",
+                              "fill": "#a1a1aa",
+                              "textAlign": "center"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "name": "slot",
+                          "layout": "horizontal",
+                          "width": 72,
+                          "height": 32,
+                          "fill": "#18181f",
+                          "cornerRadius": 8,
+                          "alignItems": "center",
+                          "justifyContent": "center",
+                          "stroke": {
+                            "fill": "#2a2a3a",
+                            "thickness": 1
+                          },
+                          "children": [
+                            {
+                              "type": "text",
+                              "content": "2:00",
+                              "fontSize": 11,
+                              "fontWeight": "400",
+                              "fill": "#a1a1aa",
+                              "textAlign": "center"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "name": "slot",
+                          "layout": "horizontal",
+                          "width": 72,
+                          "height": 32,
+                          "fill": "#18181f",
+                          "cornerRadius": 8,
+                          "alignItems": "center",
+                          "justifyContent": "center",
+                          "stroke": {
+                            "fill": "#2a2a3a",
+                            "thickness": 1
+                          },
+                          "children": [
+                            {
+                              "type": "text",
+                              "content": "3:00",
+                              "fontSize": 11,
+                              "fontWeight": "400",
+                              "fill": "#a1a1aa",
+                              "textAlign": "center"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "name": "col",
+                      "layout": "vertical",
+                      "gap": 8,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "name": "col",
+                          "layout": "vertical",
+                          "gap": 2,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "content": "Fri",
+                              "fontSize": 11,
+                              "fill": "#71717a",
+                              "textAlign": "center"
+                            },
+                            {
+                              "type": "text",
+                              "content": "19",
+                              "fontSize": 16,
+                              "fontWeight": "600",
+                              "fill": "#e8eaf0",
+                              "textAlign": "center"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "name": "slot",
+                          "layout": "horizontal",
+                          "width": 72,
+                          "height": 32,
+                          "fill": {
+                            "type": "color",
+                            "color": "#7c3aed",
+                            "opacity": 1
+                          },
+                          "cornerRadius": 8,
+                          "alignItems": "center",
+                          "justifyContent": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "content": "9:00",
+                              "fontSize": 11,
+                              "fontWeight": "600",
+                              "fill": "#ffffff",
+                              "textAlign": "center"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "name": "slot",
+                          "layout": "horizontal",
+                          "width": 72,
+                          "height": 32,
+                          "fill": {
+                            "type": "color",
+                            "color": "#7c3aed",
+                            "opacity": 1
+                          },
+                          "cornerRadius": 8,
+                          "alignItems": "center",
+                          "justifyContent": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "content": "10:00",
+                              "fontSize": 11,
+                              "fontWeight": "600",
+                              "fill": "#ffffff",
+                              "textAlign": "center"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "name": "slot",
+                          "layout": "horizontal",
+                          "width": 72,
+                          "height": 32,
+                          "fill": {
+                            "type": "color",
+                            "color": "#7c3aed",
+                            "opacity": 1
+                          },
+                          "cornerRadius": 8,
+                          "alignItems": "center",
+                          "justifyContent": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "content": "11:00",
+                              "fontSize": 11,
+                              "fontWeight": "600",
+                              "fill": "#ffffff",
+                              "textAlign": "center"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "name": "slot",
+                          "layout": "horizontal",
+                          "width": 72,
+                          "height": 32,
+                          "fill": "#18181f",
+                          "cornerRadius": 8,
+                          "alignItems": "center",
+                          "justifyContent": "center",
+                          "stroke": {
+                            "fill": "#2a2a3a",
+                            "thickness": 1
+                          },
+                          "children": [
+                            {
+                              "type": "text",
+                              "content": "1:00",
+                              "fontSize": 11,
+                              "fontWeight": "400",
+                              "fill": "#a1a1aa",
+                              "textAlign": "center"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "name": "slot",
+                          "layout": "horizontal",
+                          "width": 72,
+                          "height": 32,
+                          "fill": "#18181f",
+                          "cornerRadius": 8,
+                          "alignItems": "center",
+                          "justifyContent": "center",
+                          "stroke": {
+                            "fill": "#2a2a3a",
+                            "thickness": 1
+                          },
+                          "children": [
+                            {
+                              "type": "text",
+                              "content": "2:00",
+                              "fontSize": 11,
+                              "fontWeight": "400",
+                              "fill": "#a1a1aa",
+                              "textAlign": "center"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "name": "slot",
+                          "layout": "horizontal",
+                          "width": 72,
+                          "height": 32,
+                          "fill": "#18181f",
+                          "cornerRadius": 8,
+                          "alignItems": "center",
+                          "justifyContent": "center",
+                          "stroke": {
+                            "fill": "#2a2a3a",
+                            "thickness": 1
+                          },
+                          "children": [
+                            {
+                              "type": "text",
+                              "content": "3:00",
+                              "fontSize": 11,
+                              "fontWeight": "400",
+                              "fill": "#a1a1aa",
+                              "textAlign": "center"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "name": "btn",
+                  "layout": "horizontal",
+                  "width": 380,
+                  "height": 48,
+                  "fill": "#7c3aed",
+                  "cornerRadius": 10,
+                  "alignItems": "center",
+                  "justifyContent": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "content": "Submit availability →",
+                      "fontSize": 13,
+                      "fontWeight": "600",
+                      "fill": "#ffffff",
+                      "textAlign": "center"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "x": 1360,
+      "y": 0
+    },
+    {
+      "type": "frame",
+      "name": "Results Page",
+      "width": 1280,
+      "height": 800,
+      "fill": "#09090b",
+      "layout": "vertical",
+      "gap": 0,
+      "children": [
+        {
+          "type": "frame",
+          "name": "nav",
+          "width": 1280,
+          "height": 60,
+          "fill": {
+            "type": "color",
+            "color": "#09090b",
+            "opacity": 0.95
+          },
+          "layout": "horizontal",
+          "alignItems": "center",
+          "justifyContent": "space_between",
+          "padding": [
+            0,
+            40,
+            0,
+            40
+          ],
+          "stroke": {
+            "fill": "#1e1e2a",
+            "thickness": 1
+          },
+          "children": [
+            {
+              "type": "frame",
+              "name": "row",
+              "layout": "horizontal",
+              "gap": 10,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "rectangle",
+                  "width": 28,
+                  "height": 28,
+                  "fill": "#7c3aed",
+                  "cornerRadius": 8
+                },
+                {
+                  "type": "text",
+                  "content": "Convene",
+                  "fontSize": 15,
+                  "fontWeight": "700",
+                  "fill": "#ffffff"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "name": "row",
+              "layout": "horizontal",
+              "gap": 24,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "content": "How it works",
+                  "fontSize": 13,
+                  "fill": "#71717a"
+                },
+                {
+                  "type": "text",
+                  "content": "Pricing",
+                  "fontSize": 13,
+                  "fill": "#71717a"
+                },
+                {
+                  "type": "frame",
+                  "name": "btn",
+                  "layout": "horizontal",
+                  "width": 148,
+                  "height": 36,
+                  "fill": "#7c3aed",
+                  "cornerRadius": 10,
+                  "alignItems": "center",
+                  "justifyContent": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "content": "Create meeting",
+                      "fontSize": 13,
+                      "fontWeight": "600",
+                      "fill": "#ffffff",
+                      "textAlign": "center"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "name": "content",
+          "layout": "vertical",
+          "width": 1280,
+          "height": 740,
+          "alignItems": "center",
+          "padding": [
+            48,
+            80,
+            48,
+            80
+          ],
+          "gap": 32,
+          "children": [
+            {
+              "type": "frame",
+              "name": "col",
+              "layout": "vertical",
+              "gap": 8,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "name": "row",
+                  "layout": "horizontal",
+                  "gap": 12,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "content": "🎉",
+                      "fontSize": 28
+                    },
+                    {
+                      "type": "text",
+                      "content": "Best times found",
+                      "fontSize": 32,
+                      "fontWeight": "800",
+                      "fill": "#ffffff"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "content": "Design Review · 4 of 4 people responded",
+                  "fontSize": 14,
+                  "fill": "#71717a",
+                  "textAlign": "center"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "name": "row",
+              "layout": "horizontal",
+              "gap": 20,
+              "alignItems": "start",
+              "children": [
+                {
+                  "type": "frame",
+                  "name": "card",
+                  "layout": "vertical",
+                  "fill": "#111116",
+                  "cornerRadius": 14,
+                  "stroke": {
+                    "fill": {
+                      "type": "color",
+                      "color": "#10b981",
+                      "opacity": 0.3
+                    },
+                    "thickness": 1
+                  },
+                  "padding": 24,
+                  "gap": 14,
+                  "width": 280,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "name": "badge-row",
+                      "layout": "horizontal",
+                      "gap": 8,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "name": "pill",
+                          "layout": "horizontal",
+                          "padding": [
+                            5,
+                            14,
+                            5,
+                            14
+                          ],
+                          "fill": "#10b981",
+                          "cornerRadius": 99,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "content": "Best match",
+                              "fontSize": 12,
+                              "fontWeight": "600",
+                              "fill": "#ffffff"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "content": "100% available",
+                          "fontSize": 12,
+                          "fill": "#10b981"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "content": "Tuesday, Mar 16",
+                      "fontSize": 20,
+                      "fontWeight": "700",
+                      "fill": "#ffffff"
+                    },
+                    {
+                      "type": "text",
+                      "content": "10:00 AM – 11:00 AM",
+                      "fontSize": 15,
+                      "fill": "#e8eaf0"
+                    },
+                    {
+                      "type": "frame",
+                      "name": "row",
+                      "layout": "horizontal",
+                      "gap": -6,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "name": "av-S",
+                          "width": 28,
+                          "height": 28,
+                          "fill": {
+                            "type": "color",
+                            "color": "#14b8a6",
+                            "opacity": 0.2
+                          },
+                          "cornerRadius": 14,
+                          "layout": "horizontal",
+                          "alignItems": "center",
+                          "justifyContent": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "content": "S",
+                              "fontSize": 9.799999999999999,
+                              "fontWeight": "700",
+                              "fill": "#14b8a6",
+                              "textAlign": "center"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "name": "av-M",
+                          "width": 28,
+                          "height": 28,
+                          "fill": {
+                            "type": "color",
+                            "color": "#a78bfa",
+                            "opacity": 0.2
+                          },
+                          "cornerRadius": 14,
+                          "layout": "horizontal",
+                          "alignItems": "center",
+                          "justifyContent": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "content": "M",
+                              "fontSize": 9.799999999999999,
+                              "fontWeight": "700",
+                              "fill": "#a78bfa",
+                              "textAlign": "center"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "name": "av-J",
+                          "width": 28,
+                          "height": 28,
+                          "fill": {
+                            "type": "color",
+                            "color": "#ec4899",
+                            "opacity": 0.2
+                          },
+                          "cornerRadius": 14,
+                          "layout": "horizontal",
+                          "alignItems": "center",
+                          "justifyContent": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "content": "J",
+                              "fontSize": 9.799999999999999,
+                              "fontWeight": "700",
+                              "fill": "#ec4899",
+                              "textAlign": "center"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "name": "av-A",
+                          "width": 28,
+                          "height": 28,
+                          "fill": {
+                            "type": "color",
+                            "color": "#f59e0b",
+                            "opacity": 0.2
+                          },
+                          "cornerRadius": 14,
+                          "layout": "horizontal",
+                          "alignItems": "center",
+                          "justifyContent": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "content": "A",
+                              "fontSize": 9.799999999999999,
+                              "fontWeight": "700",
+                              "fill": "#f59e0b",
+                              "textAlign": "center"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "name": "btn",
+                      "layout": "horizontal",
+                      "width": 240,
+                      "height": 44,
+                      "fill": "#7c3aed",
+                      "cornerRadius": 10,
+                      "alignItems": "center",
+                      "justifyContent": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "content": "Book this slot",
+                          "fontSize": 13,
+                          "fontWeight": "600",
+                          "fill": "#ffffff",
+                          "textAlign": "center"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "name": "card",
+                  "layout": "vertical",
+                  "fill": "#111116",
+                  "cornerRadius": 14,
+                  "stroke": {
+                    "fill": "#1e1e2a",
+                    "thickness": 1
+                  },
+                  "padding": 24,
+                  "gap": 14,
+                  "width": 280,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "name": "badge-row2",
+                      "layout": "horizontal",
+                      "gap": 8,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "name": "pill",
+                          "layout": "horizontal",
+                          "padding": [
+                            5,
+                            14,
+                            5,
+                            14
+                          ],
+                          "fill": "#18181f",
+                          "cornerRadius": 99,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "content": "Good",
+                              "fontSize": 12,
+                              "fontWeight": "600",
+                              "fill": "#a1a1aa"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "content": "75% available",
+                          "fontSize": 12,
+                          "fill": "#71717a"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "content": "Friday, Mar 19",
+                      "fontSize": 20,
+                      "fontWeight": "700",
+                      "fill": "#e8eaf0"
+                    },
+                    {
+                      "type": "text",
+                      "content": "9:00 AM – 11:00 AM",
+                      "fontSize": 15,
+                      "fill": "#a1a1aa"
+                    },
+                    {
+                      "type": "frame",
+                      "name": "row",
+                      "layout": "horizontal",
+                      "gap": -6,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "name": "av-S",
+                          "width": 28,
+                          "height": 28,
+                          "fill": {
+                            "type": "color",
+                            "color": "#14b8a6",
+                            "opacity": 0.2
+                          },
+                          "cornerRadius": 14,
+                          "layout": "horizontal",
+                          "alignItems": "center",
+                          "justifyContent": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "content": "S",
+                              "fontSize": 9.799999999999999,
+                              "fontWeight": "700",
+                              "fill": "#14b8a6",
+                              "textAlign": "center"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "name": "av-M",
+                          "width": 28,
+                          "height": 28,
+                          "fill": {
+                            "type": "color",
+                            "color": "#a78bfa",
+                            "opacity": 0.2
+                          },
+                          "cornerRadius": 14,
+                          "layout": "horizontal",
+                          "alignItems": "center",
+                          "justifyContent": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "content": "M",
+                              "fontSize": 9.799999999999999,
+                              "fontWeight": "700",
+                              "fill": "#a78bfa",
+                              "textAlign": "center"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "name": "av-J",
+                          "width": 28,
+                          "height": 28,
+                          "fill": {
+                            "type": "color",
+                            "color": "#ec4899",
+                            "opacity": 0.2
+                          },
+                          "cornerRadius": 14,
+                          "layout": "horizontal",
+                          "alignItems": "center",
+                          "justifyContent": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "content": "J",
+                              "fontSize": 9.799999999999999,
+                              "fontWeight": "700",
+                              "fill": "#ec4899",
+                              "textAlign": "center"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "rectangle",
+                          "width": 28,
+                          "height": 28,
+                          "fill": "#18181f",
+                          "cornerRadius": 14
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "name": "btn",
+                      "layout": "horizontal",
+                      "width": 240,
+                      "height": 44,
+                      "fill": "#18181f",
+                      "cornerRadius": 10,
+                      "alignItems": "center",
+                      "justifyContent": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "content": "Book this slot",
+                          "fontSize": 13,
+                          "fontWeight": "600",
+                          "fill": "#e8eaf0",
+                          "textAlign": "center"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "name": "card",
+                  "layout": "vertical",
+                  "fill": "#111116",
+                  "cornerRadius": 14,
+                  "stroke": {
+                    "fill": "#1e1e2a",
+                    "thickness": 1
+                  },
+                  "padding": 24,
+                  "gap": 14,
+                  "width": 280,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "name": "badge-row3",
+                      "layout": "horizontal",
+                      "gap": 8,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "name": "pill",
+                          "layout": "horizontal",
+                          "padding": [
+                            5,
+                            14,
+                            5,
+                            14
+                          ],
+                          "fill": "#18181f",
+                          "cornerRadius": 99,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "content": "Partial",
+                              "fontSize": 12,
+                              "fontWeight": "600",
+                              "fill": "#a1a1aa"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "content": "50% available",
+                          "fontSize": 12,
+                          "fill": "#71717a"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "content": "Monday, Mar 15",
+                      "fontSize": 20,
+                      "fontWeight": "700",
+                      "fill": "#e8eaf0"
+                    },
+                    {
+                      "type": "text",
+                      "content": "10:00 AM – 11:00 AM",
+                      "fontSize": 15,
+                      "fill": "#a1a1aa"
+                    },
+                    {
+                      "type": "frame",
+                      "name": "row",
+                      "layout": "horizontal",
+                      "gap": -6,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "name": "av-S",
+                          "width": 28,
+                          "height": 28,
+                          "fill": {
+                            "type": "color",
+                            "color": "#14b8a6",
+                            "opacity": 0.2
+                          },
+                          "cornerRadius": 14,
+                          "layout": "horizontal",
+                          "alignItems": "center",
+                          "justifyContent": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "content": "S",
+                              "fontSize": 9.799999999999999,
+                              "fontWeight": "700",
+                              "fill": "#14b8a6",
+                              "textAlign": "center"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "name": "av-M",
+                          "width": 28,
+                          "height": 28,
+                          "fill": {
+                            "type": "color",
+                            "color": "#a78bfa",
+                            "opacity": 0.2
+                          },
+                          "cornerRadius": 14,
+                          "layout": "horizontal",
+                          "alignItems": "center",
+                          "justifyContent": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "content": "M",
+                              "fontSize": 9.799999999999999,
+                              "fontWeight": "700",
+                              "fill": "#a78bfa",
+                              "textAlign": "center"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "rectangle",
+                          "width": 28,
+                          "height": 28,
+                          "fill": "#18181f",
+                          "cornerRadius": 14
+                        },
+                        {
+                          "type": "rectangle",
+                          "width": 28,
+                          "height": 28,
+                          "fill": "#18181f",
+                          "cornerRadius": 14
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "name": "btn",
+                      "layout": "horizontal",
+                      "width": 240,
+                      "height": 44,
+                      "fill": "#18181f",
+                      "cornerRadius": 10,
+                      "alignItems": "center",
+                      "justifyContent": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "content": "Book this slot",
+                          "fontSize": 13,
+                          "fontWeight": "600",
+                          "fill": "#e8eaf0",
+                          "textAlign": "center"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "name": "row",
+              "layout": "horizontal",
+              "gap": 16,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "content": "Share results with your team",
+                  "fontSize": 13,
+                  "fill": "#71717a"
+                },
+                {
+                  "type": "frame",
+                  "name": "share-box",
+                  "layout": "horizontal",
+                  "height": 40,
+                  "fill": "#18181f",
+                  "cornerRadius": 8,
+                  "stroke": {
+                    "fill": "#2a2a3a",
+                    "thickness": 1
+                  },
+                  "padding": [
+                    0,
+                    12,
+                    0,
+                    12
+                  ],
+                  "gap": 8,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "content": "https://convene.app/m/abc123",
+                      "fontSize": 12,
+                      "fill": "#71717a",
+                      "width": 260
+                    },
+                    {
+                      "type": "frame",
+                      "name": "btn",
+                      "layout": "horizontal",
+                      "width": 60,
+                      "height": 32,
+                      "fill": "#7c3aed",
+                      "cornerRadius": 10,
+                      "alignItems": "center",
+                      "justifyContent": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "content": "Copy",
+                          "fontSize": 13,
+                          "fontWeight": "600",
+                          "fill": "#ffffff",
+                          "textAlign": "center"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "x": 2720,
+      "y": 0
+    },
+    {
+      "type": "frame",
+      "name": "Error State",
+      "width": 1280,
+      "height": 800,
+      "fill": "#09090b",
+      "layout": "vertical",
+      "gap": 0,
+      "children": [
+        {
+          "type": "frame",
+          "name": "nav",
+          "width": 1280,
+          "height": 60,
+          "fill": {
+            "type": "color",
+            "color": "#09090b",
+            "opacity": 0.95
+          },
+          "layout": "horizontal",
+          "alignItems": "center",
+          "justifyContent": "space_between",
+          "padding": [
+            0,
+            40,
+            0,
+            40
+          ],
+          "stroke": {
+            "fill": "#1e1e2a",
+            "thickness": 1
+          },
+          "children": [
+            {
+              "type": "frame",
+              "name": "row",
+              "layout": "horizontal",
+              "gap": 10,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "rectangle",
+                  "width": 28,
+                  "height": 28,
+                  "fill": "#7c3aed",
+                  "cornerRadius": 8
+                },
+                {
+                  "type": "text",
+                  "content": "Convene",
+                  "fontSize": 15,
+                  "fontWeight": "700",
+                  "fill": "#ffffff"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "name": "row",
+              "layout": "horizontal",
+              "gap": 24,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "content": "How it works",
+                  "fontSize": 13,
+                  "fill": "#71717a"
+                },
+                {
+                  "type": "text",
+                  "content": "Pricing",
+                  "fontSize": 13,
+                  "fill": "#71717a"
+                },
+                {
+                  "type": "frame",
+                  "name": "btn",
+                  "layout": "horizontal",
+                  "width": 148,
+                  "height": 36,
+                  "fill": "#7c3aed",
+                  "cornerRadius": 10,
+                  "alignItems": "center",
+                  "justifyContent": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "content": "Create meeting",
+                      "fontSize": 13,
+                      "fontWeight": "600",
+                      "fill": "#ffffff",
+                      "textAlign": "center"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "name": "content",
+          "layout": "vertical",
+          "width": 1280,
+          "height": 740,
+          "alignItems": "center",
+          "justifyContent": "center",
+          "padding": [
+            0,
+            80,
+            0,
+            80
+          ],
+          "gap": 32,
+          "children": [
+            {
+              "type": "frame",
+              "name": "error-icon",
+              "width": 80,
+              "height": 80,
+              "fill": {
+                "type": "color",
+                "color": "#ef4444",
+                "opacity": 0.1
+              },
+              "cornerRadius": 40,
+              "layout": "horizontal",
+              "alignItems": "center",
+              "justifyContent": "center",
+              "stroke": {
+                "fill": {
+                  "type": "color",
+                  "color": "#ef4444",
+                  "opacity": 0.2
+                },
+                "thickness": 1
+              },
+              "children": [
+                {
+                  "type": "text",
+                  "content": "✕",
+                  "fontSize": 32,
+                  "fill": "#ef4444",
+                  "textAlign": "center"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "name": "col",
+              "layout": "vertical",
+              "gap": 10,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "content": "Something went wrong",
+                  "fontSize": 28,
+                  "fontWeight": "700",
+                  "fill": "#ffffff",
+                  "textAlign": "center"
+                },
+                {
+                  "type": "text",
+                  "content": "We couldn't register your response. This is usually a temporary issue.",
+                  "fontSize": 14,
+                  "fill": "#a1a1aa",
+                  "textAlign": "center",
+                  "width": 420
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "name": "card",
+              "layout": "vertical",
+              "fill": "#111116",
+              "cornerRadius": 14,
+              "stroke": {
+                "fill": "#1e1e2a",
+                "thickness": 1
+              },
+              "padding": 24,
+              "gap": 12,
+              "width": 420,
+              "children": [
+                {
+                  "type": "text",
+                  "content": "What happened?",
+                  "fontSize": 13,
+                  "fontWeight": "600",
+                  "fill": "#a1a1aa"
+                },
+                {
+                  "type": "text",
+                  "content": "The server returned an unexpected error (500). Your availability was not saved.",
+                  "fontSize": 13,
+                  "fill": "#71717a",
+                  "width": 380
+                },
+                {
+                  "type": "rectangle",
+                  "width": 380,
+                  "height": 1,
+                  "fill": "#1e1e2a"
+                },
+                {
+                  "type": "frame",
+                  "name": "col",
+                  "layout": "vertical",
+                  "gap": 6,
+                  "children": [
+                    {
+                      "type": "text",
+                      "content": "What to try:",
+                      "fontSize": 12,
+                      "fontWeight": "500",
+                      "fill": "#a1a1aa"
+                    },
+                    {
+                      "type": "frame",
+                      "name": "row",
+                      "layout": "horizontal",
+                      "gap": 8,
+                      "children": [
+                        {
+                          "type": "text",
+                          "content": "→",
+                          "fontSize": 12,
+                          "fill": "#71717a"
+                        },
+                        {
+                          "type": "text",
+                          "content": "Refresh the page and try again",
+                          "fontSize": 12,
+                          "fill": "#71717a"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "name": "row",
+                      "layout": "horizontal",
+                      "gap": 8,
+                      "children": [
+                        {
+                          "type": "text",
+                          "content": "→",
+                          "fontSize": 12,
+                          "fill": "#71717a"
+                        },
+                        {
+                          "type": "text",
+                          "content": "Check your internet connection",
+                          "fontSize": 12,
+                          "fill": "#71717a"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "name": "row",
+                      "layout": "horizontal",
+                      "gap": 8,
+                      "children": [
+                        {
+                          "type": "text",
+                          "content": "→",
+                          "fontSize": 12,
+                          "fill": "#71717a"
+                        },
+                        {
+                          "type": "text",
+                          "content": "Contact the meeting organiser if this persists",
+                          "fontSize": 12,
+                          "fill": "#71717a"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "name": "row",
+              "layout": "horizontal",
+              "gap": 12,
+              "children": [
+                {
+                  "type": "frame",
+                  "name": "btn",
+                  "layout": "horizontal",
+                  "width": 180,
+                  "height": 44,
+                  "fill": "#18181f",
+                  "cornerRadius": 10,
+                  "alignItems": "center",
+                  "justifyContent": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "content": "← Back to meeting",
+                      "fontSize": 13,
+                      "fontWeight": "600",
+                      "fill": "#e8eaf0",
+                      "textAlign": "center"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "name": "btn",
+                  "layout": "horizontal",
+                  "width": 140,
+                  "height": 44,
+                  "fill": "#7c3aed",
+                  "cornerRadius": 10,
+                  "alignItems": "center",
+                  "justifyContent": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "content": "Try again",
+                      "fontSize": 13,
+                      "fontWeight": "600",
+                      "fill": "#ffffff",
+                      "textAlign": "center"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "content": "Meeting ID: abc123 · Error code: 500",
+              "fontSize": 11,
+              "fill": "#2a2a3a"
+            }
+          ]
+        }
+      ],
+      "x": 4080,
+      "y": 0
+    },
+    {
+      "type": "frame",
+      "name": "How It Works",
+      "width": 1280,
+      "height": 800,
+      "fill": "#09090b",
+      "layout": "vertical",
+      "gap": 0,
+      "children": [
+        {
+          "type": "frame",
+          "name": "nav",
+          "width": 1280,
+          "height": 60,
+          "fill": {
+            "type": "color",
+            "color": "#09090b",
+            "opacity": 0.95
+          },
+          "layout": "horizontal",
+          "alignItems": "center",
+          "justifyContent": "space_between",
+          "padding": [
+            0,
+            40,
+            0,
+            40
+          ],
+          "stroke": {
+            "fill": "#1e1e2a",
+            "thickness": 1
+          },
+          "children": [
+            {
+              "type": "frame",
+              "name": "row",
+              "layout": "horizontal",
+              "gap": 10,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "rectangle",
+                  "width": 28,
+                  "height": 28,
+                  "fill": "#7c3aed",
+                  "cornerRadius": 8
+                },
+                {
+                  "type": "text",
+                  "content": "Convene",
+                  "fontSize": 15,
+                  "fontWeight": "700",
+                  "fill": "#ffffff"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "name": "row",
+              "layout": "horizontal",
+              "gap": 24,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "content": "How it works",
+                  "fontSize": 13,
+                  "fill": "#71717a"
+                },
+                {
+                  "type": "text",
+                  "content": "Pricing",
+                  "fontSize": 13,
+                  "fill": "#71717a"
+                },
+                {
+                  "type": "frame",
+                  "name": "btn",
+                  "layout": "horizontal",
+                  "width": 148,
+                  "height": 36,
+                  "fill": "#7c3aed",
+                  "cornerRadius": 10,
+                  "alignItems": "center",
+                  "justifyContent": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "content": "Create meeting",
+                      "fontSize": 13,
+                      "fontWeight": "600",
+                      "fill": "#ffffff",
+                      "textAlign": "center"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "name": "content",
+          "layout": "vertical",
+          "width": 1280,
+          "height": 740,
+          "alignItems": "center",
+          "padding": [
+            56,
+            80,
+            56,
+            80
+          ],
+          "gap": 48,
+          "children": [
+            {
+              "type": "frame",
+              "name": "col",
+              "layout": "vertical",
+              "gap": 14,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "name": "tag",
+                  "layout": "horizontal",
+                  "padding": [
+                    4,
+                    10,
+                    4,
+                    10
+                  ],
+                  "fill": {
+                    "type": "color",
+                    "color": "#7c3aed",
+                    "opacity": 0.12
+                  },
+                  "cornerRadius": 99,
+                  "stroke": {
+                    "fill": {
+                      "type": "color",
+                      "color": "#a78bfa",
+                      "opacity": 0.3
+                    },
+                    "thickness": 1
+                  },
+                  "children": [
+                    {
+                      "type": "text",
+                      "content": "No sign-up · No credit card · No fluff",
+                      "fontSize": 11,
+                      "fontWeight": "600",
+                      "fill": "#a78bfa"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "content": "How Convene works",
+                  "fontSize": 40,
+                  "fontWeight": "800",
+                  "fill": "#ffffff",
+                  "textAlign": "center"
+                },
+                {
+                  "type": "text",
+                  "content": "Three steps. Under a minute. Works every time.",
+                  "fontSize": 15,
+                  "fill": "#71717a",
+                  "textAlign": "center"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "name": "row",
+              "layout": "horizontal",
+              "gap": 20,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "name": "card",
+                  "layout": "vertical",
+                  "fill": "#111116",
+                  "cornerRadius": 14,
+                  "stroke": {
+                    "fill": "#1e1e2a",
+                    "thickness": 1
+                  },
+                  "padding": 24,
+                  "gap": 14,
+                  "width": 296,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "name": "step-hd",
+                      "layout": "horizontal",
+                      "gap": 14,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "name": "step-n",
+                          "width": 40,
+                          "height": 40,
+                          "fill": "#7c3aed",
+                          "cornerRadius": 12,
+                          "layout": "horizontal",
+                          "alignItems": "center",
+                          "justifyContent": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "content": "1",
+                              "fontSize": 18,
+                              "fontWeight": "800",
+                              "fill": "#ffffff",
+                              "textAlign": "center"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "content": "Create",
+                          "fontSize": 18,
+                          "fontWeight": "700",
+                          "fill": "#ffffff"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "content": "Enter your meeting title, email, and the date range you want to find time in.",
+                      "fontSize": 13,
+                      "fill": "#71717a",
+                      "width": 240
+                    },
+                    {
+                      "type": "rectangle",
+                      "width": 272,
+                      "height": 1,
+                      "fill": "#1e1e2a"
+                    },
+                    {
+                      "type": "frame",
+                      "name": "row",
+                      "layout": "horizontal",
+                      "gap": 6,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "content": "⏱",
+                          "fontSize": 13
+                        },
+                        {
+                          "type": "text",
+                          "content": "30 seconds",
+                          "fontSize": 12,
+                          "fill": "#71717a"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "content": "→",
+                  "fontSize": 28,
+                  "fill": "#2a2a3a"
+                },
+                {
+                  "type": "frame",
+                  "name": "card",
+                  "layout": "vertical",
+                  "fill": "#111116",
+                  "cornerRadius": 14,
+                  "stroke": {
+                    "fill": "#1e1e2a",
+                    "thickness": 1
+                  },
+                  "padding": 24,
+                  "gap": 14,
+                  "width": 296,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "name": "step-hd2",
+                      "layout": "horizontal",
+                      "gap": 14,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "name": "step-n2",
+                          "width": 40,
+                          "height": 40,
+                          "fill": "#7c3aed",
+                          "cornerRadius": 12,
+                          "layout": "horizontal",
+                          "alignItems": "center",
+                          "justifyContent": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "content": "2",
+                              "fontSize": 18,
+                              "fontWeight": "800",
+                              "fill": "#ffffff",
+                              "textAlign": "center"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "content": "Share",
+                          "fontSize": 18,
+                          "fontWeight": "700",
+                          "fill": "#ffffff"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "content": "Send the unique link to everyone who needs to be at the meeting. No login required.",
+                      "fontSize": 13,
+                      "fill": "#71717a",
+                      "width": 240
+                    },
+                    {
+                      "type": "rectangle",
+                      "width": 272,
+                      "height": 1,
+                      "fill": "#1e1e2a"
+                    },
+                    {
+                      "type": "frame",
+                      "name": "row",
+                      "layout": "horizontal",
+                      "gap": 6,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "content": "🔗",
+                          "fontSize": 13
+                        },
+                        {
+                          "type": "text",
+                          "content": "Instant link, no signup",
+                          "fontSize": 12,
+                          "fill": "#71717a"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "content": "→",
+                  "fontSize": 28,
+                  "fill": "#2a2a3a"
+                },
+                {
+                  "type": "frame",
+                  "name": "card",
+                  "layout": "vertical",
+                  "fill": "#111116",
+                  "cornerRadius": 14,
+                  "stroke": {
+                    "fill": "#1e1e2a",
+                    "thickness": 1
+                  },
+                  "padding": 24,
+                  "gap": 14,
+                  "width": 296,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "name": "step-hd3",
+                      "layout": "horizontal",
+                      "gap": 14,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "name": "step-n3",
+                          "width": 40,
+                          "height": 40,
+                          "fill": "#7c3aed",
+                          "cornerRadius": 12,
+                          "layout": "horizontal",
+                          "alignItems": "center",
+                          "justifyContent": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "content": "3",
+                              "fontSize": 18,
+                              "fontWeight": "800",
+                              "fill": "#ffffff",
+                              "textAlign": "center"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "content": "Meet",
+                          "fontSize": 18,
+                          "fontWeight": "700",
+                          "fill": "#ffffff"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "content": "Convene shows the best overlap automatically. Book the slot in one click.",
+                      "fontSize": 13,
+                      "fill": "#71717a",
+                      "width": 240
+                    },
+                    {
+                      "type": "rectangle",
+                      "width": 272,
+                      "height": 1,
+                      "fill": "#1e1e2a"
+                    },
+                    {
+                      "type": "frame",
+                      "name": "row",
+                      "layout": "horizontal",
+                      "gap": 6,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "content": "✅",
+                          "fontSize": 13
+                        },
+                        {
+                          "type": "text",
+                          "content": "Best slot auto-ranked",
+                          "fontSize": 12,
+                          "fill": "#71717a"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "name": "btn",
+              "layout": "horizontal",
+              "width": 260,
+              "height": 52,
+              "fill": "#7c3aed",
+              "cornerRadius": 10,
+              "alignItems": "center",
+              "justifyContent": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "content": "Create your first meeting →",
+                  "fontSize": 13,
+                  "fontWeight": "600",
+                  "fill": "#ffffff",
+                  "textAlign": "center"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "x": 5440,
+      "y": 0
+    }
+  ]
+}

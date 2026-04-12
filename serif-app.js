@@ -1,0 +1,371 @@
+#!/usr/bin/env node
+// SERIF — Brand Identity Intelligence
+// Inspired by: Silencio.es (godly.website) — Spanish branding studio with editorial brutalism
+//              ALL CAPS typography, REF reference codes (REF: SHH-0001),
+//              inline data tables with capability percentages, bold oversized headlines
+//              mixed with raw data in a magazine-editorial visual language
+// Theme: LIGHT (zenith.pen was dark → rotating to light)
+// Date: 2026-03-30
+
+const fs = require('fs');
+
+const pen = {
+  version: "2.8",
+  meta: {
+    name: "SERIF",
+    tagline: "Brand intelligence, typeset beautifully",
+    archetype: "brand-intelligence",
+    author: "RAM Design Heartbeat",
+    created: new Date().toISOString(),
+    theme: "light"
+  },
+  palette: {
+    // Dark palette (required, used in dark mode)
+    bg: "#0E0C0A",
+    surface: "#191714",
+    surfaceAlt: "#211E1A",
+    surfaceHover: "#2A2620",
+    text: "#F0EAE0",
+    textMuted: "rgba(240,234,224,0.40)",
+    accent: "#C94B2A",        // editorial red
+    accent2: "#4A7FA5",       // ink blue
+    accentSoft: "rgba(201,75,42,0.12)",
+    accent2Soft: "rgba(74,127,165,0.12)",
+    border: "rgba(240,234,224,0.07)",
+    borderStrong: "rgba(240,234,224,0.14)",
+    borderAccent: "rgba(201,75,42,0.30)",
+    statusGreen: "#5CB87A",
+    statusOrange: "#D48A2E",
+    statusRed: "#D95050",
+    statusGreenSoft: "rgba(92,184,122,0.12)",
+    statusOrangeSoft: "rgba(212,138,46,0.12)",
+    statusRedSoft: "rgba(217,80,80,0.12)",
+    gridLine: "rgba(240,234,224,0.03)"
+  },
+  lightPalette: {
+    // PRIMARY theme — warm editorial paper
+    bg: "#F2EDE4",
+    surface: "#FAF7F2",
+    surfaceAlt: "#EDE8DF",
+    surfaceHover: "#E6DFD4",
+    text: "#0D0B09",
+    textMuted: "rgba(13,11,9,0.42)",
+    accent: "#B83A1E",        // deep editorial red
+    accent2: "#24507A",       // dark ink blue
+    accentSoft: "rgba(184,58,30,0.08)",
+    accent2Soft: "rgba(36,80,122,0.08)",
+    border: "rgba(13,11,9,0.09)",
+    borderStrong: "rgba(13,11,9,0.18)",
+    borderAccent: "rgba(184,58,30,0.25)",
+    statusGreen: "#2E7D52",
+    statusOrange: "#A0620E",
+    statusRed: "#B83232",
+    statusGreenSoft: "rgba(46,125,82,0.09)",
+    statusOrangeSoft: "rgba(160,98,14,0.09)",
+    statusRedSoft: "rgba(184,50,50,0.09)"
+  },
+  typography: {
+    fontFamily: "'DM Serif Display', Georgia, serif",
+    sansFamily: "'DM Sans', 'Inter', system-ui, sans-serif",
+    monoFamily: "'IBM Plex Mono', 'Courier New', monospace",
+    scale: { xs: 9, sm: 11, base: 13, md: 14, lg: 18, xl: 24, xxl: 36, hero: 52 }
+  },
+  screens: [
+    // ── SCREEN 1: OVERVIEW ────────────────────────────────────────────────────
+    {
+      id: "overview",
+      label: "Overview",
+      description: "Brand health at a glance — editorial hero metric, REF code header, inline stat table",
+      components: [
+        {
+          type: "editorial-header",
+          ref: "REF: BRD-0001",
+          headline: "BRAND HEALTH",
+          sub: "QUARTERLY REVIEW — Q1 2026",
+          date: "MAR 30, 2026",
+          style: "ruled-serif"
+        },
+        {
+          type: "hero-metric-editorial",
+          label: "OVERALL BRAND SCORE",
+          value: "87",
+          unit: "/100",
+          delta: "+6 pts vs Q4",
+          deltaPositive: true,
+          note: "Composite of consistency, reach, sentiment, recall"
+        },
+        {
+          type: "editorial-divider",
+          label: "CORE METRICS"
+        },
+        {
+          type: "editorial-data-table",
+          caption: "BRAND DIMENSIONS — CURRENT QUARTER",
+          rows: [
+            { label: "VISUAL CONSISTENCY",  value: "91%",  bar: 91,  trend: "+3%" },
+            { label: "TONE OF VOICE",        value: "84%",  bar: 84,  trend: "+1%" },
+            { label: "MARKET RECOGNITION",   value: "78%",  bar: 78,  trend: "+8%" },
+            { label: "DIGITAL COHESION",     value: "88%",  bar: 88,  trend: "+2%" },
+            { label: "ASSET COMPLIANCE",     value: "95%",  bar: 95,  trend: "—" },
+            { label: "CAMPAIGN RECALL",      value: "72%",  bar: 72,  trend: "+11%" }
+          ]
+        },
+        {
+          type: "editorial-divider",
+          label: "ACTIVE BRIEFS"
+        },
+        {
+          type: "ref-card-row",
+          items: [
+            { ref: "REF: CAM-0012", title: "Spring Campaign Identity", status: "IN REVIEW", urgent: false },
+            { ref: "REF: WEB-0034", title: "Homepage Rebrand Sprint",  status: "ACTIVE",    urgent: true },
+            { ref: "REF: TYP-0007", title: "Type System Expansion",    status: "COMPLETE",  urgent: false }
+          ]
+        }
+      ]
+    },
+    // ── SCREEN 2: ASSETS ─────────────────────────────────────────────────────
+    {
+      id: "assets",
+      label: "Assets",
+      description: "Brand asset library with REF codes, version tracking, usage counts",
+      components: [
+        {
+          type: "editorial-header",
+          ref: "REF: BRD-0002",
+          headline: "ASSET LIBRARY",
+          sub: "MASTER BRAND SYSTEM — v3.2",
+          date: "218 ASSETS",
+          style: "ruled-serif"
+        },
+        {
+          type: "asset-filter-bar",
+          filters: ["ALL", "LOGO", "COLOUR", "TYPE", "MOTION", "PRINT"],
+          active: "ALL",
+          sortLabel: "MODIFIED"
+        },
+        {
+          type: "asset-grid-editorial",
+          items: [
+            {
+              ref: "REF: LOG-0001",
+              name: "Primary Wordmark",
+              type: "LOGO",
+              version: "v4.0",
+              format: "SVG / EPS / PDF",
+              usage: "1,204 uses",
+              status: "APPROVED",
+              compliance: 100
+            },
+            {
+              ref: "REF: LOG-0004",
+              name: "Icon Mark — Reversed",
+              type: "LOGO",
+              version: "v2.1",
+              format: "SVG / PNG",
+              usage: "387 uses",
+              status: "APPROVED",
+              compliance: 100
+            },
+            {
+              ref: "REF: COL-0001",
+              name: "Primary Palette",
+              type: "COLOUR",
+              version: "v3.0",
+              format: "ASE / HEX",
+              usage: "4,511 uses",
+              status: "APPROVED",
+              compliance: 98
+            },
+            {
+              ref: "REF: TYP-0001",
+              name: "Display Typeface",
+              type: "TYPE",
+              version: "v1.5",
+              format: "WOFF2 / OTF",
+              usage: "892 uses",
+              status: "REVIEW",
+              compliance: 87
+            },
+            {
+              ref: "REF: MOT-0003",
+              name: "Transition System",
+              type: "MOTION",
+              version: "v1.0",
+              format: "LOTTIE / MP4",
+              usage: "156 uses",
+              status: "APPROVED",
+              compliance: 94
+            },
+            {
+              ref: "REF: PRT-0011",
+              name: "Business Card — Full Bleed",
+              type: "PRINT",
+              version: "v2.0",
+              format: "INDD / PDF",
+              usage: "43 uses",
+              status: "APPROVED",
+              compliance: 100
+            }
+          ]
+        }
+      ]
+    },
+    // ── SCREEN 3: CHANNELS ────────────────────────────────────────────────────
+    {
+      id: "channels",
+      label: "Channels",
+      description: "Cross-channel brand consistency — editorial table layout per channel",
+      components: [
+        {
+          type: "editorial-header",
+          ref: "REF: BRD-0003",
+          headline: "CHANNEL AUDIT",
+          sub: "CROSS-PLATFORM CONSISTENCY REPORT",
+          date: "7 CHANNELS",
+          style: "ruled-serif"
+        },
+        {
+          type: "channel-consistency-table",
+          caption: "CHANNEL PERFORMANCE — BRAND COMPLIANCE",
+          channels: [
+            { name: "WEBSITE",         score: 94, issues: 2,  assets: 38, lastAudit: "TODAY",   trend: "up" },
+            { name: "SOCIAL — IG",     score: 88, issues: 5,  assets: 22, lastAudit: "2D AGO",  trend: "up" },
+            { name: "SOCIAL — LI",     score: 76, issues: 12, assets: 18, lastAudit: "5D AGO",  trend: "down" },
+            { name: "EMAIL / COMMS",   score: 91, issues: 3,  assets: 14, lastAudit: "1D AGO",  trend: "up" },
+            { name: "PRINT / OOH",     score: 83, issues: 7,  assets: 31, lastAudit: "12D AGO", trend: "flat" },
+            { name: "EVENTS / DECK",   score: 79, issues: 9,  assets: 27, lastAudit: "8D AGO",  trend: "up" },
+            { name: "PARTNER / CO-MK", score: 64, issues: 21, assets: 45, lastAudit: "21D AGO", trend: "down" }
+          ]
+        },
+        {
+          type: "editorial-insight",
+          ref: "REF: INS-0034",
+          label: "KEY FINDING",
+          text: "PARTNER CO-MARKETING shows highest non-compliance (36%). Implement asset lock on REF: LOG-0001 and mandatory brief approval for all external campaigns."
+        }
+      ]
+    },
+    // ── SCREEN 4: IDENTITY ────────────────────────────────────────────────────
+    {
+      id: "identity",
+      label: "Identity",
+      description: "Type and colour system — Silencio-style editorial display with live tokens",
+      components: [
+        {
+          type: "editorial-header",
+          ref: "REF: BRD-0004",
+          headline: "IDENTITY SYSTEM",
+          sub: "TYPE + COLOUR — MASTER TOKENS",
+          date: "v3.2",
+          style: "ruled-serif"
+        },
+        {
+          type: "type-specimen-editorial",
+          label: "DISPLAY — SERIF",
+          sample: "Bold Thinking As A Basis",
+          spec: "DM Serif Display / 52pt / −0.02em"
+        },
+        {
+          type: "type-specimen-editorial",
+          label: "BODY — SANS",
+          sample: "We never settle for a brief if we detect other opportunities.",
+          spec: "DM Sans / 14pt / 0em / 1.6 leading"
+        },
+        {
+          type: "type-specimen-editorial",
+          label: "MONO — DATA",
+          sample: "REF: BRD-0001 · v3.2 · COMPLIANCE 91%",
+          spec: "IBM Plex Mono / 11pt / 0.06em"
+        },
+        {
+          type: "editorial-divider",
+          label: "COLOUR SYSTEM"
+        },
+        {
+          type: "colour-palette-editorial",
+          swatches: [
+            { ref: "REF: COL-0001", name: "PRIMARY",      hex: "#B83A1E", usage: "CTAs, Accent, Alert" },
+            { ref: "REF: COL-0002", name: "INK",          hex: "#0D0B09", usage: "Body text, Headers" },
+            { ref: "REF: COL-0003", name: "PAPER",        hex: "#F2EDE4", usage: "Background, Canvas" },
+            { ref: "REF: COL-0004", name: "BLUE",         hex: "#24507A", usage: "Links, Secondary CTA" },
+            { ref: "REF: COL-0005", name: "SURFACE",      hex: "#FAF7F2", usage: "Cards, Panels" },
+            { ref: "REF: COL-0006", name: "MUTED",        hex: "#9E9590", usage: "Labels, Captions" }
+          ]
+        }
+      ]
+    },
+    // ── SCREEN 5: REPORTS ─────────────────────────────────────────────────────
+    {
+      id: "reports",
+      label: "Reports",
+      description: "Weekly brand health report — editorial magazine cover layout with findings",
+      components: [
+        {
+          type: "editorial-header",
+          ref: "REF: BRD-0005",
+          headline: "WEEKLY REPORT",
+          sub: "BRAND INTELLIGENCE DIGEST — WK 13",
+          date: "MAR 30, 2026",
+          style: "ruled-serif-large"
+        },
+        {
+          type: "report-hero-stat-row",
+          items: [
+            { label: "BRAND SCORE",     value: "87",    unit: "/100", change: "+6" },
+            { label: "ASSETS LIVE",     value: "218",   unit: "",     change: "+14" },
+            { label: "OPEN ISSUES",     value: "59",    unit: "",     change: "−12" },
+            { label: "CHANNEL AUDITS",  value: "7",     unit: "",     change: "0" }
+          ]
+        },
+        {
+          type: "editorial-divider",
+          label: "THIS WEEK'S FINDINGS"
+        },
+        {
+          type: "findings-list-editorial",
+          items: [
+            {
+              ref: "REF: FND-0041",
+              headline: "VISUAL CONSISTENCY REACHES NEW HIGH",
+              body: "91% compliance across all approved touchpoints — highest on record. Type system adoption drives the improvement.",
+              severity: "positive"
+            },
+            {
+              ref: "REF: FND-0042",
+              headline: "PARTNER CHANNEL CRITICAL THRESHOLD",
+              body: "64% compliance on partner co-marketing materials. 21 flagged instances. Immediate brief lockdown recommended.",
+              severity: "critical"
+            },
+            {
+              ref: "REF: FND-0043",
+              headline: "LINKEDIN DECLINING — ACTION REQUIRED",
+              body: "Social channel LinkedIn dropped 4pts this quarter. Off-brand copy detected in 12 posts. Tone guide refresh needed.",
+              severity: "warning"
+            }
+          ]
+        },
+        {
+          type: "report-next-actions",
+          caption: "NEXT 7 DAYS — ACTIONS",
+          actions: [
+            { ref: "REF: ACT-0021", label: "Lock partner asset pack to v3.2", owner: "Brand Ops",  due: "APR 2" },
+            { ref: "REF: ACT-0022", label: "LinkedIn tone audit (12 posts)",   owner: "Content",    due: "APR 4" },
+            { ref: "REF: ACT-0023", label: "Type system v1.5 review sign-off", owner: "Design Lead", due: "APR 6" }
+          ]
+        }
+      ]
+    }
+  ],
+  nav: [
+    { id: "overview",  label: "Overview",  icon: "chart" },
+    { id: "assets",    label: "Assets",    icon: "layers" },
+    { id: "channels",  label: "Channels",  icon: "grid" },
+    { id: "identity",  label: "Identity",  icon: "eye" },
+    { id: "reports",   label: "Reports",   icon: "list" }
+  ]
+};
+
+fs.writeFileSync('serif.pen', JSON.stringify(pen, null, 2));
+console.log('✓ serif.pen written —', JSON.stringify(pen).length, 'bytes');
+console.log('  Screens:', pen.screens.map(s => s.id).join(', '));

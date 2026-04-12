@@ -1,0 +1,3616 @@
+{
+  "version": "2.8",
+  "meta": {
+    "name": "Yield",
+    "slug": "yield",
+    "tagline": "Know exactly where your money comes from",
+    "description": "Revenue intelligence dashboard for indie makers — track MRR, sources, audience, and milestones in a minimal dark interface.",
+    "author": "RAM Design Heartbeat",
+    "created": "2026-03-26T12:04:39.197Z",
+    "theme": "dark",
+    "inspiration": "Midday.ai (darkmodedesign.com) + Equals GTM analytics (land-book.com) + Mixpanel (godly.website) — \"Quiet Clarity\": monospace metrics, violet/mint accent system, floating cards on near-black",
+    "tags": [
+      "finance",
+      "analytics",
+      "creator",
+      "dark",
+      "saas",
+      "dashboard",
+      "indie"
+    ]
+  },
+  "canvas": {
+    "width": 390,
+    "height": 844,
+    "platform": "mobile"
+  },
+  "palette": {
+    "bg": "#07070F",
+    "surface": "#161628",
+    "text": "#E6E3FF",
+    "accent": "#7C6FFF",
+    "accent2": "#3DFFC0",
+    "muted": "rgba(230,227,255,0.38)"
+  },
+  "screens": [
+    {
+      "id": "revenue",
+      "name": "Revenue",
+      "bg": "#07070F",
+      "elements": [
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "w": 390,
+          "h": 50,
+          "fill": "#07070F"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 18,
+          "text": "9:41",
+          "fontSize": 14,
+          "fontWeight": "600",
+          "color": "#E6E3FF"
+        },
+        {
+          "type": "text",
+          "x": 355,
+          "y": 18,
+          "text": "●●●",
+          "fontSize": 10,
+          "color": "rgba(230,227,255,0.38)"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 72,
+          "text": "March 2026",
+          "fontSize": 13,
+          "color": "rgba(230,227,255,0.38)"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 96,
+          "text": "Revenue",
+          "fontSize": 28,
+          "fontWeight": "800",
+          "color": "#E6E3FF"
+        },
+        {
+          "type": "circle",
+          "cx": 358,
+          "cy": 82,
+          "r": 18,
+          "fill": "#1E1E35"
+        },
+        {
+          "type": "text",
+          "x": 358,
+          "y": 87,
+          "text": "R",
+          "fontSize": 14,
+          "fontWeight": "700",
+          "color": "#7C6FFF",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 15,
+          "y": 111,
+          "w": 360,
+          "h": 150,
+          "rx": 23,
+          "fill": "rgba(124,111,255,0.18)",
+          "opacity": 0.4
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 112,
+          "w": 358,
+          "h": 148,
+          "rx": 22,
+          "fill": "#161628"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 112,
+          "w": 358,
+          "h": 148,
+          "rx": 22,
+          "fill": "none",
+          "stroke": "rgba(124,111,255,0.12)",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 142,
+          "text": "MONTHLY RECURRING",
+          "fontSize": 9,
+          "fontWeight": "700",
+          "color": "rgba(230,227,255,0.38)",
+          "letterSpacing": 1.8
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 188,
+          "text": "$12,840",
+          "fontSize": 44,
+          "fontWeight": "800",
+          "color": "#E6E3FF",
+          "fontFamily": "monospace"
+        },
+        {
+          "type": "rect",
+          "x": 36,
+          "y": 202,
+          "w": 70,
+          "h": 18,
+          "rx": 9,
+          "fill": "#3DFFC028"
+        },
+        {
+          "type": "text",
+          "x": 71,
+          "y": 214,
+          "text": "↑ +18.4%",
+          "fontSize": 9,
+          "fontWeight": "700",
+          "color": "#3DFFC0",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 96,
+          "y": 215,
+          "text": "vs last month",
+          "fontSize": 10,
+          "color": "rgba(230,227,255,0.38)"
+        },
+        {
+          "type": "rect",
+          "x": 232,
+          "y": 180,
+          "w": 13,
+          "h": 52,
+          "rx": 2,
+          "fill": "#7C6FFF",
+          "opacity": 0.6
+        },
+        {
+          "type": "rect",
+          "x": 247,
+          "y": 171,
+          "w": 13,
+          "h": 61,
+          "rx": 2,
+          "fill": "#7C6FFF",
+          "opacity": 0.65
+        },
+        {
+          "type": "rect",
+          "x": 262,
+          "y": 174,
+          "w": 13,
+          "h": 57.99999999999999,
+          "rx": 2,
+          "fill": "#7C6FFF",
+          "opacity": 0.7
+        },
+        {
+          "type": "rect",
+          "x": 277,
+          "y": 162,
+          "w": 13,
+          "h": 70,
+          "rx": 2,
+          "fill": "#7C6FFF",
+          "opacity": 0.75
+        },
+        {
+          "type": "rect",
+          "x": 292,
+          "y": 154,
+          "w": 13,
+          "h": 78,
+          "rx": 2,
+          "fill": "#7C6FFF",
+          "opacity": 0.8
+        },
+        {
+          "type": "rect",
+          "x": 307,
+          "y": 144,
+          "w": 13,
+          "h": 88,
+          "rx": 2,
+          "fill": "#7C6FFF",
+          "opacity": 0.85
+        },
+        {
+          "type": "rect",
+          "x": 322,
+          "y": 138,
+          "w": 13,
+          "h": 94,
+          "rx": 2,
+          "fill": "#7C6FFF",
+          "opacity": 0.9
+        },
+        {
+          "type": "rect",
+          "x": 337,
+          "y": 132,
+          "w": 13,
+          "h": 100,
+          "rx": 2,
+          "fill": "#7C6FFF",
+          "opacity": 0.95
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 272,
+          "w": 108,
+          "h": 80,
+          "rx": 16,
+          "fill": "#161628"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 272,
+          "w": 108,
+          "h": 80,
+          "rx": 16,
+          "fill": "none",
+          "stroke": "rgba(124,111,255,0.12)",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 70,
+          "y": 302,
+          "text": "$3.2K",
+          "fontSize": 18,
+          "fontWeight": "800",
+          "color": "#3DFFC0",
+          "textAnchor": "middle",
+          "fontFamily": "monospace"
+        },
+        {
+          "type": "text",
+          "x": 70,
+          "y": 320,
+          "text": "New MRR",
+          "fontSize": 9.5,
+          "color": "rgba(230,227,255,0.38)",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 140,
+          "y": 272,
+          "w": 108,
+          "h": 80,
+          "rx": 16,
+          "fill": "#161628"
+        },
+        {
+          "type": "rect",
+          "x": 140,
+          "y": 272,
+          "w": 108,
+          "h": 80,
+          "rx": 16,
+          "fill": "none",
+          "stroke": "rgba(124,111,255,0.12)",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 194,
+          "y": 302,
+          "text": "$680",
+          "fontSize": 18,
+          "fontWeight": "800",
+          "color": "#FF6B6B",
+          "textAnchor": "middle",
+          "fontFamily": "monospace"
+        },
+        {
+          "type": "text",
+          "x": 194,
+          "y": 320,
+          "text": "Churned",
+          "fontSize": 9.5,
+          "color": "rgba(230,227,255,0.38)",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 262,
+          "y": 272,
+          "w": 112,
+          "h": 80,
+          "rx": 16,
+          "fill": "#161628"
+        },
+        {
+          "type": "rect",
+          "x": 262,
+          "y": 272,
+          "w": 112,
+          "h": 80,
+          "rx": 16,
+          "fill": "none",
+          "stroke": "rgba(124,111,255,0.12)",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 318,
+          "y": 302,
+          "text": "94",
+          "fontSize": 18,
+          "fontWeight": "800",
+          "color": "#FFD166",
+          "textAnchor": "middle",
+          "fontFamily": "monospace"
+        },
+        {
+          "type": "text",
+          "x": 318,
+          "y": 320,
+          "text": "Customers",
+          "fontSize": 9.5,
+          "color": "rgba(230,227,255,0.38)",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 364,
+          "w": 358,
+          "h": 72,
+          "rx": 18,
+          "fill": "#161628"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 364,
+          "w": 358,
+          "h": 72,
+          "rx": 18,
+          "fill": "none",
+          "stroke": "rgba(124,111,255,0.12)",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 390,
+          "text": "ANNUAL RUN RATE",
+          "fontSize": 9,
+          "fontWeight": "700",
+          "color": "rgba(230,227,255,0.38)",
+          "letterSpacing": 1.5
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 418,
+          "text": "$154,080",
+          "fontSize": 26,
+          "fontWeight": "800",
+          "color": "#E6E3FF",
+          "fontFamily": "monospace"
+        },
+        {
+          "type": "text",
+          "x": 260,
+          "y": 390,
+          "text": "↑ streak",
+          "fontSize": 9,
+          "color": "#3DFFC0"
+        },
+        {
+          "type": "rect",
+          "x": 36,
+          "y": 430,
+          "w": 318,
+          "h": 4,
+          "rx": 2,
+          "fill": "#1E1E35"
+        },
+        {
+          "type": "rect",
+          "x": 36,
+          "y": 430,
+          "w": 200,
+          "h": 4,
+          "rx": 2,
+          "fill": "#7C6FFF"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 460,
+          "text": "Recent",
+          "fontSize": 16,
+          "fontWeight": "700",
+          "color": "#E6E3FF"
+        },
+        {
+          "type": "text",
+          "x": 340,
+          "y": 460,
+          "text": "See all →",
+          "fontSize": 11,
+          "color": "#7C6FFF"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 472,
+          "w": 358,
+          "h": 50,
+          "rx": 14,
+          "fill": "#161628"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 472,
+          "w": 358,
+          "h": 50,
+          "rx": 14,
+          "fill": "none",
+          "stroke": "rgba(124,111,255,0.12)",
+          "strokeWidth": 1
+        },
+        {
+          "type": "circle",
+          "cx": 50,
+          "cy": 497,
+          "r": 14,
+          "fill": "#1E1E35"
+        },
+        {
+          "type": "text",
+          "x": 50,
+          "y": 502,
+          "text": "C",
+          "fontSize": 11,
+          "fontWeight": "700",
+          "color": "#3DFFC0",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 74,
+          "y": 491,
+          "text": "Indie Course Bundle",
+          "fontSize": 12,
+          "fontWeight": "600",
+          "color": "#E6E3FF"
+        },
+        {
+          "type": "text",
+          "x": 74,
+          "y": 506,
+          "text": "2m ago",
+          "fontSize": 10,
+          "color": "rgba(230,227,255,0.38)"
+        },
+        {
+          "type": "text",
+          "x": 352,
+          "y": 502,
+          "text": "+$299",
+          "fontSize": 13,
+          "fontWeight": "700",
+          "color": "#3DFFC0",
+          "textAnchor": "end",
+          "fontFamily": "monospace"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 532,
+          "w": 358,
+          "h": 50,
+          "rx": 14,
+          "fill": "#161628"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 532,
+          "w": 358,
+          "h": 50,
+          "rx": 14,
+          "fill": "none",
+          "stroke": "rgba(124,111,255,0.12)",
+          "strokeWidth": 1
+        },
+        {
+          "type": "circle",
+          "cx": 50,
+          "cy": 557,
+          "r": 14,
+          "fill": "#1E1E35"
+        },
+        {
+          "type": "text",
+          "x": 50,
+          "y": 562,
+          "text": "S",
+          "fontSize": 11,
+          "fontWeight": "700",
+          "color": "#7C6FFF",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 74,
+          "y": 551,
+          "text": "Pro Membership · @kai",
+          "fontSize": 12,
+          "fontWeight": "600",
+          "color": "#E6E3FF"
+        },
+        {
+          "type": "text",
+          "x": 74,
+          "y": 566,
+          "text": "1h ago",
+          "fontSize": 10,
+          "color": "rgba(230,227,255,0.38)"
+        },
+        {
+          "type": "text",
+          "x": 352,
+          "y": 562,
+          "text": "+$49",
+          "fontSize": 13,
+          "fontWeight": "700",
+          "color": "#7C6FFF",
+          "textAnchor": "end",
+          "fontFamily": "monospace"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 592,
+          "w": 358,
+          "h": 50,
+          "rx": 14,
+          "fill": "#161628"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 592,
+          "w": 358,
+          "h": 50,
+          "rx": 14,
+          "fill": "none",
+          "stroke": "rgba(124,111,255,0.12)",
+          "strokeWidth": 1
+        },
+        {
+          "type": "circle",
+          "cx": 50,
+          "cy": 617,
+          "r": 14,
+          "fill": "#1E1E35"
+        },
+        {
+          "type": "text",
+          "x": 50,
+          "y": 622,
+          "text": "F",
+          "fontSize": 11,
+          "fontWeight": "700",
+          "color": "#FF6B6B",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 74,
+          "y": 611,
+          "text": "Stripe fee",
+          "fontSize": 12,
+          "fontWeight": "600",
+          "color": "#E6E3FF"
+        },
+        {
+          "type": "text",
+          "x": 74,
+          "y": 626,
+          "text": "1h ago",
+          "fontSize": 10,
+          "color": "rgba(230,227,255,0.38)"
+        },
+        {
+          "type": "text",
+          "x": 352,
+          "y": 622,
+          "text": "-$8.70",
+          "fontSize": 13,
+          "fontWeight": "700",
+          "color": "#FF6B6B",
+          "textAnchor": "end",
+          "fontFamily": "monospace"
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 790,
+          "w": 390,
+          "h": 54,
+          "fill": "#0F0F1C"
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 790,
+          "w": 390,
+          "h": 1,
+          "fill": "rgba(124,111,255,0.12)"
+        },
+        {
+          "type": "text",
+          "x": 35,
+          "y": 815,
+          "text": "◈",
+          "fontSize": 16,
+          "color": "#7C6FFF",
+          "textAnchor": "middle",
+          "fontWeight": "700"
+        },
+        {
+          "type": "text",
+          "x": 35,
+          "y": 832,
+          "text": "Revenue",
+          "fontSize": 8.5,
+          "color": "#7C6FFF",
+          "textAnchor": "middle",
+          "fontWeight": "700"
+        },
+        {
+          "type": "rect",
+          "x": 17,
+          "y": 790,
+          "w": 36,
+          "h": 2,
+          "rx": 1,
+          "fill": "#7C6FFF"
+        },
+        {
+          "type": "text",
+          "x": 115,
+          "y": 815,
+          "text": "◉",
+          "fontSize": 16,
+          "color": "rgba(230,227,255,0.38)",
+          "textAnchor": "middle",
+          "fontWeight": "400"
+        },
+        {
+          "type": "text",
+          "x": 115,
+          "y": 832,
+          "text": "Sources",
+          "fontSize": 8.5,
+          "color": "rgba(230,227,255,0.38)",
+          "textAnchor": "middle",
+          "fontWeight": "400"
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 815,
+          "text": "◎",
+          "fontSize": 16,
+          "color": "rgba(230,227,255,0.38)",
+          "textAnchor": "middle",
+          "fontWeight": "400"
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 832,
+          "text": "Audience",
+          "fontSize": 8.5,
+          "color": "rgba(230,227,255,0.38)",
+          "textAnchor": "middle",
+          "fontWeight": "400"
+        },
+        {
+          "type": "text",
+          "x": 275,
+          "y": 815,
+          "text": "≡",
+          "fontSize": 16,
+          "color": "rgba(230,227,255,0.38)",
+          "textAnchor": "middle",
+          "fontWeight": "400"
+        },
+        {
+          "type": "text",
+          "x": 275,
+          "y": 832,
+          "text": "Ledger",
+          "fontSize": 8.5,
+          "color": "rgba(230,227,255,0.38)",
+          "textAnchor": "middle",
+          "fontWeight": "400"
+        },
+        {
+          "type": "text",
+          "x": 355,
+          "y": 815,
+          "text": "◇",
+          "fontSize": 16,
+          "color": "rgba(230,227,255,0.38)",
+          "textAnchor": "middle",
+          "fontWeight": "400"
+        },
+        {
+          "type": "text",
+          "x": 355,
+          "y": 832,
+          "text": "Goals",
+          "fontSize": 8.5,
+          "color": "rgba(230,227,255,0.38)",
+          "textAnchor": "middle",
+          "fontWeight": "400"
+        }
+      ]
+    },
+    {
+      "id": "sources",
+      "name": "Sources",
+      "bg": "#07070F",
+      "elements": [
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "w": 390,
+          "h": 50,
+          "fill": "#07070F"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 18,
+          "text": "9:41",
+          "fontSize": 14,
+          "fontWeight": "600",
+          "color": "#E6E3FF"
+        },
+        {
+          "type": "text",
+          "x": 355,
+          "y": 18,
+          "text": "●●●",
+          "fontSize": 10,
+          "color": "rgba(230,227,255,0.38)"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 72,
+          "text": "Revenue",
+          "fontSize": 28,
+          "fontWeight": "800",
+          "color": "#E6E3FF"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 96,
+          "text": "by Source",
+          "fontSize": 28,
+          "fontWeight": "800",
+          "color": "#7C6FFF"
+        },
+        {
+          "type": "circle",
+          "cx": 195,
+          "cy": 200,
+          "r": 70,
+          "fill": "none",
+          "stroke": "#161628",
+          "strokeWidth": 28
+        },
+        {
+          "type": "arc",
+          "cx": 195,
+          "cy": 200,
+          "r": 70,
+          "startAngle": -90,
+          "endAngle": 110,
+          "stroke": "#7C6FFF",
+          "strokeWidth": 28,
+          "fill": "none",
+          "strokeLinecap": "butt"
+        },
+        {
+          "type": "arc",
+          "cx": 195,
+          "cy": 200,
+          "r": 70,
+          "startAngle": 110,
+          "endAngle": 218,
+          "stroke": "#3DFFC0",
+          "strokeWidth": 28,
+          "fill": "none",
+          "strokeLinecap": "butt"
+        },
+        {
+          "type": "arc",
+          "cx": 195,
+          "cy": 200,
+          "r": 70,
+          "startAngle": 218,
+          "endAngle": 270,
+          "stroke": "#FFD166",
+          "strokeWidth": 28,
+          "fill": "none",
+          "strokeLinecap": "butt"
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 196,
+          "text": "$12.8K",
+          "fontSize": 20,
+          "fontWeight": "800",
+          "color": "#E6E3FF",
+          "textAnchor": "middle",
+          "fontFamily": "monospace"
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 214,
+          "text": "total MRR",
+          "fontSize": 10,
+          "color": "rgba(230,227,255,0.38)",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 70,
+          "y": 294,
+          "w": 8,
+          "h": 8,
+          "rx": 2,
+          "fill": "#7C6FFF"
+        },
+        {
+          "type": "text",
+          "x": 86,
+          "y": 302,
+          "text": "Courses",
+          "fontSize": 12,
+          "color": "#E6E3FF",
+          "fontWeight": "500"
+        },
+        {
+          "type": "text",
+          "x": 300,
+          "y": 302,
+          "text": "$7,062",
+          "fontSize": 12,
+          "fontWeight": "700",
+          "color": "#7C6FFF",
+          "textAnchor": "end",
+          "fontFamily": "monospace"
+        },
+        {
+          "type": "text",
+          "x": 352,
+          "y": 302,
+          "text": "55%",
+          "fontSize": 11,
+          "color": "rgba(230,227,255,0.38)",
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 70,
+          "y": 330,
+          "w": 8,
+          "h": 8,
+          "rx": 2,
+          "fill": "#3DFFC0"
+        },
+        {
+          "type": "text",
+          "x": 86,
+          "y": 338,
+          "text": "Subscriptions",
+          "fontSize": 12,
+          "color": "#E6E3FF",
+          "fontWeight": "500"
+        },
+        {
+          "type": "text",
+          "x": 300,
+          "y": 338,
+          "text": "$3,852",
+          "fontSize": 12,
+          "fontWeight": "700",
+          "color": "#3DFFC0",
+          "textAnchor": "end",
+          "fontFamily": "monospace"
+        },
+        {
+          "type": "text",
+          "x": 352,
+          "y": 338,
+          "text": "30%",
+          "fontSize": 11,
+          "color": "rgba(230,227,255,0.38)",
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 70,
+          "y": 366,
+          "w": 8,
+          "h": 8,
+          "rx": 2,
+          "fill": "#FFD166"
+        },
+        {
+          "type": "text",
+          "x": 86,
+          "y": 374,
+          "text": "Consulting",
+          "fontSize": 12,
+          "color": "#E6E3FF",
+          "fontWeight": "500"
+        },
+        {
+          "type": "text",
+          "x": 300,
+          "y": 374,
+          "text": "$1,926",
+          "fontSize": 12,
+          "fontWeight": "700",
+          "color": "#FFD166",
+          "textAnchor": "end",
+          "fontFamily": "monospace"
+        },
+        {
+          "type": "text",
+          "x": 352,
+          "y": 374,
+          "text": "15%",
+          "fontSize": 11,
+          "color": "rgba(230,227,255,0.38)",
+          "textAnchor": "end"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 410,
+          "text": "By Product",
+          "fontSize": 16,
+          "fontWeight": "700",
+          "color": "#E6E3FF"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 425,
+          "w": 358,
+          "h": 50,
+          "rx": 14,
+          "fill": "#161628"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 425,
+          "w": 358,
+          "h": 50,
+          "rx": 14,
+          "fill": "none",
+          "stroke": "rgba(124,111,255,0.12)",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 444,
+          "text": "Indie OS Course",
+          "fontSize": 12,
+          "fontWeight": "600",
+          "color": "#E6E3FF"
+        },
+        {
+          "type": "text",
+          "x": 352,
+          "y": 444,
+          "text": "$4,200",
+          "fontSize": 12,
+          "fontWeight": "700",
+          "color": "#E6E3FF",
+          "textAnchor": "end",
+          "fontFamily": "monospace"
+        },
+        {
+          "type": "rect",
+          "x": 36,
+          "y": 457,
+          "w": 286,
+          "h": 3,
+          "rx": 1.5,
+          "fill": "#1E1E35"
+        },
+        {
+          "type": "rect",
+          "x": 36,
+          "y": 457,
+          "w": 243,
+          "h": 3,
+          "rx": 1.5,
+          "fill": "#7C6FFF"
+        },
+        {
+          "type": "text",
+          "x": 352,
+          "y": 461,
+          "text": "85%",
+          "fontSize": 9,
+          "color": "rgba(230,227,255,0.38)",
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 485,
+          "w": 358,
+          "h": 50,
+          "rx": 14,
+          "fill": "#161628"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 485,
+          "w": 358,
+          "h": 50,
+          "rx": 14,
+          "fill": "none",
+          "stroke": "rgba(124,111,255,0.12)",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 504,
+          "text": "Build in Public Kit",
+          "fontSize": 12,
+          "fontWeight": "600",
+          "color": "#E6E3FF"
+        },
+        {
+          "type": "text",
+          "x": 352,
+          "y": 504,
+          "text": "$2,860",
+          "fontSize": 12,
+          "fontWeight": "700",
+          "color": "#E6E3FF",
+          "textAnchor": "end",
+          "fontFamily": "monospace"
+        },
+        {
+          "type": "rect",
+          "x": 36,
+          "y": 517,
+          "w": 286,
+          "h": 3,
+          "rx": 1.5,
+          "fill": "#1E1E35"
+        },
+        {
+          "type": "rect",
+          "x": 36,
+          "y": 517,
+          "w": 166,
+          "h": 3,
+          "rx": 1.5,
+          "fill": "#7C6FFF"
+        },
+        {
+          "type": "text",
+          "x": 352,
+          "y": 521,
+          "text": "58%",
+          "fontSize": 9,
+          "color": "rgba(230,227,255,0.38)",
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 545,
+          "w": 358,
+          "h": 50,
+          "rx": 14,
+          "fill": "#161628"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 545,
+          "w": 358,
+          "h": 50,
+          "rx": 14,
+          "fill": "none",
+          "stroke": "rgba(124,111,255,0.12)",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 564,
+          "text": "Monthly Membership",
+          "fontSize": 12,
+          "fontWeight": "600",
+          "color": "#E6E3FF"
+        },
+        {
+          "type": "text",
+          "x": 352,
+          "y": 564,
+          "text": "$2,450",
+          "fontSize": 12,
+          "fontWeight": "700",
+          "color": "#E6E3FF",
+          "textAnchor": "end",
+          "fontFamily": "monospace"
+        },
+        {
+          "type": "rect",
+          "x": 36,
+          "y": 577,
+          "w": 286,
+          "h": 3,
+          "rx": 1.5,
+          "fill": "#1E1E35"
+        },
+        {
+          "type": "rect",
+          "x": 36,
+          "y": 577,
+          "w": 143,
+          "h": 3,
+          "rx": 1.5,
+          "fill": "#3DFFC0"
+        },
+        {
+          "type": "text",
+          "x": 352,
+          "y": 581,
+          "text": "50%",
+          "fontSize": 9,
+          "color": "rgba(230,227,255,0.38)",
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 605,
+          "w": 358,
+          "h": 50,
+          "rx": 14,
+          "fill": "#161628"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 605,
+          "w": 358,
+          "h": 50,
+          "rx": 14,
+          "fill": "none",
+          "stroke": "rgba(124,111,255,0.12)",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 624,
+          "text": "Design Consulting",
+          "fontSize": 12,
+          "fontWeight": "600",
+          "color": "#E6E3FF"
+        },
+        {
+          "type": "text",
+          "x": 352,
+          "y": 624,
+          "text": "$1,926",
+          "fontSize": 12,
+          "fontWeight": "700",
+          "color": "#E6E3FF",
+          "textAnchor": "end",
+          "fontFamily": "monospace"
+        },
+        {
+          "type": "rect",
+          "x": 36,
+          "y": 637,
+          "w": 286,
+          "h": 3,
+          "rx": 1.5,
+          "fill": "#1E1E35"
+        },
+        {
+          "type": "rect",
+          "x": 36,
+          "y": 637,
+          "w": 112,
+          "h": 3,
+          "rx": 1.5,
+          "fill": "#FFD166"
+        },
+        {
+          "type": "text",
+          "x": 352,
+          "y": 641,
+          "text": "39%",
+          "fontSize": 9,
+          "color": "rgba(230,227,255,0.38)",
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 665,
+          "w": 358,
+          "h": 50,
+          "rx": 14,
+          "fill": "#161628"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 665,
+          "w": 358,
+          "h": 50,
+          "rx": 14,
+          "fill": "none",
+          "stroke": "rgba(124,111,255,0.12)",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 684,
+          "text": "Templates Bundle",
+          "fontSize": 12,
+          "fontWeight": "600",
+          "color": "#E6E3FF"
+        },
+        {
+          "type": "text",
+          "x": 352,
+          "y": 684,
+          "text": "$1,404",
+          "fontSize": 12,
+          "fontWeight": "700",
+          "color": "#E6E3FF",
+          "textAnchor": "end",
+          "fontFamily": "monospace"
+        },
+        {
+          "type": "rect",
+          "x": 36,
+          "y": 697,
+          "w": 286,
+          "h": 3,
+          "rx": 1.5,
+          "fill": "#1E1E35"
+        },
+        {
+          "type": "rect",
+          "x": 36,
+          "y": 697,
+          "w": 80,
+          "h": 3,
+          "rx": 1.5,
+          "fill": "#3DFFC0"
+        },
+        {
+          "type": "text",
+          "x": 352,
+          "y": 701,
+          "text": "28%",
+          "fontSize": 9,
+          "color": "rgba(230,227,255,0.38)",
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 790,
+          "w": 390,
+          "h": 54,
+          "fill": "#0F0F1C"
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 790,
+          "w": 390,
+          "h": 1,
+          "fill": "rgba(124,111,255,0.12)"
+        },
+        {
+          "type": "text",
+          "x": 35,
+          "y": 815,
+          "text": "◈",
+          "fontSize": 16,
+          "color": "rgba(230,227,255,0.38)",
+          "textAnchor": "middle",
+          "fontWeight": "400"
+        },
+        {
+          "type": "text",
+          "x": 35,
+          "y": 832,
+          "text": "Revenue",
+          "fontSize": 8.5,
+          "color": "rgba(230,227,255,0.38)",
+          "textAnchor": "middle",
+          "fontWeight": "400"
+        },
+        {
+          "type": "text",
+          "x": 115,
+          "y": 815,
+          "text": "◉",
+          "fontSize": 16,
+          "color": "#7C6FFF",
+          "textAnchor": "middle",
+          "fontWeight": "700"
+        },
+        {
+          "type": "text",
+          "x": 115,
+          "y": 832,
+          "text": "Sources",
+          "fontSize": 8.5,
+          "color": "#7C6FFF",
+          "textAnchor": "middle",
+          "fontWeight": "700"
+        },
+        {
+          "type": "rect",
+          "x": 97,
+          "y": 790,
+          "w": 36,
+          "h": 2,
+          "rx": 1,
+          "fill": "#7C6FFF"
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 815,
+          "text": "◎",
+          "fontSize": 16,
+          "color": "rgba(230,227,255,0.38)",
+          "textAnchor": "middle",
+          "fontWeight": "400"
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 832,
+          "text": "Audience",
+          "fontSize": 8.5,
+          "color": "rgba(230,227,255,0.38)",
+          "textAnchor": "middle",
+          "fontWeight": "400"
+        },
+        {
+          "type": "text",
+          "x": 275,
+          "y": 815,
+          "text": "≡",
+          "fontSize": 16,
+          "color": "rgba(230,227,255,0.38)",
+          "textAnchor": "middle",
+          "fontWeight": "400"
+        },
+        {
+          "type": "text",
+          "x": 275,
+          "y": 832,
+          "text": "Ledger",
+          "fontSize": 8.5,
+          "color": "rgba(230,227,255,0.38)",
+          "textAnchor": "middle",
+          "fontWeight": "400"
+        },
+        {
+          "type": "text",
+          "x": 355,
+          "y": 815,
+          "text": "◇",
+          "fontSize": 16,
+          "color": "rgba(230,227,255,0.38)",
+          "textAnchor": "middle",
+          "fontWeight": "400"
+        },
+        {
+          "type": "text",
+          "x": 355,
+          "y": 832,
+          "text": "Goals",
+          "fontSize": 8.5,
+          "color": "rgba(230,227,255,0.38)",
+          "textAnchor": "middle",
+          "fontWeight": "400"
+        }
+      ]
+    },
+    {
+      "id": "audience",
+      "name": "Audience",
+      "bg": "#07070F",
+      "elements": [
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "w": 390,
+          "h": 50,
+          "fill": "#07070F"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 18,
+          "text": "9:41",
+          "fontSize": 14,
+          "fontWeight": "600",
+          "color": "#E6E3FF"
+        },
+        {
+          "type": "text",
+          "x": 355,
+          "y": 18,
+          "text": "●●●",
+          "fontSize": 10,
+          "color": "rgba(230,227,255,0.38)"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 72,
+          "text": "Audience",
+          "fontSize": 28,
+          "fontWeight": "800",
+          "color": "#E6E3FF"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 96,
+          "text": "Growth",
+          "fontSize": 28,
+          "fontWeight": "800",
+          "color": "#3DFFC0"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 112,
+          "w": 358,
+          "h": 110,
+          "rx": 22,
+          "fill": "#161628"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 112,
+          "w": 358,
+          "h": 110,
+          "rx": 22,
+          "fill": "none",
+          "stroke": "rgba(124,111,255,0.12)",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 140,
+          "text": "TOTAL REACH",
+          "fontSize": 9,
+          "fontWeight": "700",
+          "color": "rgba(230,227,255,0.38)",
+          "letterSpacing": 1.5
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 180,
+          "text": "47,820",
+          "fontSize": 40,
+          "fontWeight": "800",
+          "color": "#E6E3FF",
+          "fontFamily": "monospace"
+        },
+        {
+          "type": "rect",
+          "x": 36,
+          "y": 192,
+          "w": 147,
+          "h": 18,
+          "rx": 9,
+          "fill": "#3DFFC028"
+        },
+        {
+          "type": "text",
+          "x": 109.5,
+          "y": 204,
+          "text": "↑ +2,310 this month",
+          "fontSize": 9,
+          "fontWeight": "700",
+          "color": "#3DFFC0",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 250,
+          "y": 155,
+          "w": 11.75,
+          "h": 45,
+          "rx": 2,
+          "fill": "#3DFFC0",
+          "opacity": 0.6
+        },
+        {
+          "type": "rect",
+          "x": 263.75,
+          "y": 151.25,
+          "w": 11.75,
+          "h": 48.75,
+          "rx": 2,
+          "fill": "#3DFFC0",
+          "opacity": 0.65
+        },
+        {
+          "type": "rect",
+          "x": 277.5,
+          "y": 146,
+          "w": 11.75,
+          "h": 54,
+          "rx": 2,
+          "fill": "#3DFFC0",
+          "opacity": 0.7
+        },
+        {
+          "type": "rect",
+          "x": 291.25,
+          "y": 149,
+          "w": 11.75,
+          "h": 51.00000000000001,
+          "rx": 2,
+          "fill": "#3DFFC0",
+          "opacity": 0.75
+        },
+        {
+          "type": "rect",
+          "x": 305,
+          "y": 140,
+          "w": 11.75,
+          "h": 60,
+          "rx": 2,
+          "fill": "#3DFFC0",
+          "opacity": 0.8
+        },
+        {
+          "type": "rect",
+          "x": 318.75,
+          "y": 134,
+          "w": 11.75,
+          "h": 66,
+          "rx": 2,
+          "fill": "#3DFFC0",
+          "opacity": 0.85
+        },
+        {
+          "type": "rect",
+          "x": 332.5,
+          "y": 128.75,
+          "w": 11.75,
+          "h": 71.25,
+          "rx": 2,
+          "fill": "#3DFFC0",
+          "opacity": 0.9
+        },
+        {
+          "type": "rect",
+          "x": 346.25,
+          "y": 125,
+          "w": 11.75,
+          "h": 75,
+          "rx": 2,
+          "fill": "#3DFFC0",
+          "opacity": 0.95
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 242,
+          "text": "Platforms",
+          "fontSize": 16,
+          "fontWeight": "700",
+          "color": "#E6E3FF"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 256,
+          "w": 358,
+          "h": 58,
+          "rx": 16,
+          "fill": "#161628"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 256,
+          "w": 358,
+          "h": 58,
+          "rx": 16,
+          "fill": "none",
+          "stroke": "rgba(124,111,255,0.12)",
+          "strokeWidth": 1
+        },
+        {
+          "type": "circle",
+          "cx": 50,
+          "cy": 285,
+          "r": 16,
+          "fill": "#1E1E35"
+        },
+        {
+          "type": "text",
+          "x": 50,
+          "y": 290,
+          "text": "✉",
+          "fontSize": 12,
+          "color": "#7C6FFF",
+          "textAnchor": "middle",
+          "fontWeight": "700"
+        },
+        {
+          "type": "text",
+          "x": 76,
+          "y": 278,
+          "text": "Newsletter",
+          "fontSize": 13,
+          "fontWeight": "700",
+          "color": "#E6E3FF"
+        },
+        {
+          "type": "text",
+          "x": 76,
+          "y": 294,
+          "text": "18,420 followers",
+          "fontSize": 10,
+          "color": "rgba(230,227,255,0.38)"
+        },
+        {
+          "type": "rect",
+          "x": 76,
+          "y": 300,
+          "w": 200,
+          "h": 3,
+          "rx": 1.5,
+          "fill": "#1E1E35"
+        },
+        {
+          "type": "rect",
+          "x": 76,
+          "y": 300,
+          "w": 160,
+          "h": 3,
+          "rx": 1.5,
+          "fill": "#7C6FFF"
+        },
+        {
+          "type": "text",
+          "x": 352,
+          "y": 281,
+          "text": "+840",
+          "fontSize": 12,
+          "fontWeight": "700",
+          "color": "#3DFFC0",
+          "textAnchor": "end",
+          "fontFamily": "monospace"
+        },
+        {
+          "type": "text",
+          "x": 352,
+          "y": 297,
+          "text": "this mo.",
+          "fontSize": 9,
+          "color": "rgba(230,227,255,0.38)",
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 324,
+          "w": 358,
+          "h": 58,
+          "rx": 16,
+          "fill": "#161628"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 324,
+          "w": 358,
+          "h": 58,
+          "rx": 16,
+          "fill": "none",
+          "stroke": "rgba(124,111,255,0.12)",
+          "strokeWidth": 1
+        },
+        {
+          "type": "circle",
+          "cx": 50,
+          "cy": 353,
+          "r": 16,
+          "fill": "#1E1E35"
+        },
+        {
+          "type": "text",
+          "x": 50,
+          "y": 358,
+          "text": "𝕏",
+          "fontSize": 12,
+          "color": "rgba(230,227,255,0.38)",
+          "textAnchor": "middle",
+          "fontWeight": "700"
+        },
+        {
+          "type": "text",
+          "x": 76,
+          "y": 346,
+          "text": "Twitter / X",
+          "fontSize": 13,
+          "fontWeight": "700",
+          "color": "#E6E3FF"
+        },
+        {
+          "type": "text",
+          "x": 76,
+          "y": 362,
+          "text": "14,200 followers",
+          "fontSize": 10,
+          "color": "rgba(230,227,255,0.38)"
+        },
+        {
+          "type": "rect",
+          "x": 76,
+          "y": 368,
+          "w": 200,
+          "h": 3,
+          "rx": 1.5,
+          "fill": "#1E1E35"
+        },
+        {
+          "type": "rect",
+          "x": 76,
+          "y": 368,
+          "w": 120,
+          "h": 3,
+          "rx": 1.5,
+          "fill": "rgba(230,227,255,0.38)"
+        },
+        {
+          "type": "text",
+          "x": 352,
+          "y": 349,
+          "text": "+620",
+          "fontSize": 12,
+          "fontWeight": "700",
+          "color": "#3DFFC0",
+          "textAnchor": "end",
+          "fontFamily": "monospace"
+        },
+        {
+          "type": "text",
+          "x": 352,
+          "y": 365,
+          "text": "this mo.",
+          "fontSize": 9,
+          "color": "rgba(230,227,255,0.38)",
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 392,
+          "w": 358,
+          "h": 58,
+          "rx": 16,
+          "fill": "#161628"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 392,
+          "w": 358,
+          "h": 58,
+          "rx": 16,
+          "fill": "none",
+          "stroke": "rgba(124,111,255,0.12)",
+          "strokeWidth": 1
+        },
+        {
+          "type": "circle",
+          "cx": 50,
+          "cy": 421,
+          "r": 16,
+          "fill": "#1E1E35"
+        },
+        {
+          "type": "text",
+          "x": 50,
+          "y": 426,
+          "text": "▷",
+          "fontSize": 12,
+          "color": "#FF6B6B",
+          "textAnchor": "middle",
+          "fontWeight": "700"
+        },
+        {
+          "type": "text",
+          "x": 76,
+          "y": 414,
+          "text": "YouTube",
+          "fontSize": 13,
+          "fontWeight": "700",
+          "color": "#E6E3FF"
+        },
+        {
+          "type": "text",
+          "x": 76,
+          "y": 430,
+          "text": "9,100 followers",
+          "fontSize": 10,
+          "color": "rgba(230,227,255,0.38)"
+        },
+        {
+          "type": "rect",
+          "x": 76,
+          "y": 436,
+          "w": 200,
+          "h": 3,
+          "rx": 1.5,
+          "fill": "#1E1E35"
+        },
+        {
+          "type": "rect",
+          "x": 76,
+          "y": 436,
+          "w": 80,
+          "h": 3,
+          "rx": 1.5,
+          "fill": "#FF6B6B"
+        },
+        {
+          "type": "text",
+          "x": 352,
+          "y": 417,
+          "text": "+390",
+          "fontSize": 12,
+          "fontWeight": "700",
+          "color": "#3DFFC0",
+          "textAnchor": "end",
+          "fontFamily": "monospace"
+        },
+        {
+          "type": "text",
+          "x": 352,
+          "y": 433,
+          "text": "this mo.",
+          "fontSize": 9,
+          "color": "rgba(230,227,255,0.38)",
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 460,
+          "w": 358,
+          "h": 58,
+          "rx": 16,
+          "fill": "#161628"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 460,
+          "w": 358,
+          "h": 58,
+          "rx": 16,
+          "fill": "none",
+          "stroke": "rgba(124,111,255,0.12)",
+          "strokeWidth": 1
+        },
+        {
+          "type": "circle",
+          "cx": 50,
+          "cy": 489,
+          "r": 16,
+          "fill": "#1E1E35"
+        },
+        {
+          "type": "text",
+          "x": 50,
+          "y": 494,
+          "text": "in",
+          "fontSize": 12,
+          "color": "#0A66C2",
+          "textAnchor": "middle",
+          "fontWeight": "700"
+        },
+        {
+          "type": "text",
+          "x": 76,
+          "y": 482,
+          "text": "LinkedIn",
+          "fontSize": 13,
+          "fontWeight": "700",
+          "color": "#E6E3FF"
+        },
+        {
+          "type": "text",
+          "x": 76,
+          "y": 498,
+          "text": "6,100 followers",
+          "fontSize": 10,
+          "color": "rgba(230,227,255,0.38)"
+        },
+        {
+          "type": "rect",
+          "x": 76,
+          "y": 504,
+          "w": 200,
+          "h": 3,
+          "rx": 1.5,
+          "fill": "#1E1E35"
+        },
+        {
+          "type": "rect",
+          "x": 76,
+          "y": 504,
+          "w": 52,
+          "h": 3,
+          "rx": 1.5,
+          "fill": "#0A66C2"
+        },
+        {
+          "type": "text",
+          "x": 352,
+          "y": 485,
+          "text": "+460",
+          "fontSize": 12,
+          "fontWeight": "700",
+          "color": "#3DFFC0",
+          "textAnchor": "end",
+          "fontFamily": "monospace"
+        },
+        {
+          "type": "text",
+          "x": 352,
+          "y": 501,
+          "text": "this mo.",
+          "fontSize": 9,
+          "color": "rgba(230,227,255,0.38)",
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 534,
+          "w": 358,
+          "h": 65,
+          "rx": 18,
+          "fill": "#161628"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 534,
+          "w": 358,
+          "h": 65,
+          "rx": 18,
+          "fill": "none",
+          "stroke": "rgba(124,111,255,0.12)",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 560,
+          "text": "AVG OPEN RATE (NEWSLETTER)",
+          "fontSize": 9,
+          "fontWeight": "700",
+          "color": "rgba(230,227,255,0.38)",
+          "letterSpacing": 1.2
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 588,
+          "text": "42.7%",
+          "fontSize": 26,
+          "fontWeight": "800",
+          "color": "#FFD166",
+          "fontFamily": "monospace"
+        },
+        {
+          "type": "text",
+          "x": 170,
+          "y": 588,
+          "text": "↑ industry avg: 21%",
+          "fontSize": 11,
+          "color": "#3DFFC0"
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 790,
+          "w": 390,
+          "h": 54,
+          "fill": "#0F0F1C"
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 790,
+          "w": 390,
+          "h": 1,
+          "fill": "rgba(124,111,255,0.12)"
+        },
+        {
+          "type": "text",
+          "x": 35,
+          "y": 815,
+          "text": "◈",
+          "fontSize": 16,
+          "color": "rgba(230,227,255,0.38)",
+          "textAnchor": "middle",
+          "fontWeight": "400"
+        },
+        {
+          "type": "text",
+          "x": 35,
+          "y": 832,
+          "text": "Revenue",
+          "fontSize": 8.5,
+          "color": "rgba(230,227,255,0.38)",
+          "textAnchor": "middle",
+          "fontWeight": "400"
+        },
+        {
+          "type": "text",
+          "x": 115,
+          "y": 815,
+          "text": "◉",
+          "fontSize": 16,
+          "color": "rgba(230,227,255,0.38)",
+          "textAnchor": "middle",
+          "fontWeight": "400"
+        },
+        {
+          "type": "text",
+          "x": 115,
+          "y": 832,
+          "text": "Sources",
+          "fontSize": 8.5,
+          "color": "rgba(230,227,255,0.38)",
+          "textAnchor": "middle",
+          "fontWeight": "400"
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 815,
+          "text": "◎",
+          "fontSize": 16,
+          "color": "#7C6FFF",
+          "textAnchor": "middle",
+          "fontWeight": "700"
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 832,
+          "text": "Audience",
+          "fontSize": 8.5,
+          "color": "#7C6FFF",
+          "textAnchor": "middle",
+          "fontWeight": "700"
+        },
+        {
+          "type": "rect",
+          "x": 177,
+          "y": 790,
+          "w": 36,
+          "h": 2,
+          "rx": 1,
+          "fill": "#7C6FFF"
+        },
+        {
+          "type": "text",
+          "x": 275,
+          "y": 815,
+          "text": "≡",
+          "fontSize": 16,
+          "color": "rgba(230,227,255,0.38)",
+          "textAnchor": "middle",
+          "fontWeight": "400"
+        },
+        {
+          "type": "text",
+          "x": 275,
+          "y": 832,
+          "text": "Ledger",
+          "fontSize": 8.5,
+          "color": "rgba(230,227,255,0.38)",
+          "textAnchor": "middle",
+          "fontWeight": "400"
+        },
+        {
+          "type": "text",
+          "x": 355,
+          "y": 815,
+          "text": "◇",
+          "fontSize": 16,
+          "color": "rgba(230,227,255,0.38)",
+          "textAnchor": "middle",
+          "fontWeight": "400"
+        },
+        {
+          "type": "text",
+          "x": 355,
+          "y": 832,
+          "text": "Goals",
+          "fontSize": 8.5,
+          "color": "rgba(230,227,255,0.38)",
+          "textAnchor": "middle",
+          "fontWeight": "400"
+        }
+      ]
+    },
+    {
+      "id": "txns",
+      "name": "Ledger",
+      "bg": "#07070F",
+      "elements": [
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "w": 390,
+          "h": 50,
+          "fill": "#07070F"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 18,
+          "text": "9:41",
+          "fontSize": 14,
+          "fontWeight": "600",
+          "color": "#E6E3FF"
+        },
+        {
+          "type": "text",
+          "x": 355,
+          "y": 18,
+          "text": "●●●",
+          "fontSize": 10,
+          "color": "rgba(230,227,255,0.38)"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 72,
+          "text": "Ledger",
+          "fontSize": 28,
+          "fontWeight": "800",
+          "color": "#E6E3FF"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 86,
+          "w": 64,
+          "h": 24,
+          "rx": 12,
+          "fill": "#7C6FFF"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 86,
+          "w": 64,
+          "h": 24,
+          "rx": 12,
+          "fill": "none",
+          "stroke": "#7C6FFF",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 52,
+          "y": 102,
+          "text": "All",
+          "fontSize": 10,
+          "fontWeight": "600",
+          "color": "#FFFFFF",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 92,
+          "y": 86,
+          "w": 64,
+          "h": 24,
+          "rx": 12,
+          "fill": "#161628"
+        },
+        {
+          "type": "rect",
+          "x": 92,
+          "y": 86,
+          "w": 64,
+          "h": 24,
+          "rx": 12,
+          "fill": "none",
+          "stroke": "rgba(124,111,255,0.12)",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 124,
+          "y": 102,
+          "text": "Income",
+          "fontSize": 10,
+          "fontWeight": "600",
+          "color": "rgba(230,227,255,0.38)",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 164,
+          "y": 86,
+          "w": 64,
+          "h": 24,
+          "rx": 12,
+          "fill": "#161628"
+        },
+        {
+          "type": "rect",
+          "x": 164,
+          "y": 86,
+          "w": 64,
+          "h": 24,
+          "rx": 12,
+          "fill": "none",
+          "stroke": "rgba(124,111,255,0.12)",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 196,
+          "y": 102,
+          "text": "Fees",
+          "fontSize": 10,
+          "fontWeight": "600",
+          "color": "rgba(230,227,255,0.38)",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 236,
+          "y": 86,
+          "w": 64,
+          "h": 24,
+          "rx": 12,
+          "fill": "#161628"
+        },
+        {
+          "type": "rect",
+          "x": 236,
+          "y": 86,
+          "w": 64,
+          "h": 24,
+          "rx": 12,
+          "fill": "none",
+          "stroke": "rgba(124,111,255,0.12)",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 268,
+          "y": 102,
+          "text": "Refunds",
+          "fontSize": 10,
+          "fontWeight": "600",
+          "color": "rgba(230,227,255,0.38)",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 134,
+          "text": "TODAY",
+          "fontSize": 9,
+          "fontWeight": "700",
+          "color": "rgba(230,227,255,0.38)",
+          "letterSpacing": 1.5
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 144,
+          "w": 358,
+          "h": 54,
+          "rx": 14,
+          "fill": "#161628"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 144,
+          "w": 358,
+          "h": 54,
+          "rx": 14,
+          "fill": "none",
+          "stroke": "rgba(124,111,255,0.12)",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rect",
+          "x": 36,
+          "y": 154,
+          "w": 34,
+          "h": 34,
+          "rx": 10,
+          "fill": "#1E1E35"
+        },
+        {
+          "type": "text",
+          "x": 53,
+          "y": 176,
+          "text": "↑",
+          "fontSize": 16,
+          "color": "#3DFFC0",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 80,
+          "y": 168,
+          "text": "Indie OS Course",
+          "fontSize": 12,
+          "fontWeight": "600",
+          "color": "#E6E3FF"
+        },
+        {
+          "type": "text",
+          "x": 80,
+          "y": 182,
+          "text": "One-time purchase · Gumroad",
+          "fontSize": 9.5,
+          "color": "rgba(230,227,255,0.38)"
+        },
+        {
+          "type": "text",
+          "x": 352,
+          "y": 176,
+          "text": "+$299",
+          "fontSize": 13,
+          "fontWeight": "700",
+          "color": "#3DFFC0",
+          "textAnchor": "end",
+          "fontFamily": "monospace"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 208,
+          "w": 358,
+          "h": 54,
+          "rx": 14,
+          "fill": "#161628"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 208,
+          "w": 358,
+          "h": 54,
+          "rx": 14,
+          "fill": "none",
+          "stroke": "rgba(124,111,255,0.12)",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rect",
+          "x": 36,
+          "y": 218,
+          "w": 34,
+          "h": 34,
+          "rx": 10,
+          "fill": "#1E1E35"
+        },
+        {
+          "type": "text",
+          "x": 53,
+          "y": 240,
+          "text": "↑",
+          "fontSize": 16,
+          "color": "#3DFFC0",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 80,
+          "y": 232,
+          "text": "Pro Membership",
+          "fontSize": 12,
+          "fontWeight": "600",
+          "color": "#E6E3FF"
+        },
+        {
+          "type": "text",
+          "x": 80,
+          "y": 246,
+          "text": "Monthly renewal · @kai_builds",
+          "fontSize": 9.5,
+          "color": "rgba(230,227,255,0.38)"
+        },
+        {
+          "type": "text",
+          "x": 352,
+          "y": 240,
+          "text": "+$49",
+          "fontSize": 13,
+          "fontWeight": "700",
+          "color": "#3DFFC0",
+          "textAnchor": "end",
+          "fontFamily": "monospace"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 272,
+          "w": 358,
+          "h": 54,
+          "rx": 14,
+          "fill": "#161628"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 272,
+          "w": 358,
+          "h": 54,
+          "rx": 14,
+          "fill": "none",
+          "stroke": "rgba(124,111,255,0.12)",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rect",
+          "x": 36,
+          "y": 282,
+          "w": 34,
+          "h": 34,
+          "rx": 10,
+          "fill": "#1E1E35"
+        },
+        {
+          "type": "text",
+          "x": 53,
+          "y": 304,
+          "text": "↓",
+          "fontSize": 16,
+          "color": "#FF6B6B",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 80,
+          "y": 296,
+          "text": "Stripe Processing",
+          "fontSize": 12,
+          "fontWeight": "600",
+          "color": "#E6E3FF"
+        },
+        {
+          "type": "text",
+          "x": 80,
+          "y": 310,
+          "text": "2.9% + 30¢ fee",
+          "fontSize": 9.5,
+          "color": "rgba(230,227,255,0.38)"
+        },
+        {
+          "type": "text",
+          "x": 352,
+          "y": 304,
+          "text": "-$8.98",
+          "fontSize": 13,
+          "fontWeight": "700",
+          "color": "#FF6B6B",
+          "textAnchor": "end",
+          "fontFamily": "monospace"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 364,
+          "text": "YESTERDAY",
+          "fontSize": 9,
+          "fontWeight": "700",
+          "color": "rgba(230,227,255,0.38)",
+          "letterSpacing": 1.5
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 374,
+          "w": 358,
+          "h": 54,
+          "rx": 14,
+          "fill": "#161628"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 374,
+          "w": 358,
+          "h": 54,
+          "rx": 14,
+          "fill": "none",
+          "stroke": "rgba(124,111,255,0.12)",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rect",
+          "x": 36,
+          "y": 384,
+          "w": 34,
+          "h": 34,
+          "rx": 10,
+          "fill": "#1E1E35"
+        },
+        {
+          "type": "text",
+          "x": 53,
+          "y": 406,
+          "text": "↑",
+          "fontSize": 16,
+          "color": "#3DFFC0",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 80,
+          "y": 398,
+          "text": "Template Pack Sale",
+          "fontSize": 12,
+          "fontWeight": "600",
+          "color": "#E6E3FF"
+        },
+        {
+          "type": "text",
+          "x": 80,
+          "y": 412,
+          "text": "Lemon Squeezy · @uxstudio",
+          "fontSize": 9.5,
+          "color": "rgba(230,227,255,0.38)"
+        },
+        {
+          "type": "text",
+          "x": 352,
+          "y": 406,
+          "text": "+$79",
+          "fontSize": 13,
+          "fontWeight": "700",
+          "color": "#3DFFC0",
+          "textAnchor": "end",
+          "fontFamily": "monospace"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 438,
+          "w": 358,
+          "h": 54,
+          "rx": 14,
+          "fill": "#161628"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 438,
+          "w": 358,
+          "h": 54,
+          "rx": 14,
+          "fill": "none",
+          "stroke": "rgba(124,111,255,0.12)",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rect",
+          "x": 36,
+          "y": 448,
+          "w": 34,
+          "h": 34,
+          "rx": 10,
+          "fill": "#1E1E35"
+        },
+        {
+          "type": "text",
+          "x": 53,
+          "y": 470,
+          "text": "↑",
+          "fontSize": 16,
+          "color": "#3DFFC0",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 80,
+          "y": 462,
+          "text": "Design Consultation",
+          "fontSize": 12,
+          "fontWeight": "600",
+          "color": "#E6E3FF"
+        },
+        {
+          "type": "text",
+          "x": 80,
+          "y": 476,
+          "text": "2hr session · @growthco",
+          "fontSize": 9.5,
+          "color": "rgba(230,227,255,0.38)"
+        },
+        {
+          "type": "text",
+          "x": 352,
+          "y": 470,
+          "text": "+$300",
+          "fontSize": 13,
+          "fontWeight": "700",
+          "color": "#3DFFC0",
+          "textAnchor": "end",
+          "fontFamily": "monospace"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 502,
+          "w": 358,
+          "h": 54,
+          "rx": 14,
+          "fill": "#161628"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 502,
+          "w": 358,
+          "h": 54,
+          "rx": 14,
+          "fill": "none",
+          "stroke": "rgba(124,111,255,0.12)",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rect",
+          "x": 36,
+          "y": 512,
+          "w": 34,
+          "h": 34,
+          "rx": 10,
+          "fill": "#1E1E35"
+        },
+        {
+          "type": "text",
+          "x": 53,
+          "y": 534,
+          "text": "↓",
+          "fontSize": 16,
+          "color": "#FF6B6B",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 80,
+          "y": 526,
+          "text": "Refund · @anon_user",
+          "fontSize": 12,
+          "fontWeight": "600",
+          "color": "#E6E3FF"
+        },
+        {
+          "type": "text",
+          "x": 80,
+          "y": 540,
+          "text": "Requested within 30 days",
+          "fontSize": 9.5,
+          "color": "rgba(230,227,255,0.38)"
+        },
+        {
+          "type": "text",
+          "x": 352,
+          "y": 534,
+          "text": "-$49",
+          "fontSize": 13,
+          "fontWeight": "700",
+          "color": "#FF6B6B",
+          "textAnchor": "end",
+          "fontFamily": "monospace"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 566,
+          "w": 358,
+          "h": 54,
+          "rx": 14,
+          "fill": "#161628"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 566,
+          "w": 358,
+          "h": 54,
+          "rx": 14,
+          "fill": "none",
+          "stroke": "rgba(124,111,255,0.12)",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rect",
+          "x": 36,
+          "y": 576,
+          "w": 34,
+          "h": 34,
+          "rx": 10,
+          "fill": "#1E1E35"
+        },
+        {
+          "type": "text",
+          "x": 53,
+          "y": 598,
+          "text": "↓",
+          "fontSize": 16,
+          "color": "#FF6B6B",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 80,
+          "y": 590,
+          "text": "Lemon Squeezy fee",
+          "fontSize": 12,
+          "fontWeight": "600",
+          "color": "#E6E3FF"
+        },
+        {
+          "type": "text",
+          "x": 80,
+          "y": 604,
+          "text": "3.5% + 30¢",
+          "fontSize": 9.5,
+          "color": "rgba(230,227,255,0.38)"
+        },
+        {
+          "type": "text",
+          "x": 352,
+          "y": 598,
+          "text": "-$5.59",
+          "fontSize": 13,
+          "fontWeight": "700",
+          "color": "#FF6B6B",
+          "textAnchor": "end",
+          "fontFamily": "monospace"
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 790,
+          "w": 390,
+          "h": 54,
+          "fill": "#0F0F1C"
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 790,
+          "w": 390,
+          "h": 1,
+          "fill": "rgba(124,111,255,0.12)"
+        },
+        {
+          "type": "text",
+          "x": 35,
+          "y": 815,
+          "text": "◈",
+          "fontSize": 16,
+          "color": "rgba(230,227,255,0.38)",
+          "textAnchor": "middle",
+          "fontWeight": "400"
+        },
+        {
+          "type": "text",
+          "x": 35,
+          "y": 832,
+          "text": "Revenue",
+          "fontSize": 8.5,
+          "color": "rgba(230,227,255,0.38)",
+          "textAnchor": "middle",
+          "fontWeight": "400"
+        },
+        {
+          "type": "text",
+          "x": 115,
+          "y": 815,
+          "text": "◉",
+          "fontSize": 16,
+          "color": "rgba(230,227,255,0.38)",
+          "textAnchor": "middle",
+          "fontWeight": "400"
+        },
+        {
+          "type": "text",
+          "x": 115,
+          "y": 832,
+          "text": "Sources",
+          "fontSize": 8.5,
+          "color": "rgba(230,227,255,0.38)",
+          "textAnchor": "middle",
+          "fontWeight": "400"
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 815,
+          "text": "◎",
+          "fontSize": 16,
+          "color": "rgba(230,227,255,0.38)",
+          "textAnchor": "middle",
+          "fontWeight": "400"
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 832,
+          "text": "Audience",
+          "fontSize": 8.5,
+          "color": "rgba(230,227,255,0.38)",
+          "textAnchor": "middle",
+          "fontWeight": "400"
+        },
+        {
+          "type": "text",
+          "x": 275,
+          "y": 815,
+          "text": "≡",
+          "fontSize": 16,
+          "color": "#7C6FFF",
+          "textAnchor": "middle",
+          "fontWeight": "700"
+        },
+        {
+          "type": "text",
+          "x": 275,
+          "y": 832,
+          "text": "Ledger",
+          "fontSize": 8.5,
+          "color": "#7C6FFF",
+          "textAnchor": "middle",
+          "fontWeight": "700"
+        },
+        {
+          "type": "rect",
+          "x": 257,
+          "y": 790,
+          "w": 36,
+          "h": 2,
+          "rx": 1,
+          "fill": "#7C6FFF"
+        },
+        {
+          "type": "text",
+          "x": 355,
+          "y": 815,
+          "text": "◇",
+          "fontSize": 16,
+          "color": "rgba(230,227,255,0.38)",
+          "textAnchor": "middle",
+          "fontWeight": "400"
+        },
+        {
+          "type": "text",
+          "x": 355,
+          "y": 832,
+          "text": "Goals",
+          "fontSize": 8.5,
+          "color": "rgba(230,227,255,0.38)",
+          "textAnchor": "middle",
+          "fontWeight": "400"
+        }
+      ]
+    },
+    {
+      "id": "goals",
+      "name": "Goals",
+      "bg": "#07070F",
+      "elements": [
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "w": 390,
+          "h": 50,
+          "fill": "#07070F"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 18,
+          "text": "9:41",
+          "fontSize": 14,
+          "fontWeight": "600",
+          "color": "#E6E3FF"
+        },
+        {
+          "type": "text",
+          "x": 355,
+          "y": 18,
+          "text": "●●●",
+          "fontSize": 10,
+          "color": "rgba(230,227,255,0.38)"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 72,
+          "text": "Goals",
+          "fontSize": 28,
+          "fontWeight": "800",
+          "color": "#E6E3FF"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 96,
+          "text": "Milestones",
+          "fontSize": 28,
+          "fontWeight": "800",
+          "color": "#FFD166"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 112,
+          "w": 358,
+          "h": 180,
+          "rx": 22,
+          "fill": "#161628"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 112,
+          "w": 358,
+          "h": 180,
+          "rx": 22,
+          "fill": "none",
+          "stroke": "rgba(124,111,255,0.12)",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 142,
+          "text": "ACTIVE GOAL",
+          "fontSize": 9,
+          "fontWeight": "700",
+          "color": "rgba(230,227,255,0.38)",
+          "letterSpacing": 1.5
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 168,
+          "text": "$20K MRR",
+          "fontSize": 32,
+          "fontWeight": "800",
+          "color": "#E6E3FF"
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 190,
+          "text": "by June 2026",
+          "fontSize": 13,
+          "color": "rgba(230,227,255,0.38)"
+        },
+        {
+          "type": "circle",
+          "cx": 290,
+          "cy": 190,
+          "r": 52,
+          "fill": "none",
+          "stroke": "#1E1E35",
+          "strokeWidth": 10
+        },
+        {
+          "type": "arc",
+          "cx": 290,
+          "cy": 190,
+          "r": 52,
+          "startAngle": -90,
+          "endAngle": 142,
+          "stroke": "#FFD166",
+          "strokeWidth": 10,
+          "fill": "none",
+          "strokeLinecap": "round"
+        },
+        {
+          "type": "text",
+          "x": 290,
+          "y": 186,
+          "text": "64%",
+          "fontSize": 18,
+          "fontWeight": "800",
+          "color": "#FFD166",
+          "textAnchor": "middle",
+          "fontFamily": "monospace"
+        },
+        {
+          "type": "text",
+          "x": 290,
+          "y": 204,
+          "text": "$12.8K",
+          "fontSize": 10,
+          "color": "rgba(230,227,255,0.38)",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 36,
+          "y": 218,
+          "w": 318,
+          "h": 6,
+          "rx": 3,
+          "fill": "#1E1E35"
+        },
+        {
+          "type": "rect",
+          "x": 36,
+          "y": 218,
+          "w": 204,
+          "h": 6,
+          "rx": 3,
+          "fill": "#FFD166"
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 242,
+          "text": "$12,840 of $20,000",
+          "fontSize": 10,
+          "color": "rgba(230,227,255,0.38)"
+        },
+        {
+          "type": "text",
+          "x": 352,
+          "y": 242,
+          "text": "85 days left",
+          "fontSize": 10,
+          "color": "#FFD166",
+          "textAnchor": "end"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 280,
+          "text": "Milestones",
+          "fontSize": 16,
+          "fontWeight": "700",
+          "color": "#E6E3FF"
+        },
+        {
+          "type": "rect",
+          "x": 36,
+          "y": 312,
+          "w": 2,
+          "h": 52,
+          "rx": 1,
+          "fill": "#3DFFC060"
+        },
+        {
+          "type": "circle",
+          "cx": 37,
+          "cy": 302,
+          "r": 6,
+          "fill": "#3DFFC0"
+        },
+        {
+          "type": "text",
+          "x": 37,
+          "y": 306,
+          "text": "✓",
+          "fontSize": 8,
+          "fontWeight": "800",
+          "color": "#000000",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 58,
+          "y": 292,
+          "w": 316,
+          "h": 58,
+          "rx": 14,
+          "fill": "#161628"
+        },
+        {
+          "type": "rect",
+          "x": 58,
+          "y": 292,
+          "w": 316,
+          "h": 58,
+          "rx": 14,
+          "fill": "none",
+          "stroke": "rgba(124,111,255,0.12)",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 76,
+          "y": 314,
+          "text": "$5K MRR",
+          "fontSize": 14,
+          "fontWeight": "800",
+          "color": "rgba(230,227,255,0.38)",
+          "fontFamily": "monospace"
+        },
+        {
+          "type": "text",
+          "x": 76,
+          "y": 330,
+          "text": "First major milestone",
+          "fontSize": 10,
+          "color": "rgba(230,227,255,0.38)"
+        },
+        {
+          "type": "text",
+          "x": 352,
+          "y": 314,
+          "text": "Jan 12",
+          "fontSize": 10,
+          "color": "#3DFFC0",
+          "textAnchor": "end"
+        },
+        {
+          "type": "text",
+          "x": 352,
+          "y": 330,
+          "text": "Achieved ✓",
+          "fontSize": 9,
+          "color": "#3DFFC0",
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 36,
+          "y": 384,
+          "w": 2,
+          "h": 52,
+          "rx": 1,
+          "fill": "#3DFFC060"
+        },
+        {
+          "type": "circle",
+          "cx": 37,
+          "cy": 374,
+          "r": 6,
+          "fill": "#3DFFC0"
+        },
+        {
+          "type": "text",
+          "x": 37,
+          "y": 378,
+          "text": "✓",
+          "fontSize": 8,
+          "fontWeight": "800",
+          "color": "#000000",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 58,
+          "y": 364,
+          "w": 316,
+          "h": 58,
+          "rx": 14,
+          "fill": "#161628"
+        },
+        {
+          "type": "rect",
+          "x": 58,
+          "y": 364,
+          "w": 316,
+          "h": 58,
+          "rx": 14,
+          "fill": "none",
+          "stroke": "rgba(124,111,255,0.12)",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 76,
+          "y": 386,
+          "text": "$10K MRR",
+          "fontSize": 14,
+          "fontWeight": "800",
+          "color": "rgba(230,227,255,0.38)",
+          "fontFamily": "monospace"
+        },
+        {
+          "type": "text",
+          "x": 76,
+          "y": 402,
+          "text": "Double digits!",
+          "fontSize": 10,
+          "color": "rgba(230,227,255,0.38)"
+        },
+        {
+          "type": "text",
+          "x": 352,
+          "y": 386,
+          "text": "Feb 28",
+          "fontSize": 10,
+          "color": "#3DFFC0",
+          "textAnchor": "end"
+        },
+        {
+          "type": "text",
+          "x": 352,
+          "y": 402,
+          "text": "Achieved ✓",
+          "fontSize": 9,
+          "color": "#3DFFC0",
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 36,
+          "y": 456,
+          "w": 2,
+          "h": 52,
+          "rx": 1,
+          "fill": "#1E1E35"
+        },
+        {
+          "type": "circle",
+          "cx": 37,
+          "cy": 446,
+          "r": 8,
+          "fill": "#FFD166"
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0,
+          "fill": "none"
+        },
+        {
+          "type": "rect",
+          "x": 58,
+          "y": 436,
+          "w": 316,
+          "h": 58,
+          "rx": 14,
+          "fill": "#161628"
+        },
+        {
+          "type": "rect",
+          "x": 58,
+          "y": 436,
+          "w": 316,
+          "h": 58,
+          "rx": 14,
+          "fill": "none",
+          "stroke": "rgba(124,111,255,0.12)",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 76,
+          "y": 458,
+          "text": "$15K MRR",
+          "fontSize": 14,
+          "fontWeight": "800",
+          "color": "#E6E3FF",
+          "fontFamily": "monospace"
+        },
+        {
+          "type": "text",
+          "x": 76,
+          "y": 474,
+          "text": "Next target",
+          "fontSize": 10,
+          "color": "rgba(230,227,255,0.38)"
+        },
+        {
+          "type": "text",
+          "x": 352,
+          "y": 458,
+          "text": "Apr 15",
+          "fontSize": 10,
+          "color": "#FFD166",
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0,
+          "fill": "none"
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0,
+          "fill": "none"
+        },
+        {
+          "type": "circle",
+          "cx": 37,
+          "cy": 518,
+          "r": 6,
+          "fill": "#1E1E35"
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0,
+          "fill": "none"
+        },
+        {
+          "type": "rect",
+          "x": 58,
+          "y": 508,
+          "w": 316,
+          "h": 58,
+          "rx": 14,
+          "fill": "#161628"
+        },
+        {
+          "type": "rect",
+          "x": 58,
+          "y": 508,
+          "w": 316,
+          "h": 58,
+          "rx": 14,
+          "fill": "none",
+          "stroke": "rgba(124,111,255,0.12)",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 76,
+          "y": 530,
+          "text": "$20K MRR",
+          "fontSize": 14,
+          "fontWeight": "800",
+          "color": "#E6E3FF",
+          "fontFamily": "monospace"
+        },
+        {
+          "type": "text",
+          "x": 76,
+          "y": 546,
+          "text": "Escape velocity",
+          "fontSize": 10,
+          "color": "rgba(230,227,255,0.38)"
+        },
+        {
+          "type": "text",
+          "x": 352,
+          "y": 530,
+          "text": "Jun 30",
+          "fontSize": 10,
+          "color": "rgba(230,227,255,0.38)",
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0,
+          "fill": "none"
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 790,
+          "w": 390,
+          "h": 54,
+          "fill": "#0F0F1C"
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 790,
+          "w": 390,
+          "h": 1,
+          "fill": "rgba(124,111,255,0.12)"
+        },
+        {
+          "type": "text",
+          "x": 35,
+          "y": 815,
+          "text": "◈",
+          "fontSize": 16,
+          "color": "rgba(230,227,255,0.38)",
+          "textAnchor": "middle",
+          "fontWeight": "400"
+        },
+        {
+          "type": "text",
+          "x": 35,
+          "y": 832,
+          "text": "Revenue",
+          "fontSize": 8.5,
+          "color": "rgba(230,227,255,0.38)",
+          "textAnchor": "middle",
+          "fontWeight": "400"
+        },
+        {
+          "type": "text",
+          "x": 115,
+          "y": 815,
+          "text": "◉",
+          "fontSize": 16,
+          "color": "rgba(230,227,255,0.38)",
+          "textAnchor": "middle",
+          "fontWeight": "400"
+        },
+        {
+          "type": "text",
+          "x": 115,
+          "y": 832,
+          "text": "Sources",
+          "fontSize": 8.5,
+          "color": "rgba(230,227,255,0.38)",
+          "textAnchor": "middle",
+          "fontWeight": "400"
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 815,
+          "text": "◎",
+          "fontSize": 16,
+          "color": "rgba(230,227,255,0.38)",
+          "textAnchor": "middle",
+          "fontWeight": "400"
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 832,
+          "text": "Audience",
+          "fontSize": 8.5,
+          "color": "rgba(230,227,255,0.38)",
+          "textAnchor": "middle",
+          "fontWeight": "400"
+        },
+        {
+          "type": "text",
+          "x": 275,
+          "y": 815,
+          "text": "≡",
+          "fontSize": 16,
+          "color": "rgba(230,227,255,0.38)",
+          "textAnchor": "middle",
+          "fontWeight": "400"
+        },
+        {
+          "type": "text",
+          "x": 275,
+          "y": 832,
+          "text": "Ledger",
+          "fontSize": 8.5,
+          "color": "rgba(230,227,255,0.38)",
+          "textAnchor": "middle",
+          "fontWeight": "400"
+        },
+        {
+          "type": "text",
+          "x": 355,
+          "y": 815,
+          "text": "◇",
+          "fontSize": 16,
+          "color": "#7C6FFF",
+          "textAnchor": "middle",
+          "fontWeight": "700"
+        },
+        {
+          "type": "text",
+          "x": 355,
+          "y": 832,
+          "text": "Goals",
+          "fontSize": 8.5,
+          "color": "#7C6FFF",
+          "textAnchor": "middle",
+          "fontWeight": "700"
+        },
+        {
+          "type": "rect",
+          "x": 337,
+          "y": 790,
+          "w": 36,
+          "h": 2,
+          "rx": 1,
+          "fill": "#7C6FFF"
+        }
+      ]
+    }
+  ]
+}

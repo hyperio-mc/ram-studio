@@ -1,0 +1,3660 @@
+{
+  "version": "2.8",
+  "variables": {
+    "bg": {
+      "type": "color",
+      "value": "#f5f0e8"
+    },
+    "surface": {
+      "type": "color",
+      "value": "#ede8db"
+    },
+    "card": {
+      "type": "color",
+      "value": "#e8e2d4"
+    },
+    "forest": {
+      "type": "color",
+      "value": "#1e3a1e"
+    },
+    "ochre": {
+      "type": "color",
+      "value": "#c97d0a"
+    },
+    "terra": {
+      "type": "color",
+      "value": "#b8471e"
+    },
+    "moss": {
+      "type": "color",
+      "value": "#4a7c59"
+    },
+    "sage": {
+      "type": "color",
+      "value": "#7a9e87"
+    },
+    "text": {
+      "type": "color",
+      "value": "#1a1a16"
+    },
+    "muted": {
+      "type": "color",
+      "value": "#7a7264"
+    },
+    "cream": {
+      "type": "color",
+      "value": "#faf7f2"
+    },
+    "white": {
+      "type": "color",
+      "value": "#ffffff"
+    }
+  },
+  "children": [
+    {
+      "type": "frame",
+      "name": "Splash",
+      "x": 0,
+      "y": 0,
+      "width": 375,
+      "height": 812,
+      "fill": [
+        {
+          "type": "gradient",
+          "gradientType": "linear",
+          "rotation": 160,
+          "colors": [
+            {
+              "color": "#f5f0e8",
+              "position": 0
+            },
+            {
+              "color": "#e8ddc8",
+              "position": 0.5
+            },
+            {
+              "color": "#d4b87a",
+              "position": 1
+            }
+          ]
+        }
+      ],
+      "children": [
+        {
+          "type": "frame",
+          "x": 0,
+          "y": 52,
+          "width": 375,
+          "height": 24,
+          "fill": "#00000000",
+          "layout": "horizontal",
+          "alignItems": "center",
+          "paddingLeft": 28,
+          "paddingRight": 28,
+          "children": [
+            {
+              "type": "text",
+              "content": "FIELD",
+              "x": 0,
+              "y": 0,
+              "width": 60,
+              "height": 16,
+              "fontSize": 12,
+              "fontWeight": "800",
+              "fill": "$forest",
+              "letterSpacing": 3,
+              "textGrowth": "fixed-width-height",
+              "id": "n1998"
+            },
+            {
+              "type": "frame",
+              "x": 0,
+              "y": 0,
+              "width": "fill_container",
+              "height": 1,
+              "fill": "#00000000",
+              "children": [],
+              "id": "n1999"
+            },
+            {
+              "type": "text",
+              "content": "v1.0",
+              "x": 0,
+              "y": 0,
+              "width": 32,
+              "height": 14,
+              "fontSize": 11,
+              "fontWeight": "500",
+              "fill": "$muted",
+              "textGrowth": "fixed-width-height",
+              "id": "n2000"
+            }
+          ],
+          "id": "n1997"
+        },
+        {
+          "type": "ellipse",
+          "x": 168.75,
+          "y": 80,
+          "width": 280,
+          "height": 280,
+          "fill": {
+            "type": "gradient",
+            "gradientType": "radial",
+            "center": {
+              "x": 0.35,
+              "y": 0.35
+            },
+            "size": 0.8,
+            "colors": [
+              {
+                "color": "#4a7c59",
+                "position": 0
+              },
+              {
+                "color": "#2d5e3e",
+                "position": 0.5
+              },
+              {
+                "color": "#1e3a1e",
+                "position": 1
+              }
+            ]
+          },
+          "opacity": 0.18,
+          "id": "n2001"
+        },
+        {
+          "type": "ellipse",
+          "x": 18,
+          "y": 200,
+          "width": 120,
+          "height": 120,
+          "fill": "$ochre",
+          "opacity": 0.12,
+          "id": "n2002"
+        },
+        {
+          "type": "ellipse",
+          "x": 295,
+          "y": 300,
+          "width": 60,
+          "height": 60,
+          "fill": "$terra",
+          "opacity": 0.2,
+          "id": "n2003"
+        },
+        {
+          "type": "frame",
+          "x": 28,
+          "y": 390,
+          "width": 319,
+          "height": 260,
+          "fill": "#00000000",
+          "layout": "vertical",
+          "gap": 0,
+          "children": [
+            {
+              "type": "text",
+              "content": "Observe.",
+              "x": 0,
+              "y": 0,
+              "width": 319,
+              "height": 80,
+              "fontSize": 68,
+              "fontWeight": "800",
+              "fill": "$forest",
+              "letterSpacing": -2,
+              "lineHeight": 1,
+              "textGrowth": "fixed-width-height",
+              "id": "n2005"
+            },
+            {
+              "type": "text",
+              "content": "Journal.",
+              "x": 0,
+              "y": 0,
+              "width": 319,
+              "height": 80,
+              "fontSize": 68,
+              "fontWeight": "800",
+              "fill": "$ochre",
+              "letterSpacing": -2,
+              "lineHeight": 1,
+              "textGrowth": "fixed-width-height",
+              "id": "n2006"
+            },
+            {
+              "type": "text",
+              "content": "Discover.",
+              "x": 0,
+              "y": 0,
+              "width": 319,
+              "height": 80,
+              "fontSize": 68,
+              "fontWeight": "300",
+              "fill": "$forest",
+              "letterSpacing": -2,
+              "lineHeight": 1,
+              "textGrowth": "fixed-width-height",
+              "id": "n2007"
+            }
+          ],
+          "id": "n2004"
+        },
+        {
+          "type": "text",
+          "content": "A nature journal for curious people.\nDocument what you find, one field note at a time.",
+          "x": 28,
+          "y": 560,
+          "width": 319,
+          "height": 60,
+          "fontSize": 15,
+          "fontWeight": "400",
+          "fill": "$muted",
+          "lineHeight": 1.6,
+          "textGrowth": "fixed-width-height",
+          "id": "n2008"
+        },
+        {
+          "type": "frame",
+          "x": 28,
+          "y": 648,
+          "width": 319,
+          "height": 52,
+          "fill": "$forest",
+          "cornerRadius": 4,
+          "layout": "horizontal",
+          "alignItems": "center",
+          "paddingLeft": 24,
+          "children": [
+            {
+              "type": "text",
+              "content": "Start your journal",
+              "x": 0,
+              "y": 0,
+              "width": 180,
+              "height": 20,
+              "fontSize": 15,
+              "fontWeight": "600",
+              "fill": "$cream",
+              "textGrowth": "fixed-width-height",
+              "id": "n2010"
+            },
+            {
+              "type": "frame",
+              "x": 0,
+              "y": 0,
+              "width": "fill_container",
+              "height": 1,
+              "fill": "#00000000",
+              "children": [],
+              "id": "n2011"
+            },
+            {
+              "type": "text",
+              "content": "→",
+              "x": 0,
+              "y": 0,
+              "width": 20,
+              "height": 20,
+              "fontSize": 18,
+              "fontWeight": "400",
+              "fill": "$ochre",
+              "textGrowth": "fixed-width-height",
+              "id": "n2012"
+            }
+          ],
+          "id": "n2009"
+        },
+        {
+          "type": "text",
+          "content": "Free forever · No account required",
+          "x": 0,
+          "y": 718,
+          "width": 375,
+          "height": 16,
+          "fontSize": 11,
+          "fontWeight": "400",
+          "fill": "$muted",
+          "textAlignHorizontal": "CENTER",
+          "letterSpacing": 0.3,
+          "textGrowth": "fixed-width-height",
+          "id": "n2013"
+        }
+      ],
+      "id": "n1996"
+    },
+    {
+      "type": "frame",
+      "name": "Discovery",
+      "x": 425,
+      "y": 0,
+      "width": 375,
+      "height": 812,
+      "fill": "$bg",
+      "children": [
+        {
+          "type": "frame",
+          "x": 0,
+          "y": 52,
+          "width": 375,
+          "height": 44,
+          "fill": "#00000000",
+          "layout": "horizontal",
+          "alignItems": "center",
+          "paddingLeft": 24,
+          "paddingRight": 24,
+          "children": [
+            {
+              "type": "frame",
+              "x": 0,
+              "y": 0,
+              "width": "fill_container",
+              "height": 44,
+              "fill": "#00000000",
+              "layout": "vertical",
+              "gap": 2,
+              "paddingTop": 6,
+              "children": [
+                {
+                  "type": "text",
+                  "content": "Good morning",
+                  "x": 0,
+                  "y": 0,
+                  "width": 140,
+                  "height": 14,
+                  "fontSize": 12,
+                  "fontWeight": "400",
+                  "fill": "$muted",
+                  "textGrowth": "fixed-width-height",
+                  "id": "n2017"
+                },
+                {
+                  "type": "text",
+                  "content": "What will you\nfind today?",
+                  "x": 0,
+                  "y": 0,
+                  "width": 200,
+                  "height": 42,
+                  "fontSize": 18,
+                  "fontWeight": "700",
+                  "fill": "$forest",
+                  "lineHeight": 1.2,
+                  "letterSpacing": -0.3,
+                  "textGrowth": "fixed-width-height",
+                  "id": "n2018"
+                }
+              ],
+              "id": "n2016"
+            },
+            {
+              "type": "frame",
+              "x": 0,
+              "y": 0,
+              "width": 56,
+              "height": 56,
+              "cornerRadius": 100,
+              "fill": "$ochre",
+              "layout": "vertical",
+              "alignItems": "center",
+              "gap": 0,
+              "paddingTop": 10,
+              "children": [
+                {
+                  "type": "text",
+                  "content": "🔥",
+                  "x": 0,
+                  "y": 0,
+                  "width": 24,
+                  "height": 22,
+                  "fontSize": 18,
+                  "fontWeight": "400",
+                  "fill": "$text",
+                  "textAlignHorizontal": "CENTER",
+                  "textGrowth": "fixed-width-height",
+                  "id": "n2020"
+                },
+                {
+                  "type": "text",
+                  "content": "12d",
+                  "x": 0,
+                  "y": 0,
+                  "width": 36,
+                  "height": 14,
+                  "fontSize": 10,
+                  "fontWeight": "800",
+                  "fill": "$forest",
+                  "textAlignHorizontal": "CENTER",
+                  "textGrowth": "fixed-width-height",
+                  "id": "n2021"
+                }
+              ],
+              "id": "n2019"
+            }
+          ],
+          "id": "n2015"
+        },
+        {
+          "type": "text",
+          "content": "FEATURED TODAY",
+          "x": 24,
+          "y": 140,
+          "width": 180,
+          "height": 14,
+          "fontSize": 10,
+          "fontWeight": "800",
+          "fill": "$muted",
+          "letterSpacing": 2,
+          "textGrowth": "fixed-width-height",
+          "id": "n2022"
+        },
+        {
+          "type": "frame",
+          "x": 24,
+          "y": 162,
+          "width": 327,
+          "height": 220,
+          "fill": "#00000000",
+          "children": [
+            {
+              "type": "frame",
+              "x": 0,
+              "y": 0,
+              "width": 327,
+              "height": 220,
+              "cornerRadius": 8,
+              "fill": [
+                {
+                  "type": "gradient",
+                  "gradientType": "linear",
+                  "rotation": 135,
+                  "colors": [
+                    {
+                      "color": "#2d5e3e",
+                      "position": 0
+                    },
+                    {
+                      "color": "#1e3a1e",
+                      "position": 0.6
+                    },
+                    {
+                      "color": "#0d1f0d",
+                      "position": 1
+                    }
+                  ]
+                }
+              ],
+              "children": [
+                {
+                  "type": "ellipse",
+                  "x": 120,
+                  "y": -40,
+                  "width": 180,
+                  "height": 180,
+                  "fill": "$moss",
+                  "opacity": 0.25,
+                  "id": "n2025"
+                },
+                {
+                  "type": "ellipse",
+                  "x": 60,
+                  "y": 100,
+                  "width": 80,
+                  "height": 80,
+                  "fill": "$ochre",
+                  "opacity": 0.18,
+                  "id": "n2026"
+                },
+                {
+                  "type": "frame",
+                  "x": 16,
+                  "y": 16,
+                  "width": 80,
+                  "height": 24,
+                  "cornerRadius": 3,
+                  "fill": "$ochre",
+                  "layout": "horizontal",
+                  "alignItems": "center",
+                  "paddingLeft": 8,
+                  "paddingRight": 8,
+                  "children": [
+                    {
+                      "type": "text",
+                      "content": "FUNGI",
+                      "x": 0,
+                      "y": 0,
+                      "width": 50,
+                      "height": 12,
+                      "fontSize": 10,
+                      "fontWeight": "800",
+                      "fill": "$forest",
+                      "letterSpacing": 1,
+                      "textGrowth": "fixed-width-height",
+                      "id": "n2028"
+                    }
+                  ],
+                  "id": "n2027"
+                },
+                {
+                  "type": "text",
+                  "content": "Amanita\nmuscaria",
+                  "x": 16,
+                  "y": 120,
+                  "width": 200,
+                  "height": 80,
+                  "fontSize": 28,
+                  "fontWeight": "700",
+                  "fill": "$cream",
+                  "lineHeight": 1.15,
+                  "letterSpacing": -0.5,
+                  "textGrowth": "fixed-width-height",
+                  "id": "n2029"
+                },
+                {
+                  "type": "text",
+                  "content": "Fly agaric · Birch forest",
+                  "x": 16,
+                  "y": 196,
+                  "width": 200,
+                  "height": 16,
+                  "fontSize": 11,
+                  "fontWeight": "400",
+                  "fill": "$sage",
+                  "textGrowth": "fixed-width-height",
+                  "id": "n2030"
+                },
+                {
+                  "type": "frame",
+                  "x": -8,
+                  "y": 165,
+                  "width": 32,
+                  "height": 32,
+                  "cornerRadius": 100,
+                  "fill": "$terra",
+                  "layout": "horizontal",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "content": "★",
+                      "x": 0,
+                      "y": 0,
+                      "width": 24,
+                      "height": 18,
+                      "fontSize": 14,
+                      "fontWeight": "400",
+                      "fill": "$cream",
+                      "textAlignHorizontal": "CENTER",
+                      "textGrowth": "fixed-width-height",
+                      "id": "n2032"
+                    }
+                  ],
+                  "id": "n2031"
+                }
+              ],
+              "id": "n2024"
+            }
+          ],
+          "id": "n2023"
+        },
+        {
+          "type": "text",
+          "content": "NEAR YOU · 2.3 KM",
+          "x": 24,
+          "y": 398,
+          "width": 220,
+          "height": 14,
+          "fontSize": 10,
+          "fontWeight": "800",
+          "fill": "$muted",
+          "letterSpacing": 2,
+          "textGrowth": "fixed-width-height",
+          "id": "n2033"
+        },
+        {
+          "type": "frame",
+          "x": 24,
+          "y": 420,
+          "width": 327,
+          "height": 130,
+          "fill": "#00000000",
+          "layout": "horizontal",
+          "gap": 16,
+          "children": [
+            {
+              "type": "frame",
+              "x": 0,
+              "y": 0,
+              "width": 155.5,
+              "height": 130,
+              "cornerRadius": 8,
+              "fill": [
+                {
+                  "type": "gradient",
+                  "gradientType": "linear",
+                  "rotation": 145,
+                  "colors": [
+                    {
+                      "color": "#7a5c2e",
+                      "position": 0
+                    },
+                    {
+                      "color": "#4a3218",
+                      "position": 1
+                    }
+                  ]
+                }
+              ],
+              "children": [
+                {
+                  "type": "frame",
+                  "x": 10,
+                  "y": 10,
+                  "width": 60,
+                  "height": 22,
+                  "cornerRadius": 3,
+                  "fill": "rgba(0,0,0,0.25)",
+                  "layout": "horizontal",
+                  "alignItems": "center",
+                  "paddingLeft": 6,
+                  "children": [
+                    {
+                      "type": "text",
+                      "content": "INSECT",
+                      "x": 0,
+                      "y": 0,
+                      "width": 52,
+                      "height": 12,
+                      "fontSize": 9,
+                      "fontWeight": "700",
+                      "fill": "$cream",
+                      "letterSpacing": 1,
+                      "textGrowth": "fixed-width-height",
+                      "id": "n2037"
+                    }
+                  ],
+                  "id": "n2036"
+                },
+                {
+                  "type": "text",
+                  "content": "Oak\nGall Wasp",
+                  "x": 10,
+                  "y": 80,
+                  "width": 135.5,
+                  "height": 40,
+                  "fontSize": 15,
+                  "fontWeight": "700",
+                  "fill": "$cream",
+                  "lineHeight": 1.2,
+                  "letterSpacing": -0.3,
+                  "textGrowth": "fixed-width-height",
+                  "id": "n2038"
+                },
+                {
+                  "type": "text",
+                  "content": "5 obs. nearby",
+                  "x": 10,
+                  "y": 112,
+                  "width": 135.5,
+                  "height": 14,
+                  "fontSize": 10,
+                  "fontWeight": "400",
+                  "fill": {
+                    "type": "color",
+                    "value": "#ffffff",
+                    "opacity": 0.6
+                  },
+                  "textGrowth": "fixed-width-height",
+                  "id": "n2039"
+                }
+              ],
+              "id": "n2035"
+            },
+            {
+              "type": "frame",
+              "x": 0,
+              "y": 0,
+              "width": 155.5,
+              "height": 130,
+              "cornerRadius": 8,
+              "fill": [
+                {
+                  "type": "gradient",
+                  "gradientType": "linear",
+                  "rotation": 145,
+                  "colors": [
+                    {
+                      "color": "#2e4a5c",
+                      "position": 0
+                    },
+                    {
+                      "color": "#1a2d3d",
+                      "position": 1
+                    }
+                  ]
+                }
+              ],
+              "children": [
+                {
+                  "type": "frame",
+                  "x": 10,
+                  "y": 10,
+                  "width": 60,
+                  "height": 22,
+                  "cornerRadius": 3,
+                  "fill": "rgba(0,0,0,0.25)",
+                  "layout": "horizontal",
+                  "alignItems": "center",
+                  "paddingLeft": 6,
+                  "children": [
+                    {
+                      "type": "text",
+                      "content": "BIRD",
+                      "x": 0,
+                      "y": 0,
+                      "width": 52,
+                      "height": 12,
+                      "fontSize": 9,
+                      "fontWeight": "700",
+                      "fill": "$cream",
+                      "letterSpacing": 1,
+                      "textGrowth": "fixed-width-height",
+                      "id": "n2042"
+                    }
+                  ],
+                  "id": "n2041"
+                },
+                {
+                  "type": "text",
+                  "content": "Grey\nHeron",
+                  "x": 10,
+                  "y": 80,
+                  "width": 135.5,
+                  "height": 40,
+                  "fontSize": 15,
+                  "fontWeight": "700",
+                  "fill": "$cream",
+                  "lineHeight": 1.2,
+                  "letterSpacing": -0.3,
+                  "textGrowth": "fixed-width-height",
+                  "id": "n2043"
+                },
+                {
+                  "type": "text",
+                  "content": "Last seen today",
+                  "x": 10,
+                  "y": 112,
+                  "width": 135.5,
+                  "height": 14,
+                  "fontSize": 10,
+                  "fontWeight": "400",
+                  "fill": {
+                    "type": "color",
+                    "value": "#ffffff",
+                    "opacity": 0.6
+                  },
+                  "textGrowth": "fixed-width-height",
+                  "id": "n2044"
+                }
+              ],
+              "id": "n2040"
+            }
+          ],
+          "id": "n2034"
+        },
+        {
+          "type": "text",
+          "content": "EXPLORE BY TYPE",
+          "x": 24,
+          "y": 566,
+          "width": 200,
+          "height": 14,
+          "fontSize": 10,
+          "fontWeight": "800",
+          "fill": "$muted",
+          "letterSpacing": 2,
+          "textGrowth": "fixed-width-height",
+          "id": "n2045"
+        },
+        {
+          "type": "frame",
+          "x": 24,
+          "y": 587,
+          "width": 327,
+          "height": 96,
+          "fill": "#00000000",
+          "layout": "horizontal",
+          "gap": 10,
+          "children": [
+            {
+              "type": "frame",
+              "x": 0,
+              "y": 0,
+              "width": 86,
+              "height": 96,
+              "cornerRadius": 8,
+              "fill": "$card",
+              "layout": "vertical",
+              "alignItems": "center",
+              "gap": 8,
+              "paddingTop": 16,
+              "children": [
+                {
+                  "type": "text",
+                  "content": "🌿",
+                  "x": 0,
+                  "y": 0,
+                  "width": 36,
+                  "height": 36,
+                  "fontSize": 28,
+                  "fontWeight": "400",
+                  "fill": "$text",
+                  "textAlignHorizontal": "CENTER",
+                  "textGrowth": "fixed-width-height",
+                  "id": "n2048"
+                },
+                {
+                  "type": "text",
+                  "content": "Plants",
+                  "x": 0,
+                  "y": 0,
+                  "width": 72,
+                  "height": 28,
+                  "fontSize": 11,
+                  "fontWeight": "600",
+                  "fill": "$forest",
+                  "textAlignHorizontal": "CENTER",
+                  "lineHeight": 1.3,
+                  "textGrowth": "fixed-width-height",
+                  "id": "n2049"
+                }
+              ],
+              "id": "n2047"
+            },
+            {
+              "type": "frame",
+              "x": 0,
+              "y": 0,
+              "width": 86,
+              "height": 96,
+              "cornerRadius": 8,
+              "fill": "$card",
+              "layout": "vertical",
+              "alignItems": "center",
+              "gap": 8,
+              "paddingTop": 16,
+              "children": [
+                {
+                  "type": "text",
+                  "content": "🍄",
+                  "x": 0,
+                  "y": 0,
+                  "width": 36,
+                  "height": 36,
+                  "fontSize": 28,
+                  "fontWeight": "400",
+                  "fill": "$text",
+                  "textAlignHorizontal": "CENTER",
+                  "textGrowth": "fixed-width-height",
+                  "id": "n2051"
+                },
+                {
+                  "type": "text",
+                  "content": "Fungi",
+                  "x": 0,
+                  "y": 0,
+                  "width": 72,
+                  "height": 28,
+                  "fontSize": 11,
+                  "fontWeight": "600",
+                  "fill": "$forest",
+                  "textAlignHorizontal": "CENTER",
+                  "lineHeight": 1.3,
+                  "textGrowth": "fixed-width-height",
+                  "id": "n2052"
+                }
+              ],
+              "id": "n2050"
+            },
+            {
+              "type": "frame",
+              "x": 0,
+              "y": 0,
+              "width": 86,
+              "height": 96,
+              "cornerRadius": 8,
+              "fill": "$card",
+              "layout": "vertical",
+              "alignItems": "center",
+              "gap": 8,
+              "paddingTop": 16,
+              "children": [
+                {
+                  "type": "text",
+                  "content": "🦅",
+                  "x": 0,
+                  "y": 0,
+                  "width": 36,
+                  "height": 36,
+                  "fontSize": 28,
+                  "fontWeight": "400",
+                  "fill": "$text",
+                  "textAlignHorizontal": "CENTER",
+                  "textGrowth": "fixed-width-height",
+                  "id": "n2054"
+                },
+                {
+                  "type": "text",
+                  "content": "Birds",
+                  "x": 0,
+                  "y": 0,
+                  "width": 72,
+                  "height": 28,
+                  "fontSize": 11,
+                  "fontWeight": "600",
+                  "fill": "$forest",
+                  "textAlignHorizontal": "CENTER",
+                  "lineHeight": 1.3,
+                  "textGrowth": "fixed-width-height",
+                  "id": "n2055"
+                }
+              ],
+              "id": "n2053"
+            },
+            {
+              "type": "frame",
+              "x": 0,
+              "y": 0,
+              "width": 86,
+              "height": 96,
+              "cornerRadius": 8,
+              "fill": "$card",
+              "layout": "vertical",
+              "alignItems": "center",
+              "gap": 8,
+              "paddingTop": 16,
+              "children": [
+                {
+                  "type": "text",
+                  "content": "🦋",
+                  "x": 0,
+                  "y": 0,
+                  "width": 36,
+                  "height": 36,
+                  "fontSize": 28,
+                  "fontWeight": "400",
+                  "fill": "$text",
+                  "textAlignHorizontal": "CENTER",
+                  "textGrowth": "fixed-width-height",
+                  "id": "n2057"
+                },
+                {
+                  "type": "text",
+                  "content": "Insects",
+                  "x": 0,
+                  "y": 0,
+                  "width": 72,
+                  "height": 28,
+                  "fontSize": 11,
+                  "fontWeight": "600",
+                  "fill": "$forest",
+                  "textAlignHorizontal": "CENTER",
+                  "lineHeight": 1.3,
+                  "textGrowth": "fixed-width-height",
+                  "id": "n2058"
+                }
+              ],
+              "id": "n2056"
+            }
+          ],
+          "id": "n2046"
+        },
+        {
+          "type": "frame",
+          "x": 0,
+          "y": 740,
+          "width": 375,
+          "height": 72,
+          "fill": "$cream",
+          "stroke": {
+            "fill": {
+              "type": "color",
+              "value": "#e0d8c8"
+            },
+            "thickness": 1
+          },
+          "layout": "horizontal",
+          "alignItems": "center",
+          "paddingLeft": 16,
+          "paddingRight": 16,
+          "gap": 0,
+          "children": [
+            {
+              "type": "frame",
+              "x": 0,
+              "y": 0,
+              "width": "fill_container",
+              "height": 52,
+              "fill": "#00000000",
+              "layout": "vertical",
+              "alignItems": "center",
+              "gap": 4,
+              "paddingTop": 8,
+              "children": [
+                {
+                  "type": "text",
+                  "content": "🔍",
+                  "x": 0,
+                  "y": 0,
+                  "width": 28,
+                  "height": 28,
+                  "fontSize": 22,
+                  "fontWeight": "400",
+                  "fill": "$text",
+                  "textAlignHorizontal": "CENTER",
+                  "textGrowth": "fixed-width-height",
+                  "id": "n2061"
+                },
+                {
+                  "type": "text",
+                  "content": "Discover",
+                  "x": 0,
+                  "y": 0,
+                  "width": 52,
+                  "height": 12,
+                  "fontSize": 10,
+                  "fontWeight": "600",
+                  "fill": "$forest",
+                  "textAlignHorizontal": "CENTER",
+                  "textGrowth": "fixed-width-height",
+                  "id": "n2062"
+                }
+              ],
+              "id": "n2060"
+            },
+            {
+              "type": "frame",
+              "x": 0,
+              "y": 0,
+              "width": "fill_container",
+              "height": 52,
+              "fill": "#00000000",
+              "layout": "vertical",
+              "alignItems": "center",
+              "gap": 4,
+              "paddingTop": 8,
+              "children": [
+                {
+                  "type": "text",
+                  "content": "📓",
+                  "x": 0,
+                  "y": 0,
+                  "width": 28,
+                  "height": 28,
+                  "fontSize": 22,
+                  "fontWeight": "400",
+                  "fill": "$text",
+                  "textAlignHorizontal": "CENTER",
+                  "textGrowth": "fixed-width-height",
+                  "id": "n2064"
+                },
+                {
+                  "type": "text",
+                  "content": "Journal",
+                  "x": 0,
+                  "y": 0,
+                  "width": 52,
+                  "height": 12,
+                  "fontSize": 10,
+                  "fontWeight": "600",
+                  "fill": "$muted",
+                  "textAlignHorizontal": "CENTER",
+                  "textGrowth": "fixed-width-height",
+                  "id": "n2065"
+                }
+              ],
+              "id": "n2063"
+            },
+            {
+              "type": "frame",
+              "x": 0,
+              "y": 0,
+              "width": "fill_container",
+              "height": 52,
+              "fill": "#00000000",
+              "layout": "vertical",
+              "alignItems": "center",
+              "gap": 4,
+              "paddingTop": 8,
+              "children": [
+                {
+                  "type": "text",
+                  "content": "🗺️",
+                  "x": 0,
+                  "y": 0,
+                  "width": 28,
+                  "height": 28,
+                  "fontSize": 22,
+                  "fontWeight": "400",
+                  "fill": "$text",
+                  "textAlignHorizontal": "CENTER",
+                  "textGrowth": "fixed-width-height",
+                  "id": "n2067"
+                },
+                {
+                  "type": "text",
+                  "content": "Map",
+                  "x": 0,
+                  "y": 0,
+                  "width": 52,
+                  "height": 12,
+                  "fontSize": 10,
+                  "fontWeight": "600",
+                  "fill": "$muted",
+                  "textAlignHorizontal": "CENTER",
+                  "textGrowth": "fixed-width-height",
+                  "id": "n2068"
+                }
+              ],
+              "id": "n2066"
+            },
+            {
+              "type": "frame",
+              "x": 0,
+              "y": 0,
+              "width": "fill_container",
+              "height": 52,
+              "fill": "#00000000",
+              "layout": "vertical",
+              "alignItems": "center",
+              "gap": 4,
+              "paddingTop": 8,
+              "children": [
+                {
+                  "type": "text",
+                  "content": "👤",
+                  "x": 0,
+                  "y": 0,
+                  "width": 28,
+                  "height": 28,
+                  "fontSize": 22,
+                  "fontWeight": "400",
+                  "fill": "$text",
+                  "textAlignHorizontal": "CENTER",
+                  "textGrowth": "fixed-width-height",
+                  "id": "n2070"
+                },
+                {
+                  "type": "text",
+                  "content": "Profile",
+                  "x": 0,
+                  "y": 0,
+                  "width": 52,
+                  "height": 12,
+                  "fontSize": 10,
+                  "fontWeight": "600",
+                  "fill": "$muted",
+                  "textAlignHorizontal": "CENTER",
+                  "textGrowth": "fixed-width-height",
+                  "id": "n2071"
+                }
+              ],
+              "id": "n2069"
+            }
+          ],
+          "id": "n2059"
+        }
+      ],
+      "id": "n2014"
+    },
+    {
+      "type": "frame",
+      "name": "Species Detail",
+      "x": 850,
+      "y": 0,
+      "width": 375,
+      "height": 812,
+      "fill": "$bg",
+      "children": [
+        {
+          "type": "frame",
+          "x": 0,
+          "y": 52,
+          "width": 375,
+          "height": 36,
+          "fill": "#00000000",
+          "layout": "horizontal",
+          "alignItems": "center",
+          "paddingLeft": 16,
+          "paddingRight": 16,
+          "children": [
+            {
+              "type": "text",
+              "content": "← Back",
+              "x": 0,
+              "y": 0,
+              "width": 80,
+              "height": 18,
+              "fontSize": 14,
+              "fontWeight": "600",
+              "fill": "$forest",
+              "textGrowth": "fixed-width-height",
+              "id": "n2074"
+            },
+            {
+              "type": "frame",
+              "x": 0,
+              "y": 0,
+              "width": "fill_container",
+              "height": 1,
+              "fill": "#00000000",
+              "children": [],
+              "id": "n2075"
+            },
+            {
+              "type": "frame",
+              "x": 0,
+              "y": 0,
+              "width": 36,
+              "height": 36,
+              "cornerRadius": 100,
+              "fill": "$surface",
+              "layout": "horizontal",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "content": "♡",
+                  "x": 0,
+                  "y": 0,
+                  "width": 36,
+                  "height": 24,
+                  "fontSize": 18,
+                  "fontWeight": "400",
+                  "fill": "$terra",
+                  "textAlignHorizontal": "CENTER",
+                  "textGrowth": "fixed-width-height",
+                  "id": "n2077"
+                }
+              ],
+              "id": "n2076"
+            }
+          ],
+          "id": "n2073"
+        },
+        {
+          "type": "frame",
+          "x": 0,
+          "y": 0,
+          "width": 375,
+          "height": 300,
+          "fill": [
+            {
+              "type": "gradient",
+              "gradientType": "linear",
+              "rotation": 160,
+              "colors": [
+                {
+                  "color": "#e8f2ec",
+                  "position": 0
+                },
+                {
+                  "color": "#d4e8da",
+                  "position": 0.6
+                },
+                {
+                  "color": "#c2d9ca",
+                  "position": 1
+                }
+              ]
+            }
+          ],
+          "children": [
+            {
+              "type": "ellipse",
+              "x": 97.5,
+              "y": 30,
+              "width": 180,
+              "height": 180,
+              "fill": {
+                "type": "gradient",
+                "gradientType": "radial",
+                "center": {
+                  "x": 0.4,
+                  "y": 0.35
+                },
+                "size": 0.75,
+                "colors": [
+                  {
+                    "color": "#c97d0a",
+                    "position": 0
+                  },
+                  {
+                    "color": "#8b5a08",
+                    "position": 0.6
+                  },
+                  {
+                    "color": "#5a3a05",
+                    "position": 1
+                  }
+                ]
+              },
+              "id": "n2079"
+            },
+            {
+              "type": "ellipse",
+              "x": 147.5,
+              "y": 62,
+              "width": 22,
+              "height": 20,
+              "fill": {
+                "type": "color",
+                "value": "#faf7f2",
+                "opacity": 0.85
+              },
+              "id": "n2080"
+            },
+            {
+              "type": "ellipse",
+              "x": 197.5,
+              "y": 48,
+              "width": 16,
+              "height": 15,
+              "fill": {
+                "type": "color",
+                "value": "#faf7f2",
+                "opacity": 0.85
+              },
+              "id": "n2081"
+            },
+            {
+              "type": "ellipse",
+              "x": 122.5,
+              "y": 95,
+              "width": 12,
+              "height": 11,
+              "fill": {
+                "type": "color",
+                "value": "#faf7f2",
+                "opacity": 0.8
+              },
+              "id": "n2082"
+            },
+            {
+              "type": "ellipse",
+              "x": 227.5,
+              "y": 90,
+              "width": 18,
+              "height": 17,
+              "fill": {
+                "type": "color",
+                "value": "#faf7f2",
+                "opacity": 0.85
+              },
+              "id": "n2083"
+            },
+            {
+              "type": "frame",
+              "x": 169.5,
+              "y": 200,
+              "width": 36,
+              "height": 70,
+              "cornerRadius": 4,
+              "fill": {
+                "type": "color",
+                "value": "#d4c4a0"
+              },
+              "children": [],
+              "id": "n2084"
+            },
+            {
+              "type": "ellipse",
+              "x": 60,
+              "y": 160,
+              "width": 100,
+              "height": 50,
+              "fill": {
+                "type": "color",
+                "value": "#4a7c59",
+                "opacity": 0.22
+              },
+              "id": "n2085"
+            },
+            {
+              "type": "ellipse",
+              "x": 235,
+              "y": 180,
+              "width": 90,
+              "height": 45,
+              "fill": {
+                "type": "color",
+                "value": "#4a7c59",
+                "opacity": 0.18
+              },
+              "id": "n2086"
+            },
+            {
+              "type": "frame",
+              "x": 16,
+              "y": 16,
+              "width": 130,
+              "height": 32,
+              "cornerRadius": 4,
+              "fill": {
+                "type": "color",
+                "value": "#1e3a1e",
+                "opacity": 0.75
+              },
+              "layout": "horizontal",
+              "alignItems": "center",
+              "paddingLeft": 10,
+              "gap": 6,
+              "children": [
+                {
+                  "type": "text",
+                  "content": "👁",
+                  "x": 0,
+                  "y": 0,
+                  "width": 16,
+                  "height": 18,
+                  "fontSize": 14,
+                  "fontWeight": "400",
+                  "fill": "$text",
+                  "textGrowth": "fixed-width-height",
+                  "id": "n2088"
+                },
+                {
+                  "type": "text",
+                  "content": "12,840 observations",
+                  "x": 0,
+                  "y": 0,
+                  "width": 100,
+                  "height": 14,
+                  "fontSize": 11,
+                  "fontWeight": "600",
+                  "fill": "$cream",
+                  "textGrowth": "fixed-width-height",
+                  "id": "n2089"
+                }
+              ],
+              "id": "n2087"
+            }
+          ],
+          "id": "n2078"
+        },
+        {
+          "type": "frame",
+          "x": 24,
+          "y": 316,
+          "width": 327,
+          "height": 80,
+          "fill": "#00000000",
+          "layout": "vertical",
+          "gap": 6,
+          "children": [
+            {
+              "type": "frame",
+              "x": 0,
+              "y": 0,
+              "width": "fill_container",
+              "height": 32,
+              "fill": "#00000000",
+              "layout": "horizontal",
+              "alignItems": "center",
+              "gap": 10,
+              "children": [
+                {
+                  "type": "text",
+                  "content": "Amanita muscaria",
+                  "x": 0,
+                  "y": 0,
+                  "width": 220,
+                  "height": 28,
+                  "fontSize": 22,
+                  "fontWeight": "800",
+                  "fill": "$forest",
+                  "letterSpacing": -0.5,
+                  "textGrowth": "fixed-width-height",
+                  "id": "n2092"
+                },
+                {
+                  "type": "frame",
+                  "x": 0,
+                  "y": 0,
+                  "width": 28,
+                  "height": 28,
+                  "cornerRadius": 100,
+                  "fill": "$terra",
+                  "children": [
+                    {
+                      "type": "text",
+                      "content": "!",
+                      "x": 0,
+                      "y": 0,
+                      "width": 28,
+                      "height": 20,
+                      "fontSize": 13,
+                      "fontWeight": "800",
+                      "fill": "$cream",
+                      "textAlignHorizontal": "CENTER",
+                      "textGrowth": "fixed-width-height",
+                      "id": "n2094"
+                    }
+                  ],
+                  "id": "n2093"
+                }
+              ],
+              "id": "n2091"
+            },
+            {
+              "type": "text",
+              "content": "Fly agaric · Family Amanitaceae · Toxic",
+              "x": 0,
+              "y": 0,
+              "width": 327,
+              "height": 16,
+              "fontSize": 12,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "letterSpacing": 0.1,
+              "textGrowth": "fixed-width-height",
+              "id": "n2095"
+            }
+          ],
+          "id": "n2090"
+        },
+        {
+          "type": "frame",
+          "x": 24,
+          "y": 404,
+          "width": 327,
+          "height": 1,
+          "fill": "$card",
+          "children": [],
+          "id": "n2096"
+        },
+        {
+          "type": "frame",
+          "x": 24,
+          "y": 418,
+          "width": 327,
+          "height": 72,
+          "fill": "#00000000",
+          "layout": "horizontal",
+          "gap": 12,
+          "children": [
+            {
+              "type": "frame",
+              "x": 0,
+              "y": 0,
+              "width": 101,
+              "height": 72,
+              "cornerRadius": 6,
+              "fill": "$surface",
+              "layout": "vertical",
+              "alignItems": "center",
+              "gap": 4,
+              "paddingTop": 14,
+              "children": [
+                {
+                  "type": "text",
+                  "content": "10",
+                  "x": 0,
+                  "y": 0,
+                  "width": 80,
+                  "height": 28,
+                  "fontSize": 22,
+                  "fontWeight": "800",
+                  "fill": "$forest",
+                  "textAlignHorizontal": "CENTER",
+                  "letterSpacing": -0.5,
+                  "textGrowth": "fixed-width-height",
+                  "id": "n2099"
+                },
+                {
+                  "type": "text",
+                  "content": "cm",
+                  "x": 0,
+                  "y": 0,
+                  "width": 80,
+                  "height": 12,
+                  "fontSize": 10,
+                  "fontWeight": "500",
+                  "fill": "$muted",
+                  "textAlignHorizontal": "CENTER",
+                  "letterSpacing": 0.5,
+                  "textGrowth": "fixed-width-height",
+                  "id": "n2100"
+                },
+                {
+                  "type": "text",
+                  "content": "Cap",
+                  "x": 0,
+                  "y": 0,
+                  "width": 80,
+                  "height": 11,
+                  "fontSize": 9,
+                  "fontWeight": "400",
+                  "fill": "$muted",
+                  "textAlignHorizontal": "CENTER",
+                  "textGrowth": "fixed-width-height",
+                  "id": "n2101"
+                }
+              ],
+              "id": "n2098"
+            },
+            {
+              "type": "frame",
+              "x": 0,
+              "y": 0,
+              "width": 101,
+              "height": 72,
+              "cornerRadius": 6,
+              "fill": "$surface",
+              "layout": "vertical",
+              "alignItems": "center",
+              "gap": 4,
+              "paddingTop": 14,
+              "children": [
+                {
+                  "type": "text",
+                  "content": "Aug–Nov",
+                  "x": 0,
+                  "y": 0,
+                  "width": 80,
+                  "height": 28,
+                  "fontSize": 22,
+                  "fontWeight": "800",
+                  "fill": "$forest",
+                  "textAlignHorizontal": "CENTER",
+                  "letterSpacing": -0.5,
+                  "textGrowth": "fixed-width-height",
+                  "id": "n2103"
+                },
+                {
+                  "type": "text",
+                  "content": "Season",
+                  "x": 0,
+                  "y": 0,
+                  "width": 80,
+                  "height": 12,
+                  "fontSize": 10,
+                  "fontWeight": "500",
+                  "fill": "$muted",
+                  "textAlignHorizontal": "CENTER",
+                  "letterSpacing": 0.5,
+                  "textGrowth": "fixed-width-height",
+                  "id": "n2104"
+                }
+              ],
+              "id": "n2102"
+            },
+            {
+              "type": "frame",
+              "x": 0,
+              "y": 0,
+              "width": 101,
+              "height": 72,
+              "cornerRadius": 6,
+              "fill": "$surface",
+              "layout": "vertical",
+              "alignItems": "center",
+              "gap": 4,
+              "paddingTop": 14,
+              "children": [
+                {
+                  "type": "text",
+                  "content": "Forest",
+                  "x": 0,
+                  "y": 0,
+                  "width": 80,
+                  "height": 28,
+                  "fontSize": 22,
+                  "fontWeight": "800",
+                  "fill": "$forest",
+                  "textAlignHorizontal": "CENTER",
+                  "letterSpacing": -0.5,
+                  "textGrowth": "fixed-width-height",
+                  "id": "n2106"
+                },
+                {
+                  "type": "text",
+                  "content": "Habitat",
+                  "x": 0,
+                  "y": 0,
+                  "width": 80,
+                  "height": 12,
+                  "fontSize": 10,
+                  "fontWeight": "500",
+                  "fill": "$muted",
+                  "textAlignHorizontal": "CENTER",
+                  "letterSpacing": 0.5,
+                  "textGrowth": "fixed-width-height",
+                  "id": "n2107"
+                }
+              ],
+              "id": "n2105"
+            }
+          ],
+          "id": "n2097"
+        },
+        {
+          "type": "text",
+          "content": "A distinctive toadstool with a vivid red cap covered in white warts. One of the most recognisable and iconic fungi in the world — celebrated in folklore, art, and cautioned in field guides.",
+          "x": 24,
+          "y": 506,
+          "width": 327,
+          "height": 80,
+          "fontSize": 13,
+          "fontWeight": "400",
+          "fill": "$text",
+          "lineHeight": 1.65,
+          "textGrowth": "fixed-width-height",
+          "id": "n2108"
+        },
+        {
+          "type": "frame",
+          "x": 24,
+          "y": 594,
+          "width": 327,
+          "height": 28,
+          "fill": "#00000000",
+          "layout": "horizontal",
+          "gap": 8,
+          "children": [
+            {
+              "type": "frame",
+              "x": 0,
+              "y": 0,
+              "width": 61.5,
+              "height": 28,
+              "fill": "$terra",
+              "cornerRadius": 100,
+              "paddingLeft": 12,
+              "paddingRight": 12,
+              "layout": "horizontal",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "content": "TOXIC",
+                  "x": 0,
+                  "y": 0,
+                  "width": 37.5,
+                  "height": 14,
+                  "fontSize": 11,
+                  "fontWeight": "700",
+                  "fill": "$cream",
+                  "letterSpacing": 0.8,
+                  "textGrowth": "fixed-width-height",
+                  "id": "n2111"
+                }
+              ],
+              "id": "n2110"
+            },
+            {
+              "type": "frame",
+              "x": 0,
+              "y": 0,
+              "width": 69,
+              "height": 28,
+              "fill": "$forest",
+              "cornerRadius": 100,
+              "paddingLeft": 12,
+              "paddingRight": 12,
+              "layout": "horizontal",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "content": "ICONIC",
+                  "x": 0,
+                  "y": 0,
+                  "width": 45,
+                  "height": 14,
+                  "fontSize": 11,
+                  "fontWeight": "700",
+                  "fill": "$cream",
+                  "letterSpacing": 0.8,
+                  "textGrowth": "fixed-width-height",
+                  "id": "n2113"
+                }
+              ],
+              "id": "n2112"
+            },
+            {
+              "type": "frame",
+              "x": 0,
+              "y": 0,
+              "width": 69,
+              "height": 28,
+              "fill": "$sage",
+              "cornerRadius": 100,
+              "paddingLeft": 12,
+              "paddingRight": 12,
+              "layout": "horizontal",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "content": "COMMON",
+                  "x": 0,
+                  "y": 0,
+                  "width": 45,
+                  "height": 14,
+                  "fontSize": 11,
+                  "fontWeight": "700",
+                  "fill": "$cream",
+                  "letterSpacing": 0.8,
+                  "textGrowth": "fixed-width-height",
+                  "id": "n2115"
+                }
+              ],
+              "id": "n2114"
+            }
+          ],
+          "id": "n2109"
+        },
+        {
+          "type": "frame",
+          "x": 24,
+          "y": 640,
+          "width": 327,
+          "height": 52,
+          "fill": "$forest",
+          "cornerRadius": 4,
+          "layout": "horizontal",
+          "alignItems": "center",
+          "paddingLeft": 24,
+          "children": [
+            {
+              "type": "text",
+              "content": "Log an observation",
+              "x": 0,
+              "y": 0,
+              "width": 200,
+              "height": 20,
+              "fontSize": 15,
+              "fontWeight": "600",
+              "fill": "$cream",
+              "textGrowth": "fixed-width-height",
+              "id": "n2117"
+            },
+            {
+              "type": "frame",
+              "x": 0,
+              "y": 0,
+              "width": "fill_container",
+              "height": 1,
+              "fill": "#00000000",
+              "children": [],
+              "id": "n2118"
+            },
+            {
+              "type": "text",
+              "content": "＋",
+              "x": 0,
+              "y": 0,
+              "width": 28,
+              "height": 24,
+              "fontSize": 20,
+              "fontWeight": "400",
+              "fill": "$ochre",
+              "paddingRight": 20,
+              "textGrowth": "fixed-width-height",
+              "id": "n2119"
+            }
+          ],
+          "id": "n2116"
+        },
+        {
+          "type": "frame",
+          "x": 0,
+          "y": 740,
+          "width": 375,
+          "height": 72,
+          "fill": "$cream",
+          "stroke": {
+            "fill": {
+              "type": "color",
+              "value": "#e0d8c8"
+            },
+            "thickness": 1
+          },
+          "layout": "horizontal",
+          "alignItems": "center",
+          "paddingLeft": 16,
+          "paddingRight": 16,
+          "gap": 0,
+          "children": [
+            {
+              "type": "frame",
+              "x": 0,
+              "y": 0,
+              "width": "fill_container",
+              "height": 52,
+              "fill": "#00000000",
+              "layout": "vertical",
+              "alignItems": "center",
+              "gap": 4,
+              "paddingTop": 8,
+              "children": [
+                {
+                  "type": "text",
+                  "content": "🔍",
+                  "x": 0,
+                  "y": 0,
+                  "width": 28,
+                  "height": 28,
+                  "fontSize": 22,
+                  "fontWeight": "400",
+                  "fill": "$text",
+                  "textAlignHorizontal": "CENTER",
+                  "textGrowth": "fixed-width-height",
+                  "id": "n2122"
+                },
+                {
+                  "type": "text",
+                  "content": "Discover",
+                  "x": 0,
+                  "y": 0,
+                  "width": 52,
+                  "height": 12,
+                  "fontSize": 10,
+                  "fontWeight": "600",
+                  "fill": "$forest",
+                  "textAlignHorizontal": "CENTER",
+                  "textGrowth": "fixed-width-height",
+                  "id": "n2123"
+                }
+              ],
+              "id": "n2121"
+            },
+            {
+              "type": "frame",
+              "x": 0,
+              "y": 0,
+              "width": "fill_container",
+              "height": 52,
+              "fill": "#00000000",
+              "layout": "vertical",
+              "alignItems": "center",
+              "gap": 4,
+              "paddingTop": 8,
+              "children": [
+                {
+                  "type": "text",
+                  "content": "📓",
+                  "x": 0,
+                  "y": 0,
+                  "width": 28,
+                  "height": 28,
+                  "fontSize": 22,
+                  "fontWeight": "400",
+                  "fill": "$text",
+                  "textAlignHorizontal": "CENTER",
+                  "textGrowth": "fixed-width-height",
+                  "id": "n2125"
+                },
+                {
+                  "type": "text",
+                  "content": "Journal",
+                  "x": 0,
+                  "y": 0,
+                  "width": 52,
+                  "height": 12,
+                  "fontSize": 10,
+                  "fontWeight": "600",
+                  "fill": "$muted",
+                  "textAlignHorizontal": "CENTER",
+                  "textGrowth": "fixed-width-height",
+                  "id": "n2126"
+                }
+              ],
+              "id": "n2124"
+            },
+            {
+              "type": "frame",
+              "x": 0,
+              "y": 0,
+              "width": "fill_container",
+              "height": 52,
+              "fill": "#00000000",
+              "layout": "vertical",
+              "alignItems": "center",
+              "gap": 4,
+              "paddingTop": 8,
+              "children": [
+                {
+                  "type": "text",
+                  "content": "🗺️",
+                  "x": 0,
+                  "y": 0,
+                  "width": 28,
+                  "height": 28,
+                  "fontSize": 22,
+                  "fontWeight": "400",
+                  "fill": "$text",
+                  "textAlignHorizontal": "CENTER",
+                  "textGrowth": "fixed-width-height",
+                  "id": "n2128"
+                },
+                {
+                  "type": "text",
+                  "content": "Map",
+                  "x": 0,
+                  "y": 0,
+                  "width": 52,
+                  "height": 12,
+                  "fontSize": 10,
+                  "fontWeight": "600",
+                  "fill": "$muted",
+                  "textAlignHorizontal": "CENTER",
+                  "textGrowth": "fixed-width-height",
+                  "id": "n2129"
+                }
+              ],
+              "id": "n2127"
+            },
+            {
+              "type": "frame",
+              "x": 0,
+              "y": 0,
+              "width": "fill_container",
+              "height": 52,
+              "fill": "#00000000",
+              "layout": "vertical",
+              "alignItems": "center",
+              "gap": 4,
+              "paddingTop": 8,
+              "children": [
+                {
+                  "type": "text",
+                  "content": "👤",
+                  "x": 0,
+                  "y": 0,
+                  "width": 28,
+                  "height": 28,
+                  "fontSize": 22,
+                  "fontWeight": "400",
+                  "fill": "$text",
+                  "textAlignHorizontal": "CENTER",
+                  "textGrowth": "fixed-width-height",
+                  "id": "n2131"
+                },
+                {
+                  "type": "text",
+                  "content": "Profile",
+                  "x": 0,
+                  "y": 0,
+                  "width": 52,
+                  "height": 12,
+                  "fontSize": 10,
+                  "fontWeight": "600",
+                  "fill": "$muted",
+                  "textAlignHorizontal": "CENTER",
+                  "textGrowth": "fixed-width-height",
+                  "id": "n2132"
+                }
+              ],
+              "id": "n2130"
+            }
+          ],
+          "id": "n2120"
+        }
+      ],
+      "id": "n2072"
+    },
+    {
+      "type": "frame",
+      "name": "Journal Entry",
+      "x": 1275,
+      "y": 0,
+      "width": 375,
+      "height": 812,
+      "fill": "$cream",
+      "children": [
+        {
+          "type": "frame",
+          "x": 0,
+          "y": 52,
+          "width": 375,
+          "height": 44,
+          "fill": "#00000000",
+          "layout": "horizontal",
+          "alignItems": "center",
+          "paddingLeft": 24,
+          "paddingRight": 16,
+          "children": [
+            {
+              "type": "text",
+              "content": "← Notes",
+              "x": 0,
+              "y": 0,
+              "width": 80,
+              "height": 18,
+              "fontSize": 14,
+              "fontWeight": "600",
+              "fill": "$forest",
+              "textGrowth": "fixed-width-height",
+              "id": "n2135"
+            },
+            {
+              "type": "frame",
+              "x": 0,
+              "y": 0,
+              "width": "fill_container",
+              "height": 1,
+              "fill": "#00000000",
+              "children": [],
+              "id": "n2136"
+            },
+            {
+              "type": "frame",
+              "x": 0,
+              "y": 0,
+              "width": 80,
+              "height": 32,
+              "cornerRadius": 4,
+              "fill": "$forest",
+              "layout": "horizontal",
+              "alignItems": "center",
+              "paddingLeft": 12,
+              "children": [
+                {
+                  "type": "text",
+                  "content": "Save",
+                  "x": 0,
+                  "y": 0,
+                  "width": 40,
+                  "height": 16,
+                  "fontSize": 13,
+                  "fontWeight": "600",
+                  "fill": "$cream",
+                  "textGrowth": "fixed-width-height",
+                  "id": "n2138"
+                }
+              ],
+              "id": "n2137"
+            }
+          ],
+          "id": "n2134"
+        },
+        {
+          "type": "frame",
+          "x": 24,
+          "y": 108,
+          "width": 160,
+          "height": 28,
+          "cornerRadius": 3,
+          "fill": "$ochre",
+          "layout": "horizontal",
+          "alignItems": "center",
+          "paddingLeft": 10,
+          "children": [
+            {
+              "type": "text",
+              "content": "📅  Thursday, 12 March 2026",
+              "x": 0,
+              "y": 0,
+              "width": 148,
+              "height": 14,
+              "fontSize": 11,
+              "fontWeight": "700",
+              "fill": "$forest",
+              "textGrowth": "fixed-width-height",
+              "id": "n2140"
+            }
+          ],
+          "id": "n2139"
+        },
+        {
+          "type": "text",
+          "content": "Morning walk,\nDunmore Wood",
+          "x": 24,
+          "y": 150,
+          "width": 327,
+          "height": 96,
+          "fontSize": 32,
+          "fontWeight": "800",
+          "fill": "$forest",
+          "lineHeight": 1.15,
+          "letterSpacing": -1,
+          "textGrowth": "fixed-width-height",
+          "id": "n2141"
+        },
+        {
+          "type": "frame",
+          "x": 24,
+          "y": 258,
+          "width": 327,
+          "height": 24,
+          "fill": "#00000000",
+          "layout": "horizontal",
+          "gap": 16,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "content": "🌤  7°C",
+              "x": 0,
+              "y": 0,
+              "width": 60,
+              "height": 16,
+              "fontSize": 12,
+              "fontWeight": "500",
+              "fill": "$muted",
+              "textGrowth": "fixed-width-height",
+              "id": "n2143"
+            },
+            {
+              "type": "text",
+              "content": "🌲  Old-growth mixed forest",
+              "x": 0,
+              "y": 0,
+              "width": 200,
+              "height": 16,
+              "fontSize": 12,
+              "fontWeight": "500",
+              "fill": "$muted",
+              "textGrowth": "fixed-width-height",
+              "id": "n2144"
+            }
+          ],
+          "id": "n2142"
+        },
+        {
+          "type": "frame",
+          "x": 0,
+          "y": 298,
+          "width": 375,
+          "height": 96,
+          "fill": {
+            "type": "color",
+            "value": "#1e3a1e",
+            "opacity": 0.05
+          },
+          "paddingLeft": 24,
+          "paddingRight": 24,
+          "paddingTop": 20,
+          "paddingBottom": 20,
+          "children": [
+            {
+              "type": "frame",
+              "x": 0,
+              "y": 0,
+              "width": 3,
+              "height": 56,
+              "fill": "$ochre",
+              "cornerRadius": 2,
+              "children": [],
+              "id": "n2146"
+            },
+            {
+              "type": "text",
+              "content": "\"Found three Fly Agaric specimens\nnear the old oak stand. Vivid red,\nperfect condition.\"",
+              "x": 16,
+              "y": 0,
+              "width": 319,
+              "height": 56,
+              "fontSize": 14,
+              "fontWeight": "600",
+              "fill": "$forest",
+              "lineHeight": 1.55,
+              "letterSpacing": -0.1,
+              "textGrowth": "fixed-width-height",
+              "id": "n2147"
+            }
+          ],
+          "id": "n2145"
+        },
+        {
+          "type": "text",
+          "content": "The morning light filtered low through the canopy, that particular gold-green quality you only get in autumn. Dew on everything. Took the north path past the stream.",
+          "x": 24,
+          "y": 410,
+          "width": 327,
+          "height": 80,
+          "fontSize": 14,
+          "fontWeight": "400",
+          "fill": "$text",
+          "lineHeight": 1.7,
+          "textGrowth": "fixed-width-height",
+          "id": "n2148"
+        },
+        {
+          "type": "text",
+          "content": "LINKED OBSERVATIONS",
+          "x": 24,
+          "y": 506,
+          "width": 200,
+          "height": 14,
+          "fontSize": 10,
+          "fontWeight": "800",
+          "fill": "$muted",
+          "letterSpacing": 2,
+          "textGrowth": "fixed-width-height",
+          "id": "n2149"
+        },
+        {
+          "type": "frame",
+          "x": 24,
+          "y": 526,
+          "width": 327,
+          "height": 52,
+          "fill": "#00000000",
+          "layout": "horizontal",
+          "gap": 10,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "x": 0,
+              "y": 0,
+              "width": 142.4,
+              "height": 34,
+              "cornerRadius": 4,
+              "fill": "$surface",
+              "paddingLeft": 10,
+              "paddingRight": 10,
+              "layout": "horizontal",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "content": "🍄  Fly Agaric ×3",
+                  "x": 0,
+                  "y": 0,
+                  "width": 122.4,
+                  "height": 14,
+                  "fontSize": 11,
+                  "fontWeight": "600",
+                  "fill": "$forest",
+                  "textGrowth": "fixed-width-height",
+                  "id": "n2152"
+                }
+              ],
+              "id": "n2151"
+            },
+            {
+              "type": "frame",
+              "x": 0,
+              "y": 0,
+              "width": 92,
+              "height": 34,
+              "cornerRadius": 4,
+              "fill": "$surface",
+              "paddingLeft": 10,
+              "paddingRight": 10,
+              "layout": "horizontal",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "content": "🦅  Jay ×1",
+                  "x": 0,
+                  "y": 0,
+                  "width": 72,
+                  "height": 14,
+                  "fontSize": 11,
+                  "fontWeight": "600",
+                  "fill": "$forest",
+                  "textGrowth": "fixed-width-height",
+                  "id": "n2154"
+                }
+              ],
+              "id": "n2153"
+            },
+            {
+              "type": "frame",
+              "x": 0,
+              "y": 0,
+              "width": 99.2,
+              "height": 34,
+              "cornerRadius": 4,
+              "fill": "$surface",
+              "paddingLeft": 10,
+              "paddingRight": 10,
+              "layout": "horizontal",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "content": "🌿  +8 more",
+                  "x": 0,
+                  "y": 0,
+                  "width": 79.2,
+                  "height": 14,
+                  "fontSize": 11,
+                  "fontWeight": "600",
+                  "fill": "$forest",
+                  "textGrowth": "fixed-width-height",
+                  "id": "n2156"
+                }
+              ],
+              "id": "n2155"
+            }
+          ],
+          "id": "n2150"
+        },
+        {
+          "type": "text",
+          "content": "MOOD",
+          "x": 24,
+          "y": 594,
+          "width": 80,
+          "height": 14,
+          "fontSize": 10,
+          "fontWeight": "800",
+          "fill": "$muted",
+          "letterSpacing": 2,
+          "textGrowth": "fixed-width-height",
+          "id": "n2157"
+        },
+        {
+          "type": "frame",
+          "x": 24,
+          "y": 614,
+          "width": 327,
+          "height": 32,
+          "fill": "#00000000",
+          "layout": "horizontal",
+          "gap": 8,
+          "children": [
+            {
+              "type": "frame",
+              "x": 0,
+              "y": 0,
+              "width": 88,
+              "height": 32,
+              "cornerRadius": 100,
+              "fill": "$forest",
+              "paddingLeft": 14,
+              "paddingRight": 14,
+              "layout": "horizontal",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "content": "Peaceful",
+                  "x": 0,
+                  "y": 0,
+                  "width": 60,
+                  "height": 16,
+                  "fontSize": 12,
+                  "fontWeight": "700",
+                  "fill": "$cream",
+                  "textGrowth": "fixed-width-height",
+                  "id": "n2160"
+                }
+              ],
+              "id": "n2159"
+            },
+            {
+              "type": "frame",
+              "x": 0,
+              "y": 0,
+              "width": 80.5,
+              "height": 32,
+              "cornerRadius": 100,
+              "fill": "$surface",
+              "paddingLeft": 14,
+              "paddingRight": 14,
+              "layout": "horizontal",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "content": "Curious",
+                  "x": 0,
+                  "y": 0,
+                  "width": 52.5,
+                  "height": 16,
+                  "fontSize": 12,
+                  "fontWeight": "500",
+                  "fill": "$muted",
+                  "textGrowth": "fixed-width-height",
+                  "id": "n2162"
+                }
+              ],
+              "id": "n2161"
+            },
+            {
+              "type": "frame",
+              "x": 0,
+              "y": 0,
+              "width": 88,
+              "height": 32,
+              "cornerRadius": 100,
+              "fill": "$surface",
+              "paddingLeft": 14,
+              "paddingRight": 14,
+              "layout": "horizontal",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "content": "Grateful",
+                  "x": 0,
+                  "y": 0,
+                  "width": 60,
+                  "height": 16,
+                  "fontSize": 12,
+                  "fontWeight": "500",
+                  "fill": "$muted",
+                  "textGrowth": "fixed-width-height",
+                  "id": "n2164"
+                }
+              ],
+              "id": "n2163"
+            },
+            {
+              "type": "frame",
+              "x": 0,
+              "y": 0,
+              "width": 80.5,
+              "height": 32,
+              "cornerRadius": 100,
+              "fill": "$surface",
+              "paddingLeft": 14,
+              "paddingRight": 14,
+              "layout": "horizontal",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "content": "Focused",
+                  "x": 0,
+                  "y": 0,
+                  "width": 52.5,
+                  "height": 16,
+                  "fontSize": 12,
+                  "fontWeight": "500",
+                  "fill": "$muted",
+                  "textGrowth": "fixed-width-height",
+                  "id": "n2166"
+                }
+              ],
+              "id": "n2165"
+            }
+          ],
+          "id": "n2158"
+        },
+        {
+          "type": "frame",
+          "x": 24,
+          "y": 666,
+          "width": 327,
+          "height": 68,
+          "fill": "#00000000",
+          "layout": "horizontal",
+          "gap": 12,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "x": 0,
+              "y": 0,
+              "width": 64,
+              "height": 64,
+              "cornerRadius": 6,
+              "fill": "$surface",
+              "stroke": {
+                "fill": {
+                  "type": "color",
+                  "value": "#c0b89c"
+                },
+                "thickness": 1.5
+              },
+              "layout": "horizontal",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "content": "📷",
+                  "x": 0,
+                  "y": 0,
+                  "width": 64,
+                  "height": 32,
+                  "fontSize": 26,
+                  "fontWeight": "400",
+                  "fill": "$text",
+                  "textAlignHorizontal": "CENTER",
+                  "textGrowth": "fixed-width-height",
+                  "id": "n2169"
+                }
+              ],
+              "id": "n2168"
+            },
+            {
+              "type": "frame",
+              "x": 0,
+              "y": 0,
+              "width": 64,
+              "height": 64,
+              "cornerRadius": 6,
+              "fill": "$surface",
+              "stroke": {
+                "fill": {
+                  "type": "color",
+                  "value": "#c0b89c"
+                },
+                "thickness": 1.5
+              },
+              "layout": "horizontal",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "content": "＋",
+                  "x": 0,
+                  "y": 0,
+                  "width": 64,
+                  "height": 32,
+                  "fontSize": 26,
+                  "fontWeight": "400",
+                  "fill": "$muted",
+                  "textAlignHorizontal": "CENTER",
+                  "textGrowth": "fixed-width-height",
+                  "id": "n2171"
+                }
+              ],
+              "id": "n2170"
+            },
+            {
+              "type": "text",
+              "content": "Add photos\nto this entry",
+              "x": 0,
+              "y": 0,
+              "width": 140,
+              "height": 36,
+              "fontSize": 12,
+              "fontWeight": "500",
+              "fill": "$muted",
+              "lineHeight": 1.5,
+              "textGrowth": "fixed-width-height",
+              "id": "n2172"
+            }
+          ],
+          "id": "n2167"
+        }
+      ],
+      "id": "n2133"
+    },
+    {
+      "type": "frame",
+      "name": "My Collection",
+      "x": 1700,
+      "y": 0,
+      "width": 375,
+      "height": 812,
+      "fill": "$bg",
+      "children": [
+        {
+          "type": "frame",
+          "x": 0,
+          "y": 52,
+          "width": 375,
+          "height": 44,
+          "fill": "#00000000",
+          "layout": "horizontal",
+          "alignItems": "center",
+          "paddingLeft": 24,
+          "paddingRight": 24,
+          "children": [
+            {
+              "type": "text",
+              "content": "My Finds",
+              "x": 0,
+              "y": 0,
+              "width": 150,
+              "height": 28,
+              "fontSize": 22,
+              "fontWeight": "800",
+              "fill": "$forest",
+              "letterSpacing": -0.5,
+              "textGrowth": "fixed-width-height",
+              "id": "n2175"
+            },
+            {
+              "type": "frame",
+              "x": 0,
+              "y": 0,
+              "width": "fill_container",
+              "height": 1,
+              "fill": "#00000000",
+              "children": [],
+              "id": "n2176"
+            },
+            {
+              "type": "frame",
+              "x": 0,
+              "y": 0,
+              "width": 36,
+              "height": 36,
+              "cornerRadius": 100,
+              "fill": "$surface",
+              "layout": "horizontal",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "content": "⚙",
+                  "x": 0,
+                  "y": 0,
+                  "width": 36,
+                  "height": 24,
+                  "fontSize": 18,
+                  "fontWeight": "400",
+                  "fill": "$muted",
+                  "textAlignHorizontal": "CENTER",
+                  "textGrowth": "fixed-width-height",
+                  "id": "n2178"
+                }
+              ],
+              "id": "n2177"
+            }
+          ],
+          "id": "n2174"
+        },
+        {
+          "type": "frame",
+          "x": 24,
+          "y": 106,
+          "width": 327,
+          "height": 36,
+          "fill": "#00000000",
+          "layout": "horizontal",
+          "gap": 0,
+          "children": [
+            {
+              "type": "frame",
+              "x": 0,
+              "y": 0,
+              "width": "fill_container",
+              "height": 36,
+              "fill": "$forest",
+              "cornerRadius": 4,
+              "layout": "horizontal",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "content": "All",
+                  "x": 0,
+                  "y": 0,
+                  "width": 52,
+                  "height": 16,
+                  "fontSize": 12,
+                  "fontWeight": "700",
+                  "fill": "$cream",
+                  "textAlignHorizontal": "CENTER",
+                  "textGrowth": "fixed-width-height",
+                  "id": "n2181"
+                }
+              ],
+              "id": "n2180"
+            },
+            {
+              "type": "frame",
+              "x": 0,
+              "y": 0,
+              "width": "fill_container",
+              "height": 36,
+              "fill": "#00000000",
+              "cornerRadius": 0,
+              "layout": "horizontal",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "content": "Fungi",
+                  "x": 0,
+                  "y": 0,
+                  "width": 52,
+                  "height": 16,
+                  "fontSize": 12,
+                  "fontWeight": "500",
+                  "fill": "$muted",
+                  "textAlignHorizontal": "CENTER",
+                  "textGrowth": "fixed-width-height",
+                  "id": "n2183"
+                }
+              ],
+              "id": "n2182"
+            },
+            {
+              "type": "frame",
+              "x": 0,
+              "y": 0,
+              "width": "fill_container",
+              "height": 36,
+              "fill": "#00000000",
+              "cornerRadius": 0,
+              "layout": "horizontal",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "content": "Plants",
+                  "x": 0,
+                  "y": 0,
+                  "width": 52,
+                  "height": 16,
+                  "fontSize": 12,
+                  "fontWeight": "500",
+                  "fill": "$muted",
+                  "textAlignHorizontal": "CENTER",
+                  "textGrowth": "fixed-width-height",
+                  "id": "n2185"
+                }
+              ],
+              "id": "n2184"
+            },
+            {
+              "type": "frame",
+              "x": 0,
+              "y": 0,
+              "width": "fill_container",
+              "height": 36,
+              "fill": "#00000000",
+              "cornerRadius": 0,
+              "layout": "horizontal",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "content": "Birds",
+                  "x": 0,
+                  "y": 0,
+                  "width": 52,
+                  "height": 16,
+                  "fontSize": 12,
+                  "fontWeight": "500",
+                  "fill": "$muted",
+                  "textAlignHorizontal": "CENTER",
+                  "textGrowth": "fixed-width-height",
+                  "id": "n2187"
+                }
+              ],
+              "id": "n2186"
+            },
+            {
+              "type": "frame",
+              "x": 0,
+              "y": 0,
+              "width": "fill_container",
+              "height": 36,
+              "fill": "#00000000",
+              "cornerRadius": 0,
+              "layout": "horizontal",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "content": "Insects",
+                  "x": 0,
+                  "y": 0,
+                  "width": 52,
+                  "height": 16,
+                  "fontSize": 12,
+                  "fontWeight": "500",
+                  "fill": "$muted",
+                  "textAlignHorizontal": "CENTER",
+                  "textGrowth": "fixed-width-height",
+                  "id": "n2189"
+                }
+              ],
+              "id": "n2188"
+            }
+          ],
+          "id": "n2179"
+        },
+        {
+          "type": "frame",
+          "x": 24,
+          "y": 158,
+          "width": 327,
+          "height": 110,
+          "fill": "#00000000",
+          "children": [
+            {
+              "type": "frame",
+              "x": 0,
+              "y": 0,
+              "width": 327,
+              "height": 110,
+              "cornerRadius": 8,
+              "fill": [
+                {
+                  "type": "gradient",
+                  "gradientType": "linear",
+                  "rotation": 135,
+                  "colors": [
+                    {
+                      "color": "#1e3a1e",
+                      "position": 0
+                    },
+                    {
+                      "color": "#2d5e3e",
+                      "position": 1
+                    }
+                  ]
+                }
+              ],
+              "paddingLeft": 16,
+              "paddingTop": 14,
+              "children": [
+                {
+                  "type": "text",
+                  "content": "147 total\nspecies found",
+                  "x": 0,
+                  "y": 52,
+                  "width": 295,
+                  "height": 56,
+                  "fontSize": 22,
+                  "fontWeight": "800",
+                  "fill": "$cream",
+                  "lineHeight": 1.15,
+                  "letterSpacing": -0.3,
+                  "textGrowth": "fixed-width-height",
+                  "id": "n2192"
+                },
+                {
+                  "type": "text",
+                  "content": "Your life list",
+                  "x": 0,
+                  "y": 82,
+                  "width": 295,
+                  "height": 14,
+                  "fontSize": 10,
+                  "fontWeight": "500",
+                  "fill": {
+                    "type": "color",
+                    "value": "#ffffff",
+                    "opacity": 0.65
+                  },
+                  "textGrowth": "fixed-width-height",
+                  "id": "n2193"
+                }
+              ],
+              "id": "n2191"
+            }
+          ],
+          "id": "n2190"
+        },
+        {
+          "type": "frame",
+          "x": 24,
+          "y": 280,
+          "width": 327,
+          "height": 130,
+          "fill": "#00000000",
+          "layout": "horizontal",
+          "gap": 12,
+          "children": [
+            {
+              "type": "frame",
+              "x": 0,
+              "y": 0,
+              "width": 157.5,
+              "height": 130,
+              "cornerRadius": 8,
+              "fill": [
+                {
+                  "type": "gradient",
+                  "gradientType": "linear",
+                  "rotation": 140,
+                  "colors": [
+                    {
+                      "color": "#c97d0a",
+                      "position": 0
+                    },
+                    {
+                      "color": "#7a4d06",
+                      "position": 1
+                    }
+                  ]
+                }
+              ],
+              "paddingLeft": 16,
+              "paddingTop": 14,
+              "children": [
+                {
+                  "type": "text",
+                  "content": "🔥",
+                  "x": 0,
+                  "y": 0,
+                  "width": 36,
+                  "height": 36,
+                  "fontSize": 28,
+                  "fontWeight": "400",
+                  "fill": "$text",
+                  "textGrowth": "fixed-width-height",
+                  "id": "n2196"
+                },
+                {
+                  "type": "text",
+                  "content": "12-day\nstreak",
+                  "x": 0,
+                  "y": 42,
+                  "width": 125.5,
+                  "height": 40,
+                  "fontSize": 16,
+                  "fontWeight": "800",
+                  "fill": "$cream",
+                  "lineHeight": 1.15,
+                  "letterSpacing": -0.3,
+                  "textGrowth": "fixed-width-height",
+                  "id": "n2197"
+                },
+                {
+                  "type": "text",
+                  "content": "Personal best!",
+                  "x": 0,
+                  "y": 102,
+                  "width": 125.5,
+                  "height": 14,
+                  "fontSize": 10,
+                  "fontWeight": "500",
+                  "fill": {
+                    "type": "color",
+                    "value": "#ffffff",
+                    "opacity": 0.65
+                  },
+                  "textGrowth": "fixed-width-height",
+                  "id": "n2198"
+                }
+              ],
+              "id": "n2195"
+            },
+            {
+              "type": "frame",
+              "x": 0,
+              "y": 0,
+              "width": 157.5,
+              "height": 130,
+              "cornerRadius": 8,
+              "fill": [
+                {
+                  "type": "gradient",
+                  "gradientType": "linear",
+                  "rotation": 150,
+                  "colors": [
+                    {
+                      "color": "#2e4a5c",
+                      "position": 0
+                    },
+                    {
+                      "color": "#1a2d3d",
+                      "position": 1
+                    }
+                  ]
+                }
+              ],
+              "paddingLeft": 16,
+              "paddingTop": 14,
+              "children": [
+                {
+                  "type": "text",
+                  "content": "🦅",
+                  "x": 0,
+                  "y": 0,
+                  "width": 36,
+                  "height": 36,
+                  "fontSize": 28,
+                  "fontWeight": "400",
+                  "fill": "$text",
+                  "textGrowth": "fixed-width-height",
+                  "id": "n2200"
+                },
+                {
+                  "type": "text",
+                  "content": "Rare find!\nGoshawk",
+                  "x": 0,
+                  "y": 42,
+                  "width": 125.5,
+                  "height": 40,
+                  "fontSize": 16,
+                  "fontWeight": "800",
+                  "fill": "$cream",
+                  "lineHeight": 1.15,
+                  "letterSpacing": -0.3,
+                  "textGrowth": "fixed-width-height",
+                  "id": "n2201"
+                },
+                {
+                  "type": "text",
+                  "content": "Yesterday · Forest",
+                  "x": 0,
+                  "y": 102,
+                  "width": 125.5,
+                  "height": 14,
+                  "fontSize": 10,
+                  "fontWeight": "500",
+                  "fill": {
+                    "type": "color",
+                    "value": "#ffffff",
+                    "opacity": 0.65
+                  },
+                  "textGrowth": "fixed-width-height",
+                  "id": "n2202"
+                }
+              ],
+              "id": "n2199"
+            }
+          ],
+          "id": "n2194"
+        },
+        {
+          "type": "frame",
+          "x": 24,
+          "y": 422,
+          "width": 327,
+          "height": 130,
+          "fill": "#00000000",
+          "layout": "horizontal",
+          "gap": 12,
+          "children": [
+            {
+              "type": "frame",
+              "x": 0,
+              "y": 0,
+              "width": 157.5,
+              "height": 130,
+              "cornerRadius": 8,
+              "fill": [
+                {
+                  "type": "gradient",
+                  "gradientType": "linear",
+                  "rotation": 130,
+                  "colors": [
+                    {
+                      "color": "#4a7c59",
+                      "position": 0
+                    },
+                    {
+                      "color": "#2d5e3e",
+                      "position": 1
+                    }
+                  ]
+                }
+              ],
+              "paddingLeft": 16,
+              "paddingTop": 14,
+              "children": [
+                {
+                  "type": "text",
+                  "content": "23 this\nmonth",
+                  "x": 0,
+                  "y": 52,
+                  "width": 125.5,
+                  "height": 56,
+                  "fontSize": 22,
+                  "fontWeight": "800",
+                  "fill": "$cream",
+                  "lineHeight": 1.15,
+                  "letterSpacing": -0.3,
+                  "textGrowth": "fixed-width-height",
+                  "id": "n2205"
+                },
+                {
+                  "type": "text",
+                  "content": "Observations",
+                  "x": 0,
+                  "y": 102,
+                  "width": 125.5,
+                  "height": 14,
+                  "fontSize": 10,
+                  "fontWeight": "500",
+                  "fill": {
+                    "type": "color",
+                    "value": "#ffffff",
+                    "opacity": 0.65
+                  },
+                  "textGrowth": "fixed-width-height",
+                  "id": "n2206"
+                }
+              ],
+              "id": "n2204"
+            },
+            {
+              "type": "frame",
+              "x": 0,
+              "y": 0,
+              "width": 157.5,
+              "height": 130,
+              "cornerRadius": 8,
+              "fill": [
+                {
+                  "type": "gradient",
+                  "gradientType": "linear",
+                  "rotation": 135,
+                  "colors": [
+                    {
+                      "color": "#b8471e",
+                      "position": 0
+                    },
+                    {
+                      "color": "#7a2e10",
+                      "position": 1
+                    }
+                  ]
+                }
+              ],
+              "paddingLeft": 16,
+              "paddingTop": 14,
+              "children": [
+                {
+                  "type": "text",
+                  "content": "Top find:\nFly Agaric",
+                  "x": 0,
+                  "y": 52,
+                  "width": 125.5,
+                  "height": 56,
+                  "fontSize": 22,
+                  "fontWeight": "800",
+                  "fill": "$cream",
+                  "lineHeight": 1.15,
+                  "letterSpacing": -0.3,
+                  "textGrowth": "fixed-width-height",
+                  "id": "n2208"
+                },
+                {
+                  "type": "text",
+                  "content": "Oct 2025 · Dunmore",
+                  "x": 0,
+                  "y": 102,
+                  "width": 125.5,
+                  "height": 14,
+                  "fontSize": 10,
+                  "fontWeight": "500",
+                  "fill": {
+                    "type": "color",
+                    "value": "#ffffff",
+                    "opacity": 0.65
+                  },
+                  "textGrowth": "fixed-width-height",
+                  "id": "n2209"
+                }
+              ],
+              "id": "n2207"
+            }
+          ],
+          "id": "n2203"
+        },
+        {
+          "type": "text",
+          "content": "RECENT JOURNAL ENTRIES",
+          "x": 24,
+          "y": 570,
+          "width": 240,
+          "height": 14,
+          "fontSize": 10,
+          "fontWeight": "800",
+          "fill": "$muted",
+          "letterSpacing": 2,
+          "textGrowth": "fixed-width-height",
+          "id": "n2210"
+        },
+        {
+          "type": "frame",
+          "x": 24,
+          "y": 594,
+          "width": 327,
+          "height": 62,
+          "fill": "$surface",
+          "cornerRadius": 6,
+          "paddingLeft": 14,
+          "paddingRight": 14,
+          "paddingTop": 12,
+          "layout": "vertical",
+          "gap": 4,
+          "children": [
+            {
+              "type": "frame",
+              "x": 0,
+              "y": 0,
+              "width": "fill_container",
+              "height": 18,
+              "fill": "#00000000",
+              "layout": "horizontal",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "content": "Morning walk, Dunmore Wood",
+                  "x": 0,
+                  "y": 0,
+                  "width": 220,
+                  "height": 18,
+                  "fontSize": 14,
+                  "fontWeight": "700",
+                  "fill": "$forest",
+                  "letterSpacing": -0.2,
+                  "textGrowth": "fixed-width-height",
+                  "id": "n2213"
+                },
+                {
+                  "type": "frame",
+                  "x": 0,
+                  "y": 0,
+                  "width": "fill_container",
+                  "height": 1,
+                  "fill": "#00000000",
+                  "children": [],
+                  "id": "n2214"
+                },
+                {
+                  "type": "text",
+                  "content": "→",
+                  "x": 0,
+                  "y": 0,
+                  "width": 14,
+                  "height": 18,
+                  "fontSize": 14,
+                  "fontWeight": "400",
+                  "fill": "$ochre",
+                  "textGrowth": "fixed-width-height",
+                  "id": "n2215"
+                }
+              ],
+              "id": "n2212"
+            },
+            {
+              "type": "text",
+              "content": "12 Mar 2026 · 🍄 ×3  🦅 ×1  🌿 ×8",
+              "x": 0,
+              "y": 0,
+              "width": 275,
+              "height": 14,
+              "fontSize": 11,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textGrowth": "fixed-width-height",
+              "id": "n2216"
+            }
+          ],
+          "id": "n2211"
+        },
+        {
+          "type": "frame",
+          "x": 24,
+          "y": 668,
+          "width": 327,
+          "height": 62,
+          "fill": "$surface",
+          "cornerRadius": 6,
+          "paddingLeft": 14,
+          "paddingRight": 14,
+          "paddingTop": 12,
+          "layout": "vertical",
+          "gap": 4,
+          "children": [
+            {
+              "type": "frame",
+              "x": 0,
+              "y": 0,
+              "width": "fill_container",
+              "height": 18,
+              "fill": "#00000000",
+              "layout": "horizontal",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "content": "River Walk Survey",
+                  "x": 0,
+                  "y": 0,
+                  "width": 220,
+                  "height": 18,
+                  "fontSize": 14,
+                  "fontWeight": "700",
+                  "fill": "$forest",
+                  "letterSpacing": -0.2,
+                  "textGrowth": "fixed-width-height",
+                  "id": "n2219"
+                },
+                {
+                  "type": "frame",
+                  "x": 0,
+                  "y": 0,
+                  "width": "fill_container",
+                  "height": 1,
+                  "fill": "#00000000",
+                  "children": [],
+                  "id": "n2220"
+                },
+                {
+                  "type": "text",
+                  "content": "→",
+                  "x": 0,
+                  "y": 0,
+                  "width": 14,
+                  "height": 18,
+                  "fontSize": 14,
+                  "fontWeight": "400",
+                  "fill": "$ochre",
+                  "textGrowth": "fixed-width-height",
+                  "id": "n2221"
+                }
+              ],
+              "id": "n2218"
+            },
+            {
+              "type": "text",
+              "content": "8 Mar 2026 · 🦆 ×6  🐸 ×2  🌾 ×4",
+              "x": 0,
+              "y": 0,
+              "width": 275,
+              "height": 14,
+              "fontSize": 11,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textGrowth": "fixed-width-height",
+              "id": "n2222"
+            }
+          ],
+          "id": "n2217"
+        },
+        {
+          "type": "frame",
+          "x": 0,
+          "y": 740,
+          "width": 375,
+          "height": 72,
+          "fill": "$cream",
+          "stroke": {
+            "fill": {
+              "type": "color",
+              "value": "#e0d8c8"
+            },
+            "thickness": 1
+          },
+          "layout": "horizontal",
+          "alignItems": "center",
+          "paddingLeft": 16,
+          "paddingRight": 16,
+          "gap": 0,
+          "children": [
+            {
+              "type": "frame",
+              "x": 0,
+              "y": 0,
+              "width": "fill_container",
+              "height": 52,
+              "fill": "#00000000",
+              "layout": "vertical",
+              "alignItems": "center",
+              "gap": 4,
+              "paddingTop": 8,
+              "children": [
+                {
+                  "type": "text",
+                  "content": "🔍",
+                  "x": 0,
+                  "y": 0,
+                  "width": 28,
+                  "height": 28,
+                  "fontSize": 22,
+                  "fontWeight": "400",
+                  "fill": "$text",
+                  "textAlignHorizontal": "CENTER",
+                  "textGrowth": "fixed-width-height",
+                  "id": "n2225"
+                },
+                {
+                  "type": "text",
+                  "content": "Discover",
+                  "x": 0,
+                  "y": 0,
+                  "width": 52,
+                  "height": 12,
+                  "fontSize": 10,
+                  "fontWeight": "600",
+                  "fill": "$muted",
+                  "textAlignHorizontal": "CENTER",
+                  "textGrowth": "fixed-width-height",
+                  "id": "n2226"
+                }
+              ],
+              "id": "n2224"
+            },
+            {
+              "type": "frame",
+              "x": 0,
+              "y": 0,
+              "width": "fill_container",
+              "height": 52,
+              "fill": "#00000000",
+              "layout": "vertical",
+              "alignItems": "center",
+              "gap": 4,
+              "paddingTop": 8,
+              "children": [
+                {
+                  "type": "text",
+                  "content": "📓",
+                  "x": 0,
+                  "y": 0,
+                  "width": 28,
+                  "height": 28,
+                  "fontSize": 22,
+                  "fontWeight": "400",
+                  "fill": "$text",
+                  "textAlignHorizontal": "CENTER",
+                  "textGrowth": "fixed-width-height",
+                  "id": "n2228"
+                },
+                {
+                  "type": "text",
+                  "content": "Journal",
+                  "x": 0,
+                  "y": 0,
+                  "width": 52,
+                  "height": 12,
+                  "fontSize": 10,
+                  "fontWeight": "600",
+                  "fill": "$forest",
+                  "textAlignHorizontal": "CENTER",
+                  "textGrowth": "fixed-width-height",
+                  "id": "n2229"
+                }
+              ],
+              "id": "n2227"
+            },
+            {
+              "type": "frame",
+              "x": 0,
+              "y": 0,
+              "width": "fill_container",
+              "height": 52,
+              "fill": "#00000000",
+              "layout": "vertical",
+              "alignItems": "center",
+              "gap": 4,
+              "paddingTop": 8,
+              "children": [
+                {
+                  "type": "text",
+                  "content": "🗺️",
+                  "x": 0,
+                  "y": 0,
+                  "width": 28,
+                  "height": 28,
+                  "fontSize": 22,
+                  "fontWeight": "400",
+                  "fill": "$text",
+                  "textAlignHorizontal": "CENTER",
+                  "textGrowth": "fixed-width-height",
+                  "id": "n2231"
+                },
+                {
+                  "type": "text",
+                  "content": "Map",
+                  "x": 0,
+                  "y": 0,
+                  "width": 52,
+                  "height": 12,
+                  "fontSize": 10,
+                  "fontWeight": "600",
+                  "fill": "$muted",
+                  "textAlignHorizontal": "CENTER",
+                  "textGrowth": "fixed-width-height",
+                  "id": "n2232"
+                }
+              ],
+              "id": "n2230"
+            },
+            {
+              "type": "frame",
+              "x": 0,
+              "y": 0,
+              "width": "fill_container",
+              "height": 52,
+              "fill": "#00000000",
+              "layout": "vertical",
+              "alignItems": "center",
+              "gap": 4,
+              "paddingTop": 8,
+              "children": [
+                {
+                  "type": "text",
+                  "content": "👤",
+                  "x": 0,
+                  "y": 0,
+                  "width": 28,
+                  "height": 28,
+                  "fontSize": 22,
+                  "fontWeight": "400",
+                  "fill": "$text",
+                  "textAlignHorizontal": "CENTER",
+                  "textGrowth": "fixed-width-height",
+                  "id": "n2234"
+                },
+                {
+                  "type": "text",
+                  "content": "Profile",
+                  "x": 0,
+                  "y": 0,
+                  "width": 52,
+                  "height": 12,
+                  "fontSize": 10,
+                  "fontWeight": "600",
+                  "fill": "$muted",
+                  "textAlignHorizontal": "CENTER",
+                  "textGrowth": "fixed-width-height",
+                  "id": "n2235"
+                }
+              ],
+              "id": "n2233"
+            }
+          ],
+          "id": "n2223"
+        }
+      ],
+      "id": "n2173"
+    }
+  ]
+}

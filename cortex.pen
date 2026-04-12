@@ -1,0 +1,789 @@
+{
+  "version": "2.8",
+  "meta": {
+    "name": "CORTEX",
+    "tagline": "Train your focus. Own your mind.",
+    "archetype": "mental-performance-tracker",
+    "author": "RAM Design Heartbeat",
+    "created": "2026-04-03T03:08:57.191Z",
+    "theme": "dark"
+  },
+  "palette": {
+    "bg": "#07070F",
+    "surface": "#0E0E1C",
+    "surfaceAlt": "#141426",
+    "surfaceHover": "#1A1A30",
+    "text": "#EAE8FF",
+    "textMuted": "rgba(234,232,255,0.40)",
+    "accent": "#7B61FF",
+    "accent2": "#00E5FF",
+    "accentSoft": "rgba(123,97,255,0.12)",
+    "accent2Soft": "rgba(0,229,255,0.10)",
+    "border": "rgba(234,232,255,0.07)",
+    "borderStrong": "rgba(234,232,255,0.13)",
+    "borderAccent": "rgba(123,97,255,0.28)",
+    "statusGreen": "#00F0A0",
+    "statusAmber": "#FFBB33",
+    "statusRed": "#FF4D6A",
+    "statusGreenSoft": "rgba(0,240,160,0.10)",
+    "statusAmberSoft": "rgba(255,187,51,0.10)",
+    "gridLine": "rgba(234,232,255,0.03)"
+  },
+  "lightPalette": {
+    "bg": "#F4F3FF",
+    "surface": "#FFFFFF",
+    "surfaceAlt": "#EAE8FF",
+    "text": "#0F0B2E",
+    "textMuted": "rgba(15,11,46,0.45)",
+    "accent": "#5B3FE0",
+    "accent2": "#007ACC",
+    "accentSoft": "rgba(91,63,224,0.08)",
+    "accent2Soft": "rgba(0,122,204,0.08)",
+    "border": "rgba(15,11,46,0.09)",
+    "borderStrong": "rgba(15,11,46,0.17)",
+    "borderAccent": "rgba(91,63,224,0.25)",
+    "statusGreen": "#00A870",
+    "statusAmber": "#CC8800",
+    "statusRed": "#D92B50"
+  },
+  "typography": {
+    "fontFamily": "Inter, system-ui, -apple-system, sans-serif",
+    "monoFamily": "'JetBrains Mono', 'Fira Code', monospace",
+    "scale": {
+      "xs": 10,
+      "sm": 11,
+      "base": 13,
+      "md": 14,
+      "lg": 17,
+      "xl": 22,
+      "xxl": 30,
+      "hero": 48
+    }
+  },
+  "screens": [
+    {
+      "id": "today",
+      "label": "Today",
+      "description": "Daily dashboard — focus score ring, live session card, streak, and peak hour heatmap",
+      "components": [
+        {
+          "type": "app-topbar",
+          "left": "CORTEX",
+          "leftSub": "Apr 2, 2026",
+          "rightAction": {
+            "icon": "bell",
+            "badge": "2"
+          },
+          "style": "minimal-dark"
+        },
+        {
+          "type": "hero-ring",
+          "label": "Focus Score",
+          "value": "84",
+          "unit": "/100",
+          "subtitle": "Strong day — top 12% this week",
+          "ringPct": 84,
+          "ringColor": "accent",
+          "ringBg": "accentSoft",
+          "style": "large-centered"
+        },
+        {
+          "type": "stat-row",
+          "items": [
+            {
+              "label": "Deep Work",
+              "value": "3h 24m",
+              "icon": "zap"
+            },
+            {
+              "label": "Sessions",
+              "value": "5",
+              "icon": "check"
+            },
+            {
+              "label": "Streak",
+              "value": "14d",
+              "icon": "star"
+            }
+          ]
+        },
+        {
+          "type": "session-card-active",
+          "label": "NOW ACTIVE",
+          "sessionName": "Deep Work · Product Strategy",
+          "elapsed": "42:17",
+          "targetMin": 90,
+          "elapsedMin": 42,
+          "pct": 47,
+          "ambience": "Rain · Lo-fi",
+          "actions": [
+            "Pause",
+            "End"
+          ]
+        },
+        {
+          "type": "heatmap-row",
+          "label": "Peak Hours",
+          "subtitle": "Your focus intensity by hour",
+          "hours": [
+            {
+              "h": "6am",
+              "v": 20
+            },
+            {
+              "h": "7am",
+              "v": 45
+            },
+            {
+              "h": "8am",
+              "v": 72
+            },
+            {
+              "h": "9am",
+              "v": 91
+            },
+            {
+              "h": "10am",
+              "v": 88
+            },
+            {
+              "h": "11am",
+              "v": 76
+            },
+            {
+              "h": "12pm",
+              "v": 40
+            },
+            {
+              "h": "1pm",
+              "v": 28
+            },
+            {
+              "h": "2pm",
+              "v": 55
+            },
+            {
+              "h": "3pm",
+              "v": 80
+            },
+            {
+              "h": "4pm",
+              "v": 84
+            },
+            {
+              "h": "5pm",
+              "v": 62
+            },
+            {
+              "h": "6pm",
+              "v": 30
+            },
+            {
+              "h": "7pm",
+              "v": 18
+            }
+          ],
+          "accentColor": "accent"
+        },
+        {
+          "type": "upcoming-list",
+          "label": "Planned Sessions",
+          "items": [
+            {
+              "icon": "code",
+              "title": "Deep Coding — API Refactor",
+              "time": "4:30 PM",
+              "duration": "90 min",
+              "color": "accent"
+            },
+            {
+              "icon": "book",
+              "title": "Reading — The Pragmatic Programmer",
+              "time": "7:00 PM",
+              "duration": "45 min",
+              "color": "statusGreen"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "session",
+      "label": "Session",
+      "description": "Active focus session — fullscreen timer, bar visualizer, ambience, break controls",
+      "components": [
+        {
+          "type": "session-header",
+          "label": "DEEP FOCUS",
+          "badge": {
+            "text": "ACTIVE",
+            "color": "accent"
+          },
+          "sessionName": "Product Strategy",
+          "style": "minimal"
+        },
+        {
+          "type": "mono-timer",
+          "value": "00:42:17",
+          "sub": "of 90 min target",
+          "style": "hero-mono",
+          "size": "hero"
+        },
+        {
+          "type": "bar-visualizer",
+          "label": "Focus Rhythm",
+          "bars": [
+            62,
+            71,
+            84,
+            91,
+            88,
+            79,
+            92,
+            86,
+            74,
+            68,
+            82,
+            95,
+            89,
+            77,
+            83,
+            91,
+            78,
+            66,
+            88,
+            94,
+            85,
+            72,
+            80,
+            88,
+            91
+          ],
+          "activeColor": "accent",
+          "mutedColor": "accentSoft",
+          "currentIndex": 12,
+          "style": "glow-bars"
+        },
+        {
+          "type": "ambience-picker",
+          "label": "Ambience",
+          "selected": "Rain",
+          "options": [
+            {
+              "id": "rain",
+              "label": "Rain",
+              "icon": "🌧"
+            },
+            {
+              "id": "lofi",
+              "label": "Lo-fi",
+              "icon": "🎵"
+            },
+            {
+              "id": "forest",
+              "label": "Forest",
+              "icon": "🌲"
+            },
+            {
+              "id": "silence",
+              "label": "Silence",
+              "icon": "○"
+            },
+            {
+              "id": "cafe",
+              "label": "Café",
+              "icon": "☕"
+            }
+          ]
+        },
+        {
+          "type": "session-controls",
+          "actions": [
+            {
+              "label": "Take Break",
+              "icon": "pause",
+              "style": "outline"
+            },
+            {
+              "label": "End Session",
+              "icon": "check",
+              "style": "accent"
+            }
+          ]
+        },
+        {
+          "type": "session-note",
+          "label": "Session Note",
+          "placeholder": "Log a thought or insight...",
+          "value": "Reconsidering the onboarding flow — simpler entry point, fewer steps to first value moment."
+        }
+      ]
+    },
+    {
+      "id": "insights",
+      "label": "Insights",
+      "description": "30-day performance analytics — bar chart history, focus breakdown, cognitive trends",
+      "components": [
+        {
+          "type": "section-header",
+          "title": "Insights",
+          "subtitle": "Mar 3 – Apr 2, 2026",
+          "action": "Export"
+        },
+        {
+          "type": "hero-metric",
+          "value": "87.4h",
+          "label": "Total Deep Work",
+          "sub": "+18% vs last 30 days",
+          "delta": "positive"
+        },
+        {
+          "type": "stat-row",
+          "items": [
+            {
+              "label": "Avg Daily",
+              "value": "2h 55m"
+            },
+            {
+              "label": "Best Day",
+              "value": "6h 12m"
+            },
+            {
+              "label": "Consistency",
+              "value": "91%"
+            }
+          ]
+        },
+        {
+          "type": "bar-chart",
+          "label": "Daily Focus (hours)",
+          "bars": [
+            {
+              "x": "M",
+              "v": 2.1
+            },
+            {
+              "x": "T",
+              "v": 3.4
+            },
+            {
+              "x": "W",
+              "v": 1.8
+            },
+            {
+              "x": "T",
+              "v": 4.2
+            },
+            {
+              "x": "F",
+              "v": 5.1
+            },
+            {
+              "x": "S",
+              "v": 2.7
+            },
+            {
+              "x": "S",
+              "v": 1.2
+            },
+            {
+              "x": "M",
+              "v": 3.8
+            },
+            {
+              "x": "T",
+              "v": 4.4
+            },
+            {
+              "x": "W",
+              "v": 3.1
+            },
+            {
+              "x": "T",
+              "v": 2.9
+            },
+            {
+              "x": "F",
+              "v": 6.1
+            },
+            {
+              "x": "S",
+              "v": 3.3
+            },
+            {
+              "x": "S",
+              "v": 0.8
+            }
+          ],
+          "highlightLast": false,
+          "accentColor": "accent",
+          "todayIndex": 11
+        },
+        {
+          "type": "breakdown-list",
+          "label": "Focus by Category",
+          "items": [
+            {
+              "label": "Deep Work",
+              "pct": 42,
+              "color": "accent"
+            },
+            {
+              "label": "Reading",
+              "pct": 26,
+              "color": "accent2"
+            },
+            {
+              "label": "Learning",
+              "pct": 19,
+              "color": "statusGreen"
+            },
+            {
+              "label": "Planning",
+              "pct": 13,
+              "color": "statusAmber"
+            }
+          ]
+        },
+        {
+          "type": "insight-card",
+          "icon": "zap",
+          "label": "Your Peak Window",
+          "value": "9:00 – 11:30 AM",
+          "sub": "83% of your highest-score sessions start here"
+        }
+      ]
+    },
+    {
+      "id": "goals",
+      "label": "Goals",
+      "description": "Weekly & monthly goal tracking — vertical progress bars, milestone cards, habit matrix",
+      "components": [
+        {
+          "type": "section-header",
+          "title": "Goals",
+          "subtitle": "Week 14 · April 2026",
+          "action": "+ Add"
+        },
+        {
+          "type": "week-progress-bars",
+          "label": "This Week",
+          "subtitle": "Daily deep work hours (target: 3h)",
+          "days": [
+            {
+              "label": "Mon",
+              "value": 3.2,
+              "target": 3,
+              "status": "done"
+            },
+            {
+              "label": "Tue",
+              "value": 4.1,
+              "target": 3,
+              "status": "done"
+            },
+            {
+              "label": "Wed",
+              "value": 2.3,
+              "target": 3,
+              "status": "partial"
+            },
+            {
+              "label": "Thu",
+              "value": 3.8,
+              "target": 3,
+              "status": "done"
+            },
+            {
+              "label": "Fri",
+              "value": 1.4,
+              "target": 3,
+              "status": "active"
+            },
+            {
+              "label": "Sat",
+              "value": 0,
+              "target": 3,
+              "status": "future"
+            },
+            {
+              "label": "Sun",
+              "value": 0,
+              "target": 3,
+              "status": "future"
+            }
+          ],
+          "accentColor": "accent"
+        },
+        {
+          "type": "goal-cards",
+          "items": [
+            {
+              "icon": "zap",
+              "title": "100h Deep Work in April",
+              "pct": 72,
+              "detail": "72.4 / 100 hours",
+              "sub": "On track — avg 3.1h/day needed",
+              "color": "accent"
+            },
+            {
+              "icon": "star",
+              "title": "21-Day Focus Streak",
+              "pct": 67,
+              "detail": "14 / 21 days",
+              "sub": "7 more days to unlock badge",
+              "color": "statusGreen"
+            },
+            {
+              "icon": "book",
+              "title": "Read 2 Books in April",
+              "pct": 50,
+              "detail": "1 / 2 books",
+              "sub": "Currently: The Pragmatic Programmer",
+              "color": "accent2"
+            }
+          ]
+        },
+        {
+          "type": "habit-matrix",
+          "label": "Habit Tracker · April",
+          "habits": [
+            {
+              "name": "Morning Focus",
+              "days": [
+                1,
+                1,
+                1,
+                0,
+                1,
+                1,
+                1,
+                1,
+                0,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                0,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                0,
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              "color": "accent"
+            },
+            {
+              "name": "No Phone AM",
+              "days": [
+                1,
+                1,
+                0,
+                0,
+                1,
+                1,
+                1,
+                0,
+                0,
+                1,
+                1,
+                1,
+                0,
+                1,
+                1,
+                1,
+                0,
+                0,
+                1,
+                1,
+                1,
+                1,
+                0,
+                1,
+                1,
+                0,
+                0,
+                1,
+                1,
+                1,
+                0,
+                0
+              ],
+              "color": "accent2"
+            },
+            {
+              "name": "Evening Wind-Down",
+              "days": [
+                1,
+                0,
+                1,
+                1,
+                1,
+                0,
+                1,
+                1,
+                1,
+                1,
+                0,
+                1,
+                1,
+                1,
+                1,
+                0,
+                1,
+                1,
+                1,
+                1,
+                1,
+                0,
+                1,
+                1,
+                1,
+                1,
+                1,
+                0,
+                1,
+                1,
+                1,
+                1
+              ],
+              "color": "statusGreen"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "profile",
+      "label": "Profile",
+      "description": "Personal stats, badges, settings — cognitive archetype, lifetime metrics, dark chrome",
+      "components": [
+        {
+          "type": "profile-hero",
+          "name": "Alex Chen",
+          "subtitle": "Focus Architect · Level 8",
+          "badge": "🧠",
+          "joinedLabel": "Member since Jan 2025",
+          "stats": [
+            {
+              "label": "Total Sessions",
+              "value": "412"
+            },
+            {
+              "label": "Total Hours",
+              "value": "618h"
+            },
+            {
+              "label": "Best Streak",
+              "value": "28d"
+            }
+          ]
+        },
+        {
+          "type": "archetype-card",
+          "icon": "zap",
+          "label": "Your Cognitive Archetype",
+          "title": "The Deep Diver",
+          "sub": "You excel in long, uninterrupted blocks. 78% of your best work happens in sessions over 60 min.",
+          "color": "accent"
+        },
+        {
+          "type": "badge-shelf",
+          "label": "Earned Badges",
+          "items": [
+            {
+              "icon": "🔥",
+              "label": "28-Day Streak"
+            },
+            {
+              "icon": "⚡",
+              "label": "100h Club"
+            },
+            {
+              "icon": "🌅",
+              "label": "Early Riser"
+            },
+            {
+              "icon": "🧠",
+              "label": "Deep Thinker"
+            },
+            {
+              "icon": "🏆",
+              "label": "Top 10%"
+            }
+          ]
+        },
+        {
+          "type": "settings-list",
+          "label": "Preferences",
+          "items": [
+            {
+              "icon": "bell",
+              "label": "Focus Reminders",
+              "value": "9:00 AM daily",
+              "type": "value"
+            },
+            {
+              "icon": "zap",
+              "label": "Default Session Length",
+              "value": "90 min",
+              "type": "value"
+            },
+            {
+              "icon": "eye",
+              "label": "Dark Mode",
+              "value": true,
+              "type": "toggle"
+            },
+            {
+              "icon": "lock",
+              "label": "Data Privacy",
+              "value": "Local only",
+              "type": "value"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "nav": [
+    {
+      "id": "today",
+      "label": "Today",
+      "icon": "home"
+    },
+    {
+      "id": "session",
+      "label": "Session",
+      "icon": "zap"
+    },
+    {
+      "id": "insights",
+      "label": "Insights",
+      "icon": "chart"
+    },
+    {
+      "id": "goals",
+      "label": "Goals",
+      "icon": "star"
+    },
+    {
+      "id": "profile",
+      "label": "Profile",
+      "icon": "user"
+    }
+  ]
+}

@@ -1,0 +1,4399 @@
+{
+  "version": "2.8",
+  "variables": {
+    "bg": {
+      "type": "color",
+      "value": "#f8fafc"
+    },
+    "card": {
+      "type": "color",
+      "value": "#ffffff"
+    },
+    "border": {
+      "type": "color",
+      "value": "#e2e8f0"
+    },
+    "accent": {
+      "type": "color",
+      "value": "#6366f1"
+    },
+    "accentLight": {
+      "type": "color",
+      "value": "#eef2ff"
+    },
+    "text": {
+      "type": "color",
+      "value": "#1e293b"
+    },
+    "muted": {
+      "type": "color",
+      "value": "#94a3b8"
+    },
+    "green": {
+      "type": "color",
+      "value": "#16a34a"
+    },
+    "greenLight": {
+      "type": "color",
+      "value": "#dcfce7"
+    },
+    "red": {
+      "type": "color",
+      "value": "#dc2626"
+    },
+    "redLight": {
+      "type": "color",
+      "value": "#fee2e2"
+    },
+    "yellow": {
+      "type": "color",
+      "value": "#d97706"
+    },
+    "yellowLight": {
+      "type": "color",
+      "value": "#fef3c7"
+    },
+    "orange": {
+      "type": "color",
+      "value": "#ea580c"
+    }
+  },
+  "children": [
+    {
+      "type": "frame",
+      "name": "Radar — Overview",
+      "x": 0,
+      "y": 0,
+      "width": 375,
+      "height": 900,
+      "fill": "$bg",
+      "clip": true,
+      "children": [
+        {
+          "type": "frame",
+          "x": 0,
+          "y": 0,
+          "width": 375,
+          "height": 56,
+          "fill": "$card",
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "$border"
+          },
+          "children": [
+            {
+              "type": "rectangle",
+              "x": 0,
+              "y": 55,
+              "width": 375,
+              "height": 1,
+              "fill": "$border",
+              "id": "n306"
+            },
+            {
+              "type": "text",
+              "content": "radar",
+              "x": 16,
+              "y": 18,
+              "width": 60,
+              "height": 20,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 15,
+              "fontWeight": "800",
+              "fill": "$accent",
+              "textAlign": "left",
+              "id": "n307"
+            },
+            {
+              "type": "text",
+              "content": "Dashboard",
+              "x": 100,
+              "y": 20,
+              "width": 64,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "500",
+              "fill": "$muted",
+              "textAlign": "left",
+              "id": "n308"
+            },
+            {
+              "type": "text",
+              "content": "Prompts",
+              "x": 168,
+              "y": 20,
+              "width": 52,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "500",
+              "fill": "$muted",
+              "textAlign": "left",
+              "id": "n309"
+            },
+            {
+              "type": "text",
+              "content": "Citations",
+              "x": 224,
+              "y": 20,
+              "width": 58,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "500",
+              "fill": "$muted",
+              "textAlign": "left",
+              "id": "n310"
+            },
+            {
+              "type": "frame",
+              "x": 299,
+              "y": 14,
+              "width": 64,
+              "height": 28,
+              "fill": "$accent",
+              "cornerRadius": 8,
+              "children": [
+                {
+                  "type": "text",
+                  "content": "New Scan",
+                  "x": 0,
+                  "y": 7,
+                  "width": 64,
+                  "height": 14,
+                  "textGrowth": "fixed-width-height",
+                  "fontSize": 9,
+                  "fontWeight": "700",
+                  "fill": "#fff",
+                  "textAlign": "center",
+                  "id": "n312"
+                }
+              ],
+              "id": "n311"
+            }
+          ],
+          "id": "n305"
+        },
+        {
+          "type": "frame",
+          "x": 16,
+          "y": 72,
+          "width": 343,
+          "height": 120,
+          "fill": "$card",
+          "cornerRadius": 16,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "$border"
+          },
+          "children": [
+            {
+              "type": "text",
+              "content": "73",
+              "x": 0,
+              "y": 12,
+              "width": 343,
+              "height": 60,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 80,
+              "fontWeight": "700",
+              "fill": "$accent",
+              "textAlign": "center",
+              "id": "n314"
+            },
+            {
+              "type": "text",
+              "content": "/100",
+              "x": 220,
+              "y": 44,
+              "width": 52,
+              "height": 32,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 22,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "left",
+              "id": "n315"
+            },
+            {
+              "type": "text",
+              "content": "GEO SCORE",
+              "x": 0,
+              "y": 76,
+              "width": 343,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "600",
+              "fill": "$muted",
+              "textAlign": "center",
+              "letterSpacing": 2,
+              "id": "n316"
+            },
+            {
+              "type": "frame",
+              "x": 123.5,
+              "y": 96,
+              "width": 128,
+              "height": 22,
+              "fill": "$greenLight",
+              "cornerRadius": 11,
+              "children": [
+                {
+                  "type": "text",
+                  "content": "+4 pts this week",
+                  "x": 0,
+                  "y": 4,
+                  "width": 128,
+                  "height": 14,
+                  "textGrowth": "fixed-width-height",
+                  "fontSize": 9,
+                  "fontWeight": "700",
+                  "fill": "$green",
+                  "textAlign": "center",
+                  "id": "n318"
+                }
+              ],
+              "id": "n317"
+            }
+          ],
+          "id": "n313"
+        },
+        {
+          "type": "frame",
+          "x": 16,
+          "y": 208,
+          "width": 156,
+          "height": 80,
+          "fill": "$card",
+          "cornerRadius": 12,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "$border"
+          },
+          "children": [
+            {
+              "type": "text",
+              "content": "68%",
+              "x": 0,
+              "y": 16,
+              "width": 156,
+              "height": 32,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 26,
+              "fontWeight": "700",
+              "fill": "$green",
+              "textAlign": "center",
+              "id": "n320"
+            },
+            {
+              "type": "text",
+              "content": "Mention Rate",
+              "x": 0,
+              "y": 52,
+              "width": 156,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "center",
+              "id": "n321"
+            }
+          ],
+          "id": "n319"
+        },
+        {
+          "type": "frame",
+          "x": 184,
+          "y": 208,
+          "width": 156,
+          "height": 80,
+          "fill": "$card",
+          "cornerRadius": 12,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "$border"
+          },
+          "children": [
+            {
+              "type": "text",
+              "content": "81/100",
+              "x": 0,
+              "y": 16,
+              "width": 156,
+              "height": 32,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 26,
+              "fontWeight": "700",
+              "fill": "$accent",
+              "textAlign": "center",
+              "id": "n323"
+            },
+            {
+              "type": "text",
+              "content": "Position Score",
+              "x": 0,
+              "y": 52,
+              "width": 156,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "center",
+              "id": "n324"
+            }
+          ],
+          "id": "n322"
+        },
+        {
+          "type": "frame",
+          "x": 16,
+          "y": 300,
+          "width": 156,
+          "height": 80,
+          "fill": "$card",
+          "cornerRadius": 12,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "$border"
+          },
+          "children": [
+            {
+              "type": "text",
+              "content": "91%",
+              "x": 0,
+              "y": 16,
+              "width": 156,
+              "height": 32,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 26,
+              "fontWeight": "700",
+              "fill": "$green",
+              "textAlign": "center",
+              "id": "n326"
+            },
+            {
+              "type": "text",
+              "content": "Accuracy",
+              "x": 0,
+              "y": 52,
+              "width": 156,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "center",
+              "id": "n327"
+            }
+          ],
+          "id": "n325"
+        },
+        {
+          "type": "frame",
+          "x": 184,
+          "y": 300,
+          "width": 156,
+          "height": 80,
+          "fill": "$card",
+          "cornerRadius": 12,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "$border"
+          },
+          "children": [
+            {
+              "type": "text",
+              "content": "6/6",
+              "x": 0,
+              "y": 16,
+              "width": 156,
+              "height": 32,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 26,
+              "fontWeight": "700",
+              "fill": "$accent",
+              "textAlign": "center",
+              "id": "n329"
+            },
+            {
+              "type": "text",
+              "content": "Platforms",
+              "x": 0,
+              "y": 52,
+              "width": 156,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "center",
+              "id": "n330"
+            }
+          ],
+          "id": "n328"
+        },
+        {
+          "type": "text",
+          "content": "SHARE OF VOICE",
+          "x": 16,
+          "y": 394,
+          "width": 200,
+          "height": 14,
+          "textGrowth": "fixed-width-height",
+          "fontSize": 9,
+          "fontWeight": "700",
+          "fill": "$muted",
+          "textAlign": "left",
+          "letterSpacing": 1.5,
+          "id": "n331"
+        },
+        {
+          "type": "frame",
+          "x": 16,
+          "y": 412,
+          "width": 343,
+          "height": 156,
+          "fill": "$card",
+          "cornerRadius": 12,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "$border"
+          },
+          "children": [
+            {
+              "type": "ellipse",
+              "x": 26,
+              "y": 26,
+              "width": 104,
+              "height": 104,
+              "fill": "#00000000",
+              "id": "n333"
+            },
+            {
+              "type": "ellipse",
+              "x": 26,
+              "y": 26,
+              "width": 104,
+              "height": 104,
+              "fill": "#00000000",
+              "stroke": {
+                "align": "inside",
+                "thickness": 2,
+                "fill": "$border"
+              },
+              "id": "n334"
+            },
+            {
+              "type": "text",
+              "content": "SOV",
+              "x": 52,
+              "y": 64,
+              "width": 52,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 11,
+              "fontWeight": "700",
+              "fill": "$muted",
+              "textAlign": "center",
+              "id": "n335"
+            },
+            {
+              "type": "text",
+              "content": "SurrealDB",
+              "x": 155,
+              "y": 20,
+              "width": 100,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 11,
+              "fontWeight": "600",
+              "fill": "$text",
+              "textAlign": "left",
+              "id": "n336"
+            },
+            {
+              "type": "text",
+              "content": "34%",
+              "x": 268,
+              "y": 20,
+              "width": 50,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 11,
+              "fontWeight": "700",
+              "fill": "$accent",
+              "textAlign": "right",
+              "id": "n337"
+            },
+            {
+              "type": "text",
+              "content": "MongoDB",
+              "x": 155,
+              "y": 44,
+              "width": 100,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 11,
+              "fontWeight": "600",
+              "fill": "$text",
+              "textAlign": "left",
+              "id": "n338"
+            },
+            {
+              "type": "text",
+              "content": "28%",
+              "x": 268,
+              "y": 44,
+              "width": 50,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 11,
+              "fontWeight": "700",
+              "fill": "$red",
+              "textAlign": "right",
+              "id": "n339"
+            },
+            {
+              "type": "text",
+              "content": "PostgreSQL",
+              "x": 155,
+              "y": 68,
+              "width": 100,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 11,
+              "fontWeight": "600",
+              "fill": "$text",
+              "textAlign": "left",
+              "id": "n340"
+            },
+            {
+              "type": "text",
+              "content": "22%",
+              "x": 268,
+              "y": 68,
+              "width": 50,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 11,
+              "fontWeight": "700",
+              "fill": "$yellow",
+              "textAlign": "right",
+              "id": "n341"
+            },
+            {
+              "type": "text",
+              "content": "Neo4j",
+              "x": 155,
+              "y": 92,
+              "width": 100,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 11,
+              "fontWeight": "600",
+              "fill": "$text",
+              "textAlign": "left",
+              "id": "n342"
+            },
+            {
+              "type": "text",
+              "content": "16%",
+              "x": 268,
+              "y": 92,
+              "width": 50,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 11,
+              "fontWeight": "700",
+              "fill": "$muted",
+              "textAlign": "right",
+              "id": "n343"
+            }
+          ],
+          "id": "n332"
+        },
+        {
+          "type": "text",
+          "content": "TOP PERFORMING PROMPTS",
+          "x": 16,
+          "y": 580,
+          "width": 260,
+          "height": 14,
+          "textGrowth": "fixed-width-height",
+          "fontSize": 9,
+          "fontWeight": "700",
+          "fill": "$muted",
+          "textAlign": "left",
+          "letterSpacing": 1.5,
+          "id": "n344"
+        },
+        {
+          "type": "frame",
+          "x": 16,
+          "y": 598,
+          "width": 343,
+          "height": 52,
+          "fill": "$card",
+          "cornerRadius": 8,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "$border"
+          },
+          "children": [
+            {
+              "type": "text",
+              "content": "Vector + graph database for knowledge base?",
+              "x": 12,
+              "y": 18,
+              "width": 285,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "500",
+              "fill": "$text",
+              "textAlign": "left",
+              "id": "n346"
+            },
+            {
+              "type": "frame",
+              "x": 303,
+              "y": 16,
+              "width": 36,
+              "height": 20,
+              "fill": "$greenLight",
+              "cornerRadius": 4,
+              "children": [
+                {
+                  "type": "text",
+                  "content": "91",
+                  "x": 0,
+                  "y": 3,
+                  "width": 36,
+                  "height": 14,
+                  "textGrowth": "fixed-width-height",
+                  "fontSize": 10,
+                  "fontWeight": "700",
+                  "fill": "$green",
+                  "textAlign": "center",
+                  "id": "n348"
+                }
+              ],
+              "id": "n347"
+            }
+          ],
+          "id": "n345"
+        },
+        {
+          "type": "frame",
+          "x": 16,
+          "y": 658,
+          "width": 343,
+          "height": 52,
+          "fill": "$card",
+          "cornerRadius": 8,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "$border"
+          },
+          "children": [
+            {
+              "type": "text",
+              "content": "What database for AI agent memory?",
+              "x": 12,
+              "y": 18,
+              "width": 285,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "500",
+              "fill": "$text",
+              "textAlign": "left",
+              "id": "n350"
+            },
+            {
+              "type": "frame",
+              "x": 303,
+              "y": 16,
+              "width": 36,
+              "height": 20,
+              "fill": "$greenLight",
+              "cornerRadius": 4,
+              "children": [
+                {
+                  "type": "text",
+                  "content": "88",
+                  "x": 0,
+                  "y": 3,
+                  "width": 36,
+                  "height": 14,
+                  "textGrowth": "fixed-width-height",
+                  "fontSize": 10,
+                  "fontWeight": "700",
+                  "fill": "$green",
+                  "textAlign": "center",
+                  "id": "n352"
+                }
+              ],
+              "id": "n351"
+            }
+          ],
+          "id": "n349"
+        },
+        {
+          "type": "frame",
+          "x": 16,
+          "y": 718,
+          "width": 343,
+          "height": 52,
+          "fill": "$card",
+          "cornerRadius": 8,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "$border"
+          },
+          "children": [
+            {
+              "type": "text",
+              "content": "Multi-model database for AI apps?",
+              "x": 12,
+              "y": 18,
+              "width": 285,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "500",
+              "fill": "$text",
+              "textAlign": "left",
+              "id": "n354"
+            },
+            {
+              "type": "frame",
+              "x": 303,
+              "y": 16,
+              "width": 36,
+              "height": 20,
+              "fill": "$greenLight",
+              "cornerRadius": 4,
+              "children": [
+                {
+                  "type": "text",
+                  "content": "84",
+                  "x": 0,
+                  "y": 3,
+                  "width": 36,
+                  "height": 14,
+                  "textGrowth": "fixed-width-height",
+                  "fontSize": 10,
+                  "fontWeight": "700",
+                  "fill": "$green",
+                  "textAlign": "center",
+                  "id": "n356"
+                }
+              ],
+              "id": "n355"
+            }
+          ],
+          "id": "n353"
+        },
+        {
+          "type": "frame",
+          "x": 0,
+          "y": 836,
+          "width": 375,
+          "height": 64,
+          "fill": "$card",
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "$border"
+          },
+          "children": [
+            {
+              "type": "rectangle",
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 1,
+              "fill": "$border",
+              "id": "n358"
+            },
+            {
+              "type": "text",
+              "content": "Home",
+              "x": 14,
+              "y": 22,
+              "width": 50,
+              "height": 20,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "600",
+              "fill": "$accent",
+              "textAlign": "center",
+              "id": "n359"
+            },
+            {
+              "type": "text",
+              "content": "Scans",
+              "x": 89,
+              "y": 22,
+              "width": 50,
+              "height": 20,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "center",
+              "id": "n360"
+            },
+            {
+              "type": "text",
+              "content": "Prompts",
+              "x": 155,
+              "y": 22,
+              "width": 60,
+              "height": 20,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "center",
+              "id": "n361"
+            },
+            {
+              "type": "text",
+              "content": "Citations",
+              "x": 223,
+              "y": 22,
+              "width": 66,
+              "height": 20,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "center",
+              "id": "n362"
+            },
+            {
+              "type": "text",
+              "content": "Alerts",
+              "x": 300,
+              "y": 22,
+              "width": 50,
+              "height": 20,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "center",
+              "id": "n363"
+            }
+          ],
+          "id": "n357"
+        }
+      ],
+      "id": "n304"
+    },
+    {
+      "type": "frame",
+      "name": "Radar — Prompt Library",
+      "x": 425,
+      "y": 0,
+      "width": 375,
+      "height": 900,
+      "fill": "$bg",
+      "clip": true,
+      "children": [
+        {
+          "type": "frame",
+          "x": 0,
+          "y": 0,
+          "width": 375,
+          "height": 56,
+          "fill": "$card",
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "$border"
+          },
+          "children": [
+            {
+              "type": "rectangle",
+              "x": 0,
+              "y": 55,
+              "width": 375,
+              "height": 1,
+              "fill": "$border",
+              "id": "n366"
+            },
+            {
+              "type": "text",
+              "content": "radar",
+              "x": 16,
+              "y": 18,
+              "width": 60,
+              "height": 20,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 15,
+              "fontWeight": "800",
+              "fill": "$accent",
+              "textAlign": "left",
+              "id": "n367"
+            },
+            {
+              "type": "text",
+              "content": "Dashboard",
+              "x": 100,
+              "y": 20,
+              "width": 64,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "500",
+              "fill": "$muted",
+              "textAlign": "left",
+              "id": "n368"
+            },
+            {
+              "type": "text",
+              "content": "Prompts",
+              "x": 168,
+              "y": 20,
+              "width": 52,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "500",
+              "fill": "$muted",
+              "textAlign": "left",
+              "id": "n369"
+            },
+            {
+              "type": "text",
+              "content": "Citations",
+              "x": 224,
+              "y": 20,
+              "width": 58,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "500",
+              "fill": "$muted",
+              "textAlign": "left",
+              "id": "n370"
+            },
+            {
+              "type": "frame",
+              "x": 299,
+              "y": 14,
+              "width": 64,
+              "height": 28,
+              "fill": "$accent",
+              "cornerRadius": 8,
+              "children": [
+                {
+                  "type": "text",
+                  "content": "New Scan",
+                  "x": 0,
+                  "y": 7,
+                  "width": 64,
+                  "height": 14,
+                  "textGrowth": "fixed-width-height",
+                  "fontSize": 9,
+                  "fontWeight": "700",
+                  "fill": "#fff",
+                  "textAlign": "center",
+                  "id": "n372"
+                }
+              ],
+              "id": "n371"
+            }
+          ],
+          "id": "n365"
+        },
+        {
+          "type": "text",
+          "content": "Prompt Library",
+          "x": 16,
+          "y": 68,
+          "width": 200,
+          "height": 24,
+          "textGrowth": "fixed-width-height",
+          "fontSize": 20,
+          "fontWeight": "700",
+          "fill": "$text",
+          "textAlign": "left",
+          "id": "n373"
+        },
+        {
+          "type": "frame",
+          "x": 275,
+          "y": 66,
+          "width": 84,
+          "height": 28,
+          "fill": "$bg",
+          "cornerRadius": 6,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "$border"
+          },
+          "children": [
+            {
+              "type": "text",
+              "content": "Import Pack",
+              "x": 0,
+              "y": 7,
+              "width": 84,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "600",
+              "fill": "$muted",
+              "textAlign": "center",
+              "id": "n375"
+            }
+          ],
+          "id": "n374"
+        },
+        {
+          "type": "frame",
+          "x": 16,
+          "y": 108,
+          "width": 343,
+          "height": 36,
+          "fill": "$card",
+          "cornerRadius": 18,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "$border"
+          },
+          "children": [
+            {
+              "type": "frame",
+              "x": 2,
+              "y": 2,
+              "width": 30,
+              "height": 32,
+              "fill": "$accent",
+              "cornerRadius": 16,
+              "children": [
+                {
+                  "type": "text",
+                  "content": "All",
+                  "x": 0,
+                  "y": 8,
+                  "width": 30,
+                  "height": 16,
+                  "textGrowth": "fixed-width-height",
+                  "fontSize": 9,
+                  "fontWeight": "700",
+                  "fill": "#fff",
+                  "textAlign": "center",
+                  "id": "n378"
+                }
+              ],
+              "id": "n377"
+            },
+            {
+              "type": "text",
+              "content": "Databases",
+              "x": 38,
+              "y": 10,
+              "width": 68,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "500",
+              "fill": "$muted",
+              "textAlign": "center",
+              "id": "n379"
+            },
+            {
+              "type": "text",
+              "content": "AI Backends",
+              "x": 110,
+              "y": 10,
+              "width": 76,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "500",
+              "fill": "$muted",
+              "textAlign": "center",
+              "id": "n380"
+            },
+            {
+              "type": "text",
+              "content": "Graph",
+              "x": 190,
+              "y": 10,
+              "width": 46,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "500",
+              "fill": "$muted",
+              "textAlign": "center",
+              "id": "n381"
+            },
+            {
+              "type": "text",
+              "content": "Real-time",
+              "x": 240,
+              "y": 10,
+              "width": 64,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "500",
+              "fill": "$muted",
+              "textAlign": "center",
+              "id": "n382"
+            }
+          ],
+          "id": "n376"
+        },
+        {
+          "type": "frame",
+          "x": 16,
+          "y": 156,
+          "width": 343,
+          "height": 88,
+          "fill": "$card",
+          "cornerRadius": 8,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "$border"
+          },
+          "children": [
+            {
+              "type": "frame",
+              "x": 12,
+              "y": 12,
+              "width": 120,
+              "height": 20,
+              "fill": "#fff7ed",
+              "cornerRadius": 10,
+              "children": [
+                {
+                  "type": "text",
+                  "content": "database-selection",
+                  "x": 6,
+                  "y": 3,
+                  "width": 108,
+                  "height": 14,
+                  "textGrowth": "fixed-width-height",
+                  "fontSize": 8,
+                  "fontWeight": "600",
+                  "fill": "$orange",
+                  "textAlign": "left",
+                  "id": "n385"
+                }
+              ],
+              "id": "n384"
+            },
+            {
+              "type": "text",
+              "content": "What database for AI agent memory and graph?",
+              "x": 12,
+              "y": 38,
+              "width": 295,
+              "height": 28,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "500",
+              "fill": "$text",
+              "textAlign": "left",
+              "lineHeight": 1.5,
+              "id": "n386"
+            },
+            {
+              "type": "text",
+              "content": "GPT  CL  PX",
+              "x": 12,
+              "y": 68,
+              "width": 120,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "left",
+              "id": "n387"
+            },
+            {
+              "type": "text",
+              "content": "2h ago",
+              "x": 293,
+              "y": 68,
+              "width": 42,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "right",
+              "id": "n388"
+            },
+            {
+              "type": "frame",
+              "x": 289,
+              "y": 10,
+              "width": 36,
+              "height": 20,
+              "fill": "$greenLight",
+              "cornerRadius": 4,
+              "children": [
+                {
+                  "type": "text",
+                  "content": "88",
+                  "x": 0,
+                  "y": 3,
+                  "width": 36,
+                  "height": 14,
+                  "textGrowth": "fixed-width-height",
+                  "fontSize": 10,
+                  "fontWeight": "700",
+                  "fill": "$green",
+                  "textAlign": "center",
+                  "id": "n390"
+                }
+              ],
+              "id": "n389"
+            }
+          ],
+          "id": "n383"
+        },
+        {
+          "type": "frame",
+          "x": 16,
+          "y": 252,
+          "width": 343,
+          "height": 88,
+          "fill": "$card",
+          "cornerRadius": 8,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "$border"
+          },
+          "children": [
+            {
+              "type": "frame",
+              "x": 12,
+              "y": 12,
+              "width": 120,
+              "height": 20,
+              "fill": "#fff7ed",
+              "cornerRadius": 10,
+              "children": [
+                {
+                  "type": "text",
+                  "content": "database-selection",
+                  "x": 6,
+                  "y": 3,
+                  "width": 108,
+                  "height": 14,
+                  "textGrowth": "fixed-width-height",
+                  "fontSize": 8,
+                  "fontWeight": "600",
+                  "fill": "$orange",
+                  "textAlign": "left",
+                  "id": "n393"
+                }
+              ],
+              "id": "n392"
+            },
+            {
+              "type": "text",
+              "content": "Best multi-model database 2025?",
+              "x": 12,
+              "y": 38,
+              "width": 295,
+              "height": 28,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "500",
+              "fill": "$text",
+              "textAlign": "left",
+              "lineHeight": 1.5,
+              "id": "n394"
+            },
+            {
+              "type": "text",
+              "content": "all",
+              "x": 12,
+              "y": 68,
+              "width": 120,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "left",
+              "id": "n395"
+            },
+            {
+              "type": "text",
+              "content": "2h ago",
+              "x": 293,
+              "y": 68,
+              "width": 42,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "right",
+              "id": "n396"
+            },
+            {
+              "type": "frame",
+              "x": 289,
+              "y": 10,
+              "width": 36,
+              "height": 20,
+              "fill": "$yellowLight",
+              "cornerRadius": 4,
+              "children": [
+                {
+                  "type": "text",
+                  "content": "71",
+                  "x": 0,
+                  "y": 3,
+                  "width": 36,
+                  "height": 14,
+                  "textGrowth": "fixed-width-height",
+                  "fontSize": 10,
+                  "fontWeight": "700",
+                  "fill": "$yellow",
+                  "textAlign": "center",
+                  "id": "n398"
+                }
+              ],
+              "id": "n397"
+            }
+          ],
+          "id": "n391"
+        },
+        {
+          "type": "frame",
+          "x": 16,
+          "y": 348,
+          "width": 343,
+          "height": 88,
+          "fill": "$card",
+          "cornerRadius": 8,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "$border"
+          },
+          "children": [
+            {
+              "type": "frame",
+              "x": 12,
+              "y": 12,
+              "width": 78,
+              "height": 20,
+              "fill": "$accentLight",
+              "cornerRadius": 10,
+              "children": [
+                {
+                  "type": "text",
+                  "content": "ai-backends",
+                  "x": 6,
+                  "y": 3,
+                  "width": 66,
+                  "height": 14,
+                  "textGrowth": "fixed-width-height",
+                  "fontSize": 8,
+                  "fontWeight": "600",
+                  "fill": "$accent",
+                  "textAlign": "left",
+                  "id": "n401"
+                }
+              ],
+              "id": "n400"
+            },
+            {
+              "type": "text",
+              "content": "Vector + graph database for knowledge base?",
+              "x": 12,
+              "y": 38,
+              "width": 295,
+              "height": 28,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "500",
+              "fill": "$text",
+              "textAlign": "left",
+              "lineHeight": 1.5,
+              "id": "n402"
+            },
+            {
+              "type": "text",
+              "content": "GPT  PX",
+              "x": 12,
+              "y": 68,
+              "width": 120,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "left",
+              "id": "n403"
+            },
+            {
+              "type": "text",
+              "content": "2h ago",
+              "x": 293,
+              "y": 68,
+              "width": 42,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "right",
+              "id": "n404"
+            },
+            {
+              "type": "frame",
+              "x": 289,
+              "y": 10,
+              "width": 36,
+              "height": 20,
+              "fill": "$greenLight",
+              "cornerRadius": 4,
+              "children": [
+                {
+                  "type": "text",
+                  "content": "91",
+                  "x": 0,
+                  "y": 3,
+                  "width": 36,
+                  "height": 14,
+                  "textGrowth": "fixed-width-height",
+                  "fontSize": 10,
+                  "fontWeight": "700",
+                  "fill": "$green",
+                  "textAlign": "center",
+                  "id": "n406"
+                }
+              ],
+              "id": "n405"
+            }
+          ],
+          "id": "n399"
+        },
+        {
+          "type": "frame",
+          "x": 16,
+          "y": 444,
+          "width": 343,
+          "height": 88,
+          "fill": "$card",
+          "cornerRadius": 8,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "$border"
+          },
+          "children": [
+            {
+              "type": "frame",
+              "x": 12,
+              "y": 12,
+              "width": 72,
+              "height": 20,
+              "fill": "$greenLight",
+              "cornerRadius": 10,
+              "children": [
+                {
+                  "type": "text",
+                  "content": "graph-data",
+                  "x": 6,
+                  "y": 3,
+                  "width": 60,
+                  "height": 14,
+                  "textGrowth": "fixed-width-height",
+                  "fontSize": 8,
+                  "fontWeight": "600",
+                  "fill": "$green",
+                  "textAlign": "left",
+                  "id": "n409"
+                }
+              ],
+              "id": "n408"
+            },
+            {
+              "type": "text",
+              "content": "SurrealDB vs Neo4j for knowledge graph?",
+              "x": 12,
+              "y": 38,
+              "width": 295,
+              "height": 28,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "500",
+              "fill": "$text",
+              "textAlign": "left",
+              "lineHeight": 1.5,
+              "id": "n410"
+            },
+            {
+              "type": "text",
+              "content": "GPT  CL",
+              "x": 12,
+              "y": 68,
+              "width": 120,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "left",
+              "id": "n411"
+            },
+            {
+              "type": "text",
+              "content": "1d ago",
+              "x": 293,
+              "y": 68,
+              "width": 42,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "right",
+              "id": "n412"
+            },
+            {
+              "type": "frame",
+              "x": 289,
+              "y": 10,
+              "width": 36,
+              "height": 20,
+              "fill": "$yellowLight",
+              "cornerRadius": 4,
+              "children": [
+                {
+                  "type": "text",
+                  "content": "77",
+                  "x": 0,
+                  "y": 3,
+                  "width": 36,
+                  "height": 14,
+                  "textGrowth": "fixed-width-height",
+                  "fontSize": 10,
+                  "fontWeight": "700",
+                  "fill": "$yellow",
+                  "textAlign": "center",
+                  "id": "n414"
+                }
+              ],
+              "id": "n413"
+            }
+          ],
+          "id": "n407"
+        },
+        {
+          "type": "frame",
+          "x": 16,
+          "y": 540,
+          "width": 343,
+          "height": 88,
+          "fill": "$card",
+          "cornerRadius": 8,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "$border"
+          },
+          "children": [
+            {
+              "type": "frame",
+              "x": 12,
+              "y": 12,
+              "width": 78,
+              "height": 20,
+              "fill": "$accentLight",
+              "cornerRadius": 10,
+              "children": [
+                {
+                  "type": "text",
+                  "content": "ai-backends",
+                  "x": 6,
+                  "y": 3,
+                  "width": 66,
+                  "height": 14,
+                  "textGrowth": "fixed-width-height",
+                  "fontSize": 8,
+                  "fontWeight": "600",
+                  "fill": "$accent",
+                  "textAlign": "left",
+                  "id": "n417"
+                }
+              ],
+              "id": "n416"
+            },
+            {
+              "type": "text",
+              "content": "Database for persistent AI agent memory?",
+              "x": 12,
+              "y": 38,
+              "width": 295,
+              "height": 28,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "500",
+              "fill": "$text",
+              "textAlign": "left",
+              "lineHeight": 1.5,
+              "id": "n418"
+            },
+            {
+              "type": "text",
+              "content": "GPT  CL  PX",
+              "x": 12,
+              "y": 68,
+              "width": 120,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "left",
+              "id": "n419"
+            },
+            {
+              "type": "text",
+              "content": "1d ago",
+              "x": 293,
+              "y": 68,
+              "width": 42,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "right",
+              "id": "n420"
+            },
+            {
+              "type": "frame",
+              "x": 289,
+              "y": 10,
+              "width": 36,
+              "height": 20,
+              "fill": "$greenLight",
+              "cornerRadius": 4,
+              "children": [
+                {
+                  "type": "text",
+                  "content": "84",
+                  "x": 0,
+                  "y": 3,
+                  "width": 36,
+                  "height": 14,
+                  "textGrowth": "fixed-width-height",
+                  "fontSize": 10,
+                  "fontWeight": "700",
+                  "fill": "$green",
+                  "textAlign": "center",
+                  "id": "n422"
+                }
+              ],
+              "id": "n421"
+            }
+          ],
+          "id": "n415"
+        },
+        {
+          "type": "frame",
+          "x": 16,
+          "y": 636,
+          "width": 343,
+          "height": 88,
+          "fill": "$card",
+          "cornerRadius": 8,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "$border"
+          },
+          "children": [
+            {
+              "type": "frame",
+              "x": 12,
+              "y": 12,
+              "width": 66,
+              "height": 20,
+              "fill": "#eff6ff",
+              "cornerRadius": 10,
+              "children": [
+                {
+                  "type": "text",
+                  "content": "real-time",
+                  "x": 6,
+                  "y": 3,
+                  "width": 54,
+                  "height": 14,
+                  "textGrowth": "fixed-width-height",
+                  "fontSize": 8,
+                  "fontWeight": "600",
+                  "fill": "#2563eb",
+                  "textAlign": "left",
+                  "id": "n425"
+                }
+              ],
+              "id": "n424"
+            },
+            {
+              "type": "text",
+              "content": "Database with live queries and change feeds?",
+              "x": 12,
+              "y": 38,
+              "width": 295,
+              "height": 28,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "500",
+              "fill": "$text",
+              "textAlign": "left",
+              "lineHeight": 1.5,
+              "id": "n426"
+            },
+            {
+              "type": "text",
+              "content": "GPT",
+              "x": 12,
+              "y": 68,
+              "width": 120,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "left",
+              "id": "n427"
+            },
+            {
+              "type": "text",
+              "content": "3d ago",
+              "x": 293,
+              "y": 68,
+              "width": 42,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "right",
+              "id": "n428"
+            },
+            {
+              "type": "frame",
+              "x": 289,
+              "y": 10,
+              "width": 36,
+              "height": 20,
+              "fill": "$yellowLight",
+              "cornerRadius": 4,
+              "children": [
+                {
+                  "type": "text",
+                  "content": "62",
+                  "x": 0,
+                  "y": 3,
+                  "width": 36,
+                  "height": 14,
+                  "textGrowth": "fixed-width-height",
+                  "fontSize": 10,
+                  "fontWeight": "700",
+                  "fill": "$yellow",
+                  "textAlign": "center",
+                  "id": "n430"
+                }
+              ],
+              "id": "n429"
+            }
+          ],
+          "id": "n423"
+        },
+        {
+          "type": "frame",
+          "x": 0,
+          "y": 836,
+          "width": 375,
+          "height": 64,
+          "fill": "$card",
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "$border"
+          },
+          "children": [
+            {
+              "type": "rectangle",
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 1,
+              "fill": "$border",
+              "id": "n432"
+            },
+            {
+              "type": "text",
+              "content": "Home",
+              "x": 14,
+              "y": 22,
+              "width": 50,
+              "height": 20,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "600",
+              "fill": "$accent",
+              "textAlign": "center",
+              "id": "n433"
+            },
+            {
+              "type": "text",
+              "content": "Scans",
+              "x": 89,
+              "y": 22,
+              "width": 50,
+              "height": 20,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "center",
+              "id": "n434"
+            },
+            {
+              "type": "text",
+              "content": "Prompts",
+              "x": 155,
+              "y": 22,
+              "width": 60,
+              "height": 20,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "center",
+              "id": "n435"
+            },
+            {
+              "type": "text",
+              "content": "Citations",
+              "x": 223,
+              "y": 22,
+              "width": 66,
+              "height": 20,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "center",
+              "id": "n436"
+            },
+            {
+              "type": "text",
+              "content": "Alerts",
+              "x": 300,
+              "y": 22,
+              "width": 50,
+              "height": 20,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "center",
+              "id": "n437"
+            }
+          ],
+          "id": "n431"
+        }
+      ],
+      "id": "n364"
+    },
+    {
+      "type": "frame",
+      "name": "Radar — Citation Map",
+      "x": 850,
+      "y": 0,
+      "width": 375,
+      "height": 900,
+      "fill": "$bg",
+      "clip": true,
+      "children": [
+        {
+          "type": "frame",
+          "x": 0,
+          "y": 0,
+          "width": 375,
+          "height": 56,
+          "fill": "$card",
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "$border"
+          },
+          "children": [
+            {
+              "type": "rectangle",
+              "x": 0,
+              "y": 55,
+              "width": 375,
+              "height": 1,
+              "fill": "$border",
+              "id": "n440"
+            },
+            {
+              "type": "text",
+              "content": "radar",
+              "x": 16,
+              "y": 18,
+              "width": 60,
+              "height": 20,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 15,
+              "fontWeight": "800",
+              "fill": "$accent",
+              "textAlign": "left",
+              "id": "n441"
+            },
+            {
+              "type": "text",
+              "content": "Dashboard",
+              "x": 100,
+              "y": 20,
+              "width": 64,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "500",
+              "fill": "$muted",
+              "textAlign": "left",
+              "id": "n442"
+            },
+            {
+              "type": "text",
+              "content": "Prompts",
+              "x": 168,
+              "y": 20,
+              "width": 52,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "500",
+              "fill": "$muted",
+              "textAlign": "left",
+              "id": "n443"
+            },
+            {
+              "type": "text",
+              "content": "Citations",
+              "x": 224,
+              "y": 20,
+              "width": 58,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "500",
+              "fill": "$muted",
+              "textAlign": "left",
+              "id": "n444"
+            },
+            {
+              "type": "frame",
+              "x": 299,
+              "y": 14,
+              "width": 64,
+              "height": 28,
+              "fill": "$accent",
+              "cornerRadius": 8,
+              "children": [
+                {
+                  "type": "text",
+                  "content": "New Scan",
+                  "x": 0,
+                  "y": 7,
+                  "width": 64,
+                  "height": 14,
+                  "textGrowth": "fixed-width-height",
+                  "fontSize": 9,
+                  "fontWeight": "700",
+                  "fill": "#fff",
+                  "textAlign": "center",
+                  "id": "n446"
+                }
+              ],
+              "id": "n445"
+            }
+          ],
+          "id": "n439"
+        },
+        {
+          "type": "text",
+          "content": "Citation Map",
+          "x": 16,
+          "y": 66,
+          "width": 200,
+          "height": 24,
+          "textGrowth": "fixed-width-height",
+          "fontSize": 20,
+          "fontWeight": "700",
+          "fill": "$text",
+          "textAlign": "left",
+          "id": "n447"
+        },
+        {
+          "type": "text",
+          "content": "Perplexity source URLs driving recommendations",
+          "x": 16,
+          "y": 92,
+          "width": 343,
+          "height": 14,
+          "textGrowth": "fixed-width-height",
+          "fontSize": 10,
+          "fontWeight": "400",
+          "fill": "$muted",
+          "textAlign": "left",
+          "id": "n448"
+        },
+        {
+          "type": "frame",
+          "x": 16,
+          "y": 112,
+          "width": 112,
+          "height": 32,
+          "fill": "$card",
+          "cornerRadius": 16,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "$border"
+          },
+          "children": [
+            {
+              "type": "text",
+              "content": "142 citations",
+              "x": 0,
+              "y": 8,
+              "width": 112,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "600",
+              "fill": "$text",
+              "textAlign": "center",
+              "id": "n450"
+            }
+          ],
+          "id": "n449"
+        },
+        {
+          "type": "frame",
+          "x": 134,
+          "y": 112,
+          "width": 112,
+          "height": 32,
+          "fill": "$card",
+          "cornerRadius": 16,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "$border"
+          },
+          "children": [
+            {
+              "type": "text",
+              "content": "68% your domain",
+              "x": 0,
+              "y": 8,
+              "width": 112,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "600",
+              "fill": "$text",
+              "textAlign": "center",
+              "id": "n452"
+            }
+          ],
+          "id": "n451"
+        },
+        {
+          "type": "frame",
+          "x": 252,
+          "y": 112,
+          "width": 112,
+          "height": 32,
+          "fill": "$card",
+          "cornerRadius": 16,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "$border"
+          },
+          "children": [
+            {
+              "type": "text",
+              "content": "23 competitor URLs",
+              "x": 0,
+              "y": 8,
+              "width": 112,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "600",
+              "fill": "$text",
+              "textAlign": "center",
+              "id": "n454"
+            }
+          ],
+          "id": "n453"
+        },
+        {
+          "type": "frame",
+          "x": 16,
+          "y": 156,
+          "width": 343,
+          "height": 64,
+          "fill": "$card",
+          "cornerRadius": 8,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "$border"
+          },
+          "children": [
+            {
+              "type": "frame",
+              "x": 12,
+              "y": 20,
+              "width": 24,
+              "height": 24,
+              "fill": "$greenLight",
+              "cornerRadius": 6,
+              "children": [
+                {
+                  "type": "text",
+                  "content": "D",
+                  "x": 0,
+                  "y": 5,
+                  "width": 24,
+                  "height": 14,
+                  "textGrowth": "fixed-width-height",
+                  "fontSize": 10,
+                  "fontWeight": "700",
+                  "fill": "$green",
+                  "textAlign": "center",
+                  "id": "n457"
+                }
+              ],
+              "id": "n456"
+            },
+            {
+              "type": "text",
+              "content": "docs.surrealdb.com",
+              "x": 44,
+              "y": 10,
+              "width": 180,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "600",
+              "fill": "$text",
+              "textAlign": "left",
+              "id": "n458"
+            },
+            {
+              "type": "text",
+              "content": "/querying",
+              "x": 44,
+              "y": 28,
+              "width": 180,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "left",
+              "id": "n459"
+            },
+            {
+              "type": "text",
+              "content": "cited 47x",
+              "x": 283,
+              "y": 10,
+              "width": 52,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "700",
+              "fill": "$green",
+              "textAlign": "right",
+              "id": "n460"
+            },
+            {
+              "type": "rectangle",
+              "x": 44,
+              "y": 48,
+              "width": 93,
+              "height": 6,
+              "fill": "$green",
+              "id": "n461"
+            },
+            {
+              "type": "rectangle",
+              "x": 44,
+              "y": 48,
+              "width": 283,
+              "height": 6,
+              "fill": "$border",
+              "opacity": 0.3,
+              "id": "n462"
+            }
+          ],
+          "id": "n455"
+        },
+        {
+          "type": "frame",
+          "x": 16,
+          "y": 228,
+          "width": 343,
+          "height": 64,
+          "fill": "$card",
+          "cornerRadius": 8,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "$border"
+          },
+          "children": [
+            {
+              "type": "frame",
+              "x": 12,
+              "y": 20,
+              "width": 24,
+              "height": 24,
+              "fill": "$greenLight",
+              "cornerRadius": 6,
+              "children": [
+                {
+                  "type": "text",
+                  "content": "S",
+                  "x": 0,
+                  "y": 5,
+                  "width": 24,
+                  "height": 14,
+                  "textGrowth": "fixed-width-height",
+                  "fontSize": 10,
+                  "fontWeight": "700",
+                  "fill": "$green",
+                  "textAlign": "center",
+                  "id": "n465"
+                }
+              ],
+              "id": "n464"
+            },
+            {
+              "type": "text",
+              "content": "surrealdb.com",
+              "x": 44,
+              "y": 10,
+              "width": 180,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "600",
+              "fill": "$text",
+              "textAlign": "left",
+              "id": "n466"
+            },
+            {
+              "type": "text",
+              "content": "/blog/ai-agents",
+              "x": 44,
+              "y": 28,
+              "width": 180,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "left",
+              "id": "n467"
+            },
+            {
+              "type": "text",
+              "content": "cited 38x",
+              "x": 283,
+              "y": 10,
+              "width": 52,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "700",
+              "fill": "$green",
+              "textAlign": "right",
+              "id": "n468"
+            },
+            {
+              "type": "rectangle",
+              "x": 44,
+              "y": 48,
+              "width": 76,
+              "height": 6,
+              "fill": "$green",
+              "id": "n469"
+            },
+            {
+              "type": "rectangle",
+              "x": 44,
+              "y": 48,
+              "width": 283,
+              "height": 6,
+              "fill": "$border",
+              "opacity": 0.3,
+              "id": "n470"
+            }
+          ],
+          "id": "n463"
+        },
+        {
+          "type": "frame",
+          "x": 16,
+          "y": 300,
+          "width": 343,
+          "height": 64,
+          "fill": "$card",
+          "cornerRadius": 8,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "$border"
+          },
+          "children": [
+            {
+              "type": "frame",
+              "x": 12,
+              "y": 20,
+              "width": 24,
+              "height": 24,
+              "fill": "$redLight",
+              "cornerRadius": 6,
+              "children": [
+                {
+                  "type": "text",
+                  "content": "M",
+                  "x": 0,
+                  "y": 5,
+                  "width": 24,
+                  "height": 14,
+                  "textGrowth": "fixed-width-height",
+                  "fontSize": 10,
+                  "fontWeight": "700",
+                  "fill": "$red",
+                  "textAlign": "center",
+                  "id": "n473"
+                }
+              ],
+              "id": "n472"
+            },
+            {
+              "type": "text",
+              "content": "mongodb.com",
+              "x": 44,
+              "y": 10,
+              "width": 180,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "600",
+              "fill": "$text",
+              "textAlign": "left",
+              "id": "n474"
+            },
+            {
+              "type": "text",
+              "content": "/docs/atlas/vector-search",
+              "x": 44,
+              "y": 28,
+              "width": 180,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "left",
+              "id": "n475"
+            },
+            {
+              "type": "text",
+              "content": "cited 31x",
+              "x": 283,
+              "y": 10,
+              "width": 52,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "700",
+              "fill": "$red",
+              "textAlign": "right",
+              "id": "n476"
+            },
+            {
+              "type": "rectangle",
+              "x": 44,
+              "y": 48,
+              "width": 62,
+              "height": 6,
+              "fill": "$red",
+              "id": "n477"
+            },
+            {
+              "type": "rectangle",
+              "x": 44,
+              "y": 48,
+              "width": 283,
+              "height": 6,
+              "fill": "$border",
+              "opacity": 0.3,
+              "id": "n478"
+            }
+          ],
+          "id": "n471"
+        },
+        {
+          "type": "frame",
+          "x": 16,
+          "y": 372,
+          "width": 343,
+          "height": 64,
+          "fill": "$card",
+          "cornerRadius": 8,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "$border"
+          },
+          "children": [
+            {
+              "type": "frame",
+              "x": 12,
+              "y": 20,
+              "width": 24,
+              "height": 24,
+              "fill": "$redLight",
+              "cornerRadius": 6,
+              "children": [
+                {
+                  "type": "text",
+                  "content": "N",
+                  "x": 0,
+                  "y": 5,
+                  "width": 24,
+                  "height": 14,
+                  "textGrowth": "fixed-width-height",
+                  "fontSize": 10,
+                  "fontWeight": "700",
+                  "fill": "$red",
+                  "textAlign": "center",
+                  "id": "n481"
+                }
+              ],
+              "id": "n480"
+            },
+            {
+              "type": "text",
+              "content": "neo4j.com",
+              "x": 44,
+              "y": 10,
+              "width": 180,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "600",
+              "fill": "$text",
+              "textAlign": "left",
+              "id": "n482"
+            },
+            {
+              "type": "text",
+              "content": "/docs/graph-data-science",
+              "x": 44,
+              "y": 28,
+              "width": 180,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "left",
+              "id": "n483"
+            },
+            {
+              "type": "text",
+              "content": "cited 18x",
+              "x": 283,
+              "y": 10,
+              "width": 52,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "700",
+              "fill": "$red",
+              "textAlign": "right",
+              "id": "n484"
+            },
+            {
+              "type": "rectangle",
+              "x": 44,
+              "y": 48,
+              "width": 37,
+              "height": 6,
+              "fill": "$red",
+              "id": "n485"
+            },
+            {
+              "type": "rectangle",
+              "x": 44,
+              "y": 48,
+              "width": 283,
+              "height": 6,
+              "fill": "$border",
+              "opacity": 0.3,
+              "id": "n486"
+            }
+          ],
+          "id": "n479"
+        },
+        {
+          "type": "frame",
+          "x": 16,
+          "y": 444,
+          "width": 343,
+          "height": 64,
+          "fill": "$card",
+          "cornerRadius": 8,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "$border"
+          },
+          "children": [
+            {
+              "type": "frame",
+              "x": 12,
+              "y": 20,
+              "width": 24,
+              "height": 24,
+              "fill": "$border",
+              "cornerRadius": 6,
+              "children": [
+                {
+                  "type": "text",
+                  "content": "D",
+                  "x": 0,
+                  "y": 5,
+                  "width": 24,
+                  "height": 14,
+                  "textGrowth": "fixed-width-height",
+                  "fontSize": 10,
+                  "fontWeight": "700",
+                  "fill": "$muted",
+                  "textAlign": "center",
+                  "id": "n489"
+                }
+              ],
+              "id": "n488"
+            },
+            {
+              "type": "text",
+              "content": "dev.to",
+              "x": 44,
+              "y": 10,
+              "width": 180,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "600",
+              "fill": "$text",
+              "textAlign": "left",
+              "id": "n490"
+            },
+            {
+              "type": "text",
+              "content": "/comparing-databases",
+              "x": 44,
+              "y": 28,
+              "width": 180,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "left",
+              "id": "n491"
+            },
+            {
+              "type": "text",
+              "content": "cited 12x",
+              "x": 283,
+              "y": 10,
+              "width": 52,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "700",
+              "fill": "$muted",
+              "textAlign": "right",
+              "id": "n492"
+            },
+            {
+              "type": "rectangle",
+              "x": 44,
+              "y": 48,
+              "width": 23,
+              "height": 6,
+              "fill": "$muted",
+              "id": "n493"
+            },
+            {
+              "type": "rectangle",
+              "x": 44,
+              "y": 48,
+              "width": 283,
+              "height": 6,
+              "fill": "$border",
+              "opacity": 0.3,
+              "id": "n494"
+            }
+          ],
+          "id": "n487"
+        },
+        {
+          "type": "frame",
+          "x": 16,
+          "y": 516,
+          "width": 343,
+          "height": 64,
+          "fill": "$card",
+          "cornerRadius": 8,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "$border"
+          },
+          "children": [
+            {
+              "type": "frame",
+              "x": 12,
+              "y": 20,
+              "width": 24,
+              "height": 24,
+              "fill": "$border",
+              "cornerRadius": 6,
+              "children": [
+                {
+                  "type": "text",
+                  "content": "S",
+                  "x": 0,
+                  "y": 5,
+                  "width": 24,
+                  "height": 14,
+                  "textGrowth": "fixed-width-height",
+                  "fontSize": 10,
+                  "fontWeight": "700",
+                  "fill": "$muted",
+                  "textAlign": "center",
+                  "id": "n497"
+                }
+              ],
+              "id": "n496"
+            },
+            {
+              "type": "text",
+              "content": "stackoverflow.com",
+              "x": 44,
+              "y": 10,
+              "width": 180,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "600",
+              "fill": "$text",
+              "textAlign": "left",
+              "id": "n498"
+            },
+            {
+              "type": "text",
+              "content": "/questions/surrealdb",
+              "x": 44,
+              "y": 28,
+              "width": 180,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "left",
+              "id": "n499"
+            },
+            {
+              "type": "text",
+              "content": "cited 9x",
+              "x": 283,
+              "y": 10,
+              "width": 52,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "700",
+              "fill": "$muted",
+              "textAlign": "right",
+              "id": "n500"
+            },
+            {
+              "type": "rectangle",
+              "x": 44,
+              "y": 48,
+              "width": 17,
+              "height": 6,
+              "fill": "$muted",
+              "id": "n501"
+            },
+            {
+              "type": "rectangle",
+              "x": 44,
+              "y": 48,
+              "width": 283,
+              "height": 6,
+              "fill": "$border",
+              "opacity": 0.3,
+              "id": "n502"
+            }
+          ],
+          "id": "n495"
+        },
+        {
+          "type": "frame",
+          "x": 16,
+          "y": 588,
+          "width": 343,
+          "height": 64,
+          "fill": "$card",
+          "cornerRadius": 8,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "$border"
+          },
+          "children": [
+            {
+              "type": "frame",
+              "x": 12,
+              "y": 20,
+              "width": 24,
+              "height": 24,
+              "fill": "$redLight",
+              "cornerRadius": 6,
+              "children": [
+                {
+                  "type": "text",
+                  "content": "S",
+                  "x": 0,
+                  "y": 5,
+                  "width": 24,
+                  "height": 14,
+                  "textGrowth": "fixed-width-height",
+                  "fontSize": 10,
+                  "fontWeight": "700",
+                  "fill": "$red",
+                  "textAlign": "center",
+                  "id": "n505"
+                }
+              ],
+              "id": "n504"
+            },
+            {
+              "type": "text",
+              "content": "supabase.com",
+              "x": 44,
+              "y": 10,
+              "width": 180,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "600",
+              "fill": "$text",
+              "textAlign": "left",
+              "id": "n506"
+            },
+            {
+              "type": "text",
+              "content": "/docs/guides/ai",
+              "x": 44,
+              "y": 28,
+              "width": 180,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "left",
+              "id": "n507"
+            },
+            {
+              "type": "text",
+              "content": "cited 8x",
+              "x": 283,
+              "y": 10,
+              "width": 52,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 9,
+              "fontWeight": "700",
+              "fill": "$red",
+              "textAlign": "right",
+              "id": "n508"
+            },
+            {
+              "type": "rectangle",
+              "x": 44,
+              "y": 48,
+              "width": 17,
+              "height": 6,
+              "fill": "$red",
+              "id": "n509"
+            },
+            {
+              "type": "rectangle",
+              "x": 44,
+              "y": 48,
+              "width": 283,
+              "height": 6,
+              "fill": "$border",
+              "opacity": 0.3,
+              "id": "n510"
+            }
+          ],
+          "id": "n503"
+        },
+        {
+          "type": "frame",
+          "x": 16,
+          "y": 692,
+          "width": 343,
+          "height": 100,
+          "fill": "$accentLight",
+          "cornerRadius": 12,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "$accent"
+          },
+          "children": [
+            {
+              "type": "text",
+              "content": "Content Gap",
+              "x": 12,
+              "y": 12,
+              "width": 120,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "700",
+              "fill": "$accent",
+              "textAlign": "left",
+              "id": "n512"
+            },
+            {
+              "type": "text",
+              "content": "No page ranks for 'Rust backend database' queries.",
+              "x": 12,
+              "y": 30,
+              "width": 315,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "400",
+              "fill": "$text",
+              "textAlign": "left",
+              "id": "n513"
+            },
+            {
+              "type": "text",
+              "content": "Competitor mongodb.com/rust is cited 24x.",
+              "x": 12,
+              "y": 48,
+              "width": 315,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "400",
+              "fill": "$text",
+              "textAlign": "left",
+              "id": "n514"
+            },
+            {
+              "type": "text",
+              "content": "Create content targeting this gap to improve SOV.",
+              "x": 12,
+              "y": 66,
+              "width": 315,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "left",
+              "id": "n515"
+            }
+          ],
+          "id": "n511"
+        },
+        {
+          "type": "frame",
+          "x": 0,
+          "y": 836,
+          "width": 375,
+          "height": 64,
+          "fill": "$card",
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "$border"
+          },
+          "children": [
+            {
+              "type": "rectangle",
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 1,
+              "fill": "$border",
+              "id": "n517"
+            },
+            {
+              "type": "text",
+              "content": "Home",
+              "x": 14,
+              "y": 22,
+              "width": 50,
+              "height": 20,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "600",
+              "fill": "$accent",
+              "textAlign": "center",
+              "id": "n518"
+            },
+            {
+              "type": "text",
+              "content": "Scans",
+              "x": 89,
+              "y": 22,
+              "width": 50,
+              "height": 20,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "center",
+              "id": "n519"
+            },
+            {
+              "type": "text",
+              "content": "Prompts",
+              "x": 155,
+              "y": 22,
+              "width": 60,
+              "height": 20,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "center",
+              "id": "n520"
+            },
+            {
+              "type": "text",
+              "content": "Citations",
+              "x": 223,
+              "y": 22,
+              "width": 66,
+              "height": 20,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "center",
+              "id": "n521"
+            },
+            {
+              "type": "text",
+              "content": "Alerts",
+              "x": 300,
+              "y": 22,
+              "width": 50,
+              "height": 20,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "center",
+              "id": "n522"
+            }
+          ],
+          "id": "n516"
+        }
+      ],
+      "id": "n438"
+    },
+    {
+      "type": "frame",
+      "name": "Radar — Reports",
+      "x": 1275,
+      "y": 0,
+      "width": 375,
+      "height": 900,
+      "fill": "$bg",
+      "clip": true,
+      "children": [
+        {
+          "type": "frame",
+          "x": 0,
+          "y": 0,
+          "width": 375,
+          "height": 56,
+          "fill": "$card",
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "$border"
+          },
+          "children": [
+            {
+              "type": "rectangle",
+              "x": 0,
+              "y": 55,
+              "width": 375,
+              "height": 1,
+              "fill": "$border",
+              "id": "n525"
+            },
+            {
+              "type": "text",
+              "content": "radar",
+              "x": 16,
+              "y": 18,
+              "width": 60,
+              "height": 20,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 15,
+              "fontWeight": "800",
+              "fill": "$accent",
+              "textAlign": "left",
+              "id": "n526"
+            },
+            {
+              "type": "text",
+              "content": "Dashboard",
+              "x": 100,
+              "y": 20,
+              "width": 64,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "500",
+              "fill": "$muted",
+              "textAlign": "left",
+              "id": "n527"
+            },
+            {
+              "type": "text",
+              "content": "Prompts",
+              "x": 168,
+              "y": 20,
+              "width": 52,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "500",
+              "fill": "$muted",
+              "textAlign": "left",
+              "id": "n528"
+            },
+            {
+              "type": "text",
+              "content": "Citations",
+              "x": 224,
+              "y": 20,
+              "width": 58,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "500",
+              "fill": "$muted",
+              "textAlign": "left",
+              "id": "n529"
+            },
+            {
+              "type": "frame",
+              "x": 299,
+              "y": 14,
+              "width": 64,
+              "height": 28,
+              "fill": "$accent",
+              "cornerRadius": 8,
+              "children": [
+                {
+                  "type": "text",
+                  "content": "New Scan",
+                  "x": 0,
+                  "y": 7,
+                  "width": 64,
+                  "height": 14,
+                  "textGrowth": "fixed-width-height",
+                  "fontSize": 9,
+                  "fontWeight": "700",
+                  "fill": "#fff",
+                  "textAlign": "center",
+                  "id": "n531"
+                }
+              ],
+              "id": "n530"
+            }
+          ],
+          "id": "n524"
+        },
+        {
+          "type": "text",
+          "content": "Weekly Report",
+          "x": 16,
+          "y": 66,
+          "width": 200,
+          "height": 24,
+          "textGrowth": "fixed-width-height",
+          "fontSize": 20,
+          "fontWeight": "700",
+          "fill": "$text",
+          "textAlign": "left",
+          "id": "n532"
+        },
+        {
+          "type": "text",
+          "content": "Mar 7–13, 2026",
+          "x": 16,
+          "y": 92,
+          "width": 160,
+          "height": 16,
+          "textGrowth": "fixed-width-height",
+          "fontSize": 11,
+          "fontWeight": "400",
+          "fill": "$muted",
+          "textAlign": "left",
+          "id": "n533"
+        },
+        {
+          "type": "frame",
+          "x": 16,
+          "y": 116,
+          "width": 343,
+          "height": 120,
+          "fill": "$card",
+          "cornerRadius": 12,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "$border"
+          },
+          "children": [
+            {
+              "type": "rectangle",
+              "x": 0,
+              "y": 0,
+              "width": 4,
+              "height": 120,
+              "fill": "$accent",
+              "id": "n535"
+            },
+            {
+              "type": "text",
+              "content": "GEO Score 73",
+              "x": 16,
+              "y": 12,
+              "width": 200,
+              "height": 18,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 14,
+              "fontWeight": "700",
+              "fill": "$text",
+              "textAlign": "left",
+              "id": "n536"
+            },
+            {
+              "type": "text",
+              "content": "up from 69 last week  (+4 pts)",
+              "x": 16,
+              "y": 32,
+              "width": 260,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "400",
+              "fill": "$green",
+              "textAlign": "left",
+              "id": "n537"
+            },
+            {
+              "type": "text",
+              "content": "+ Perplexity mentions up 18%",
+              "x": 16,
+              "y": 52,
+              "width": 260,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "400",
+              "fill": "$text",
+              "textAlign": "left",
+              "id": "n538"
+            },
+            {
+              "type": "text",
+              "content": "+ New citation: docs.surrealdb.com/querying",
+              "x": 16,
+              "y": 68,
+              "width": 300,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "400",
+              "fill": "$text",
+              "textAlign": "left",
+              "id": "n539"
+            },
+            {
+              "type": "text",
+              "content": "- Graph category SOV -3pts (Neo4j gaining)",
+              "x": 16,
+              "y": 84,
+              "width": 300,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "400",
+              "fill": "$red",
+              "textAlign": "left",
+              "id": "n540"
+            },
+            {
+              "type": "text",
+              "content": "- Gemini hallucination on transaction support",
+              "x": 16,
+              "y": 100,
+              "width": 300,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "400",
+              "fill": "$red",
+              "textAlign": "left",
+              "id": "n541"
+            }
+          ],
+          "id": "n534"
+        },
+        {
+          "type": "text",
+          "content": "Score Trend  (Mon–Sun)",
+          "x": 16,
+          "y": 250,
+          "width": 240,
+          "height": 14,
+          "textGrowth": "fixed-width-height",
+          "fontSize": 9,
+          "fontWeight": "700",
+          "fill": "$muted",
+          "textAlign": "left",
+          "letterSpacing": 1.5,
+          "id": "n542"
+        },
+        {
+          "type": "frame",
+          "x": 16,
+          "y": 268,
+          "width": 343,
+          "height": 96,
+          "fill": "$card",
+          "cornerRadius": 8,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "$border"
+          },
+          "children": [
+            {
+              "type": "text",
+              "content": "Mon",
+              "x": 12,
+              "y": 74,
+              "width": 36,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 8,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "center",
+              "id": "n544"
+            },
+            {
+              "type": "text",
+              "content": "Tue",
+              "x": 60,
+              "y": 74,
+              "width": 36,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 8,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "center",
+              "id": "n545"
+            },
+            {
+              "type": "text",
+              "content": "Wed",
+              "x": 108,
+              "y": 74,
+              "width": 36,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 8,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "center",
+              "id": "n546"
+            },
+            {
+              "type": "text",
+              "content": "Thu",
+              "x": 156,
+              "y": 74,
+              "width": 36,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 8,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "center",
+              "id": "n547"
+            },
+            {
+              "type": "text",
+              "content": "Fri",
+              "x": 204,
+              "y": 74,
+              "width": 36,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 8,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "center",
+              "id": "n548"
+            },
+            {
+              "type": "text",
+              "content": "Sat",
+              "x": 252,
+              "y": 74,
+              "width": 36,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 8,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "center",
+              "id": "n549"
+            },
+            {
+              "type": "text",
+              "content": "Sun",
+              "x": 300,
+              "y": 74,
+              "width": 36,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 8,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "center",
+              "id": "n550"
+            },
+            {
+              "type": "ellipse",
+              "x": 26,
+              "y": 48,
+              "width": 8,
+              "height": 8,
+              "fill": "$accent",
+              "id": "n551"
+            },
+            {
+              "type": "ellipse",
+              "x": 74,
+              "y": 32,
+              "width": 8,
+              "height": 8,
+              "fill": "$accent",
+              "id": "n552"
+            },
+            {
+              "type": "ellipse",
+              "x": 122,
+              "y": 40,
+              "width": 8,
+              "height": 8,
+              "fill": "$accent",
+              "id": "n553"
+            },
+            {
+              "type": "ellipse",
+              "x": 170,
+              "y": 24,
+              "width": 8,
+              "height": 8,
+              "fill": "$accent",
+              "id": "n554"
+            },
+            {
+              "type": "ellipse",
+              "x": 218,
+              "y": 32,
+              "width": 8,
+              "height": 8,
+              "fill": "$accent",
+              "id": "n555"
+            },
+            {
+              "type": "ellipse",
+              "x": 266,
+              "y": 36,
+              "width": 8,
+              "height": 8,
+              "fill": "$accent",
+              "id": "n556"
+            },
+            {
+              "type": "ellipse",
+              "x": 314,
+              "y": 32,
+              "width": 8,
+              "height": 8,
+              "fill": "$accent",
+              "id": "n557"
+            },
+            {
+              "type": "rectangle",
+              "x": 30,
+              "y": 36,
+              "width": 51,
+              "height": 2,
+              "fill": "$accent",
+              "opacity": 0.5,
+              "id": "n558"
+            },
+            {
+              "type": "rectangle",
+              "x": 78,
+              "y": 36,
+              "width": 49,
+              "height": 2,
+              "fill": "$accent",
+              "opacity": 0.5,
+              "id": "n559"
+            },
+            {
+              "type": "rectangle",
+              "x": 126,
+              "y": 28,
+              "width": 51,
+              "height": 2,
+              "fill": "$accent",
+              "opacity": 0.5,
+              "id": "n560"
+            },
+            {
+              "type": "rectangle",
+              "x": 174,
+              "y": 28,
+              "width": 49,
+              "height": 2,
+              "fill": "$accent",
+              "opacity": 0.5,
+              "id": "n561"
+            },
+            {
+              "type": "rectangle",
+              "x": 222,
+              "y": 36,
+              "width": 48,
+              "height": 2,
+              "fill": "$accent",
+              "opacity": 0.5,
+              "id": "n562"
+            },
+            {
+              "type": "rectangle",
+              "x": 270,
+              "y": 36,
+              "width": 48,
+              "height": 2,
+              "fill": "$accent",
+              "opacity": 0.5,
+              "id": "n563"
+            }
+          ],
+          "id": "n543"
+        },
+        {
+          "type": "text",
+          "content": "PLATFORM BREAKDOWN",
+          "x": 16,
+          "y": 376,
+          "width": 240,
+          "height": 14,
+          "textGrowth": "fixed-width-height",
+          "fontSize": 9,
+          "fontWeight": "700",
+          "fill": "$muted",
+          "textAlign": "left",
+          "letterSpacing": 1.5,
+          "id": "n564"
+        },
+        {
+          "type": "frame",
+          "x": 16,
+          "y": 394,
+          "width": 343,
+          "height": 24,
+          "fill": "$card",
+          "cornerRadius": 4,
+          "children": [
+            {
+              "type": "text",
+              "content": "GPT-4o",
+              "x": 12,
+              "y": 5,
+              "width": 100,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "500",
+              "fill": "$text",
+              "textAlign": "left",
+              "id": "n566"
+            },
+            {
+              "type": "text",
+              "content": "78",
+              "x": 120,
+              "y": 5,
+              "width": 40,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "700",
+              "fill": "$accent",
+              "textAlign": "left",
+              "id": "n567"
+            },
+            {
+              "type": "text",
+              "content": "+3",
+              "x": 293,
+              "y": 5,
+              "width": 44,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "600",
+              "fill": "$green",
+              "textAlign": "right",
+              "id": "n568"
+            }
+          ],
+          "id": "n565"
+        },
+        {
+          "type": "frame",
+          "x": 16,
+          "y": 422,
+          "width": 343,
+          "height": 24,
+          "fill": "$bg",
+          "cornerRadius": 4,
+          "children": [
+            {
+              "type": "text",
+              "content": "Claude 3.5",
+              "x": 12,
+              "y": 5,
+              "width": 100,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "500",
+              "fill": "$text",
+              "textAlign": "left",
+              "id": "n570"
+            },
+            {
+              "type": "text",
+              "content": "71",
+              "x": 120,
+              "y": 5,
+              "width": 40,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "700",
+              "fill": "$accent",
+              "textAlign": "left",
+              "id": "n571"
+            },
+            {
+              "type": "text",
+              "content": "+1",
+              "x": 293,
+              "y": 5,
+              "width": 44,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "600",
+              "fill": "$green",
+              "textAlign": "right",
+              "id": "n572"
+            }
+          ],
+          "id": "n569"
+        },
+        {
+          "type": "frame",
+          "x": 16,
+          "y": 450,
+          "width": 343,
+          "height": 24,
+          "fill": "$card",
+          "cornerRadius": 4,
+          "children": [
+            {
+              "type": "text",
+              "content": "Perplexity",
+              "x": 12,
+              "y": 5,
+              "width": 100,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "500",
+              "fill": "$text",
+              "textAlign": "left",
+              "id": "n574"
+            },
+            {
+              "type": "text",
+              "content": "82",
+              "x": 120,
+              "y": 5,
+              "width": 40,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "700",
+              "fill": "$accent",
+              "textAlign": "left",
+              "id": "n575"
+            },
+            {
+              "type": "text",
+              "content": "+6",
+              "x": 293,
+              "y": 5,
+              "width": 44,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "600",
+              "fill": "$green",
+              "textAlign": "right",
+              "id": "n576"
+            }
+          ],
+          "id": "n573"
+        },
+        {
+          "type": "frame",
+          "x": 16,
+          "y": 478,
+          "width": 343,
+          "height": 24,
+          "fill": "$bg",
+          "cornerRadius": 4,
+          "children": [
+            {
+              "type": "text",
+              "content": "Gemini",
+              "x": 12,
+              "y": 5,
+              "width": 100,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "500",
+              "fill": "$text",
+              "textAlign": "left",
+              "id": "n578"
+            },
+            {
+              "type": "text",
+              "content": "65",
+              "x": 120,
+              "y": 5,
+              "width": 40,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "700",
+              "fill": "$accent",
+              "textAlign": "left",
+              "id": "n579"
+            },
+            {
+              "type": "text",
+              "content": "-4",
+              "x": 293,
+              "y": 5,
+              "width": 44,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "600",
+              "fill": "$red",
+              "textAlign": "right",
+              "id": "n580"
+            }
+          ],
+          "id": "n577"
+        },
+        {
+          "type": "frame",
+          "x": 16,
+          "y": 506,
+          "width": 343,
+          "height": 24,
+          "fill": "$card",
+          "cornerRadius": 4,
+          "children": [
+            {
+              "type": "text",
+              "content": "Grok",
+              "x": 12,
+              "y": 5,
+              "width": 100,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "500",
+              "fill": "$text",
+              "textAlign": "left",
+              "id": "n582"
+            },
+            {
+              "type": "text",
+              "content": "68",
+              "x": 120,
+              "y": 5,
+              "width": 40,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "700",
+              "fill": "$accent",
+              "textAlign": "left",
+              "id": "n583"
+            },
+            {
+              "type": "text",
+              "content": "+2",
+              "x": 293,
+              "y": 5,
+              "width": 44,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "600",
+              "fill": "$green",
+              "textAlign": "right",
+              "id": "n584"
+            }
+          ],
+          "id": "n581"
+        },
+        {
+          "type": "frame",
+          "x": 16,
+          "y": 534,
+          "width": 343,
+          "height": 24,
+          "fill": "$bg",
+          "cornerRadius": 4,
+          "children": [
+            {
+              "type": "text",
+              "content": "DeepSeek",
+              "x": 12,
+              "y": 5,
+              "width": 100,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "500",
+              "fill": "$text",
+              "textAlign": "left",
+              "id": "n586"
+            },
+            {
+              "type": "text",
+              "content": "59",
+              "x": 120,
+              "y": 5,
+              "width": 40,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "700",
+              "fill": "$accent",
+              "textAlign": "left",
+              "id": "n587"
+            },
+            {
+              "type": "text",
+              "content": "new",
+              "x": 293,
+              "y": 5,
+              "width": 44,
+              "height": 14,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "600",
+              "fill": "$green",
+              "textAlign": "right",
+              "id": "n588"
+            }
+          ],
+          "id": "n585"
+        },
+        {
+          "type": "text",
+          "content": "COMPETITOR SOV DELTA",
+          "x": 16,
+          "y": 574,
+          "width": 240,
+          "height": 14,
+          "textGrowth": "fixed-width-height",
+          "fontSize": 9,
+          "fontWeight": "700",
+          "fill": "$muted",
+          "textAlign": "left",
+          "letterSpacing": 1.5,
+          "id": "n589"
+        },
+        {
+          "type": "frame",
+          "x": 16,
+          "y": 592,
+          "width": 343,
+          "height": 32,
+          "fill": "$card",
+          "cornerRadius": 4,
+          "children": [
+            {
+              "type": "text",
+              "content": "SurrealDB",
+              "x": 12,
+              "y": 8,
+              "width": 100,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "600",
+              "fill": "$text",
+              "textAlign": "left",
+              "id": "n591"
+            },
+            {
+              "type": "text",
+              "content": "34%",
+              "x": 120,
+              "y": 8,
+              "width": 40,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "400",
+              "fill": "$text",
+              "textAlign": "left",
+              "id": "n592"
+            },
+            {
+              "type": "text",
+              "content": "30%",
+              "x": 170,
+              "y": 8,
+              "width": 40,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "left",
+              "id": "n593"
+            },
+            {
+              "type": "text",
+              "content": "+4%",
+              "x": 293,
+              "y": 8,
+              "width": 44,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "700",
+              "fill": "$green",
+              "textAlign": "right",
+              "id": "n594"
+            }
+          ],
+          "id": "n590"
+        },
+        {
+          "type": "frame",
+          "x": 16,
+          "y": 628,
+          "width": 343,
+          "height": 32,
+          "fill": "$bg",
+          "cornerRadius": 4,
+          "children": [
+            {
+              "type": "text",
+              "content": "MongoDB",
+              "x": 12,
+              "y": 8,
+              "width": 100,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "600",
+              "fill": "$text",
+              "textAlign": "left",
+              "id": "n596"
+            },
+            {
+              "type": "text",
+              "content": "28%",
+              "x": 120,
+              "y": 8,
+              "width": 40,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "400",
+              "fill": "$text",
+              "textAlign": "left",
+              "id": "n597"
+            },
+            {
+              "type": "text",
+              "content": "26%",
+              "x": 170,
+              "y": 8,
+              "width": 40,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "left",
+              "id": "n598"
+            },
+            {
+              "type": "text",
+              "content": "+2%",
+              "x": 293,
+              "y": 8,
+              "width": 44,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "700",
+              "fill": "$red",
+              "textAlign": "right",
+              "id": "n599"
+            }
+          ],
+          "id": "n595"
+        },
+        {
+          "type": "frame",
+          "x": 16,
+          "y": 664,
+          "width": 343,
+          "height": 32,
+          "fill": "$card",
+          "cornerRadius": 4,
+          "children": [
+            {
+              "type": "text",
+              "content": "Neo4j",
+              "x": 12,
+              "y": 8,
+              "width": 100,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "600",
+              "fill": "$text",
+              "textAlign": "left",
+              "id": "n601"
+            },
+            {
+              "type": "text",
+              "content": "22%",
+              "x": 120,
+              "y": 8,
+              "width": 40,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "400",
+              "fill": "$text",
+              "textAlign": "left",
+              "id": "n602"
+            },
+            {
+              "type": "text",
+              "content": "24%",
+              "x": 170,
+              "y": 8,
+              "width": 40,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "left",
+              "id": "n603"
+            },
+            {
+              "type": "text",
+              "content": "-2%",
+              "x": 293,
+              "y": 8,
+              "width": 44,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "700",
+              "fill": "$green",
+              "textAlign": "right",
+              "id": "n604"
+            }
+          ],
+          "id": "n600"
+        },
+        {
+          "type": "frame",
+          "x": 16,
+          "y": 700,
+          "width": 343,
+          "height": 32,
+          "fill": "$bg",
+          "cornerRadius": 4,
+          "children": [
+            {
+              "type": "text",
+              "content": "PostgreSQL",
+              "x": 12,
+              "y": 8,
+              "width": 100,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "600",
+              "fill": "$text",
+              "textAlign": "left",
+              "id": "n606"
+            },
+            {
+              "type": "text",
+              "content": "16%",
+              "x": 120,
+              "y": 8,
+              "width": 40,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "400",
+              "fill": "$text",
+              "textAlign": "left",
+              "id": "n607"
+            },
+            {
+              "type": "text",
+              "content": "20%",
+              "x": 170,
+              "y": 8,
+              "width": 40,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "left",
+              "id": "n608"
+            },
+            {
+              "type": "text",
+              "content": "-4%",
+              "x": 293,
+              "y": 8,
+              "width": 44,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "700",
+              "fill": "$green",
+              "textAlign": "right",
+              "id": "n609"
+            }
+          ],
+          "id": "n605"
+        },
+        {
+          "type": "frame",
+          "x": 16,
+          "y": 752,
+          "width": 120,
+          "height": 40,
+          "fill": "$accent",
+          "cornerRadius": 8,
+          "children": [
+            {
+              "type": "text",
+              "content": "PDF Export",
+              "x": 0,
+              "y": 12,
+              "width": 120,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 11,
+              "fontWeight": "600",
+              "fill": "#fff",
+              "textAlign": "center",
+              "id": "n611"
+            }
+          ],
+          "id": "n610"
+        },
+        {
+          "type": "frame",
+          "x": 148,
+          "y": 752,
+          "width": 100,
+          "height": 40,
+          "fill": "$card",
+          "cornerRadius": 8,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "$border"
+          },
+          "children": [
+            {
+              "type": "text",
+              "content": "CSV Export",
+              "x": 0,
+              "y": 12,
+              "width": 100,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 11,
+              "fontWeight": "600",
+              "fill": "$text",
+              "textAlign": "center",
+              "id": "n613"
+            }
+          ],
+          "id": "n612"
+        },
+        {
+          "type": "frame",
+          "x": 260,
+          "y": 752,
+          "width": 99,
+          "height": 40,
+          "fill": "$card",
+          "cornerRadius": 8,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "$border"
+          },
+          "children": [
+            {
+              "type": "text",
+              "content": "Share Link",
+              "x": 0,
+              "y": 12,
+              "width": 99,
+              "height": 16,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 11,
+              "fontWeight": "600",
+              "fill": "$text",
+              "textAlign": "center",
+              "id": "n615"
+            }
+          ],
+          "id": "n614"
+        },
+        {
+          "type": "frame",
+          "x": 0,
+          "y": 836,
+          "width": 375,
+          "height": 64,
+          "fill": "$card",
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "$border"
+          },
+          "children": [
+            {
+              "type": "rectangle",
+              "x": 0,
+              "y": 0,
+              "width": 375,
+              "height": 1,
+              "fill": "$border",
+              "id": "n617"
+            },
+            {
+              "type": "text",
+              "content": "Home",
+              "x": 14,
+              "y": 22,
+              "width": 50,
+              "height": 20,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "600",
+              "fill": "$accent",
+              "textAlign": "center",
+              "id": "n618"
+            },
+            {
+              "type": "text",
+              "content": "Scans",
+              "x": 89,
+              "y": 22,
+              "width": 50,
+              "height": 20,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "center",
+              "id": "n619"
+            },
+            {
+              "type": "text",
+              "content": "Prompts",
+              "x": 155,
+              "y": 22,
+              "width": 60,
+              "height": 20,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "center",
+              "id": "n620"
+            },
+            {
+              "type": "text",
+              "content": "Citations",
+              "x": 223,
+              "y": 22,
+              "width": 66,
+              "height": 20,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "center",
+              "id": "n621"
+            },
+            {
+              "type": "text",
+              "content": "Alerts",
+              "x": 300,
+              "y": 22,
+              "width": 50,
+              "height": 20,
+              "textGrowth": "fixed-width-height",
+              "fontSize": 10,
+              "fontWeight": "400",
+              "fill": "$muted",
+              "textAlign": "center",
+              "id": "n622"
+            }
+          ],
+          "id": "n616"
+        }
+      ],
+      "id": "n523"
+    }
+  ]
+}

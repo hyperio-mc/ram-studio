@@ -1,0 +1,636 @@
+{
+  "version": "2.8",
+  "meta": {
+    "name": "STILL",
+    "tagline": "your brain is not a server",
+    "archetype": "wellness-mindfulness",
+    "author": "RAM Design Heartbeat",
+    "created": "2026-03-31T04:22:03.347Z",
+    "theme": "light",
+    "slug": "still",
+    "inspiration": "supercommon systems by konolee on land-book.com — 'stillness. motion.' philosophy-driven minimal landing page; contrast between focused work and genuine rest applied to a mobile state-tracking app"
+  },
+  "palette": {
+    "bg": "#F5F3EF",
+    "surface": "#FFFFFF",
+    "surfaceAlt": "#EEF4F0",
+    "text": "#1C1917",
+    "textMuted": "rgba(28,25,23,0.48)",
+    "textFaint": "rgba(28,25,23,0.28)",
+    "accent": "#2D6A4F",
+    "accentSoft": "#E8F0EC",
+    "accent2": "#C4903A",
+    "accent2Soft": "#FBF3E3",
+    "lavender": "#9B8FD4",
+    "border": "#E4E0D8",
+    "rule": "#DDD9D3"
+  },
+  "lightPalette": {
+    "bg": "#F5F3EF",
+    "surface": "#FFFFFF",
+    "text": "#1C1917",
+    "accent": "#2D6A4F",
+    "accent2": "#C4903A",
+    "muted": "rgba(28,25,23,0.48)",
+    "border": "#E4E0D8"
+  },
+  "typography": {
+    "display": {
+      "family": "Georgia, serif",
+      "weight": 400,
+      "size": 44,
+      "tracking": "-0.02em"
+    },
+    "heading": {
+      "family": "Inter, sans-serif",
+      "weight": 600,
+      "size": 22,
+      "tracking": "-0.02em"
+    },
+    "body": {
+      "family": "Inter, sans-serif",
+      "weight": 400,
+      "size": 14,
+      "tracking": "0em"
+    },
+    "label": {
+      "family": "Inter, sans-serif",
+      "weight": 500,
+      "size": 11,
+      "tracking": "0.10em"
+    }
+  },
+  "screens": [
+    {
+      "id": "home",
+      "label": "Home",
+      "description": "Central state orb with concentric rings. Warm linen background, current STILL state glows forest green. Rhythm bar shows today's pattern. Two stat cards below.",
+      "components": [
+        {
+          "type": "topbar-minimal",
+          "left": {
+            "type": "wordmark",
+            "text": "STILL",
+            "color": "accent"
+          },
+          "right": {
+            "type": "date-label",
+            "value": "Tuesday · Mar 31"
+          }
+        },
+        {
+          "type": "state-orb",
+          "state": "STILL",
+          "sessionTime": "38 min",
+          "rings": [
+            {
+              "r": 120,
+              "fill": "accentSoft"
+            },
+            {
+              "r": 90,
+              "fill": "#D1E8DC"
+            },
+            {
+              "r": 60,
+              "fill": "accent"
+            }
+          ],
+          "tapHint": "tap to switch state"
+        },
+        {
+          "type": "rhythm-bar",
+          "blocks": [
+            {
+              "type": "motion",
+              "duration": 62
+            },
+            {
+              "type": "still",
+              "duration": 28
+            },
+            {
+              "type": "motion",
+              "duration": 74
+            },
+            {
+              "type": "still",
+              "duration": 34
+            },
+            {
+              "type": "motion",
+              "duration": 90
+            },
+            {
+              "type": "still",
+              "duration": 38
+            }
+          ],
+          "timeLabels": [
+            "8am",
+            "12pm",
+            "4pm"
+          ]
+        },
+        {
+          "type": "stat-pair",
+          "cards": [
+            {
+              "label": "stillness score",
+              "value": "74",
+              "sub": "/ 100",
+              "trend": "+8 from yesterday",
+              "bg": "accentSoft",
+              "color": "accent"
+            },
+            {
+              "label": "motion blocks",
+              "value": "4",
+              "sub": "of 6",
+              "trend": "2 stillness left",
+              "bg": "accent2Soft",
+              "color": "accent2"
+            }
+          ]
+        },
+        {
+          "type": "bottom-nav",
+          "items": [
+            {
+              "id": "home",
+              "label": "Home",
+              "icon": "◉",
+              "active": true
+            },
+            {
+              "id": "session",
+              "label": "Session",
+              "icon": "◷"
+            },
+            {
+              "id": "patterns",
+              "label": "Patterns",
+              "icon": "◈"
+            },
+            {
+              "id": "rituals",
+              "label": "Rituals",
+              "icon": "✦"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "session",
+      "label": "Session",
+      "description": "Session launcher with MOTION/STILL toggle, 25:00 large timer, intention input field, start CTA, and recent session history list.",
+      "components": [
+        {
+          "type": "state-toggle",
+          "options": [
+            {
+              "id": "motion",
+              "label": "◐  MOTION",
+              "color": "accent2",
+              "active": true
+            },
+            {
+              "id": "still",
+              "label": "◑  STILL",
+              "color": "accent"
+            }
+          ]
+        },
+        {
+          "type": "timer-display",
+          "time": "25:00",
+          "sublabel": "deep work",
+          "fontSize": 72,
+          "fontWeight": 300,
+          "ringColor": "accent2"
+        },
+        {
+          "type": "intention-input",
+          "label": "session intention",
+          "value": "Finish Q2 strategy deck — section 3 only"
+        },
+        {
+          "type": "cta-primary",
+          "label": "▶  start session",
+          "bg": "accent2"
+        },
+        {
+          "type": "cta-pair",
+          "buttons": [
+            {
+              "label": "set intention",
+              "bg": "accentSoft",
+              "color": "accent"
+            },
+            {
+              "label": "skip to still",
+              "bg": "#EDE9E2",
+              "color": "textMuted"
+            }
+          ]
+        },
+        {
+          "type": "session-history",
+          "label": "recent sessions",
+          "items": [
+            {
+              "type": "motion",
+              "label": "Motion · 47 min",
+              "sub": "Report writing · 8:14am"
+            },
+            {
+              "type": "still",
+              "label": "Still · 18 min",
+              "sub": "Walk + tea · 7:52am"
+            }
+          ]
+        },
+        {
+          "type": "bottom-nav",
+          "items": [
+            {
+              "id": "home",
+              "label": "Home",
+              "icon": "◎"
+            },
+            {
+              "id": "session",
+              "label": "Session",
+              "icon": "◷",
+              "active": true
+            },
+            {
+              "id": "patterns",
+              "label": "Patterns",
+              "icon": "◈"
+            },
+            {
+              "id": "rituals",
+              "label": "Rituals",
+              "icon": "✦"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ritual-active",
+      "label": "Break Ritual",
+      "description": "Immersive soft-green full-viewport screen. Large editorial 'stillness.' display type. 20-second countdown ring. Ritual checklist with status icons.",
+      "components": [
+        {
+          "type": "immersive-bg",
+          "fill": "accentSoft"
+        },
+        {
+          "type": "editorial-headline",
+          "text": "stillness.",
+          "style": {
+            "font": "display",
+            "size": 42,
+            "color": "accent",
+            "align": "center"
+          }
+        },
+        {
+          "type": "ritual-instruction",
+          "heading": "look out the window",
+          "body": "find a fixed point in the distance and hold it for 20 seconds"
+        },
+        {
+          "type": "countdown-ring",
+          "seconds": 20,
+          "ringColor": "accent",
+          "fontSize": 48,
+          "fontWeight": 200
+        },
+        {
+          "type": "philosophy-rule",
+          "quote": "\"contrast is what makes both states powerful\""
+        },
+        {
+          "type": "ritual-checklist",
+          "label": "today's rituals",
+          "items": [
+            {
+              "status": "done",
+              "label": "Morning walk without phone",
+              "meta": "Completed · 7:12am"
+            },
+            {
+              "status": "active",
+              "label": "Eye rest — look into distance",
+              "meta": "In progress"
+            },
+            {
+              "status": "pending",
+              "label": "Afternoon walk — no agenda",
+              "meta": "Scheduled · 2:00pm"
+            }
+          ]
+        },
+        {
+          "type": "ghost-action",
+          "label": "skip ritual → return to work"
+        }
+      ]
+    },
+    {
+      "id": "patterns",
+      "label": "Patterns",
+      "description": "Weekly stacked bar chart (still vs motion per day). Thursday highlighted as best still day. Three insight cards: pattern, warning, weekly score.",
+      "components": [
+        {
+          "type": "page-header",
+          "title": "your rhythm",
+          "sub": "patterns & insights"
+        },
+        {
+          "type": "period-selector",
+          "options": [
+            "This week",
+            "Month",
+            "90 days"
+          ],
+          "active": "This week"
+        },
+        {
+          "type": "stacked-bar-chart",
+          "label": "stillness vs motion · this week",
+          "days": [
+            {
+              "label": "M",
+              "still": 34,
+              "motion": 60
+            },
+            {
+              "label": "T",
+              "still": 24,
+              "motion": 70
+            },
+            {
+              "label": "W",
+              "still": 28,
+              "motion": 66
+            },
+            {
+              "label": "Th",
+              "still": 38,
+              "motion": 62,
+              "highlight": true
+            },
+            {
+              "label": "F",
+              "still": 18,
+              "motion": 55
+            }
+          ],
+          "colors": {
+            "still": "accent",
+            "motion": "accent2"
+          }
+        },
+        {
+          "type": "insight-cards",
+          "cards": [
+            {
+              "icon": "◑",
+              "headline": "Thursday is your stillness sweet spot",
+              "body": "You average 38% still time on Thursdays — highest of any weekday. Protect it.",
+              "bg": "surface"
+            },
+            {
+              "icon": "⚡",
+              "headline": "Tuesday motion spikes after 2pm",
+              "body": "You start 3+ consecutive motion blocks every Tuesday. Try a scheduled still break.",
+              "bg": "surface"
+            },
+            {
+              "icon": "✦",
+              "headline": "Weekly stillness score: 74",
+              "body": "Up from 66 last week. You're finding your rhythm.",
+              "bg": "accent2Soft",
+              "color": "accent2"
+            }
+          ]
+        },
+        {
+          "type": "bottom-nav",
+          "items": [
+            {
+              "id": "home",
+              "label": "Home",
+              "icon": "◎"
+            },
+            {
+              "id": "session",
+              "label": "Session",
+              "icon": "◷"
+            },
+            {
+              "id": "patterns",
+              "label": "Patterns",
+              "icon": "◈",
+              "active": true
+            },
+            {
+              "id": "rituals",
+              "label": "Rituals",
+              "icon": "✦"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rituals",
+      "label": "Rituals",
+      "description": "Categorised recovery template library (vision & eyes, body & breath, mind & reflection). Left-border accent cards with duration badges.",
+      "components": [
+        {
+          "type": "page-header",
+          "title": "rituals",
+          "sub": "recovery templates"
+        },
+        {
+          "type": "ritual-category",
+          "label": "vision & eyes",
+          "items": [
+            {
+              "name": "Panoramic gaze",
+              "desc": "Soften focus. Activates parasympathetic state.",
+              "duration": "2 min",
+              "accent": "accent"
+            },
+            {
+              "name": "20-20-20 rule",
+              "desc": "Every 20 min, look 20 feet away for 20 seconds.",
+              "duration": "20 sec",
+              "accent": "accent"
+            }
+          ]
+        },
+        {
+          "type": "ritual-category",
+          "label": "body & breath",
+          "items": [
+            {
+              "name": "Box breathing",
+              "desc": "4 counts in / hold / out / hold. Resets nervous system.",
+              "duration": "4 min",
+              "accent": "#7AB8A0"
+            },
+            {
+              "name": "Walk without destination",
+              "desc": "No podcast, no phone. Consolidates memory.",
+              "duration": "10 min",
+              "accent": "accent2"
+            }
+          ]
+        },
+        {
+          "type": "ritual-category",
+          "label": "mind & reflection",
+          "items": [
+            {
+              "name": "Session close ritual",
+              "desc": "Write one sentence: what got done, what's waiting, what felt hard.",
+              "duration": "3 min",
+              "accent": "lavender"
+            }
+          ]
+        },
+        {
+          "type": "bottom-nav",
+          "items": [
+            {
+              "id": "home",
+              "label": "Home",
+              "icon": "◎"
+            },
+            {
+              "id": "session",
+              "label": "Session",
+              "icon": "◷"
+            },
+            {
+              "id": "patterns",
+              "label": "Patterns",
+              "icon": "◈"
+            },
+            {
+              "id": "rituals",
+              "label": "Rituals",
+              "icon": "✦",
+              "active": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "onboarding",
+      "label": "Onboarding",
+      "description": "Philosophy-first full-bleed forest green. Giant editorial 'stillness. / motion.' pair. Manifesto copy. Two state intro cards. White begin CTA.",
+      "components": [
+        {
+          "type": "full-bleed-bg",
+          "fill": "accent"
+        },
+        {
+          "type": "editorial-pair",
+          "lines": [
+            {
+              "text": "stillness.",
+              "opacity": 1
+            },
+            {
+              "text": "motion.",
+              "opacity": 0.4
+            }
+          ],
+          "color": "white",
+          "size": 52
+        },
+        {
+          "type": "rule-divider",
+          "opacity": 0.2,
+          "color": "white"
+        },
+        {
+          "type": "manifesto-body",
+          "text": "your brain is not a server.\nit needs contrast to stay\nprecise.",
+          "color": "rgba(255,255,255,0.85)"
+        },
+        {
+          "type": "description-text",
+          "text": "STILL tracks your work and rest states — and helps you switch between them deliberately.",
+          "color": "rgba(255,255,255,0.65)"
+        },
+        {
+          "type": "state-intro-pair",
+          "states": [
+            {
+              "id": "motion",
+              "icon": "◐",
+              "label": "MOTION",
+              "bg": "rgba(255,255,255,0.12)"
+            },
+            {
+              "id": "still",
+              "icon": "◑",
+              "label": "STILL",
+              "bg": "rgba(255,255,255,0.24)"
+            }
+          ]
+        },
+        {
+          "type": "cta-primary",
+          "label": "begin",
+          "bg": "white",
+          "color": "accent",
+          "letterSpacing": "0.15em"
+        },
+        {
+          "type": "footnote",
+          "text": "by supercommon systems, for still minds",
+          "color": "rgba(255,255,255,0.30)"
+        }
+      ]
+    }
+  ],
+  "nav": [
+    {
+      "id": "home",
+      "label": "Home",
+      "icon": "home"
+    },
+    {
+      "id": "session",
+      "label": "Session",
+      "icon": "clock"
+    },
+    {
+      "id": "patterns",
+      "label": "Patterns",
+      "icon": "bar-chart"
+    },
+    {
+      "id": "rituals",
+      "label": "Rituals",
+      "icon": "star"
+    }
+  ],
+  "designNotes": {
+    "trend": "supercommon systems by konolee on land-book.com — radical whitespace, philosophy as product, contrast as core mechanic",
+    "typography": "Georgia serif for editorial display moments, Inter for UI. No mono — human-paced app, not a dev tool.",
+    "colourLogic": "Two states, two colours: forest green (#2D6A4F) = STILL, amber gold (#C4903A) = MOTION. Linen bg holds both.",
+    "novelty": "Names the states deliberately. Metric = how deliberately you switched, not how long you worked."
+  }
+}

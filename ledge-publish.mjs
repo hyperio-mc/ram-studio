@@ -1,0 +1,562 @@
+// ledge-publish.mjs — LEDGE hero + viewer + gallery + DB
+// Theme: LIGHT — warm paper-white editorial business finance
+// Inspired by: Midday.ai (darkmodedesign.com) + Cardless (land-book.com) + Awwwards SOTD SUTÉRA
+// RAM Design Heartbeat — 2026-03-28
+
+import fs from 'fs';
+import https from 'https';
+import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
+const config = JSON.parse(fs.readFileSync('/workspace/group/design-studio/community-config.json','utf8'));
+const TOKEN = config.GITHUB_TOKEN;
+const REPO  = config.GITHUB_REPO;
+
+const SLUG = 'ledge';
+const APP_NAME = 'LEDGE';
+const TAGLINE = 'Clear finances for solo builders';
+const ARCHETYPE = 'business-finance';
+
+const hero = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LEDGE — Clear finances for solo builders</title>
+<meta name="description" content="Smart spend intelligence for indie founders. Auto-match receipts, track burn, send invoices and export for your accountant — in one calm, clear place. A RAM design concept.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ram.zenbin.org/ledge">
+<meta property="og:title" content="LEDGE — Clear finances for solo builders">
+<meta property="og:description" content="Smart spend intelligence. Auto-match receipts, track burn, send invoices. A RAM design concept.">
+<meta name="theme-color" content="#2952CC">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#F6F4F1;
+  --surface:#FFFFFF;
+  --surface2:#F0EDE8;
+  --border:#E8E4DD;
+  --text:#17150F;
+  --muted:#8A7F70;
+  --muted2:#C8C0B4;
+  --accent:#2952CC;
+  --green:#16A34A;
+  --warn:#D97706;
+  --red:#DC2626;
+  --indigo:#6366F1;
+  --pad:max(24px,5vw);
+}
+html{scroll-behavior:smooth;background:var(--bg)}
+body{font-family:'Inter',system-ui,sans-serif;color:var(--text);background:var(--bg);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(246,244,241,0.88);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 var(--pad);height:60px;
+}
+.nav-logo{font-size:16px;font-weight:800;letter-spacing:-0.5px;display:flex;align-items:center;gap:8px}
+.logo-mark{width:28px;height:28px;background:var(--accent);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px;font-weight:800}
+.nav-links{display:flex;gap:28px;font-size:13px;font-weight:500;color:var(--muted)}
+.nav-cta{background:var(--text);color:#fff;padding:8px 18px;border-radius:20px;font-size:13px;font-weight:600;letter-spacing:-0.2px}
+.nav-cta:hover{background:#2A2720}
+
+/* HERO */
+.hero{
+  padding:140px var(--pad) 80px;
+  text-align:center;
+  max-width:760px;margin:0 auto;
+}
+.hero-kicker{
+  display:inline-block;
+  background:var(--accent);color:#fff;
+  padding:5px 14px;border-radius:20px;
+  font-size:11px;font-weight:700;letter-spacing:1.2px;
+  margin-bottom:24px;
+}
+.hero h1{
+  font-size:clamp(48px,8vw,80px);
+  font-weight:800;letter-spacing:-3px;line-height:1.0;
+  color:var(--text);margin-bottom:24px;
+}
+.hero h1 span{color:var(--accent)}
+.hero-sub{
+  font-size:18px;color:var(--muted);line-height:1.6;
+  letter-spacing:-0.2px;margin-bottom:40px;max-width:520px;margin-left:auto;margin-right:auto;
+}
+.hero-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn-primary{
+  background:var(--accent);color:#fff;
+  padding:14px 28px;border-radius:28px;
+  font-size:15px;font-weight:700;letter-spacing:-0.3px;
+  transition:opacity .2s;
+}
+.btn-primary:hover{opacity:.88}
+.btn-ghost{
+  background:transparent;color:var(--text);
+  border:1.5px solid var(--border);
+  padding:13px 24px;border-radius:28px;
+  font-size:15px;font-weight:600;letter-spacing:-0.3px;
+  transition:border-color .2s;
+}
+.btn-ghost:hover{border-color:var(--text)}
+
+/* SOCIAL PROOF STRIP */
+.proof-strip{
+  border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  background:var(--surface);
+  padding:18px var(--pad);
+  display:flex;align-items:center;justify-content:center;gap:40px;flex-wrap:wrap;
+}
+.proof-item{font-size:12px;color:var(--muted);font-weight:500;letter-spacing:0.2px}
+.proof-item strong{color:var(--text);font-weight:700}
+
+/* SCREENS SECTION */
+.screens-section{padding:80px var(--pad);max-width:1100px;margin:0 auto}
+.section-kicker{font-size:11px;font-weight:700;letter-spacing:1.5px;color:var(--accent);margin-bottom:12px;text-transform:uppercase}
+.section-title{font-size:clamp(30px,5vw,48px);font-weight:800;letter-spacing:-1.5px;line-height:1.1;margin-bottom:16px;color:var(--text)}
+.section-sub{font-size:15px;color:var(--muted);line-height:1.6;margin-bottom:48px;max-width:480px}
+
+.screens-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+.screen-card{
+  background:var(--surface);border:1px solid var(--border);border-radius:20px;
+  padding:28px;transition:box-shadow .2s,transform .2s;
+}
+.screen-card:hover{box-shadow:0 16px 40px rgba(41,82,204,0.1);transform:translateY(-2px)}
+.screen-num{
+  width:32px;height:32px;border-radius:50%;background:var(--accent);
+  color:#fff;font-size:13px;font-weight:800;
+  display:flex;align-items:center;justify-content:center;margin-bottom:16px;
+}
+.screen-name{font-size:14px;font-weight:700;letter-spacing:-0.2px;margin-bottom:6px;color:var(--text)}
+.screen-desc{font-size:12px;color:var(--muted);line-height:1.5}
+
+/* FEATURES */
+.features-section{padding:80px var(--pad);background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.features-inner{max-width:1100px;margin:0 auto}
+.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:32px;margin-top:48px}
+.feature-card{padding:28px;border:1px solid var(--border);border-radius:18px;background:var(--bg)}
+.feature-icon{font-size:24px;margin-bottom:14px}
+.feature-title{font-size:15px;font-weight:700;letter-spacing:-0.3px;margin-bottom:8px;color:var(--text)}
+.feature-desc{font-size:13px;color:var(--muted);line-height:1.55}
+
+/* TIME SAVED */
+.time-section{padding:80px var(--pad);max-width:900px;margin:0 auto;text-align:center}
+.time-hero{font-size:clamp(60px,12vw,120px);font-weight:900;letter-spacing:-4px;color:var(--accent);line-height:1}
+.time-label{font-size:20px;font-weight:500;color:var(--muted);margin-top:8px;letter-spacing:-0.3px}
+.time-detail{font-size:15px;color:var(--muted);margin-top:24px;line-height:1.6;max-width:480px;margin-left:auto;margin-right:auto}
+
+/* QUOTE */
+.quote-section{padding:80px var(--pad);background:var(--text)}
+.quote-inner{max-width:760px;margin:0 auto;text-align:center}
+.quote-mark{font-size:80px;color:var(--accent);line-height:1;margin-bottom:8px;font-family:Georgia,serif}
+.quote-text{font-size:clamp(20px,4vw,32px);font-weight:600;color:#fff;line-height:1.3;letter-spacing:-0.8px;margin-bottom:20px}
+.quote-text .hl{color:var(--accent)}
+.quote-attr{font-size:10px;letter-spacing:2px;color:rgba(255,255,255,0.35);font-weight:600;text-transform:uppercase}
+
+/* WORKFLOW */
+.workflow-section{padding:80px var(--pad);max-width:1100px;margin:0 auto}
+.workflow-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+@media(max-width:760px){.workflow-grid{grid-template-columns:1fr}}
+.workflow-steps{display:flex;flex-direction:column;gap:20px}
+.workflow-step{display:flex;gap:14px;align-items:flex-start}
+.step-num{
+  width:28px;height:28px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;font-weight:800;flex-shrink:0;margin-top:2px;
+}
+.step-num.blue{background:var(--accent);color:#fff}
+.step-num.green{background:var(--green);color:#fff}
+.step-title{font-size:14px;font-weight:700;letter-spacing:-0.2px;margin-bottom:3px;color:var(--text)}
+.step-desc{font-size:12px;color:var(--muted);line-height:1.5}
+.workflow-visual{
+  background:var(--surface);border:1px solid var(--border);border-radius:24px;
+  padding:32px;
+}
+.mini-balance{font-size:11px;font-weight:500;color:var(--muted);letter-spacing:0.3px;margin-bottom:4px}
+.mini-num{font-size:36px;font-weight:800;letter-spacing:-1.5px;color:var(--text);margin-bottom:4px}
+.mini-up{font-size:11px;font-weight:500;color:var(--green)}
+.mini-hr{border:none;border-top:1px solid var(--border);margin:16px 0}
+.mini-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;font-size:12px}
+.mini-badge{background:#EFF7EE;color:var(--green);padding:3px 8px;border-radius:10px;font-size:10px;font-weight:600}
+.mini-badge.warn{background:#FEF3C7;color:var(--warn)}
+
+/* STATS */
+.stats-section{padding:60px var(--pad);background:var(--accent)}
+.stats-inner{max-width:900px;margin:0 auto}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:40px;text-align:center}
+@media(max-width:700px){.stats-grid{grid-template-columns:repeat(2,1fr)}}
+.stat-num{font-size:clamp(28px,5vw,44px);font-weight:900;letter-spacing:-1.5px;color:#fff;margin-bottom:6px}
+.stat-label{font-size:11px;font-weight:600;color:rgba(255,255,255,0.6);letter-spacing:1px;text-transform:uppercase;margin-bottom:6px}
+.stat-desc{font-size:11px;color:rgba(255,255,255,0.5);line-height:1.4}
+
+/* CTA */
+.cta-section{padding:100px var(--pad);text-align:center;max-width:700px;margin:0 auto}
+.cta-section h2{font-size:clamp(36px,7vw,64px);font-weight:900;letter-spacing:-2.5px;line-height:1.05;margin-bottom:20px;color:var(--text)}
+.cta-section h2 .dim{color:var(--muted2)}
+.cta-section p{font-size:16px;color:var(--muted);line-height:1.6;margin-bottom:36px;max-width:480px;margin-left:auto;margin-right:auto}
+.cta-group{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn-lg{background:var(--accent);color:#fff;padding:16px 32px;border-radius:32px;font-size:16px;font-weight:700;letter-spacing:-0.4px;transition:opacity .2s}
+.btn-lg:hover{opacity:.88}
+.btn-lg-ghost{background:transparent;color:var(--text);border:1.5px solid var(--border);padding:15px 28px;border-radius:32px;font-size:16px;font-weight:600;letter-spacing:-0.4px;transition:border-color .2s}
+.btn-lg-ghost:hover{border-color:var(--text)}
+
+footer{
+  padding:32px var(--pad);
+  border-top:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;
+}
+.footer-logo{font-size:14px;font-weight:800;letter-spacing:-0.3px;color:var(--text);display:flex;align-items:center;gap:8px}
+.footer-logo-mark{width:22px;height:22px;background:var(--accent);border-radius:6px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:9px;font-weight:800}
+.footer-note{font-size:11px;color:var(--muted);letter-spacing:0.3px}
+.footer-tag{font-size:10px;font-weight:700;letter-spacing:1.5px;color:var(--accent);background:rgba(41,82,204,0.1);padding:4px 10px;border-radius:10px}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">
+    <div class="logo-mark">L</div>
+    LEDGE
+  </div>
+  <div class="nav-links">
+    <a href="#screens">Screens</a>
+    <a href="#features">Features</a>
+    <a href="#workflow">Workflow</a>
+  </div>
+  <a class="nav-cta" href="https://ram.zenbin.org/ledge-mock">Try Mock →</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-kicker">DESIGN CONCEPT · MARCH 2026</div>
+  <h1>Finances.<br><span>Clarified.</span></h1>
+  <p class="hero-sub">Smart spend intelligence for indie founders. Auto-match receipts, track your burn rate, send invoices, and export for your accountant — in one calm, clear place.</p>
+  <div class="hero-cta">
+    <a class="btn-primary" href="https://ram.zenbin.org/ledge-mock">Launch Interactive Mock →</a>
+    <a class="btn-ghost" href="https://ram.zenbin.org/ledge-viewer">View Design ↗</a>
+  </div>
+</section>
+
+<div class="proof-strip">
+  <div class="proof-item"><strong>4.5 hrs</strong> saved per month</div>
+  <div class="proof-item"><strong>38</strong> receipts auto-matched</div>
+  <div class="proof-item"><strong>5 screens</strong> · light theme</div>
+  <div class="proof-item"><strong>Inspired by</strong> Midday.ai + Cardless</div>
+  <div class="proof-item"><strong>RAM</strong> Design Heartbeat</div>
+</div>
+
+<section class="screens-section" id="screens">
+  <div class="section-kicker">Design Screens</div>
+  <h2 class="section-title">5 screens.<br>1 clear picture.</h2>
+  <p class="section-sub">From cash position to export-ready reports — everything a solo founder needs to see clearly without becoming an accountant.</p>
+  <div class="screens-grid">
+    <div class="screen-card">
+      <div class="screen-num">1</div>
+      <div class="screen-name">Dashboard — Cash Position</div>
+      <div class="screen-desc">Balance card, burn rate, runway estimate, and a "hours saved" callout. The full picture at a glance.</div>
+    </div>
+    <div class="screen-card">
+      <div class="screen-num">2</div>
+      <div class="screen-name">Transactions — Smart Feed</div>
+      <div class="screen-desc">Auto-categorised transactions with receipt-matching status. Filter by income, expense, or unmatched.</div>
+    </div>
+    <div class="screen-card">
+      <div class="screen-num">3</div>
+      <div class="screen-name">Insights — Monthly Trends</div>
+      <div class="screen-desc">Spend trend chart with area fill, category breakdown with progress bars and absolute amounts.</div>
+    </div>
+    <div class="screen-card">
+      <div class="screen-num">4</div>
+      <div class="screen-name">Invoicing — Outstanding</div>
+      <div class="screen-desc">Awaiting + draft totals, quick-create CTA, invoice list with status pills. Template auto-fill hint.</div>
+    </div>
+    <div class="screen-card">
+      <div class="screen-num">5</div>
+      <div class="screen-name">Reports — Accounting Export</div>
+      <div class="screen-desc">P&L summary, CSV/PDF/JSON export options, accountant share link, and estimated tax due callout.</div>
+    </div>
+  </div>
+</section>
+
+<section class="features-section" id="features">
+  <div class="features-inner">
+    <div class="section-kicker">Core Features</div>
+    <h2 class="section-title">Designed around<br>real founder pain</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">⏱</div>
+        <div class="feature-title">Hours back, not hours spent</div>
+        <div class="feature-desc">Ledge shows you exactly how much manual work it replaced this month. Inspired by Midday.ai's "4–6 hours saved" narrative — make the time value visible.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">✓</div>
+        <div class="feature-title">Receipt-matched transactions</div>
+        <div class="feature-desc">Every transaction shows its matching status at a glance. Unmatched ones surface in an amber pill — never lose a deductible again.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">◎</div>
+        <div class="feature-title">Spend trend with category depth</div>
+        <div class="feature-desc">Month-by-month trend line with area fill, plus a colour-coded category breakdown with inline progress bars. Knowing where money goes changes how you spend it.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">▤</div>
+        <div class="feature-title">30-second invoice creation</div>
+        <div class="feature-desc">Template auto-fills from past work. Client name, rate, line items — pre-populated. Edit and send. No blank-canvas paralysis.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⊞</div>
+        <div class="feature-title">Accountant-ready exports</div>
+        <div class="feature-desc">CSV, PDF P&L, and raw JSON. Plus a read-only share link so your accountant sees clean data without needing a Ledge login.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⚑</div>
+        <div class="feature-title">Tax estimate as you go</div>
+        <div class="feature-desc">Estimated quarterly tax due, surfaced on the Reports screen in an amber callout. Not financial advice — but a useful nudge to set money aside.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="time-section">
+  <div class="time-hero">4.5</div>
+  <div class="time-label">hours saved this month</div>
+  <p class="time-detail">Midday.ai (featured on Dark Mode Design) pioneered the idea of quantifying time saved in a finance app. Ledge adapts this pattern for a light editorial aesthetic — making the value proposition the first thing you see after the balance.</p>
+</section>
+
+<section class="quote-section">
+  <div class="quote-inner">
+    <div class="quote-mark">"</div>
+    <p class="quote-text">Most finance tools are built for <span class="hl">accountants.</span><br>Ledge is built for the person doing everything else.</p>
+    <div class="quote-attr">RAM DESIGN PRINCIPLE — FOUNDER-FIRST FINANCE</div>
+  </div>
+</section>
+
+<section class="workflow-section" id="workflow">
+  <div class="section-kicker">Design Decisions</div>
+  <h2 class="section-title">Three decisions<br>that shaped Ledge</h2>
+  <div class="workflow-grid">
+    <div class="workflow-steps">
+      <div class="workflow-step">
+        <div class="step-num blue">1</div>
+        <div>
+          <div class="step-title">Warm paper-white over clinical white</div>
+          <div class="step-desc">Background is #F6F4F1 — a warm off-white that avoids the cold sterility of pure #FFF. Inspired by the editorial print aesthetic trending on Awwwards (SUTÉRA SOTD). Makes numbers feel less anxious.</div>
+        </div>
+      </div>
+      <div class="workflow-step">
+        <div class="step-num blue">2</div>
+        <div>
+          <div class="step-title">Rich blue accent instead of the fintech green default</div>
+          <div class="step-desc">Most finance apps lean into green (money = growth). Ledge uses #2952CC — a rich electric blue — as the primary accent, reserving green only for positive deltas and income. More distinctive and calmer.</div>
+        </div>
+      </div>
+      <div class="workflow-step">
+        <div class="step-num green">3</div>
+        <div>
+          <div class="step-title">Data density without aggression</div>
+          <div class="step-desc">Each screen packs real information — running totals, trend lines, category breakdowns — but uses generous border-radius (r-12 to r-20), subtle border strokes, and Inter's tight letter-spacing to keep it calm rather than overwhelming.</div>
+        </div>
+      </div>
+    </div>
+    <div class="workflow-visual">
+      <div class="mini-balance">Current Balance</div>
+      <div class="mini-num">$24,850</div>
+      <div class="mini-up">↑ up 5.2% vs last month</div>
+      <div class="mini-hr"></div>
+      <div class="mini-row"><span>Monthly Burn</span><span style="font-weight:700">$6,420</span></div>
+      <div class="mini-row"><span>Runway</span><span style="font-weight:700">3.8 mo</span></div>
+      <div class="mini-hr"></div>
+      <div style="background:#F0EDE8;border-radius:10px;padding:12px;font-size:12px">
+        <div style="font-weight:600;margin-bottom:4px">Ledge saved you 4.5 hrs this month</div>
+        <div style="color:#8A7F70;font-size:11px">Auto-matched 38 receipts. No manual entry.</div>
+      </div>
+      <div class="mini-hr"></div>
+      <div class="mini-row"><span style="font-size:12px">Figma · Design Tools</span><span class="mini-badge warn">−$20</span></div>
+      <div class="mini-row"><span style="font-size:12px">Stripe Payout · Income</span><span class="mini-badge">+$3,200</span></div>
+      <div class="mini-row"><span style="font-size:12px">AWS · Infrastructure</span><span class="mini-badge warn">−$182</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="stats-section">
+  <div class="stats-inner">
+    <div class="stats-grid">
+      <div>
+        <div class="stat-num">5</div>
+        <div class="stat-label">Screens</div>
+        <div class="stat-desc">Dashboard, Transactions, Insights, Invoicing, Reports — one flow, no detours.</div>
+      </div>
+      <div>
+        <div class="stat-num">4.5h</div>
+        <div class="stat-label">Saved / month</div>
+        <div class="stat-desc">The headline metric Ledge surfaces front-and-centre. Make value visible.</div>
+      </div>
+      <div>
+        <div class="stat-num">30s</div>
+        <div class="stat-label">Invoice time</div>
+        <div class="stat-desc">Template-assisted creation. Pre-fill from past work, edit, send.</div>
+      </div>
+      <div>
+        <div class="stat-num">3</div>
+        <div class="stat-label">Export formats</div>
+        <div class="stat-desc">CSV, PDF P&L, and raw JSON for custom workflows and accountants.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <h2>Own your numbers.<br><span class="dim">Every month.</span></h2>
+  <p>LEDGE is a RAM design concept exploring clarity-first financial UX. See the interactive mock or browse the Pencil viewer.</p>
+  <div class="cta-group">
+    <a class="btn-lg" href="https://ram.zenbin.org/ledge-mock">Open Interactive Mock →</a>
+    <a class="btn-lg-ghost" href="https://ram.zenbin.org/ledge-viewer">View Design</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">
+    <div class="footer-logo-mark">L</div>
+    LEDGE
+  </div>
+  <div class="footer-note">A RAM DESIGN CONCEPT · MARCH 2026</div>
+  <div class="footer-tag">LIGHT THEME</div>
+</footer>
+
+</body>
+</html>`;
+
+function req(opts, body) {
+  return new Promise((res, rej) => {
+    const r = https.request(opts, rs => {
+      let d = ''; rs.on('data', c => d += c);
+      rs.on('end', () => res({ status: rs.statusCode, body: d }));
+    });
+    r.on('error', rej);
+    if (body) r.write(body);
+    r.end();
+  });
+}
+
+// Save hero locally
+fs.writeFileSync('/workspace/group/design-studio/ledge-hero.html', hero);
+console.log('✓ ledge-hero.html saved locally');
+
+// Publish hero
+console.log('📤 Publishing hero...');
+const heroBody = Buffer.from(JSON.stringify({ html: hero }));
+try {
+  const res = await req({
+    hostname: 'zenbin.org',
+    path: `/v1/pages/${SLUG}?overwrite=true`,
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Content-Length': heroBody.length, 'X-Subdomain': 'ram' }
+  }, heroBody);
+  if (res.status === 200 || res.status === 201) console.log(`✓ Hero live: https://ram.zenbin.org/${SLUG}`);
+  else console.log(`✗ Hero ${res.status}: ${res.body.slice(0, 120)}`);
+} catch(e) { console.log('✗ Hero error:', e.message); }
+
+// Publish viewer
+console.log('📱 Publishing viewer...');
+const penJson = fs.readFileSync('/workspace/group/design-studio/ledge.pen', 'utf8');
+let viewerHtml = fs.readFileSync('/workspace/group/design-studio/proxy-viewer.html', 'utf8');
+// Replace the existing EMBEDDED_PEN (proxy-viewer has it pre-injected) or prepend to first <script>
+const newInjection = `<script>window.EMBEDDED_PEN = ${JSON.stringify(penJson)};</script>`;
+if (viewerHtml.includes('window.EMBEDDED_PEN')) {
+  viewerHtml = viewerHtml.replace(/window\.EMBEDDED_PEN\s*=\s*[^;]+;/, `window.EMBEDDED_PEN = ${JSON.stringify(penJson)};`);
+} else {
+  viewerHtml = viewerHtml.replace('<script>', newInjection + '\n<script>');
+}
+const vBody = Buffer.from(JSON.stringify({ html: viewerHtml }));
+try {
+  const res = await req({
+    hostname: 'zenbin.org',
+    path: `/v1/pages/${SLUG}-viewer?overwrite=true`,
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Content-Length': vBody.length, 'X-Subdomain': 'ram' }
+  }, vBody);
+  if (res.status === 200 || res.status === 201) console.log(`✓ Viewer live: https://ram.zenbin.org/${SLUG}-viewer`);
+  else console.log(`✗ Viewer ${res.status}: ${res.body.slice(0, 80)}`);
+} catch(e) { console.log('✗ Viewer error:', e.message); }
+
+// Gallery queue
+console.log('📚 Updating gallery queue...');
+try {
+  const ghHeaders = {
+    'Authorization': `token ${TOKEN}`,
+    'User-Agent': 'ram-heartbeat/1.0',
+    'Accept': 'application/vnd.github.v3+json',
+  };
+  const g = await req({
+    hostname: 'api.github.com',
+    path: `/repos/${REPO}/contents/queue.json`,
+    method: 'GET',
+    headers: ghHeaders,
+  });
+  const gj = JSON.parse(g.body);
+  let queue = JSON.parse(Buffer.from(gj.content, 'base64').toString('utf8'));
+  if (Array.isArray(queue)) queue = { version: 1, submissions: queue, updated_at: new Date().toISOString() };
+  if (!queue.submissions) queue.submissions = [];
+  const now = new Date().toISOString();
+  const entry = {
+    id: `heartbeat-${SLUG}-${Date.now()}`,
+    status: 'done',
+    app_name: APP_NAME,
+    tagline: TAGLINE,
+    archetype: ARCHETYPE,
+    design_url: `https://ram.zenbin.org/${SLUG}`,
+    mock_url: `https://ram.zenbin.org/${SLUG}-mock`,
+    submitted_at: now,
+    published_at: now,
+    credit: 'RAM Design Heartbeat',
+    prompt: `Inspired by Midday.ai (featured on darkmodedesign.com) clarity-first business stack UX + Cardless embedded credit from land-book.com + Awwwards SOTD SUTÉRA editorial minimalism. Light theme: warm #F6F4F1 paper-white. 5 screens: Dashboard with blue balance hero card + spark bars, Transactions with smart matching status, Insights with trend line + category bars, Invoicing with summary strip + invoice list, Reports with P&L card + export options + accountant share link.`,
+    screens: 5,
+    source: 'heartbeat',
+    theme: 'light',
+  };
+  queue.submissions.push(entry);
+  queue.updated_at = now;
+  const encoded = Buffer.from(JSON.stringify(queue, null, 2)).toString('base64');
+  const putPayload = Buffer.from(JSON.stringify({
+    message: `feat: add ${APP_NAME} to gallery (heartbeat)`,
+    content: encoded,
+    sha: gj.sha,
+  }));
+  const p = await req({
+    hostname: 'api.github.com',
+    path: `/repos/${REPO}/contents/queue.json`,
+    method: 'PUT',
+    headers: { ...ghHeaders, 'Content-Length': putPayload.length, 'Content-Type': 'application/json' },
+  }, putPayload);
+  console.log(`✓ Gallery: ${p.status === 200 ? 'OK' : p.body.slice(0, 80)} (${queue.submissions.length} total)`);
+} catch(e) { console.log('✗ Gallery error:', e.message); }
+
+// Design DB
+console.log('🗄  Indexing in design DB...');
+try {
+  const { openDB, upsertDesign, rebuildEmbeddings } = await import('./design-db.mjs');
+  const db = openDB();
+  upsertDesign(db, {
+    id: `heartbeat-${SLUG}-2026`,
+    app_name: APP_NAME,
+    tagline: TAGLINE,
+    archetype: ARCHETYPE,
+    design_url: `https://ram.zenbin.org/${SLUG}`,
+    mock_url: `https://ram.zenbin.org/${SLUG}-mock`,
+    source: 'heartbeat',
+    theme: 'light',
+    prompt: `Solo founder business finance app. Light editorial theme. Dashboard with balance card, burn rate, runway. Transaction feed with auto-matching. Spend insights with trend chart and category breakdown. Invoice creation and management. Export-ready accounting reports with P&L and tax estimate.`,
+    screens: 5,
+  });
+  rebuildEmbeddings(db);
+  console.log('✓ Indexed in design DB');
+} catch(e) { console.log('✗ DB error:', e.message); }
+
+console.log('\n✅ LEDGE pipeline complete');
+console.log(`   Hero:   https://ram.zenbin.org/${SLUG}`);
+console.log(`   Viewer: https://ram.zenbin.org/${SLUG}-viewer`);
+console.log(`   Mock:   https://ram.zenbin.org/${SLUG}-mock`);

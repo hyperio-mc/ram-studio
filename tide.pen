@@ -1,0 +1,6011 @@
+{
+  "version": "2.8",
+  "name": "Tide — Financial Clarity",
+  "description": "Personal finance app with frosted glass card system on warm cream. Inspired by Fluid Glass (Awwwards SOTD 7.77/10) + Atlas Card (Godly) + Robinhood Market (minimal.gallery).",
+  "metadata": {
+    "slug": "tide",
+    "appName": "Tide",
+    "tagline": "Your money, in motion",
+    "archetype": "finance-clarity",
+    "theme": "light",
+    "created": "2026-04-08T10:12:45.352Z",
+    "inspiration": "Fluid Glass by Exo Ape (Awwwards SOTD) + Atlas Card (Godly) + Robinhood Market (minimal.gallery)",
+    "palette": {
+      "bg": "#F4F0E8",
+      "accent": "#2A5F4A",
+      "accent2": "#E8893A",
+      "text": "#1C1A18"
+    }
+  },
+  "canvas": {
+    "width": 390,
+    "height": 844
+  },
+  "screens": [
+    {
+      "id": "s1",
+      "name": "Home",
+      "width": 390,
+      "height": 844,
+      "elements": [
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "style": {
+            "fill": "#F4F0E8"
+          }
+        },
+        {
+          "type": "ellipse",
+          "version": "2.8",
+          "x": 235,
+          "y": 15,
+          "width": 190,
+          "height": 190,
+          "style": {
+            "fill": "#EBF4F0",
+            "opacity": "0.55"
+          }
+        },
+        {
+          "type": "ellipse",
+          "version": "2.8",
+          "x": -17,
+          "y": 248,
+          "width": 144,
+          "height": 144,
+          "style": {
+            "fill": "#FEF3E8",
+            "opacity": "0.45"
+          }
+        },
+        {
+          "type": "ellipse",
+          "version": "2.8",
+          "x": 60,
+          "y": 580,
+          "width": 280,
+          "height": 280,
+          "style": {
+            "fill": "#EBF4F0",
+            "opacity": "0.25"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "9:41",
+          "x": 20,
+          "y": 18,
+          "style": {
+            "fontSize": 15,
+            "fontWeight": "600",
+            "fill": "#1C1A18",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "●●●  ▲  ▓▓",
+          "x": 312,
+          "y": 18,
+          "style": {
+            "fontSize": 10,
+            "fill": "#1C1A18",
+            "opacity": "0.45",
+            "fontFamily": "monospace"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "Good morning",
+          "x": 22,
+          "y": 62,
+          "style": {
+            "fontSize": 13,
+            "fontWeight": "400",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "Mia ✦",
+          "x": 22,
+          "y": 86,
+          "style": {
+            "fontSize": 23,
+            "fontWeight": "800",
+            "fill": "#1C1A18",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "letterSpacing": "-0.5"
+          }
+        },
+        {
+          "type": "ellipse",
+          "version": "2.8",
+          "x": 340,
+          "y": 56,
+          "width": 36,
+          "height": 36,
+          "style": {
+            "fill": "#EBF4F0"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "M",
+          "x": 358,
+          "y": 79,
+          "style": {
+            "fontSize": 13,
+            "fontWeight": "700",
+            "fill": "#2A5F4A",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 18,
+          "y": 109,
+          "width": 358,
+          "height": 164,
+          "rx": 24,
+          "ry": 24,
+          "style": {
+            "fill": "rgba(28,26,24,0.08)"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 16,
+          "y": 104,
+          "width": 358,
+          "height": 164,
+          "rx": 24,
+          "ry": 24,
+          "style": {
+            "fill": "rgba(255,255,255,0.72)"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 17,
+          "y": 105,
+          "width": 356,
+          "height": 81,
+          "rx": 24,
+          "ry": 24,
+          "style": {
+            "fill": "rgba(255,255,255,0.90)",
+            "opacity": "0.55"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "Net Worth",
+          "x": 36,
+          "y": 132,
+          "style": {
+            "fontSize": 11,
+            "fontWeight": "500",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "letterSpacing": "0.4"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "$12,847",
+          "x": 36,
+          "y": 178,
+          "style": {
+            "fontSize": 46,
+            "fontWeight": "900",
+            "fill": "#1C1A18",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "letterSpacing": "-2"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": ".36",
+          "x": 198,
+          "y": 178,
+          "style": {
+            "fontSize": 26,
+            "fontWeight": "400",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 36,
+          "y": 192,
+          "width": 86,
+          "height": 20,
+          "rx": 10,
+          "ry": 10,
+          "style": {
+            "fill": "#EBF4F0"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "↑ +4.2% this month",
+          "x": 44,
+          "y": 205,
+          "style": {
+            "fontSize": 9,
+            "fontWeight": "600",
+            "fill": "#2A5F4A",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif"
+          }
+        },
+        {
+          "type": "path",
+          "version": "2.8",
+          "d": "M 285 168 L 290.5 162 L 296 166 L 301.5 156 L 307 161 L 312.5 150 L 318 163 L 323.5 142 L 329 152 L 334.5 148 L 340 156 L 345.5 138 L 351 144",
+          "style": {
+            "stroke": "#2A5F4A",
+            "strokeWidth": "2",
+            "fill": "none",
+            "strokeLinecap": "round",
+            "strokeLinejoin": "round"
+          }
+        },
+        {
+          "type": "path",
+          "version": "2.8",
+          "d": "M 285 168 L 290.5 162 L 296 166 L 301.5 156 L 307 161 L 312.5 150 L 318 163 L 323.5 142 L 329 152 L 334.5 148 L 340 156 L 345.5 138 L 351 144 L 351 168 L 285 168 Z",
+          "style": {
+            "fill": "#2A5F4A",
+            "opacity": "0.10"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 18,
+          "y": 289,
+          "width": 116.66666666666667,
+          "height": 86,
+          "rx": 16,
+          "ry": 16,
+          "style": {
+            "fill": "rgba(28,26,24,0.08)"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 16,
+          "y": 284,
+          "width": 116.66666666666667,
+          "height": 86,
+          "rx": 16,
+          "ry": 16,
+          "style": {
+            "fill": "rgba(255,255,255,0.72)"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 17,
+          "y": 285,
+          "width": 114.66666666666667,
+          "height": 42,
+          "rx": 16,
+          "ry": 16,
+          "style": {
+            "fill": "rgba(255,255,255,0.90)",
+            "opacity": "0.55"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 25,
+          "y": 297,
+          "width": 26,
+          "height": 26,
+          "rx": 8,
+          "ry": 8,
+          "style": {
+            "fill": "#EDFAF4"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "↓",
+          "x": 38,
+          "y": 314,
+          "style": {
+            "fontSize": 11,
+            "fontWeight": "700",
+            "fill": "#27AE74",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "$4,200",
+          "x": 25,
+          "y": 348,
+          "style": {
+            "fontSize": 13,
+            "fontWeight": "700",
+            "fill": "#1C1A18",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "Income",
+          "x": 25,
+          "y": 362,
+          "style": {
+            "fontSize": 9,
+            "fontWeight": "400",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 138.66666666666669,
+          "y": 289,
+          "width": 116.66666666666667,
+          "height": 86,
+          "rx": 16,
+          "ry": 16,
+          "style": {
+            "fill": "rgba(28,26,24,0.08)"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 136.66666666666669,
+          "y": 284,
+          "width": 116.66666666666667,
+          "height": 86,
+          "rx": 16,
+          "ry": 16,
+          "style": {
+            "fill": "rgba(255,255,255,0.72)"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 137.66666666666669,
+          "y": 285,
+          "width": 114.66666666666667,
+          "height": 42,
+          "rx": 16,
+          "ry": 16,
+          "style": {
+            "fill": "rgba(255,255,255,0.90)",
+            "opacity": "0.55"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 145.66666666666669,
+          "y": 297,
+          "width": 26,
+          "height": 26,
+          "rx": 8,
+          "ry": 8,
+          "style": {
+            "fill": "#FEF0F0"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "↑",
+          "x": 158.66666666666669,
+          "y": 314,
+          "style": {
+            "fontSize": 11,
+            "fontWeight": "700",
+            "fill": "#E05454",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "$2,163",
+          "x": 145.66666666666669,
+          "y": 348,
+          "style": {
+            "fontSize": 13,
+            "fontWeight": "700",
+            "fill": "#1C1A18",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "Spent",
+          "x": 145.66666666666669,
+          "y": 362,
+          "style": {
+            "fontSize": 9,
+            "fontWeight": "400",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 259.33333333333337,
+          "y": 289,
+          "width": 116.66666666666667,
+          "height": 86,
+          "rx": 16,
+          "ry": 16,
+          "style": {
+            "fill": "rgba(28,26,24,0.08)"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 257.33333333333337,
+          "y": 284,
+          "width": 116.66666666666667,
+          "height": 86,
+          "rx": 16,
+          "ry": 16,
+          "style": {
+            "fill": "rgba(255,255,255,0.72)"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 258.33333333333337,
+          "y": 285,
+          "width": 114.66666666666667,
+          "height": 42,
+          "rx": 16,
+          "ry": 16,
+          "style": {
+            "fill": "rgba(255,255,255,0.90)",
+            "opacity": "0.55"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 266.33333333333337,
+          "y": 297,
+          "width": 26,
+          "height": 26,
+          "rx": 8,
+          "ry": 8,
+          "style": {
+            "fill": "#EBF4F0"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "◆",
+          "x": 279.33333333333337,
+          "y": 314,
+          "style": {
+            "fontSize": 11,
+            "fontWeight": "700",
+            "fill": "#2A5F4A",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "$2,037",
+          "x": 266.33333333333337,
+          "y": 348,
+          "style": {
+            "fontSize": 13,
+            "fontWeight": "700",
+            "fill": "#1C1A18",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "Saved",
+          "x": 266.33333333333337,
+          "y": 362,
+          "style": {
+            "fontSize": 9,
+            "fontWeight": "400",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 18,
+          "y": 391,
+          "width": 358,
+          "height": 96,
+          "rx": 18,
+          "ry": 18,
+          "style": {
+            "fill": "rgba(28,26,24,0.08)"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 16,
+          "y": 386,
+          "width": 358,
+          "height": 96,
+          "rx": 18,
+          "ry": 18,
+          "style": {
+            "fill": "rgba(255,255,255,0.72)"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 17,
+          "y": 387,
+          "width": 356,
+          "height": 47,
+          "rx": 18,
+          "ry": 18,
+          "style": {
+            "fill": "rgba(255,255,255,0.90)",
+            "opacity": "0.55"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "Monthly Budget",
+          "x": 34,
+          "y": 408,
+          "style": {
+            "fontSize": 12,
+            "fontWeight": "600",
+            "fill": "#1C1A18",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "$2,163 / $3,500",
+          "x": 356,
+          "y": 408,
+          "style": {
+            "fontSize": 11,
+            "fontWeight": "400",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "end"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 34,
+          "y": 418,
+          "width": 318,
+          "height": 10,
+          "rx": 5,
+          "ry": 5,
+          "style": {
+            "fill": "rgba(28,26,24,0.07)"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 34,
+          "y": 418,
+          "width": 197,
+          "height": 10,
+          "rx": 5,
+          "ry": 5,
+          "style": {
+            "fill": "#2A5F4A"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 34,
+          "y": 436,
+          "width": 87,
+          "height": 5,
+          "rx": 2,
+          "ry": 2,
+          "style": {
+            "fill": "#E8893A",
+            "opacity": "0.65"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 123,
+          "y": 436,
+          "width": 58,
+          "height": 5,
+          "rx": 2,
+          "ry": 2,
+          "style": {
+            "fill": "#5B8FD6",
+            "opacity": "0.65"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 183,
+          "y": 436,
+          "width": 74,
+          "height": 5,
+          "rx": 2,
+          "ry": 2,
+          "style": {
+            "fill": "#B15CC6",
+            "opacity": "0.65"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 259,
+          "y": 436,
+          "width": 52,
+          "height": 5,
+          "rx": 2,
+          "ry": 2,
+          "style": {
+            "fill": "#E05454",
+            "opacity": "0.65"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 313,
+          "y": 436,
+          "width": 36,
+          "height": 5,
+          "rx": 2,
+          "ry": 2,
+          "style": {
+            "fill": "#27AE74",
+            "opacity": "0.65"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "62% used  ·  $1,337 remaining",
+          "x": 34,
+          "y": 460,
+          "style": {
+            "fontSize": 9,
+            "fontWeight": "400",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "💡 On track",
+          "x": 356,
+          "y": 460,
+          "style": {
+            "fontSize": 9,
+            "fontWeight": "600",
+            "fill": "#2A5F4A",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "end"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "Recent",
+          "x": 22,
+          "y": 502,
+          "style": {
+            "fontSize": 14,
+            "fontWeight": "700",
+            "fill": "#1C1A18",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "View all →",
+          "x": 368,
+          "y": 502,
+          "style": {
+            "fontSize": 11,
+            "fontWeight": "400",
+            "fill": "#2A5F4A",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "end"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 18,
+          "y": 519,
+          "width": 358,
+          "height": 52,
+          "rx": 13,
+          "ry": 13,
+          "style": {
+            "fill": "rgba(28,26,24,0.08)"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 16,
+          "y": 514,
+          "width": 358,
+          "height": 52,
+          "rx": 13,
+          "ry": 13,
+          "style": {
+            "fill": "rgba(255,255,255,0.72)"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 17,
+          "y": 515,
+          "width": 356,
+          "height": 25,
+          "rx": 13,
+          "ry": 13,
+          "style": {
+            "fill": "rgba(255,255,255,0.90)",
+            "opacity": "0.55"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 28,
+          "y": 524,
+          "width": 32,
+          "height": 32,
+          "rx": 10,
+          "ry": 10,
+          "style": {
+            "fill": "#E8893A",
+            "opacity": "0.12"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "🛒",
+          "x": 44,
+          "y": 544,
+          "style": {
+            "fontSize": 13,
+            "fontWeight": "400",
+            "fill": "#E8893A",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "Whole Foods",
+          "x": 70,
+          "y": 538,
+          "style": {
+            "fontSize": 12,
+            "fontWeight": "600",
+            "fill": "#1C1A18",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "Groceries",
+          "x": 70,
+          "y": 554,
+          "style": {
+            "fontSize": 9,
+            "fontWeight": "400",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "−$43.20",
+          "x": 362,
+          "y": 546,
+          "style": {
+            "fontSize": 12,
+            "fontWeight": "700",
+            "fill": "#1C1A18",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "end"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 18,
+          "y": 579,
+          "width": 358,
+          "height": 52,
+          "rx": 13,
+          "ry": 13,
+          "style": {
+            "fill": "rgba(28,26,24,0.08)"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 16,
+          "y": 574,
+          "width": 358,
+          "height": 52,
+          "rx": 13,
+          "ry": 13,
+          "style": {
+            "fill": "rgba(255,255,255,0.72)"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 17,
+          "y": 575,
+          "width": 356,
+          "height": 25,
+          "rx": 13,
+          "ry": 13,
+          "style": {
+            "fill": "rgba(255,255,255,0.90)",
+            "opacity": "0.55"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 28,
+          "y": 584,
+          "width": 32,
+          "height": 32,
+          "rx": 10,
+          "ry": 10,
+          "style": {
+            "fill": "#27AE74",
+            "opacity": "0.12"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "↓",
+          "x": 44,
+          "y": 604,
+          "style": {
+            "fontSize": 13,
+            "fontWeight": "400",
+            "fill": "#27AE74",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "Freelance Design",
+          "x": 70,
+          "y": 598,
+          "style": {
+            "fontSize": 12,
+            "fontWeight": "600",
+            "fill": "#1C1A18",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "Income",
+          "x": 70,
+          "y": 614,
+          "style": {
+            "fontSize": 9,
+            "fontWeight": "400",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "+$800",
+          "x": 362,
+          "y": 606,
+          "style": {
+            "fontSize": 12,
+            "fontWeight": "700",
+            "fill": "#27AE74",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "end"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 18,
+          "y": 639,
+          "width": 358,
+          "height": 52,
+          "rx": 13,
+          "ry": 13,
+          "style": {
+            "fill": "rgba(28,26,24,0.08)"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 16,
+          "y": 634,
+          "width": 358,
+          "height": 52,
+          "rx": 13,
+          "ry": 13,
+          "style": {
+            "fill": "rgba(255,255,255,0.72)"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 17,
+          "y": 635,
+          "width": 356,
+          "height": 25,
+          "rx": 13,
+          "ry": 13,
+          "style": {
+            "fill": "rgba(255,255,255,0.90)",
+            "opacity": "0.55"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 28,
+          "y": 644,
+          "width": 32,
+          "height": 32,
+          "rx": 10,
+          "ry": 10,
+          "style": {
+            "fill": "#B15CC6",
+            "opacity": "0.12"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "▶",
+          "x": 44,
+          "y": 664,
+          "style": {
+            "fontSize": 13,
+            "fontWeight": "400",
+            "fill": "#B15CC6",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "Netflix",
+          "x": 70,
+          "y": 658,
+          "style": {
+            "fontSize": 12,
+            "fontWeight": "600",
+            "fill": "#1C1A18",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "Entertainment",
+          "x": 70,
+          "y": 674,
+          "style": {
+            "fontSize": 9,
+            "fontWeight": "400",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "−$15.99",
+          "x": 362,
+          "y": 666,
+          "style": {
+            "fontSize": 12,
+            "fontWeight": "700",
+            "fill": "#1C1A18",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "end"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 0,
+          "y": 756,
+          "width": 390,
+          "height": 88,
+          "rx": 0,
+          "ry": 0,
+          "style": {
+            "fill": "rgba(255,255,255,0.72)"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 0,
+          "y": 756,
+          "width": 390,
+          "height": 1,
+          "style": {
+            "fill": "rgba(28,26,24,0.07)"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 11,
+          "y": 764,
+          "width": 56,
+          "height": 30,
+          "rx": 15,
+          "ry": 15,
+          "style": {
+            "fill": "#2A5F4A"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "⌂",
+          "x": 39,
+          "y": 783,
+          "style": {
+            "fontSize": 13,
+            "fontWeight": "700",
+            "fill": "#fff",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "Home",
+          "x": 39,
+          "y": 800,
+          "style": {
+            "fontSize": 9,
+            "fontWeight": "600",
+            "fill": "#2A5F4A",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "◎",
+          "x": 117,
+          "y": 783,
+          "style": {
+            "fontSize": 13,
+            "fontWeight": "400",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "Flow",
+          "x": 117,
+          "y": 800,
+          "style": {
+            "fontSize": 9,
+            "fontWeight": "400",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "◈",
+          "x": 195,
+          "y": 783,
+          "style": {
+            "fontSize": 13,
+            "fontWeight": "400",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "Goals",
+          "x": 195,
+          "y": 800,
+          "style": {
+            "fontSize": 9,
+            "fontWeight": "400",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "≡",
+          "x": 273,
+          "y": 783,
+          "style": {
+            "fontSize": 13,
+            "fontWeight": "400",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "History",
+          "x": 273,
+          "y": 800,
+          "style": {
+            "fontSize": 9,
+            "fontWeight": "400",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "✦",
+          "x": 351,
+          "y": 783,
+          "style": {
+            "fontSize": 13,
+            "fontWeight": "400",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "Pulse",
+          "x": 351,
+          "y": 800,
+          "style": {
+            "fontSize": 9,
+            "fontWeight": "400",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "name": "Flow",
+      "width": 390,
+      "height": 844,
+      "elements": [
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "style": {
+            "fill": "#F4F0E8"
+          }
+        },
+        {
+          "type": "ellipse",
+          "version": "2.8",
+          "x": 50,
+          "y": 50,
+          "width": 280,
+          "height": 280,
+          "style": {
+            "fill": "#FEF3E8",
+            "opacity": "0.35"
+          }
+        },
+        {
+          "type": "ellipse",
+          "version": "2.8",
+          "x": -30,
+          "y": 380,
+          "width": 160,
+          "height": 160,
+          "style": {
+            "fill": "#EBF4F0",
+            "opacity": "0.30"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "9:41",
+          "x": 20,
+          "y": 18,
+          "style": {
+            "fontSize": 15,
+            "fontWeight": "600",
+            "fill": "#1C1A18",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "●●●  ▲  ▓▓",
+          "x": 312,
+          "y": 18,
+          "style": {
+            "fontSize": 10,
+            "fill": "#1C1A18",
+            "opacity": "0.45",
+            "fontFamily": "monospace"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "Cash Flow",
+          "x": 22,
+          "y": 68,
+          "style": {
+            "fontSize": 26,
+            "fontWeight": "800",
+            "fill": "#1C1A18",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "letterSpacing": "-0.5"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "April 2026",
+          "x": 22,
+          "y": 88,
+          "style": {
+            "fontSize": 13,
+            "fontWeight": "400",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "Week",
+          "x": 276,
+          "y": 75,
+          "style": {
+            "fontSize": 10,
+            "fontWeight": "400",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 298,
+          "y": 60,
+          "width": 36,
+          "height": 22,
+          "rx": 11,
+          "ry": 11,
+          "style": {
+            "fill": "#2A5F4A"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "Month",
+          "x": 316,
+          "y": 75,
+          "style": {
+            "fontSize": 10,
+            "fontWeight": "600",
+            "fill": "#fff",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "Year",
+          "x": 356,
+          "y": 75,
+          "style": {
+            "fontSize": 10,
+            "fontWeight": "400",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 18,
+          "y": 107,
+          "width": 358,
+          "height": 195,
+          "rx": 24,
+          "ry": 24,
+          "style": {
+            "fill": "rgba(28,26,24,0.08)"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 16,
+          "y": 102,
+          "width": 358,
+          "height": 195,
+          "rx": 24,
+          "ry": 24,
+          "style": {
+            "fill": "rgba(255,255,255,0.72)"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 17,
+          "y": 103,
+          "width": 356,
+          "height": 96.5,
+          "rx": 24,
+          "ry": 24,
+          "style": {
+            "fill": "rgba(255,255,255,0.90)",
+            "opacity": "0.55"
+          }
+        },
+        {
+          "type": "path",
+          "version": "2.8",
+          "d": "M195.0 134.0 A72 72 0 0 1 265.7 219.5 L242.1 215.0 A48 48 0 0 0 195.0 158.0Z",
+          "style": {
+            "fill": "#E8893A",
+            "opacity": "0.87"
+          }
+        },
+        {
+          "type": "path",
+          "version": "2.8",
+          "d": "M265.4 221.0 A72 72 0 0 1 206.9 277.0 L203.0 253.3 A48 48 0 0 0 241.9 216.0Z",
+          "style": {
+            "fill": "#5B8FD6",
+            "opacity": "0.87"
+          }
+        },
+        {
+          "type": "path",
+          "version": "2.8",
+          "d": "M205.4 277.2 A72 72 0 0 1 124.5 220.8 L148.0 215.9 A48 48 0 0 0 201.9 253.5Z",
+          "style": {
+            "fill": "#B15CC6",
+            "opacity": "0.87"
+          }
+        },
+        {
+          "type": "path",
+          "version": "2.8",
+          "d": "M124.2 219.3 A72 72 0 0 1 149.3 150.4 L164.5 168.9 A48 48 0 0 0 147.8 214.8Z",
+          "style": {
+            "fill": "#E05454",
+            "opacity": "0.87"
+          }
+        },
+        {
+          "type": "path",
+          "version": "2.8",
+          "d": "M150.5 149.4 A72 72 0 0 1 201.3 134.3 L199.2 158.2 A48 48 0 0 0 165.3 168.3Z",
+          "style": {
+            "fill": "#2A5F4A",
+            "opacity": "0.87"
+          }
+        },
+        {
+          "type": "ellipse",
+          "version": "2.8",
+          "x": 152,
+          "y": 163,
+          "width": 86,
+          "height": 86,
+          "style": {
+            "fill": "rgba(255,255,255,0.72)"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "$2,163",
+          "x": 195,
+          "y": 202,
+          "style": {
+            "fontSize": 18,
+            "fontWeight": "800",
+            "fill": "#1C1A18",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "total",
+          "x": 195,
+          "y": 219,
+          "style": {
+            "fontSize": 9,
+            "fontWeight": "400",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "ellipse",
+          "version": "2.8",
+          "x": 285,
+          "y": 122,
+          "width": 10,
+          "height": 10,
+          "style": {
+            "fill": "#E8893A",
+            "opacity": "0.87"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "Food",
+          "x": 300,
+          "y": 131,
+          "style": {
+            "fontSize": 10,
+            "fontWeight": "400",
+            "fill": "#1C1A18",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "$605",
+          "x": 360,
+          "y": 131,
+          "style": {
+            "fontSize": 10,
+            "fontWeight": "600",
+            "fill": "#1C1A18",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "end"
+          }
+        },
+        {
+          "type": "ellipse",
+          "version": "2.8",
+          "x": 285,
+          "y": 144,
+          "width": 10,
+          "height": 10,
+          "style": {
+            "fill": "#5B8FD6",
+            "opacity": "0.87"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "Transport",
+          "x": 300,
+          "y": 153,
+          "style": {
+            "fontSize": 10,
+            "fontWeight": "400",
+            "fill": "#1C1A18",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "$411",
+          "x": 360,
+          "y": 153,
+          "style": {
+            "fontSize": 10,
+            "fontWeight": "600",
+            "fill": "#1C1A18",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "end"
+          }
+        },
+        {
+          "type": "ellipse",
+          "version": "2.8",
+          "x": 285,
+          "y": 166,
+          "width": 10,
+          "height": 10,
+          "style": {
+            "fill": "#B15CC6",
+            "opacity": "0.87"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "Shopping",
+          "x": 300,
+          "y": 175,
+          "style": {
+            "fontSize": 10,
+            "fontWeight": "400",
+            "fill": "#1C1A18",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "$519",
+          "x": 360,
+          "y": 175,
+          "style": {
+            "fontSize": 10,
+            "fontWeight": "600",
+            "fill": "#1C1A18",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "end"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "By Category",
+          "x": 22,
+          "y": 316,
+          "style": {
+            "fontSize": 14,
+            "fontWeight": "700",
+            "fill": "#1C1A18",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 18,
+          "y": 337,
+          "width": 358,
+          "height": 56,
+          "rx": 13,
+          "ry": 13,
+          "style": {
+            "fill": "rgba(28,26,24,0.08)"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 16,
+          "y": 332,
+          "width": 358,
+          "height": 56,
+          "rx": 13,
+          "ry": 13,
+          "style": {
+            "fill": "rgba(255,255,255,0.72)"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 17,
+          "y": 333,
+          "width": 356,
+          "height": 27,
+          "rx": 13,
+          "ry": 13,
+          "style": {
+            "fill": "rgba(255,255,255,0.90)",
+            "opacity": "0.55"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 27,
+          "y": 343,
+          "width": 34,
+          "height": 34,
+          "rx": 10,
+          "ry": 10,
+          "style": {
+            "fill": "#E8893A",
+            "opacity": "0.12"
+          }
+        },
+        {
+          "type": "ellipse",
+          "version": "2.8",
+          "x": 36,
+          "y": 352,
+          "width": 16,
+          "height": 16,
+          "style": {
+            "fill": "#E8893A",
+            "opacity": "0.88"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "Food",
+          "x": 72,
+          "y": 357,
+          "style": {
+            "fontSize": 13,
+            "fontWeight": "600",
+            "fill": "#1C1A18",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "28% of spend",
+          "x": 72,
+          "y": 373,
+          "style": {
+            "fontSize": 9,
+            "fontWeight": "400",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 72,
+          "y": 376,
+          "width": 154,
+          "height": 4,
+          "rx": 2,
+          "ry": 2,
+          "style": {
+            "fill": "rgba(28,26,24,0.07)"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 72,
+          "y": 376,
+          "width": 138,
+          "height": 4,
+          "rx": 2,
+          "ry": 2,
+          "style": {
+            "fill": "#E8893A",
+            "opacity": "0.75"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "$605",
+          "x": 362,
+          "y": 364,
+          "style": {
+            "fontSize": 14,
+            "fontWeight": "700",
+            "fill": "#1C1A18",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "end"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 18,
+          "y": 401,
+          "width": 358,
+          "height": 56,
+          "rx": 13,
+          "ry": 13,
+          "style": {
+            "fill": "rgba(28,26,24,0.08)"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 16,
+          "y": 396,
+          "width": 358,
+          "height": 56,
+          "rx": 13,
+          "ry": 13,
+          "style": {
+            "fill": "rgba(255,255,255,0.72)"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 17,
+          "y": 397,
+          "width": 356,
+          "height": 27,
+          "rx": 13,
+          "ry": 13,
+          "style": {
+            "fill": "rgba(255,255,255,0.90)",
+            "opacity": "0.55"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 27,
+          "y": 407,
+          "width": 34,
+          "height": 34,
+          "rx": 10,
+          "ry": 10,
+          "style": {
+            "fill": "#5B8FD6",
+            "opacity": "0.12"
+          }
+        },
+        {
+          "type": "ellipse",
+          "version": "2.8",
+          "x": 36,
+          "y": 416,
+          "width": 16,
+          "height": 16,
+          "style": {
+            "fill": "#5B8FD6",
+            "opacity": "0.88"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "Transport",
+          "x": 72,
+          "y": 421,
+          "style": {
+            "fontSize": 13,
+            "fontWeight": "600",
+            "fill": "#1C1A18",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "19% of spend",
+          "x": 72,
+          "y": 437,
+          "style": {
+            "fontSize": 9,
+            "fontWeight": "400",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 72,
+          "y": 440,
+          "width": 154,
+          "height": 4,
+          "rx": 2,
+          "ry": 2,
+          "style": {
+            "fill": "rgba(28,26,24,0.07)"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 72,
+          "y": 440,
+          "width": 94,
+          "height": 4,
+          "rx": 2,
+          "ry": 2,
+          "style": {
+            "fill": "#5B8FD6",
+            "opacity": "0.75"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "$411",
+          "x": 362,
+          "y": 428,
+          "style": {
+            "fontSize": 14,
+            "fontWeight": "700",
+            "fill": "#1C1A18",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "end"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 18,
+          "y": 465,
+          "width": 358,
+          "height": 56,
+          "rx": 13,
+          "ry": 13,
+          "style": {
+            "fill": "rgba(28,26,24,0.08)"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 16,
+          "y": 460,
+          "width": 358,
+          "height": 56,
+          "rx": 13,
+          "ry": 13,
+          "style": {
+            "fill": "rgba(255,255,255,0.72)"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 17,
+          "y": 461,
+          "width": 356,
+          "height": 27,
+          "rx": 13,
+          "ry": 13,
+          "style": {
+            "fill": "rgba(255,255,255,0.90)",
+            "opacity": "0.55"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 27,
+          "y": 471,
+          "width": 34,
+          "height": 34,
+          "rx": 10,
+          "ry": 10,
+          "style": {
+            "fill": "#B15CC6",
+            "opacity": "0.12"
+          }
+        },
+        {
+          "type": "ellipse",
+          "version": "2.8",
+          "x": 36,
+          "y": 480,
+          "width": 16,
+          "height": 16,
+          "style": {
+            "fill": "#B15CC6",
+            "opacity": "0.88"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "Shopping",
+          "x": 72,
+          "y": 485,
+          "style": {
+            "fontSize": 13,
+            "fontWeight": "600",
+            "fill": "#1C1A18",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "24% of spend",
+          "x": 72,
+          "y": 501,
+          "style": {
+            "fontSize": 9,
+            "fontWeight": "400",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 72,
+          "y": 504,
+          "width": 154,
+          "height": 4,
+          "rx": 2,
+          "ry": 2,
+          "style": {
+            "fill": "rgba(28,26,24,0.07)"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 72,
+          "y": 504,
+          "width": 118,
+          "height": 4,
+          "rx": 2,
+          "ry": 2,
+          "style": {
+            "fill": "#B15CC6",
+            "opacity": "0.75"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "$519",
+          "x": 362,
+          "y": 492,
+          "style": {
+            "fontSize": 14,
+            "fontWeight": "700",
+            "fill": "#1C1A18",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "end"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 18,
+          "y": 529,
+          "width": 358,
+          "height": 56,
+          "rx": 13,
+          "ry": 13,
+          "style": {
+            "fill": "rgba(28,26,24,0.08)"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 16,
+          "y": 524,
+          "width": 358,
+          "height": 56,
+          "rx": 13,
+          "ry": 13,
+          "style": {
+            "fill": "rgba(255,255,255,0.72)"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 17,
+          "y": 525,
+          "width": 356,
+          "height": 27,
+          "rx": 13,
+          "ry": 13,
+          "style": {
+            "fill": "rgba(255,255,255,0.90)",
+            "opacity": "0.55"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 27,
+          "y": 535,
+          "width": 34,
+          "height": 34,
+          "rx": 10,
+          "ry": 10,
+          "style": {
+            "fill": "#E05454",
+            "opacity": "0.12"
+          }
+        },
+        {
+          "type": "ellipse",
+          "version": "2.8",
+          "x": 36,
+          "y": 544,
+          "width": 16,
+          "height": 16,
+          "style": {
+            "fill": "#E05454",
+            "opacity": "0.88"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "Health",
+          "x": 72,
+          "y": 549,
+          "style": {
+            "fontSize": 13,
+            "fontWeight": "600",
+            "fill": "#1C1A18",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "17% of spend",
+          "x": 72,
+          "y": 565,
+          "style": {
+            "fontSize": 9,
+            "fontWeight": "400",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 72,
+          "y": 568,
+          "width": 154,
+          "height": 4,
+          "rx": 2,
+          "ry": 2,
+          "style": {
+            "fill": "rgba(28,26,24,0.07)"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 72,
+          "y": 568,
+          "width": 84,
+          "height": 4,
+          "rx": 2,
+          "ry": 2,
+          "style": {
+            "fill": "#E05454",
+            "opacity": "0.75"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "$368",
+          "x": 362,
+          "y": 556,
+          "style": {
+            "fontSize": 14,
+            "fontWeight": "700",
+            "fill": "#1C1A18",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "end"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 18,
+          "y": 593,
+          "width": 358,
+          "height": 56,
+          "rx": 13,
+          "ry": 13,
+          "style": {
+            "fill": "rgba(28,26,24,0.08)"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 16,
+          "y": 588,
+          "width": 358,
+          "height": 56,
+          "rx": 13,
+          "ry": 13,
+          "style": {
+            "fill": "rgba(255,255,255,0.72)"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 17,
+          "y": 589,
+          "width": 356,
+          "height": 27,
+          "rx": 13,
+          "ry": 13,
+          "style": {
+            "fill": "rgba(255,255,255,0.90)",
+            "opacity": "0.55"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 27,
+          "y": 599,
+          "width": 34,
+          "height": 34,
+          "rx": 10,
+          "ry": 10,
+          "style": {
+            "fill": "#2A5F4A",
+            "opacity": "0.12"
+          }
+        },
+        {
+          "type": "ellipse",
+          "version": "2.8",
+          "x": 36,
+          "y": 608,
+          "width": 16,
+          "height": 16,
+          "style": {
+            "fill": "#2A5F4A",
+            "opacity": "0.88"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "Other",
+          "x": 72,
+          "y": 613,
+          "style": {
+            "fontSize": 13,
+            "fontWeight": "600",
+            "fill": "#1C1A18",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "12% of spend",
+          "x": 72,
+          "y": 629,
+          "style": {
+            "fontSize": 9,
+            "fontWeight": "400",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 72,
+          "y": 632,
+          "width": 154,
+          "height": 4,
+          "rx": 2,
+          "ry": 2,
+          "style": {
+            "fill": "rgba(28,26,24,0.07)"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 72,
+          "y": 632,
+          "width": 59,
+          "height": 4,
+          "rx": 2,
+          "ry": 2,
+          "style": {
+            "fill": "#2A5F4A",
+            "opacity": "0.75"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "$260",
+          "x": 362,
+          "y": 620,
+          "style": {
+            "fontSize": 14,
+            "fontWeight": "700",
+            "fill": "#1C1A18",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "end"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 0,
+          "y": 756,
+          "width": 390,
+          "height": 88,
+          "rx": 0,
+          "ry": 0,
+          "style": {
+            "fill": "rgba(255,255,255,0.72)"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 0,
+          "y": 756,
+          "width": 390,
+          "height": 1,
+          "style": {
+            "fill": "rgba(28,26,24,0.07)"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "⌂",
+          "x": 39,
+          "y": 783,
+          "style": {
+            "fontSize": 13,
+            "fontWeight": "400",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "Home",
+          "x": 39,
+          "y": 800,
+          "style": {
+            "fontSize": 9,
+            "fontWeight": "400",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 89,
+          "y": 764,
+          "width": 56,
+          "height": 30,
+          "rx": 15,
+          "ry": 15,
+          "style": {
+            "fill": "#2A5F4A"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "◎",
+          "x": 117,
+          "y": 783,
+          "style": {
+            "fontSize": 13,
+            "fontWeight": "700",
+            "fill": "#fff",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "Flow",
+          "x": 117,
+          "y": 800,
+          "style": {
+            "fontSize": 9,
+            "fontWeight": "600",
+            "fill": "#2A5F4A",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "◈",
+          "x": 195,
+          "y": 783,
+          "style": {
+            "fontSize": 13,
+            "fontWeight": "400",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "Goals",
+          "x": 195,
+          "y": 800,
+          "style": {
+            "fontSize": 9,
+            "fontWeight": "400",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "≡",
+          "x": 273,
+          "y": 783,
+          "style": {
+            "fontSize": 13,
+            "fontWeight": "400",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "History",
+          "x": 273,
+          "y": 800,
+          "style": {
+            "fontSize": 9,
+            "fontWeight": "400",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "✦",
+          "x": 351,
+          "y": 783,
+          "style": {
+            "fontSize": 13,
+            "fontWeight": "400",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "Pulse",
+          "x": 351,
+          "y": 800,
+          "style": {
+            "fontSize": 9,
+            "fontWeight": "400",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s3",
+      "name": "Goals",
+      "width": 390,
+      "height": 844,
+      "elements": [
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "style": {
+            "fill": "#F4F0E8"
+          }
+        },
+        {
+          "type": "ellipse",
+          "version": "2.8",
+          "x": 240,
+          "y": 90,
+          "width": 200,
+          "height": 200,
+          "style": {
+            "fill": "#EBF4F0",
+            "opacity": "0.50"
+          }
+        },
+        {
+          "type": "ellipse",
+          "version": "2.8",
+          "x": -55,
+          "y": 495,
+          "width": 170,
+          "height": 170,
+          "style": {
+            "fill": "#FEF3E8",
+            "opacity": "0.40"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "9:41",
+          "x": 20,
+          "y": 18,
+          "style": {
+            "fontSize": 15,
+            "fontWeight": "600",
+            "fill": "#1C1A18",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "●●●  ▲  ▓▓",
+          "x": 312,
+          "y": 18,
+          "style": {
+            "fontSize": 10,
+            "fill": "#1C1A18",
+            "opacity": "0.45",
+            "fontFamily": "monospace"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "Goals",
+          "x": 22,
+          "y": 68,
+          "style": {
+            "fontSize": 26,
+            "fontWeight": "800",
+            "fill": "#1C1A18",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "letterSpacing": "-0.5"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "3 active  ·  $8,400 saved total",
+          "x": 22,
+          "y": 88,
+          "style": {
+            "fontSize": 13,
+            "fontWeight": "400",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 330,
+          "y": 57,
+          "width": 44,
+          "height": 24,
+          "rx": 12,
+          "ry": 12,
+          "style": {
+            "fill": "#2A5F4A"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "+ New",
+          "x": 352,
+          "y": 73,
+          "style": {
+            "fontSize": 10,
+            "fontWeight": "600",
+            "fill": "#fff",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 18,
+          "y": 111,
+          "width": 358,
+          "height": 186,
+          "rx": 24,
+          "ry": 24,
+          "style": {
+            "fill": "rgba(28,26,24,0.08)"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 16,
+          "y": 106,
+          "width": 358,
+          "height": 186,
+          "rx": 24,
+          "ry": 24,
+          "style": {
+            "fill": "rgba(255,255,255,0.72)"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 17,
+          "y": 107,
+          "width": 356,
+          "height": 92,
+          "rx": 24,
+          "ry": 24,
+          "style": {
+            "fill": "rgba(255,255,255,0.90)",
+            "opacity": "0.55"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 16,
+          "y": 106,
+          "width": 4,
+          "height": 186,
+          "rx": 2,
+          "ry": 2,
+          "style": {
+            "fill": "#2A5F4A"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 30,
+          "y": 120,
+          "width": 44,
+          "height": 44,
+          "rx": 14,
+          "ry": 14,
+          "style": {
+            "fill": "#2A5F4A",
+            "opacity": "0.10"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "🛡",
+          "x": 52,
+          "y": 147,
+          "style": {
+            "fontSize": 18,
+            "fontWeight": "400",
+            "fill": "#2A5F4A",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "Emergency Fund",
+          "x": 84,
+          "y": 140,
+          "style": {
+            "fontSize": 14,
+            "fontWeight": "700",
+            "fill": "#1C1A18",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "Target: $10,000",
+          "x": 84,
+          "y": 158,
+          "style": {
+            "fontSize": 11,
+            "fontWeight": "400",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 314,
+          "y": 124,
+          "width": 62,
+          "height": 20,
+          "rx": 10,
+          "ry": 10,
+          "style": {
+            "fill": "#2A5F4A",
+            "opacity": "0.10"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "62 days left",
+          "x": 345,
+          "y": 137,
+          "style": {
+            "fontSize": 9,
+            "fontWeight": "600",
+            "fill": "#2A5F4A",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 28,
+          "y": 176,
+          "width": 318,
+          "height": 1,
+          "style": {
+            "fill": "rgba(28,26,24,0.07)"
+          }
+        },
+        {
+          "type": "path",
+          "version": "2.8",
+          "d": "M 62 198 A 38 38 0 1 1 61.999 198",
+          "style": {
+            "stroke": "rgba(28,26,24,0.07)",
+            "strokeWidth": "8",
+            "fill": "none"
+          }
+        },
+        {
+          "type": "path",
+          "version": "2.8",
+          "d": "M 62 208 A 28 28 0 1 1 61.999 208",
+          "style": {
+            "stroke": "rgba(255,255,255,0.72)",
+            "strokeWidth": "8",
+            "fill": "none"
+          }
+        },
+        {
+          "type": "path",
+          "version": "2.8",
+          "d": "M 62 198 A 38 38 0 1 1 27.6 252.2",
+          "style": {
+            "stroke": "#2A5F4A",
+            "strokeWidth": "8",
+            "fill": "none",
+            "strokeLinecap": "round"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "68%",
+          "x": 62,
+          "y": 241,
+          "style": {
+            "fontSize": 13,
+            "fontWeight": "800",
+            "fill": "#2A5F4A",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "$6,800",
+          "x": 116,
+          "y": 222,
+          "style": {
+            "fontSize": 26,
+            "fontWeight": "900",
+            "fill": "#1C1A18",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "letterSpacing": "-1"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "saved so far",
+          "x": 116,
+          "y": 240,
+          "style": {
+            "fontSize": 10,
+            "fontWeight": "400",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 116,
+          "y": 252,
+          "width": 238,
+          "height": 22,
+          "rx": 8,
+          "ry": 8,
+          "style": {
+            "fill": "#2A5F4A",
+            "opacity": "0.09"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "+$1548/mo to finish",
+          "x": 124,
+          "y": 266,
+          "style": {
+            "fontSize": 10,
+            "fontWeight": "500",
+            "fill": "#2A5F4A",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 18,
+          "y": 309,
+          "width": 358,
+          "height": 186,
+          "rx": 24,
+          "ry": 24,
+          "style": {
+            "fill": "rgba(28,26,24,0.08)"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 16,
+          "y": 304,
+          "width": 358,
+          "height": 186,
+          "rx": 24,
+          "ry": 24,
+          "style": {
+            "fill": "rgba(255,255,255,0.72)"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 17,
+          "y": 305,
+          "width": 356,
+          "height": 92,
+          "rx": 24,
+          "ry": 24,
+          "style": {
+            "fill": "rgba(255,255,255,0.90)",
+            "opacity": "0.55"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 16,
+          "y": 304,
+          "width": 4,
+          "height": 186,
+          "rx": 2,
+          "ry": 2,
+          "style": {
+            "fill": "#E8893A"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 30,
+          "y": 318,
+          "width": 44,
+          "height": 44,
+          "rx": 14,
+          "ry": 14,
+          "style": {
+            "fill": "#E8893A",
+            "opacity": "0.10"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "✈",
+          "x": 52,
+          "y": 345,
+          "style": {
+            "fontSize": 18,
+            "fontWeight": "400",
+            "fill": "#E8893A",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "Japan Trip ✈",
+          "x": 84,
+          "y": 338,
+          "style": {
+            "fontSize": 14,
+            "fontWeight": "700",
+            "fill": "#1C1A18",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "Target: $3,500",
+          "x": 84,
+          "y": 356,
+          "style": {
+            "fontSize": 11,
+            "fontWeight": "400",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 314,
+          "y": 322,
+          "width": 62,
+          "height": 20,
+          "rx": 10,
+          "ry": 10,
+          "style": {
+            "fill": "#E8893A",
+            "opacity": "0.10"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "128 days left",
+          "x": 345,
+          "y": 335,
+          "style": {
+            "fontSize": 9,
+            "fontWeight": "600",
+            "fill": "#E8893A",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 28,
+          "y": 374,
+          "width": 318,
+          "height": 1,
+          "style": {
+            "fill": "rgba(28,26,24,0.07)"
+          }
+        },
+        {
+          "type": "path",
+          "version": "2.8",
+          "d": "M 62 396 A 38 38 0 1 1 61.999 396",
+          "style": {
+            "stroke": "rgba(28,26,24,0.07)",
+            "strokeWidth": "8",
+            "fill": "none"
+          }
+        },
+        {
+          "type": "path",
+          "version": "2.8",
+          "d": "M 62 406 A 28 28 0 1 1 61.999 406",
+          "style": {
+            "stroke": "rgba(255,255,255,0.72)",
+            "strokeWidth": "8",
+            "fill": "none"
+          }
+        },
+        {
+          "type": "path",
+          "version": "2.8",
+          "d": "M 62 396 A 38 38 0 0 1 91.3 458.2",
+          "style": {
+            "stroke": "#E8893A",
+            "strokeWidth": "8",
+            "fill": "none",
+            "strokeLinecap": "round"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "36%",
+          "x": 62,
+          "y": 439,
+          "style": {
+            "fontSize": 13,
+            "fontWeight": "800",
+            "fill": "#E8893A",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "$1,260",
+          "x": 116,
+          "y": 420,
+          "style": {
+            "fontSize": 26,
+            "fontWeight": "900",
+            "fill": "#1C1A18",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "letterSpacing": "-1"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "saved so far",
+          "x": 116,
+          "y": 438,
+          "style": {
+            "fontSize": 10,
+            "fontWeight": "400",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 116,
+          "y": 450,
+          "width": 238,
+          "height": 22,
+          "rx": 8,
+          "ry": 8,
+          "style": {
+            "fill": "#E8893A",
+            "opacity": "0.09"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "+$525/mo to finish",
+          "x": 124,
+          "y": 464,
+          "style": {
+            "fontSize": 10,
+            "fontWeight": "500",
+            "fill": "#E8893A",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 18,
+          "y": 507,
+          "width": 358,
+          "height": 186,
+          "rx": 24,
+          "ry": 24,
+          "style": {
+            "fill": "rgba(28,26,24,0.08)"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 16,
+          "y": 502,
+          "width": 358,
+          "height": 186,
+          "rx": 24,
+          "ry": 24,
+          "style": {
+            "fill": "rgba(255,255,255,0.72)"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 17,
+          "y": 503,
+          "width": 356,
+          "height": 92,
+          "rx": 24,
+          "ry": 24,
+          "style": {
+            "fill": "rgba(255,255,255,0.90)",
+            "opacity": "0.55"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 16,
+          "y": 502,
+          "width": 4,
+          "height": 186,
+          "rx": 2,
+          "ry": 2,
+          "style": {
+            "fill": "#5B8FD6"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 30,
+          "y": 516,
+          "width": 44,
+          "height": 44,
+          "rx": 14,
+          "ry": 14,
+          "style": {
+            "fill": "#5B8FD6",
+            "opacity": "0.10"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "💻",
+          "x": 52,
+          "y": 543,
+          "style": {
+            "fontSize": 18,
+            "fontWeight": "400",
+            "fill": "#5B8FD6",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "New MacBook",
+          "x": 84,
+          "y": 536,
+          "style": {
+            "fontSize": 14,
+            "fontWeight": "700",
+            "fill": "#1C1A18",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "Target: $2,200",
+          "x": 84,
+          "y": 554,
+          "style": {
+            "fontSize": 11,
+            "fontWeight": "400",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 314,
+          "y": 520,
+          "width": 62,
+          "height": 20,
+          "rx": 10,
+          "ry": 10,
+          "style": {
+            "fill": "#5B8FD6",
+            "opacity": "0.10"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "244 days left",
+          "x": 345,
+          "y": 533,
+          "style": {
+            "fontSize": 9,
+            "fontWeight": "600",
+            "fill": "#5B8FD6",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 28,
+          "y": 572,
+          "width": 318,
+          "height": 1,
+          "style": {
+            "fill": "rgba(28,26,24,0.07)"
+          }
+        },
+        {
+          "type": "path",
+          "version": "2.8",
+          "d": "M 62 594 A 38 38 0 1 1 61.999 594",
+          "style": {
+            "stroke": "rgba(28,26,24,0.07)",
+            "strokeWidth": "8",
+            "fill": "none"
+          }
+        },
+        {
+          "type": "path",
+          "version": "2.8",
+          "d": "M 62 604 A 28 28 0 1 1 61.999 604",
+          "style": {
+            "stroke": "rgba(255,255,255,0.72)",
+            "strokeWidth": "8",
+            "fill": "none"
+          }
+        },
+        {
+          "type": "path",
+          "version": "2.8",
+          "d": "M 62 594 A 38 38 0 0 1 93.4 610.6",
+          "style": {
+            "stroke": "#5B8FD6",
+            "strokeWidth": "8",
+            "fill": "none",
+            "strokeLinecap": "round"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "15%",
+          "x": 62,
+          "y": 637,
+          "style": {
+            "fontSize": 13,
+            "fontWeight": "800",
+            "fill": "#5B8FD6",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "$340",
+          "x": 116,
+          "y": 618,
+          "style": {
+            "fontSize": 26,
+            "fontWeight": "900",
+            "fill": "#1C1A18",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "letterSpacing": "-1"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "saved so far",
+          "x": 116,
+          "y": 636,
+          "style": {
+            "fontSize": 10,
+            "fontWeight": "400",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 116,
+          "y": 648,
+          "width": 238,
+          "height": 22,
+          "rx": 8,
+          "ry": 8,
+          "style": {
+            "fill": "#5B8FD6",
+            "opacity": "0.09"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "+$229/mo to finish",
+          "x": 124,
+          "y": 662,
+          "style": {
+            "fontSize": 10,
+            "fontWeight": "500",
+            "fill": "#5B8FD6",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 0,
+          "y": 756,
+          "width": 390,
+          "height": 88,
+          "rx": 0,
+          "ry": 0,
+          "style": {
+            "fill": "rgba(255,255,255,0.72)"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 0,
+          "y": 756,
+          "width": 390,
+          "height": 1,
+          "style": {
+            "fill": "rgba(28,26,24,0.07)"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "⌂",
+          "x": 39,
+          "y": 783,
+          "style": {
+            "fontSize": 13,
+            "fontWeight": "400",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "Home",
+          "x": 39,
+          "y": 800,
+          "style": {
+            "fontSize": 9,
+            "fontWeight": "400",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "◎",
+          "x": 117,
+          "y": 783,
+          "style": {
+            "fontSize": 13,
+            "fontWeight": "400",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "Flow",
+          "x": 117,
+          "y": 800,
+          "style": {
+            "fontSize": 9,
+            "fontWeight": "400",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 167,
+          "y": 764,
+          "width": 56,
+          "height": 30,
+          "rx": 15,
+          "ry": 15,
+          "style": {
+            "fill": "#2A5F4A"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "◈",
+          "x": 195,
+          "y": 783,
+          "style": {
+            "fontSize": 13,
+            "fontWeight": "700",
+            "fill": "#fff",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "Goals",
+          "x": 195,
+          "y": 800,
+          "style": {
+            "fontSize": 9,
+            "fontWeight": "600",
+            "fill": "#2A5F4A",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "≡",
+          "x": 273,
+          "y": 783,
+          "style": {
+            "fontSize": 13,
+            "fontWeight": "400",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "History",
+          "x": 273,
+          "y": 800,
+          "style": {
+            "fontSize": 9,
+            "fontWeight": "400",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "✦",
+          "x": 351,
+          "y": 783,
+          "style": {
+            "fontSize": 13,
+            "fontWeight": "400",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "Pulse",
+          "x": 351,
+          "y": 800,
+          "style": {
+            "fontSize": 9,
+            "fontWeight": "400",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s4",
+      "name": "History",
+      "width": 390,
+      "height": 844,
+      "elements": [
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "style": {
+            "fill": "#F4F0E8"
+          }
+        },
+        {
+          "type": "ellipse",
+          "version": "2.8",
+          "x": 255,
+          "y": 55,
+          "width": 170,
+          "height": 170,
+          "style": {
+            "fill": "#EBF4F0",
+            "opacity": "0.40"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "9:41",
+          "x": 20,
+          "y": 18,
+          "style": {
+            "fontSize": 15,
+            "fontWeight": "600",
+            "fill": "#1C1A18",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "●●●  ▲  ▓▓",
+          "x": 312,
+          "y": 18,
+          "style": {
+            "fontSize": 10,
+            "fill": "#1C1A18",
+            "opacity": "0.45",
+            "fontFamily": "monospace"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "History",
+          "x": 22,
+          "y": 68,
+          "style": {
+            "fontSize": 26,
+            "fontWeight": "800",
+            "fill": "#1C1A18",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "letterSpacing": "-0.5"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 18,
+          "y": 89,
+          "width": 320,
+          "height": 38,
+          "rx": 11,
+          "ry": 11,
+          "style": {
+            "fill": "rgba(28,26,24,0.08)"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 16,
+          "y": 84,
+          "width": 320,
+          "height": 38,
+          "rx": 11,
+          "ry": 11,
+          "style": {
+            "fill": "rgba(255,255,255,0.72)"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 17,
+          "y": 85,
+          "width": 318,
+          "height": 18,
+          "rx": 11,
+          "ry": 11,
+          "style": {
+            "fill": "rgba(255,255,255,0.90)",
+            "opacity": "0.55"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "🔍",
+          "x": 28,
+          "y": 107,
+          "style": {
+            "fontSize": 13,
+            "fontFamily": "sans-serif"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "Search transactions…",
+          "x": 48,
+          "y": 107,
+          "style": {
+            "fontSize": 12,
+            "fontWeight": "400",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 344,
+          "y": 84,
+          "width": 38,
+          "height": 38,
+          "rx": 11,
+          "ry": 11,
+          "style": {
+            "fill": "#2A5F4A"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "⊞",
+          "x": 363,
+          "y": 107,
+          "style": {
+            "fontSize": 14,
+            "fontWeight": "400",
+            "fill": "#fff",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "Today",
+          "x": 22,
+          "y": 136,
+          "style": {
+            "fontSize": 11,
+            "fontWeight": "600",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "letterSpacing": "0.3"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 18,
+          "y": 155,
+          "width": 358,
+          "height": 50,
+          "rx": 12,
+          "ry": 12,
+          "style": {
+            "fill": "rgba(28,26,24,0.08)"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 16,
+          "y": 150,
+          "width": 358,
+          "height": 50,
+          "rx": 12,
+          "ry": 12,
+          "style": {
+            "fill": "rgba(255,255,255,0.72)"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 17,
+          "y": 151,
+          "width": 356,
+          "height": 24,
+          "rx": 12,
+          "ry": 12,
+          "style": {
+            "fill": "rgba(255,255,255,0.90)",
+            "opacity": "0.55"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 27,
+          "y": 159,
+          "width": 32,
+          "height": 32,
+          "rx": 9,
+          "ry": 9,
+          "style": {
+            "fill": "#E8893A",
+            "opacity": "0.12"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "🛒",
+          "x": 43,
+          "y": 178,
+          "style": {
+            "fontSize": 13,
+            "fontWeight": "400",
+            "fill": "#E8893A",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "Whole Foods",
+          "x": 68,
+          "y": 172,
+          "style": {
+            "fontSize": 12,
+            "fontWeight": "600",
+            "fill": "#1C1A18",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "Groceries",
+          "x": 68,
+          "y": 188,
+          "style": {
+            "fontSize": 9,
+            "fontWeight": "400",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "−$43.20",
+          "x": 364,
+          "y": 179,
+          "style": {
+            "fontSize": 12,
+            "fontWeight": "700",
+            "fill": "#1C1A18",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "end"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 18,
+          "y": 211,
+          "width": 358,
+          "height": 50,
+          "rx": 12,
+          "ry": 12,
+          "style": {
+            "fill": "rgba(28,26,24,0.08)"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 16,
+          "y": 206,
+          "width": 358,
+          "height": 50,
+          "rx": 12,
+          "ry": 12,
+          "style": {
+            "fill": "rgba(255,255,255,0.72)"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 17,
+          "y": 207,
+          "width": 356,
+          "height": 24,
+          "rx": 12,
+          "ry": 12,
+          "style": {
+            "fill": "rgba(255,255,255,0.90)",
+            "opacity": "0.55"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 27,
+          "y": 215,
+          "width": 32,
+          "height": 32,
+          "rx": 9,
+          "ry": 9,
+          "style": {
+            "fill": "#B15CC6",
+            "opacity": "0.12"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "♪",
+          "x": 43,
+          "y": 234,
+          "style": {
+            "fontSize": 13,
+            "fontWeight": "400",
+            "fill": "#B15CC6",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "Spotify",
+          "x": 68,
+          "y": 228,
+          "style": {
+            "fontSize": 12,
+            "fontWeight": "600",
+            "fill": "#1C1A18",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "Entertainment",
+          "x": 68,
+          "y": 244,
+          "style": {
+            "fontSize": 9,
+            "fontWeight": "400",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "−$9.99",
+          "x": 364,
+          "y": 235,
+          "style": {
+            "fontSize": 12,
+            "fontWeight": "700",
+            "fill": "#1C1A18",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "end"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 18,
+          "y": 267,
+          "width": 358,
+          "height": 50,
+          "rx": 12,
+          "ry": 12,
+          "style": {
+            "fill": "rgba(28,26,24,0.08)"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 16,
+          "y": 262,
+          "width": 358,
+          "height": 50,
+          "rx": 12,
+          "ry": 12,
+          "style": {
+            "fill": "rgba(255,255,255,0.72)"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 17,
+          "y": 263,
+          "width": 356,
+          "height": 24,
+          "rx": 12,
+          "ry": 12,
+          "style": {
+            "fill": "rgba(255,255,255,0.90)",
+            "opacity": "0.55"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 27,
+          "y": 271,
+          "width": 32,
+          "height": 32,
+          "rx": 9,
+          "ry": 9,
+          "style": {
+            "fill": "#27AE74",
+            "opacity": "0.12"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "↓",
+          "x": 43,
+          "y": 290,
+          "style": {
+            "fontSize": 13,
+            "fontWeight": "400",
+            "fill": "#27AE74",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "Client Transfer",
+          "x": 68,
+          "y": 284,
+          "style": {
+            "fontSize": 12,
+            "fontWeight": "600",
+            "fill": "#1C1A18",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "Income",
+          "x": 68,
+          "y": 300,
+          "style": {
+            "fontSize": 9,
+            "fontWeight": "400",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "+$500.00",
+          "x": 364,
+          "y": 291,
+          "style": {
+            "fontSize": 12,
+            "fontWeight": "700",
+            "fill": "#27AE74",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "end"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "Yesterday",
+          "x": 22,
+          "y": 324,
+          "style": {
+            "fontSize": 11,
+            "fontWeight": "600",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "letterSpacing": "0.3"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 18,
+          "y": 343,
+          "width": 358,
+          "height": 50,
+          "rx": 12,
+          "ry": 12,
+          "style": {
+            "fill": "rgba(28,26,24,0.08)"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 16,
+          "y": 338,
+          "width": 358,
+          "height": 50,
+          "rx": 12,
+          "ry": 12,
+          "style": {
+            "fill": "rgba(255,255,255,0.72)"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 17,
+          "y": 339,
+          "width": 356,
+          "height": 24,
+          "rx": 12,
+          "ry": 12,
+          "style": {
+            "fill": "rgba(255,255,255,0.90)",
+            "opacity": "0.55"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 27,
+          "y": 347,
+          "width": 32,
+          "height": 32,
+          "rx": 9,
+          "ry": 9,
+          "style": {
+            "fill": "#5B8FD6",
+            "opacity": "0.12"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "🚗",
+          "x": 43,
+          "y": 366,
+          "style": {
+            "fontSize": 13,
+            "fontWeight": "400",
+            "fill": "#5B8FD6",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "Uber",
+          "x": 68,
+          "y": 360,
+          "style": {
+            "fontSize": 12,
+            "fontWeight": "600",
+            "fill": "#1C1A18",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "Transport",
+          "x": 68,
+          "y": 376,
+          "style": {
+            "fontSize": 9,
+            "fontWeight": "400",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "−$12.50",
+          "x": 364,
+          "y": 367,
+          "style": {
+            "fontSize": 12,
+            "fontWeight": "700",
+            "fill": "#1C1A18",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "end"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 18,
+          "y": 399,
+          "width": 358,
+          "height": 50,
+          "rx": 12,
+          "ry": 12,
+          "style": {
+            "fill": "rgba(28,26,24,0.08)"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 16,
+          "y": 394,
+          "width": 358,
+          "height": 50,
+          "rx": 12,
+          "ry": 12,
+          "style": {
+            "fill": "rgba(255,255,255,0.72)"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 17,
+          "y": 395,
+          "width": 356,
+          "height": 24,
+          "rx": 12,
+          "ry": 12,
+          "style": {
+            "fill": "rgba(255,255,255,0.90)",
+            "opacity": "0.55"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 27,
+          "y": 403,
+          "width": 32,
+          "height": 32,
+          "rx": 9,
+          "ry": 9,
+          "style": {
+            "fill": "#E8893A",
+            "opacity": "0.12"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "📦",
+          "x": 43,
+          "y": 422,
+          "style": {
+            "fontSize": 13,
+            "fontWeight": "400",
+            "fill": "#E8893A",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "Amazon",
+          "x": 68,
+          "y": 416,
+          "style": {
+            "fontSize": 12,
+            "fontWeight": "600",
+            "fill": "#1C1A18",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "Shopping · Pending",
+          "x": 68,
+          "y": 432,
+          "style": {
+            "fontSize": 9,
+            "fontWeight": "400",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "−$67.89",
+          "x": 364,
+          "y": 423,
+          "style": {
+            "fontSize": 12,
+            "fontWeight": "700",
+            "fill": "#1C1A18",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "end"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 18,
+          "y": 455,
+          "width": 358,
+          "height": 50,
+          "rx": 12,
+          "ry": 12,
+          "style": {
+            "fill": "rgba(28,26,24,0.08)"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 16,
+          "y": 450,
+          "width": 358,
+          "height": 50,
+          "rx": 12,
+          "ry": 12,
+          "style": {
+            "fill": "rgba(255,255,255,0.72)"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 17,
+          "y": 451,
+          "width": 356,
+          "height": 24,
+          "rx": 12,
+          "ry": 12,
+          "style": {
+            "fill": "rgba(255,255,255,0.90)",
+            "opacity": "0.55"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 27,
+          "y": 459,
+          "width": 32,
+          "height": 32,
+          "rx": 9,
+          "ry": 9,
+          "style": {
+            "fill": "#27AE74",
+            "opacity": "0.12"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "↓",
+          "x": 43,
+          "y": 478,
+          "style": {
+            "fontSize": 13,
+            "fontWeight": "400",
+            "fill": "#27AE74",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "Freelance — UI work",
+          "x": 68,
+          "y": 472,
+          "style": {
+            "fontSize": 12,
+            "fontWeight": "600",
+            "fill": "#1C1A18",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "Income",
+          "x": 68,
+          "y": 488,
+          "style": {
+            "fontSize": 9,
+            "fontWeight": "400",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "+$400.00",
+          "x": 364,
+          "y": 479,
+          "style": {
+            "fontSize": 12,
+            "fontWeight": "700",
+            "fill": "#27AE74",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "end"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "Apr 6",
+          "x": 22,
+          "y": 512,
+          "style": {
+            "fontSize": 11,
+            "fontWeight": "600",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "letterSpacing": "0.3"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 18,
+          "y": 531,
+          "width": 358,
+          "height": 50,
+          "rx": 12,
+          "ry": 12,
+          "style": {
+            "fill": "rgba(28,26,24,0.08)"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 16,
+          "y": 526,
+          "width": 358,
+          "height": 50,
+          "rx": 12,
+          "ry": 12,
+          "style": {
+            "fill": "rgba(255,255,255,0.72)"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 17,
+          "y": 527,
+          "width": 356,
+          "height": 24,
+          "rx": 12,
+          "ry": 12,
+          "style": {
+            "fill": "rgba(255,255,255,0.90)",
+            "opacity": "0.55"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 27,
+          "y": 535,
+          "width": 32,
+          "height": 32,
+          "rx": 9,
+          "ry": 9,
+          "style": {
+            "fill": "#B15CC6",
+            "opacity": "0.12"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "▶",
+          "x": 43,
+          "y": 554,
+          "style": {
+            "fontSize": 13,
+            "fontWeight": "400",
+            "fill": "#B15CC6",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "Netflix",
+          "x": 68,
+          "y": 548,
+          "style": {
+            "fontSize": 12,
+            "fontWeight": "600",
+            "fill": "#1C1A18",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "Entertainment",
+          "x": 68,
+          "y": 564,
+          "style": {
+            "fontSize": 9,
+            "fontWeight": "400",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "−$15.99",
+          "x": 364,
+          "y": 555,
+          "style": {
+            "fontSize": 12,
+            "fontWeight": "700",
+            "fill": "#1C1A18",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "end"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 18,
+          "y": 587,
+          "width": 358,
+          "height": 50,
+          "rx": 12,
+          "ry": 12,
+          "style": {
+            "fill": "rgba(28,26,24,0.08)"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 16,
+          "y": 582,
+          "width": 358,
+          "height": 50,
+          "rx": 12,
+          "ry": 12,
+          "style": {
+            "fill": "rgba(255,255,255,0.72)"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 17,
+          "y": 583,
+          "width": 356,
+          "height": 24,
+          "rx": 12,
+          "ry": 12,
+          "style": {
+            "fill": "rgba(255,255,255,0.90)",
+            "opacity": "0.55"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 27,
+          "y": 591,
+          "width": 32,
+          "height": 32,
+          "rx": 9,
+          "ry": 9,
+          "style": {
+            "fill": "#E05454",
+            "opacity": "0.12"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "+",
+          "x": 43,
+          "y": 610,
+          "style": {
+            "fontSize": 13,
+            "fontWeight": "400",
+            "fill": "#E05454",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "Pharmacy",
+          "x": 68,
+          "y": 604,
+          "style": {
+            "fontSize": 12,
+            "fontWeight": "600",
+            "fill": "#1C1A18",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "Health",
+          "x": 68,
+          "y": 620,
+          "style": {
+            "fontSize": 9,
+            "fontWeight": "400",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "−$28.40",
+          "x": 364,
+          "y": 611,
+          "style": {
+            "fontSize": 12,
+            "fontWeight": "700",
+            "fill": "#1C1A18",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "end"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 0,
+          "y": 756,
+          "width": 390,
+          "height": 88,
+          "rx": 0,
+          "ry": 0,
+          "style": {
+            "fill": "rgba(255,255,255,0.72)"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 0,
+          "y": 756,
+          "width": 390,
+          "height": 1,
+          "style": {
+            "fill": "rgba(28,26,24,0.07)"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "⌂",
+          "x": 39,
+          "y": 783,
+          "style": {
+            "fontSize": 13,
+            "fontWeight": "400",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "Home",
+          "x": 39,
+          "y": 800,
+          "style": {
+            "fontSize": 9,
+            "fontWeight": "400",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "◎",
+          "x": 117,
+          "y": 783,
+          "style": {
+            "fontSize": 13,
+            "fontWeight": "400",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "Flow",
+          "x": 117,
+          "y": 800,
+          "style": {
+            "fontSize": 9,
+            "fontWeight": "400",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "◈",
+          "x": 195,
+          "y": 783,
+          "style": {
+            "fontSize": 13,
+            "fontWeight": "400",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "Goals",
+          "x": 195,
+          "y": 800,
+          "style": {
+            "fontSize": 9,
+            "fontWeight": "400",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 245,
+          "y": 764,
+          "width": 56,
+          "height": 30,
+          "rx": 15,
+          "ry": 15,
+          "style": {
+            "fill": "#2A5F4A"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "≡",
+          "x": 273,
+          "y": 783,
+          "style": {
+            "fontSize": 13,
+            "fontWeight": "700",
+            "fill": "#fff",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "History",
+          "x": 273,
+          "y": 800,
+          "style": {
+            "fontSize": 9,
+            "fontWeight": "600",
+            "fill": "#2A5F4A",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "✦",
+          "x": 351,
+          "y": 783,
+          "style": {
+            "fontSize": 13,
+            "fontWeight": "400",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "Pulse",
+          "x": 351,
+          "y": 800,
+          "style": {
+            "fontSize": 9,
+            "fontWeight": "400",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        }
+      ]
+    },
+    {
+      "id": "s5",
+      "name": "Pulse",
+      "width": 390,
+      "height": 844,
+      "elements": [
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "style": {
+            "fill": "#F4F0E8"
+          }
+        },
+        {
+          "type": "ellipse",
+          "version": "2.8",
+          "x": 210,
+          "y": 10,
+          "width": 220,
+          "height": 220,
+          "style": {
+            "fill": "#FEF3E8",
+            "opacity": "0.45"
+          }
+        },
+        {
+          "type": "ellipse",
+          "version": "2.8",
+          "x": -45,
+          "y": 405,
+          "width": 170,
+          "height": 170,
+          "style": {
+            "fill": "#EBF4F0",
+            "opacity": "0.40"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "9:41",
+          "x": 20,
+          "y": 18,
+          "style": {
+            "fontSize": 15,
+            "fontWeight": "600",
+            "fill": "#1C1A18",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "●●●  ▲  ▓▓",
+          "x": 312,
+          "y": 18,
+          "style": {
+            "fontSize": 10,
+            "fill": "#1C1A18",
+            "opacity": "0.45",
+            "fontFamily": "monospace"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "Pulse",
+          "x": 22,
+          "y": 68,
+          "style": {
+            "fontSize": 26,
+            "fontWeight": "800",
+            "fill": "#1C1A18",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "letterSpacing": "-0.5"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "Weekly Report  ·  Apr 1–7",
+          "x": 22,
+          "y": 88,
+          "style": {
+            "fontSize": 13,
+            "fontWeight": "400",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 18,
+          "y": 107,
+          "width": 358,
+          "height": 162,
+          "rx": 22,
+          "ry": 22,
+          "style": {
+            "fill": "rgba(28,26,24,0.08)"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 16,
+          "y": 102,
+          "width": 358,
+          "height": 162,
+          "rx": 22,
+          "ry": 22,
+          "style": {
+            "fill": "rgba(255,255,255,0.72)"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 17,
+          "y": 103,
+          "width": 356,
+          "height": 80,
+          "rx": 22,
+          "ry": 22,
+          "style": {
+            "fill": "rgba(255,255,255,0.90)",
+            "opacity": "0.55"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "Daily Spending",
+          "x": 34,
+          "y": 126,
+          "style": {
+            "fontSize": 12,
+            "fontWeight": "600",
+            "fill": "#1C1A18",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 58,
+          "y": 229,
+          "width": 22,
+          "height": 17,
+          "rx": 5,
+          "ry": 5,
+          "style": {
+            "fill": "rgba(28,26,24,0.07)"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "M",
+          "x": 69,
+          "y": 259,
+          "style": {
+            "fontSize": 9,
+            "fontWeight": "400",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 100,
+          "y": 211,
+          "width": 22,
+          "height": 35,
+          "rx": 5,
+          "ry": 5,
+          "style": {
+            "fill": "rgba(28,26,24,0.07)"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "T",
+          "x": 111,
+          "y": 259,
+          "style": {
+            "fontSize": 9,
+            "fontWeight": "400",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 142,
+          "y": 237,
+          "width": 22,
+          "height": 9,
+          "rx": 5,
+          "ry": 5,
+          "style": {
+            "fill": "rgba(28,26,24,0.07)"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "W",
+          "x": 153,
+          "y": 259,
+          "style": {
+            "fontSize": 9,
+            "fontWeight": "400",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 184,
+          "y": 192,
+          "width": 22,
+          "height": 54,
+          "rx": 5,
+          "ry": 5,
+          "style": {
+            "fill": "rgba(28,26,24,0.07)"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "T",
+          "x": 195,
+          "y": 259,
+          "style": {
+            "fontSize": 9,
+            "fontWeight": "400",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 226,
+          "y": 223,
+          "width": 22,
+          "height": 23,
+          "rx": 5,
+          "ry": 5,
+          "style": {
+            "fill": "rgba(28,26,24,0.07)"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "F",
+          "x": 237,
+          "y": 259,
+          "style": {
+            "fontSize": 9,
+            "fontWeight": "400",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 268,
+          "y": 166,
+          "width": 22,
+          "height": 80,
+          "rx": 5,
+          "ry": 5,
+          "style": {
+            "fill": "#2A5F4A"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 260,
+          "y": 142,
+          "width": 38,
+          "height": 17,
+          "rx": 9,
+          "ry": 9,
+          "style": {
+            "fill": "#2A5F4A"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "$198",
+          "x": 279,
+          "y": 154,
+          "style": {
+            "fontSize": 9,
+            "fontWeight": "600",
+            "fill": "#fff",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "S",
+          "x": 279,
+          "y": 259,
+          "style": {
+            "fontSize": 9,
+            "fontWeight": "700",
+            "fill": "#2A5F4A",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 310,
+          "y": 228,
+          "width": 22,
+          "height": 18,
+          "rx": 5,
+          "ry": 5,
+          "style": {
+            "fill": "rgba(28,26,24,0.07)"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "S",
+          "x": 321,
+          "y": 259,
+          "style": {
+            "fontSize": 9,
+            "fontWeight": "400",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 18,
+          "y": 285,
+          "width": 358,
+          "height": 66,
+          "rx": 18,
+          "ry": 18,
+          "style": {
+            "fill": "rgba(28,26,24,0.08)"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 16,
+          "y": 280,
+          "width": 358,
+          "height": 66,
+          "rx": 18,
+          "ry": 18,
+          "style": {
+            "fill": "rgba(255,255,255,0.72)"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 17,
+          "y": 281,
+          "width": 356,
+          "height": 32,
+          "rx": 18,
+          "ry": 18,
+          "style": {
+            "fill": "rgba(255,255,255,0.90)",
+            "opacity": "0.55"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "vs Last Week",
+          "x": 34,
+          "y": 303,
+          "style": {
+            "fontSize": 12,
+            "fontWeight": "600",
+            "fill": "#1C1A18",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "You spent 18% less — your best week this month.",
+          "x": 34,
+          "y": 320,
+          "style": {
+            "fontSize": 11,
+            "fontWeight": "400",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 34,
+          "y": 330,
+          "width": 64,
+          "height": 14,
+          "rx": 7,
+          "ry": 7,
+          "style": {
+            "fill": "#EBF4F0"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "↓ 18% saved",
+          "x": 66,
+          "y": 340,
+          "style": {
+            "fontSize": 9,
+            "fontWeight": "600",
+            "fill": "#2A5F4A",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "📉",
+          "x": 340,
+          "y": 322,
+          "style": {
+            "fontSize": 26,
+            "fontFamily": "sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "Smart Insights",
+          "x": 22,
+          "y": 368,
+          "style": {
+            "fontSize": 14,
+            "fontWeight": "700",
+            "fill": "#1C1A18",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 18,
+          "y": 389,
+          "width": 358,
+          "height": 90,
+          "rx": 18,
+          "ry": 18,
+          "style": {
+            "fill": "rgba(28,26,24,0.08)"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 16,
+          "y": 384,
+          "width": 358,
+          "height": 90,
+          "rx": 18,
+          "ry": 18,
+          "style": {
+            "fill": "rgba(255,255,255,0.72)"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 17,
+          "y": 385,
+          "width": 356,
+          "height": 44,
+          "rx": 18,
+          "ry": 18,
+          "style": {
+            "fill": "rgba(255,255,255,0.90)",
+            "opacity": "0.55"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 16,
+          "y": 384,
+          "width": 4,
+          "height": 90,
+          "rx": 2,
+          "ry": 2,
+          "style": {
+            "fill": "#E8893A"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 30,
+          "y": 398,
+          "width": 34,
+          "height": 34,
+          "rx": 11,
+          "ry": 11,
+          "style": {
+            "fill": "#E8893A",
+            "opacity": "0.10"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "🍕",
+          "x": 47,
+          "y": 420,
+          "style": {
+            "fontSize": 16,
+            "fontWeight": "400",
+            "fill": "#E8893A",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "Food up 12% this week",
+          "x": 74,
+          "y": 416,
+          "style": {
+            "fontSize": 13,
+            "fontWeight": "700",
+            "fill": "#1C1A18",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "Eating out 6× costs you +$80/mo vs cooking.",
+          "x": 74,
+          "y": 434,
+          "style": {
+            "fontSize": 10,
+            "fontWeight": "400",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 74,
+          "y": 448,
+          "width": 68,
+          "height": 14,
+          "rx": 7,
+          "ry": 7,
+          "style": {
+            "fill": "#E8893A",
+            "opacity": "0.10"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "View detail →",
+          "x": 108,
+          "y": 458,
+          "style": {
+            "fontSize": 8,
+            "fontWeight": "600",
+            "fill": "#E8893A",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 18,
+          "y": 489,
+          "width": 358,
+          "height": 90,
+          "rx": 18,
+          "ry": 18,
+          "style": {
+            "fill": "rgba(28,26,24,0.08)"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 16,
+          "y": 484,
+          "width": 358,
+          "height": 90,
+          "rx": 18,
+          "ry": 18,
+          "style": {
+            "fill": "rgba(255,255,255,0.72)"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 17,
+          "y": 485,
+          "width": 356,
+          "height": 44,
+          "rx": 18,
+          "ry": 18,
+          "style": {
+            "fill": "rgba(255,255,255,0.90)",
+            "opacity": "0.55"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 16,
+          "y": 484,
+          "width": 4,
+          "height": 90,
+          "rx": 2,
+          "ry": 2,
+          "style": {
+            "fill": "#2A5F4A"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 30,
+          "y": 498,
+          "width": 34,
+          "height": 34,
+          "rx": 11,
+          "ry": 11,
+          "style": {
+            "fill": "#2A5F4A",
+            "opacity": "0.10"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "🛡",
+          "x": 47,
+          "y": 520,
+          "style": {
+            "fontSize": 16,
+            "fontWeight": "400",
+            "fill": "#2A5F4A",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "Emergency fund on track",
+          "x": 74,
+          "y": 516,
+          "style": {
+            "fontSize": 13,
+            "fontWeight": "700",
+            "fill": "#1C1A18",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "$6,800 saved — 68% done. 62 days to $10K.",
+          "x": 74,
+          "y": 534,
+          "style": {
+            "fontSize": 10,
+            "fontWeight": "400",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 74,
+          "y": 548,
+          "width": 68,
+          "height": 14,
+          "rx": 7,
+          "ry": 7,
+          "style": {
+            "fill": "#2A5F4A",
+            "opacity": "0.10"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "View detail →",
+          "x": 108,
+          "y": 558,
+          "style": {
+            "fontSize": 8,
+            "fontWeight": "600",
+            "fill": "#2A5F4A",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 18,
+          "y": 589,
+          "width": 358,
+          "height": 90,
+          "rx": 18,
+          "ry": 18,
+          "style": {
+            "fill": "rgba(28,26,24,0.08)"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 16,
+          "y": 584,
+          "width": 358,
+          "height": 90,
+          "rx": 18,
+          "ry": 18,
+          "style": {
+            "fill": "rgba(255,255,255,0.72)"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 17,
+          "y": 585,
+          "width": 356,
+          "height": 44,
+          "rx": 18,
+          "ry": 18,
+          "style": {
+            "fill": "rgba(255,255,255,0.90)",
+            "opacity": "0.55"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 16,
+          "y": 584,
+          "width": 4,
+          "height": 90,
+          "rx": 2,
+          "ry": 2,
+          "style": {
+            "fill": "#5B8FD6"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 30,
+          "y": 598,
+          "width": 34,
+          "height": 34,
+          "rx": 11,
+          "ry": 11,
+          "style": {
+            "fill": "#5B8FD6",
+            "opacity": "0.10"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "⚡",
+          "x": 47,
+          "y": 620,
+          "style": {
+            "fontSize": 16,
+            "fontWeight": "400",
+            "fill": "#5B8FD6",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "Best transport week",
+          "x": 74,
+          "y": 616,
+          "style": {
+            "fontSize": 13,
+            "fontWeight": "700",
+            "fill": "#1C1A18",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "$28 on transport — $84 under budget this month.",
+          "x": 74,
+          "y": 634,
+          "style": {
+            "fontSize": 10,
+            "fontWeight": "400",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 74,
+          "y": 648,
+          "width": 68,
+          "height": 14,
+          "rx": 7,
+          "ry": 7,
+          "style": {
+            "fill": "#5B8FD6",
+            "opacity": "0.10"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "View detail →",
+          "x": 108,
+          "y": 658,
+          "style": {
+            "fontSize": 8,
+            "fontWeight": "600",
+            "fill": "#5B8FD6",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 18,
+          "y": 689,
+          "width": 358,
+          "height": 90,
+          "rx": 18,
+          "ry": 18,
+          "style": {
+            "fill": "rgba(28,26,24,0.08)"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 16,
+          "y": 684,
+          "width": 358,
+          "height": 90,
+          "rx": 18,
+          "ry": 18,
+          "style": {
+            "fill": "rgba(255,255,255,0.72)"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 17,
+          "y": 685,
+          "width": 356,
+          "height": 44,
+          "rx": 18,
+          "ry": 18,
+          "style": {
+            "fill": "rgba(255,255,255,0.90)",
+            "opacity": "0.55"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 16,
+          "y": 684,
+          "width": 4,
+          "height": 90,
+          "rx": 2,
+          "ry": 2,
+          "style": {
+            "fill": "#27AE74"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 30,
+          "y": 698,
+          "width": 34,
+          "height": 34,
+          "rx": 11,
+          "ry": 11,
+          "style": {
+            "fill": "#27AE74",
+            "opacity": "0.10"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "💰",
+          "x": 47,
+          "y": 720,
+          "style": {
+            "fontSize": 16,
+            "fontWeight": "400",
+            "fill": "#27AE74",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "Biggest win: Freelance",
+          "x": 74,
+          "y": 716,
+          "style": {
+            "fontSize": 13,
+            "fontWeight": "700",
+            "fill": "#1C1A18",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "$1,200 income this week. Up 33% from last.",
+          "x": 74,
+          "y": 734,
+          "style": {
+            "fontSize": 10,
+            "fontWeight": "400",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 74,
+          "y": 748,
+          "width": 68,
+          "height": 14,
+          "rx": 7,
+          "ry": 7,
+          "style": {
+            "fill": "#27AE74",
+            "opacity": "0.10"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "View detail →",
+          "x": 108,
+          "y": 758,
+          "style": {
+            "fontSize": 8,
+            "fontWeight": "600",
+            "fill": "#27AE74",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 0,
+          "y": 756,
+          "width": 390,
+          "height": 88,
+          "rx": 0,
+          "ry": 0,
+          "style": {
+            "fill": "rgba(255,255,255,0.72)"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 0,
+          "y": 756,
+          "width": 390,
+          "height": 1,
+          "style": {
+            "fill": "rgba(28,26,24,0.07)"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "⌂",
+          "x": 39,
+          "y": 783,
+          "style": {
+            "fontSize": 13,
+            "fontWeight": "400",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "Home",
+          "x": 39,
+          "y": 800,
+          "style": {
+            "fontSize": 9,
+            "fontWeight": "400",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "◎",
+          "x": 117,
+          "y": 783,
+          "style": {
+            "fontSize": 13,
+            "fontWeight": "400",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "Flow",
+          "x": 117,
+          "y": 800,
+          "style": {
+            "fontSize": 9,
+            "fontWeight": "400",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "◈",
+          "x": 195,
+          "y": 783,
+          "style": {
+            "fontSize": 13,
+            "fontWeight": "400",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "Goals",
+          "x": 195,
+          "y": 800,
+          "style": {
+            "fontSize": 9,
+            "fontWeight": "400",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "≡",
+          "x": 273,
+          "y": 783,
+          "style": {
+            "fontSize": 13,
+            "fontWeight": "400",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "History",
+          "x": 273,
+          "y": 800,
+          "style": {
+            "fontSize": 9,
+            "fontWeight": "400",
+            "fill": "#7A7268",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "rect",
+          "version": "2.8",
+          "x": 323,
+          "y": 764,
+          "width": 56,
+          "height": 30,
+          "rx": 15,
+          "ry": 15,
+          "style": {
+            "fill": "#2A5F4A"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "✦",
+          "x": 351,
+          "y": 783,
+          "style": {
+            "fontSize": 13,
+            "fontWeight": "700",
+            "fill": "#fff",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        },
+        {
+          "type": "text",
+          "version": "2.8",
+          "content": "Pulse",
+          "x": 351,
+          "y": 800,
+          "style": {
+            "fontSize": 9,
+            "fontWeight": "600",
+            "fill": "#2A5F4A",
+            "fontFamily": "SF Pro Display, -apple-system, Helvetica Neue, sans-serif",
+            "textAnchor": "middle"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1312 @@
+{
+  "version": "2.8",
+  "variables": {
+    "ink": {
+      "type": "color",
+      "value": "#1a1614"
+    },
+    "cream": {
+      "type": "color",
+      "value": "#f2ede4"
+    },
+    "terra": {
+      "type": "color",
+      "value": "#7d2e1e"
+    },
+    "terraLight": {
+      "type": "color",
+      "value": "#c4573c"
+    },
+    "forest": {
+      "type": "color",
+      "value": "#1d2e22"
+    },
+    "forestMid": {
+      "type": "color",
+      "value": "#3a5c42"
+    },
+    "stone": {
+      "type": "color",
+      "value": "#8c7b6b"
+    },
+    "stoneLight": {
+      "type": "color",
+      "value": "#c4b09a"
+    },
+    "dust": {
+      "type": "color",
+      "value": "#e8ddd0"
+    },
+    "dusk": {
+      "type": "color",
+      "value": "#2e2330"
+    },
+    "duskMid": {
+      "type": "color",
+      "value": "#5c4a6e"
+    },
+    "white": {
+      "type": "color",
+      "value": "#ffffff"
+    }
+  },
+  "children": [
+    {
+      "type": "frame",
+      "name": "Splash",
+      "x": 0,
+      "y": 0,
+      "width": 375,
+      "height": 812,
+      "fill": "$ink",
+      "children": [
+        {
+          "type": "text",
+          "content": "Still.",
+          "x": 28,
+          "y": 320,
+          "width": 320,
+          "height": 120,
+          "fontSize": 88,
+          "fontWeight": "800",
+          "fill": "$cream",
+          "textAlign": "left",
+          "lineHeight": 1,
+          "textGrowth": "fixed-width-height",
+          "id": "n1600"
+        },
+        {
+          "type": "text",
+          "content": "A mindfulness practice",
+          "x": 28,
+          "y": 752,
+          "width": 220,
+          "height": 20,
+          "fontSize": 11,
+          "fontWeight": "400",
+          "fill": "$stone",
+          "textAlign": "left",
+          "letterSpacing": 1,
+          "textGrowth": "fixed-width-height",
+          "id": "n1601"
+        },
+        {
+          "type": "text",
+          "content": "v.1",
+          "x": 330,
+          "y": 48,
+          "width": 32,
+          "height": 16,
+          "fontSize": 11,
+          "fontWeight": "400",
+          "fill": "$stone",
+          "textAlign": "right",
+          "textGrowth": "fixed-width-height",
+          "id": "n1602"
+        },
+        {
+          "type": "text",
+          "content": "→",
+          "x": 344,
+          "y": 752,
+          "width": 20,
+          "height": 20,
+          "fontSize": 16,
+          "fontWeight": "300",
+          "fill": "$stoneLight",
+          "textAlign": "left",
+          "textGrowth": "fixed-width-height",
+          "id": "n1603"
+        }
+      ],
+      "clip": true,
+      "id": "n1599"
+    },
+    {
+      "type": "frame",
+      "name": "Today",
+      "x": 425,
+      "y": 0,
+      "width": 375,
+      "height": 812,
+      "fill": "$cream",
+      "children": [
+        {
+          "type": "text",
+          "content": "FRIDAY, MARCH 13",
+          "x": 28,
+          "y": 58,
+          "width": 280,
+          "height": 14,
+          "fontSize": 10,
+          "fontWeight": "600",
+          "fill": "$stone",
+          "textAlign": "left",
+          "letterSpacing": 2,
+          "textGrowth": "fixed-width-height",
+          "id": "n1605"
+        },
+        {
+          "type": "text",
+          "content": "Good\nmorning.",
+          "x": 28,
+          "y": 88,
+          "width": 319,
+          "height": 160,
+          "fontSize": 64,
+          "fontWeight": "800",
+          "fill": "$ink",
+          "textAlign": "left",
+          "lineHeight": 1.1,
+          "textGrowth": "fixed-width-height",
+          "id": "n1606"
+        },
+        {
+          "type": "frame",
+          "x": 28,
+          "y": 260,
+          "width": 319,
+          "height": 1,
+          "fill": "$stoneLight",
+          "id": "n1607"
+        },
+        {
+          "type": "text",
+          "content": "TODAY'S PRACTICE",
+          "x": 28,
+          "y": 280,
+          "width": 240,
+          "height": 14,
+          "fontSize": 9,
+          "fontWeight": "700",
+          "fill": "$stone",
+          "textAlign": "left",
+          "letterSpacing": 2,
+          "textGrowth": "fixed-width-height",
+          "id": "n1608"
+        },
+        {
+          "type": "frame",
+          "x": 28,
+          "y": 306,
+          "width": 319,
+          "height": 128,
+          "fill": "$terra",
+          "cornerRadius": 4,
+          "children": [
+            {
+              "type": "text",
+              "content": "Breath\nAwareness",
+              "x": 24,
+              "y": 24,
+              "width": 240,
+              "height": 76,
+              "fontSize": 28,
+              "fontWeight": "800",
+              "fill": "$cream",
+              "textAlign": "left",
+              "lineHeight": 1.1,
+              "textGrowth": "fixed-width-height",
+              "id": "n1610"
+            },
+            {
+              "type": "text",
+              "content": "10 min · beginner",
+              "x": 24,
+              "y": 102,
+              "width": 200,
+              "height": 16,
+              "fontSize": 11,
+              "fontWeight": "400",
+              "fill": {
+                "color": "#f2ede4",
+                "opacity": 0.65
+              },
+              "textAlign": "left",
+              "textGrowth": "fixed-width-height",
+              "id": "n1611"
+            },
+            {
+              "type": "text",
+              "content": "01",
+              "x": 271,
+              "y": 20,
+              "width": 32,
+              "height": 24,
+              "fontSize": 20,
+              "fontWeight": "300",
+              "fill": {
+                "color": "#f2ede4",
+                "opacity": 0.3
+              },
+              "textAlign": "right",
+              "textGrowth": "fixed-width-height",
+              "id": "n1612"
+            }
+          ],
+          "clip": true,
+          "id": "n1609"
+        },
+        {
+          "type": "frame",
+          "x": 28,
+          "y": 446,
+          "width": 319,
+          "height": 128,
+          "fill": "$forest",
+          "cornerRadius": 4,
+          "children": [
+            {
+              "type": "text",
+              "content": "Body\nScan",
+              "x": 24,
+              "y": 24,
+              "width": 240,
+              "height": 76,
+              "fontSize": 28,
+              "fontWeight": "800",
+              "fill": "$cream",
+              "textAlign": "left",
+              "lineHeight": 1.1,
+              "textGrowth": "fixed-width-height",
+              "id": "n1614"
+            },
+            {
+              "type": "text",
+              "content": "20 min · intermediate",
+              "x": 24,
+              "y": 102,
+              "width": 220,
+              "height": 16,
+              "fontSize": 11,
+              "fontWeight": "400",
+              "fill": {
+                "color": "#f2ede4",
+                "opacity": 0.65
+              },
+              "textAlign": "left",
+              "textGrowth": "fixed-width-height",
+              "id": "n1615"
+            },
+            {
+              "type": "text",
+              "content": "02",
+              "x": 271,
+              "y": 20,
+              "width": 32,
+              "height": 24,
+              "fontSize": 20,
+              "fontWeight": "300",
+              "fill": {
+                "color": "#f2ede4",
+                "opacity": 0.3
+              },
+              "textAlign": "right",
+              "textGrowth": "fixed-width-height",
+              "id": "n1616"
+            }
+          ],
+          "clip": true,
+          "id": "n1613"
+        },
+        {
+          "type": "frame",
+          "x": 28,
+          "y": 596,
+          "width": 319,
+          "height": 1,
+          "fill": "$dust",
+          "id": "n1617"
+        },
+        {
+          "type": "frame",
+          "x": 28,
+          "y": 614,
+          "width": 319,
+          "height": 40,
+          "fill": "#00000000",
+          "layout": "horizontal",
+          "alignItems": "center",
+          "justifyContent": "space_between",
+          "children": [
+            {
+              "type": "text",
+              "content": "7-day practice",
+              "x": 0,
+              "y": 0,
+              "width": 160,
+              "height": 16,
+              "fontSize": 12,
+              "fontWeight": "500",
+              "fill": "$stone",
+              "textAlign": "left",
+              "textGrowth": "fixed-width-height",
+              "id": "n1619"
+            },
+            {
+              "type": "text",
+              "content": "Continue →",
+              "x": 0,
+              "y": 0,
+              "width": 80,
+              "height": 16,
+              "fontSize": 12,
+              "fontWeight": "600",
+              "fill": "$terra",
+              "textAlign": "right",
+              "textGrowth": "fixed-width-height",
+              "id": "n1620"
+            }
+          ],
+          "id": "n1618"
+        }
+      ],
+      "clip": true,
+      "id": "n1604"
+    },
+    {
+      "type": "frame",
+      "name": "Session",
+      "x": 850,
+      "y": 0,
+      "width": 375,
+      "height": 812,
+      "fill": "$dusk",
+      "children": [
+        {
+          "type": "text",
+          "content": "08:23",
+          "x": 0,
+          "y": 240,
+          "width": 375,
+          "height": 130,
+          "fontSize": 96,
+          "fontWeight": "800",
+          "fill": "$cream",
+          "textAlign": "center",
+          "lineHeight": 1,
+          "textGrowth": "fixed-width-height",
+          "id": "n1622"
+        },
+        {
+          "type": "text",
+          "content": "notice the\nspace between\nbreaths",
+          "x": 48,
+          "y": 406,
+          "width": 280,
+          "height": 120,
+          "fontSize": 32,
+          "fontWeight": "400",
+          "fill": {
+            "color": "#e8ddd0",
+            "opacity": 0.85
+          },
+          "textAlign": "center",
+          "lineHeight": 1.35,
+          "textGrowth": "fixed-width-height",
+          "id": "n1623"
+        },
+        {
+          "type": "text",
+          "content": "BREATH AWARENESS",
+          "x": 0,
+          "y": 64,
+          "width": 375,
+          "height": 14,
+          "fontSize": 9,
+          "fontWeight": "600",
+          "fill": "$duskMid",
+          "textAlign": "center",
+          "letterSpacing": 2,
+          "textGrowth": "fixed-width-height",
+          "id": "n1624"
+        },
+        {
+          "type": "frame",
+          "x": 0,
+          "y": 760,
+          "width": 375,
+          "height": 3,
+          "fill": "$duskMid",
+          "children": [
+            {
+              "type": "frame",
+              "x": 0,
+              "y": 0,
+              "width": 150,
+              "height": 3,
+              "fill": "$stoneLight",
+              "id": "n1626"
+            }
+          ],
+          "id": "n1625"
+        },
+        {
+          "type": "text",
+          "content": "tap anywhere to pause",
+          "x": 0,
+          "y": 778,
+          "width": 375,
+          "height": 14,
+          "fontSize": 10,
+          "fontWeight": "400",
+          "fill": {
+            "color": "#5c4a6e",
+            "opacity": 0.8
+          },
+          "textAlign": "center",
+          "letterSpacing": 1,
+          "textGrowth": "fixed-width-height",
+          "id": "n1627"
+        }
+      ],
+      "clip": true,
+      "id": "n1621"
+    },
+    {
+      "type": "frame",
+      "name": "Reflect",
+      "x": 1275,
+      "y": 0,
+      "width": 375,
+      "height": 812,
+      "fill": "$dust",
+      "children": [
+        {
+          "type": "text",
+          "content": "REFLECT",
+          "x": 28,
+          "y": 58,
+          "width": 160,
+          "height": 14,
+          "fontSize": 9,
+          "fontWeight": "700",
+          "fill": "$stone",
+          "textAlign": "left",
+          "letterSpacing": 2,
+          "textGrowth": "fixed-width-height",
+          "id": "n1629"
+        },
+        {
+          "type": "text",
+          "content": "After\nyour session.",
+          "x": 28,
+          "y": 88,
+          "width": 319,
+          "height": 100,
+          "fontSize": 48,
+          "fontWeight": "800",
+          "fill": "$ink",
+          "textAlign": "left",
+          "lineHeight": 1.1,
+          "textGrowth": "fixed-width-height",
+          "id": "n1630"
+        },
+        {
+          "type": "frame",
+          "x": 28,
+          "y": 200,
+          "width": 319,
+          "height": 1,
+          "fill": "$stoneLight",
+          "id": "n1631"
+        },
+        {
+          "type": "text",
+          "content": "What are you carrying\ninto today?",
+          "x": 28,
+          "y": 220,
+          "width": 319,
+          "height": 68,
+          "fontSize": 24,
+          "fontWeight": "400",
+          "fill": "$stone",
+          "textAlign": "left",
+          "lineHeight": 1.4,
+          "textGrowth": "fixed-width-height",
+          "id": "n1632"
+        },
+        {
+          "type": "frame",
+          "x": 28,
+          "y": 306,
+          "width": 319,
+          "height": 200,
+          "fill": {
+            "color": "#c4b09a",
+            "opacity": 0.2
+          },
+          "cornerRadius": 4,
+          "children": [
+            {
+              "type": "text",
+              "content": "There was a moment of real quiet\naround minute four. I noticed\nhow much tension I carry\nin my jaw...",
+              "x": 20,
+              "y": 20,
+              "width": 279,
+              "height": 160,
+              "fontSize": 16,
+              "fontWeight": "400",
+              "fill": "$ink",
+              "textAlign": "left",
+              "lineHeight": 1.55,
+              "textGrowth": "fixed-width-height",
+              "id": "n1634"
+            }
+          ],
+          "id": "n1633"
+        },
+        {
+          "type": "text",
+          "content": "HOW ARE YOU NOW?",
+          "x": 28,
+          "y": 526,
+          "width": 240,
+          "height": 12,
+          "fontSize": 9,
+          "fontWeight": "700",
+          "fill": "$stone",
+          "textAlign": "left",
+          "letterSpacing": 2,
+          "textGrowth": "fixed-width-height",
+          "id": "n1635"
+        },
+        {
+          "type": "frame",
+          "x": 28,
+          "y": 548,
+          "width": 319,
+          "height": 48,
+          "fill": "#00000000",
+          "layout": "horizontal",
+          "gap": 10,
+          "children": [
+            {
+              "type": "frame",
+              "x": 0,
+              "y": 0,
+              "width": 80,
+              "height": 36,
+              "fill": "$terra",
+              "cornerRadius": 18,
+              "layout": "horizontal",
+              "alignItems": "center",
+              "justifyContent": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "content": "Settled",
+                  "x": 0,
+                  "y": 0,
+                  "width": 56,
+                  "height": 18,
+                  "fontSize": 13,
+                  "fontWeight": "700",
+                  "fill": "$cream",
+                  "textAlign": "center",
+                  "textGrowth": "fixed-width-height",
+                  "id": "n1638"
+                }
+              ],
+              "id": "n1637"
+            },
+            {
+              "type": "frame",
+              "x": 0,
+              "y": 0,
+              "width": 56,
+              "height": 36,
+              "fill": {
+                "color": "#8c7b6b",
+                "opacity": 0.2
+              },
+              "cornerRadius": 18,
+              "layout": "horizontal",
+              "alignItems": "center",
+              "justifyContent": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "content": "Open",
+                  "x": 0,
+                  "y": 0,
+                  "width": 32,
+                  "height": 18,
+                  "fontSize": 13,
+                  "fontWeight": "500",
+                  "fill": "$stone",
+                  "textAlign": "center",
+                  "textGrowth": "fixed-width-height",
+                  "id": "n1640"
+                }
+              ],
+              "id": "n1639"
+            },
+            {
+              "type": "frame",
+              "x": 0,
+              "y": 0,
+              "width": 64,
+              "height": 36,
+              "fill": {
+                "color": "#8c7b6b",
+                "opacity": 0.2
+              },
+              "cornerRadius": 18,
+              "layout": "horizontal",
+              "alignItems": "center",
+              "justifyContent": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "content": "Tired",
+                  "x": 0,
+                  "y": 0,
+                  "width": 40,
+                  "height": 18,
+                  "fontSize": 13,
+                  "fontWeight": "500",
+                  "fill": "$stone",
+                  "textAlign": "center",
+                  "textGrowth": "fixed-width-height",
+                  "id": "n1642"
+                }
+              ],
+              "id": "n1641"
+            },
+            {
+              "type": "frame",
+              "x": 0,
+              "y": 0,
+              "width": 56,
+              "height": 36,
+              "fill": {
+                "color": "#8c7b6b",
+                "opacity": 0.2
+              },
+              "cornerRadius": 18,
+              "layout": "horizontal",
+              "alignItems": "center",
+              "justifyContent": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "content": "Calm",
+                  "x": 0,
+                  "y": 0,
+                  "width": 32,
+                  "height": 18,
+                  "fontSize": 13,
+                  "fontWeight": "500",
+                  "fill": "$stone",
+                  "textAlign": "center",
+                  "textGrowth": "fixed-width-height",
+                  "id": "n1644"
+                }
+              ],
+              "id": "n1643"
+            }
+          ],
+          "id": "n1636"
+        },
+        {
+          "type": "frame",
+          "x": 28,
+          "y": 730,
+          "width": 319,
+          "height": 52,
+          "fill": "$ink",
+          "cornerRadius": 4,
+          "layout": "horizontal",
+          "alignItems": "center",
+          "justifyContent": "center",
+          "children": [
+            {
+              "type": "text",
+              "content": "Save reflection",
+              "x": 0,
+              "y": 0,
+              "width": 140,
+              "height": 20,
+              "fontSize": 14,
+              "fontWeight": "600",
+              "fill": "$cream",
+              "textAlign": "center",
+              "textGrowth": "fixed-width-height",
+              "id": "n1646"
+            }
+          ],
+          "id": "n1645"
+        }
+      ],
+      "clip": true,
+      "id": "n1628"
+    },
+    {
+      "type": "frame",
+      "name": "Library",
+      "x": 1700,
+      "y": 0,
+      "width": 375,
+      "height": 812,
+      "fill": "$forest",
+      "children": [
+        {
+          "type": "text",
+          "content": "Library",
+          "x": 28,
+          "y": 58,
+          "width": 200,
+          "height": 48,
+          "fontSize": 40,
+          "fontWeight": "800",
+          "fill": "$cream",
+          "textAlign": "left",
+          "textGrowth": "fixed-width-height",
+          "id": "n1648"
+        },
+        {
+          "type": "text",
+          "content": "42 practices",
+          "x": 28,
+          "y": 108,
+          "width": 200,
+          "height": 18,
+          "fontSize": 12,
+          "fontWeight": "400",
+          "fill": "$forestMid",
+          "textAlign": "left",
+          "textGrowth": "fixed-width-height",
+          "id": "n1649"
+        },
+        {
+          "type": "frame",
+          "x": 28,
+          "y": 138,
+          "width": 319,
+          "height": 1,
+          "fill": {
+            "color": "#3a5c42",
+            "opacity": 0.8
+          },
+          "id": "n1650"
+        },
+        {
+          "type": "frame",
+          "x": 28,
+          "y": 154,
+          "width": 319,
+          "height": 32,
+          "fill": "#00000000",
+          "layout": "horizontal",
+          "gap": 24,
+          "children": [
+            {
+              "type": "frame",
+              "x": 0,
+              "y": 0,
+              "width": 52,
+              "height": 32,
+              "fill": "#00000000",
+              "layout": "vertical",
+              "justifyContent": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "content": "Breath",
+                  "x": 0,
+                  "y": 0,
+                  "width": 52,
+                  "height": 18,
+                  "fontSize": 13,
+                  "fontWeight": "700",
+                  "fill": {
+                    "color": "#f2ede4",
+                    "opacity": 1
+                  },
+                  "textAlign": "center",
+                  "textGrowth": "fixed-width-height",
+                  "id": "n1653"
+                },
+                {
+                  "type": "frame",
+                  "x": 0,
+                  "y": 0,
+                  "width": 52,
+                  "height": 2,
+                  "fill": {
+                    "color": "#c4573c",
+                    "opacity": 1
+                  },
+                  "id": "n1654"
+                }
+              ],
+              "id": "n1652"
+            },
+            {
+              "type": "frame",
+              "x": 0,
+              "y": 0,
+              "width": 36,
+              "height": 32,
+              "fill": "#00000000",
+              "layout": "vertical",
+              "justifyContent": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "content": "Body",
+                  "x": 0,
+                  "y": 0,
+                  "width": 36,
+                  "height": 18,
+                  "fontSize": 13,
+                  "fontWeight": "400",
+                  "fill": {
+                    "color": "#3a5c42",
+                    "opacity": 1
+                  },
+                  "textAlign": "center",
+                  "textGrowth": "fixed-width-height",
+                  "id": "n1656"
+                }
+              ],
+              "id": "n1655"
+            },
+            {
+              "type": "frame",
+              "x": 0,
+              "y": 0,
+              "width": 44,
+              "height": 32,
+              "fill": "#00000000",
+              "layout": "vertical",
+              "justifyContent": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "content": "Sound",
+                  "x": 0,
+                  "y": 0,
+                  "width": 44,
+                  "height": 18,
+                  "fontSize": 13,
+                  "fontWeight": "400",
+                  "fill": {
+                    "color": "#3a5c42",
+                    "opacity": 1
+                  },
+                  "textAlign": "center",
+                  "textGrowth": "fixed-width-height",
+                  "id": "n1658"
+                }
+              ],
+              "id": "n1657"
+            },
+            {
+              "type": "frame",
+              "x": 0,
+              "y": 0,
+              "width": 36,
+              "height": 32,
+              "fill": "#00000000",
+              "layout": "vertical",
+              "justifyContent": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "content": "Open",
+                  "x": 0,
+                  "y": 0,
+                  "width": 36,
+                  "height": 18,
+                  "fontSize": 13,
+                  "fontWeight": "400",
+                  "fill": {
+                    "color": "#3a5c42",
+                    "opacity": 1
+                  },
+                  "textAlign": "center",
+                  "textGrowth": "fixed-width-height",
+                  "id": "n1660"
+                }
+              ],
+              "id": "n1659"
+            }
+          ],
+          "id": "n1651"
+        },
+        {
+          "type": "frame",
+          "x": 28,
+          "y": 202,
+          "width": 155,
+          "height": 108,
+          "fill": "$terra",
+          "cornerRadius": 4,
+          "children": [
+            {
+              "type": "text",
+              "content": "Breath\nAwareness",
+              "x": 16,
+              "y": 16,
+              "width": 124,
+              "height": 56,
+              "fontSize": 18,
+              "fontWeight": "800",
+              "fill": {
+                "color": "#f2ede4",
+                "opacity": 1
+              },
+              "lineHeight": 1.2,
+              "textGrowth": "fixed-width-height",
+              "id": "n1662"
+            },
+            {
+              "type": "text",
+              "content": "10 min",
+              "x": 16,
+              "y": 80,
+              "width": 120,
+              "height": 14,
+              "fontSize": 10,
+              "fontWeight": "400",
+              "fill": {
+                "color": "#f2ede4",
+                "opacity": 0.55
+              },
+              "textGrowth": "fixed-width-height",
+              "id": "n1663"
+            }
+          ],
+          "clip": true,
+          "id": "n1661"
+        },
+        {
+          "type": "frame",
+          "x": 184,
+          "y": 202,
+          "width": 155,
+          "height": 108,
+          "fill": "$dusk",
+          "cornerRadius": 4,
+          "children": [
+            {
+              "type": "text",
+              "content": "Equal\nBreathing",
+              "x": 16,
+              "y": 16,
+              "width": 124,
+              "height": 56,
+              "fontSize": 18,
+              "fontWeight": "800",
+              "fill": {
+                "color": "#f2ede4",
+                "opacity": 1
+              },
+              "lineHeight": 1.2,
+              "textGrowth": "fixed-width-height",
+              "id": "n1665"
+            },
+            {
+              "type": "text",
+              "content": "8 min",
+              "x": 16,
+              "y": 80,
+              "width": 120,
+              "height": 14,
+              "fontSize": 10,
+              "fontWeight": "400",
+              "fill": {
+                "color": "#f2ede4",
+                "opacity": 0.55
+              },
+              "textGrowth": "fixed-width-height",
+              "id": "n1666"
+            }
+          ],
+          "clip": true,
+          "id": "n1664"
+        },
+        {
+          "type": "frame",
+          "x": 28,
+          "y": 322,
+          "width": 155,
+          "height": 108,
+          "fill": "$ink",
+          "cornerRadius": 4,
+          "children": [
+            {
+              "type": "text",
+              "content": "4-7-8\nBreath",
+              "x": 16,
+              "y": 16,
+              "width": 124,
+              "height": 56,
+              "fontSize": 18,
+              "fontWeight": "800",
+              "fill": {
+                "color": "#f2ede4",
+                "opacity": 1
+              },
+              "lineHeight": 1.2,
+              "textGrowth": "fixed-width-height",
+              "id": "n1668"
+            },
+            {
+              "type": "text",
+              "content": "6 min",
+              "x": 16,
+              "y": 80,
+              "width": 120,
+              "height": 14,
+              "fontSize": 10,
+              "fontWeight": "400",
+              "fill": {
+                "color": "#f2ede4",
+                "opacity": 0.55
+              },
+              "textGrowth": "fixed-width-height",
+              "id": "n1669"
+            }
+          ],
+          "clip": true,
+          "id": "n1667"
+        },
+        {
+          "type": "frame",
+          "x": 184,
+          "y": 322,
+          "width": 155,
+          "height": 108,
+          "fill": "$forestMid",
+          "cornerRadius": 4,
+          "children": [
+            {
+              "type": "text",
+              "content": "Box\nBreathing",
+              "x": 16,
+              "y": 16,
+              "width": 124,
+              "height": 56,
+              "fontSize": 18,
+              "fontWeight": "800",
+              "fill": {
+                "color": "#f2ede4",
+                "opacity": 1
+              },
+              "lineHeight": 1.2,
+              "textGrowth": "fixed-width-height",
+              "id": "n1671"
+            },
+            {
+              "type": "text",
+              "content": "12 min",
+              "x": 16,
+              "y": 80,
+              "width": 120,
+              "height": 14,
+              "fontSize": 10,
+              "fontWeight": "400",
+              "fill": {
+                "color": "#f2ede4",
+                "opacity": 0.55
+              },
+              "textGrowth": "fixed-width-height",
+              "id": "n1672"
+            }
+          ],
+          "clip": true,
+          "id": "n1670"
+        },
+        {
+          "type": "frame",
+          "x": 28,
+          "y": 442,
+          "width": 155,
+          "height": 108,
+          "fill": "$terra",
+          "cornerRadius": 4,
+          "children": [
+            {
+              "type": "text",
+              "content": "Alternate\nNostril",
+              "x": 16,
+              "y": 16,
+              "width": 124,
+              "height": 56,
+              "fontSize": 18,
+              "fontWeight": "800",
+              "fill": {
+                "color": "#f2ede4",
+                "opacity": 1
+              },
+              "lineHeight": 1.2,
+              "textGrowth": "fixed-width-height",
+              "id": "n1674"
+            },
+            {
+              "type": "text",
+              "content": "15 min",
+              "x": 16,
+              "y": 80,
+              "width": 120,
+              "height": 14,
+              "fontSize": 10,
+              "fontWeight": "400",
+              "fill": {
+                "color": "#f2ede4",
+                "opacity": 0.55
+              },
+              "textGrowth": "fixed-width-height",
+              "id": "n1675"
+            }
+          ],
+          "clip": true,
+          "id": "n1673"
+        },
+        {
+          "type": "frame",
+          "x": 184,
+          "y": 442,
+          "width": 155,
+          "height": 108,
+          "fill": "$dusk",
+          "cornerRadius": 4,
+          "children": [
+            {
+              "type": "text",
+              "content": "Counting\nBreath",
+              "x": 16,
+              "y": 16,
+              "width": 124,
+              "height": 56,
+              "fontSize": 18,
+              "fontWeight": "800",
+              "fill": {
+                "color": "#f2ede4",
+                "opacity": 1
+              },
+              "lineHeight": 1.2,
+              "textGrowth": "fixed-width-height",
+              "id": "n1677"
+            },
+            {
+              "type": "text",
+              "content": "10 min",
+              "x": 16,
+              "y": 80,
+              "width": 120,
+              "height": 14,
+              "fontSize": 10,
+              "fontWeight": "400",
+              "fill": {
+                "color": "#f2ede4",
+                "opacity": 0.55
+              },
+              "textGrowth": "fixed-width-height",
+              "id": "n1678"
+            }
+          ],
+          "clip": true,
+          "id": "n1676"
+        },
+        {
+          "type": "frame",
+          "x": 28,
+          "y": 562,
+          "width": 155,
+          "height": 108,
+          "fill": "$ink",
+          "cornerRadius": 4,
+          "children": [
+            {
+              "type": "text",
+              "content": "Open\nMonitoring",
+              "x": 16,
+              "y": 16,
+              "width": 124,
+              "height": 56,
+              "fontSize": 18,
+              "fontWeight": "800",
+              "fill": {
+                "color": "#f2ede4",
+                "opacity": 1
+              },
+              "lineHeight": 1.2,
+              "textGrowth": "fixed-width-height",
+              "id": "n1680"
+            },
+            {
+              "type": "text",
+              "content": "20 min",
+              "x": 16,
+              "y": 80,
+              "width": 120,
+              "height": 14,
+              "fontSize": 10,
+              "fontWeight": "400",
+              "fill": {
+                "color": "#f2ede4",
+                "opacity": 0.55
+              },
+              "textGrowth": "fixed-width-height",
+              "id": "n1681"
+            }
+          ],
+          "clip": true,
+          "id": "n1679"
+        },
+        {
+          "type": "frame",
+          "x": 184,
+          "y": 562,
+          "width": 155,
+          "height": 108,
+          "fill": "$forestMid",
+          "cornerRadius": 4,
+          "children": [
+            {
+              "type": "text",
+              "content": "Natural\nBreath",
+              "x": 16,
+              "y": 16,
+              "width": 124,
+              "height": 56,
+              "fontSize": 18,
+              "fontWeight": "800",
+              "fill": {
+                "color": "#f2ede4",
+                "opacity": 1
+              },
+              "lineHeight": 1.2,
+              "textGrowth": "fixed-width-height",
+              "id": "n1683"
+            },
+            {
+              "type": "text",
+              "content": "8 min",
+              "x": 16,
+              "y": 80,
+              "width": 120,
+              "height": 14,
+              "fontSize": 10,
+              "fontWeight": "400",
+              "fill": {
+                "color": "#f2ede4",
+                "opacity": 0.55
+              },
+              "textGrowth": "fixed-width-height",
+              "id": "n1684"
+            }
+          ],
+          "clip": true,
+          "id": "n1682"
+        }
+      ],
+      "clip": true,
+      "id": "n1647"
+    }
+  ]
+}

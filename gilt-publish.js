@@ -1,0 +1,673 @@
+// gilt-publish.js — GILT hero + viewer + gallery queue
+// Luxury concierge credit card app — warm ivory, editorial serif, curated access
+// Inspired by: Atlas Card (godly.website) + Cardless (land-book.com)
+
+const fs    = require('fs');
+const https = require('https');
+
+const SLUG      = 'gilt';
+const APP       = 'GILT';
+const TAGLINE   = 'The card that opens every door';
+const ARCHETYPE = 'luxury-fintech';
+const PROMPT    = 'Luxury concierge credit card app with warm ivory palette, editorial serif typography, curated venue discovery, personal concierge chat interface, and spending insights. Inspired by Atlas Card (atlascard.com, found on godly.website) and Cardless embedded credit card platform (land-book.com). Light theme with warm ivory #FAF8F4, rich gold #B8965A accent, and Georgia/Inter typography pairing.';
+
+function publish(slug, html, title, subdomain = 'ram') {
+  return new Promise((resolve, reject) => {
+    const body = JSON.stringify({ slug, html, title });
+    const req = https.request({
+      hostname: 'zenbin.org',
+      path: '/api/publish',
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Content-Length': Buffer.byteLength(body),
+        'X-Subdomain': subdomain,
+      }
+    }, res => {
+      let d = ''; res.on('data', c => d += c);
+      res.on('end', () => {
+        try { resolve(JSON.parse(d)); }
+        catch(e) { resolve({ url: `https://${subdomain}.zenbin.org/${slug}`, raw: d.slice(0, 200) }); }
+      });
+    });
+    req.on('error', reject);
+    req.write(body); req.end();
+  });
+}
+
+// ─── HERO HTML ───────────────────────────────────────────────────────────────
+const heroHtml = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>GILT — The card that opens every door</title>
+<meta name="description" content="A luxury concierge credit card app with curated venue access, personal concierge, and beautiful spending insights. A RAM design concept.">
+<meta property="og:title" content="GILT — The card that opens every door">
+<meta property="og:description" content="Reserved tables. Private suites. Your driver waiting. GILT handles everything.">
+<meta property="og:url" content="https://ram.zenbin.org/gilt">
+<meta name="theme-color" content="#B8965A">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap');
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#FAF8F4;
+  --bg2:#F3EFE7;
+  --surface:#FFFFFF;
+  --surface3:#EDE7D9;
+  --border:rgba(26,22,20,0.10);
+  --border2:rgba(26,22,20,0.18);
+  --text:#1A1614;
+  --mid:#6B5D55;
+  --muted:#9C8D84;
+  --gold:#B8965A;
+  --gold-dark:#8B6914;
+  --gold-light:#E8D5A3;
+  --gold-pale:#F5EDD3;
+  --white:#FFFFFF;
+  --shadow:rgba(26,22,20,0.08);
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;overflow-x:hidden;line-height:1.6}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(250,248,244,0.88);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;padding:0 56px;height:64px}
+.nav-logo{font-family:'Playfair Display',serif;font-weight:700;font-size:18px;letter-spacing:.18em;
+  color:var(--text);text-decoration:none;display:flex;align-items:center;gap:10px}
+.nav-logo-line{width:24px;height:2px;background:var(--gold);display:inline-block}
+.nav-links{display:flex;gap:36px;list-style:none}
+.nav-links a{font-size:11px;color:var(--muted);text-decoration:none;letter-spacing:.08em;text-transform:uppercase;
+  transition:color .2s;font-weight:500}
+.nav-links a:hover{color:var(--text)}
+.nav-cta{background:var(--text);color:var(--bg);border:none;padding:10px 22px;border-radius:24px;
+  font-size:11px;font-weight:600;cursor:pointer;letter-spacing:.06em;text-transform:uppercase;
+  text-decoration:none;display:inline-block;transition:background .2s}
+.nav-cta:hover{background:var(--gold-dark)}
+.btn-ghost{border:1.5px solid var(--border2);color:var(--mid);padding:9px 20px;border-radius:24px;
+  font-size:11px;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;
+  display:inline-block;transition:border-color .2s,color .2s}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
+
+/* ── HERO ── */
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding-top:64px;overflow:hidden}
+.hero-left{padding:80px 64px;max-width:640px}
+.eyebrow{font-size:10px;letter-spacing:.22em;color:var(--gold);margin-bottom:28px;
+  text-transform:uppercase;font-weight:600;display:flex;align-items:center;gap:10px}
+.eyebrow::before{content:'';display:inline-block;width:28px;height:1.5px;background:var(--gold)}
+.hero-title{font-family:'Playfair Display',serif;font-size:76px;line-height:.9;letter-spacing:-.02em;
+  font-weight:700;margin-bottom:36px;color:var(--text)}
+.hero-title em{color:var(--gold);font-style:italic}
+.hero-deck{font-size:18px;line-height:1.7;color:var(--mid);margin-bottom:16px;font-weight:300;max-width:480px}
+.hero-sub{font-size:12px;color:var(--muted);line-height:2;max-width:460px;margin-bottom:52px;
+  border-left:2px solid var(--gold-light);padding-left:18px;letter-spacing:.01em}
+.hero-btns{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.btn-gold{background:var(--gold);color:var(--white);padding:15px 34px;border-radius:28px;
+  font-size:12px;font-weight:600;letter-spacing:.08em;text-decoration:none;text-transform:uppercase;
+  display:inline-block;transition:background .2s}
+.btn-gold:hover{background:var(--gold-dark)}
+
+/* ── HERO RIGHT ── */
+.hero-right{height:100vh;display:flex;align-items:center;justify-content:center;
+  background:radial-gradient(ellipse at 55% 45%,rgba(184,150,90,0.10) 0%,transparent 65%);
+  position:relative;overflow:hidden}
+.hero-right::before{content:'';position:absolute;inset:0;
+  background:repeating-linear-gradient(0deg,transparent,transparent 47px,rgba(26,22,20,0.04) 48px),
+             repeating-linear-gradient(90deg,transparent,transparent 47px,rgba(26,22,20,0.04) 48px)}
+.phone-wrap{position:relative;z-index:2}
+.phone{width:300px;height:610px;background:var(--surface);border-radius:42px;overflow:hidden;
+  border:1px solid rgba(26,22,20,0.12);
+  box-shadow:0 0 0 1px rgba(184,150,90,0.15),0 8px 48px rgba(184,150,90,0.12),0 32px 100px rgba(26,22,20,0.14);
+  position:relative}
+.phone-notch{position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:88px;height:24px;background:var(--bg);border-radius:0 0 14px 14px;z-index:3}
+.phone-screen{position:absolute;inset:0;padding:24px 14px 14px;overflow:hidden;background:var(--bg)}
+.p-status{display:flex;justify-content:space-between;align-items:center;
+  font-size:10px;color:var(--text);margin-bottom:10px;font-weight:600}
+.p-logo{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;letter-spacing:.16em;color:var(--text)}
+
+/* Card hero */
+.p-card{background:var(--text);border-radius:14px;padding:14px 16px;margin:10px 0;position:relative;overflow:hidden}
+.p-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--gold)}
+.p-card-num{font-size:9px;color:rgba(250,248,244,0.35);letter-spacing:.12em;margin-bottom:8px}
+.p-card-bal{font-family:'Playfair Display',serif;font-size:30px;font-weight:700;color:#FAF8F4;letter-spacing:-.02em}
+.p-card-label{font-size:8px;color:rgba(250,248,244,0.4);letter-spacing:.12em;text-transform:uppercase;margin-top:2px}
+.p-chip{position:absolute;right:16px;top:16px;width:28px;height:22px;background:var(--gold);border-radius:4px}
+.p-chip::after{content:'';position:absolute;top:7px;left:4px;right:4px;height:6px;background:var(--gold-dark);border-radius:2px}
+
+/* Stats row */
+.p-row{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:8px}
+.p-stat{background:var(--surface);border-radius:10px;padding:9px 11px;border:1px solid var(--border)}
+.p-stat-label{font-size:7px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:3px}
+.p-stat-val{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:var(--text)}
+.p-stat-val.gold{color:var(--gold)}
+
+/* Opportunity */
+.p-opp-label{font-size:7px;color:var(--gold);letter-spacing:.16em;font-weight:600;text-transform:uppercase;margin-bottom:5px}
+.p-opp{background:var(--surface);border-radius:10px;display:flex;align-items:center;gap:0;
+  overflow:hidden;border:1px solid var(--border)}
+.p-opp-img{width:48px;height:52px;background:var(--gold-pale);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.p-opp-info{padding:8px 10px;flex:1}
+.p-opp-name{font-size:10px;font-weight:700;color:var(--text)}
+.p-opp-sub{font-size:8px;color:var(--muted)}
+.p-opp-btn{margin-top:4px;background:var(--gold);color:white;border-radius:8px;font-size:7px;font-weight:600;
+  padding:3px 8px;display:inline-block;letter-spacing:.05em}
+
+/* Nav */
+.p-nav{position:absolute;bottom:0;left:0;right:0;height:52px;background:var(--surface);
+  border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-around}
+.p-nav-item{display:flex;flex-direction:column;align-items:center;gap:3px}
+.p-nav-dot{width:14px;height:3px;border-radius:2px;background:var(--border)}
+.p-nav-label{font-size:7px;color:var(--muted)}
+.p-nav-item.active .p-nav-dot{background:var(--gold);width:20px}
+.p-nav-item.active .p-nav-label{color:var(--gold);font-weight:600}
+
+/* Floating badges */
+.badge-float{position:absolute;background:var(--surface);border:1px solid var(--border2);
+  border-radius:12px;padding:10px 16px;z-index:3;box-shadow:0 4px 20px rgba(26,22,20,0.10)}
+.badge-float.access{top:18%;right:-44px;border-color:rgba(184,150,90,0.4);background:rgba(248,237,211,0.95)}
+.badge-float.points{bottom:26%;left:-48px;border-color:rgba(26,22,20,0.15);background:rgba(255,255,255,0.95)}
+.bf-label{font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.bf-val{font-size:14px;font-weight:700}
+.access .bf-label{color:rgba(139,105,20,0.7)}
+.access .bf-val{color:var(--gold-dark)}
+.points .bf-val{color:var(--text)}
+.points .bf-sub{font-size:9px;color:var(--muted)}
+
+/* ── FEATURES ── */
+.features{padding:120px 64px;background:var(--bg)}
+.section-eyebrow{font-size:10px;letter-spacing:.22em;color:var(--gold);text-transform:uppercase;
+  margin-bottom:18px;display:flex;align-items:center;gap:10px;font-weight:600}
+.section-eyebrow::before{content:'';display:inline-block;width:28px;height:1.5px;background:var(--gold)}
+.section-title{font-family:'Playfair Display',serif;font-size:52px;font-weight:700;
+  letter-spacing:-.02em;line-height:.95;margin-bottom:18px;color:var(--text)}
+.section-title em{color:var(--gold);font-style:italic}
+.section-sub{font-size:17px;color:var(--mid);max-width:560px;line-height:1.7;margin-bottom:72px;font-weight:300}
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.feat-card{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:36px 30px;
+  transition:border-color .25s,transform .25s,box-shadow .25s}
+.feat-card:hover{border-color:var(--gold-light);transform:translateY(-3px);
+  box-shadow:0 12px 36px rgba(184,150,90,0.10)}
+.feat-icon{width:48px;height:48px;border-radius:12px;margin-bottom:22px;
+  background:var(--gold-pale);display:flex;align-items:center;justify-content:center;font-size:22px}
+.feat-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--text);
+  margin-bottom:12px;letter-spacing:-.01em}
+.feat-desc{font-size:14px;color:var(--mid);line-height:1.75}
+
+/* ── SCREENS SHOWCASE ── */
+.showcase{padding:0 64px 120px;background:var(--bg)}
+.showcase-inner{background:var(--surface);border:1px solid var(--border);border-radius:24px;overflow:hidden;
+  box-shadow:0 4px 40px rgba(26,22,20,0.06)}
+.showcase-header{padding:44px 52px;border-bottom:1px solid var(--border);
+  display:flex;justify-content:space-between;align-items:center}
+.showcase-title{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;
+  color:var(--text);letter-spacing:-.02em}
+.badge-invite{background:var(--gold-pale);border:1px solid rgba(184,150,90,0.4);color:var(--gold-dark);
+  font-size:10px;font-weight:600;letter-spacing:.1em;padding:6px 14px;border-radius:8px;text-transform:uppercase}
+.screen-list{padding:28px 52px 44px}
+.screen-row{display:flex;align-items:center;padding:18px 0;border-bottom:1px solid var(--border);gap:20px}
+.screen-row:last-child{border-bottom:none}
+.s-num{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:var(--gold-light);
+  width:40px;flex-shrink:0;line-height:1}
+.s-info{flex:1}
+.s-title{font-size:15px;font-weight:700;color:var(--text);margin-bottom:5px;letter-spacing:-.01em}
+.s-desc{font-size:13px;color:var(--mid);line-height:1.6}
+.s-tag{font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  padding:4px 10px;border-radius:6px;background:var(--gold-pale);color:var(--gold-dark)}
+
+/* ── METRICS ── */
+.metrics{padding:0 64px 120px;background:var(--bg2)}
+.metrics-inner{max-width:1200px;margin:0 auto;padding-top:80px;padding-bottom:80px}
+.metrics-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.metric-card{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:30px 26px;
+  text-align:center}
+.metric-n{font-family:'Playfair Display',serif;font-size:46px;font-weight:700;
+  letter-spacing:-.03em;line-height:1;margin-bottom:10px;color:var(--text)}
+.metric-n.gold{color:var(--gold)}
+.metric-t{font-size:13px;color:var(--mid);font-weight:500;margin-bottom:6px}
+.metric-d{font-size:11px;color:var(--muted);line-height:1.6}
+
+/* ── INSPIRATION ── */
+.inspo{padding:80px 64px 120px;background:var(--bg)}
+.inspo-inner{background:var(--text);border-radius:24px;padding:56px 64px;
+  display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.inspo-eyebrow{font-size:10px;letter-spacing:.2em;color:rgba(232,213,163,0.7);text-transform:uppercase;
+  font-weight:600;margin-bottom:20px;display:flex;align-items:center;gap:10px}
+.inspo-eyebrow::before{content:'';display:inline-block;width:24px;height:1.5px;background:var(--gold)}
+.inspo-title{font-family:'Playfair Display',serif;font-size:38px;font-weight:700;color:#FAF8F4;
+  letter-spacing:-.02em;line-height:1.05;margin-bottom:24px}
+.inspo-title em{color:var(--gold);font-style:italic}
+.inspo-text{font-size:15px;color:rgba(250,248,244,0.6);line-height:1.75;margin-bottom:28px}
+.inspo-sources{display:flex;flex-direction:column;gap:12px}
+.inspo-source{background:rgba(250,248,244,0.05);border:1px solid rgba(250,248,244,0.1);
+  border-radius:12px;padding:16px 20px}
+.inspo-source-name{font-size:13px;font-weight:700;color:#FAF8F4;margin-bottom:4px}
+.inspo-source-desc{font-size:12px;color:rgba(250,248,244,0.5);line-height:1.5}
+.inspo-right{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.inspo-card{background:rgba(250,248,244,0.05);border:1px solid rgba(250,248,244,0.08);
+  border-radius:14px;padding:20px;transition:background .2s}
+.inspo-card:hover{background:rgba(250,248,244,0.08)}
+.inspo-card-title{font-size:13px;font-weight:700;color:#FAF8F4;margin-bottom:8px}
+.inspo-card-desc{font-size:11px;color:rgba(250,248,244,0.45);line-height:1.65}
+.inspo-chip{display:inline-block;background:rgba(184,150,90,0.2);color:var(--gold);
+  font-size:8px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  padding:3px 8px;border-radius:6px;margin-bottom:8px}
+
+/* ── CTA ── */
+.cta{padding:120px 64px;text-align:center;
+  background:radial-gradient(ellipse at 50% 0%,rgba(184,150,90,0.12) 0%,transparent 65%);
+  border-top:1px solid var(--border)}
+.cta-title{font-family:'Playfair Display',serif;font-size:60px;font-weight:700;
+  letter-spacing:-.025em;line-height:.92;margin-bottom:24px;color:var(--text)}
+.cta-title em{color:var(--gold);font-style:italic}
+.cta-sub{font-size:18px;color:var(--mid);max-width:500px;margin:0 auto 52px;line-height:1.65;font-weight:300}
+.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+
+/* ── FOOTER ── */
+footer{border-top:1px solid var(--border);padding:36px 64px;
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;background:var(--bg)}
+.footer-logo{font-family:'Playfair Display',serif;font-weight:700;font-size:16px;letter-spacing:.16em;color:var(--text)}
+.footer-note{font-size:11px;color:var(--muted);letter-spacing:.06em}
+.footer-tag{font-size:11px;color:var(--gold);letter-spacing:.08em;font-weight:600}
+
+@media(max-width:900px){
+  .hero,.feat-grid,.metrics-grid,.inspo-inner,.inspo-right{grid-template-columns:1fr}
+  .hero-right{display:none}
+  .hero-left,.features,.showcase,.metrics,.inspo,.cta{padding-left:28px;padding-right:28px}
+  .section-title,.cta-title{font-size:38px}
+  .hero-title{font-size:52px}
+  .inspo-inner{padding:40px 32px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo"><span class="nav-logo-line"></span>GILT</a>
+  <ul class="nav-links">
+    <li><a href="#access">Access</a></li>
+    <li><a href="#screens">Screens</a></li>
+    <li><a href="#inspiration">Inspiration</a></li>
+  </ul>
+  <div style="display:flex;gap:10px;align-items:center">
+    <a href="https://ram.zenbin.org/gilt-viewer" class="btn-ghost" style="padding:8px 16px">View Prototype</a>
+    <a href="https://ram.zenbin.org/gilt-mock" class="nav-cta">Try Mock ☀◑</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-left">
+    <div class="eyebrow">RAM Design Concept · Light Theme</div>
+    <h1 class="hero-title">The card that<br>opens <em>every</em><br>door.</h1>
+    <p class="hero-deck">Reserved tables. Private suites. Your driver waiting at arrivals. GILT handles everything so you don't have to ask twice.</p>
+    <p class="hero-sub">→ Inspired by Atlas Card's luxury concierge aesthetic (godly.website)<br>→ Cardless embedded finance clean UI (land-book.com)<br>→ Warm ivory palette · editorial serif · curated access</p>
+    <div class="hero-btns">
+      <a href="https://ram.zenbin.org/gilt-mock" class="btn-gold">Explore Mock →</a>
+      <a href="https://ram.zenbin.org/gilt-viewer" class="btn-ghost">View Prototype</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="phone-wrap">
+      <!-- Floating: GILT Access badge -->
+      <div class="badge-float access">
+        <div class="bf-label">GILT Access</div>
+        <div class="bf-val">Carbone, NYC</div>
+      </div>
+      <!-- Floating: Points badge -->
+      <div class="badge-float points">
+        <div class="bf-label">Points earned</div>
+        <div class="bf-val">+2,100</div>
+        <div class="bf-sub">Today · Nobu Downtown</div>
+      </div>
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="phone-screen">
+          <div class="p-status"><span>9:41</span><span>●●●</span></div>
+          <div class="p-logo">GILT</div>
+          <div class="p-card">
+            <div class="p-chip"></div>
+            <div class="p-card-num">• • • •  • • • •  • • • •  4821</div>
+            <div class="p-card-bal">$24,810</div>
+            <div class="p-card-label">Available Balance</div>
+          </div>
+          <div class="p-row">
+            <div class="p-stat">
+              <div class="p-stat-label">This Month</div>
+              <div class="p-stat-val">$3,240</div>
+            </div>
+            <div class="p-stat">
+              <div class="p-stat-label">Points</div>
+              <div class="p-stat-val gold">48,200</div>
+            </div>
+          </div>
+          <div class="p-opp-label">Today's Opportunity</div>
+          <div class="p-opp">
+            <div class="p-opp-img">🍽</div>
+            <div class="p-opp-info">
+              <div class="p-opp-name">Carbone, NYC</div>
+              <div class="p-opp-sub">Table for 2 · 8:30 PM</div>
+              <span class="p-opp-btn">Reserve</span>
+            </div>
+          </div>
+          <div class="p-nav">
+            <div class="p-nav-item active">
+              <div class="p-nav-dot"></div>
+              <div class="p-nav-label">Home</div>
+            </div>
+            <div class="p-nav-item">
+              <div class="p-nav-dot"></div>
+              <div class="p-nav-label">Venues</div>
+            </div>
+            <div class="p-nav-item">
+              <div class="p-nav-dot"></div>
+              <div class="p-nav-label">Concierge</div>
+            </div>
+            <div class="p-nav-item">
+              <div class="p-nav-dot"></div>
+              <div class="p-nav-label">Card</div>
+            </div>
+            <div class="p-nav-item">
+              <div class="p-nav-dot"></div>
+              <div class="p-nav-label">Insights</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="features" id="access">
+  <div class="section-eyebrow">What GILT unlocks</div>
+  <h2 class="section-title">A life with fewer<br><em>obstacles.</em></h2>
+  <p class="section-sub">GILT isn't a card. It's a key. To tables that don't take reservations, rooms that aren't listed, and experiences that exist only for those who know to ask.</p>
+  <div class="feat-grid">
+    <div class="feat-card">
+      <div class="feat-icon">🍽</div>
+      <div class="feat-title">Atlas Dining</div>
+      <p class="feat-desc">Primetime tables at Michelin-starred restaurants, booked in seconds. No waiting lists. No calling ahead. Just show up.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">🏨</div>
+      <div class="feat-title">Curated Hotels</div>
+      <p class="feat-desc">Preferred rates and instant upgrades at the world's finest properties. Vetted by people who've actually slept in every room.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">💬</div>
+      <div class="feat-title">Personal Concierge</div>
+      <p class="feat-desc">Text your concierge like you text a friend. They're available around the clock and respond in under 90 seconds.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">✈️</div>
+      <div class="feat-title">Travel, Elevated</div>
+      <p class="feat-desc">Private transfers, lounge access, jet charters, and airport VIP service. Travel the way it should be experienced.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">📊</div>
+      <div class="feat-title">Spending Insights</div>
+      <p class="feat-desc">Beautiful breakdowns of how you spend — by category, by week, by mood. Your money, made legible.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">⭐</div>
+      <div class="feat-title">GILT Rewards</div>
+      <p class="feat-desc">Points that compound with every transaction. Redeem for anything. Gold to Platinum in a weekend, if you're living well.</p>
+    </div>
+  </div>
+</section>
+
+<section class="showcase" id="screens">
+  <div class="showcase-inner">
+    <div class="showcase-header">
+      <h3 class="showcase-title">Five screens. One seamless world.</h3>
+      <span class="badge-invite">By Invitation Only</span>
+    </div>
+    <div class="screen-list">
+      <div class="screen-row">
+        <div class="s-num">01</div>
+        <div class="s-info">
+          <div class="s-title">Home — Dashboard</div>
+          <div class="s-desc">Card balance, quick stats, today's curated opportunity (a reserved table tonight at Carbone), and recent transactions. The editorial card component uses dark-on-ivory inversion for premium contrast.</div>
+        </div>
+        <span class="s-tag">Light · Ivory</span>
+      </div>
+      <div class="screen-row">
+        <div class="s-num">02</div>
+        <div class="s-info">
+          <div class="s-title">Venues — Curated Discover</div>
+          <div class="s-desc">Filter-pill navigation, a large featured venue card (Le Bernardin) with a GILT ACCESS badge, and a compact venue list below. Designed to feel like a magazine spread, not a listing.</div>
+        </div>
+        <span class="s-tag">Editorial</span>
+      </div>
+      <div class="screen-row">
+        <div class="s-num">03</div>
+        <div class="s-info">
+          <div class="s-title">Concierge — Chat Interface</div>
+          <div class="s-desc">Conversational UI with quick-request chips, a natural back-and-forth, and a structured confirmation card for driver details. Online status and 90-sec response time shown prominently.</div>
+        </div>
+        <span class="s-tag">Conversational</span>
+      </div>
+      <div class="screen-row">
+        <div class="s-num">04</div>
+        <div class="s-info">
+          <div class="s-title">Card — Virtual + Rewards</div>
+          <div class="s-desc">Full virtual card rendering with chip, network logo, and balance. Action row for CVV/freeze/wallet. Rewards progress bar toward Platinum tier with a dark upgrade CTA card for contrast.</div>
+        </div>
+        <span class="s-tag">Fintech</span>
+      </div>
+      <div class="screen-row">
+        <div class="s-num">05</div>
+        <div class="s-info">
+          <div class="s-title">Insights — Spending Analytics</div>
+          <div class="s-desc">Dark summary header, category bars with colour-coded gold hierarchy, a weekly bar chart spotlighting Saturday peak spend, and a health score indicator. Clean data without dashboard noise.</div>
+        </div>
+        <span class="s-tag">Data · Analytics</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="metrics">
+  <div class="metrics-inner">
+    <div class="section-eyebrow">Why it works</div>
+    <h2 class="section-title" style="margin-bottom:52px">Designed for people<br>who don't wait.</h2>
+    <div class="metrics-grid">
+      <div class="metric-card">
+        <div class="metric-n gold">90s</div>
+        <div class="metric-t">Concierge response</div>
+        <div class="metric-d">Average time from request to confirmation</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-n">5</div>
+        <div class="metric-t">Core screens</div>
+        <div class="metric-d">Dashboard, Venues, Concierge, Card, Insights</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-n gold">24/7</div>
+        <div class="metric-t">Concierge availability</div>
+        <div class="metric-d">Human-backed, always on, never automated</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-n">∞</div>
+        <div class="metric-t">Doors opened</div>
+        <div class="metric-d">If you can imagine the experience, GILT can arrange it</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="inspo" id="inspiration">
+  <div class="inspo-inner">
+    <div>
+      <div class="inspo-eyebrow">Design Research</div>
+      <h3 class="inspo-title">Found in the<br><em>wild.</em></h3>
+      <p class="inspo-text">This design emerged from two sources spotted in a single research session: Atlas Card's cinematic, invitation-only luxury aesthetic and Cardless's clean embedded finance landing page. The combination suggested a white space — a luxury card app that felt like a hotel concierge, not a fintech dashboard.</p>
+      <div class="inspo-sources">
+        <div class="inspo-source">
+          <div class="inspo-source-name">Atlas Card (atlascard.com)</div>
+          <div class="inspo-source-desc">Found via godly.website — full-bleed photography, "Request Invite" exclusivity, minimal nav. Established the luxury concierge card archetype.</div>
+        </div>
+        <div class="inspo-source">
+          <div class="inspo-source-name">Cardless (land-book.com)</div>
+          <div class="inspo-source-desc">Embedded Credit Card Platform — clean B2B fintech landing page with clear hierarchy. Informed the card screen and insights layout.</div>
+        </div>
+      </div>
+    </div>
+    <div class="inspo-right">
+      <div class="inspo-card">
+        <div class="inspo-chip">Palette</div>
+        <div class="inspo-card-title">Warm Ivory + Gold</div>
+        <div class="inspo-card-desc">#FAF8F4 base, #B8965A gold accent. Warm neutrals instead of cold whites — evokes parchment, aged leather, and boutique hotel stationery.</div>
+      </div>
+      <div class="inspo-card">
+        <div class="inspo-chip">Typography</div>
+        <div class="inspo-card-title">Playfair + Inter</div>
+        <div class="inspo-card-desc">Editorial serif for display text, clean sans for UI. The combination echoes print luxury — Vogue, Financial Times, Wallpaper.</div>
+      </div>
+      <div class="inspo-card">
+        <div class="inspo-chip">Contrast Move</div>
+        <div class="inspo-card-title">Dark Card Inversion</div>
+        <div class="inspo-card-desc">The virtual card and stats header use the text colour (#1A1614) as background — creating premium contrast without switching to a dark-mode palette.</div>
+      </div>
+      <div class="inspo-card">
+        <div class="inspo-chip">Interaction</div>
+        <div class="inspo-card-title">Concierge Chat</div>
+        <div class="inspo-card-desc">A conversational UI where the structured "confirmation card" response pattern replaces raw text — cleaner than WhatsApp, warmer than Slack.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="cta-title">Your concierge<br>is <em>waiting.</em></div>
+  <p class="cta-sub">GILT is by invitation only. Join the waitlist and we'll be in touch when a membership becomes available.</p>
+  <div class="cta-btns">
+    <a href="https://ram.zenbin.org/gilt-mock" class="btn-gold">Try Interactive Mock →</a>
+    <a href="https://ram.zenbin.org/gilt-viewer" class="btn-ghost">View Prototype</a>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-logo">GILT</span>
+  <span class="footer-note">A RAM Design Concept · March 2026</span>
+  <span class="footer-tag">ram.zenbin.org/gilt</span>
+</footer>
+
+</body>
+</html>`;
+
+// ─── VIEWER HTML ─────────────────────────────────────────────────────────────
+const penJson = fs.readFileSync('/workspace/group/design-studio/gilt.pen', 'utf8');
+const viewerHtml = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>GILT — Prototype Viewer</title>
+<style>
+  body{margin:0;background:var(--bg,#FAF8F4);display:flex;align-items:center;justify-content:center;
+    min-height:100vh;font-family:'Inter',sans-serif}
+  #viewer-mount{width:100%;max-width:1875px;overflow-x:auto}
+</style>
+<script>window.EMBEDDED_PEN = ${JSON.stringify(penJson)};</script>
+</head>
+<body>
+<div id="viewer-mount"></div>
+<script src="https://cdn.pencil.dev/viewer/v2/viewer.js"></script>
+<script>
+  if(window.PencilViewer && window.EMBEDDED_PEN){
+    PencilViewer.init({ el:'#viewer-mount', pen: JSON.parse(window.EMBEDDED_PEN) });
+  }
+</script>
+</body>
+</html>`;
+
+// ─── GITHUB QUEUE ────────────────────────────────────────────────────────────
+const config = JSON.parse(fs.readFileSync('/workspace/group/design-studio/community-config.json', 'utf8'));
+const TOKEN  = config.GITHUB_TOKEN;
+const REPO   = config.GITHUB_REPO;
+
+function ghReq(opts, body) {
+  return new Promise((resolve, reject) => {
+    const r = https.request(opts, res => {
+      let d = ''; res.on('data', c => d += c);
+      res.on('end', () => resolve({ status: res.statusCode, body: d }));
+    });
+    r.on('error', reject);
+    if (body) r.write(body);
+    r.end();
+  });
+}
+
+(async () => {
+  console.log('Publishing GILT hero page...');
+  const heroRes = await publish(SLUG, heroHtml, `${APP} — ${TAGLINE}`);
+  console.log('Hero:', heroRes.url || `https://ram.zenbin.org/${SLUG}`);
+
+  console.log('Publishing GILT viewer...');
+  const viewerRes = await publish(`${SLUG}-viewer`, viewerHtml, `${APP} — Prototype Viewer`);
+  console.log('Viewer:', viewerRes.url || `https://ram.zenbin.org/${SLUG}-viewer`);
+
+  console.log('Updating GitHub gallery queue...');
+  const getRes = await ghReq({
+    hostname: 'api.github.com',
+    path: `/repos/${REPO}/contents/queue.json`,
+    method: 'GET',
+    headers: {
+      'Authorization': `token ${TOKEN}`,
+      'User-Agent': 'ram-heartbeat/1.0',
+      'Accept': 'application/vnd.github.v3+json',
+    }
+  });
+  const fileData = JSON.parse(getRes.body);
+  const currentSha = fileData.sha;
+  const currentContent = Buffer.from(fileData.content, 'base64').toString('utf8');
+  let queue = JSON.parse(currentContent);
+  if (Array.isArray(queue)) queue = { version: 1, submissions: queue, updated_at: new Date().toISOString() };
+  if (!queue.submissions) queue.submissions = [];
+
+  const newEntry = {
+    id: `heartbeat-${SLUG}-${Date.now()}`,
+    status: 'done',
+    app_name: APP,
+    tagline: TAGLINE,
+    archetype: ARCHETYPE,
+    design_url: `https://ram.zenbin.org/${SLUG}`,
+    mock_url: `https://ram.zenbin.org/${SLUG}-mock`,
+    submitted_at: new Date().toISOString(),
+    published_at: new Date().toISOString(),
+    credit: 'RAM Design Heartbeat',
+    prompt: PROMPT,
+    screens: 5,
+    source: 'heartbeat',
+  };
+  queue.submissions.push(newEntry);
+  queue.updated_at = new Date().toISOString();
+
+  const newContent = Buffer.from(JSON.stringify(queue, null, 2)).toString('base64');
+  const putBody = JSON.stringify({
+    message: `add: ${APP} to gallery (heartbeat)`,
+    content: newContent,
+    sha: currentSha,
+  });
+  const putRes = await ghReq({
+    hostname: 'api.github.com',
+    path: `/repos/${REPO}/contents/queue.json`,
+    method: 'PUT',
+    headers: {
+      'Authorization': `token ${TOKEN}`,
+      'User-Agent': 'ram-heartbeat/1.0',
+      'Content-Type': 'application/json',
+      'Content-Length': Buffer.byteLength(putBody),
+      'Accept': 'application/vnd.github.v3+json',
+    }
+  }, putBody);
+  console.log('Gallery queue:', putRes.status === 200 ? 'OK ✓' : putRes.body.slice(0, 120));
+
+  console.log('\n✓ GILT fully published:');
+  console.log('  Hero:   https://ram.zenbin.org/gilt');
+  console.log('  Viewer: https://ram.zenbin.org/gilt-viewer');
+  console.log('  Mock:   https://ram.zenbin.org/gilt-mock (pending mock build)');
+})();

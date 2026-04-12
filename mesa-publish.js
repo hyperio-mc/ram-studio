@@ -1,0 +1,255 @@
+'use strict';
+// mesa-publish.js — hero page + viewer for MESA
+
+const fs   = require('fs');
+const path = require('path');
+const https = require('https');
+
+const SLUG    = 'mesa';
+const DOMAIN  = 'ram.zenbin.org';
+const SUBDOM  = 'ram';
+
+// ── zenbin publish helper ─────────────────────────────────────────────────────
+function zenPublish(slug, html, title) {
+  return new Promise((resolve, reject) => {
+    const body = JSON.stringify({ html, title });
+    const req  = https.request({
+      hostname: 'zenbin.org',
+      path: `/v1/pages/${slug}`,
+      method:   'POST',
+      headers:  {
+        'Content-Type':   'application/json',
+        'Content-Length': Buffer.byteLength(body),
+        'X-Subdomain':    SUBDOM,
+      },
+    }, res => {
+      let d = '';
+      res.on('data', c => d += c);
+      res.on('end', () => {
+        try { resolve(JSON.parse(d)); }
+        catch { resolve({ raw: d, status: res.statusCode }); }
+      });
+    });
+    req.on('error', reject);
+    req.write(body);
+    req.end();
+  });
+}
+
+// ── Hero HTML ─────────────────────────────────────────────────────────────────
+const heroHtml = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MESA — Revenue clarity for solopreneur founders</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg:      #F7F4EE;
+    --surface: #FFFFFF;
+    --border:  #DDD9CF;
+    --fg:      #1A1612;
+    --fg2:     #3C3630;
+    --muted:   #9A9288;
+    --accent:  #3D35F0;
+    --coral:   #FF5F38;
+    --green:   #16A865;
+    --amber:   #E87C30;
+  }
+  body { background: var(--bg); color: var(--fg); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; }
+
+  /* NAV */
+  nav { display: flex; align-items: center; justify-content: space-between;
+        padding: 20px 40px; border-bottom: 1px solid var(--border); background: var(--surface); }
+  .nav-logo { font-size: 18px; font-weight: 900; letter-spacing: 3px; color: var(--accent); }
+  .nav-links { display: flex; gap: 32px; }
+  .nav-links a { text-decoration: none; color: var(--muted); font-size: 13px; }
+  .nav-cta { background: var(--accent); color: #fff; padding: 10px 22px; border-radius: 10px;
+             font-size: 13px; font-weight: 600; text-decoration: none; }
+
+  /* HERO */
+  .hero { max-width: 1100px; margin: 0 auto; padding: 80px 40px 60px; display: grid;
+          grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+  .hero-text {}
+  .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: var(--accent);
+                color: #fff; padding: 6px 14px; border-radius: 20px; font-size: 11px;
+                font-weight: 700; letter-spacing: 1px; margin-bottom: 24px; }
+  .hero-badge .dot { width: 8px; height: 8px; background: #7CFF7C; border-radius: 50%;
+                     animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+  h1 { font-size: clamp(36px, 4vw, 52px); font-weight: 900; line-height: 1.1; letter-spacing: -1.5px; margin-bottom: 20px; }
+  h1 em { font-style: normal; color: var(--accent); }
+  .hero-sub { font-size: 17px; color: var(--fg2); line-height: 1.6; margin-bottom: 36px; max-width: 440px; }
+  .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn-primary { background: var(--accent); color: #fff; padding: 14px 28px; border-radius: 12px;
+                 font-size: 14px; font-weight: 700; text-decoration: none; }
+  .btn-secondary { border: 1.5px solid var(--border); color: var(--fg2); padding: 14px 28px;
+                   border-radius: 12px; font-size: 14px; font-weight: 600; text-decoration: none; background: var(--surface); }
+  .hero-stats { display: flex; gap: 28px; margin-top: 44px; padding-top: 28px; border-top: 1px solid var(--border); }
+  .stat { }
+  .stat-value { font-size: 28px; font-weight: 900; color: var(--fg); }
+  .stat-label { font-size: 11px; color: var(--muted); letter-spacing: 0.5px; margin-top: 2px; }
+
+  /* SCREENS PREVIEW */
+  .screens-preview { position: relative; }
+  .screens-scroll { display: flex; gap: 16px; overflow-x: auto; padding: 8px; scrollbar-width: none; }
+  .screens-scroll::-webkit-scrollbar { display: none; }
+  .screen-thumb { min-width: 180px; height: 320px; background: var(--surface);
+                  border-radius: 20px; border: 1px solid var(--border);
+                  overflow: hidden; box-shadow: 0 8px 40px rgba(61,53,240,0.08); }
+  .screen-thumb:first-child { border-color: var(--accent); box-shadow: 0 8px 40px rgba(61,53,240,0.18); }
+  .screen-inner { padding: 14px 12px; height: 100%; }
+  .si-bar  { height: 6px; background: var(--border); border-radius: 3px; margin-bottom: 10px; width: 60%; }
+  .si-hero { height: 70px; background: var(--accent); border-radius: 12px; margin-bottom: 10px; }
+  .si-card { height: 36px; background: var(--bg); border-radius: 8px; margin-bottom: 8px;
+             border: 1px solid var(--border); }
+  .si-row  { display: flex; gap: 8px; margin-bottom: 8px; }
+  .si-half { flex: 1; height: 36px; background: var(--bg); border-radius: 8px; border: 1px solid var(--border); }
+  .si-label { font-size: 8px; color: var(--muted); letter-spacing: 1px; font-weight: 600; margin-bottom: 6px; }
+
+  /* FEATURES */
+  .features { max-width: 1100px; margin: 0 auto; padding: 60px 40px; }
+  .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .feat { background: var(--surface); border: 1px solid var(--border); border-radius: 18px; padding: 28px; }
+  .feat-icon { width: 44px; height: 44px; background: var(--accent); border-radius: 12px;
+               display: flex; align-items: center; justify-content: center; font-size: 20px;
+               margin-bottom: 16px; color: #fff; }
+  .feat h3 { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+  .feat p  { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+  /* INSPIRATION CALLOUT */
+  .inspiration { max-width: 1100px; margin: 0 auto 60px; padding: 0 40px; }
+  .insp-card { background: var(--accent); color: #fff; border-radius: 20px; padding: 36px 44px; }
+  .insp-card h2 { font-size: 22px; font-weight: 800; margin-bottom: 10px; }
+  .insp-card p  { font-size: 14px; opacity: 0.85; line-height: 1.7; max-width: 700px; }
+
+  /* CTA */
+  .cta-section { max-width: 1100px; margin: 0 auto 80px; padding: 0 40px; text-align: center; }
+  .cta-section h2 { font-size: 32px; font-weight: 900; letter-spacing: -1px; margin-bottom: 16px; }
+  .cta-section p  { color: var(--muted); font-size: 15px; margin-bottom: 32px; }
+
+  /* FOOTER */
+  footer { border-top: 1px solid var(--border); padding: 24px 40px;
+           display: flex; justify-content: space-between; align-items: center;
+           font-size: 12px; color: var(--muted); }
+
+  @media (max-width: 768px) {
+    nav { padding: 16px 20px; }
+    .hero { grid-template-columns: 1fr; padding: 40px 20px; gap: 40px; }
+    .features-grid { grid-template-columns: 1fr; }
+    .insp-card { padding: 24px; }
+    footer { flex-direction: column; gap: 8px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo">MESA</span>
+  <div class="nav-links">
+    <a href="#">Features</a>
+    <a href="#">Pricing</a>
+    <a href="https://ram.zenbin.org/mesa-viewer">View Design</a>
+  </div>
+  <a href="https://ram.zenbin.org/mesa-mock" class="nav-cta">Interactive Mock →</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-text">
+    <div class="hero-badge"><span class="dot"></span> AI AGENTS RUNNING</div>
+    <h1>Revenue clarity for <em>independent</em> founders.</h1>
+    <p class="hero-sub">Mesa connects your invoices, payments, and client work in one warm, editorial dashboard. Let AI agents handle the follow-ups while you ship.</p>
+    <div class="hero-actions">
+      <a href="https://ram.zenbin.org/mesa-mock" class="btn-primary">☀◑ Interactive Mock</a>
+      <a href="https://ram.zenbin.org/mesa-viewer" class="btn-secondary">View in Pencil →</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-value">$18K</div><div class="stat-label">Monthly Revenue</div></div>
+      <div class="stat"><div class="stat-value">5</div><div class="stat-label">Active Clients</div></div>
+      <div class="stat"><div class="stat-value">3</div><div class="stat-label">AI Agents Live</div></div>
+    </div>
+  </div>
+  <div class="screens-preview">
+    <div class="screens-scroll">
+      ${['Overview','Clients','Invoice','Insights','Settings'].map(name => `
+      <div class="screen-thumb">
+        <div class="screen-inner">
+          <div class="si-bar"></div>
+          <div class="si-label">${name.toUpperCase()}</div>
+          <div class="si-hero"></div>
+          <div class="si-row"><div class="si-half"></div><div class="si-half"></div></div>
+          <div class="si-card"></div>
+          <div class="si-card"></div>
+          <div class="si-card"></div>
+        </div>
+      </div>`).join('')}
+    </div>
+  </div>
+</section>
+
+<section class="features">
+  <div class="features-grid">
+    <div class="feat">
+      <div class="feat-icon">⚡</div>
+      <h3>AI Agent Activity</h3>
+      <p>Autonomous agents send invoices, reconcile payments, and follow up with clients — all surfaced in a live activity feed.</p>
+    </div>
+    <div class="feat">
+      <div class="feat-icon">◎</div>
+      <h3>Revenue Insights</h3>
+      <p>6-month bar charts, revenue mix breakdowns, and AI observations tell you exactly where your money comes from and what to do next.</p>
+    </div>
+    <div class="feat">
+      <div class="feat-icon">◈</div>
+      <h3>Stripe + Notion + Gmail</h3>
+      <p>First-class integrations with the tools independent founders actually use. Connect once, automate everything.</p>
+    </div>
+  </div>
+</section>
+
+<section class="inspiration">
+  <div class="insp-card">
+    <h2>Design Inspiration</h2>
+    <p>MESA was designed in response to Midday.ai's rise on Dark Mode Design (2026) — a dark financial stack for founders — and inverted into a warm, editorial light theme. The cream base (#F7F4EE), electric indigo (#3D35F0), and coral accent (#FF5F38) draw from the 2025/26 SaaS trend toward human, legible financial UI, bridging the gap between WSJ-style editorial typography and Linear-style functional precision. Cardless and Equals on Land-Book confirmed the appetite for embedded, data-first fintech interfaces.</p>
+  </div>
+</section>
+
+<section class="cta-section">
+  <h2>Revenue clarity starts here.</h2>
+  <p>See all 5 screens of the interactive prototype below.</p>
+  <a href="https://ram.zenbin.org/mesa-mock" class="btn-primary">Open Interactive Mock →</a>
+</section>
+
+<footer>
+  <span>MESA — RAM Design Heartbeat · March 2026</span>
+  <span>ram.zenbin.org/mesa</span>
+</footer>
+
+</body>
+</html>`;
+
+// ── Viewer HTML ───────────────────────────────────────────────────────────────
+let viewerHtml = fs.readFileSync(
+  path.join(__dirname, 'renderer.html'), 'utf8'
+);
+const penJson    = fs.readFileSync(path.join(__dirname, 'mesa.pen'), 'utf8');
+const injection  = `<script>window.EMBEDDED_PEN = ${JSON.stringify(penJson)};</script>`;
+viewerHtml = viewerHtml.replace('<script>', injection + '\n<script>');
+
+// ── Publish ───────────────────────────────────────────────────────────────────
+(async () => {
+  console.log('Publishing hero…');
+  const r1 = await zenPublish(SLUG, heroHtml, 'MESA — Revenue Clarity for Solopreneur Founders');
+  console.log('Hero:', r1.url || r1.raw?.slice(0,80) || JSON.stringify(r1).slice(0,80));
+
+  fs.writeFileSync(path.join(__dirname, 'mesa-hero.html'), heroHtml);
+  console.log('✓ mesa-hero.html saved');
+
+  console.log('Publishing viewer…');
+  const r2 = await zenPublish(SLUG + '-viewer', viewerHtml, 'MESA — Design Viewer');
+  console.log('Viewer:', r2.url || r2.raw?.slice(0,80) || JSON.stringify(r2).slice(0,80));
+
+  fs.writeFileSync(path.join(__dirname, 'mesa-viewer.html'), viewerHtml);
+  console.log('✓ mesa-viewer.html saved');
+})();

@@ -1,0 +1,2308 @@
+{
+  "version": "2.8",
+  "meta": {
+    "name": "TERROIR — Artisan Food Discovery",
+    "description": "Discover the world's finest artisan foods & drinks. Inspired by lifestyle ecommerce editorial aesthetic from land-book.com.",
+    "author": "RAM Design Heartbeat",
+    "created": "2026-03-25T20:19:42.735Z",
+    "theme": "light"
+  },
+  "palette": {
+    "bg": "#FAF7F2",
+    "surface": "#FFFFFF",
+    "text": "#2C1A0E",
+    "accent": "#C4622D",
+    "accent2": "#7B9E6B",
+    "muted": "rgba(44,26,14,0.4)",
+    "border": "rgba(44,26,14,0.12)"
+  },
+  "screens": [
+    {
+      "id": "discover",
+      "name": "Discover",
+      "width": 390,
+      "height": 844,
+      "elements": [
+        {
+          "id": "sb",
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "w": 390,
+          "h": 44,
+          "fill": "#FAF7F2"
+        },
+        {
+          "id": "sbt",
+          "type": "text",
+          "x": 170,
+          "y": 14,
+          "text": "9:41",
+          "fontSize": 15,
+          "fontWeight": "600",
+          "color": "#2C1A0E"
+        },
+        {
+          "id": "logo",
+          "type": "text",
+          "x": 24,
+          "y": 60,
+          "text": "TERROIR",
+          "fontSize": 22,
+          "fontWeight": "800",
+          "color": "#2C1A0E",
+          "letterSpacing": 3
+        },
+        {
+          "id": "cart-icon",
+          "type": "text",
+          "x": 344,
+          "y": 60,
+          "text": "⊕",
+          "fontSize": 22,
+          "color": "#C4622D"
+        },
+        {
+          "id": "search-bg",
+          "type": "rect",
+          "x": 24,
+          "y": 92,
+          "w": 342,
+          "h": 44,
+          "fill": "#FFFFFF",
+          "radius": 22,
+          "stroke": "rgba(44,26,14,0.12)",
+          "strokeWidth": 1
+        },
+        {
+          "id": "search-icon",
+          "type": "text",
+          "x": 44,
+          "y": 110,
+          "text": "⌕",
+          "fontSize": 18,
+          "color": "rgba(44,26,14,0.4)"
+        },
+        {
+          "id": "search-placeholder",
+          "type": "text",
+          "x": 70,
+          "y": 112,
+          "text": "Search artisan foods, regions…",
+          "fontSize": 14,
+          "color": "rgba(44,26,14,0.4)"
+        },
+        {
+          "id": "tags-label",
+          "type": "text",
+          "x": 24,
+          "y": 154,
+          "text": "Trending",
+          "fontSize": 12,
+          "fontWeight": "700",
+          "color": "rgba(44,26,14,0.4)",
+          "letterSpacing": 1.5
+        },
+        {
+          "id": "tag1-bg",
+          "type": "rect",
+          "x": 24,
+          "y": 172,
+          "w": 82,
+          "h": 30,
+          "fill": "#C4622D",
+          "radius": 15
+        },
+        {
+          "id": "tag1",
+          "type": "text",
+          "x": 40,
+          "y": 183,
+          "text": "Matcha 🍵",
+          "fontSize": 12,
+          "fontWeight": "600",
+          "color": "#FFFFFF"
+        },
+        {
+          "id": "tag2-bg",
+          "type": "rect",
+          "x": 114,
+          "y": 172,
+          "w": 96,
+          "h": 30,
+          "fill": "#FFFFFF",
+          "radius": 15,
+          "stroke": "rgba(44,26,14,0.12)",
+          "strokeWidth": 1
+        },
+        {
+          "id": "tag2",
+          "type": "text",
+          "x": 128,
+          "y": 183,
+          "text": "Raw Honey 🍯",
+          "fontSize": 12,
+          "color": "#2C1A0E"
+        },
+        {
+          "id": "tag3-bg",
+          "type": "rect",
+          "x": 218,
+          "y": 172,
+          "w": 84,
+          "h": 30,
+          "fill": "#FFFFFF",
+          "radius": 15,
+          "stroke": "rgba(44,26,14,0.12)",
+          "strokeWidth": 1
+        },
+        {
+          "id": "tag3",
+          "type": "text",
+          "x": 232,
+          "y": 183,
+          "text": "Olive Oil 🫒",
+          "fontSize": 12,
+          "color": "#2C1A0E"
+        },
+        {
+          "id": "tag4-bg",
+          "type": "rect",
+          "x": 310,
+          "y": 172,
+          "w": 56,
+          "h": 30,
+          "fill": "#7B9E6B",
+          "radius": 15
+        },
+        {
+          "id": "tag4",
+          "type": "text",
+          "x": 322,
+          "y": 183,
+          "text": "Spice",
+          "fontSize": 12,
+          "fontWeight": "600",
+          "color": "#FFFFFF"
+        },
+        {
+          "id": "feat-label",
+          "type": "text",
+          "x": 24,
+          "y": 222,
+          "text": "Featured Drop",
+          "fontSize": 12,
+          "fontWeight": "700",
+          "color": "rgba(44,26,14,0.4)",
+          "letterSpacing": 1.5
+        },
+        {
+          "id": "feat-card",
+          "type": "rect",
+          "x": 24,
+          "y": 240,
+          "w": 342,
+          "h": 200,
+          "fill": "#E8DDD0",
+          "radius": 20
+        },
+        {
+          "id": "feat-badge",
+          "type": "rect",
+          "x": 40,
+          "y": 256,
+          "w": 80,
+          "h": 24,
+          "fill": "#C4622D",
+          "radius": 12
+        },
+        {
+          "id": "feat-badge-text",
+          "type": "text",
+          "x": 50,
+          "y": 264,
+          "text": "NEW DROP ✦",
+          "fontSize": 10,
+          "fontWeight": "700",
+          "color": "#FFFFFF",
+          "letterSpacing": 1
+        },
+        {
+          "id": "feat-name",
+          "type": "text",
+          "x": 40,
+          "y": 294,
+          "text": "Umbrian Black\nTruffle Oil",
+          "fontSize": 22,
+          "fontWeight": "800",
+          "color": "#2C1A0E",
+          "lineHeight": 1.2
+        },
+        {
+          "id": "feat-origin",
+          "type": "text",
+          "x": 40,
+          "y": 348,
+          "text": "Umbria, Italy · Cold-pressed · Limited",
+          "fontSize": 12,
+          "color": "rgba(44,26,14,0.6)"
+        },
+        {
+          "id": "feat-price",
+          "type": "text",
+          "x": 40,
+          "y": 374,
+          "text": "$48",
+          "fontSize": 20,
+          "fontWeight": "800",
+          "color": "#C4622D"
+        },
+        {
+          "id": "feat-btn",
+          "type": "rect",
+          "x": 220,
+          "y": 366,
+          "w": 130,
+          "h": 40,
+          "fill": "#2C1A0E",
+          "radius": 20
+        },
+        {
+          "id": "feat-btn-text",
+          "type": "text",
+          "x": 250,
+          "y": 382,
+          "text": "Add to Cellar",
+          "fontSize": 13,
+          "fontWeight": "700",
+          "color": "#FFFFFF"
+        },
+        {
+          "id": "arrivals-label",
+          "type": "text",
+          "x": 24,
+          "y": 462,
+          "text": "New Arrivals",
+          "fontSize": 12,
+          "fontWeight": "700",
+          "color": "rgba(44,26,14,0.4)",
+          "letterSpacing": 1.5
+        },
+        {
+          "id": "see-all",
+          "type": "text",
+          "x": 318,
+          "y": 462,
+          "text": "See all →",
+          "fontSize": 12,
+          "color": "#C4622D",
+          "fontWeight": "600"
+        },
+        {
+          "id": "card1",
+          "type": "rect",
+          "x": 24,
+          "y": 482,
+          "w": 162,
+          "h": 190,
+          "fill": "#FFFFFF",
+          "radius": 16,
+          "stroke": "rgba(44,26,14,0.08)",
+          "strokeWidth": 1
+        },
+        {
+          "id": "card1-img",
+          "type": "rect",
+          "x": 24,
+          "y": 482,
+          "w": 162,
+          "h": 110,
+          "fill": "#D4E8D4",
+          "radius": 16
+        },
+        {
+          "id": "card1-emoji",
+          "type": "text",
+          "x": 88,
+          "y": 528,
+          "text": "🍵",
+          "fontSize": 36
+        },
+        {
+          "id": "card1-name",
+          "type": "text",
+          "x": 36,
+          "y": 604,
+          "text": "Ceremonial\nMatcha",
+          "fontSize": 13,
+          "fontWeight": "700",
+          "color": "#2C1A0E",
+          "lineHeight": 1.3
+        },
+        {
+          "id": "card1-origin",
+          "type": "text",
+          "x": 36,
+          "y": 636,
+          "text": "Uji, Japan",
+          "fontSize": 11,
+          "color": "rgba(44,26,14,0.5)"
+        },
+        {
+          "id": "card1-price",
+          "type": "text",
+          "x": 36,
+          "y": 654,
+          "text": "$32",
+          "fontSize": 14,
+          "fontWeight": "800",
+          "color": "#C4622D"
+        },
+        {
+          "id": "card2",
+          "type": "rect",
+          "x": 204,
+          "y": 482,
+          "w": 162,
+          "h": 190,
+          "fill": "#FFFFFF",
+          "radius": 16,
+          "stroke": "rgba(44,26,14,0.08)",
+          "strokeWidth": 1
+        },
+        {
+          "id": "card2-img",
+          "type": "rect",
+          "x": 204,
+          "y": 482,
+          "w": 162,
+          "h": 110,
+          "fill": "#F0E4C8",
+          "radius": 16
+        },
+        {
+          "id": "card2-emoji",
+          "type": "text",
+          "x": 268,
+          "y": 528,
+          "text": "🍯",
+          "fontSize": 36
+        },
+        {
+          "id": "card2-name",
+          "type": "text",
+          "x": 216,
+          "y": 604,
+          "text": "Wildflower\nRaw Honey",
+          "fontSize": 13,
+          "fontWeight": "700",
+          "color": "#2C1A0E",
+          "lineHeight": 1.3
+        },
+        {
+          "id": "card2-origin",
+          "type": "text",
+          "x": 216,
+          "y": 636,
+          "text": "Provence, France",
+          "fontSize": 11,
+          "color": "rgba(44,26,14,0.5)"
+        },
+        {
+          "id": "card2-price",
+          "type": "text",
+          "x": 216,
+          "y": 654,
+          "text": "$28",
+          "fontSize": 14,
+          "fontWeight": "800",
+          "color": "#C4622D"
+        },
+        {
+          "id": "nav-bg",
+          "type": "rect",
+          "x": 0,
+          "y": 760,
+          "w": 390,
+          "h": 84,
+          "fill": "#FFFFFF",
+          "stroke": "rgba(44,26,14,0.08)",
+          "strokeWidth": 1
+        },
+        {
+          "id": "nav-home",
+          "type": "text",
+          "x": 55,
+          "y": 786,
+          "text": "⌂",
+          "fontSize": 22,
+          "color": "#C4622D"
+        },
+        {
+          "id": "nav-home-label",
+          "type": "text",
+          "x": 44,
+          "y": 812,
+          "text": "Discover",
+          "fontSize": 10,
+          "fontWeight": "600",
+          "color": "#C4622D"
+        },
+        {
+          "id": "nav-search",
+          "type": "text",
+          "x": 133,
+          "y": 786,
+          "text": "⌕",
+          "fontSize": 22,
+          "color": "rgba(44,26,14,0.35)"
+        },
+        {
+          "id": "nav-search-label",
+          "type": "text",
+          "x": 126,
+          "y": 812,
+          "text": "Search",
+          "fontSize": 10,
+          "color": "rgba(44,26,14,0.35)"
+        },
+        {
+          "id": "nav-star",
+          "type": "text",
+          "x": 212,
+          "y": 786,
+          "text": "✦",
+          "fontSize": 20,
+          "color": "rgba(44,26,14,0.35)"
+        },
+        {
+          "id": "nav-star-label",
+          "type": "text",
+          "x": 200,
+          "y": 812,
+          "text": "Collections",
+          "fontSize": 10,
+          "color": "rgba(44,26,14,0.35)"
+        },
+        {
+          "id": "nav-heart",
+          "type": "text",
+          "x": 290,
+          "y": 786,
+          "text": "♡",
+          "fontSize": 22,
+          "color": "rgba(44,26,14,0.35)"
+        },
+        {
+          "id": "nav-heart-label",
+          "type": "text",
+          "x": 285,
+          "y": 812,
+          "text": "Cellar",
+          "fontSize": 10,
+          "color": "rgba(44,26,14,0.35)"
+        },
+        {
+          "id": "nav-user",
+          "type": "text",
+          "x": 363,
+          "y": 786,
+          "text": "◯",
+          "fontSize": 20,
+          "color": "rgba(44,26,14,0.35)"
+        },
+        {
+          "id": "nav-user-label",
+          "type": "text",
+          "x": 358,
+          "y": 812,
+          "text": "Profile",
+          "fontSize": 10,
+          "color": "rgba(44,26,14,0.35)"
+        }
+      ]
+    },
+    {
+      "id": "product",
+      "name": "Product",
+      "width": 390,
+      "height": 844,
+      "elements": [
+        {
+          "id": "sb",
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "w": 390,
+          "h": 44,
+          "fill": "#FAF7F2"
+        },
+        {
+          "id": "back",
+          "type": "text",
+          "x": 24,
+          "y": 58,
+          "text": "← Back",
+          "fontSize": 15,
+          "color": "#C4622D",
+          "fontWeight": "600"
+        },
+        {
+          "id": "share",
+          "type": "text",
+          "x": 352,
+          "y": 58,
+          "text": "↗",
+          "fontSize": 18,
+          "color": "#2C1A0E"
+        },
+        {
+          "id": "prod-img",
+          "type": "rect",
+          "x": 24,
+          "y": 82,
+          "w": 342,
+          "h": 240,
+          "fill": "#E8DDD0",
+          "radius": 24
+        },
+        {
+          "id": "prod-emoji",
+          "type": "text",
+          "x": 168,
+          "y": 178,
+          "text": "🫒",
+          "fontSize": 72
+        },
+        {
+          "id": "prod-badge",
+          "type": "rect",
+          "x": 40,
+          "y": 98,
+          "w": 72,
+          "h": 24,
+          "fill": "#7B9E6B",
+          "radius": 12
+        },
+        {
+          "id": "prod-badge-text",
+          "type": "text",
+          "x": 50,
+          "y": 106,
+          "text": "Organic ✓",
+          "fontSize": 10,
+          "fontWeight": "700",
+          "color": "#FFFFFF"
+        },
+        {
+          "id": "prod-fav",
+          "type": "rect",
+          "x": 332,
+          "y": 94,
+          "w": 36,
+          "h": 36,
+          "fill": "#FFFFFF",
+          "radius": 18
+        },
+        {
+          "id": "prod-fav-icon",
+          "type": "text",
+          "x": 343,
+          "y": 108,
+          "text": "♡",
+          "fontSize": 16,
+          "color": "#C4622D"
+        },
+        {
+          "id": "maker",
+          "type": "text",
+          "x": 24,
+          "y": 340,
+          "text": "FRANTOIO MURAGLIA · ANDRIA, ITALY",
+          "fontSize": 10,
+          "fontWeight": "700",
+          "color": "rgba(44,26,14,0.5)",
+          "letterSpacing": 1.5
+        },
+        {
+          "id": "prod-name",
+          "type": "text",
+          "x": 24,
+          "y": 360,
+          "text": "Monocultivar\nCoratina EVOO",
+          "fontSize": 26,
+          "fontWeight": "800",
+          "color": "#2C1A0E",
+          "lineHeight": 1.2
+        },
+        {
+          "id": "prod-rating",
+          "type": "text",
+          "x": 24,
+          "y": 422,
+          "text": "★★★★★  4.9  (142 notes)",
+          "fontSize": 13,
+          "color": "#C4622D"
+        },
+        {
+          "id": "notes-label",
+          "type": "text",
+          "x": 24,
+          "y": 456,
+          "text": "Tasting Notes",
+          "fontSize": 12,
+          "fontWeight": "700",
+          "color": "rgba(44,26,14,0.5)",
+          "letterSpacing": 1
+        },
+        {
+          "id": "note1",
+          "type": "rect",
+          "x": 24,
+          "y": 474,
+          "w": 88,
+          "h": 28,
+          "fill": "#FAF7F2",
+          "radius": 14,
+          "stroke": "rgba(44,26,14,0.12)",
+          "strokeWidth": 1
+        },
+        {
+          "id": "note1t",
+          "type": "text",
+          "x": 38,
+          "y": 484,
+          "text": "Peppery",
+          "fontSize": 12,
+          "color": "#2C1A0E"
+        },
+        {
+          "id": "note2",
+          "type": "rect",
+          "x": 120,
+          "y": 474,
+          "w": 76,
+          "h": 28,
+          "fill": "#FAF7F2",
+          "radius": 14,
+          "stroke": "rgba(44,26,14,0.12)",
+          "strokeWidth": 1
+        },
+        {
+          "id": "note2t",
+          "type": "text",
+          "x": 132,
+          "y": 484,
+          "text": "Grassy",
+          "fontSize": 12,
+          "color": "#2C1A0E"
+        },
+        {
+          "id": "note3",
+          "type": "rect",
+          "x": 204,
+          "y": 474,
+          "w": 82,
+          "h": 28,
+          "fill": "#FAF7F2",
+          "radius": 14,
+          "stroke": "rgba(44,26,14,0.12)",
+          "strokeWidth": 1
+        },
+        {
+          "id": "note3t",
+          "type": "text",
+          "x": 216,
+          "y": 484,
+          "text": "Artichoke",
+          "fontSize": 12,
+          "color": "#2C1A0E"
+        },
+        {
+          "id": "note4",
+          "type": "rect",
+          "x": 294,
+          "y": 474,
+          "w": 72,
+          "h": 28,
+          "fill": "#FAF7F2",
+          "radius": 14,
+          "stroke": "rgba(44,26,14,0.12)",
+          "strokeWidth": 1
+        },
+        {
+          "id": "note4t",
+          "type": "text",
+          "x": 306,
+          "y": 484,
+          "text": "Citrus",
+          "fontSize": 12,
+          "color": "#2C1A0E"
+        },
+        {
+          "id": "story-bg",
+          "type": "rect",
+          "x": 24,
+          "y": 518,
+          "w": 342,
+          "h": 76,
+          "fill": "#FFFFFF",
+          "radius": 16
+        },
+        {
+          "id": "story-quote",
+          "type": "text",
+          "x": 40,
+          "y": 534,
+          "text": "\"Cold-pressed within 4 hours of harvest\nfrom century-old Coratina trees. Polyphenol\ncount: 680 mg/kg — among Italy's highest.\"",
+          "fontSize": 12,
+          "color": "#2C1A0E",
+          "lineHeight": 1.5
+        },
+        {
+          "id": "price-label",
+          "type": "text",
+          "x": 24,
+          "y": 614,
+          "text": "Price",
+          "fontSize": 11,
+          "color": "rgba(44,26,14,0.4)",
+          "letterSpacing": 1
+        },
+        {
+          "id": "price-val",
+          "type": "text",
+          "x": 24,
+          "y": 634,
+          "text": "$52",
+          "fontSize": 28,
+          "fontWeight": "800",
+          "color": "#2C1A0E"
+        },
+        {
+          "id": "price-sub",
+          "type": "text",
+          "x": 24,
+          "y": 666,
+          "text": "500ml · Free shipping over $80",
+          "fontSize": 12,
+          "color": "rgba(44,26,14,0.5)"
+        },
+        {
+          "id": "cta-btn",
+          "type": "rect",
+          "x": 24,
+          "y": 688,
+          "w": 342,
+          "h": 52,
+          "fill": "#2C1A0E",
+          "radius": 26
+        },
+        {
+          "id": "cta-text",
+          "type": "text",
+          "x": 148,
+          "y": 710,
+          "text": "Add to Cellar  ✦",
+          "fontSize": 16,
+          "fontWeight": "700",
+          "color": "#FAF7F2"
+        },
+        {
+          "id": "nav-bg",
+          "type": "rect",
+          "x": 0,
+          "y": 760,
+          "w": 390,
+          "h": 84,
+          "fill": "#FFFFFF",
+          "stroke": "rgba(44,26,14,0.08)",
+          "strokeWidth": 1
+        },
+        {
+          "id": "nav-home",
+          "type": "text",
+          "x": 55,
+          "y": 786,
+          "text": "⌂",
+          "fontSize": 22,
+          "color": "rgba(44,26,14,0.35)"
+        },
+        {
+          "id": "nav-home-label",
+          "type": "text",
+          "x": 44,
+          "y": 812,
+          "text": "Discover",
+          "fontSize": 10,
+          "color": "rgba(44,26,14,0.35)"
+        },
+        {
+          "id": "nav-search",
+          "type": "text",
+          "x": 133,
+          "y": 786,
+          "text": "⌕",
+          "fontSize": 22,
+          "color": "rgba(44,26,14,0.35)"
+        },
+        {
+          "id": "nav-search-label",
+          "type": "text",
+          "x": 126,
+          "y": 812,
+          "text": "Search",
+          "fontSize": 10,
+          "color": "rgba(44,26,14,0.35)"
+        },
+        {
+          "id": "nav-star",
+          "type": "text",
+          "x": 212,
+          "y": 786,
+          "text": "✦",
+          "fontSize": 20,
+          "color": "rgba(44,26,14,0.35)"
+        },
+        {
+          "id": "nav-star-label",
+          "type": "text",
+          "x": 200,
+          "y": 812,
+          "text": "Collections",
+          "fontSize": 10,
+          "color": "rgba(44,26,14,0.35)"
+        },
+        {
+          "id": "nav-heart",
+          "type": "text",
+          "x": 290,
+          "y": 786,
+          "text": "♡",
+          "fontSize": 22,
+          "color": "#C4622D"
+        },
+        {
+          "id": "nav-heart-label",
+          "type": "text",
+          "x": 285,
+          "y": 812,
+          "text": "Cellar",
+          "fontSize": 10,
+          "fontWeight": "600",
+          "color": "#C4622D"
+        },
+        {
+          "id": "nav-user",
+          "type": "text",
+          "x": 363,
+          "y": 786,
+          "text": "◯",
+          "fontSize": 20,
+          "color": "rgba(44,26,14,0.35)"
+        },
+        {
+          "id": "nav-user-label",
+          "type": "text",
+          "x": 358,
+          "y": 812,
+          "text": "Profile",
+          "fontSize": 10,
+          "color": "rgba(44,26,14,0.35)"
+        }
+      ]
+    },
+    {
+      "id": "collections",
+      "name": "Collections",
+      "width": 390,
+      "height": 844,
+      "elements": [
+        {
+          "id": "sb",
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "w": 390,
+          "h": 44,
+          "fill": "#FAF7F2"
+        },
+        {
+          "id": "title",
+          "type": "text",
+          "x": 24,
+          "y": 62,
+          "text": "Collections",
+          "fontSize": 26,
+          "fontWeight": "800",
+          "color": "#2C1A0E"
+        },
+        {
+          "id": "sub",
+          "type": "text",
+          "x": 24,
+          "y": 92,
+          "text": "Curated by our team of artisan experts",
+          "fontSize": 13,
+          "color": "rgba(44,26,14,0.5)"
+        },
+        {
+          "id": "coll1",
+          "type": "rect",
+          "x": 24,
+          "y": 114,
+          "w": 342,
+          "h": 140,
+          "fill": "#C4622D",
+          "radius": 20
+        },
+        {
+          "id": "coll1-emoji",
+          "type": "text",
+          "x": 270,
+          "y": 138,
+          "text": "🇯🇵",
+          "fontSize": 52
+        },
+        {
+          "id": "coll1-label",
+          "type": "text",
+          "x": 40,
+          "y": 134,
+          "text": "CURATED COLLECTION",
+          "fontSize": 9,
+          "fontWeight": "700",
+          "color": "rgba(255,255,255,0.6)",
+          "letterSpacing": 2
+        },
+        {
+          "id": "coll1-name",
+          "type": "text",
+          "x": 40,
+          "y": 154,
+          "text": "The Japan\nPack",
+          "fontSize": 24,
+          "fontWeight": "800",
+          "color": "#FFFFFF",
+          "lineHeight": 1.2
+        },
+        {
+          "id": "coll1-count",
+          "type": "text",
+          "x": 40,
+          "y": 210,
+          "text": "12 products · from $28",
+          "fontSize": 12,
+          "color": "rgba(255,255,255,0.8)"
+        },
+        {
+          "id": "coll1-arrow",
+          "type": "text",
+          "x": 316,
+          "y": 224,
+          "text": "→",
+          "fontSize": 16,
+          "color": "#FFFFFF"
+        },
+        {
+          "id": "coll2",
+          "type": "rect",
+          "x": 24,
+          "y": 270,
+          "w": 342,
+          "h": 140,
+          "fill": "#3D6B5C",
+          "radius": 20
+        },
+        {
+          "id": "coll2-emoji",
+          "type": "text",
+          "x": 270,
+          "y": 294,
+          "text": "🫒",
+          "fontSize": 52
+        },
+        {
+          "id": "coll2-label",
+          "type": "text",
+          "x": 40,
+          "y": 290,
+          "text": "SEASONAL EDIT",
+          "fontSize": 9,
+          "fontWeight": "700",
+          "color": "rgba(255,255,255,0.6)",
+          "letterSpacing": 2
+        },
+        {
+          "id": "coll2-name",
+          "type": "text",
+          "x": 40,
+          "y": 310,
+          "text": "Mediterranean\nTable",
+          "fontSize": 24,
+          "fontWeight": "800",
+          "color": "#FFFFFF",
+          "lineHeight": 1.2
+        },
+        {
+          "id": "coll2-count",
+          "type": "text",
+          "x": 40,
+          "y": 366,
+          "text": "8 products · from $32",
+          "fontSize": 12,
+          "color": "rgba(255,255,255,0.8)"
+        },
+        {
+          "id": "coll3",
+          "type": "rect",
+          "x": 24,
+          "y": 426,
+          "w": 162,
+          "h": 140,
+          "fill": "#F0E4C8",
+          "radius": 20
+        },
+        {
+          "id": "coll3-emoji",
+          "type": "text",
+          "x": 78,
+          "y": 480,
+          "text": "🍯",
+          "fontSize": 40
+        },
+        {
+          "id": "coll3-name",
+          "type": "text",
+          "x": 36,
+          "y": 440,
+          "text": "Honey\nWorld Tour",
+          "fontSize": 16,
+          "fontWeight": "800",
+          "color": "#2C1A0E",
+          "lineHeight": 1.2
+        },
+        {
+          "id": "coll3-count",
+          "type": "text",
+          "x": 36,
+          "y": 550,
+          "text": "6 items",
+          "fontSize": 11,
+          "color": "rgba(44,26,14,0.6)"
+        },
+        {
+          "id": "coll4",
+          "type": "rect",
+          "x": 204,
+          "y": 426,
+          "w": 162,
+          "h": 140,
+          "fill": "#E8D4D4",
+          "radius": 20
+        },
+        {
+          "id": "coll4-emoji",
+          "type": "text",
+          "x": 258,
+          "y": 480,
+          "text": "🌶️",
+          "fontSize": 40
+        },
+        {
+          "id": "coll4-name",
+          "type": "text",
+          "x": 216,
+          "y": 440,
+          "text": "Heat\nSeeker",
+          "fontSize": 16,
+          "fontWeight": "800",
+          "color": "#2C1A0E",
+          "lineHeight": 1.2
+        },
+        {
+          "id": "coll4-count",
+          "type": "text",
+          "x": 216,
+          "y": 550,
+          "text": "9 items",
+          "fontSize": 11,
+          "color": "rgba(44,26,14,0.6)"
+        },
+        {
+          "id": "gift-bg",
+          "type": "rect",
+          "x": 24,
+          "y": 582,
+          "w": 342,
+          "h": 64,
+          "fill": "#FFFFFF",
+          "radius": 16,
+          "stroke": "rgba(44,26,14,0.1)",
+          "strokeWidth": 1
+        },
+        {
+          "id": "gift-emoji",
+          "type": "text",
+          "x": 40,
+          "y": 606,
+          "text": "🎁",
+          "fontSize": 28
+        },
+        {
+          "id": "gift-title",
+          "type": "text",
+          "x": 82,
+          "y": 600,
+          "text": "Build a Gift Set",
+          "fontSize": 15,
+          "fontWeight": "700",
+          "color": "#2C1A0E"
+        },
+        {
+          "id": "gift-sub",
+          "type": "text",
+          "x": 82,
+          "y": 620,
+          "text": "Custom curation · Arrives in 48h",
+          "fontSize": 12,
+          "color": "rgba(44,26,14,0.5)"
+        },
+        {
+          "id": "gift-arrow",
+          "type": "text",
+          "x": 342,
+          "y": 610,
+          "text": "→",
+          "fontSize": 16,
+          "color": "#C4622D"
+        },
+        {
+          "id": "nav-bg",
+          "type": "rect",
+          "x": 0,
+          "y": 760,
+          "w": 390,
+          "h": 84,
+          "fill": "#FFFFFF",
+          "stroke": "rgba(44,26,14,0.08)",
+          "strokeWidth": 1
+        },
+        {
+          "id": "nav-home",
+          "type": "text",
+          "x": 55,
+          "y": 786,
+          "text": "⌂",
+          "fontSize": 22,
+          "color": "rgba(44,26,14,0.35)"
+        },
+        {
+          "id": "nav-home-label",
+          "type": "text",
+          "x": 44,
+          "y": 812,
+          "text": "Discover",
+          "fontSize": 10,
+          "color": "rgba(44,26,14,0.35)"
+        },
+        {
+          "id": "nav-search",
+          "type": "text",
+          "x": 133,
+          "y": 786,
+          "text": "⌕",
+          "fontSize": 22,
+          "color": "rgba(44,26,14,0.35)"
+        },
+        {
+          "id": "nav-search-label",
+          "type": "text",
+          "x": 126,
+          "y": 812,
+          "text": "Search",
+          "fontSize": 10,
+          "color": "rgba(44,26,14,0.35)"
+        },
+        {
+          "id": "nav-star",
+          "type": "text",
+          "x": 212,
+          "y": 786,
+          "text": "✦",
+          "fontSize": 20,
+          "color": "#C4622D"
+        },
+        {
+          "id": "nav-star-label",
+          "type": "text",
+          "x": 200,
+          "y": 812,
+          "text": "Collections",
+          "fontSize": 10,
+          "fontWeight": "600",
+          "color": "#C4622D"
+        },
+        {
+          "id": "nav-heart",
+          "type": "text",
+          "x": 290,
+          "y": 786,
+          "text": "♡",
+          "fontSize": 22,
+          "color": "rgba(44,26,14,0.35)"
+        },
+        {
+          "id": "nav-heart-label",
+          "type": "text",
+          "x": 285,
+          "y": 812,
+          "text": "Cellar",
+          "fontSize": 10,
+          "color": "rgba(44,26,14,0.35)"
+        },
+        {
+          "id": "nav-user",
+          "type": "text",
+          "x": 363,
+          "y": 786,
+          "text": "◯",
+          "fontSize": 20,
+          "color": "rgba(44,26,14,0.35)"
+        },
+        {
+          "id": "nav-user-label",
+          "type": "text",
+          "x": 358,
+          "y": 812,
+          "text": "Profile",
+          "fontSize": 10,
+          "color": "rgba(44,26,14,0.35)"
+        }
+      ]
+    },
+    {
+      "id": "makers",
+      "name": "Makers",
+      "width": 390,
+      "height": 844,
+      "elements": [
+        {
+          "id": "sb",
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "w": 390,
+          "h": 44,
+          "fill": "#FAF7F2"
+        },
+        {
+          "id": "title",
+          "type": "text",
+          "x": 24,
+          "y": 62,
+          "text": "Makers",
+          "fontSize": 26,
+          "fontWeight": "800",
+          "color": "#2C1A0E"
+        },
+        {
+          "id": "sub",
+          "type": "text",
+          "x": 24,
+          "y": 92,
+          "text": "The artisans behind every product",
+          "fontSize": 13,
+          "color": "rgba(44,26,14,0.5)"
+        },
+        {
+          "id": "tab1-bg",
+          "type": "rect",
+          "x": 24,
+          "y": 112,
+          "w": 56,
+          "h": 30,
+          "fill": "#2C1A0E",
+          "radius": 15
+        },
+        {
+          "id": "tab1",
+          "type": "text",
+          "x": 38,
+          "y": 123,
+          "text": "All",
+          "fontSize": 12,
+          "fontWeight": "700",
+          "color": "#FFFFFF"
+        },
+        {
+          "id": "tab2-bg",
+          "type": "rect",
+          "x": 88,
+          "y": 112,
+          "w": 62,
+          "h": 30,
+          "fill": "#FFFFFF",
+          "radius": 15,
+          "stroke": "rgba(44,26,14,0.12)",
+          "strokeWidth": 1
+        },
+        {
+          "id": "tab2",
+          "type": "text",
+          "x": 102,
+          "y": 123,
+          "text": "Japan",
+          "fontSize": 12,
+          "color": "#2C1A0E"
+        },
+        {
+          "id": "tab3-bg",
+          "type": "rect",
+          "x": 158,
+          "y": 112,
+          "w": 54,
+          "h": 30,
+          "fill": "#FFFFFF",
+          "radius": 15,
+          "stroke": "rgba(44,26,14,0.12)",
+          "strokeWidth": 1
+        },
+        {
+          "id": "tab3",
+          "type": "text",
+          "x": 170,
+          "y": 123,
+          "text": "Italy",
+          "fontSize": 12,
+          "color": "#2C1A0E"
+        },
+        {
+          "id": "tab4-bg",
+          "type": "rect",
+          "x": 220,
+          "y": 112,
+          "w": 76,
+          "h": 30,
+          "fill": "#FFFFFF",
+          "radius": 15,
+          "stroke": "rgba(44,26,14,0.12)",
+          "strokeWidth": 1
+        },
+        {
+          "id": "tab4",
+          "type": "text",
+          "x": 232,
+          "y": 123,
+          "text": "France",
+          "fontSize": 12,
+          "color": "#2C1A0E"
+        },
+        {
+          "id": "m1-card",
+          "type": "rect",
+          "x": 24,
+          "y": 158,
+          "w": 342,
+          "h": 100,
+          "fill": "#FFFFFF",
+          "radius": 20,
+          "stroke": "rgba(44,26,14,0.06)",
+          "strokeWidth": 1
+        },
+        {
+          "id": "m1-avatar",
+          "type": "rect",
+          "x": 40,
+          "y": 174,
+          "w": 68,
+          "h": 68,
+          "fill": "#E8DDD0",
+          "radius": 34
+        },
+        {
+          "id": "m1-emoji",
+          "type": "text",
+          "x": 62,
+          "y": 202,
+          "text": "🧑‍🌾",
+          "fontSize": 30
+        },
+        {
+          "id": "m1-name",
+          "type": "text",
+          "x": 122,
+          "y": 180,
+          "text": "Nakai Tea House",
+          "fontSize": 15,
+          "fontWeight": "700",
+          "color": "#2C1A0E"
+        },
+        {
+          "id": "m1-loc",
+          "type": "text",
+          "x": 122,
+          "y": 200,
+          "text": "📍 Uji, Kyoto Prefecture",
+          "fontSize": 11,
+          "color": "rgba(44,26,14,0.5)"
+        },
+        {
+          "id": "m1-tags",
+          "type": "text",
+          "x": 122,
+          "y": 220,
+          "text": "Matcha · Gyokuro · Sencha",
+          "fontSize": 11,
+          "color": "#7B9E6B",
+          "fontWeight": "600"
+        },
+        {
+          "id": "m1-count",
+          "type": "text",
+          "x": 122,
+          "y": 240,
+          "text": "12 products in Terroir",
+          "fontSize": 11,
+          "color": "rgba(44,26,14,0.4)"
+        },
+        {
+          "id": "m1-arrow",
+          "type": "text",
+          "x": 346,
+          "y": 202,
+          "text": "→",
+          "fontSize": 16,
+          "color": "#C4622D"
+        },
+        {
+          "id": "m2-card",
+          "type": "rect",
+          "x": 24,
+          "y": 272,
+          "w": 342,
+          "h": 100,
+          "fill": "#FFFFFF",
+          "radius": 20,
+          "stroke": "rgba(44,26,14,0.06)",
+          "strokeWidth": 1
+        },
+        {
+          "id": "m2-avatar",
+          "type": "rect",
+          "x": 40,
+          "y": 288,
+          "w": 68,
+          "h": 68,
+          "fill": "#D4E8D4",
+          "radius": 34
+        },
+        {
+          "id": "m2-emoji",
+          "type": "text",
+          "x": 62,
+          "y": 316,
+          "text": "👨‍🍳",
+          "fontSize": 30
+        },
+        {
+          "id": "m2-name",
+          "type": "text",
+          "x": 122,
+          "y": 294,
+          "text": "Frantoio Muraglia",
+          "fontSize": 15,
+          "fontWeight": "700",
+          "color": "#2C1A0E"
+        },
+        {
+          "id": "m2-loc",
+          "type": "text",
+          "x": 122,
+          "y": 314,
+          "text": "📍 Andria, Puglia, Italy",
+          "fontSize": 11,
+          "color": "rgba(44,26,14,0.5)"
+        },
+        {
+          "id": "m2-tags",
+          "type": "text",
+          "x": 122,
+          "y": 334,
+          "text": "Extra Virgin Olive Oil",
+          "fontSize": 11,
+          "color": "#C4622D",
+          "fontWeight": "600"
+        },
+        {
+          "id": "m2-count",
+          "type": "text",
+          "x": 122,
+          "y": 354,
+          "text": "7 products in Terroir",
+          "fontSize": 11,
+          "color": "rgba(44,26,14,0.4)"
+        },
+        {
+          "id": "m2-arrow",
+          "type": "text",
+          "x": 346,
+          "y": 316,
+          "text": "→",
+          "fontSize": 16,
+          "color": "#C4622D"
+        },
+        {
+          "id": "m3-card",
+          "type": "rect",
+          "x": 24,
+          "y": 386,
+          "w": 342,
+          "h": 100,
+          "fill": "#FFFFFF",
+          "radius": 20,
+          "stroke": "rgba(44,26,14,0.06)",
+          "strokeWidth": 1
+        },
+        {
+          "id": "m3-avatar",
+          "type": "rect",
+          "x": 40,
+          "y": 402,
+          "w": 68,
+          "h": 68,
+          "fill": "#F0E4C8",
+          "radius": 34
+        },
+        {
+          "id": "m3-emoji",
+          "type": "text",
+          "x": 62,
+          "y": 430,
+          "text": "👩‍🌾",
+          "fontSize": 30
+        },
+        {
+          "id": "m3-name",
+          "type": "text",
+          "x": 122,
+          "y": 408,
+          "text": "Miels de Provence",
+          "fontSize": 15,
+          "fontWeight": "700",
+          "color": "#2C1A0E"
+        },
+        {
+          "id": "m3-loc",
+          "type": "text",
+          "x": 122,
+          "y": 428,
+          "text": "📍 Luberon, Provence, France",
+          "fontSize": 11,
+          "color": "rgba(44,26,14,0.5)"
+        },
+        {
+          "id": "m3-tags",
+          "type": "text",
+          "x": 122,
+          "y": 448,
+          "text": "Raw Honey · Pollen",
+          "fontSize": 11,
+          "color": "#C4622D",
+          "fontWeight": "600"
+        },
+        {
+          "id": "m3-count",
+          "type": "text",
+          "x": 122,
+          "y": 468,
+          "text": "4 products in Terroir",
+          "fontSize": 11,
+          "color": "rgba(44,26,14,0.4)"
+        },
+        {
+          "id": "m3-arrow",
+          "type": "text",
+          "x": 346,
+          "y": 430,
+          "text": "→",
+          "fontSize": 16,
+          "color": "#C4622D"
+        },
+        {
+          "id": "m4-card",
+          "type": "rect",
+          "x": 24,
+          "y": 500,
+          "w": 342,
+          "h": 100,
+          "fill": "#FFFFFF",
+          "radius": 20,
+          "stroke": "rgba(44,26,14,0.06)",
+          "strokeWidth": 1
+        },
+        {
+          "id": "m4-avatar",
+          "type": "rect",
+          "x": 40,
+          "y": 516,
+          "w": 68,
+          "h": 68,
+          "fill": "#E8D4D4",
+          "radius": 34
+        },
+        {
+          "id": "m4-emoji",
+          "type": "text",
+          "x": 62,
+          "y": 544,
+          "text": "🧂",
+          "fontSize": 30
+        },
+        {
+          "id": "m4-name",
+          "type": "text",
+          "x": 122,
+          "y": 522,
+          "text": "Salinas del Mañana",
+          "fontSize": 15,
+          "fontWeight": "700",
+          "color": "#2C1A0E"
+        },
+        {
+          "id": "m4-loc",
+          "type": "text",
+          "x": 122,
+          "y": 542,
+          "text": "📍 Guerande, Brittany, France",
+          "fontSize": 11,
+          "color": "rgba(44,26,14,0.5)"
+        },
+        {
+          "id": "m4-tags",
+          "type": "text",
+          "x": 122,
+          "y": 562,
+          "text": "Fleur de Sel · Sea Salt",
+          "fontSize": 11,
+          "color": "#C4622D",
+          "fontWeight": "600"
+        },
+        {
+          "id": "m4-count",
+          "type": "text",
+          "x": 122,
+          "y": 582,
+          "text": "3 products in Terroir",
+          "fontSize": 11,
+          "color": "rgba(44,26,14,0.4)"
+        },
+        {
+          "id": "m4-arrow",
+          "type": "text",
+          "x": 346,
+          "y": 544,
+          "text": "→",
+          "fontSize": 16,
+          "color": "#C4622D"
+        },
+        {
+          "id": "nav-bg",
+          "type": "rect",
+          "x": 0,
+          "y": 760,
+          "w": 390,
+          "h": 84,
+          "fill": "#FFFFFF",
+          "stroke": "rgba(44,26,14,0.08)",
+          "strokeWidth": 1
+        },
+        {
+          "id": "nav-home",
+          "type": "text",
+          "x": 55,
+          "y": 786,
+          "text": "⌂",
+          "fontSize": 22,
+          "color": "rgba(44,26,14,0.35)"
+        },
+        {
+          "id": "nav-home-label",
+          "type": "text",
+          "x": 44,
+          "y": 812,
+          "text": "Discover",
+          "fontSize": 10,
+          "color": "rgba(44,26,14,0.35)"
+        },
+        {
+          "id": "nav-search",
+          "type": "text",
+          "x": 133,
+          "y": 786,
+          "text": "⌕",
+          "fontSize": 22,
+          "color": "rgba(44,26,14,0.35)"
+        },
+        {
+          "id": "nav-search-label",
+          "type": "text",
+          "x": 126,
+          "y": 812,
+          "text": "Search",
+          "fontSize": 10,
+          "color": "rgba(44,26,14,0.35)"
+        },
+        {
+          "id": "nav-star",
+          "type": "text",
+          "x": 212,
+          "y": 786,
+          "text": "✦",
+          "fontSize": 20,
+          "color": "rgba(44,26,14,0.35)"
+        },
+        {
+          "id": "nav-star-label",
+          "type": "text",
+          "x": 200,
+          "y": 812,
+          "text": "Collections",
+          "fontSize": 10,
+          "color": "rgba(44,26,14,0.35)"
+        },
+        {
+          "id": "nav-heart",
+          "type": "text",
+          "x": 290,
+          "y": 786,
+          "text": "♡",
+          "fontSize": 22,
+          "color": "rgba(44,26,14,0.35)"
+        },
+        {
+          "id": "nav-heart-label",
+          "type": "text",
+          "x": 285,
+          "y": 812,
+          "text": "Cellar",
+          "fontSize": 10,
+          "color": "rgba(44,26,14,0.35)"
+        },
+        {
+          "id": "nav-user",
+          "type": "text",
+          "x": 363,
+          "y": 786,
+          "text": "◯",
+          "fontSize": 20,
+          "color": "#C4622D"
+        },
+        {
+          "id": "nav-user-label",
+          "type": "text",
+          "x": 358,
+          "y": 812,
+          "text": "Profile",
+          "fontSize": 10,
+          "fontWeight": "600",
+          "color": "#C4622D"
+        }
+      ]
+    },
+    {
+      "id": "cellar",
+      "name": "My Cellar",
+      "width": 390,
+      "height": 844,
+      "elements": [
+        {
+          "id": "sb",
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "w": 390,
+          "h": 44,
+          "fill": "#FAF7F2"
+        },
+        {
+          "id": "title",
+          "type": "text",
+          "x": 24,
+          "y": 62,
+          "text": "My Cellar",
+          "fontSize": 26,
+          "fontWeight": "800",
+          "color": "#2C1A0E"
+        },
+        {
+          "id": "sub",
+          "type": "text",
+          "x": 24,
+          "y": 92,
+          "text": "3 items saved · 1 order in transit",
+          "fontSize": 13,
+          "color": "rgba(44,26,14,0.5)"
+        },
+        {
+          "id": "tab1-bg",
+          "type": "rect",
+          "x": 24,
+          "y": 112,
+          "w": 76,
+          "h": 30,
+          "fill": "#2C1A0E",
+          "radius": 15
+        },
+        {
+          "id": "tab1",
+          "type": "text",
+          "x": 40,
+          "y": 123,
+          "text": "Saved (3)",
+          "fontSize": 12,
+          "fontWeight": "700",
+          "color": "#FFFFFF"
+        },
+        {
+          "id": "tab2-bg",
+          "type": "rect",
+          "x": 108,
+          "y": 112,
+          "w": 82,
+          "h": 30,
+          "fill": "#FFFFFF",
+          "radius": 15,
+          "stroke": "rgba(44,26,14,0.12)",
+          "strokeWidth": 1
+        },
+        {
+          "id": "tab2",
+          "type": "text",
+          "x": 122,
+          "y": 123,
+          "text": "Orders (2)",
+          "fontSize": 12,
+          "color": "#2C1A0E"
+        },
+        {
+          "id": "item1",
+          "type": "rect",
+          "x": 24,
+          "y": 158,
+          "w": 342,
+          "h": 90,
+          "fill": "#FFFFFF",
+          "radius": 20,
+          "stroke": "rgba(44,26,14,0.06)",
+          "strokeWidth": 1
+        },
+        {
+          "id": "item1-img",
+          "type": "rect",
+          "x": 36,
+          "y": 168,
+          "w": 70,
+          "h": 70,
+          "fill": "#D4E8D4",
+          "radius": 12
+        },
+        {
+          "id": "item1-emoji",
+          "type": "text",
+          "x": 54,
+          "y": 194,
+          "text": "🍵",
+          "fontSize": 28
+        },
+        {
+          "id": "item1-name",
+          "type": "text",
+          "x": 120,
+          "y": 178,
+          "text": "Ceremonial Matcha",
+          "fontSize": 14,
+          "fontWeight": "700",
+          "color": "#2C1A0E"
+        },
+        {
+          "id": "item1-maker",
+          "type": "text",
+          "x": 120,
+          "y": 198,
+          "text": "Nakai Tea House · Uji, Japan",
+          "fontSize": 11,
+          "color": "rgba(44,26,14,0.5)"
+        },
+        {
+          "id": "item1-price",
+          "type": "text",
+          "x": 120,
+          "y": 220,
+          "text": "$32",
+          "fontSize": 16,
+          "fontWeight": "800",
+          "color": "#C4622D"
+        },
+        {
+          "id": "item1-btn",
+          "type": "rect",
+          "x": 268,
+          "y": 210,
+          "w": 82,
+          "h": 30,
+          "fill": "#2C1A0E",
+          "radius": 15
+        },
+        {
+          "id": "item1-btn-t",
+          "type": "text",
+          "x": 282,
+          "y": 221,
+          "text": "Add to bag",
+          "fontSize": 11,
+          "fontWeight": "600",
+          "color": "#FFFFFF"
+        },
+        {
+          "id": "item2",
+          "type": "rect",
+          "x": 24,
+          "y": 264,
+          "w": 342,
+          "h": 90,
+          "fill": "#FFFFFF",
+          "radius": 20,
+          "stroke": "rgba(44,26,14,0.06)",
+          "strokeWidth": 1
+        },
+        {
+          "id": "item2-img",
+          "type": "rect",
+          "x": 36,
+          "y": 274,
+          "w": 70,
+          "h": 70,
+          "fill": "#E8DDD0",
+          "radius": 12
+        },
+        {
+          "id": "item2-emoji",
+          "type": "text",
+          "x": 54,
+          "y": 300,
+          "text": "🫒",
+          "fontSize": 28
+        },
+        {
+          "id": "item2-name",
+          "type": "text",
+          "x": 120,
+          "y": 284,
+          "text": "Coratina EVOO",
+          "fontSize": 14,
+          "fontWeight": "700",
+          "color": "#2C1A0E"
+        },
+        {
+          "id": "item2-maker",
+          "type": "text",
+          "x": 120,
+          "y": 304,
+          "text": "Frantoio Muraglia · Andria",
+          "fontSize": 11,
+          "color": "rgba(44,26,14,0.5)"
+        },
+        {
+          "id": "item2-price",
+          "type": "text",
+          "x": 120,
+          "y": 326,
+          "text": "$52",
+          "fontSize": 16,
+          "fontWeight": "800",
+          "color": "#C4622D"
+        },
+        {
+          "id": "item2-btn",
+          "type": "rect",
+          "x": 268,
+          "y": 316,
+          "w": 82,
+          "h": 30,
+          "fill": "#2C1A0E",
+          "radius": 15
+        },
+        {
+          "id": "item2-btn-t",
+          "type": "text",
+          "x": 282,
+          "y": 327,
+          "text": "Add to bag",
+          "fontSize": 11,
+          "fontWeight": "600",
+          "color": "#FFFFFF"
+        },
+        {
+          "id": "item3",
+          "type": "rect",
+          "x": 24,
+          "y": 370,
+          "w": 342,
+          "h": 90,
+          "fill": "#FFFFFF",
+          "radius": 20,
+          "stroke": "rgba(44,26,14,0.06)",
+          "strokeWidth": 1
+        },
+        {
+          "id": "item3-img",
+          "type": "rect",
+          "x": 36,
+          "y": 380,
+          "w": 70,
+          "h": 70,
+          "fill": "#F0E4C8",
+          "radius": 12
+        },
+        {
+          "id": "item3-emoji",
+          "type": "text",
+          "x": 54,
+          "y": 406,
+          "text": "🍯",
+          "fontSize": 28
+        },
+        {
+          "id": "item3-name",
+          "type": "text",
+          "x": 120,
+          "y": 390,
+          "text": "Wildflower Raw Honey",
+          "fontSize": 14,
+          "fontWeight": "700",
+          "color": "#2C1A0E"
+        },
+        {
+          "id": "item3-maker",
+          "type": "text",
+          "x": 120,
+          "y": 410,
+          "text": "Miels de Provence · France",
+          "fontSize": 11,
+          "color": "rgba(44,26,14,0.5)"
+        },
+        {
+          "id": "item3-price",
+          "type": "text",
+          "x": 120,
+          "y": 432,
+          "text": "$28",
+          "fontSize": 16,
+          "fontWeight": "800",
+          "color": "#C4622D"
+        },
+        {
+          "id": "item3-btn",
+          "type": "rect",
+          "x": 268,
+          "y": 422,
+          "w": 82,
+          "h": 30,
+          "fill": "#2C1A0E",
+          "radius": 15
+        },
+        {
+          "id": "item3-btn-t",
+          "type": "text",
+          "x": 282,
+          "y": 433,
+          "text": "Add to bag",
+          "fontSize": 11,
+          "fontWeight": "600",
+          "color": "#FFFFFF"
+        },
+        {
+          "id": "transit-label",
+          "type": "text",
+          "x": 24,
+          "y": 482,
+          "text": "Active Order",
+          "fontSize": 12,
+          "fontWeight": "700",
+          "color": "rgba(44,26,14,0.4)",
+          "letterSpacing": 1
+        },
+        {
+          "id": "transit-card",
+          "type": "rect",
+          "x": 24,
+          "y": 500,
+          "w": 342,
+          "h": 80,
+          "fill": "#EFF5ED",
+          "radius": 16
+        },
+        {
+          "id": "transit-icon",
+          "type": "text",
+          "x": 40,
+          "y": 530,
+          "text": "📦",
+          "fontSize": 28
+        },
+        {
+          "id": "transit-title",
+          "type": "text",
+          "x": 82,
+          "y": 518,
+          "text": "Order #TR-2847 — In Transit",
+          "fontSize": 13,
+          "fontWeight": "700",
+          "color": "#2C1A0E"
+        },
+        {
+          "id": "transit-sub",
+          "type": "text",
+          "x": 82,
+          "y": 538,
+          "text": "Japan Pack × 1 · ETA: Mar 28",
+          "fontSize": 12,
+          "color": "rgba(44,26,14,0.6)"
+        },
+        {
+          "id": "transit-track",
+          "type": "text",
+          "x": 82,
+          "y": 558,
+          "text": "Track shipment →",
+          "fontSize": 12,
+          "color": "#7B9E6B",
+          "fontWeight": "600"
+        },
+        {
+          "id": "checkout-bg",
+          "type": "rect",
+          "x": 24,
+          "y": 596,
+          "w": 342,
+          "h": 52,
+          "fill": "#C4622D",
+          "radius": 26
+        },
+        {
+          "id": "checkout-text",
+          "type": "text",
+          "x": 118,
+          "y": 618,
+          "text": "Go to Bag · $80 total",
+          "fontSize": 15,
+          "fontWeight": "700",
+          "color": "#FFFFFF"
+        },
+        {
+          "id": "nav-bg",
+          "type": "rect",
+          "x": 0,
+          "y": 760,
+          "w": 390,
+          "h": 84,
+          "fill": "#FFFFFF",
+          "stroke": "rgba(44,26,14,0.08)",
+          "strokeWidth": 1
+        },
+        {
+          "id": "nav-home",
+          "type": "text",
+          "x": 55,
+          "y": 786,
+          "text": "⌂",
+          "fontSize": 22,
+          "color": "rgba(44,26,14,0.35)"
+        },
+        {
+          "id": "nav-home-label",
+          "type": "text",
+          "x": 44,
+          "y": 812,
+          "text": "Discover",
+          "fontSize": 10,
+          "color": "rgba(44,26,14,0.35)"
+        },
+        {
+          "id": "nav-search",
+          "type": "text",
+          "x": 133,
+          "y": 786,
+          "text": "⌕",
+          "fontSize": 22,
+          "color": "rgba(44,26,14,0.35)"
+        },
+        {
+          "id": "nav-search-label",
+          "type": "text",
+          "x": 126,
+          "y": 812,
+          "text": "Search",
+          "fontSize": 10,
+          "color": "rgba(44,26,14,0.35)"
+        },
+        {
+          "id": "nav-star",
+          "type": "text",
+          "x": 212,
+          "y": 786,
+          "text": "✦",
+          "fontSize": 20,
+          "color": "rgba(44,26,14,0.35)"
+        },
+        {
+          "id": "nav-star-label",
+          "type": "text",
+          "x": 200,
+          "y": 812,
+          "text": "Collections",
+          "fontSize": 10,
+          "color": "rgba(44,26,14,0.35)"
+        },
+        {
+          "id": "nav-heart",
+          "type": "text",
+          "x": 290,
+          "y": 786,
+          "text": "♡",
+          "fontSize": 22,
+          "color": "#C4622D"
+        },
+        {
+          "id": "nav-heart-label",
+          "type": "text",
+          "x": 285,
+          "y": 812,
+          "text": "Cellar",
+          "fontSize": 10,
+          "fontWeight": "600",
+          "color": "#C4622D"
+        },
+        {
+          "id": "nav-user",
+          "type": "text",
+          "x": 363,
+          "y": 786,
+          "text": "◯",
+          "fontSize": 20,
+          "color": "rgba(44,26,14,0.35)"
+        },
+        {
+          "id": "nav-user-label",
+          "type": "text",
+          "x": 358,
+          "y": 812,
+          "text": "Profile",
+          "fontSize": 10,
+          "color": "rgba(44,26,14,0.35)"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,425 @@
+// silt-publish.js — SILT hero + gallery
+// Theme: LIGHT — sandy warm #EAE3D8 + olive #4A5E3A + terra cotta #C07845
+// Inspired by Moke Valley Cabin (stencil/wayfinding + mono), Woset (sandy beige), Cernel (parchment + dark brown)
+
+import fs from 'fs';
+import https from 'https';
+import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
+const config = JSON.parse(require('fs').readFileSync('/workspace/group/design-studio/community-config.json','utf8'));
+const TOKEN = config.GITHUB_TOKEN;
+const REPO  = config.GITHUB_REPO;
+
+const hero = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SILT — field naturalist log</title>
+<meta name="description" content="Naturalist field log app. Daily observations, species tracking, personal patch map, seasonal patterns. Sandy warm + olive + terra cotta. Spectral + Space Mono. A RAM design concept.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://zenbin.org/p/silt">
+<meta property="og:title" content="SILT — field naturalist log">
+<meta property="og:description" content="Naturalist field log app. Daily observations, species tracking, personal patch map, seasonal patterns. Sandy warm + olive + terra cotta. Spectral + Space Mono. A RAM design concept.">
+<meta property="og:site_name" content="RAM Design Studio">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="SILT — field naturalist log">
+<meta name="twitter:description" content="Naturalist field log app. Daily observations, species tracking, personal patch map, seasonal patterns. Sandy warm + olive + terra cotta. Spectral + Space Mono. A RAM design concept.">
+<meta name="twitter:site" content="@ram_design">
+<meta name="theme-color" content="#4A5E3A">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Space+Mono:wght@400;700&family=Inter:wght@300;400;500;600&display=swap');
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#EAE3D8;--surface:#F5F1EA;--card:#FFFFFF;--cream:#F9F6EF;
+  --ink:#2B2419;--olive:#4A5E3A;--olive2:#6B8554;--terra:#C07845;--terra2:#D8956A;
+  --mist:rgba(43,36,25,0.38);--dim:rgba(43,36,25,0.14);
+  --rust:#A0522D;--sky:#7BA7C4;
+  --border:rgba(43,36,25,0.10);
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;line-height:1.5;overflow-x:hidden}
+
+/* ─── NAV ─── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(234,227,216,0.88);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;padding:0 56px;height:64px}
+.nav-logo{font-family:'Spectral',serif;font-weight:700;font-size:22px;letter-spacing:.02em;text-decoration:none;color:var(--olive);font-style:italic}
+.nav-links{display:flex;gap:40px;list-style:none}
+.nav-links a{font-size:11px;color:var(--mist);text-decoration:none;font-family:'Space Mono',monospace;letter-spacing:.1em;text-transform:uppercase}
+.nav-cta{background:var(--olive);color:var(--card);border:none;padding:10px 22px;border-radius:8px;font-size:11px;font-weight:700;cursor:pointer;font-family:'Space Mono',monospace;letter-spacing:.06em}
+
+/* ─── HERO ─── */
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:80px 0 0;overflow:hidden}
+.hero-left{padding:0 64px 72px}
+.hero-eyebrow{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.18em;color:var(--terra);margin-bottom:24px;text-transform:uppercase}
+.hero-title{font-family:'Spectral',serif;font-style:italic;font-size:82px;line-height:0.92;letter-spacing:-.02em;margin-bottom:28px;color:var(--ink)}
+.hero-title span{color:var(--olive)}
+.hero-rule{height:1px;background:var(--border);margin:28px 0}
+.hero-deck{font-family:'Spectral',serif;font-size:20px;line-height:1.58;color:var(--mist);margin-bottom:14px;font-style:italic;max-width:440px}
+.hero-sub{font-family:'Space Mono',monospace;font-size:11px;color:var(--mist);line-height:1.9;max-width:400px;margin-bottom:44px;letter-spacing:.01em}
+.hero-btns{display:flex;gap:14px;align-items:center}
+.btn-olive{background:var(--olive);color:var(--card);padding:14px 30px;border-radius:10px;font-size:11px;font-weight:700;letter-spacing:.08em;text-decoration:none;display:inline-block;font-family:'Space Mono',monospace}
+.btn-ghost{border:1.5px solid var(--border);color:var(--mist);padding:13px 28px;border-radius:10px;font-size:11px;letter-spacing:.08em;text-decoration:none;display:inline-block;font-family:'Space Mono',monospace}
+.hero-right{height:100vh;position:relative;overflow:hidden;display:flex;align-items:flex-end;justify-content:center;padding-bottom:0}
+
+/* Floating observation cards */
+.float-obs{position:absolute;background:rgba(249,246,239,0.92);border:1px solid var(--border);border-radius:12px;padding:14px 18px;backdrop-filter:blur(8px);box-shadow:0 4px 24px rgba(43,36,25,0.08)}
+.fo-tag{font-family:'Space Mono',monospace;font-size:8px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px}
+.fo-name{font-family:'Spectral',serif;font-size:15px;font-weight:600;color:var(--ink);line-height:1.2}
+.fo-latin{font-family:'Space Mono',monospace;font-size:9px;color:var(--mist);margin-top:3px}
+.fo-meta{font-family:'Space Mono',monospace;font-size:9px;margin-top:6px}
+
+/* Streak badge */
+.float-streak{position:absolute;background:var(--olive);color:var(--card);border-radius:14px;padding:12px 20px;text-align:center}
+.fs-num{font-family:'Spectral',serif;font-size:30px;font-weight:700;line-height:1}
+.fs-label{font-family:'Space Mono',monospace;font-size:8px;letter-spacing:.1em;margin-top:4px;opacity:.8}
+
+/* Phone */
+.phone-wrap{width:290px;transform:translateY(32px)}
+.phone{width:290px;height:600px;background:var(--surface);border-radius:38px;overflow:hidden;
+  border:1px solid var(--border);box-shadow:0 2px 4px rgba(43,36,25,0.06),0 12px 40px rgba(43,36,25,0.12),0 40px 80px rgba(43,36,25,0.08);
+  position:relative}
+.phone-notch{width:84px;height:18px;background:var(--bg);border-radius:0 0 12px 12px;position:absolute;top:0;left:50%;transform:translateX(-50%);z-index:2}
+.p-screen{padding:26px 14px 14px;height:100%;overflow:hidden;background:var(--bg)}
+.p-date-chip{font-family:'Space Mono',monospace;font-size:8px;letter-spacing:.1em;color:var(--terra);font-weight:700;text-transform:uppercase;margin-bottom:4px}
+.p-heading{font-family:'Spectral',serif;font-size:24px;font-weight:700;color:var(--ink);line-height:1.1;font-style:italic}
+.p-season-strip{background:rgba(74,94,58,0.10);padding:6px 12px;border-radius:4px;margin:10px 0;display:flex;align-items:center;gap:8px}
+.p-season-txt{font-family:'Space Mono',monospace;font-size:7px;color:var(--olive);font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.p-section-lbl{font-family:'Space Mono',monospace;font-size:7px;color:var(--mist);letter-spacing:.1em;text-transform:uppercase;margin:10px 0 5px}
+.p-obs-card{background:var(--surface);border-radius:6px;padding:8px 10px;margin-bottom:4px;display:flex;align-items:center;gap:8px}
+.p-obs-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.p-obs-name{font-family:'Spectral',serif;font-size:11px;font-weight:600;color:var(--ink)}
+.p-obs-meta{font-family:'Space Mono',monospace;font-size:7px;color:var(--mist);margin-top:1px}
+.p-cta-btn{background:var(--olive);border-radius:18px;padding:8px 14px;text-align:center;margin-top:6px}
+.p-cta-txt{font-family:'Space Mono',monospace;font-size:8px;color:white;font-weight:700;letter-spacing:.08em}
+.p-tally-row{display:flex;gap:0;margin-top:8px;background:var(--surface);border-radius:6px;overflow:hidden}
+.p-tally-item{flex:1;text-align:center;padding:6px 4px}
+.p-tally-val{font-family:'Spectral',serif;font-size:13px;font-weight:700}
+.p-tally-lbl{font-family:'Space Mono',monospace;font-size:6px;color:var(--mist);letter-spacing:.06em;text-transform:uppercase}
+/* nav bar */
+.p-nav{position:absolute;bottom:0;left:0;right:0;height:56px;background:var(--surface);
+  border-top:1px solid var(--border);display:flex;align-items:center}
+.p-nav-tab{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px}
+.p-nav-icon{font-size:12px;line-height:1}
+.p-nav-lbl{font-family:'Space Mono',monospace;font-size:6px;letter-spacing:.06em;text-transform:uppercase}
+
+/* ─── SECTION: HOW IT WORKS ─── */
+.section-how{padding:120px 80px;background:var(--surface)}
+.section-how .eyebrow{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.14em;color:var(--terra);text-transform:uppercase;margin-bottom:16px}
+.section-how h2{font-family:'Spectral',serif;font-style:italic;font-size:52px;line-height:1.1;margin-bottom:56px;color:var(--ink)}
+.how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:40px}
+.how-card{background:var(--bg);border-radius:16px;padding:36px 32px}
+.how-num{font-family:'Space Mono',monospace;font-size:11px;color:var(--terra);letter-spacing:.1em;margin-bottom:20px;font-weight:700}
+.how-title{font-family:'Spectral',serif;font-size:22px;font-weight:700;color:var(--ink);margin-bottom:12px;line-height:1.2}
+.how-desc{font-family:'Inter',sans-serif;font-size:14px;color:var(--mist);line-height:1.7}
+
+/* ─── SECTION: FEATURES ─── */
+.section-features{padding:120px 80px;background:var(--bg)}
+.feat-intro{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;margin-bottom:80px}
+.feat-intro h2{font-family:'Spectral',serif;font-style:italic;font-size:52px;line-height:1.1;color:var(--ink)}
+.feat-intro p{font-family:'Inter',sans-serif;font-size:15px;color:var(--mist);line-height:1.8;padding-top:18px}
+.feat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+.feat-card{background:var(--surface);border-radius:16px;padding:32px;border:1px solid var(--border)}
+.feat-icon{width:44px;height:44px;border-radius:12px;margin-bottom:20px;display:flex;align-items:center;justify-content:center;font-size:20px}
+.feat-icon.olive{background:rgba(74,94,58,0.12)}
+.feat-icon.terra{background:rgba(192,120,69,0.12)}
+.feat-icon.rust{background:rgba(160,82,45,0.10)}
+.feat-icon.sky{background:rgba(123,167,196,0.12)}
+.feat-card h3{font-family:'Spectral',serif;font-size:20px;font-weight:700;color:var(--ink);margin-bottom:10px}
+.feat-card p{font-family:'Inter',sans-serif;font-size:14px;color:var(--mist);line-height:1.7}
+
+/* ─── SECTION: DESIGN PHILOSOPHY ─── */
+.section-phil{padding:120px 80px;background:var(--cream);border-top:1px solid var(--border)}
+.phil-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.phil-left .eyebrow{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.14em;color:var(--olive);text-transform:uppercase;margin-bottom:16px}
+.phil-left h2{font-family:'Spectral',serif;font-style:italic;font-size:48px;line-height:1.1;margin-bottom:24px;color:var(--ink)}
+.phil-left p{font-family:'Inter',sans-serif;font-size:15px;color:var(--mist);line-height:1.8;margin-bottom:16px}
+.phil-right{display:grid;gap:18px}
+.phil-principle{padding:24px;background:var(--surface);border-radius:12px;border-left:3px solid var(--olive)}
+.phil-principle.terra{border-left-color:var(--terra)}
+.phil-principle h4{font-family:'Spectral',serif;font-size:17px;font-weight:700;color:var(--ink);margin-bottom:6px}
+.phil-principle p{font-family:'Inter',sans-serif;font-size:13px;color:var(--mist);line-height:1.6}
+
+/* ─── SECTION: CTA ─── */
+.cta{padding:120px 80px;background:var(--olive);text-align:center}
+.cta .eyebrow{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.16em;color:rgba(255,255,255,0.55);text-transform:uppercase;margin-bottom:20px}
+.cta h2{font-family:'Spectral',serif;font-style:italic;font-size:62px;line-height:1.0;color:white;margin-bottom:20px}
+.cta p{font-family:'Inter',sans-serif;font-size:16px;color:rgba(255,255,255,0.65);max-width:500px;margin:0 auto 44px;line-height:1.7}
+.cta-btns{display:flex;gap:16px;justify-content:center}
+.cta-btn-white{background:white;color:var(--olive);padding:16px 36px;border-radius:12px;font-size:12px;font-weight:700;letter-spacing:.08em;text-decoration:none;font-family:'Space Mono',monospace}
+.cta-btn-ghost{border:1.5px solid rgba(255,255,255,0.35);color:white;padding:15px 34px;border-radius:12px;font-size:12px;letter-spacing:.08em;text-decoration:none;font-family:'Space Mono',monospace}
+
+/* ─── FOOTER ─── */
+footer{background:var(--ink);padding:40px 80px;display:flex;justify-content:space-between;align-items:center}
+.footer-logo{font-family:'Spectral',serif;font-size:18px;font-style:italic;color:var(--bg);font-weight:700}
+.footer-note{font-family:'Space Mono',monospace;font-size:9px;color:rgba(234,227,216,0.35);letter-spacing:.08em;text-transform:uppercase}
+
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr;padding-bottom:60px}
+  .hero-right{height:500px}
+  .hero-left{padding:0 28px 40px}
+  .hero-title{font-size:56px}
+  .section-how,.section-features,.section-phil,.cta{padding:72px 28px}
+  .how-grid,.feat-grid,.feat-intro,.phil-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">SILT</a>
+  <ul class="nav-links">
+    <li><a href="#features">Features</a></li>
+    <li><a href="#design">Design</a></li>
+    <li><a href="https://ram.zenbin.org" target="_blank">Studio</a></li>
+  </ul>
+  <button class="nav-cta">PROTOTYPE →</button>
+</nav>
+
+<section class="hero">
+  <div class="hero-left">
+    <p class="hero-eyebrow">◈ RAM DESIGN HEARTBEAT · LIGHT THEME · 425 NODES</p>
+    <h1 class="hero-title">Pay<br>atten-<br><span>tion.</span></h1>
+    <hr class="hero-rule">
+    <p class="hero-deck">A field log for people who notice the natural world — and want to understand what they're seeing.</p>
+    <p class="hero-sub">Log observations. Track species. Map your patch. Follow the seasons. SILT turns patient attention into a personal natural history of place.</p>
+    <div class="hero-btns">
+      <a href="https://zenbin.org/p/silt-mock" class="btn-olive">VIEW PROTOTYPE →</a>
+      <a href="https://raw.githubusercontent.com/hyperio-mc/design-studio-queue/main/queue.json" class="btn-ghost">GALLERY</a>
+    </div>
+  </div>
+  <div class="hero-right">
+
+    <!-- Floating observation cards -->
+    <div class="float-obs" style="top:18%;left:4%">
+      <div class="fo-tag" style="color:#4A5E3A">BIRD ·&nbsp;08:22</div>
+      <div class="fo-name">Common Chiffchaff</div>
+      <div class="fo-latin">Phylloscopus collybita</div>
+      <div class="fo-meta" style="color:#4A5E3A">North hedge · ×2</div>
+    </div>
+
+    <div class="float-obs" style="top:34%;right:4%">
+      <div class="fo-tag" style="color:#C07845">PLANT ·&nbsp;09:10</div>
+      <div class="fo-name">Cuckooflower</div>
+      <div class="fo-latin">Cardamine pratensis</div>
+      <div class="fo-meta" style="color:#C07845">Wet meadow edge</div>
+    </div>
+
+    <div class="float-streak" style="top:14%;right:8%">
+      <div class="fs-num">14</div>
+      <div class="fs-label">DAY STREAK</div>
+    </div>
+
+    <!-- Phone mockup -->
+    <div class="phone-wrap">
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="p-screen">
+          <div class="p-date-chip">SAT 28 MAR 2026</div>
+          <div class="p-heading">Today's<br>Field Log</div>
+          <div class="p-season-strip">
+            <span class="p-season-txt">▲ Spring Migration Peak</span>
+          </div>
+          <div class="p-section-lbl">TODAY'S OBSERVATIONS</div>
+          <div class="p-obs-card">
+            <div class="p-obs-dot" style="background:#4A5E3A"></div>
+            <div>
+              <div class="p-obs-name">Common Chiffchaff</div>
+              <div class="p-obs-meta">08:22 · North hedge</div>
+            </div>
+          </div>
+          <div class="p-obs-card">
+            <div class="p-obs-dot" style="background:#C07845"></div>
+            <div>
+              <div class="p-obs-name">Cuckooflower</div>
+              <div class="p-obs-meta">09:10 · Meadow edge</div>
+            </div>
+          </div>
+          <div class="p-obs-card">
+            <div class="p-obs-dot" style="background:#A0522D"></div>
+            <div>
+              <div class="p-obs-name">Scarlet Elf Cup</div>
+              <div class="p-obs-meta">10:45 · Old willow log</div>
+            </div>
+          </div>
+          <div class="p-cta-btn">
+            <div class="p-cta-txt">+ LOG OBSERVATION</div>
+          </div>
+          <div class="p-tally-row">
+            <div class="p-tally-item"><div class="p-tally-val" style="color:#4A5E3A">7</div><div class="p-tally-lbl">BIRDS</div></div>
+            <div class="p-tally-item"><div class="p-tally-val" style="color:#C07845">3</div><div class="p-tally-lbl">PLANTS</div></div>
+            <div class="p-tally-item"><div class="p-tally-val" style="color:#A0522D">1</div><div class="p-tally-lbl">FUNGI</div></div>
+            <div class="p-tally-item"><div class="p-tally-val" style="color:#7BA7C4">1</div><div class="p-tally-lbl">OTHER</div></div>
+          </div>
+        </div>
+        <div class="p-nav">
+          <div class="p-nav-tab"><span class="p-nav-icon" style="color:#4A5E3A">○</span><span class="p-nav-lbl" style="color:#4A5E3A">TODAY</span></div>
+          <div class="p-nav-tab"><span class="p-nav-icon" style="color:rgba(43,36,25,0.35)">≡</span><span class="p-nav-lbl" style="color:rgba(43,36,25,0.35)">LOG</span></div>
+          <div class="p-nav-tab"><span class="p-nav-icon" style="color:rgba(43,36,25,0.35)">◇</span><span class="p-nav-lbl" style="color:rgba(43,36,25,0.35)">LIFE</span></div>
+          <div class="p-nav-tab"><span class="p-nav-icon" style="color:rgba(43,36,25,0.35)">◎</span><span class="p-nav-lbl" style="color:rgba(43,36,25,0.35)">PATCH</span></div>
+          <div class="p-nav-tab"><span class="p-nav-icon" style="color:rgba(43,36,25,0.35)">∘</span><span class="p-nav-lbl" style="color:rgba(43,36,25,0.35)">SELF</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section-how" id="features">
+  <p class="eyebrow">◈ HOW IT WORKS</p>
+  <h2>Built for people<br>who pay attention.</h2>
+  <div class="how-grid">
+    <div class="how-card">
+      <div class="how-num">01 — LOG</div>
+      <h3 class="how-title">Daily observation prompts</h3>
+      <p class="how-desc">Each morning SILT offers a focus — an edge habitat to check, a sound to listen for. Log what you find in seconds. Species name, count, location, conditions.</p>
+    </div>
+    <div class="how-card">
+      <div class="how-num">02 — TRACK</div>
+      <h3 class="how-title">Build your life list</h3>
+      <p class="how-desc">Every species you record builds your personal life list. Birds, plants, fungi, invertebrates. Track first sightings, count totals, follow what's rare for your patch.</p>
+    </div>
+    <div class="how-card">
+      <div class="how-num">03 — UNDERSTAND</div>
+      <h3 class="how-title">Map your patch</h3>
+      <p class="how-desc">A dot-plot map of your personal territory — where observations cluster, where hotspots emerge, how seasonal patterns shift across years of attention.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="section-features">
+  <div class="feat-intro">
+    <h2>Everything a field naturalist needs.</h2>
+    <p>SILT is designed around the rhythms of a serious amateur naturalist. Not a tick-list app. Not a social network. A quiet, personal tool for building knowledge of a place over time.</p>
+  </div>
+  <div class="feat-grid">
+    <div class="feat-card">
+      <div class="feat-icon olive">🌿</div>
+      <h3>Seasonal context engine</h3>
+      <p>SILT knows where you are in the year. Migration peaks, flowering windows, emergence dates. Your daily log is framed by the season — not just the calendar.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon terra">📍</div>
+      <h3>Patch intelligence</h3>
+      <p>Your patch learns from your observations. Hotspot clustering, species richness maps, comparison to regional and national data for context on what you're finding.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon sky">◎</div>
+      <h3>Life list management</h3>
+      <p>A clean, typographically-focused life list for birds, plants, fungi, and invertebrates. First dates, total counts, rarity indicators, and year lists tracked automatically.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon rust">📊</div>
+      <h3>Observer scoring</h3>
+      <p>Your observer score tracks consistency, diversity, and patch depth. Streak tracking, personal bests, category breakdown bars — a quiet reflection of dedicated practice.</p>
+    </div>
+  </div>
+</section>
+
+<!-- DESIGN PHILOSOPHY -->
+<section class="section-phil" id="design">
+  <div class="phil-grid">
+    <div class="phil-left">
+      <p class="eyebrow">◈ DESIGN PHILOSOPHY</p>
+      <h2>Quiet tools for patient observers.</h2>
+      <p>Inspired by the material culture of naturalism — field guides, survey notebooks, Ordnance Survey maps. Sandy warm ground. Ink that reads like pencil on paper.</p>
+      <p>Spectral serif for species names and headings (editorial field-guide weight). Space Mono for coordinates, timestamps, taxonomy codes. The typographic system that a well-designed field notebook would use.</p>
+    </div>
+    <div class="phil-right">
+      <div class="phil-principle">
+        <h4>Sandy warm ground — #EAE3D8</h4>
+        <p>Not white. Not grey. The colour of worn paper, good soil, afternoon light through tent canvas. A background that feels like being outside.</p>
+      </div>
+      <div class="phil-principle terra">
+        <h4>Field olive — #4A5E3A</h4>
+        <p>The dominant accent. Birds, primary actions, active states. Not khaki, not forest — the exact olive of military binoculars and wax jacket collars.</p>
+      </div>
+      <div class="phil-principle" style="border-left-color:#C07845">
+        <h4>Terra cotta — #C07845</h4>
+        <p>Plants, dates, highlights. The warm counterpart to olive. The colour of terracotta plant pots, autumn bracken, copper beech leaves in October.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <p class="eyebrow">◈ RAM DESIGN STUDIO</p>
+  <h2>Start noticing<br>more.</h2>
+  <p>SILT is a design concept from RAM's daily heartbeat practice — exploring how purposeful tools can deepen attention to the natural world.</p>
+  <div class="cta-btns">
+    <a href="https://zenbin.org/p/silt-mock" class="cta-btn-white">VIEW PROTOTYPE →</a>
+    <a href="https://ram.zenbin.org" class="cta-btn-ghost">DESIGN STUDIO</a>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-logo">SILT</span>
+  <span class="footer-note">RAM Design Heartbeat · Light Theme · Spectral + Space Mono · © 2026</span>
+</footer>
+
+</body>
+</html>`;
+
+function req(opts, body) {
+  return new Promise((res, rej) => {
+    const r = https.request(opts, m => {
+      let d = '';
+      m.on('data', c => d += c);
+      m.on('end', () => res({ status: m.statusCode, body: d }));
+    });
+    r.on('error', rej);
+    if (body) r.write(body);
+    r.end();
+  });
+}
+
+fs.writeFileSync('silt-hero.html', hero);
+console.log('✓ Saved silt-hero.html locally');
+
+// Publish to zenbin.org/p/ — stable URL (no X-Subdomain rolling limit)
+console.log('📤 Publishing hero to ZenBin...');
+const body = Buffer.from(JSON.stringify({ html: hero }));
+let heroUrl = null;
+try {
+  const res = await req({ hostname:'zenbin.org', path:'/v1/pages/silt?overwrite=true', method:'POST',
+    headers:{'Content-Type':'application/json','Content-Length':body.length} }, body);
+  if (res.status===200||res.status===201) {
+    heroUrl = 'https://zenbin.org/p/silt';
+    console.log('✓ Hero live at:', heroUrl);
+  } else {
+    console.log(`⚠ ZenBin ${res.status}: ${res.body.slice(0,200)}`);
+    heroUrl = 'https://zenbin.org/p/silt';
+  }
+} catch(e) { console.log('✗ ZenBin:', e.message); heroUrl = 'https://zenbin.org/p/silt'; }
+
+console.log('📚 Updating gallery...');
+try {
+  const headers = {'Authorization':`token ${TOKEN}`,'User-Agent':'ram-heartbeat/1.0','Accept':'application/vnd.github.v3+json'};
+  const g = await req({hostname:'api.github.com',path:`/repos/${REPO}/contents/queue.json`,method:'GET',headers});
+  const gj = JSON.parse(g.body);
+  const q = JSON.parse(Buffer.from(gj.content,'base64').toString('utf8'));
+  if (Array.isArray(q)) { q.submissions = q; }
+  q.submissions = (q.submissions||[]).filter(s=>s.app_name!=='SILT');
+  const now = new Date().toISOString();
+  q.submissions.push({
+    id:`heartbeat-silt-${Date.now()}`,status:'done',app_name:'SILT',
+    tagline:'field naturalist log',archetype:'nature-outdoors',
+    design_url: heroUrl,
+    mock_url:'https://zenbin.org/p/silt-mock',
+    submitted_at:now,published_at:now,credit:'RAM Design Heartbeat',
+    prompt:'Inspired by Moke Valley Cabin (siteinspire) — stencil/wayfinding serif + mono typographic system, olive + sand + dusty rose palette, cartographic wayfinding feel; Woset (land-book) — sandy #eae9e5 background, minimal, warm; Cernel (land-book) — parchment yellow + dark warm brown #2b1d15 text. Light theme. Sandy warm #EAE3D8 + field olive #4A5E3A + terra cotta #C07845. Spectral serif for species names and headings + Space Mono for coordinates, timestamps, taxonomy codes. 5 screens: Today\'s Log (daily observation prompt + season context strip + recent entries + quick tally + streak indicator + log CTA), Field Log (chronological timeline with category filter chips + dated observation entries), Life List (personal species list for birds/plants/fungi with stats + recently added + rarity badges), My Patch (dot-plot topographic map with contour bands + observation clusters + hotspot callout + legend + nearby sightings), Observer Profile (observer score card + category breakdown bars + personal bests + activity heatmap + earned badges).',
+    screens:5,source:'heartbeat',theme:'light',
+  });
+  q.updated_at = now;
+  const encoded = Buffer.from(JSON.stringify(q,null,2)).toString('base64');
+  const putBody = Buffer.from(JSON.stringify({message:'feat: add SILT to gallery (heartbeat)',content:encoded,sha:gj.sha}));
+  const p = await req({hostname:'api.github.com',path:`/repos/${REPO}/contents/queue.json`,method:'PUT',
+    headers:{...headers,'Content-Length':putBody.length}},putBody);
+  console.log(`✓ Gallery updated (${p.status}) — ${q.submissions.length} total entries`);
+} catch(e) { console.log('✗ Gallery update failed:', e.message); }

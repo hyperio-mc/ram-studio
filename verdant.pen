@@ -1,0 +1,3426 @@
+{
+  "version": "2.8",
+  "meta": {
+    "name": "VERDANT — Biophilic Growth Garden",
+    "description": "A personal wellness & growth tracker inspired by editorial design and seasonal storytelling. Light theme with warm botanical palette.",
+    "author": "RAM Design Heartbeat",
+    "created": "2026-03-22T14:05:33.125Z",
+    "tags": [
+      "wellness",
+      "biophilic",
+      "editorial",
+      "light-theme",
+      "growth",
+      "habits"
+    ]
+  },
+  "theme": {
+    "mode": "light",
+    "colors": {
+      "background": "#F7F4EF",
+      "surface": "#FFFFFF",
+      "text": "#1C1A16",
+      "accent": "#3D6B4F",
+      "accent2": "#C4692A",
+      "muted": "rgba(28,26,22,0.45)",
+      "border": "rgba(28,26,22,0.10)"
+    },
+    "typography": {
+      "fontFamily": "\"Inter\", \"system-ui\", sans-serif",
+      "serifFamily": "\"Lora\", \"Georgia\", serif",
+      "scale": {
+        "xs": 10,
+        "sm": 12,
+        "base": 14,
+        "md": 16,
+        "lg": 20,
+        "xl": 24,
+        "xxl": 32
+      }
+    }
+  },
+  "screens": [
+    {
+      "id": "screen1",
+      "label": "Garden",
+      "root": {
+        "type": "view",
+        "style": {
+          "fontFamily": "\"Inter\", \"system-ui\", sans-serif",
+          "backgroundColor": "#F7F4EF",
+          "color": "#1C1A16",
+          "minHeight": "100%",
+          "fontSize": 14,
+          "lineHeight": 1.6,
+          "padding": 20,
+          "gap": 20
+        },
+        "children": [
+          {
+            "type": "view",
+            "style": {
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+              "alignItems": "flex-start",
+              "paddingTop": 8
+            },
+            "children": [
+              {
+                "type": "view",
+                "style": {
+                  "gap": 2
+                },
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "Sunday, 22 March",
+                    "style": {
+                      "fontSize": 12,
+                      "color": "rgba(28,26,22,0.45)",
+                      "fontWeight": "500"
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "value": "Your Garden",
+                    "style": {
+                      "fontSize": 24,
+                      "fontWeight": "800",
+                      "color": "#1C1A16",
+                      "fontFamily": "\"Lora\", \"Georgia\", serif",
+                      "letterSpacing": -0.5
+                    }
+                  },
+                  {
+                    "type": "view",
+                    "style": {
+                      "backgroundColor": "#E8F0EA",
+                      "borderRadius": 20,
+                      "paddingHorizontal": 10,
+                      "paddingVertical": 4,
+                      "alignSelf": "flex-start"
+                    },
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "🌱 Week 12 of Growth",
+                        "style": {
+                          "color": "#3D6B4F",
+                          "fontSize": 11,
+                          "fontWeight": "600",
+                          "letterSpacing": 0.5
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "view",
+                "style": {
+                  "width": 42,
+                  "height": 42,
+                  "borderRadius": 21,
+                  "backgroundColor": "#C4692A",
+                  "alignItems": "center",
+                  "justifyContent": "center"
+                },
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "AK",
+                    "style": {
+                      "fontSize": 14,
+                      "fontWeight": "800",
+                      "color": "#FFFFFF"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "view",
+            "style": {
+              "backgroundColor": "#3D6B4F",
+              "borderRadius": 20,
+              "padding": 24,
+              "gap": 10,
+              "overflow": "hidden",
+              "position": "relative"
+            },
+            "children": [
+              {
+                "type": "text",
+                "value": "SPRING EQUINOX",
+                "style": {
+                  "fontSize": 10,
+                  "fontWeight": "700",
+                  "color": "rgba(255,255,255,0.55)",
+                  "letterSpacing": 2
+                }
+              },
+              {
+                "type": "text",
+                "value": "A season of new roots.",
+                "style": {
+                  "fontSize": 21,
+                  "fontWeight": "700",
+                  "color": "#FFFFFF",
+                  "fontFamily": "\"Lora\", \"Georgia\", serif",
+                  "lineHeight": 1.3
+                }
+              },
+              {
+                "type": "text",
+                "value": "Your consistency this week has been remarkable. 6 of 7 practices completed.",
+                "style": {
+                  "fontSize": 13,
+                  "color": "rgba(255,255,255,0.75)",
+                  "lineHeight": 1.5
+                }
+              },
+              {
+                "type": "view",
+                "style": {
+                  "flexDirection": "row",
+                  "gap": 8,
+                  "marginTop": 4
+                },
+                "children": [
+                  {
+                    "type": "view",
+                    "style": {
+                      "backgroundColor": "rgba(255,255,255,0.18)",
+                      "borderRadius": 10,
+                      "paddingHorizontal": 12,
+                      "paddingVertical": 6
+                    },
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Today's Reflection →",
+                        "style": {
+                          "fontSize": 12,
+                          "fontWeight": "700",
+                          "color": "#FFFFFF"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "view",
+            "style": {
+              "flexDirection": "row",
+              "gap": 10
+            },
+            "children": [
+              {
+                "type": "view",
+                "style": {
+                  "backgroundColor": "#E8F0EA",
+                  "borderRadius": 14,
+                  "padding": 16,
+                  "flex": 1,
+                  "gap": 4
+                },
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "24",
+                    "style": {
+                      "fontSize": 28,
+                      "fontWeight": "800",
+                      "color": "#3D6B4F",
+                      "letterSpacing": -1,
+                      "fontFamily": "\"Lora\", \"Georgia\", serif"
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "value": "Day Streak",
+                    "style": {
+                      "fontSize": 12,
+                      "fontWeight": "600",
+                      "color": "#1C1A16"
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "value": "personal best",
+                    "style": {
+                      "fontSize": 11,
+                      "color": "rgba(28,26,22,0.45)"
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "view",
+                "style": {
+                  "backgroundColor": "#F5E6DB",
+                  "borderRadius": 14,
+                  "padding": 16,
+                  "flex": 1,
+                  "gap": 4
+                },
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "6",
+                    "style": {
+                      "fontSize": 28,
+                      "fontWeight": "800",
+                      "color": "#C4692A",
+                      "letterSpacing": -1,
+                      "fontFamily": "\"Lora\", \"Georgia\", serif"
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "value": "Practices",
+                    "style": {
+                      "fontSize": 12,
+                      "fontWeight": "600",
+                      "color": "#1C1A16"
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "value": "active rituals",
+                    "style": {
+                      "fontSize": 11,
+                      "color": "rgba(28,26,22,0.45)"
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "view",
+                "style": {
+                  "backgroundColor": "#FEF3DC",
+                  "borderRadius": 14,
+                  "padding": 16,
+                  "flex": 1,
+                  "gap": 4
+                },
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "84%",
+                    "style": {
+                      "fontSize": 28,
+                      "fontWeight": "800",
+                      "color": "#C9A84C",
+                      "letterSpacing": -1,
+                      "fontFamily": "\"Lora\", \"Georgia\", serif"
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "value": "Vitality",
+                    "style": {
+                      "fontSize": 12,
+                      "fontWeight": "600",
+                      "color": "#1C1A16"
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "value": "this month",
+                    "style": {
+                      "fontSize": 11,
+                      "color": "rgba(28,26,22,0.45)"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "view",
+            "style": {
+              "backgroundColor": "#FFFFFF",
+              "borderRadius": 16,
+              "padding": 20,
+              "border": "1px solid rgba(28,26,22,0.10)"
+            },
+            "children": [
+              {
+                "type": "view",
+                "style": {
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                  "alignItems": "center",
+                  "marginBottom": 4
+                },
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "Today's Practices",
+                    "style": {
+                      "fontSize": 15,
+                      "fontWeight": "700",
+                      "color": "#1C1A16"
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "value": "4/6 done",
+                    "style": {
+                      "fontSize": 12,
+                      "color": "#3D6B4F",
+                      "fontWeight": "600"
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "view",
+                "style": {
+                  "flexDirection": "row",
+                  "alignItems": "center",
+                  "paddingVertical": 14,
+                  "borderBottom": "1px solid rgba(28,26,22,0.10)",
+                  "gap": 14
+                },
+                "children": [
+                  {
+                    "type": "view",
+                    "style": {
+                      "width": 40,
+                      "height": 40,
+                      "borderRadius": 12,
+                      "backgroundColor": "#E8F0EA",
+                      "alignItems": "center",
+                      "justifyContent": "center",
+                      "flexShrink": 0
+                    },
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "🌬️",
+                        "style": {
+                          "fontSize": 18
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "view",
+                    "style": {
+                      "flex": 1,
+                      "gap": 2
+                    },
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Morning Breathwork",
+                        "style": {
+                          "fontSize": 14,
+                          "fontWeight": "600",
+                          "color": "#1C1A16"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "value": "Completed 7:12 AM",
+                        "style": {
+                          "fontSize": 11,
+                          "color": "rgba(28,26,22,0.45)"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "view",
+                    "style": {
+                      "alignItems": "flex-end",
+                      "gap": 4
+                    },
+                    "children": [
+                      {
+                        "type": "view",
+                        "style": {
+                          "paddingHorizontal": 8,
+                          "paddingVertical": 3,
+                          "borderRadius": 20,
+                          "backgroundColor": "#E8F0EA"
+                        },
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "✓ Done",
+                            "style": {
+                              "fontSize": 10,
+                              "fontWeight": "700",
+                              "color": "#3D6B4F"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "type": "text",
+                        "value": "🔥 24d",
+                        "style": {
+                          "fontSize": 11,
+                          "color": "#C9A84C",
+                          "fontWeight": "600"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "view",
+                "style": {
+                  "flexDirection": "row",
+                  "alignItems": "center",
+                  "paddingVertical": 14,
+                  "borderBottom": "1px solid rgba(28,26,22,0.10)",
+                  "gap": 14
+                },
+                "children": [
+                  {
+                    "type": "view",
+                    "style": {
+                      "width": 40,
+                      "height": 40,
+                      "borderRadius": 12,
+                      "backgroundColor": "#E8F0EA",
+                      "alignItems": "center",
+                      "justifyContent": "center",
+                      "flexShrink": 0
+                    },
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "📖",
+                        "style": {
+                          "fontSize": 18
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "view",
+                    "style": {
+                      "flex": 1,
+                      "gap": 2
+                    },
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Mindful Reading",
+                        "style": {
+                          "fontSize": 14,
+                          "fontWeight": "600",
+                          "color": "#1C1A16"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "value": "Completed 8:30 AM",
+                        "style": {
+                          "fontSize": 11,
+                          "color": "rgba(28,26,22,0.45)"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "view",
+                    "style": {
+                      "alignItems": "flex-end",
+                      "gap": 4
+                    },
+                    "children": [
+                      {
+                        "type": "view",
+                        "style": {
+                          "paddingHorizontal": 8,
+                          "paddingVertical": 3,
+                          "borderRadius": 20,
+                          "backgroundColor": "#E8F0EA"
+                        },
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "✓ Done",
+                            "style": {
+                              "fontSize": 10,
+                              "fontWeight": "700",
+                              "color": "#3D6B4F"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "type": "text",
+                        "value": "🔥 18d",
+                        "style": {
+                          "fontSize": 11,
+                          "color": "#C9A84C",
+                          "fontWeight": "600"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "view",
+                "style": {
+                  "flexDirection": "row",
+                  "alignItems": "center",
+                  "paddingVertical": 14,
+                  "borderBottom": "1px solid rgba(28,26,22,0.10)",
+                  "gap": 14
+                },
+                "children": [
+                  {
+                    "type": "view",
+                    "style": {
+                      "width": 40,
+                      "height": 40,
+                      "borderRadius": 12,
+                      "backgroundColor": "#E8F0EA",
+                      "alignItems": "center",
+                      "justifyContent": "center",
+                      "flexShrink": 0
+                    },
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "🚶",
+                        "style": {
+                          "fontSize": 18
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "view",
+                    "style": {
+                      "flex": 1,
+                      "gap": 2
+                    },
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Nature Walk",
+                        "style": {
+                          "fontSize": 14,
+                          "fontWeight": "600",
+                          "color": "#1C1A16"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "value": "Not yet today",
+                        "style": {
+                          "fontSize": 11,
+                          "color": "rgba(28,26,22,0.45)"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "view",
+                    "style": {
+                      "alignItems": "flex-end",
+                      "gap": 4
+                    },
+                    "children": [
+                      {
+                        "type": "view",
+                        "style": {
+                          "paddingHorizontal": 8,
+                          "paddingVertical": 3,
+                          "borderRadius": 20,
+                          "backgroundColor": "#F5E6DB"
+                        },
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "· Pending",
+                            "style": {
+                              "fontSize": 10,
+                              "fontWeight": "700",
+                              "color": "#C4692A"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "type": "text",
+                        "value": "🔥 11d",
+                        "style": {
+                          "fontSize": 11,
+                          "color": "#C9A84C",
+                          "fontWeight": "600"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "view",
+                "style": {
+                  "flexDirection": "row",
+                  "alignItems": "center",
+                  "paddingVertical": 14,
+                  "borderBottom": "1px solid rgba(28,26,22,0.10)",
+                  "gap": 14
+                },
+                "children": [
+                  {
+                    "type": "view",
+                    "style": {
+                      "width": 40,
+                      "height": 40,
+                      "borderRadius": 12,
+                      "backgroundColor": "#E8F0EA",
+                      "alignItems": "center",
+                      "justifyContent": "center",
+                      "flexShrink": 0
+                    },
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "✍️",
+                        "style": {
+                          "fontSize": 18
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "view",
+                    "style": {
+                      "flex": 1,
+                      "gap": 2
+                    },
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Evening Journal",
+                        "style": {
+                          "fontSize": 14,
+                          "fontWeight": "600",
+                          "color": "#1C1A16"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "value": "Not yet today",
+                        "style": {
+                          "fontSize": 11,
+                          "color": "rgba(28,26,22,0.45)"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "view",
+                    "style": {
+                      "alignItems": "flex-end",
+                      "gap": 4
+                    },
+                    "children": [
+                      {
+                        "type": "view",
+                        "style": {
+                          "paddingHorizontal": 8,
+                          "paddingVertical": 3,
+                          "borderRadius": 20,
+                          "backgroundColor": "#F5E6DB"
+                        },
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "· Pending",
+                            "style": {
+                              "fontSize": 10,
+                              "fontWeight": "700",
+                              "color": "#C4692A"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "type": "text",
+                        "value": "🔥 24d",
+                        "style": {
+                          "fontSize": 11,
+                          "color": "#C9A84C",
+                          "fontWeight": "600"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "screen2",
+      "label": "Practices",
+      "root": {
+        "type": "view",
+        "style": {
+          "fontFamily": "\"Inter\", \"system-ui\", sans-serif",
+          "backgroundColor": "#F7F4EF",
+          "color": "#1C1A16",
+          "minHeight": "100%",
+          "fontSize": 14,
+          "lineHeight": 1.6,
+          "padding": 20,
+          "gap": 20
+        },
+        "children": [
+          {
+            "type": "view",
+            "style": {
+              "marginBottom": 16,
+              "gap": 4
+            },
+            "children": [
+              {
+                "type": "text",
+                "value": "Practices",
+                "style": {
+                  "fontSize": 22,
+                  "fontWeight": "700",
+                  "color": "#1C1A16",
+                  "fontFamily": "\"Lora\", \"Georgia\", serif",
+                  "letterSpacing": -0.3
+                }
+              },
+              {
+                "type": "text",
+                "value": "Your active rituals & habits",
+                "style": {
+                  "fontSize": 12,
+                  "color": "rgba(28,26,22,0.45)"
+                }
+              }
+            ]
+          },
+          {
+            "type": "view",
+            "style": {
+              "flexDirection": "row",
+              "gap": 8,
+              "flexWrap": "wrap"
+            },
+            "children": [
+              {
+                "type": "view",
+                "style": {
+                  "backgroundColor": "#3D6B4F",
+                  "borderRadius": 20,
+                  "paddingHorizontal": 14,
+                  "paddingVertical": 6
+                },
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "All",
+                    "style": {
+                      "fontSize": 12,
+                      "fontWeight": "700",
+                      "color": "#FFFFFF"
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "view",
+                "style": {
+                  "backgroundColor": "#FFFFFF",
+                  "borderRadius": 20,
+                  "paddingHorizontal": 14,
+                  "paddingVertical": 6,
+                  "border": "1px solid rgba(28,26,22,0.10)"
+                },
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "Body",
+                    "style": {
+                      "fontSize": 12,
+                      "fontWeight": "600",
+                      "color": "rgba(28,26,22,0.45)"
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "view",
+                "style": {
+                  "backgroundColor": "#FFFFFF",
+                  "borderRadius": 20,
+                  "paddingHorizontal": 14,
+                  "paddingVertical": 6,
+                  "border": "1px solid rgba(28,26,22,0.10)"
+                },
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "Mind",
+                    "style": {
+                      "fontSize": 12,
+                      "fontWeight": "600",
+                      "color": "rgba(28,26,22,0.45)"
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "view",
+                "style": {
+                  "backgroundColor": "#FFFFFF",
+                  "borderRadius": 20,
+                  "paddingHorizontal": 14,
+                  "paddingVertical": 6,
+                  "border": "1px solid rgba(28,26,22,0.10)"
+                },
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "Spirit",
+                    "style": {
+                      "fontSize": 12,
+                      "fontWeight": "600",
+                      "color": "rgba(28,26,22,0.45)"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "view",
+            "style": {
+              "backgroundColor": "#FFFFFF",
+              "borderRadius": 16,
+              "padding": 20,
+              "border": "1px solid rgba(28,26,22,0.10)"
+            },
+            "children": [
+              {
+                "type": "view",
+                "style": {
+                  "flexDirection": "row",
+                  "gap": 14,
+                  "alignItems": "flex-start"
+                },
+                "children": [
+                  {
+                    "type": "view",
+                    "style": {
+                      "width": 48,
+                      "height": 48,
+                      "borderRadius": 14,
+                      "backgroundColor": "#E8F0EA",
+                      "alignItems": "center",
+                      "justifyContent": "center"
+                    },
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "🌬️",
+                        "style": {
+                          "fontSize": 22
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "view",
+                    "style": {
+                      "flex": 1,
+                      "gap": 3
+                    },
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Morning Breathwork",
+                        "style": {
+                          "fontSize": 15,
+                          "fontWeight": "700",
+                          "color": "#1C1A16"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "value": "Box breathing · 10 min · 6:30 AM",
+                        "style": {
+                          "fontSize": 12,
+                          "color": "rgba(28,26,22,0.45)"
+                        }
+                      },
+                      {
+                        "type": "view",
+                        "style": {
+                          "flexDirection": "row",
+                          "gap": 6,
+                          "marginTop": 4
+                        },
+                        "children": [
+                          {
+                            "type": "view",
+                            "style": {
+                              "backgroundColor": "#E8F0EA",
+                              "borderRadius": 20,
+                              "paddingHorizontal": 10,
+                              "paddingVertical": 4,
+                              "alignSelf": "flex-start"
+                            },
+                            "children": [
+                              {
+                                "type": "text",
+                                "value": "Body",
+                                "style": {
+                                  "color": "#3D6B4F",
+                                  "fontSize": 11,
+                                  "fontWeight": "600",
+                                  "letterSpacing": 0.5
+                                }
+                              }
+                            ]
+                          },
+                          {
+                            "type": "view",
+                            "style": {
+                              "backgroundColor": "#FEF3DC",
+                              "borderRadius": 20,
+                              "paddingHorizontal": 10,
+                              "paddingVertical": 4,
+                              "alignSelf": "flex-start"
+                            },
+                            "children": [
+                              {
+                                "type": "text",
+                                "value": "🔥 24d streak",
+                                "style": {
+                                  "color": "#C9A84C",
+                                  "fontSize": 11,
+                                  "fontWeight": "600",
+                                  "letterSpacing": 0.5
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "view",
+                "style": {
+                  "marginTop": 16
+                },
+                "children": [
+                  {
+                    "type": "view",
+                    "style": {
+                      "gap": 6,
+                      "marginBottom": 12
+                    },
+                    "children": [
+                      {
+                        "type": "view",
+                        "style": {
+                          "flexDirection": "row",
+                          "justifyContent": "space-between",
+                          "alignItems": "center"
+                        },
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "This week",
+                            "style": {
+                              "fontSize": 13,
+                              "color": "#1C1A16",
+                              "fontWeight": "500"
+                            }
+                          },
+                          {
+                            "type": "text",
+                            "value": "86%  6/7 days",
+                            "style": {
+                              "fontSize": 12,
+                              "color": "rgba(28,26,22,0.45)"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "type": "view",
+                        "style": {
+                          "height": 6,
+                          "backgroundColor": "rgba(28,26,22,0.10)",
+                          "borderRadius": 4
+                        },
+                        "children": [
+                          {
+                            "type": "view",
+                            "style": {
+                              "height": 6,
+                              "width": "86%",
+                              "backgroundColor": "#3D6B4F",
+                              "borderRadius": 4
+                            },
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "view",
+            "style": {
+              "backgroundColor": "#FFFFFF",
+              "borderRadius": 16,
+              "padding": 20,
+              "border": "1px solid rgba(28,26,22,0.10)"
+            },
+            "children": [
+              {
+                "type": "view",
+                "style": {
+                  "flexDirection": "row",
+                  "gap": 14,
+                  "alignItems": "flex-start"
+                },
+                "children": [
+                  {
+                    "type": "view",
+                    "style": {
+                      "width": 48,
+                      "height": 48,
+                      "borderRadius": 14,
+                      "backgroundColor": "#F5E6DB",
+                      "alignItems": "center",
+                      "justifyContent": "center"
+                    },
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "🚶",
+                        "style": {
+                          "fontSize": 22
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "view",
+                    "style": {
+                      "flex": 1,
+                      "gap": 3
+                    },
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Nature Walk",
+                        "style": {
+                          "fontSize": 15,
+                          "fontWeight": "700",
+                          "color": "#1C1A16"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "value": "Outdoor walking · 30–45 min · Flexible",
+                        "style": {
+                          "fontSize": 12,
+                          "color": "rgba(28,26,22,0.45)"
+                        }
+                      },
+                      {
+                        "type": "view",
+                        "style": {
+                          "flexDirection": "row",
+                          "gap": 6,
+                          "marginTop": 4
+                        },
+                        "children": [
+                          {
+                            "type": "view",
+                            "style": {
+                              "backgroundColor": "#E8F0EA",
+                              "borderRadius": 20,
+                              "paddingHorizontal": 10,
+                              "paddingVertical": 4,
+                              "alignSelf": "flex-start"
+                            },
+                            "children": [
+                              {
+                                "type": "text",
+                                "value": "Body",
+                                "style": {
+                                  "color": "#3D6B4F",
+                                  "fontSize": 11,
+                                  "fontWeight": "600",
+                                  "letterSpacing": 0.5
+                                }
+                              }
+                            ]
+                          },
+                          {
+                            "type": "view",
+                            "style": {
+                              "backgroundColor": "#FEF3DC",
+                              "borderRadius": 20,
+                              "paddingHorizontal": 10,
+                              "paddingVertical": 4,
+                              "alignSelf": "flex-start"
+                            },
+                            "children": [
+                              {
+                                "type": "text",
+                                "value": "🔥 11d streak",
+                                "style": {
+                                  "color": "#C9A84C",
+                                  "fontSize": 11,
+                                  "fontWeight": "600",
+                                  "letterSpacing": 0.5
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "view",
+                "style": {
+                  "marginTop": 16
+                },
+                "children": [
+                  {
+                    "type": "view",
+                    "style": {
+                      "gap": 6,
+                      "marginBottom": 12
+                    },
+                    "children": [
+                      {
+                        "type": "view",
+                        "style": {
+                          "flexDirection": "row",
+                          "justifyContent": "space-between",
+                          "alignItems": "center"
+                        },
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "This week",
+                            "style": {
+                              "fontSize": 13,
+                              "color": "#1C1A16",
+                              "fontWeight": "500"
+                            }
+                          },
+                          {
+                            "type": "text",
+                            "value": "71%  5/7 days",
+                            "style": {
+                              "fontSize": 12,
+                              "color": "rgba(28,26,22,0.45)"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "type": "view",
+                        "style": {
+                          "height": 6,
+                          "backgroundColor": "rgba(28,26,22,0.10)",
+                          "borderRadius": 4
+                        },
+                        "children": [
+                          {
+                            "type": "view",
+                            "style": {
+                              "height": 6,
+                              "width": "71%",
+                              "backgroundColor": "#C4692A",
+                              "borderRadius": 4
+                            },
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "view",
+            "style": {
+              "backgroundColor": "#FFFFFF",
+              "borderRadius": 16,
+              "padding": 20,
+              "border": "1px solid rgba(28,26,22,0.10)"
+            },
+            "children": [
+              {
+                "type": "view",
+                "style": {
+                  "flexDirection": "row",
+                  "gap": 14,
+                  "alignItems": "flex-start"
+                },
+                "children": [
+                  {
+                    "type": "view",
+                    "style": {
+                      "width": 48,
+                      "height": 48,
+                      "borderRadius": 14,
+                      "backgroundColor": "#F0ECE4",
+                      "alignItems": "center",
+                      "justifyContent": "center"
+                    },
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "✍️",
+                        "style": {
+                          "fontSize": 22
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "view",
+                    "style": {
+                      "flex": 1,
+                      "gap": 3
+                    },
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Evening Journal",
+                        "style": {
+                          "fontSize": 15,
+                          "fontWeight": "700",
+                          "color": "#1C1A16"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "value": "Reflective writing · 15 min · 9:00 PM",
+                        "style": {
+                          "fontSize": 12,
+                          "color": "rgba(28,26,22,0.45)"
+                        }
+                      },
+                      {
+                        "type": "view",
+                        "style": {
+                          "flexDirection": "row",
+                          "gap": 6,
+                          "marginTop": 4
+                        },
+                        "children": [
+                          {
+                            "type": "view",
+                            "style": {
+                              "backgroundColor": "#EEE9FF",
+                              "borderRadius": 20,
+                              "paddingHorizontal": 10,
+                              "paddingVertical": 4,
+                              "alignSelf": "flex-start"
+                            },
+                            "children": [
+                              {
+                                "type": "text",
+                                "value": "Mind",
+                                "style": {
+                                  "color": "#7B5EA7",
+                                  "fontSize": 11,
+                                  "fontWeight": "600",
+                                  "letterSpacing": 0.5
+                                }
+                              }
+                            ]
+                          },
+                          {
+                            "type": "view",
+                            "style": {
+                              "backgroundColor": "#FEF3DC",
+                              "borderRadius": 20,
+                              "paddingHorizontal": 10,
+                              "paddingVertical": 4,
+                              "alignSelf": "flex-start"
+                            },
+                            "children": [
+                              {
+                                "type": "text",
+                                "value": "🔥 24d streak",
+                                "style": {
+                                  "color": "#C9A84C",
+                                  "fontSize": 11,
+                                  "fontWeight": "600",
+                                  "letterSpacing": 0.5
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "view",
+                "style": {
+                  "marginTop": 16
+                },
+                "children": [
+                  {
+                    "type": "view",
+                    "style": {
+                      "gap": 6,
+                      "marginBottom": 12
+                    },
+                    "children": [
+                      {
+                        "type": "view",
+                        "style": {
+                          "flexDirection": "row",
+                          "justifyContent": "space-between",
+                          "alignItems": "center"
+                        },
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "This week",
+                            "style": {
+                              "fontSize": 13,
+                              "color": "#1C1A16",
+                              "fontWeight": "500"
+                            }
+                          },
+                          {
+                            "type": "text",
+                            "value": "57%  4/7 days",
+                            "style": {
+                              "fontSize": 12,
+                              "color": "rgba(28,26,22,0.45)"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "type": "view",
+                        "style": {
+                          "height": 6,
+                          "backgroundColor": "rgba(28,26,22,0.10)",
+                          "borderRadius": 4
+                        },
+                        "children": [
+                          {
+                            "type": "view",
+                            "style": {
+                              "height": 6,
+                              "width": "57%",
+                              "backgroundColor": "#7B5EA7",
+                              "borderRadius": 4
+                            },
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "screen3",
+      "label": "Journal",
+      "root": {
+        "type": "view",
+        "style": {
+          "fontFamily": "\"Inter\", \"system-ui\", sans-serif",
+          "backgroundColor": "#F7F4EF",
+          "color": "#1C1A16",
+          "minHeight": "100%",
+          "fontSize": 14,
+          "lineHeight": 1.6,
+          "padding": 20,
+          "gap": 18
+        },
+        "children": [
+          {
+            "type": "view",
+            "style": {
+              "marginBottom": 16,
+              "gap": 4
+            },
+            "children": [
+              {
+                "type": "text",
+                "value": "Today's Reflection",
+                "style": {
+                  "fontSize": 22,
+                  "fontWeight": "700",
+                  "color": "#1C1A16",
+                  "fontFamily": "\"Lora\", \"Georgia\", serif",
+                  "letterSpacing": -0.3
+                }
+              },
+              {
+                "type": "text",
+                "value": "Sunday, 22 March 2026",
+                "style": {
+                  "fontSize": 12,
+                  "color": "rgba(28,26,22,0.45)"
+                }
+              }
+            ]
+          },
+          {
+            "type": "view",
+            "style": {
+              "backgroundColor": "#FFFFFF",
+              "borderRadius": 16,
+              "padding": 20,
+              "border": "1px solid rgba(28,26,22,0.10)"
+            },
+            "children": [
+              {
+                "type": "text",
+                "value": "How are you feeling?",
+                "style": {
+                  "fontSize": 13,
+                  "fontWeight": "600",
+                  "color": "#1C1A16",
+                  "marginBottom": 12
+                }
+              },
+              {
+                "type": "view",
+                "style": {
+                  "flexDirection": "row",
+                  "justifyContent": "space-around"
+                },
+                "children": [
+                  {
+                    "type": "view",
+                    "style": {
+                      "alignItems": "center",
+                      "gap": 4,
+                      "backgroundColor": "transparent",
+                      "borderRadius": 12,
+                      "padding": 8,
+                      "border": "2px solid transparent"
+                    },
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "🌱",
+                        "style": {
+                          "fontSize": 24
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "value": "Rooted",
+                        "style": {
+                          "fontSize": 10,
+                          "fontWeight": "500",
+                          "color": "rgba(28,26,22,0.45)"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "view",
+                    "style": {
+                      "alignItems": "center",
+                      "gap": 4,
+                      "backgroundColor": "transparent",
+                      "borderRadius": 12,
+                      "padding": 8,
+                      "border": "2px solid transparent"
+                    },
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "☀️",
+                        "style": {
+                          "fontSize": 24
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "value": "Energised",
+                        "style": {
+                          "fontSize": 10,
+                          "fontWeight": "500",
+                          "color": "rgba(28,26,22,0.45)"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "view",
+                    "style": {
+                      "alignItems": "center",
+                      "gap": 4,
+                      "backgroundColor": "#E8F0EA",
+                      "borderRadius": 12,
+                      "padding": 8,
+                      "border": "2px solid #3D6B4F"
+                    },
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "🌊",
+                        "style": {
+                          "fontSize": 24
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "value": "Flowing",
+                        "style": {
+                          "fontSize": 10,
+                          "fontWeight": "700",
+                          "color": "#3D6B4F"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "view",
+                    "style": {
+                      "alignItems": "center",
+                      "gap": 4,
+                      "backgroundColor": "transparent",
+                      "borderRadius": 12,
+                      "padding": 8,
+                      "border": "2px solid transparent"
+                    },
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "🌙",
+                        "style": {
+                          "fontSize": 24
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "value": "Reflective",
+                        "style": {
+                          "fontSize": 10,
+                          "fontWeight": "500",
+                          "color": "rgba(28,26,22,0.45)"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "view",
+                    "style": {
+                      "alignItems": "center",
+                      "gap": 4,
+                      "backgroundColor": "transparent",
+                      "borderRadius": 12,
+                      "padding": 8,
+                      "border": "2px solid transparent"
+                    },
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "🌿",
+                        "style": {
+                          "fontSize": 24
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "value": "Calm",
+                        "style": {
+                          "fontSize": 10,
+                          "fontWeight": "500",
+                          "color": "rgba(28,26,22,0.45)"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "view",
+            "style": {
+              "backgroundColor": "#FFFFFF",
+              "borderRadius": 16,
+              "padding": 20,
+              "border": "1px solid rgba(28,26,22,0.10)"
+            },
+            "children": [
+              {
+                "type": "text",
+                "value": "🌻  Three things I'm grateful for",
+                "style": {
+                  "fontSize": 13,
+                  "fontWeight": "700",
+                  "color": "#1C1A16",
+                  "marginBottom": 12
+                }
+              },
+              {
+                "type": "view",
+                "style": {
+                  "flexDirection": "row",
+                  "gap": 10,
+                  "marginBottom": 10,
+                  "alignItems": "flex-start"
+                },
+                "children": [
+                  {
+                    "type": "view",
+                    "style": {
+                      "width": 22,
+                      "height": 22,
+                      "borderRadius": 11,
+                      "backgroundColor": "#E8F0EA",
+                      "alignItems": "center",
+                      "justifyContent": "center",
+                      "flexShrink": 0,
+                      "marginTop": 1
+                    },
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "1",
+                        "style": {
+                          "fontSize": 11,
+                          "fontWeight": "700",
+                          "color": "#3D6B4F"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "value": "The quiet of early morning before the house wakes up.",
+                    "style": {
+                      "fontSize": 13,
+                      "color": "#1C1A16",
+                      "flex": 1,
+                      "lineHeight": 1.5
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "view",
+                "style": {
+                  "flexDirection": "row",
+                  "gap": 10,
+                  "marginBottom": 10,
+                  "alignItems": "flex-start"
+                },
+                "children": [
+                  {
+                    "type": "view",
+                    "style": {
+                      "width": 22,
+                      "height": 22,
+                      "borderRadius": 11,
+                      "backgroundColor": "#E8F0EA",
+                      "alignItems": "center",
+                      "justifyContent": "center",
+                      "flexShrink": 0,
+                      "marginTop": 1
+                    },
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "2",
+                        "style": {
+                          "fontSize": 11,
+                          "fontWeight": "700",
+                          "color": "#3D6B4F"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "value": "How the light fell through the kitchen window at 7am.",
+                    "style": {
+                      "fontSize": 13,
+                      "color": "#1C1A16",
+                      "flex": 1,
+                      "lineHeight": 1.5
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "view",
+                "style": {
+                  "flexDirection": "row",
+                  "gap": 10,
+                  "marginBottom": 10,
+                  "alignItems": "flex-start"
+                },
+                "children": [
+                  {
+                    "type": "view",
+                    "style": {
+                      "width": 22,
+                      "height": 22,
+                      "borderRadius": 11,
+                      "backgroundColor": "#E8F0EA",
+                      "alignItems": "center",
+                      "justifyContent": "center",
+                      "flexShrink": 0,
+                      "marginTop": 1
+                    },
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "3",
+                        "style": {
+                          "fontSize": 11,
+                          "fontWeight": "700",
+                          "color": "#3D6B4F"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "text",
+                    "value": "A conversation with an old friend I hadn't expected.",
+                    "style": {
+                      "fontSize": 13,
+                      "color": "#1C1A16",
+                      "flex": 1,
+                      "lineHeight": 1.5
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "view",
+            "style": {
+              "backgroundColor": "#FFFFFF",
+              "borderRadius": 16,
+              "padding": 20,
+              "border": "1px solid rgba(28,26,22,0.10)"
+            },
+            "children": [
+              {
+                "type": "text",
+                "value": "✍️  Today's pages",
+                "style": {
+                  "fontSize": 13,
+                  "fontWeight": "700",
+                  "color": "#1C1A16",
+                  "marginBottom": 10
+                }
+              },
+              {
+                "type": "view",
+                "style": {
+                  "backgroundColor": "#F7F4EF",
+                  "borderRadius": 10,
+                  "padding": 14,
+                  "minHeight": 100
+                },
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "There's something about Sundays in late March — the way the season feels genuinely suspended between what was and what's coming. I found myself standing still in the garden today, noticing how the soil smells different now, richer somehow...",
+                    "style": {
+                      "fontSize": 13,
+                      "color": "#1C1A16",
+                      "lineHeight": 1.6,
+                      "fontFamily": "\"Lora\", \"Georgia\", serif"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "view",
+            "style": {
+              "backgroundColor": "#FFFFFF",
+              "borderRadius": 16,
+              "padding": 20,
+              "border": "1px solid rgba(28,26,22,0.10)"
+            },
+            "children": [
+              {
+                "type": "text",
+                "value": "Tags",
+                "style": {
+                  "fontSize": 13,
+                  "fontWeight": "600",
+                  "color": "#1C1A16",
+                  "marginBottom": 10
+                }
+              },
+              {
+                "type": "view",
+                "style": {
+                  "flexDirection": "row",
+                  "flexWrap": "wrap",
+                  "gap": 8
+                },
+                "children": [
+                  {
+                    "type": "view",
+                    "style": {
+                      "backgroundColor": "#E8F0EA",
+                      "borderRadius": 20,
+                      "paddingHorizontal": 12,
+                      "paddingVertical": 5,
+                      "border": "none"
+                    },
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "#spring",
+                        "style": {
+                          "fontSize": 12,
+                          "fontWeight": "600",
+                          "color": "#3D6B4F"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "view",
+                    "style": {
+                      "backgroundColor": "#F5E6DB",
+                      "borderRadius": 20,
+                      "paddingHorizontal": 12,
+                      "paddingVertical": 5,
+                      "border": "none"
+                    },
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "#gratitude",
+                        "style": {
+                          "fontSize": 12,
+                          "fontWeight": "600",
+                          "color": "#C4692A"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "view",
+                    "style": {
+                      "backgroundColor": "#EEE9FF",
+                      "borderRadius": 20,
+                      "paddingHorizontal": 12,
+                      "paddingVertical": 5,
+                      "border": "none"
+                    },
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "#stillness",
+                        "style": {
+                          "fontSize": 12,
+                          "fontWeight": "600",
+                          "color": "#7B5EA7"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "view",
+                    "style": {
+                      "backgroundColor": "#E8F0EA",
+                      "borderRadius": 20,
+                      "paddingHorizontal": 12,
+                      "paddingVertical": 5,
+                      "border": "none"
+                    },
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "#nature",
+                        "style": {
+                          "fontSize": 12,
+                          "fontWeight": "600",
+                          "color": "#3D6B4F"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "view",
+                    "style": {
+                      "backgroundColor": "#F7F4EF",
+                      "borderRadius": 20,
+                      "paddingHorizontal": 12,
+                      "paddingVertical": 5,
+                      "border": "1px dashed rgba(28,26,22,0.10)"
+                    },
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "+ Add",
+                        "style": {
+                          "fontSize": 12,
+                          "fontWeight": "600",
+                          "color": "rgba(28,26,22,0.45)"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "screen4",
+      "label": "Timeline",
+      "root": {
+        "type": "view",
+        "style": {
+          "fontFamily": "\"Inter\", \"system-ui\", sans-serif",
+          "backgroundColor": "#F7F4EF",
+          "color": "#1C1A16",
+          "minHeight": "100%",
+          "fontSize": 14,
+          "lineHeight": 1.6,
+          "padding": 20,
+          "gap": 20
+        },
+        "children": [
+          {
+            "type": "view",
+            "style": {
+              "marginBottom": 16,
+              "gap": 4
+            },
+            "children": [
+              {
+                "type": "text",
+                "value": "Growth Timeline",
+                "style": {
+                  "fontSize": 22,
+                  "fontWeight": "700",
+                  "color": "#1C1A16",
+                  "fontFamily": "\"Lora\", \"Georgia\", serif",
+                  "letterSpacing": -0.3
+                }
+              },
+              {
+                "type": "text",
+                "value": "Your journey this season",
+                "style": {
+                  "fontSize": 12,
+                  "color": "rgba(28,26,22,0.45)"
+                }
+              }
+            ]
+          },
+          {
+            "type": "view",
+            "style": {
+              "backgroundColor": "#FFFFFF",
+              "borderRadius": 16,
+              "padding": 20,
+              "border": "1px solid rgba(28,26,22,0.10)"
+            },
+            "children": [
+              {
+                "type": "view",
+                "style": {
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                  "alignItems": "center",
+                  "marginBottom": 14
+                },
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "March 2026",
+                    "style": {
+                      "fontSize": 15,
+                      "fontWeight": "700",
+                      "color": "#1C1A16"
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "value": "22 days in",
+                    "style": {
+                      "fontSize": 12,
+                      "color": "rgba(28,26,22,0.45)"
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "view",
+                "style": {
+                  "gap": 6,
+                  "marginBottom": 12
+                },
+                "children": [
+                  {
+                    "type": "view",
+                    "style": {
+                      "flexDirection": "row",
+                      "justifyContent": "space-between",
+                      "alignItems": "center"
+                    },
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Practices completed",
+                        "style": {
+                          "fontSize": 13,
+                          "color": "#1C1A16",
+                          "fontWeight": "500"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "value": "78%  52/67",
+                        "style": {
+                          "fontSize": 12,
+                          "color": "rgba(28,26,22,0.45)"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "view",
+                    "style": {
+                      "height": 6,
+                      "backgroundColor": "rgba(28,26,22,0.10)",
+                      "borderRadius": 4
+                    },
+                    "children": [
+                      {
+                        "type": "view",
+                        "style": {
+                          "height": 6,
+                          "width": "78%",
+                          "backgroundColor": "#3D6B4F",
+                          "borderRadius": 4
+                        },
+                        "children": []
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "view",
+                "style": {
+                  "gap": 6,
+                  "marginBottom": 12
+                },
+                "children": [
+                  {
+                    "type": "view",
+                    "style": {
+                      "flexDirection": "row",
+                      "justifyContent": "space-between",
+                      "alignItems": "center"
+                    },
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Journal entries",
+                        "style": {
+                          "fontSize": 13,
+                          "color": "#1C1A16",
+                          "fontWeight": "500"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "value": "91%  20/22",
+                        "style": {
+                          "fontSize": 12,
+                          "color": "rgba(28,26,22,0.45)"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "view",
+                    "style": {
+                      "height": 6,
+                      "backgroundColor": "rgba(28,26,22,0.10)",
+                      "borderRadius": 4
+                    },
+                    "children": [
+                      {
+                        "type": "view",
+                        "style": {
+                          "height": 6,
+                          "width": "91%",
+                          "backgroundColor": "#C4692A",
+                          "borderRadius": 4
+                        },
+                        "children": []
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "view",
+                "style": {
+                  "gap": 6,
+                  "marginBottom": 12
+                },
+                "children": [
+                  {
+                    "type": "view",
+                    "style": {
+                      "flexDirection": "row",
+                      "justifyContent": "space-between",
+                      "alignItems": "center"
+                    },
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Streak maintained",
+                        "style": {
+                          "fontSize": 13,
+                          "color": "#1C1A16",
+                          "fontWeight": "500"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "value": "100%  22/22",
+                        "style": {
+                          "fontSize": 12,
+                          "color": "rgba(28,26,22,0.45)"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "view",
+                    "style": {
+                      "height": 6,
+                      "backgroundColor": "rgba(28,26,22,0.10)",
+                      "borderRadius": 4
+                    },
+                    "children": [
+                      {
+                        "type": "view",
+                        "style": {
+                          "height": 6,
+                          "width": "100%",
+                          "backgroundColor": "#C9A84C",
+                          "borderRadius": 4
+                        },
+                        "children": []
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "view",
+            "style": {
+              "flexDirection": "row",
+              "gap": 10
+            },
+            "children": [
+              {
+                "type": "view",
+                "style": {
+                  "backgroundColor": "#E8F0EA",
+                  "borderRadius": 14,
+                  "padding": 16,
+                  "flex": 1,
+                  "gap": 4
+                },
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "52",
+                    "style": {
+                      "fontSize": 28,
+                      "fontWeight": "800",
+                      "color": "#3D6B4F",
+                      "letterSpacing": -1,
+                      "fontFamily": "\"Lora\", \"Georgia\", serif"
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "value": "Practices",
+                    "style": {
+                      "fontSize": 12,
+                      "fontWeight": "600",
+                      "color": "#1C1A16"
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "value": "March",
+                    "style": {
+                      "fontSize": 11,
+                      "color": "rgba(28,26,22,0.45)"
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "view",
+                "style": {
+                  "backgroundColor": "#F5E6DB",
+                  "borderRadius": 14,
+                  "padding": 16,
+                  "flex": 1,
+                  "gap": 4
+                },
+                "children": [
+                  {
+                    "type": "text",
+                    "value": "20",
+                    "style": {
+                      "fontSize": 28,
+                      "fontWeight": "800",
+                      "color": "#C4692A",
+                      "letterSpacing": -1,
+                      "fontFamily": "\"Lora\", \"Georgia\", serif"
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "value": "Entries",
+                    "style": {
+                      "fontSize": 12,
+                      "fontWeight": "600",
+                      "color": "#1C1A16"
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "value": "journals",
+                    "style": {
+                      "fontSize": 11,
+                      "color": "rgba(28,26,22,0.45)"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "view",
+            "style": {
+              "gap": 1
+            },
+            "children": [
+              {
+                "type": "text",
+                "value": "MILESTONES",
+                "style": {
+                  "fontSize": 10,
+                  "fontWeight": "700",
+                  "color": "rgba(28,26,22,0.45)",
+                  "letterSpacing": 2,
+                  "marginBottom": 10
+                }
+              },
+              {
+                "type": "view",
+                "style": {
+                  "flexDirection": "row",
+                  "gap": 14,
+                  "marginBottom": 14,
+                  "alignItems": "flex-start"
+                },
+                "children": [
+                  {
+                    "type": "view",
+                    "style": {
+                      "alignItems": "center",
+                      "gap": 0
+                    },
+                    "children": [
+                      {
+                        "type": "view",
+                        "style": {
+                          "width": 38,
+                          "height": 38,
+                          "borderRadius": 12,
+                          "backgroundColor": "#E8F0EA",
+                          "alignItems": "center",
+                          "justifyContent": "center"
+                        },
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "🌱",
+                            "style": {
+                              "fontSize": 18
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "type": "view",
+                        "style": {
+                          "width": 1,
+                          "flex": 1,
+                          "backgroundColor": "rgba(28,26,22,0.10)",
+                          "marginTop": 4,
+                          "minHeight": 20
+                        },
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "type": "view",
+                    "style": {
+                      "flex": 1,
+                      "paddingBottom": 14
+                    },
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Mar 22",
+                        "style": {
+                          "fontSize": 10,
+                          "color": "rgba(28,26,22,0.45)",
+                          "fontWeight": "600",
+                          "letterSpacing": 0.5,
+                          "marginBottom": 2
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "value": "24-Day Breathwork Streak",
+                        "style": {
+                          "fontSize": 13,
+                          "fontWeight": "700",
+                          "color": "#1C1A16",
+                          "marginBottom": 3
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "value": "Unbroken morning practice since Feb 27.",
+                        "style": {
+                          "fontSize": 12,
+                          "color": "#6B6459",
+                          "lineHeight": 1.4
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "view",
+                "style": {
+                  "flexDirection": "row",
+                  "gap": 14,
+                  "marginBottom": 14,
+                  "alignItems": "flex-start"
+                },
+                "children": [
+                  {
+                    "type": "view",
+                    "style": {
+                      "alignItems": "center",
+                      "gap": 0
+                    },
+                    "children": [
+                      {
+                        "type": "view",
+                        "style": {
+                          "width": 38,
+                          "height": 38,
+                          "borderRadius": 12,
+                          "backgroundColor": "#F5E6DB",
+                          "alignItems": "center",
+                          "justifyContent": "center"
+                        },
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "📖",
+                            "style": {
+                              "fontSize": 18
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "type": "view",
+                        "style": {
+                          "width": 1,
+                          "flex": 1,
+                          "backgroundColor": "rgba(28,26,22,0.10)",
+                          "marginTop": 4,
+                          "minHeight": 20
+                        },
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "type": "view",
+                    "style": {
+                      "flex": 1,
+                      "paddingBottom": 14
+                    },
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Mar 15",
+                        "style": {
+                          "fontSize": 10,
+                          "color": "rgba(28,26,22,0.45)",
+                          "fontWeight": "600",
+                          "letterSpacing": 0.5,
+                          "marginBottom": 2
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "value": "Completed \"Braiding Sweetgrass\"",
+                        "style": {
+                          "fontSize": 13,
+                          "fontWeight": "700",
+                          "color": "#1C1A16",
+                          "marginBottom": 3
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "value": "Three weeks of mindful reading complete.",
+                        "style": {
+                          "fontSize": 12,
+                          "color": "#6B6459",
+                          "lineHeight": 1.4
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "view",
+                "style": {
+                  "flexDirection": "row",
+                  "gap": 14,
+                  "marginBottom": 14,
+                  "alignItems": "flex-start"
+                },
+                "children": [
+                  {
+                    "type": "view",
+                    "style": {
+                      "alignItems": "center",
+                      "gap": 0
+                    },
+                    "children": [
+                      {
+                        "type": "view",
+                        "style": {
+                          "width": 38,
+                          "height": 38,
+                          "borderRadius": 12,
+                          "backgroundColor": "#EEE9FF",
+                          "alignItems": "center",
+                          "justifyContent": "center"
+                        },
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "🌊",
+                            "style": {
+                              "fontSize": 18
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "type": "view",
+                        "style": {
+                          "width": 1,
+                          "flex": 1,
+                          "backgroundColor": "rgba(28,26,22,0.10)",
+                          "marginTop": 4,
+                          "minHeight": 20
+                        },
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "type": "view",
+                    "style": {
+                      "flex": 1,
+                      "paddingBottom": 14
+                    },
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Mar 8",
+                        "style": {
+                          "fontSize": 10,
+                          "color": "rgba(28,26,22,0.45)",
+                          "fontWeight": "600",
+                          "letterSpacing": 0.5,
+                          "marginBottom": 2
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "value": "Cold Water Immersion — First Time",
+                        "style": {
+                          "fontSize": 13,
+                          "fontWeight": "700",
+                          "color": "#1C1A16",
+                          "marginBottom": 3
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "value": "Two minutes in the sea at Chesil Beach.",
+                        "style": {
+                          "fontSize": 12,
+                          "color": "#6B6459",
+                          "lineHeight": 1.4
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "view",
+                "style": {
+                  "flexDirection": "row",
+                  "gap": 14,
+                  "marginBottom": 14,
+                  "alignItems": "flex-start"
+                },
+                "children": [
+                  {
+                    "type": "view",
+                    "style": {
+                      "alignItems": "center",
+                      "gap": 0
+                    },
+                    "children": [
+                      {
+                        "type": "view",
+                        "style": {
+                          "width": 38,
+                          "height": 38,
+                          "borderRadius": 12,
+                          "backgroundColor": "#FEF3DC",
+                          "alignItems": "center",
+                          "justifyContent": "center"
+                        },
+                        "children": [
+                          {
+                            "type": "text",
+                            "value": "🌿",
+                            "style": {
+                              "fontSize": 18
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "type": "view",
+                        "style": {
+                          "width": 1,
+                          "flex": 1,
+                          "backgroundColor": "rgba(28,26,22,0.10)",
+                          "marginTop": 4,
+                          "minHeight": 20
+                        },
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "type": "view",
+                    "style": {
+                      "flex": 1,
+                      "paddingBottom": 14
+                    },
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Mar 1",
+                        "style": {
+                          "fontSize": 10,
+                          "color": "rgba(28,26,22,0.45)",
+                          "fontWeight": "600",
+                          "letterSpacing": 0.5,
+                          "marginBottom": 2
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "value": "Spring Season Begins",
+                        "style": {
+                          "fontSize": 13,
+                          "fontWeight": "700",
+                          "color": "#1C1A16",
+                          "marginBottom": 3
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "value": "Set intentions for growth and renewal.",
+                        "style": {
+                          "fontSize": 12,
+                          "color": "#6B6459",
+                          "lineHeight": 1.4
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "screen5",
+      "label": "Insights",
+      "root": {
+        "type": "view",
+        "style": {
+          "fontFamily": "\"Inter\", \"system-ui\", sans-serif",
+          "backgroundColor": "#F7F4EF",
+          "color": "#1C1A16",
+          "minHeight": "100%",
+          "fontSize": 14,
+          "lineHeight": 1.6,
+          "padding": 20,
+          "gap": 20
+        },
+        "children": [
+          {
+            "type": "view",
+            "style": {
+              "marginBottom": 16,
+              "gap": 4
+            },
+            "children": [
+              {
+                "type": "text",
+                "value": "Insights",
+                "style": {
+                  "fontSize": 22,
+                  "fontWeight": "700",
+                  "color": "#1C1A16",
+                  "fontFamily": "\"Lora\", \"Georgia\", serif",
+                  "letterSpacing": -0.3
+                }
+              },
+              {
+                "type": "text",
+                "value": "Patterns from your garden",
+                "style": {
+                  "fontSize": 12,
+                  "color": "rgba(28,26,22,0.45)"
+                }
+              }
+            ]
+          },
+          {
+            "type": "view",
+            "style": {
+              "backgroundColor": "#C4692A",
+              "borderRadius": 20,
+              "padding": 22,
+              "gap": 10
+            },
+            "children": [
+              {
+                "type": "text",
+                "value": "🌸  SPRING PATTERN",
+                "style": {
+                  "fontSize": 10,
+                  "fontWeight": "700",
+                  "color": "rgba(255,255,255,0.6)",
+                  "letterSpacing": 2
+                }
+              },
+              {
+                "type": "text",
+                "value": "You're most consistent in the mornings.",
+                "style": {
+                  "fontSize": 18,
+                  "fontWeight": "700",
+                  "color": "#FFFFFF",
+                  "fontFamily": "\"Lora\", \"Georgia\", serif",
+                  "lineHeight": 1.3
+                }
+              },
+              {
+                "type": "text",
+                "value": "Practices completed before 9am have a 94% completion rate vs 61% for afternoon slots.",
+                "style": {
+                  "fontSize": 13,
+                  "color": "rgba(255,255,255,0.75)",
+                  "lineHeight": 1.5
+                }
+              }
+            ]
+          },
+          {
+            "type": "view",
+            "style": {
+              "backgroundColor": "#FFFFFF",
+              "borderRadius": 16,
+              "padding": 20,
+              "border": "1px solid rgba(28,26,22,0.10)"
+            },
+            "children": [
+              {
+                "type": "text",
+                "value": "Weekly Rhythm",
+                "style": {
+                  "fontSize": 14,
+                  "fontWeight": "700",
+                  "color": "#1C1A16",
+                  "marginBottom": 14
+                }
+              },
+              {
+                "type": "view",
+                "style": {
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                  "alignItems": "flex-end",
+                  "height": 60
+                },
+                "children": [
+                  {
+                    "type": "view",
+                    "style": {
+                      "alignItems": "center",
+                      "gap": 4,
+                      "flex": 1
+                    },
+                    "children": [
+                      {
+                        "type": "view",
+                        "style": {
+                          "width": 24,
+                          "height": 48,
+                          "borderRadius": 6,
+                          "backgroundColor": "#3D6B4F"
+                        },
+                        "children": []
+                      },
+                      {
+                        "type": "text",
+                        "value": "M",
+                        "style": {
+                          "fontSize": 10,
+                          "color": "rgba(28,26,22,0.45)",
+                          "fontWeight": "600"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "view",
+                    "style": {
+                      "alignItems": "center",
+                      "gap": 4,
+                      "flex": 1
+                    },
+                    "children": [
+                      {
+                        "type": "view",
+                        "style": {
+                          "width": 24,
+                          "height": 40,
+                          "borderRadius": 6,
+                          "backgroundColor": "#8AAF8E"
+                        },
+                        "children": []
+                      },
+                      {
+                        "type": "text",
+                        "value": "T",
+                        "style": {
+                          "fontSize": 10,
+                          "color": "rgba(28,26,22,0.45)",
+                          "fontWeight": "600"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "view",
+                    "style": {
+                      "alignItems": "center",
+                      "gap": 4,
+                      "flex": 1
+                    },
+                    "children": [
+                      {
+                        "type": "view",
+                        "style": {
+                          "width": 24,
+                          "height": 48,
+                          "borderRadius": 6,
+                          "backgroundColor": "#3D6B4F"
+                        },
+                        "children": []
+                      },
+                      {
+                        "type": "text",
+                        "value": "W",
+                        "style": {
+                          "fontSize": 10,
+                          "color": "rgba(28,26,22,0.45)",
+                          "fontWeight": "600"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "view",
+                    "style": {
+                      "alignItems": "center",
+                      "gap": 4,
+                      "flex": 1
+                    },
+                    "children": [
+                      {
+                        "type": "view",
+                        "style": {
+                          "width": 24,
+                          "height": 32,
+                          "borderRadius": 6,
+                          "backgroundColor": "#EDE9E1"
+                        },
+                        "children": []
+                      },
+                      {
+                        "type": "text",
+                        "value": "T",
+                        "style": {
+                          "fontSize": 10,
+                          "color": "rgba(28,26,22,0.45)",
+                          "fontWeight": "600"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "view",
+                    "style": {
+                      "alignItems": "center",
+                      "gap": 4,
+                      "flex": 1
+                    },
+                    "children": [
+                      {
+                        "type": "view",
+                        "style": {
+                          "width": 24,
+                          "height": 48,
+                          "borderRadius": 6,
+                          "backgroundColor": "#3D6B4F"
+                        },
+                        "children": []
+                      },
+                      {
+                        "type": "text",
+                        "value": "F",
+                        "style": {
+                          "fontSize": 10,
+                          "color": "rgba(28,26,22,0.45)",
+                          "fontWeight": "600"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "view",
+                    "style": {
+                      "alignItems": "center",
+                      "gap": 4,
+                      "flex": 1
+                    },
+                    "children": [
+                      {
+                        "type": "view",
+                        "style": {
+                          "width": 24,
+                          "height": 40,
+                          "borderRadius": 6,
+                          "backgroundColor": "#8AAF8E"
+                        },
+                        "children": []
+                      },
+                      {
+                        "type": "text",
+                        "value": "S",
+                        "style": {
+                          "fontSize": 10,
+                          "color": "rgba(28,26,22,0.45)",
+                          "fontWeight": "600"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "view",
+                    "style": {
+                      "alignItems": "center",
+                      "gap": 4,
+                      "flex": 1
+                    },
+                    "children": [
+                      {
+                        "type": "view",
+                        "style": {
+                          "width": 24,
+                          "height": 24,
+                          "borderRadius": 6,
+                          "backgroundColor": "#EDE9E1"
+                        },
+                        "children": []
+                      },
+                      {
+                        "type": "text",
+                        "value": "S",
+                        "style": {
+                          "fontSize": 10,
+                          "color": "rgba(28,26,22,0.45)",
+                          "fontWeight": "600"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "view",
+            "style": {
+              "backgroundColor": "#FFFFFF",
+              "borderRadius": 16,
+              "padding": 20,
+              "border": "1px solid rgba(28,26,22,0.10)"
+            },
+            "children": [
+              {
+                "type": "text",
+                "value": "Strongest Practices",
+                "style": {
+                  "fontSize": 14,
+                  "fontWeight": "700",
+                  "color": "#1C1A16",
+                  "marginBottom": 14
+                }
+              },
+              {
+                "type": "view",
+                "style": {
+                  "gap": 6,
+                  "marginBottom": 12
+                },
+                "children": [
+                  {
+                    "type": "view",
+                    "style": {
+                      "flexDirection": "row",
+                      "justifyContent": "space-between",
+                      "alignItems": "center"
+                    },
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Morning Breathwork",
+                        "style": {
+                          "fontSize": 13,
+                          "color": "#1C1A16",
+                          "fontWeight": "500"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "value": "96%  24d streak",
+                        "style": {
+                          "fontSize": 12,
+                          "color": "rgba(28,26,22,0.45)"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "view",
+                    "style": {
+                      "height": 6,
+                      "backgroundColor": "rgba(28,26,22,0.10)",
+                      "borderRadius": 4
+                    },
+                    "children": [
+                      {
+                        "type": "view",
+                        "style": {
+                          "height": 6,
+                          "width": "96%",
+                          "backgroundColor": "#3D6B4F",
+                          "borderRadius": 4
+                        },
+                        "children": []
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "view",
+                "style": {
+                  "gap": 6,
+                  "marginBottom": 12
+                },
+                "children": [
+                  {
+                    "type": "view",
+                    "style": {
+                      "flexDirection": "row",
+                      "justifyContent": "space-between",
+                      "alignItems": "center"
+                    },
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Evening Journal",
+                        "style": {
+                          "fontSize": 13,
+                          "color": "#1C1A16",
+                          "fontWeight": "500"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "value": "87%  24d streak",
+                        "style": {
+                          "fontSize": 12,
+                          "color": "rgba(28,26,22,0.45)"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "view",
+                    "style": {
+                      "height": 6,
+                      "backgroundColor": "rgba(28,26,22,0.10)",
+                      "borderRadius": 4
+                    },
+                    "children": [
+                      {
+                        "type": "view",
+                        "style": {
+                          "height": 6,
+                          "width": "87%",
+                          "backgroundColor": "#7B5EA7",
+                          "borderRadius": 4
+                        },
+                        "children": []
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "view",
+                "style": {
+                  "gap": 6,
+                  "marginBottom": 12
+                },
+                "children": [
+                  {
+                    "type": "view",
+                    "style": {
+                      "flexDirection": "row",
+                      "justifyContent": "space-between",
+                      "alignItems": "center"
+                    },
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Mindful Reading",
+                        "style": {
+                          "fontSize": 13,
+                          "color": "#1C1A16",
+                          "fontWeight": "500"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "value": "82%  18d streak",
+                        "style": {
+                          "fontSize": 12,
+                          "color": "rgba(28,26,22,0.45)"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "view",
+                    "style": {
+                      "height": 6,
+                      "backgroundColor": "rgba(28,26,22,0.10)",
+                      "borderRadius": 4
+                    },
+                    "children": [
+                      {
+                        "type": "view",
+                        "style": {
+                          "height": 6,
+                          "width": "82%",
+                          "backgroundColor": "#C4692A",
+                          "borderRadius": 4
+                        },
+                        "children": []
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "view",
+                "style": {
+                  "gap": 6,
+                  "marginBottom": 12
+                },
+                "children": [
+                  {
+                    "type": "view",
+                    "style": {
+                      "flexDirection": "row",
+                      "justifyContent": "space-between",
+                      "alignItems": "center"
+                    },
+                    "children": [
+                      {
+                        "type": "text",
+                        "value": "Nature Walk",
+                        "style": {
+                          "fontSize": 13,
+                          "color": "#1C1A16",
+                          "fontWeight": "500"
+                        }
+                      },
+                      {
+                        "type": "text",
+                        "value": "71%  11d streak",
+                        "style": {
+                          "fontSize": 12,
+                          "color": "rgba(28,26,22,0.45)"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "view",
+                    "style": {
+                      "height": 6,
+                      "backgroundColor": "rgba(28,26,22,0.10)",
+                      "borderRadius": 4
+                    },
+                    "children": [
+                      {
+                        "type": "view",
+                        "style": {
+                          "height": 6,
+                          "width": "71%",
+                          "backgroundColor": "#8AAF8E",
+                          "borderRadius": 4
+                        },
+                        "children": []
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "view",
+            "style": {
+              "backgroundColor": "#EDE9E1",
+              "borderRadius": 16,
+              "padding": 20
+            },
+            "children": [
+              {
+                "type": "text",
+                "value": "\"The garden suggests there might be a place where we can meet nature halfway.\"",
+                "style": {
+                  "fontSize": 15,
+                  "fontFamily": "\"Lora\", \"Georgia\", serif",
+                  "fontStyle": "italic",
+                  "color": "#1C1A16",
+                  "lineHeight": 1.6
+                }
+              },
+              {
+                "type": "text",
+                "value": "— Michael Pollan",
+                "style": {
+                  "fontSize": 12,
+                  "color": "rgba(28,26,22,0.45)",
+                  "marginTop": 8
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "navigation": [
+    {
+      "id": "screen1",
+      "label": "Garden",
+      "icon": "🌿"
+    },
+    {
+      "id": "screen2",
+      "label": "Practices",
+      "icon": "🌱"
+    },
+    {
+      "id": "screen3",
+      "label": "Journal",
+      "icon": "✍️"
+    },
+    {
+      "id": "screen4",
+      "label": "Timeline",
+      "icon": "🗓"
+    },
+    {
+      "id": "screen5",
+      "label": "Insights",
+      "icon": "🌸"
+    }
+  ],
+  "interactions": [
+    {
+      "trigger": {
+        "type": "tap",
+        "target": "nav-garden"
+      },
+      "action": {
+        "type": "navigate",
+        "screen": "screen1"
+      }
+    },
+    {
+      "trigger": {
+        "type": "tap",
+        "target": "nav-practices"
+      },
+      "action": {
+        "type": "navigate",
+        "screen": "screen2"
+      }
+    },
+    {
+      "trigger": {
+        "type": "tap",
+        "target": "nav-journal"
+      },
+      "action": {
+        "type": "navigate",
+        "screen": "screen3"
+      }
+    },
+    {
+      "trigger": {
+        "type": "tap",
+        "target": "nav-timeline"
+      },
+      "action": {
+        "type": "navigate",
+        "screen": "screen4"
+      }
+    },
+    {
+      "trigger": {
+        "type": "tap",
+        "target": "nav-insights"
+      },
+      "action": {
+        "type": "navigate",
+        "screen": "screen5"
+      }
+    }
+  ]
+}

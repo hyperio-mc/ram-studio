@@ -1,0 +1,725 @@
+{
+  "version": "2.8",
+  "meta": {
+    "name": "DOCKET",
+    "tagline": "Documents that think with you.",
+    "archetype": "ai-document-intelligence",
+    "author": "RAM Design Heartbeat",
+    "created": "2026-04-03T04:11:25.202Z",
+    "theme": "light"
+  },
+  "palette": {
+    "bg": "#1C1A16",
+    "surface": "#252219",
+    "surfaceAlt": "#2E2A22",
+    "text": "#F0EDE6",
+    "textMuted": "rgba(240,237,230,0.42)",
+    "accent": "#C95A2C",
+    "accent2": "#4A7B5E",
+    "accentSoft": "rgba(201,90,44,0.12)",
+    "accent2Soft": "rgba(74,123,94,0.12)",
+    "border": "rgba(240,237,230,0.07)",
+    "borderStrong": "rgba(240,237,230,0.13)",
+    "borderAccent": "rgba(201,90,44,0.28)",
+    "statusGreen": "#4A9C6F",
+    "statusAmber": "#C9882A",
+    "statusRed": "#C95A5A",
+    "statusGreenSoft": "rgba(74,156,111,0.12)",
+    "statusAmberSoft": "rgba(201,136,42,0.12)"
+  },
+  "lightPalette": {
+    "bg": "#FAF7F1",
+    "surface": "#FFFFFF",
+    "surfaceAlt": "#F2EFE8",
+    "surfaceHover": "#F7F3EB",
+    "text": "#1A1714",
+    "textMuted": "rgba(26,23,20,0.42)",
+    "accent": "#C95A2C",
+    "accent2": "#3B5E45",
+    "accentSoft": "rgba(201,90,44,0.08)",
+    "accent2Soft": "rgba(59,94,69,0.08)",
+    "border": "rgba(26,23,20,0.08)",
+    "borderStrong": "rgba(26,23,20,0.15)",
+    "borderAccent": "rgba(201,90,44,0.22)",
+    "statusGreen": "#2F7A54",
+    "statusAmber": "#B07020",
+    "statusRed": "#B84040",
+    "statusGreenSoft": "rgba(47,122,84,0.10)",
+    "statusAmberSoft": "rgba(176,112,32,0.10)"
+  },
+  "typography": {
+    "fontFamily": "'Inter', system-ui, -apple-system, sans-serif",
+    "serifFamily": "'Georgia', 'Cambria', serif",
+    "monoFamily": "'JetBrains Mono', monospace",
+    "scale": {
+      "xs": 10,
+      "sm": 11,
+      "base": 13,
+      "md": 14,
+      "lg": 17,
+      "xl": 22,
+      "xxl": 32,
+      "hero": 52,
+      "editorial": 80
+    }
+  },
+  "screens": [
+    {
+      "id": "desk",
+      "label": "Desk",
+      "description": "Matter queue — numbered editorial cards, status indicators, AI-ready flags",
+      "components": [
+        {
+          "type": "app-topbar",
+          "left": "DOCKET",
+          "leftSub": "Apr 3, 2026",
+          "rightAction": {
+            "icon": "bell",
+            "badge": "3"
+          },
+          "style": "editorial-light"
+        },
+        {
+          "type": "editorial-greeting",
+          "eyebrow": "GOOD MORNING",
+          "headline": "4 active matters.",
+          "subline": "2 require attention today.",
+          "accentLine": true
+        },
+        {
+          "type": "stat-strip",
+          "style": "warm-light",
+          "items": [
+            {
+              "label": "Active Matters",
+              "value": "12",
+              "delta": "+2",
+              "positive": true
+            },
+            {
+              "label": "Drafts Open",
+              "value": "7",
+              "delta": "3 due",
+              "positive": false
+            },
+            {
+              "label": "AI Reviews",
+              "value": "28",
+              "delta": "this week",
+              "positive": true
+            },
+            {
+              "label": "Clauses Saved",
+              "value": "341",
+              "delta": "library",
+              "positive": true
+            }
+          ]
+        },
+        {
+          "type": "section-divider",
+          "label": "MATTER QUEUE",
+          "number": "01",
+          "style": "editorial-numbered"
+        },
+        {
+          "type": "matter-card-list",
+          "items": [
+            {
+              "number": "001",
+              "client": "Harmon & Reeves Ltd.",
+              "matter": "Commercial Lease Review",
+              "status": "action",
+              "statusLabel": "Needs Review",
+              "statusColor": "statusAmber",
+              "dueLabel": "Due Today",
+              "docCount": 3,
+              "aiReady": true,
+              "riskScore": 72,
+              "category": "Real Estate"
+            },
+            {
+              "number": "002",
+              "client": "Bellfield Capital",
+              "matter": "Series B Term Sheet",
+              "status": "draft",
+              "statusLabel": "In Draft",
+              "statusColor": "accent2",
+              "dueLabel": "Due Apr 7",
+              "docCount": 5,
+              "aiReady": true,
+              "riskScore": 44,
+              "category": "Corporate"
+            },
+            {
+              "number": "003",
+              "client": "Voss Pharmaceuticals",
+              "matter": "NDA — Research Partnership",
+              "status": "review",
+              "statusLabel": "Client Review",
+              "statusColor": "statusGreen",
+              "dueLabel": "Due Apr 10",
+              "docCount": 2,
+              "aiReady": false,
+              "riskScore": 21,
+              "category": "IP"
+            },
+            {
+              "number": "004",
+              "client": "Thorne Industries",
+              "matter": "Supplier Framework Agreement",
+              "status": "action",
+              "statusLabel": "Flagged Clauses",
+              "statusColor": "statusRed",
+              "dueLabel": "Overdue",
+              "docCount": 4,
+              "aiReady": true,
+              "riskScore": 88,
+              "category": "Commercial"
+            }
+          ]
+        },
+        {
+          "type": "section-divider",
+          "label": "RECENT ACTIVITY",
+          "number": "02",
+          "style": "editorial-numbered"
+        },
+        {
+          "type": "activity-feed",
+          "items": [
+            {
+              "icon": "check",
+              "text": "AI scan complete — Voss NDA",
+              "time": "9:14 AM",
+              "accent": "statusGreen"
+            },
+            {
+              "icon": "alert",
+              "text": "3 clauses flagged — Thorne",
+              "time": "8:52 AM",
+              "accent": "statusRed"
+            },
+            {
+              "icon": "eye",
+              "text": "Draft opened — Bellfield v3",
+              "time": "Yesterday",
+              "accent": "accent2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "brief",
+      "label": "Brief",
+      "description": "AI document analysis — pull-quote highlights, clause flags, risk score ring",
+      "components": [
+        {
+          "type": "screen-header",
+          "back": true,
+          "title": "Thorne Industries",
+          "subtitle": "Supplier Framework Agreement",
+          "rightAction": {
+            "icon": "share",
+            "label": "Export"
+          },
+          "style": "editorial-back"
+        },
+        {
+          "type": "risk-banner",
+          "score": 88,
+          "label": "HIGH RISK",
+          "message": "3 unfavourable clauses detected",
+          "color": "statusRed",
+          "style": "editorial-banner"
+        },
+        {
+          "type": "section-divider",
+          "label": "AI BRIEF",
+          "number": "01",
+          "style": "editorial-numbered"
+        },
+        {
+          "type": "editorial-pullquote",
+          "quote": "The indemnification clause in §7.2 creates disproportionate liability exposure — recommend negotiation or carve-out.",
+          "source": "DOCKET AI · Clause Analysis",
+          "accentColor": "statusRed",
+          "icon": "alert"
+        },
+        {
+          "type": "doc-stats-row",
+          "items": [
+            {
+              "label": "Pages",
+              "value": "24"
+            },
+            {
+              "label": "Clauses",
+              "value": "41"
+            },
+            {
+              "label": "Flagged",
+              "value": "3",
+              "color": "statusRed"
+            },
+            {
+              "label": "Favourables",
+              "value": "18",
+              "color": "statusGreen"
+            }
+          ]
+        },
+        {
+          "type": "section-divider",
+          "label": "FLAGGED CLAUSES",
+          "number": "02",
+          "style": "editorial-numbered"
+        },
+        {
+          "type": "clause-flag-list",
+          "items": [
+            {
+              "section": "§7.2",
+              "title": "Indemnification",
+              "severity": "high",
+              "severityLabel": "High Risk",
+              "excerpt": "Supplier shall indemnify Client for any and all losses arising from...",
+              "recommendation": "Negotiate cap on liability",
+              "category": "Liability"
+            },
+            {
+              "section": "§12.1",
+              "title": "Termination for Convenience",
+              "severity": "medium",
+              "severityLabel": "Review",
+              "excerpt": "Client may terminate this Agreement upon 7 days written notice...",
+              "recommendation": "Request 30-day notice minimum",
+              "category": "Termination"
+            },
+            {
+              "section": "§4.4",
+              "title": "Exclusivity Window",
+              "severity": "medium",
+              "severityLabel": "Review",
+              "excerpt": "Supplier agrees not to engage competing parties for a period of...",
+              "recommendation": "Define scope limitations",
+              "category": "Exclusivity"
+            }
+          ]
+        },
+        {
+          "type": "editorial-pullquote",
+          "quote": "Payment terms (§5) and IP ownership (§9) are standard and favourable to your position.",
+          "source": "DOCKET AI · Positive Signals",
+          "accentColor": "statusGreen",
+          "icon": "check"
+        }
+      ]
+    },
+    {
+      "id": "clauses",
+      "label": "Clauses",
+      "description": "Personal clause library — searchable, tagged, AI-organised",
+      "components": [
+        {
+          "type": "search-header",
+          "placeholder": "Search clauses, categories, matters…",
+          "style": "editorial-search"
+        },
+        {
+          "type": "category-chips",
+          "items": [
+            {
+              "label": "All",
+              "active": true
+            },
+            {
+              "label": "Liability",
+              "active": false
+            },
+            {
+              "label": "IP",
+              "active": false
+            },
+            {
+              "label": "Termination",
+              "active": false
+            },
+            {
+              "label": "Payment",
+              "active": false
+            },
+            {
+              "label": "Confidential",
+              "active": false
+            }
+          ]
+        },
+        {
+          "type": "section-divider",
+          "label": "SAVED CLAUSES",
+          "number": "01",
+          "style": "editorial-numbered",
+          "rightLabel": "341 total"
+        },
+        {
+          "type": "clause-library-list",
+          "items": [
+            {
+              "number": "C·001",
+              "title": "Standard Limitation of Liability",
+              "category": "Liability",
+              "categoryColor": "statusRed",
+              "excerpt": "In no event shall either party be liable for indirect, incidental, special or consequential damages…",
+              "usedIn": 14,
+              "lastUsed": "Mar 28",
+              "starred": true
+            },
+            {
+              "number": "C·002",
+              "title": "Mutual NDA — Standard Form",
+              "category": "Confidential",
+              "categoryColor": "accent2",
+              "excerpt": "Each party agrees to hold in confidence all Confidential Information received from the other party…",
+              "usedIn": 27,
+              "lastUsed": "Apr 1",
+              "starred": true
+            },
+            {
+              "number": "C·003",
+              "title": "IP Ownership — Work for Hire",
+              "category": "IP",
+              "categoryColor": "accent",
+              "excerpt": "All work product created by Supplier under this Agreement shall be considered works made for hire…",
+              "usedIn": 9,
+              "lastUsed": "Mar 15",
+              "starred": false
+            },
+            {
+              "number": "C·004",
+              "title": "30-Day Termination Notice",
+              "category": "Termination",
+              "categoryColor": "statusAmber",
+              "excerpt": "Either party may terminate this Agreement upon thirty (30) days written notice to the other party…",
+              "usedIn": 19,
+              "lastUsed": "Apr 2",
+              "starred": false
+            }
+          ]
+        },
+        {
+          "type": "section-divider",
+          "label": "AI SUGGESTED",
+          "number": "02",
+          "style": "editorial-numbered",
+          "rightLabel": "Based on active matters"
+        },
+        {
+          "type": "ai-suggestion-card",
+          "title": "Force Majeure — Broad Form",
+          "reason": "Relevant to Thorne Industries SFA",
+          "accentColor": "accent"
+        }
+      ]
+    },
+    {
+      "id": "draft",
+      "label": "Draft",
+      "description": "Live document editor — editorial sections, AI suggestion rail",
+      "components": [
+        {
+          "type": "screen-header",
+          "back": true,
+          "title": "Bellfield Capital",
+          "subtitle": "Series B Term Sheet · Draft v3",
+          "rightAction": {
+            "icon": "check",
+            "label": "Save"
+          },
+          "style": "editorial-back"
+        },
+        {
+          "type": "draft-progress-bar",
+          "label": "Draft Completeness",
+          "pct": 68,
+          "sections": [
+            {
+              "label": "Cover",
+              "done": true
+            },
+            {
+              "label": "Terms",
+              "done": true
+            },
+            {
+              "label": "Governance",
+              "done": true
+            },
+            {
+              "label": "Economics",
+              "done": false
+            },
+            {
+              "label": "Closing",
+              "done": false
+            }
+          ]
+        },
+        {
+          "type": "section-divider",
+          "label": "DOCUMENT SECTIONS",
+          "number": "01",
+          "style": "editorial-numbered"
+        },
+        {
+          "type": "draft-section-list",
+          "items": [
+            {
+              "number": "I",
+              "title": "Cover & Parties",
+              "wordCount": 180,
+              "status": "complete",
+              "statusLabel": "Complete",
+              "lastEdited": "Apr 2, 11:43 AM"
+            },
+            {
+              "number": "II",
+              "title": "Investment Terms",
+              "wordCount": 340,
+              "status": "complete",
+              "statusLabel": "Complete",
+              "lastEdited": "Apr 3, 8:12 AM"
+            },
+            {
+              "number": "III",
+              "title": "Governance & Board",
+              "wordCount": 210,
+              "status": "ai-review",
+              "statusLabel": "AI Reviewing",
+              "lastEdited": "Apr 3, 9:01 AM"
+            },
+            {
+              "number": "IV",
+              "title": "Economics & Dilution",
+              "wordCount": 0,
+              "status": "empty",
+              "statusLabel": "Not Started",
+              "lastEdited": null
+            },
+            {
+              "number": "V",
+              "title": "Closing Conditions",
+              "wordCount": 0,
+              "status": "empty",
+              "statusLabel": "Not Started",
+              "lastEdited": null
+            }
+          ]
+        },
+        {
+          "type": "section-divider",
+          "label": "AI SUGGESTIONS",
+          "number": "02",
+          "style": "editorial-numbered"
+        },
+        {
+          "type": "ai-suggestion-list",
+          "items": [
+            {
+              "icon": "zap",
+              "title": "Insert standard anti-dilution clause",
+              "body": "Typical for Series B — broad-based weighted average recommended.",
+              "action": "Insert",
+              "section": "§IV"
+            },
+            {
+              "icon": "eye",
+              "title": "Governance has ambiguous voting rights",
+              "body": "Clarify whether super-majority applies to preference shares.",
+              "action": "Review",
+              "section": "§III"
+            },
+            {
+              "icon": "star",
+              "title": "Add drag-along rights from clause library",
+              "body": "C·007 matches 3 prior term sheets for similar rounds.",
+              "action": "Add",
+              "section": "§II"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "matters",
+      "label": "Matters",
+      "description": "Client matter health — editorial numbered index, document volumes",
+      "components": [
+        {
+          "type": "app-topbar",
+          "left": "DOCKET",
+          "leftSub": "All Matters",
+          "rightAction": {
+            "icon": "plus",
+            "label": "New Matter"
+          },
+          "style": "editorial-light"
+        },
+        {
+          "type": "section-divider",
+          "label": "MATTER HEALTH",
+          "number": "01",
+          "style": "editorial-numbered"
+        },
+        {
+          "type": "health-overview-grid",
+          "items": [
+            {
+              "label": "On Track",
+              "value": "7",
+              "pct": 58,
+              "color": "statusGreen"
+            },
+            {
+              "label": "Needs Attn",
+              "value": "3",
+              "pct": 25,
+              "color": "statusAmber"
+            },
+            {
+              "label": "Overdue",
+              "value": "2",
+              "pct": 17,
+              "color": "statusRed"
+            }
+          ]
+        },
+        {
+          "type": "section-divider",
+          "label": "ALL MATTERS",
+          "number": "02",
+          "style": "editorial-numbered",
+          "rightLabel": "12 active"
+        },
+        {
+          "type": "matter-index-list",
+          "items": [
+            {
+              "index": "001",
+              "client": "Harmon & Reeves",
+              "category": "Real Estate",
+              "status": "amber",
+              "docCount": 3,
+              "lastActivity": "Today"
+            },
+            {
+              "index": "002",
+              "client": "Bellfield Capital",
+              "category": "Corporate",
+              "status": "green",
+              "docCount": 5,
+              "lastActivity": "Today"
+            },
+            {
+              "index": "003",
+              "client": "Voss Pharma",
+              "category": "IP",
+              "status": "green",
+              "docCount": 2,
+              "lastActivity": "Yesterday"
+            },
+            {
+              "index": "004",
+              "client": "Thorne Industries",
+              "category": "Commercial",
+              "status": "red",
+              "docCount": 4,
+              "lastActivity": "Overdue"
+            },
+            {
+              "index": "005",
+              "client": "Calder Group",
+              "category": "Employment",
+              "status": "green",
+              "docCount": 2,
+              "lastActivity": "Apr 1"
+            },
+            {
+              "index": "006",
+              "client": "Meridian Labs",
+              "category": "IP",
+              "status": "amber",
+              "docCount": 6,
+              "lastActivity": "Mar 31"
+            }
+          ]
+        },
+        {
+          "type": "section-divider",
+          "label": "DOCUMENT VOLUME",
+          "number": "03",
+          "style": "editorial-numbered"
+        },
+        {
+          "type": "bar-chart-editorial",
+          "label": "Documents by Category",
+          "items": [
+            {
+              "label": "Corporate",
+              "value": 38,
+              "pct": 90
+            },
+            {
+              "label": "Real Estate",
+              "value": 24,
+              "pct": 58
+            },
+            {
+              "label": "IP",
+              "value": 18,
+              "pct": 43
+            },
+            {
+              "label": "Commercial",
+              "value": 15,
+              "pct": 36
+            },
+            {
+              "label": "Employment",
+              "value": 9,
+              "pct": 22
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "nav": [
+    {
+      "id": "desk",
+      "label": "Desk",
+      "icon": "home"
+    },
+    {
+      "id": "brief",
+      "label": "Brief",
+      "icon": "eye"
+    },
+    {
+      "id": "clauses",
+      "label": "Clauses",
+      "icon": "layers"
+    },
+    {
+      "id": "draft",
+      "label": "Draft",
+      "icon": "edit"
+    },
+    {
+      "id": "matters",
+      "label": "Matters",
+      "icon": "list"
+    }
+  ]
+}

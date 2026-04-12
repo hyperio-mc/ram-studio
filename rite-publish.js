@@ -1,0 +1,412 @@
+// rite-publish.js — RITE hero + gallery update
+// Theme: LIGHT — editorial skincare ritual tracker
+// Inspired by overlay.com (PP Editorial Old serif, iridescent gradient, cream palette)
+
+import fs from 'fs';
+import https from 'https';
+import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
+const config = JSON.parse(require('fs').readFileSync('/workspace/group/design-studio/community-config.json','utf8'));
+const TOKEN = config.GITHUB_TOKEN;
+const REPO  = config.GITHUB_REPO;
+
+const hero = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RITE — skin intelligence built on ritual</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@300;400;500&display=swap');
+
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --bg:#FAF8F5;--surface:#FFFFFF;--surfaceB:#F4F0EC;--border:#E8E2DA;
+    --text:#1A1720;--muted:rgba(26,23,32,0.42);
+    --violet:#8B7FD4;--blush:#D4847A;--sage:#7BA48A;--gold:#C9A45A;--rose:#C4768A;
+    --gv:#F0EDFF;--gr:#FFF0EE;--gs:#EEFAF2;
+  }
+  html{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif}
+  body{min-height:100vh}
+
+  /* ─── NAV ─── */
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:0 48px;height:64px;
+    background:rgba(250,248,245,0.92);backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--border);
+  }
+  .nav-logo{font-family:'Playfair Display',serif;font-size:22px;font-style:italic;color:var(--text);text-decoration:none;letter-spacing:0.01em}
+  .nav-links{display:flex;gap:32px;list-style:none}
+  .nav-links a{font-size:13px;color:var(--muted);text-decoration:none;letter-spacing:0.04em;transition:color .2s}
+  .nav-links a:hover{color:var(--text)}
+  .nav-cta{font-size:13px;font-weight:500;padding:8px 22px;border-radius:24px;background:var(--violet);color:#fff;text-decoration:none;transition:transform .2s,opacity .2s}
+  .nav-cta:hover{transform:translateY(-1px);opacity:.88}
+
+  /* ─── HERO ─── */
+  .hero{
+    padding:140px 48px 96px;max-width:1240px;margin:0 auto;
+    display:grid;grid-template-columns:1.15fr 1fr;gap:80px;align-items:center;
+  }
+  .hero-eyebrow{
+    display:inline-block;font-size:10px;font-weight:500;letter-spacing:0.2em;
+    text-transform:uppercase;color:var(--violet);
+    border:1px solid rgba(139,127,212,0.3);padding:5px 16px;border-radius:20px;margin-bottom:32px;
+  }
+  /* PP Editorial Old-inspired title: alternating italic/bold weights on the same serif */
+  .hero-title{
+    font-family:'Playfair Display',serif;font-size:66px;line-height:1.05;
+    margin-bottom:28px;font-weight:400;letter-spacing:-0.02em;
+  }
+  .hero-title .thin{font-style:italic;font-weight:400;color:var(--muted)}
+  .hero-title .bold{font-weight:700;font-style:italic;color:var(--text)}
+  .hero-sub{font-size:18px;line-height:1.8;color:var(--muted);max-width:440px;margin-bottom:44px;font-weight:300}
+  .hero-actions{display:flex;gap:16px;align-items:center}
+  .btn-primary{font-size:14px;font-weight:500;padding:14px 32px;border-radius:32px;background:var(--violet);color:#fff;text-decoration:none;transition:transform .2s,opacity .2s}
+  .btn-primary:hover{transform:translateY(-1px);opacity:.88}
+  .btn-ghost{font-size:14px;color:var(--muted);text-decoration:none;transition:color .2s}
+  .btn-ghost:hover{color:var(--text)}
+
+  /* Phone mockup */
+  .phone{
+    width:272px;height:560px;border-radius:44px;background:var(--surface);
+    border:1px solid var(--border);
+    box-shadow:0 32px 80px rgba(26,23,32,0.10),0 4px 16px rgba(26,23,32,0.05);
+    overflow:hidden;margin:0 auto;
+    position:relative;
+  }
+  /* Iridescent glow behind phone — key Overlay motif */
+  .phone-glow{
+    position:absolute;width:320px;height:320px;border-radius:50%;
+    background:radial-gradient(circle,rgba(139,127,212,.15) 0%,rgba(212,132,122,.1) 40%,transparent 70%);
+    top:50%;left:50%;transform:translate(-50%,-60%);
+    pointer-events:none;z-index:-1;
+  }
+  .pm{display:flex;flex-direction:column;height:100%;background:var(--bg);font-size:11px}
+  .pm-sb{height:32px;background:var(--bg);display:flex;align-items:center;padding:0 14px;justify-content:space-between}
+  .pm-sb-time{font-size:10px;font-weight:500;font-variant-numeric:tabular-nums}
+  .pm-sb-icons{font-size:9px;color:var(--muted)}
+  .pm-hd{padding:8px 16px 10px}
+  .pm-hd-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;font-style:italic}
+  .pm-hd-sub{font-size:7.5px;letter-spacing:.12em;color:var(--muted);margin-top:1px}
+  .pm-stat{padding:0 16px 8px;display:flex;align-items:baseline;gap:6px}
+  .pm-stat-n{font-family:'Playfair Display',serif;font-size:40px;font-weight:700;font-style:italic;color:var(--violet);line-height:1}
+  .pm-stat-u{font-size:11px;color:var(--muted)}
+  .pm-note{padding:0 16px 10px;font-size:10px;color:var(--muted)}
+  .pm-section{padding:2px 16px 4px;font-size:7px;letter-spacing:.12em;color:var(--muted)}
+  .pm-step{
+    margin:2px 12px;padding:6px 10px;border-radius:10px;
+    background:var(--surface);border:1px solid var(--border);
+    display:flex;align-items:center;gap:8px;
+  }
+  .pm-step.done{background:rgba(139,127,212,.06);border-color:rgba(139,127,212,.25)}
+  .pm-step-circle{
+    width:22px;height:22px;border-radius:50%;flex-shrink:0;
+    display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;
+  }
+  .pm-step-info{flex:1;min-width:0}
+  .pm-step-name{font-size:10px;font-weight:500}
+  .pm-step.done .pm-step-name{color:var(--muted)}
+  .pm-step-brand{font-size:8px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .pm-step-time{font-size:8px;flex-shrink:0}
+  .pm-insight{
+    margin:6px 12px;padding:8px 10px;border-radius:8px;
+    background:var(--gv);border:1px solid rgba(139,127,212,.2);
+    font-size:8.5px;color:var(--violet);line-height:1.5;
+  }
+  .pm-nav{
+    margin-top:auto;height:52px;background:var(--surface);
+    border-top:1px solid var(--border);
+    display:flex;align-items:center;justify-content:space-around;
+  }
+  .pm-nav-item{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:7px;color:var(--muted)}
+  .pm-nav-item.active{color:var(--violet)}
+  .pm-nav-icon{font-size:14px;line-height:1}
+
+  /* ─── EDITORIAL SECTION ─── */
+  .editorial{
+    padding:80px 48px;border-top:1px solid var(--border);
+    background:var(--surface);
+  }
+  .editorial-inner{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+  .ed-quote{
+    font-family:'Playfair Display',serif;font-size:36px;line-height:1.4;
+    font-style:italic;font-weight:400;border-left:2px solid var(--violet);padding-left:28px;
+  }
+  .ed-quote strong{font-weight:700;font-style:italic;color:var(--violet)}
+  .ed-body{font-size:16px;color:var(--muted);line-height:1.8;font-weight:300;margin-top:20px;padding-left:30px}
+  .ed-principles{display:flex;flex-direction:column;gap:20px}
+  .ed-p{padding:24px;border:1px solid var(--border);border-radius:14px;background:var(--bg)}
+  .ed-p-icon{width:40px;height:40px;border-radius:10px;margin-bottom:14px;display:flex;align-items:center;justify-content:center;font-size:16px}
+  .ed-p-title{font-family:'Playfair Display',serif;font-size:17px;margin-bottom:8px;font-weight:700}
+  .ed-p-text{font-size:13px;line-height:1.75;color:var(--muted);font-weight:300}
+
+  /* ─── STATS ─── */
+  .stats{padding:80px 48px;max-width:1240px;margin:0 auto}
+  .stats-eyebrow{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--blush);margin-bottom:16px}
+  .stats-title{font-family:'Playfair Display',serif;font-size:44px;line-height:1.2;margin-bottom:56px;max-width:540px;font-weight:400;font-style:italic}
+  .stats-title em{font-style:normal;font-weight:700;color:var(--violet)}
+  .stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:40px}
+  .stat-n{font-family:'Playfair Display',serif;font-size:56px;color:var(--violet);line-height:1;font-weight:700;font-style:italic}
+  .stat-t{font-size:14px;color:var(--text);font-weight:500;margin-top:10px;margin-bottom:6px}
+  .stat-d{font-size:13px;color:var(--muted);line-height:1.7;font-weight:300}
+
+  /* ─── FEATURES ─── */
+  .features{padding:96px 48px;background:var(--surface);border-top:1px solid var(--border)}
+  .features-inner{max-width:1240px;margin:0 auto}
+  .feat-eyebrow{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--sage);margin-bottom:12px}
+  .feat-title{font-family:'Playfair Display',serif;font-size:46px;line-height:1.18;margin-bottom:56px;max-width:560px;font-weight:700;font-style:italic}
+  .feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:18px;overflow:hidden}
+  .feat-card{background:var(--bg);padding:36px 28px}
+  .feat-icon{width:44px;height:44px;border-radius:12px;margin-bottom:20px;display:flex;align-items:center;justify-content:center;font-size:20px}
+  .feat-icon.v{background:var(--gv)}
+  .feat-icon.b{background:var(--gr)}
+  .feat-icon.s{background:var(--gs)}
+  .feat-card h3{font-family:'Playfair Display',serif;font-size:20px;margin-bottom:10px;font-weight:700}
+  .feat-card p{font-size:13px;line-height:1.75;color:var(--muted);font-weight:300}
+
+  /* ─── CTA ─── */
+  .cta{padding:120px 48px;text-align:center;max-width:680px;margin:0 auto}
+  .cta h2{font-family:'Playfair Display',serif;font-size:54px;line-height:1.1;margin-bottom:22px;font-weight:400}
+  .cta h2 em{font-style:italic;font-weight:700;color:var(--violet)}
+  .cta p{font-size:17px;color:var(--muted);line-height:1.8;margin-bottom:44px;font-weight:300}
+  .cta-btns{display:flex;gap:16px;justify-content:center}
+
+  footer{padding:36px 48px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;background:var(--surface)}
+  .footer-logo{font-family:'Playfair Display',serif;font-style:italic;font-size:18px}
+  .footer-note{font-size:12px;color:var(--muted)}
+  .footer-tag{font-size:10px;letter-spacing:.1em;color:var(--violet);padding:5px 12px;border:1px solid rgba(139,127,212,.3);border-radius:20px}
+
+  @media(max-width:900px){
+    .hero{grid-template-columns:1fr;padding:120px 24px 64px}
+    .phone,.phone-glow{display:none}
+    .editorial-inner{grid-template-columns:1fr}
+    .stats-grid{grid-template-columns:1fr 1fr}
+    .feat-grid{grid-template-columns:1fr}
+    nav{padding:0 24px}
+    .nav-links{display:none}
+  }
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="#">Rite</a>
+  <ul class="nav-links">
+    <li><a href="#">Ritual</a></li>
+    <li><a href="#">Track</a></li>
+    <li><a href="#">Insight</a></li>
+    <li><a href="#">Pricing</a></li>
+  </ul>
+  <a class="nav-cta" href="#">Start your ritual</a>
+</nav>
+
+<section class="hero">
+  <div>
+    <span class="hero-eyebrow">Skin Intelligence</span>
+    <!-- PP Editorial Old-inspired mixed-weight title -->
+    <h1 class="hero-title">
+      <span class="thin">Your skin,<br>tracked</span><br>
+      <span class="bold">with intention.</span>
+    </h1>
+    <p class="hero-sub">A skincare ritual tracker that learns your skin's patterns and builds a routine around what actually works — not what the algorithm recommends.</p>
+    <div class="hero-actions">
+      <a class="btn-primary" href="#">Start your ritual</a>
+      <a class="btn-ghost" href="#">See how it works →</a>
+    </div>
+  </div>
+  <div style="position:relative">
+    <div class="phone-glow"></div>
+    <div class="phone">
+      <div class="pm">
+        <div class="pm-sb">
+          <span class="pm-sb-time">9:41</span>
+          <span class="pm-sb-icons">● ◆ ▮</span>
+        </div>
+        <div class="pm-hd">
+          <div class="pm-hd-title">Morning</div>
+          <div class="pm-hd-sub">FRIDAY · MARCH 27</div>
+        </div>
+        <div class="pm-stat">
+          <span class="pm-stat-n">14</span>
+          <span class="pm-stat-u">day streak</span>
+        </div>
+        <div class="pm-note">2 of 5 steps done · 3 min remaining</div>
+        <div class="pm-section">TODAY'S RITUAL</div>
+        <div class="pm-step done">
+          <div class="pm-step-circle" style="background:rgba(123,164,138,.2);color:#7BA48A">✓</div>
+          <div class="pm-step-info">
+            <div class="pm-step-name">Cleanser</div>
+            <div class="pm-step-brand">CeraVe Hydrating</div>
+          </div>
+          <span class="pm-step-time" style="color:#7BA48A">60s</span>
+        </div>
+        <div class="pm-step done">
+          <div class="pm-step-circle" style="background:rgba(139,127,212,.2);color:#8B7FD4">✓</div>
+          <div class="pm-step-info">
+            <div class="pm-step-name">Toner</div>
+            <div class="pm-step-brand">Paula's Choice BHA</div>
+          </div>
+          <span class="pm-step-time" style="color:#8B7FD4">30s</span>
+        </div>
+        <div class="pm-step">
+          <div class="pm-step-circle" style="background:rgba(201,164,90,.15);color:#C9A45A;border:1px solid rgba(201,164,90,.3)">3</div>
+          <div class="pm-step-info">
+            <div class="pm-step-name">Vitamin C</div>
+            <div class="pm-step-brand">SkinCeuticals C E Ferulic</div>
+          </div>
+          <span class="pm-step-time" style="color:#C9A45A">60s</span>
+        </div>
+        <div class="pm-step">
+          <div class="pm-step-circle" style="background:rgba(212,132,122,.15);color:#D4847A;border:1px solid rgba(212,132,122,.3)">4</div>
+          <div class="pm-step-info">
+            <div class="pm-step-name">Moisturiser</div>
+            <div class="pm-step-brand">La Roche-Posay Tol.</div>
+          </div>
+          <span class="pm-step-time" style="color:#D4847A">30s</span>
+        </div>
+        <div class="pm-insight">✦ UV index 6 today — don't skip SPF. Your skin is drier than usual this week.</div>
+        <div class="pm-nav">
+          <div class="pm-nav-item active"><span class="pm-nav-icon">☀</span>Ritual</div>
+          <div class="pm-nav-item"><span class="pm-nav-icon">◎</span>Track</div>
+          <div class="pm-nav-item"><span class="pm-nav-icon">✦</span>Shelf</div>
+          <div class="pm-nav-item"><span class="pm-nav-icon">◇</span>Insight</div>
+          <div class="pm-nav-item"><span class="pm-nav-icon">◌</span>Profile</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="editorial">
+  <div class="editorial-inner">
+    <div>
+      <p class="ed-quote">"The ritual is the <strong>product</strong>."</p>
+      <p class="ed-body">Most skincare apps track products. Rite tracks your ritual — the sequence, the consistency, the patterns that actually change your skin over time. Inspired by Overlay's vision of automated beauty, built for human intention.</p>
+    </div>
+    <div class="ed-principles">
+      <div class="ed-p">
+        <div class="ed-p-icon v">☀</div>
+        <div class="ed-p-title">Ritual-first design</div>
+        <div class="ed-p-text">Not a product database — a sequence. Rite builds your morning and evening ritual as a step-by-step flow, with timers, reminders, and streak tracking.</div>
+      </div>
+      <div class="ed-p">
+        <div class="ed-p-icon b">◎</div>
+        <div class="ed-p-title">Pattern-based intelligence</div>
+        <div class="ed-p-text">Photo-log your skin weekly. Rite's AI correlates your ritual consistency with visible changes — hydration, texture, redness — and tells you what's actually working.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="stats">
+  <div class="stats-eyebrow">Why ritual matters</div>
+  <h2 class="stats-title">Consistency creates<br><em>compound results</em>.</h2>
+  <div class="stats-grid">
+    <div>
+      <div class="stat-n">21</div>
+      <div class="stat-t">Days to form a ritual</div>
+      <div class="stat-d">Research shows skin habits need 21 days of consistent practice before measurable changes appear in barrier function and hydration.</div>
+    </div>
+    <div>
+      <div class="stat-n">78%</div>
+      <div class="stat-t">Of products go unused</div>
+      <div class="stat-d">The average person owns 7 skincare products but only uses 2 consistently. Rite helps you build a shelf that matches your actual ritual.</div>
+    </div>
+    <div>
+      <div class="stat-n">3×</div>
+      <div class="stat-t">Better results with tracking</div>
+      <div class="stat-d">Users who photo-log their skin weekly and track ritual consistency see 3× more improvement on barrier and texture scores after 60 days.</div>
+    </div>
+  </div>
+</section>
+
+<section class="features">
+  <div class="features-inner">
+    <div class="feat-eyebrow">What Rite does</div>
+    <h2 class="feat-title">Five screens.<br>One ritual.</h2>
+    <div class="feat-grid">
+      <div class="feat-card">
+        <div class="feat-icon v">☀</div>
+        <h3>Ritual</h3>
+        <p>Step-by-step morning and evening sequences with timers, streak tracking, and gentle context cues — UV index, humidity, sleep quality — that inform what your skin needs today.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon b">◎</div>
+        <h3>Track</h3>
+        <p>Weekly skin photo log with AI-powered analysis. Hydration, barrier integrity, redness, texture — scored and trended over time so you can see what's actually changing.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon s">◇</div>
+        <h3>Insight</h3>
+        <p>Pattern-based recommendations from your own data. Not influencer suggestions — ranked adjustments built from correlating your ritual consistency with your skin's measurable response.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="cta">
+    <h2>Build a ritual that <em>remembers</em>.</h2>
+    <p>Start with your morning routine. Rite will track the rest — learning what your skin responds to and building intelligence that's yours alone.</p>
+    <div class="cta-btns">
+      <a class="btn-primary" href="#">Start your ritual</a>
+      <a class="btn-ghost" href="#">See pricing →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">Rite</div>
+  <div class="footer-note">A RAM design concept · March 2026</div>
+  <div class="footer-tag">light theme</div>
+</footer>
+</body>
+</html>`;
+
+function req(opts, body) {
+  return new Promise((res, rej) => {
+    const r = https.request(opts, rs => {
+      let d=''; rs.on('data',c=>d+=c); rs.on('end',()=>res({status:rs.statusCode,body:d}));
+    });
+    r.on('error',rej); if(body) r.write(body); r.end();
+  });
+}
+
+fs.writeFileSync('rite-hero.html', hero);
+console.log('✓ Saved rite-hero.html locally');
+
+// ZenBin
+console.log('📤 Publishing to ZenBin...');
+const body = Buffer.from(JSON.stringify({ html: hero }));
+try {
+  const res = await req({ hostname:'zenbin.org', path:'/v1/pages/rite?overwrite=true', method:'POST',
+    headers:{'Content-Type':'application/json','Content-Length':body.length,'X-Subdomain':'ram'} }, body);
+  if (res.status===200||res.status===201) console.log('✓ Hero live at: https://ram.zenbin.org/rite');
+  else console.log(`✗ ZenBin ${res.status}: ${res.body.slice(0,120)}`);
+} catch(e) { console.log('✗ ZenBin:', e.message); }
+
+// Gallery
+console.log('📚 Updating gallery...');
+try {
+  const headers = {'Authorization':`token ${TOKEN}`,'User-Agent':'ram-heartbeat/1.0','Accept':'application/vnd.github.v3+json'};
+  const g = await req({hostname:'api.github.com',path:`/repos/${REPO}/contents/queue.json`,method:'GET',headers});
+  const gj = JSON.parse(g.body);
+  const q = JSON.parse(Buffer.from(gj.content,'base64').toString('utf8'));
+  q.submissions = (q.submissions||[]).filter(s=>s.app_name!=='RITE');
+  const now = new Date().toISOString();
+  q.submissions.push({
+    id:`heartbeat-rite-${Date.now()}`,status:'done',app_name:'RITE',
+    tagline:'skin intelligence built on ritual',archetype:'skincare-wellness',
+    design_url:'https://ram.zenbin.org/rite',mock_url:'https://ram.zenbin.org/rite-mock',
+    submitted_at:now,published_at:now,credit:'RAM Design Heartbeat',
+    prompt:'Inspired by Overlay.com (lapa.ninja — "The Future of Beauty is Automated") — PP Editorial Old serif mixed-weight typography (thin italic + bold contrast), iridescent gradient palette (cream #FAF8F5 + soft violet #8B7FD4 + warm blush #D4847A), very minimal white space design language. Also informed by: Persephone Biosciences (Landbook — ecommerce health product design), GQ x AP Extraordinary Lab (Awwwards SOTD Mar 26 — Immersive Garden, editorial dark). Light theme with editorial serif numbers as key motif. 5 screens: Ritual (morning step sequence + streak), Track (skin photo log + bar chart + observations), Shelf (product inventory with replenishment tracking), Insight (AI-pattern recommendations with editorial intro text), Profile (circular avatar + consistency stats + milestones).',
+    screens:5,source:'heartbeat',theme:'light',
+  });
+  q.updated_at = now;
+  const encoded = Buffer.from(JSON.stringify(q,null,2)).toString('base64');
+  const putBody = Buffer.from(JSON.stringify({message:'feat: add RITE to gallery (heartbeat)',content:encoded,sha:gj.sha}));
+  const p = await req({hostname:'api.github.com',path:`/repos/${REPO}/contents/queue.json`,method:'PUT',
+    headers:{...headers,'Content-Length':putBody.length}},putBody);
+  console.log(`✓ Gallery updated (${p.status}) — ${q.submissions.length} total entries`);
+} catch(e) { console.log('✗ Gallery:', e.message); }

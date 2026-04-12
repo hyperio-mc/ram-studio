@@ -1,0 +1,2709 @@
+{
+  "version": "2.8",
+  "meta": {
+    "name": "Anchor",
+    "tagline": "Deploy with confidence",
+    "author": "RAM Design Heartbeat",
+    "created": "2026-03-30T11:03:55.492Z",
+    "slug": "anchor-deploy"
+  },
+  "canvas": {
+    "width": 390,
+    "height": 854
+  },
+  "screens": [
+    {
+      "id": "overview",
+      "label": "Overview",
+      "bg": "#F2F5FB",
+      "elements": [
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "w": 390,
+          "h": 56,
+          "fill": "#FFFFFF",
+          "stroke": "#E2E8F4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 34,
+          "text": "Anchor",
+          "font": "Inter",
+          "size": 18,
+          "weight": 700,
+          "color": "#2563EB"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 52,
+          "text": "Reliability Dashboard",
+          "font": "Inter",
+          "size": 11,
+          "weight": 400,
+          "color": "#667085"
+        },
+        {
+          "type": "rect",
+          "x": 310,
+          "y": 16,
+          "w": 62,
+          "h": 22,
+          "r": 11,
+          "fill": "#DCFCE7"
+        },
+        {
+          "type": "text",
+          "x": 326,
+          "y": 31,
+          "text": "● LIVE",
+          "font": "Inter",
+          "size": 10,
+          "weight": 600,
+          "color": "#16A34A"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 68,
+          "w": 358,
+          "h": 132,
+          "r": 16,
+          "fill": "#2563EB",
+          "shadow": "0 8px 32px rgba(37,99,235,0.22)"
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 96,
+          "text": "Overall Reliability",
+          "font": "Inter",
+          "size": 12,
+          "weight": 500,
+          "color": "rgba(255,255,255,0.7)"
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 142,
+          "text": "99.7%",
+          "font": "Inter",
+          "size": 52,
+          "weight": 800,
+          "color": "#FFFFFF"
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 172,
+          "text": "↑ 0.2% vs last 30 days",
+          "font": "Inter",
+          "size": 12,
+          "weight": 400,
+          "color": "rgba(255,255,255,0.6)"
+        },
+        {
+          "type": "rect",
+          "x": 256,
+          "y": 82,
+          "w": 102,
+          "h": 28,
+          "r": 8,
+          "fill": "rgba(255,255,255,0.15)"
+        },
+        {
+          "type": "text",
+          "x": 270,
+          "y": 101,
+          "text": "Budget: 87%",
+          "font": "Inter",
+          "size": 11,
+          "weight": 600,
+          "color": "#FFFFFF"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 212,
+          "w": 110,
+          "h": 82,
+          "r": 12,
+          "fill": "#FFFFFF",
+          "stroke": "#E2E8F4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 28,
+          "y": 234,
+          "text": "Incidents",
+          "font": "Inter",
+          "size": 11,
+          "weight": 500,
+          "color": "#667085"
+        },
+        {
+          "type": "text",
+          "x": 28,
+          "y": 264,
+          "text": "0",
+          "font": "Inter",
+          "size": 32,
+          "weight": 800,
+          "color": "#0D1117"
+        },
+        {
+          "type": "text",
+          "x": 28,
+          "y": 284,
+          "text": "active",
+          "font": "Inter",
+          "size": 10,
+          "weight": 400,
+          "color": "#10B981"
+        },
+        {
+          "type": "rect",
+          "x": 140,
+          "y": 212,
+          "w": 110,
+          "h": 82,
+          "r": 12,
+          "fill": "#FFFFFF",
+          "stroke": "#E2E8F4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 152,
+          "y": 234,
+          "text": "Deploys",
+          "font": "Inter",
+          "size": 11,
+          "weight": 500,
+          "color": "#667085"
+        },
+        {
+          "type": "text",
+          "x": 152,
+          "y": 264,
+          "text": "14",
+          "font": "Inter",
+          "size": 32,
+          "weight": 800,
+          "color": "#0D1117"
+        },
+        {
+          "type": "text",
+          "x": 152,
+          "y": 284,
+          "text": "today",
+          "font": "Inter",
+          "size": 10,
+          "weight": 400,
+          "color": "#667085"
+        },
+        {
+          "type": "rect",
+          "x": 264,
+          "y": 212,
+          "w": 110,
+          "h": 82,
+          "r": 12,
+          "fill": "#FFFFFF",
+          "stroke": "#E2E8F4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 276,
+          "y": 234,
+          "text": "MTTR",
+          "font": "Inter",
+          "size": 11,
+          "weight": 500,
+          "color": "#667085"
+        },
+        {
+          "type": "text",
+          "x": 276,
+          "y": 264,
+          "text": "4m",
+          "font": "Inter",
+          "size": 32,
+          "weight": 800,
+          "color": "#0D1117"
+        },
+        {
+          "type": "text",
+          "x": 276,
+          "y": 284,
+          "text": "avg recovery",
+          "font": "Inter",
+          "size": 10,
+          "weight": 400,
+          "color": "#667085"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 316,
+          "text": "Services",
+          "font": "Inter",
+          "size": 14,
+          "weight": 700,
+          "color": "#0D1117"
+        },
+        {
+          "type": "text",
+          "x": 322,
+          "y": 316,
+          "text": "See all",
+          "font": "Inter",
+          "size": 12,
+          "weight": 500,
+          "color": "#2563EB"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 328,
+          "w": 358,
+          "h": 50,
+          "r": 10,
+          "fill": "#FFFFFF",
+          "stroke": "#E2E8F4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "circle",
+          "x": 44,
+          "y": 353,
+          "r": 6,
+          "fill": "#10B981"
+        },
+        {
+          "type": "text",
+          "x": 60,
+          "y": 349,
+          "text": "api-gateway",
+          "font": "Inter Mono",
+          "size": 13,
+          "weight": 600,
+          "color": "#0D1117"
+        },
+        {
+          "type": "text",
+          "x": 60,
+          "y": 367,
+          "text": "healthy",
+          "font": "Inter",
+          "size": 11,
+          "weight": 400,
+          "color": "#667085"
+        },
+        {
+          "type": "text",
+          "x": 330,
+          "y": 356,
+          "text": "100%",
+          "font": "Inter",
+          "size": 13,
+          "weight": 700,
+          "color": "#10B981"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 386,
+          "w": 358,
+          "h": 50,
+          "r": 10,
+          "fill": "#FFFFFF",
+          "stroke": "#E2E8F4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "circle",
+          "x": 44,
+          "y": 411,
+          "r": 6,
+          "fill": "#10B981"
+        },
+        {
+          "type": "text",
+          "x": 60,
+          "y": 407,
+          "text": "auth-service",
+          "font": "Inter Mono",
+          "size": 13,
+          "weight": 600,
+          "color": "#0D1117"
+        },
+        {
+          "type": "text",
+          "x": 60,
+          "y": 425,
+          "text": "healthy",
+          "font": "Inter",
+          "size": 11,
+          "weight": 400,
+          "color": "#667085"
+        },
+        {
+          "type": "text",
+          "x": 330,
+          "y": 414,
+          "text": "99.9%",
+          "font": "Inter",
+          "size": 13,
+          "weight": 700,
+          "color": "#10B981"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 444,
+          "w": 358,
+          "h": 50,
+          "r": 10,
+          "fill": "#FFFFFF",
+          "stroke": "#E2E8F4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "circle",
+          "x": 44,
+          "y": 469,
+          "r": 6,
+          "fill": "#F59E0B"
+        },
+        {
+          "type": "text",
+          "x": 60,
+          "y": 465,
+          "text": "payments",
+          "font": "Inter Mono",
+          "size": 13,
+          "weight": 600,
+          "color": "#0D1117"
+        },
+        {
+          "type": "text",
+          "x": 60,
+          "y": 483,
+          "text": "degraded",
+          "font": "Inter",
+          "size": 11,
+          "weight": 400,
+          "color": "#667085"
+        },
+        {
+          "type": "text",
+          "x": 330,
+          "y": 472,
+          "text": "99.4%",
+          "font": "Inter",
+          "size": 13,
+          "weight": 700,
+          "color": "#F59E0B"
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 790,
+          "w": 390,
+          "h": 64,
+          "fill": "#FFFFFF",
+          "stroke": "#E2E8F4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "circle",
+          "x": 39,
+          "y": 812,
+          "r": 4,
+          "fill": "#2563EB"
+        },
+        {
+          "type": "text",
+          "x": 39,
+          "y": 830,
+          "text": "Home",
+          "font": "Inter",
+          "size": 9,
+          "weight": 700,
+          "color": "#2563EB",
+          "align": "center"
+        },
+        {
+          "type": "circle",
+          "x": 117,
+          "y": 812,
+          "r": 4,
+          "fill": "#E2E8F4"
+        },
+        {
+          "type": "text",
+          "x": 117,
+          "y": 830,
+          "text": "Deploy",
+          "font": "Inter",
+          "size": 9,
+          "weight": 400,
+          "color": "#667085",
+          "align": "center"
+        },
+        {
+          "type": "circle",
+          "x": 195,
+          "y": 812,
+          "r": 4,
+          "fill": "#E2E8F4"
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 830,
+          "text": "Services",
+          "font": "Inter",
+          "size": 9,
+          "weight": 400,
+          "color": "#667085",
+          "align": "center"
+        },
+        {
+          "type": "circle",
+          "x": 273,
+          "y": 812,
+          "r": 4,
+          "fill": "#E2E8F4"
+        },
+        {
+          "type": "text",
+          "x": 273,
+          "y": 830,
+          "text": "Incidents",
+          "font": "Inter",
+          "size": 9,
+          "weight": 400,
+          "color": "#667085",
+          "align": "center"
+        },
+        {
+          "type": "circle",
+          "x": 351,
+          "y": 812,
+          "r": 4,
+          "fill": "#E2E8F4"
+        },
+        {
+          "type": "text",
+          "x": 351,
+          "y": 830,
+          "text": "On-Call",
+          "font": "Inter",
+          "size": 9,
+          "weight": 400,
+          "color": "#667085",
+          "align": "center"
+        }
+      ]
+    },
+    {
+      "id": "deploy",
+      "label": "Deploy Ready",
+      "bg": "#F2F5FB",
+      "elements": [
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "w": 390,
+          "h": 56,
+          "fill": "#FFFFFF",
+          "stroke": "#E2E8F4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 34,
+          "text": "← Deploy Checklist",
+          "font": "Inter",
+          "size": 16,
+          "weight": 700,
+          "color": "#0D1117"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 68,
+          "w": 358,
+          "h": 58,
+          "r": 12,
+          "fill": "#EFF6FF",
+          "stroke": "#BFDBFE",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 88,
+          "text": "api-gateway v2.14.1",
+          "font": "Inter Mono",
+          "size": 14,
+          "weight": 700,
+          "color": "#2563EB"
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 108,
+          "text": "main → production · requested by dan@team.co",
+          "font": "Inter",
+          "size": 11,
+          "weight": 400,
+          "color": "#667085"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 140,
+          "w": 358,
+          "h": 100,
+          "r": 12,
+          "fill": "#FFFFFF",
+          "stroke": "#E2E8F4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 162,
+          "text": "Deploy Confidence",
+          "font": "Inter",
+          "size": 12,
+          "weight": 600,
+          "color": "#667085"
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 196,
+          "text": "92",
+          "font": "Inter",
+          "size": 44,
+          "weight": 800,
+          "color": "#0D1117"
+        },
+        {
+          "type": "text",
+          "x": 82,
+          "y": 196,
+          "text": "/ 100",
+          "font": "Inter",
+          "size": 18,
+          "weight": 400,
+          "color": "#667085"
+        },
+        {
+          "type": "rect",
+          "x": 32,
+          "y": 208,
+          "w": 326,
+          "h": 8,
+          "r": 4,
+          "fill": "#E2E8F4"
+        },
+        {
+          "type": "rect",
+          "x": 32,
+          "y": 208,
+          "w": 300,
+          "h": 8,
+          "r": 4,
+          "fill": "#2563EB"
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 232,
+          "text": "High confidence — safe to deploy",
+          "font": "Inter",
+          "size": 11,
+          "weight": 500,
+          "color": "#10B981"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 260,
+          "text": "Pre-flight Checks",
+          "font": "Inter",
+          "size": 14,
+          "weight": 700,
+          "color": "#0D1117"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 272,
+          "w": 358,
+          "h": 46,
+          "r": 10,
+          "fill": "#FFFFFF",
+          "stroke": "#E2E8F4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 272,
+          "w": 6,
+          "h": 46,
+          "r": [
+            3,
+            0,
+            0,
+            3
+          ],
+          "fill": "#10B981"
+        },
+        {
+          "type": "text",
+          "x": 34,
+          "y": 292,
+          "text": "All tests passing",
+          "font": "Inter",
+          "size": 13,
+          "weight": 600,
+          "color": "#0D1117"
+        },
+        {
+          "type": "text",
+          "x": 34,
+          "y": 308,
+          "text": "1,847 / 1,847 tests",
+          "font": "Inter",
+          "size": 11,
+          "weight": 400,
+          "color": "#667085"
+        },
+        {
+          "type": "text",
+          "x": 342,
+          "y": 298,
+          "text": "✓",
+          "font": "Inter",
+          "size": 16,
+          "weight": 700,
+          "color": "#10B981"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 326,
+          "w": 358,
+          "h": 46,
+          "r": 10,
+          "fill": "#FFFFFF",
+          "stroke": "#E2E8F4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 326,
+          "w": 6,
+          "h": 46,
+          "r": [
+            3,
+            0,
+            0,
+            3
+          ],
+          "fill": "#10B981"
+        },
+        {
+          "type": "text",
+          "x": 34,
+          "y": 346,
+          "text": "Coverage threshold",
+          "font": "Inter",
+          "size": 13,
+          "weight": 600,
+          "color": "#0D1117"
+        },
+        {
+          "type": "text",
+          "x": 34,
+          "y": 362,
+          "text": "94.2% (req: 90%)",
+          "font": "Inter",
+          "size": 11,
+          "weight": 400,
+          "color": "#667085"
+        },
+        {
+          "type": "text",
+          "x": 342,
+          "y": 352,
+          "text": "✓",
+          "font": "Inter",
+          "size": 16,
+          "weight": 700,
+          "color": "#10B981"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 380,
+          "w": 358,
+          "h": 46,
+          "r": 10,
+          "fill": "#FFFFFF",
+          "stroke": "#E2E8F4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 380,
+          "w": 6,
+          "h": 46,
+          "r": [
+            3,
+            0,
+            0,
+            3
+          ],
+          "fill": "#10B981"
+        },
+        {
+          "type": "text",
+          "x": 34,
+          "y": 400,
+          "text": "No open P0 issues",
+          "font": "Inter",
+          "size": 13,
+          "weight": 600,
+          "color": "#0D1117"
+        },
+        {
+          "type": "text",
+          "x": 34,
+          "y": 416,
+          "text": "GitHub Issues clear",
+          "font": "Inter",
+          "size": 11,
+          "weight": 400,
+          "color": "#667085"
+        },
+        {
+          "type": "text",
+          "x": 342,
+          "y": 406,
+          "text": "✓",
+          "font": "Inter",
+          "size": 16,
+          "weight": 700,
+          "color": "#10B981"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 434,
+          "w": 358,
+          "h": 46,
+          "r": 10,
+          "fill": "#FFFFFF",
+          "stroke": "#E2E8F4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 434,
+          "w": 6,
+          "h": 46,
+          "r": [
+            3,
+            0,
+            0,
+            3
+          ],
+          "fill": "#10B981"
+        },
+        {
+          "type": "text",
+          "x": 34,
+          "y": 454,
+          "text": "p99 latency nominal",
+          "font": "Inter",
+          "size": 13,
+          "weight": 600,
+          "color": "#0D1117"
+        },
+        {
+          "type": "text",
+          "x": 34,
+          "y": 470,
+          "text": "142ms (threshold: 200ms)",
+          "font": "Inter",
+          "size": 11,
+          "weight": 400,
+          "color": "#667085"
+        },
+        {
+          "type": "text",
+          "x": 342,
+          "y": 460,
+          "text": "✓",
+          "font": "Inter",
+          "size": 16,
+          "weight": 700,
+          "color": "#10B981"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 488,
+          "w": 358,
+          "h": 46,
+          "r": 10,
+          "fill": "#FFFFFF",
+          "stroke": "#E2E8F4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 488,
+          "w": 6,
+          "h": 46,
+          "r": [
+            3,
+            0,
+            0,
+            3
+          ],
+          "fill": "#10B981"
+        },
+        {
+          "type": "text",
+          "x": 34,
+          "y": 508,
+          "text": "Staging canary healthy",
+          "font": "Inter",
+          "size": 13,
+          "weight": 600,
+          "color": "#0D1117"
+        },
+        {
+          "type": "text",
+          "x": 34,
+          "y": 524,
+          "text": "1h soak, 0 errors",
+          "font": "Inter",
+          "size": 11,
+          "weight": 400,
+          "color": "#667085"
+        },
+        {
+          "type": "text",
+          "x": 342,
+          "y": 514,
+          "text": "✓",
+          "font": "Inter",
+          "size": 16,
+          "weight": 700,
+          "color": "#10B981"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 542,
+          "w": 358,
+          "h": 46,
+          "r": 10,
+          "fill": "#FFFFFF",
+          "stroke": "#FDE68A",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 542,
+          "w": 6,
+          "h": 46,
+          "r": [
+            3,
+            0,
+            0,
+            3
+          ],
+          "fill": "#F59E0B"
+        },
+        {
+          "type": "text",
+          "x": 34,
+          "y": 562,
+          "text": "DB migration reviewed",
+          "font": "Inter",
+          "size": 13,
+          "weight": 600,
+          "color": "#0D1117"
+        },
+        {
+          "type": "text",
+          "x": 34,
+          "y": 578,
+          "text": "1 pending migration",
+          "font": "Inter",
+          "size": 11,
+          "weight": 400,
+          "color": "#667085"
+        },
+        {
+          "type": "text",
+          "x": 342,
+          "y": 568,
+          "text": "!",
+          "font": "Inter",
+          "size": 16,
+          "weight": 700,
+          "color": "#F59E0B"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 604,
+          "w": 358,
+          "h": 52,
+          "r": 14,
+          "fill": "#2563EB"
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 634,
+          "text": "Deploy to Production",
+          "font": "Inter",
+          "size": 16,
+          "weight": 700,
+          "color": "#FFFFFF",
+          "align": "center"
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 790,
+          "w": 390,
+          "h": 64,
+          "fill": "#FFFFFF",
+          "stroke": "#E2E8F4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "circle",
+          "x": 39,
+          "y": 812,
+          "r": 4,
+          "fill": "#E2E8F4"
+        },
+        {
+          "type": "text",
+          "x": 39,
+          "y": 830,
+          "text": "Home",
+          "font": "Inter",
+          "size": 9,
+          "weight": 400,
+          "color": "#667085",
+          "align": "center"
+        },
+        {
+          "type": "circle",
+          "x": 117,
+          "y": 812,
+          "r": 4,
+          "fill": "#2563EB"
+        },
+        {
+          "type": "text",
+          "x": 117,
+          "y": 830,
+          "text": "Deploy",
+          "font": "Inter",
+          "size": 9,
+          "weight": 700,
+          "color": "#2563EB",
+          "align": "center"
+        },
+        {
+          "type": "circle",
+          "x": 195,
+          "y": 812,
+          "r": 4,
+          "fill": "#E2E8F4"
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 830,
+          "text": "Services",
+          "font": "Inter",
+          "size": 9,
+          "weight": 400,
+          "color": "#667085",
+          "align": "center"
+        },
+        {
+          "type": "circle",
+          "x": 273,
+          "y": 812,
+          "r": 4,
+          "fill": "#E2E8F4"
+        },
+        {
+          "type": "text",
+          "x": 273,
+          "y": 830,
+          "text": "Incidents",
+          "font": "Inter",
+          "size": 9,
+          "weight": 400,
+          "color": "#667085",
+          "align": "center"
+        },
+        {
+          "type": "circle",
+          "x": 351,
+          "y": 812,
+          "r": 4,
+          "fill": "#E2E8F4"
+        },
+        {
+          "type": "text",
+          "x": 351,
+          "y": 830,
+          "text": "On-Call",
+          "font": "Inter",
+          "size": 9,
+          "weight": 400,
+          "color": "#667085",
+          "align": "center"
+        }
+      ]
+    },
+    {
+      "id": "services",
+      "label": "Services",
+      "bg": "#F2F5FB",
+      "elements": [
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "w": 390,
+          "h": 56,
+          "fill": "#FFFFFF",
+          "stroke": "#E2E8F4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 34,
+          "text": "Services",
+          "font": "Inter",
+          "size": 18,
+          "weight": 700,
+          "color": "#0D1117"
+        },
+        {
+          "type": "text",
+          "x": 340,
+          "y": 34,
+          "text": "8 total",
+          "font": "Inter",
+          "size": 12,
+          "weight": 500,
+          "color": "#667085"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 68,
+          "w": 358,
+          "h": 48,
+          "r": 12,
+          "fill": "#FFFFFF",
+          "stroke": "#E2E8F4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 30,
+          "y": 88,
+          "text": "7 healthy",
+          "font": "Inter",
+          "size": 13,
+          "weight": 700,
+          "color": "#10B981"
+        },
+        {
+          "type": "text",
+          "x": 110,
+          "y": 88,
+          "text": "·",
+          "font": "Inter",
+          "size": 13,
+          "color": "#E2E8F4"
+        },
+        {
+          "type": "text",
+          "x": 122,
+          "y": 88,
+          "text": "1 degraded",
+          "font": "Inter",
+          "size": 13,
+          "weight": 600,
+          "color": "#F59E0B"
+        },
+        {
+          "type": "text",
+          "x": 220,
+          "y": 88,
+          "text": "·",
+          "font": "Inter",
+          "size": 13,
+          "color": "#E2E8F4"
+        },
+        {
+          "type": "text",
+          "x": 232,
+          "y": 88,
+          "text": "0 down",
+          "font": "Inter",
+          "size": 13,
+          "weight": 600,
+          "color": "#667085"
+        },
+        {
+          "type": "text",
+          "x": 30,
+          "y": 106,
+          "text": "All SLAs within threshold",
+          "font": "Inter",
+          "size": 10,
+          "weight": 400,
+          "color": "#667085"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 128,
+          "w": 358,
+          "h": 58,
+          "r": 12,
+          "fill": "#FFFFFF",
+          "stroke": "#E2E8F4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "circle",
+          "x": 38,
+          "y": 157,
+          "r": 7,
+          "fill": "#10B981"
+        },
+        {
+          "type": "text",
+          "x": 56,
+          "y": 150,
+          "text": "api-gateway",
+          "font": "Inter Mono",
+          "size": 13,
+          "weight": 700,
+          "color": "#0D1117"
+        },
+        {
+          "type": "text",
+          "x": 56,
+          "y": 168,
+          "text": "Platform · 4,281 req/s",
+          "font": "Inter",
+          "size": 11,
+          "weight": 400,
+          "color": "#667085"
+        },
+        {
+          "type": "text",
+          "x": 340,
+          "y": 157,
+          "text": "100%",
+          "font": "Inter",
+          "size": 13,
+          "weight": 700,
+          "color": "#10B981",
+          "align": "right"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 194,
+          "w": 358,
+          "h": 58,
+          "r": 12,
+          "fill": "#FFFFFF",
+          "stroke": "#E2E8F4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "circle",
+          "x": 38,
+          "y": 223,
+          "r": 7,
+          "fill": "#10B981"
+        },
+        {
+          "type": "text",
+          "x": 56,
+          "y": 216,
+          "text": "auth-service",
+          "font": "Inter Mono",
+          "size": 13,
+          "weight": 700,
+          "color": "#0D1117"
+        },
+        {
+          "type": "text",
+          "x": 56,
+          "y": 234,
+          "text": "Security · 1,103 req/s",
+          "font": "Inter",
+          "size": 11,
+          "weight": 400,
+          "color": "#667085"
+        },
+        {
+          "type": "text",
+          "x": 340,
+          "y": 223,
+          "text": "99.9%",
+          "font": "Inter",
+          "size": 13,
+          "weight": 700,
+          "color": "#10B981",
+          "align": "right"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 260,
+          "w": 358,
+          "h": 58,
+          "r": 12,
+          "fill": "#FFFFFF",
+          "stroke": "#FDE68A",
+          "strokeWidth": 1
+        },
+        {
+          "type": "circle",
+          "x": 38,
+          "y": 289,
+          "r": 7,
+          "fill": "#F59E0B"
+        },
+        {
+          "type": "text",
+          "x": 56,
+          "y": 282,
+          "text": "payments",
+          "font": "Inter Mono",
+          "size": 13,
+          "weight": 700,
+          "color": "#0D1117"
+        },
+        {
+          "type": "text",
+          "x": 56,
+          "y": 300,
+          "text": "Commerce · 312 req/s",
+          "font": "Inter",
+          "size": 11,
+          "weight": 400,
+          "color": "#667085"
+        },
+        {
+          "type": "text",
+          "x": 340,
+          "y": 289,
+          "text": "99.4%",
+          "font": "Inter",
+          "size": 13,
+          "weight": 700,
+          "color": "#F59E0B",
+          "align": "right"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 326,
+          "w": 358,
+          "h": 58,
+          "r": 12,
+          "fill": "#FFFFFF",
+          "stroke": "#E2E8F4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "circle",
+          "x": 38,
+          "y": 355,
+          "r": 7,
+          "fill": "#10B981"
+        },
+        {
+          "type": "text",
+          "x": 56,
+          "y": 348,
+          "text": "notifications",
+          "font": "Inter Mono",
+          "size": 13,
+          "weight": 700,
+          "color": "#0D1117"
+        },
+        {
+          "type": "text",
+          "x": 56,
+          "y": 366,
+          "text": "Growth · 820 req/s",
+          "font": "Inter",
+          "size": 11,
+          "weight": 400,
+          "color": "#667085"
+        },
+        {
+          "type": "text",
+          "x": 340,
+          "y": 355,
+          "text": "100%",
+          "font": "Inter",
+          "size": 13,
+          "weight": 700,
+          "color": "#10B981",
+          "align": "right"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 392,
+          "w": 358,
+          "h": 58,
+          "r": 12,
+          "fill": "#FFFFFF",
+          "stroke": "#E2E8F4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "circle",
+          "x": 38,
+          "y": 421,
+          "r": 7,
+          "fill": "#10B981"
+        },
+        {
+          "type": "text",
+          "x": 56,
+          "y": 414,
+          "text": "search",
+          "font": "Inter Mono",
+          "size": 13,
+          "weight": 700,
+          "color": "#0D1117"
+        },
+        {
+          "type": "text",
+          "x": 56,
+          "y": 432,
+          "text": "Discovery · 2,041 req/s",
+          "font": "Inter",
+          "size": 11,
+          "weight": 400,
+          "color": "#667085"
+        },
+        {
+          "type": "text",
+          "x": 340,
+          "y": 421,
+          "text": "100%",
+          "font": "Inter",
+          "size": 13,
+          "weight": 700,
+          "color": "#10B981",
+          "align": "right"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 458,
+          "w": 358,
+          "h": 58,
+          "r": 12,
+          "fill": "#FFFFFF",
+          "stroke": "#E2E8F4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "circle",
+          "x": 38,
+          "y": 487,
+          "r": 7,
+          "fill": "#10B981"
+        },
+        {
+          "type": "text",
+          "x": 56,
+          "y": 480,
+          "text": "storage",
+          "font": "Inter Mono",
+          "size": 13,
+          "weight": 700,
+          "color": "#0D1117"
+        },
+        {
+          "type": "text",
+          "x": 56,
+          "y": 498,
+          "text": "Platform · 660 req/s",
+          "font": "Inter",
+          "size": 11,
+          "weight": 400,
+          "color": "#667085"
+        },
+        {
+          "type": "text",
+          "x": 340,
+          "y": 487,
+          "text": "100%",
+          "font": "Inter",
+          "size": 13,
+          "weight": 700,
+          "color": "#10B981",
+          "align": "right"
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 790,
+          "w": 390,
+          "h": 64,
+          "fill": "#FFFFFF",
+          "stroke": "#E2E8F4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "circle",
+          "x": 39,
+          "y": 812,
+          "r": 4,
+          "fill": "#E2E8F4"
+        },
+        {
+          "type": "text",
+          "x": 39,
+          "y": 830,
+          "text": "Home",
+          "font": "Inter",
+          "size": 9,
+          "weight": 400,
+          "color": "#667085",
+          "align": "center"
+        },
+        {
+          "type": "circle",
+          "x": 117,
+          "y": 812,
+          "r": 4,
+          "fill": "#E2E8F4"
+        },
+        {
+          "type": "text",
+          "x": 117,
+          "y": 830,
+          "text": "Deploy",
+          "font": "Inter",
+          "size": 9,
+          "weight": 400,
+          "color": "#667085",
+          "align": "center"
+        },
+        {
+          "type": "circle",
+          "x": 195,
+          "y": 812,
+          "r": 4,
+          "fill": "#2563EB"
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 830,
+          "text": "Services",
+          "font": "Inter",
+          "size": 9,
+          "weight": 700,
+          "color": "#2563EB",
+          "align": "center"
+        },
+        {
+          "type": "circle",
+          "x": 273,
+          "y": 812,
+          "r": 4,
+          "fill": "#E2E8F4"
+        },
+        {
+          "type": "text",
+          "x": 273,
+          "y": 830,
+          "text": "Incidents",
+          "font": "Inter",
+          "size": 9,
+          "weight": 400,
+          "color": "#667085",
+          "align": "center"
+        },
+        {
+          "type": "circle",
+          "x": 351,
+          "y": 812,
+          "r": 4,
+          "fill": "#E2E8F4"
+        },
+        {
+          "type": "text",
+          "x": 351,
+          "y": 830,
+          "text": "On-Call",
+          "font": "Inter",
+          "size": 9,
+          "weight": 400,
+          "color": "#667085",
+          "align": "center"
+        }
+      ]
+    },
+    {
+      "id": "incidents",
+      "label": "Incidents",
+      "bg": "#F2F5FB",
+      "elements": [
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "w": 390,
+          "h": 56,
+          "fill": "#FFFFFF",
+          "stroke": "#E2E8F4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 34,
+          "text": "Incidents",
+          "font": "Inter",
+          "size": 18,
+          "weight": 700,
+          "color": "#0D1117"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 74,
+          "text": "ACTIVE",
+          "font": "Inter",
+          "size": 10,
+          "weight": 700,
+          "color": "#667085"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 84,
+          "w": 358,
+          "h": 60,
+          "r": 12,
+          "fill": "#F0FDF4",
+          "stroke": "#BBF7D0",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 106,
+          "text": "No active incidents",
+          "font": "Inter",
+          "size": 14,
+          "weight": 700,
+          "color": "#10B981"
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 124,
+          "text": "All systems operational",
+          "font": "Inter",
+          "size": 12,
+          "weight": 400,
+          "color": "#667085"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 164,
+          "text": "RELIABILITY METRICS",
+          "font": "Inter",
+          "size": 10,
+          "weight": 700,
+          "color": "#667085"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 174,
+          "w": 358,
+          "h": 50,
+          "r": 10,
+          "fill": "#FFFFFF",
+          "stroke": "#E2E8F4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 195,
+          "text": "MTTR (30d)",
+          "font": "Inter",
+          "size": 11,
+          "weight": 500,
+          "color": "#667085"
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 213,
+          "text": "↓ 38% improvement",
+          "font": "Inter",
+          "size": 10,
+          "weight": 400,
+          "color": "#10B981"
+        },
+        {
+          "type": "text",
+          "x": 340,
+          "y": 205,
+          "text": "4m 12s",
+          "font": "Inter",
+          "size": 20,
+          "weight": 800,
+          "color": "#0D1117",
+          "align": "right"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 232,
+          "w": 358,
+          "h": 50,
+          "r": 10,
+          "fill": "#FFFFFF",
+          "stroke": "#E2E8F4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 253,
+          "text": "MTTD (30d)",
+          "font": "Inter",
+          "size": 11,
+          "weight": 500,
+          "color": "#667085"
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 271,
+          "text": "Time to detect",
+          "font": "Inter",
+          "size": 10,
+          "weight": 400,
+          "color": "#10B981"
+        },
+        {
+          "type": "text",
+          "x": 340,
+          "y": 263,
+          "text": "1m 44s",
+          "font": "Inter",
+          "size": 20,
+          "weight": 800,
+          "color": "#0D1117",
+          "align": "right"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 290,
+          "w": 358,
+          "h": 50,
+          "r": 10,
+          "fill": "#FFFFFF",
+          "stroke": "#E2E8F4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 311,
+          "text": "Error Budget",
+          "font": "Inter",
+          "size": 11,
+          "weight": 500,
+          "color": "#667085"
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 329,
+          "text": "Remaining (99.9% SLA)",
+          "font": "Inter",
+          "size": 10,
+          "weight": 400,
+          "color": "#10B981"
+        },
+        {
+          "type": "text",
+          "x": 340,
+          "y": 321,
+          "text": "87%",
+          "font": "Inter",
+          "size": 20,
+          "weight": 800,
+          "color": "#0D1117",
+          "align": "right"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 362,
+          "text": "RECENT — RESOLVED",
+          "font": "Inter",
+          "size": 10,
+          "weight": 700,
+          "color": "#667085"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 372,
+          "w": 358,
+          "h": 60,
+          "r": 12,
+          "fill": "#FFFFFF",
+          "stroke": "#E2E8F4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 372,
+          "w": 58,
+          "h": 22,
+          "r": [
+            12,
+            0,
+            8,
+            0
+          ],
+          "fill": "#FEF3C7"
+        },
+        {
+          "type": "text",
+          "x": 34,
+          "y": 387,
+          "text": "P2",
+          "font": "Inter",
+          "size": 10,
+          "weight": 700,
+          "color": "#F59E0B"
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 408,
+          "text": "Elevated payment errors",
+          "font": "Inter",
+          "size": 13,
+          "weight": 600,
+          "color": "#0D1117"
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 424,
+          "text": "payments · MTTR 6m",
+          "font": "Inter",
+          "size": 11,
+          "weight": 400,
+          "color": "#667085"
+        },
+        {
+          "type": "text",
+          "x": 350,
+          "y": 395,
+          "text": "2d ago",
+          "font": "Inter",
+          "size": 10,
+          "weight": 400,
+          "color": "#667085",
+          "align": "right"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 440,
+          "w": 358,
+          "h": 60,
+          "r": 12,
+          "fill": "#FFFFFF",
+          "stroke": "#E2E8F4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 440,
+          "w": 58,
+          "h": 22,
+          "r": [
+            12,
+            0,
+            8,
+            0
+          ],
+          "fill": "#EDE9FE"
+        },
+        {
+          "type": "text",
+          "x": 34,
+          "y": 455,
+          "text": "P3",
+          "font": "Inter",
+          "size": 10,
+          "weight": 700,
+          "color": "#7C3AED"
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 476,
+          "text": "Auth latency spike",
+          "font": "Inter",
+          "size": 13,
+          "weight": 600,
+          "color": "#0D1117"
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 492,
+          "text": "auth-service · MTTR 3m",
+          "font": "Inter",
+          "size": 11,
+          "weight": 400,
+          "color": "#667085"
+        },
+        {
+          "type": "text",
+          "x": 350,
+          "y": 463,
+          "text": "5d ago",
+          "font": "Inter",
+          "size": 10,
+          "weight": 400,
+          "color": "#667085",
+          "align": "right"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 508,
+          "w": 358,
+          "h": 60,
+          "r": 12,
+          "fill": "#FFFFFF",
+          "stroke": "#E2E8F4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 508,
+          "w": 58,
+          "h": 22,
+          "r": [
+            12,
+            0,
+            8,
+            0
+          ],
+          "fill": "#FEF3C7"
+        },
+        {
+          "type": "text",
+          "x": 34,
+          "y": 523,
+          "text": "P2",
+          "font": "Inter",
+          "size": 10,
+          "weight": 700,
+          "color": "#F59E0B"
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 544,
+          "text": "CDN cache miss storm",
+          "font": "Inter",
+          "size": 13,
+          "weight": 600,
+          "color": "#0D1117"
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 560,
+          "text": "cdn · MTTR 14m",
+          "font": "Inter",
+          "size": 11,
+          "weight": 400,
+          "color": "#667085"
+        },
+        {
+          "type": "text",
+          "x": 350,
+          "y": 531,
+          "text": "11d ago",
+          "font": "Inter",
+          "size": 10,
+          "weight": 400,
+          "color": "#667085",
+          "align": "right"
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 790,
+          "w": 390,
+          "h": 64,
+          "fill": "#FFFFFF",
+          "stroke": "#E2E8F4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "circle",
+          "x": 39,
+          "y": 812,
+          "r": 4,
+          "fill": "#E2E8F4"
+        },
+        {
+          "type": "text",
+          "x": 39,
+          "y": 830,
+          "text": "Home",
+          "font": "Inter",
+          "size": 9,
+          "weight": 400,
+          "color": "#667085",
+          "align": "center"
+        },
+        {
+          "type": "circle",
+          "x": 117,
+          "y": 812,
+          "r": 4,
+          "fill": "#E2E8F4"
+        },
+        {
+          "type": "text",
+          "x": 117,
+          "y": 830,
+          "text": "Deploy",
+          "font": "Inter",
+          "size": 9,
+          "weight": 400,
+          "color": "#667085",
+          "align": "center"
+        },
+        {
+          "type": "circle",
+          "x": 195,
+          "y": 812,
+          "r": 4,
+          "fill": "#E2E8F4"
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 830,
+          "text": "Services",
+          "font": "Inter",
+          "size": 9,
+          "weight": 400,
+          "color": "#667085",
+          "align": "center"
+        },
+        {
+          "type": "circle",
+          "x": 273,
+          "y": 812,
+          "r": 4,
+          "fill": "#2563EB"
+        },
+        {
+          "type": "text",
+          "x": 273,
+          "y": 830,
+          "text": "Incidents",
+          "font": "Inter",
+          "size": 9,
+          "weight": 700,
+          "color": "#2563EB",
+          "align": "center"
+        },
+        {
+          "type": "circle",
+          "x": 351,
+          "y": 812,
+          "r": 4,
+          "fill": "#E2E8F4"
+        },
+        {
+          "type": "text",
+          "x": 351,
+          "y": 830,
+          "text": "On-Call",
+          "font": "Inter",
+          "size": 9,
+          "weight": 400,
+          "color": "#667085",
+          "align": "center"
+        }
+      ]
+    },
+    {
+      "id": "oncall",
+      "label": "On-Call",
+      "bg": "#F2F5FB",
+      "elements": [
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "w": 390,
+          "h": 56,
+          "fill": "#FFFFFF",
+          "stroke": "#E2E8F4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 34,
+          "text": "On-Call",
+          "font": "Inter",
+          "size": 18,
+          "weight": 700,
+          "color": "#0D1117"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 68,
+          "w": 358,
+          "h": 100,
+          "r": 16,
+          "fill": "#2563EB"
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 90,
+          "text": "PRIMARY ON-CALL",
+          "font": "Inter",
+          "size": 10,
+          "weight": 700,
+          "color": "rgba(255,255,255,0.6)"
+        },
+        {
+          "type": "circle",
+          "x": 56,
+          "y": 130,
+          "r": 22,
+          "fill": "rgba(255,255,255,0.2)"
+        },
+        {
+          "type": "text",
+          "x": 56,
+          "y": 135,
+          "text": "DL",
+          "font": "Inter",
+          "size": 14,
+          "weight": 800,
+          "color": "#FFFFFF",
+          "align": "center"
+        },
+        {
+          "type": "text",
+          "x": 92,
+          "y": 118,
+          "text": "Dan Lee",
+          "font": "Inter",
+          "size": 16,
+          "weight": 700,
+          "color": "#FFFFFF"
+        },
+        {
+          "type": "text",
+          "x": 92,
+          "y": 138,
+          "text": "Platform · Ends in 3h 22m",
+          "font": "Inter",
+          "size": 12,
+          "weight": 400,
+          "color": "rgba(255,255,255,0.7)"
+        },
+        {
+          "type": "rect",
+          "x": 280,
+          "y": 116,
+          "w": 80,
+          "h": 28,
+          "r": 8,
+          "fill": "rgba(255,255,255,0.2)"
+        },
+        {
+          "type": "text",
+          "x": 320,
+          "y": 134,
+          "text": "Page now",
+          "font": "Inter",
+          "size": 11,
+          "weight": 700,
+          "color": "#FFFFFF",
+          "align": "center"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 188,
+          "text": "ROTATION SCHEDULE",
+          "font": "Inter",
+          "size": 10,
+          "weight": 700,
+          "color": "#667085"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 200,
+          "w": 358,
+          "h": 58,
+          "r": 12,
+          "fill": "#FFFFFF",
+          "stroke": "#E2E8F4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "circle",
+          "x": 44,
+          "y": 229,
+          "r": 20,
+          "fill": "#F2F5FB"
+        },
+        {
+          "type": "text",
+          "x": 44,
+          "y": 234,
+          "text": "SK",
+          "font": "Inter",
+          "size": 12,
+          "weight": 700,
+          "color": "#667085",
+          "align": "center"
+        },
+        {
+          "type": "text",
+          "x": 76,
+          "y": 222,
+          "text": "Sara Kim",
+          "font": "Inter",
+          "size": 14,
+          "weight": 600,
+          "color": "#0D1117"
+        },
+        {
+          "type": "text",
+          "x": 76,
+          "y": 240,
+          "text": "Security",
+          "font": "Inter",
+          "size": 11,
+          "weight": 400,
+          "color": "#667085"
+        },
+        {
+          "type": "text",
+          "x": 350,
+          "y": 229,
+          "text": "Next · 3h 22m",
+          "font": "Inter",
+          "size": 11,
+          "weight": 500,
+          "color": "#2563EB",
+          "align": "right"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 266,
+          "w": 358,
+          "h": 58,
+          "r": 12,
+          "fill": "#FFFFFF",
+          "stroke": "#E2E8F4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "circle",
+          "x": 44,
+          "y": 295,
+          "r": 20,
+          "fill": "#F2F5FB"
+        },
+        {
+          "type": "text",
+          "x": 44,
+          "y": 300,
+          "text": "MO",
+          "font": "Inter",
+          "size": 12,
+          "weight": 700,
+          "color": "#667085",
+          "align": "center"
+        },
+        {
+          "type": "text",
+          "x": 76,
+          "y": 288,
+          "text": "Mo Okafor",
+          "font": "Inter",
+          "size": 14,
+          "weight": 600,
+          "color": "#0D1117"
+        },
+        {
+          "type": "text",
+          "x": 76,
+          "y": 306,
+          "text": "Commerce",
+          "font": "Inter",
+          "size": 11,
+          "weight": 400,
+          "color": "#667085"
+        },
+        {
+          "type": "text",
+          "x": 350,
+          "y": 295,
+          "text": "Mon 00:00 UTC",
+          "font": "Inter",
+          "size": 11,
+          "weight": 500,
+          "color": "#667085",
+          "align": "right"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 332,
+          "w": 358,
+          "h": 58,
+          "r": 12,
+          "fill": "#FFFFFF",
+          "stroke": "#E2E8F4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "circle",
+          "x": 44,
+          "y": 361,
+          "r": 20,
+          "fill": "#F2F5FB"
+        },
+        {
+          "type": "text",
+          "x": 44,
+          "y": 366,
+          "text": "PS",
+          "font": "Inter",
+          "size": 12,
+          "weight": 700,
+          "color": "#667085",
+          "align": "center"
+        },
+        {
+          "type": "text",
+          "x": 76,
+          "y": 354,
+          "text": "Priya Singh",
+          "font": "Inter",
+          "size": 14,
+          "weight": 600,
+          "color": "#0D1117"
+        },
+        {
+          "type": "text",
+          "x": 76,
+          "y": 372,
+          "text": "Discovery",
+          "font": "Inter",
+          "size": 11,
+          "weight": 400,
+          "color": "#667085"
+        },
+        {
+          "type": "text",
+          "x": 350,
+          "y": 361,
+          "text": "Tue 00:00 UTC",
+          "font": "Inter",
+          "size": 11,
+          "weight": 500,
+          "color": "#667085",
+          "align": "right"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 408,
+          "text": "ALERT POLICIES",
+          "font": "Inter",
+          "size": 10,
+          "weight": 700,
+          "color": "#667085"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 420,
+          "w": 358,
+          "h": 46,
+          "r": 10,
+          "fill": "#FFFFFF",
+          "stroke": "#E2E8F4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 440,
+          "text": "PagerDuty",
+          "font": "Inter",
+          "size": 13,
+          "weight": 600,
+          "color": "#0D1117"
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 456,
+          "text": "P0 + P1 incidents",
+          "font": "Inter",
+          "size": 11,
+          "weight": 400,
+          "color": "#667085"
+        },
+        {
+          "type": "rect",
+          "x": 316,
+          "y": 433,
+          "w": 42,
+          "h": 22,
+          "r": 11,
+          "fill": "#2563EB"
+        },
+        {
+          "type": "circle",
+          "x": 348,
+          "y": 444,
+          "r": 9,
+          "fill": "#FFFFFF"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 474,
+          "w": 358,
+          "h": 46,
+          "r": 10,
+          "fill": "#FFFFFF",
+          "stroke": "#E2E8F4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 494,
+          "text": "Slack #incidents",
+          "font": "Inter",
+          "size": 13,
+          "weight": 600,
+          "color": "#0D1117"
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 510,
+          "text": "All severity levels",
+          "font": "Inter",
+          "size": 11,
+          "weight": 400,
+          "color": "#667085"
+        },
+        {
+          "type": "rect",
+          "x": 316,
+          "y": 487,
+          "w": 42,
+          "h": 22,
+          "r": 11,
+          "fill": "#2563EB"
+        },
+        {
+          "type": "circle",
+          "x": 348,
+          "y": 498,
+          "r": 9,
+          "fill": "#FFFFFF"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 528,
+          "w": 358,
+          "h": 46,
+          "r": 10,
+          "fill": "#FFFFFF",
+          "stroke": "#E2E8F4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 548,
+          "text": "SMS Escalation",
+          "font": "Inter",
+          "size": 13,
+          "weight": 600,
+          "color": "#0D1117"
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 564,
+          "text": "P0 only · 5m no-ack",
+          "font": "Inter",
+          "size": 11,
+          "weight": 400,
+          "color": "#667085"
+        },
+        {
+          "type": "rect",
+          "x": 316,
+          "y": 541,
+          "w": 42,
+          "h": 22,
+          "r": 11,
+          "fill": "#2563EB"
+        },
+        {
+          "type": "circle",
+          "x": 348,
+          "y": 552,
+          "r": 9,
+          "fill": "#FFFFFF"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 582,
+          "w": 358,
+          "h": 46,
+          "r": 10,
+          "fill": "#FFFFFF",
+          "stroke": "#E2E8F4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 602,
+          "text": "Email Digest",
+          "font": "Inter",
+          "size": 13,
+          "weight": 600,
+          "color": "#0D1117"
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 618,
+          "text": "Daily summary 09:00 UTC",
+          "font": "Inter",
+          "size": 11,
+          "weight": 400,
+          "color": "#667085"
+        },
+        {
+          "type": "rect",
+          "x": 316,
+          "y": 595,
+          "w": 42,
+          "h": 22,
+          "r": 11,
+          "fill": "#E2E8F4"
+        },
+        {
+          "type": "circle",
+          "x": 327,
+          "y": 606,
+          "r": 9,
+          "fill": "#FFFFFF"
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 790,
+          "w": 390,
+          "h": 64,
+          "fill": "#FFFFFF",
+          "stroke": "#E2E8F4",
+          "strokeWidth": 1
+        },
+        {
+          "type": "circle",
+          "x": 39,
+          "y": 812,
+          "r": 4,
+          "fill": "#E2E8F4"
+        },
+        {
+          "type": "text",
+          "x": 39,
+          "y": 830,
+          "text": "Home",
+          "font": "Inter",
+          "size": 9,
+          "weight": 400,
+          "color": "#667085",
+          "align": "center"
+        },
+        {
+          "type": "circle",
+          "x": 117,
+          "y": 812,
+          "r": 4,
+          "fill": "#E2E8F4"
+        },
+        {
+          "type": "text",
+          "x": 117,
+          "y": 830,
+          "text": "Deploy",
+          "font": "Inter",
+          "size": 9,
+          "weight": 400,
+          "color": "#667085",
+          "align": "center"
+        },
+        {
+          "type": "circle",
+          "x": 195,
+          "y": 812,
+          "r": 4,
+          "fill": "#E2E8F4"
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 830,
+          "text": "Services",
+          "font": "Inter",
+          "size": 9,
+          "weight": 400,
+          "color": "#667085",
+          "align": "center"
+        },
+        {
+          "type": "circle",
+          "x": 273,
+          "y": 812,
+          "r": 4,
+          "fill": "#E2E8F4"
+        },
+        {
+          "type": "text",
+          "x": 273,
+          "y": 830,
+          "text": "Incidents",
+          "font": "Inter",
+          "size": 9,
+          "weight": 400,
+          "color": "#667085",
+          "align": "center"
+        },
+        {
+          "type": "circle",
+          "x": 351,
+          "y": 812,
+          "r": 4,
+          "fill": "#2563EB"
+        },
+        {
+          "type": "text",
+          "x": 351,
+          "y": 830,
+          "text": "On-Call",
+          "font": "Inter",
+          "size": 9,
+          "weight": 700,
+          "color": "#2563EB",
+          "align": "center"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,102 @@
+const https = require('https');
+const fs = require('fs');
+
+const config = JSON.parse(fs.readFileSync('/workspace/group/design-studio/community-config.json', 'utf8'));
+const TOKEN = config.GITHUB_TOKEN;
+const REPO = config.GITHUB_REPO;
+
+const SLUG = 'murmur';
+const APP_NAME = 'MURMUR';
+const TAGLINE = 'Your product intelligence, spoken weekly.';
+const ARCHETYPE = 'audio-intelligence';
+const ORIGINAL_PROMPT = 'AI audio briefings that convert customer signals (support tickets, NPS, user research) into a weekly personalised podcast. Inspired by Format Podcasts trend on darkmodedesign.com — the idea that product data should be listenable, not just readable. Light theme, warm parchment palette with terracotta accent.';
+
+function ghReq(opts, body) {
+  return new Promise((resolve, reject) => {
+    const r = https.request(opts, res => {
+      let d = ''; res.on('data', c => d += c);
+      res.on('end', () => resolve({ status: res.statusCode, body: d }));
+    });
+    r.on('error', reject);
+    if (body) r.write(body);
+    r.end();
+  });
+}
+
+async function main() {
+  // GET current queue
+  const getRes = await ghReq({
+    hostname: 'api.github.com',
+    path: `/repos/${REPO}/contents/queue.json`,
+    method: 'GET',
+    headers: {
+      'Authorization': `token ${TOKEN}`,
+      'User-Agent': 'ram-heartbeat/1.0',
+      'Accept': 'application/vnd.github.v3+json',
+    },
+  });
+
+  const fileData = JSON.parse(getRes.body);
+  const currentSha = fileData.sha;
+  const currentContent = Buffer.from(fileData.content, 'base64').toString('utf8');
+
+  let queue = JSON.parse(currentContent);
+  if (Array.isArray(queue)) queue = { version: 1, submissions: queue, updated_at: new Date().toISOString() };
+  if (!queue.submissions) queue.submissions = [];
+
+  const newEntry = {
+    id: `heartbeat-${SLUG}-${Date.now()}`,
+    status: 'done',
+    app_name: APP_NAME,
+    tagline: TAGLINE,
+    archetype: ARCHETYPE,
+    design_url: `https://ram.zenbin.org/${SLUG}`,
+    mock_url: `https://ram.zenbin.org/${SLUG}-mock`,
+    submitted_at: new Date().toISOString(),
+    published_at: new Date().toISOString(),
+    credit: 'RAM Design Heartbeat',
+    prompt: ORIGINAL_PROMPT,
+    screens: 5,
+    source: 'heartbeat',
+    theme: 'light',
+    palette: {
+      bg: '#F7F4EE',
+      surface: '#FFFFFF',
+      accent: '#D4522A',
+      accent2: '#8B6F47',
+      text: '#1C1A18',
+    },
+    inspiration: 'Format Podcasts (darkmodedesign.com), Awwwards iyO SOTD, Darkroom.au editorial parchment palette',
+  };
+
+  queue.submissions.push(newEntry);
+  queue.updated_at = new Date().toISOString();
+
+  const newContent = Buffer.from(JSON.stringify(queue, null, 2)).toString('base64');
+  const putBody = JSON.stringify({
+    message: `add: ${APP_NAME} to gallery (heartbeat)`,
+    content: newContent,
+    sha: currentSha,
+  });
+
+  const putRes = await ghReq({
+    hostname: 'api.github.com',
+    path: `/repos/${REPO}/contents/queue.json`,
+    method: 'PUT',
+    headers: {
+      'Authorization': `token ${TOKEN}`,
+      'User-Agent': 'ram-heartbeat/1.0',
+      'Content-Type': 'application/json',
+      'Content-Length': Buffer.byteLength(putBody),
+      'Accept': 'application/vnd.github.v3+json',
+    },
+  }, putBody);
+
+  if (putRes.status === 200 || putRes.status === 201) {
+    console.log('✓ Gallery queue updated — entry added:', newEntry.id);
+  } else {
+    console.log('✗ Queue update failed:', putRes.status, putRes.body.slice(0, 200));
+  }
+}
+
+main().catch(console.error);

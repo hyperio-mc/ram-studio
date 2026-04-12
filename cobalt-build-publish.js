@@ -1,0 +1,360 @@
+#!/usr/bin/env node
+// COBALT — Build HTML and publish full pipeline
+'use strict';
+
+const fs   = require('fs');
+const https = require('https');
+
+const SLUG      = 'cobalt';
+const SUBDOMAIN = 'ram';
+const penJson   = fs.readFileSync('cobalt.pen', 'utf8');
+
+// ─── Utility ─────────────────────────────────────────────────────────────────
+function post(pathname, headers, body) {
+  return new Promise((resolve, reject) => {
+    const data = JSON.stringify(body);
+    const opts = {
+      hostname: 'zenbin.org', path: pathname, method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(data), ...headers }
+    };
+    const r = https.request(opts, res => {
+      let d = ''; res.on('data', c => d += c);
+      res.on('end', () => resolve({ status: res.statusCode, body: d }));
+    });
+    r.on('error', reject);
+    r.write(data); r.end();
+  });
+}
+
+// ─── HERO HTML ────────────────────────────────────────────────────────────────
+const heroHtml = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>COBALT — Developer Operations Command Center</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg:#08090E; --surf:#10131C; --surf2:#171B28; --border:#1E2535;
+    --text:#CDD9EE; --dim:#6B7FA0;
+    --mint:#3DFFA0; --violet:#6E3FFF; --pink:#FF3D8A; --amber:#FFB93D;
+  }
+  html,body { background:var(--bg); color:var(--text); font-family:'Inter',sans-serif; min-height:100vh; overflow-x:hidden; }
+  body::before {
+    content:''; position:fixed; inset:0; pointer-events:none; z-index:9999;
+    background:repeating-linear-gradient(to bottom, transparent, transparent 2px, rgba(0,0,0,0.05) 2px, rgba(0,0,0,0.05) 4px);
+  }
+  /* Nav */
+  nav { position:fixed; top:0; left:0; right:0; z-index:100; display:flex; align-items:center; justify-content:space-between; padding:0 40px; height:56px; background:rgba(8,9,14,0.88); border-bottom:1px solid var(--border); backdrop-filter:blur(14px); }
+  .nav-logo { font-family:'JetBrains Mono',monospace; font-size:14px; font-weight:700; color:var(--mint); letter-spacing:0.3em; }
+  .nav-links { display:flex; gap:32px; }
+  .nav-links a { font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.25em; color:var(--dim); text-decoration:none; transition:color .2s; }
+  .nav-links a:hover { color:var(--text); }
+  .nav-cta { font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.15em; color:var(--bg); background:var(--mint); padding:8px 18px; border-radius:2px; text-decoration:none; font-weight:700; box-shadow:0 0 16px rgba(61,255,160,0.3); }
+  /* Hero */
+  .hero { min-height:100vh; padding-top:56px; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden; }
+  .glow1 { position:absolute; width:800px; height:800px; border-radius:50%; background:radial-gradient(circle, rgba(61,255,160,0.05) 0%, transparent 70%); top:50%; left:50%; transform:translate(-50%,-50%); pointer-events:none; }
+  .glow2 { position:absolute; width:500px; height:500px; border-radius:50%; background:radial-gradient(circle, rgba(110,63,255,0.07) 0%, transparent 70%); top:25%; right:8%; pointer-events:none; }
+  .hero-inner { position:relative; z-index:1; text-align:center; max-width:820px; padding:0 40px; }
+  .eyebrow { display:inline-flex; align-items:center; gap:8px; font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:0.45em; color:var(--mint); margin-bottom:28px; padding:6px 16px; border:1px solid rgba(61,255,160,0.22); border-radius:2px; background:rgba(61,255,160,0.04); }
+  .eyebrow::before { content:'●'; animation:pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.25} }
+  h1 { font-family:'JetBrains Mono',monospace; font-size:clamp(56px,10vw,108px); font-weight:700; color:var(--text); letter-spacing:0.04em; line-height:1; margin-bottom:6px; }
+  h1 span { color:var(--mint); }
+  .tagline { font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.4em; color:var(--dim); margin-bottom:44px; }
+  .hero-desc { font-size:16px; line-height:1.75; color:var(--dim); max-width:560px; margin:0 auto 52px; }
+  .hero-desc strong { color:var(--text); font-weight:500; }
+  .actions { display:flex; align-items:center; justify-content:center; gap:14px; flex-wrap:wrap; }
+  .btn-primary { font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.2em; color:var(--bg); background:var(--mint); border:none; padding:14px 28px; border-radius:2px; cursor:pointer; text-decoration:none; font-weight:700; transition:box-shadow .2s; box-shadow:0 0 22px rgba(61,255,160,0.3); }
+  .btn-primary:hover { box-shadow:0 0 36px rgba(61,255,160,0.55); }
+  .btn-ghost { font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.2em; color:var(--text); border:1px solid var(--border); background:transparent; padding:14px 28px; border-radius:2px; cursor:pointer; text-decoration:none; transition:border-color .2s; }
+  .btn-ghost:hover { border-color:var(--dim); }
+  /* Terminal preview */
+  .terminal-wrap { max-width:680px; margin:90px auto 0; padding:0 40px; }
+  .term-frame { background:#060708; border:1px solid rgba(61,255,160,0.18); border-radius:8px; overflow:hidden; box-shadow:0 0 60px rgba(61,255,160,0.06), 0 40px 80px rgba(0,0,0,0.6); }
+  .term-chrome { display:flex; align-items:center; gap:8px; padding:12px 16px; border-bottom:1px solid rgba(61,255,160,0.09); background:#0A0B10; }
+  .dot { width:10px; height:10px; border-radius:50%; }
+  .dr{background:#FF5F5F;} .dy{background:#FFBD2E;} .dg{background:#28C840;}
+  .term-path { flex:1; text-align:center; font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--dim); letter-spacing:0.15em; }
+  .term-body { padding:20px 24px; }
+  .tl { font-family:'JetBrains Mono',monospace; font-size:12px; line-height:1.85; }
+  .tc { color:var(--mint); } .tx { color:var(--text); } .td { color:var(--dim); } .tw { color:var(--amber); }
+  .tcursor { display:inline-block; width:8px; height:14px; background:var(--mint); vertical-align:middle; animation:blink 1.1s step-end infinite; }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+  /* Bento grid */
+  .bento-section { max-width:1100px; margin:100px auto; padding:0 40px; }
+  .section-label { font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:0.42em; color:var(--mint); margin-bottom:36px; text-align:center; }
+  .bento { display:grid; grid-template-columns:repeat(12,1fr); gap:10px; }
+  .cell { background:var(--surf); border:1px solid var(--border); border-radius:6px; padding:20px; min-height:110px; }
+  .clabel { font-family:'JetBrains Mono',monospace; font-size:8px; letter-spacing:0.3em; color:var(--dim); margin-bottom:12px; }
+  .cval { font-family:'JetBrains Mono',monospace; font-size:32px; font-weight:700; color:var(--text); line-height:1; }
+  .cval.mint { color:var(--mint); font-size:36px; }
+  .cbadge { display:inline-block; margin-top:8px; font-family:'JetBrains Mono',monospace; font-size:9px; padding:3px 8px; border-radius:2px; }
+  .ca1 { grid-column:span 3; grid-row:span 2; border-color:rgba(61,255,160,0.18); box-shadow:0 0 28px rgba(61,255,160,0.05); }
+  .ca2,.ca3,.ca4 { grid-column:span 3; }
+  .cb1 { grid-column:span 6; }
+  .cb2 { grid-column:span 3; }
+  .cc1 { grid-column:span 9; }
+  .cc2 { grid-column:span 3; background:#060708; border-color:rgba(61,255,160,0.14); }
+  .spark { height:26px; margin-top:14px; background:linear-gradient(90deg, transparent, rgba(61,255,160,0.5), rgba(61,255,160,0.12)); border-radius:2px; opacity:0.65; }
+  .srow { display:flex; align-items:center; gap:8px; margin-top:9px; }
+  .sdot { width:6px; height:6px; border-radius:50%; flex-shrink:0; }
+  .sname { font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--dim); flex:1; }
+  .slat { font-family:'JetBrains Mono',monospace; font-size:9px; }
+  .bbar { height:3px; background:var(--border); border-radius:2px; overflow:hidden; margin-top:4px; }
+  .bfill { height:100%; border-radius:2px; }
+  /* Features */
+  .features { max-width:1000px; margin:100px auto; padding:0 40px; }
+  .feat-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+  .feat { background:var(--surf); border:1px solid var(--border); border-radius:6px; padding:28px; }
+  .feat-icon { font-family:'JetBrains Mono',monospace; font-size:22px; color:var(--mint); margin-bottom:16px; }
+  .feat-title { font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:700; letter-spacing:0.2em; color:var(--text); margin-bottom:10px; }
+  .feat-desc { font-size:13px; line-height:1.65; color:var(--dim); }
+  /* Footer */
+  footer { border-top:1px solid var(--border); padding:32px 40px; display:flex; align-items:center; justify-content:space-between; margin-top:100px; }
+  .foot-logo { font-family:'JetBrains Mono',monospace; font-size:12px; font-weight:700; color:var(--mint); letter-spacing:0.3em; }
+  .foot-meta { font-family:'JetBrains Mono',monospace; font-size:9px; color:var(--dim); letter-spacing:0.18em; }
+  @media(max-width:768px) {
+    nav { padding:0 20px; } .nav-links { display:none; }
+    .bento { grid-template-columns:1fr 1fr; }
+    .ca1,.ca2,.ca3,.ca4,.cb1,.cb2,.cc1,.cc2 { grid-column:span 1; grid-row:span 1; }
+    .feat-grid { grid-template-columns:1fr; }
+    footer { flex-direction:column; gap:12px; text-align:center; }
+  }
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-logo">COBALT</div>
+  <div class="nav-links">
+    <a href="#">OVERVIEW</a>
+    <a href="#">FEATURES</a>
+    <a href="#">DOCS</a>
+  </div>
+  <a href="https://ram.zenbin.org/cobalt-mock" class="nav-cta">LAUNCH →</a>
+</nav>
+
+<section class="hero">
+  <div class="glow1"></div>
+  <div class="glow2"></div>
+  <div class="hero-inner">
+    <div class="eyebrow">DEVELOPER OPERATIONS CENTER</div>
+    <h1>CO<span>BALT</span></h1>
+    <p class="tagline">YOUR STACK. ONE TERMINAL.</p>
+    <p class="hero-desc">
+      The <strong>command center for engineering teams</strong> who demand visibility.
+      Real-time deployments, repository health, live log streams, contributor insights —
+      all in a <strong>terminal-OS hybrid interface</strong> built for dark environments.
+    </p>
+    <div class="actions">
+      <a href="https://ram.zenbin.org/cobalt-mock" class="btn-primary">INTERACTIVE MOCK →</a>
+      <a href="https://ram.zenbin.org/cobalt-viewer" class="btn-ghost">VIEW DESIGN</a>
+    </div>
+  </div>
+</section>
+
+<div class="terminal-wrap">
+  <div class="term-frame">
+    <div class="term-chrome">
+      <div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div>
+      <div class="term-path">cobalt@core — operations center</div>
+    </div>
+    <div class="term-body">
+      <div class="tl"><span class="tc">→ </span><span class="tx">cobalt status --live</span></div>
+      <div class="tl"><span class="td">● api-gateway      UP    12ms   load 64%</span></div>
+      <div class="tl"><span class="td">● auth-service     UP    8ms    load 31%</span></div>
+      <div class="tl tw">● ml-pipeline      ⚠     340ms  load 82%   GPU pressure high</div>
+      <div class="tl"><span class="td">● billing-svc      UP    14ms   load 22%</span></div>
+      <div class="tl"><span class="td">● cdn-edge         UP    4ms    load 17%</span></div>
+      <div class="tl" style="margin-top:10px"><span class="tc">→ </span><span class="tx">cobalt deploys --today --env prod</span></div>
+      <div class="tl"><span class="td">14 deployments  ·  12 success  ·  1 running  ·  1 failed</span></div>
+      <div class="tl"><span class="tc">→ </span><span class="tcursor"></span></div>
+    </div>
+  </div>
+</div>
+
+<section class="bento-section">
+  <div class="section-label">BENTO COMMAND GRID</div>
+  <div class="bento">
+    <div class="cell ca1">
+      <div class="clabel">UPTIME</div>
+      <div class="cval mint">99.97%</div>
+      <div class="spark"></div>
+      <div class="clabel" style="margin-top:12px;margin-bottom:0">↑ 30-day rolling avg</div>
+    </div>
+    <div class="cell ca2">
+      <div class="clabel">DEPLOYS TODAY</div>
+      <div class="cval">14</div>
+      <span class="cbadge" style="color:var(--mint);background:rgba(61,255,160,0.08)">+3 vs yesterday</span>
+    </div>
+    <div class="cell ca3">
+      <div class="clabel">OPEN PRS</div>
+      <div class="cval">28</div>
+      <span class="cbadge" style="color:var(--amber);background:rgba(255,185,61,0.08)">6 awaiting review</span>
+    </div>
+    <div class="cell ca4">
+      <div class="clabel">ERROR RATE</div>
+      <div class="cval">0.03%</div>
+      <span class="cbadge" style="color:var(--mint);background:rgba(61,255,160,0.08)">↓ from 0.04% peak</span>
+    </div>
+    <div class="cell cb1">
+      <div class="clabel">RECENT DEPLOYMENTS</div>
+      <div class="srow"><div class="sdot" style="background:var(--mint)"></div><div class="sname">api-gateway v3.14.2 → prod</div><span class="slat" style="color:var(--mint)">SUCCESS</span></div>
+      <div class="srow"><div class="sdot" style="background:var(--mint)"></div><div class="sname">auth-service v2.1.0 → prod</div><span class="slat" style="color:var(--mint)">SUCCESS</span></div>
+      <div class="srow"><div class="sdot" style="background:var(--violet)"></div><div class="sname">ml-pipeline v1.9.0 → stg</div><span class="slat" style="color:var(--violet)">RUNNING</span></div>
+      <div class="srow"><div class="sdot" style="background:var(--pink)"></div><div class="sname">billing-svc v2.3.1 → prod</div><span class="slat" style="color:var(--pink)">FAILED</span></div>
+    </div>
+    <div class="cell cb2">
+      <div class="clabel">COMMITS / 7D</div>
+      <div class="cval">143</div>
+      <div style="margin-top:10px">
+        <div class="bbar"><div class="bfill" style="width:80%;background:var(--violet)"></div></div>
+        <div class="bbar" style="margin-top:5px"><div class="bfill" style="width:60%;background:var(--violet);opacity:.7"></div></div>
+        <div class="bbar" style="margin-top:5px"><div class="bfill" style="width:90%;background:var(--violet);opacity:.5"></div></div>
+        <div class="bbar" style="margin-top:5px"><div class="bfill" style="width:45%;background:var(--violet);opacity:.3"></div></div>
+      </div>
+    </div>
+    <div class="cell cc1">
+      <div class="clabel">SERVICE HEALTH</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:6px">
+        <div><div class="srow"><div class="sdot" style="background:var(--mint)"></div><div class="sname">API Gateway</div><span class="slat" style="color:var(--text)">12ms</span></div><div class="bbar"><div class="bfill" style="width:64%;background:var(--mint);opacity:.5"></div></div></div>
+        <div><div class="srow"><div class="sdot" style="background:var(--mint)"></div><div class="sname">Auth Svc</div><span class="slat" style="color:var(--text)">8ms</span></div><div class="bbar"><div class="bfill" style="width:31%;background:var(--mint);opacity:.5"></div></div></div>
+        <div><div class="srow"><div class="sdot" style="background:var(--mint)"></div><div class="sname">DB Primary</div><span class="slat" style="color:var(--text)">2ms</span></div><div class="bbar"><div class="bfill" style="width:48%;background:var(--mint);opacity:.5"></div></div></div>
+        <div><div class="srow"><div class="sdot" style="background:var(--amber)"></div><div class="sname">ML Pipeline</div><span class="slat" style="color:var(--amber)">340ms</span></div><div class="bbar"><div class="bfill" style="width:82%;background:var(--amber);opacity:.5"></div></div></div>
+        <div><div class="srow"><div class="sdot" style="background:var(--mint)"></div><div class="sname">CDN Edge</div><span class="slat" style="color:var(--text)">4ms</span></div><div class="bbar"><div class="bfill" style="width:17%;background:var(--mint);opacity:.5"></div></div></div>
+        <div><div class="srow"><div class="sdot" style="background:var(--mint)"></div><div class="sname">Queue Wrkr</div><span class="slat" style="color:var(--text)">—</span></div><div class="bbar"><div class="bfill" style="width:55%;background:var(--mint);opacity:.5"></div></div></div>
+      </div>
+    </div>
+    <div class="cell cc2">
+      <div class="clabel">TERMINAL</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:9px;line-height:1.95;margin-top:4px">
+        <div style="color:var(--mint)">$ cobalt status</div>
+        <div style="color:var(--dim)">● api       UP</div>
+        <div style="color:var(--dim)">● auth      UP</div>
+        <div style="color:var(--amber)">● ml        ⚠</div>
+        <div style="color:var(--dim)">● billing   UP</div>
+        <div style="color:var(--mint)">_<span style="display:inline-block;width:7px;height:12px;background:var(--mint);vertical-align:middle;animation:blink 1.1s step-end infinite"></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="features">
+  <div class="section-label">BUILT FOR TEAMS WHO SHIP</div>
+  <div class="feat-grid">
+    <div class="feat">
+      <div class="feat-icon">⌗</div>
+      <div class="feat-title">BENTO COMMAND GRID</div>
+      <p class="feat-desc">Spatial dashboard giving every metric its own visual weight. Uptime, PRs, error rates, and recent deploys coexist without hierarchy collision.</p>
+    </div>
+    <div class="feat">
+      <div class="feat-icon">▶</div>
+      <div class="feat-title">LIVE LOG STREAM</div>
+      <p class="feat-desc">Terminal-native log viewer with real-time filtering by level. Monospaced clarity on near-black, with a subtle scanline texture for authentic terminal feel.</p>
+    </div>
+    <div class="feat">
+      <div class="feat-icon">◎</div>
+      <div class="feat-title">PIPELINE VISIBILITY</div>
+      <p class="feat-desc">Every deployment's four-stage journey — build, test, security, deploy — as a progress chain. Neon-mint for pass. Hot-pink means page someone.</p>
+    </div>
+    <div class="feat">
+      <div class="feat-icon">△</div>
+      <div class="feat-title">REPOSITORY HEALTH</div>
+      <p class="feat-desc">Per-repo health scores, language breakdowns, PR backlogs in a compact scannable list. CI failures surface immediately with an amber alert badge.</p>
+    </div>
+    <div class="feat">
+      <div class="feat-icon">◈</div>
+      <div class="feat-title">CONTRIBUTOR INSIGHTS</div>
+      <p class="feat-desc">Commit streaks, code ownership maps, and team activity pulse. Know who owns each module — and who's been in a deep work sprint this week.</p>
+    </div>
+    <div class="feat">
+      <div class="feat-icon">◉</div>
+      <div class="feat-title">NEON-ON-BLACK PALETTE</div>
+      <p class="feat-desc">Deep space black (#08090E) substrate, neon mint (#3DFFA0) primary, electric violet secondary. Directly inspired by Neon DB and Evervault's dark UI language.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-logo">COBALT</div>
+  <div class="foot-meta">RAM DESIGN HEARTBEAT · 2026.04.01 · DARK THEME</div>
+</footer>
+</body>
+</html>`;
+
+// ─── VIEWER HTML ──────────────────────────────────────────────────────────────
+const viewerHtmlRaw = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>COBALT — Prototype Viewer</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%;background:#08090E;font-family:'JetBrains Mono',monospace;color:#CDD9EE}
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:0 32px;height:56px;background:rgba(8,9,14,0.92);backdrop-filter:blur(12px);border-bottom:1px solid #1E2535}
+  .logo{font-size:14px;font-weight:700;letter-spacing:0.28em;color:#3DFFA0}
+  .tagline{font-size:10px;color:#6B7FA0;letter-spacing:0.2em}
+  .hero-btn{font-size:10px;font-weight:700;padding:8px 18px;background:#3DFFA0;color:#08090E;border-radius:2px;text-decoration:none;letter-spacing:0.15em}
+  .viewer{display:flex;align-items:center;justify-content:center;min-height:calc(100vh - 56px);padding:32px;background:#060708}
+  #pencil-viewer{width:100%;max-width:1200px;height:74vh;border-radius:10px;border:1px solid rgba(61,255,160,0.15);background:#10131C;box-shadow:0 0 60px rgba(61,255,160,0.04)}
+</style>
+</head>
+<body>
+<div class="nav">
+  <span class="logo">COBALT</span>
+  <span class="tagline">DEVELOPER OPERATIONS CENTER</span>
+  <a class="hero-btn" href="https://ram.zenbin.org/cobalt">HERO PAGE →</a>
+</div>
+<div class="viewer">
+  <div id="pencil-viewer">Loading prototype...</div>
+</div>
+<!-- EMBED_PEN_HERE -->
+<script>
+(function(){
+  var el=document.getElementById('pencil-viewer');
+  if(!el)return;
+  if(window.EMBEDDED_PEN){
+    el.innerHTML='<iframe id="pf" style="width:100%;height:100%;border:none;border-radius:10px" src="https://pencil.dev/embed"></iframe>';
+    var fr=document.getElementById('pf');
+    fr.addEventListener('load',function(){
+      fr.contentWindow.postMessage({type:'load-pen',data:window.EMBEDDED_PEN},'*');
+    });
+  } else {
+    el.innerHTML='<p style="text-align:center;padding:40px;color:#6B7FA0;font-size:12px;letter-spacing:0.2em">PROTOTYPE DATA NOT FOUND</p>';
+  }
+})();
+</script>
+</body>
+</html>`;
+
+const penJsonStr = fs.readFileSync('cobalt.pen', 'utf8');
+const injection  = `<script>window.EMBEDDED_PEN = ${JSON.stringify(penJsonStr)};<\/script>`;
+const viewerHtml = viewerHtmlRaw.replace('<!-- EMBED_PEN_HERE -->', injection);
+
+// Save locally
+fs.writeFileSync('cobalt-hero.html', heroHtml);
+fs.writeFileSync('cobalt-viewer.html', viewerHtml);
+console.log('HTML files saved locally.');
+
+(async () => {
+  console.log('\nPublishing COBALT hero…');
+  const r1 = await post('/api/publish',
+    { 'X-Subdomain': SUBDOMAIN, 'X-Slug': SLUG },
+    { html: heroHtml, slug: SLUG, subdomain: SUBDOMAIN }
+  );
+  console.log('Hero:', r1.status, r1.status === 200 ? '✓' : r1.body.slice(0, 160));
+
+  console.log('Publishing COBALT viewer…');
+  const r2 = await post('/api/publish',
+    { 'X-Subdomain': SUBDOMAIN, 'X-Slug': SLUG + '-viewer' },
+    { html: viewerHtml, slug: SLUG + '-viewer', subdomain: SUBDOMAIN }
+  );
+  console.log('Viewer:', r2.status, r2.status === 200 ? '✓' : r2.body.slice(0, 160));
+
+  console.log(`\n✓ Hero:   https://ram.zenbin.org/${SLUG}`);
+  console.log(`✓ Viewer: https://ram.zenbin.org/${SLUG}-viewer`);
+})();

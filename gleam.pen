@@ -1,0 +1,4907 @@
+{
+  "version": "2.8",
+  "metadata": {
+    "name": "GLEAM — Creator analytics for independent voices",
+    "author": "RAM",
+    "date": "2026-04-11",
+    "theme": "light",
+    "heartbeat": 42,
+    "elements": 511,
+    "slug": "gleam",
+    "palette": {
+      "bg": "#FAF7F2",
+      "surface": "#FFFFFF",
+      "accent": "#D97706",
+      "accent2": "#9A3412",
+      "text": "#1A1818",
+      "muted": "#8A7F74"
+    }
+  },
+  "screens": [
+    {
+      "name": "Dashboard",
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"390\" height=\"844\"><rect x=\"0\" y=\"0\" width=\"390\" height=\"844\" fill=\"#FAF7F2\"/><line x1=\"0\" y1=\"0\" x2=\"0\" y2=\"844\" stroke=\"#E2D9C8\" stroke-width=\"0.5\" opacity=\"0.4\"/><line x1=\"78\" y1=\"0\" x2=\"78\" y2=\"844\" stroke=\"#E2D9C8\" stroke-width=\"0.5\" opacity=\"0.4\"/><line x1=\"156\" y1=\"0\" x2=\"156\" y2=\"844\" stroke=\"#E2D9C8\" stroke-width=\"0.5\" opacity=\"0.4\"/><line x1=\"234\" y1=\"0\" x2=\"234\" y2=\"844\" stroke=\"#E2D9C8\" stroke-width=\"0.5\" opacity=\"0.4\"/><line x1=\"312\" y1=\"0\" x2=\"312\" y2=\"844\" stroke=\"#E2D9C8\" stroke-width=\"0.5\" opacity=\"0.4\"/><line x1=\"390\" y1=\"0\" x2=\"390\" y2=\"844\" stroke=\"#E2D9C8\" stroke-width=\"0.5\" opacity=\"0.4\"/><rect x=\"0\" y=\"0\" width=\"390\" height=\"58\" fill=\"#FFFFFF\" stroke=\"#E8E0D0\" stroke-width=\"1\"/><text x=\"20\" y=\"37\" font-size=\"18\" fill=\"#1A1818\" font-weight=\"900\" letter-spacing=\"3\">GLEAM</text><text x=\"370\" y=\"37\" font-size=\"11\" fill=\"#15803D\" font-weight=\"600\" text-anchor=\"end\">● Live</text><rect x=\"0\" y=\"58\" width=\"390\" height=\"36\" fill=\"#F5F0E8\"/><rect x=\"12\" y=\"64\" width=\"72\" height=\"24\" fill=\"#D97706\" rx=\"3\" opacity=\"0.12\"/><text x=\"20\" y=\"80\" font-size=\"11\" fill=\"#D97706\" font-weight=\"700\">Overview</text><line x1=\"12\" y1=\"93\" x2=\"84\" y2=\"93\" stroke=\"#D97706\" stroke-width=\"2\"/><text x=\"108\" y=\"80\" font-size=\"11\" fill=\"#8A7F74\" font-weight=\"500\">Audience</text><text x=\"196\" y=\"80\" font-size=\"11\" fill=\"#8A7F74\" font-weight=\"500\">Content</text><text x=\"284\" y=\"80\" font-size=\"11\" fill=\"#8A7F74\" font-weight=\"500\">Revenue</text><text x=\"20\" y=\"128\" font-size=\"9\" fill=\"#8A7F74\" font-weight=\"700\" letter-spacing=\"2\">THIS WEEK</text><line x1=\"20\" y1=\"134\" x2=\"370\" y2=\"134\" stroke=\"#E8E0D0\" stroke-width=\"1\"/><rect x=\"16\" y=\"142\" width=\"172\" height=\"88\" fill=\"#FFFFFF\" rx=\"4\" stroke=\"#E8E0D0\" stroke-width=\"1\"/><rect x=\"16\" y=\"142\" width=\"172\" height=\"3\" fill=\"#D97706\" opacity=\"0.6\"/><text x=\"30\" y=\"164\" font-size=\"10\" fill=\"#8A7F74\" font-weight=\"500\" letter-spacing=\"0.8\">SUBSCRIBERS</text><text x=\"30\" y=\"192\" font-size=\"28\" fill=\"#1A1818\" font-weight=\"700\" font-family=\"Georgia, serif\">12,847</text><text x=\"30\" y=\"210\" font-size=\"10\" fill=\"#8A7F74\">+124 this week</text><text x=\"174\" y=\"192\" font-size=\"11\" fill=\"#15803D\" font-weight=\"600\" text-anchor=\"end\">↑ 9.7%</text><rect x=\"202\" y=\"142\" width=\"172\" height=\"88\" fill=\"#FFFFFF\" rx=\"4\" stroke=\"#E8E0D0\" stroke-width=\"1\"/><rect x=\"202\" y=\"142\" width=\"172\" height=\"3\" fill=\"#D97706\" opacity=\"0.6\"/><text x=\"216\" y=\"164\" font-size=\"10\" fill=\"#8A7F74\" font-weight=\"500\" letter-spacing=\"0.8\">OPEN RATE</text><text x=\"216\" y=\"192\" font-size=\"28\" fill=\"#1A1818\" font-weight=\"700\" font-family=\"Georgia, serif\">41.2%</text><text x=\"216\" y=\"210\" font-size=\"10\" fill=\"#8A7F74\">Industry avg 21%</text><text x=\"360\" y=\"192\" font-size=\"11\" fill=\"#15803D\" font-weight=\"600\" text-anchor=\"end\">↑ 2.1pp</text><rect x=\"16\" y=\"238\" width=\"172\" height=\"88\" fill=\"#FFFFFF\" rx=\"4\" stroke=\"#E8E0D0\" stroke-width=\"1\"/><rect x=\"16\" y=\"238\" width=\"172\" height=\"3\" fill=\"#D97706\" opacity=\"0.6\"/><text x=\"30\" y=\"260\" font-size=\"10\" fill=\"#8A7F74\" font-weight=\"500\" letter-spacing=\"0.8\">NEW POSTS</text><text x=\"30\" y=\"288\" font-size=\"28\" fill=\"#1A1818\" font-weight=\"700\" font-family=\"Georgia, serif\">6</text><text x=\"30\" y=\"306\" font-size=\"10\" fill=\"#8A7F74\">published this week</text><rect x=\"202\" y=\"238\" width=\"172\" height=\"88\" fill=\"#FFFFFF\" rx=\"4\" stroke=\"#E8E0D0\" stroke-width=\"1\"/><rect x=\"202\" y=\"238\" width=\"172\" height=\"3\" fill=\"#D97706\" opacity=\"0.6\"/><text x=\"216\" y=\"260\" font-size=\"10\" fill=\"#8A7F74\" font-weight=\"500\" letter-spacing=\"0.8\">REVENUE</text><text x=\"216\" y=\"288\" font-size=\"28\" fill=\"#1A1818\" font-weight=\"700\" font-family=\"Georgia, serif\">$1,840</text><text x=\"216\" y=\"306\" font-size=\"10\" fill=\"#8A7F74\">MRR this month</text><text x=\"360\" y=\"288\" font-size=\"11\" fill=\"#15803D\" font-weight=\"600\" text-anchor=\"end\">↑ 12%</text><rect x=\"16\" y=\"340\" width=\"358\" height=\"130\" fill=\"#FFFFFF\" rx=\"4\" stroke=\"#E8E0D0\" stroke-width=\"1\"/><rect x=\"16\" y=\"340\" width=\"358\" height=\"3\" fill=\"#D97706\" opacity=\"0.5\"/><text x=\"30\" y=\"362\" font-size=\"9\" fill=\"#8A7F74\" font-weight=\"700\" letter-spacing=\"1.5\">SUBSCRIBER GROWTH</text><text x=\"360\" y=\"362\" font-size=\"9\" fill=\"#8A7F74\" font-weight=\"500\" text-anchor=\"end\">30 days</text><rect x=\"30\" y=\"419\" width=\"16\" height=\"31\" fill=\"#D97706\" rx=\"2\" opacity=\"0.4\"/><rect x=\"54\" y=\"415\" width=\"16\" height=\"35\" fill=\"#D97706\" rx=\"2\" opacity=\"0.4\"/><rect x=\"78\" y=\"417\" width=\"16\" height=\"33\" fill=\"#D97706\" rx=\"2\" opacity=\"0.4\"/><rect x=\"102\" y=\"409\" width=\"16\" height=\"41\" fill=\"#D97706\" rx=\"2\" opacity=\"0.4\"/><rect x=\"126\" y=\"404\" width=\"16\" height=\"46\" fill=\"#D97706\" rx=\"2\" opacity=\"0.4\"/><rect x=\"150\" y=\"402\" width=\"16\" height=\"48\" fill=\"#D97706\" rx=\"2\" opacity=\"0.4\"/><rect x=\"174\" y=\"404\" width=\"16\" height=\"46\" fill=\"#D97706\" rx=\"2\" opacity=\"0.4\"/><rect x=\"198\" y=\"396\" width=\"16\" height=\"54\" fill=\"#D97706\" rx=\"2\" opacity=\"0.4\"/><rect x=\"222\" y=\"397\" width=\"16\" height=\"53\" fill=\"#D97706\" rx=\"2\" opacity=\"0.4\"/><rect x=\"246\" y=\"389\" width=\"16\" height=\"61\" fill=\"#D97706\" rx=\"2\" opacity=\"0.4\"/><rect x=\"270\" y=\"390\" width=\"16\" height=\"60\" fill=\"#D97706\" rx=\"2\" opacity=\"0.4\"/><rect x=\"294\" y=\"385\" width=\"16\" height=\"65\" fill=\"#D97706\" rx=\"2\" opacity=\"0.4\"/><rect x=\"318\" y=\"387\" width=\"16\" height=\"63\" fill=\"#D97706\" rx=\"2\" opacity=\"0.4\"/><rect x=\"342\" y=\"382\" width=\"16\" height=\"68\" fill=\"#D97706\" rx=\"2\" opacity=\"1\"/><text x=\"30\" y=\"462\" font-size=\"9\" fill=\"#8A7F74\" opacity=\"0.7\">Mar 12</text><text x=\"360\" y=\"462\" font-size=\"9\" fill=\"#8A7F74\" text-anchor=\"end\" opacity=\"0.7\">Apr 11</text><text x=\"20\" y=\"496\" font-size=\"9\" fill=\"#8A7F74\" font-weight=\"700\" letter-spacing=\"1.5\">TOP POSTS THIS WEEK</text><line x1=\"20\" y1=\"502\" x2=\"370\" y2=\"502\" stroke=\"#E8E0D0\" stroke-width=\"1\"/><rect x=\"16\" y=\"520\" width=\"358\" height=\"54\" fill=\"#FFFFFF\" rx=\"4\" stroke=\"#E8E0D0\" stroke-width=\"1\"/><text x=\"30\" y=\"540\" font-size=\"12\" fill=\"#1A1818\" font-weight=\"600\">The Art of Slow Growth</text><text x=\"30\" y=\"558\" font-size=\"10\" fill=\"#8A7F74\">4,821 opens</text><rect x=\"200\" y=\"552\" width=\"100\" height=\"6\" fill=\"#E2D9C8\" rx=\"2\"/><rect x=\"200\" y=\"552\" width=\"52\" height=\"6\" fill=\"#D97706\" rx=\"2\"/><text x=\"360\" y=\"558\" font-size=\"10\" fill=\"#D97706\" font-weight=\"700\" text-anchor=\"end\">52%</text><rect x=\"16\" y=\"582\" width=\"358\" height=\"54\" fill=\"#FFFFFF\" rx=\"4\" stroke=\"#E8E0D0\" stroke-width=\"1\"/><text x=\"30\" y=\"602\" font-size=\"12\" fill=\"#1A1818\" font-weight=\"600\">What Readers Actually Want</text><text x=\"30\" y=\"620\" font-size=\"10\" fill=\"#8A7F74\">3,940 opens</text><rect x=\"200\" y=\"614\" width=\"100\" height=\"6\" fill=\"#E2D9C8\" rx=\"2\"/><rect x=\"200\" y=\"614\" width=\"47\" height=\"6\" fill=\"#D97706\" rx=\"2\"/><text x=\"360\" y=\"620\" font-size=\"10\" fill=\"#D97706\" font-weight=\"700\" text-anchor=\"end\">47%</text><rect x=\"16\" y=\"644\" width=\"358\" height=\"54\" fill=\"#FFFFFF\" rx=\"4\" stroke=\"#E8E0D0\" stroke-width=\"1\"/><text x=\"30\" y=\"664\" font-size=\"12\" fill=\"#1A1818\" font-weight=\"600\">Building in Public: Month 6</text><text x=\"30\" y=\"682\" font-size=\"10\" fill=\"#8A7F74\">2,872 opens</text><rect x=\"200\" y=\"676\" width=\"100\" height=\"6\" fill=\"#E2D9C8\" rx=\"2\"/><rect x=\"200\" y=\"676\" width=\"38\" height=\"6\" fill=\"#D97706\" rx=\"2\"/><text x=\"360\" y=\"682\" font-size=\"10\" fill=\"#D97706\" font-weight=\"700\" text-anchor=\"end\">38%</text><rect x=\"0\" y=\"774\" width=\"390\" height=\"70\" fill=\"#FFFFFF\" stroke=\"#E8E0D0\" stroke-width=\"1\"/><text x=\"39\" y=\"802\" font-size=\"18\" fill=\"#D97706\" text-anchor=\"middle\">⌂</text><text x=\"39\" y=\"822\" font-size=\"9\" fill=\"#D97706\" font-weight=\"700\" text-anchor=\"middle\">Home</text><line x1=\"21\" y1=\"774\" x2=\"57\" y2=\"774\" stroke=\"#D97706\" stroke-width=\"2\"/><text x=\"117\" y=\"802\" font-size=\"18\" fill=\"#8A7F74\" text-anchor=\"middle\">◎</text><text x=\"117\" y=\"822\" font-size=\"9\" fill=\"#8A7F74\" font-weight=\"400\" text-anchor=\"middle\">Audience</text><text x=\"195\" y=\"802\" font-size=\"18\" fill=\"#8A7F74\" text-anchor=\"middle\">✦</text><text x=\"195\" y=\"822\" font-size=\"9\" fill=\"#8A7F74\" font-weight=\"400\" text-anchor=\"middle\">Content</text><text x=\"273\" y=\"802\" font-size=\"18\" fill=\"#8A7F74\" text-anchor=\"middle\">$</text><text x=\"273\" y=\"822\" font-size=\"9\" fill=\"#8A7F74\" font-weight=\"400\" text-anchor=\"middle\">Revenue</text><text x=\"351\" y=\"802\" font-size=\"18\" fill=\"#8A7F74\" text-anchor=\"middle\">○</text><text x=\"351\" y=\"822\" font-size=\"9\" fill=\"#8A7F74\" font-weight=\"400\" text-anchor=\"middle\">Profile</text></svg>",
+      "elements": [
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "fill": "#FAF7F2"
+        },
+        {
+          "type": "line",
+          "x1": 0,
+          "y1": 0,
+          "x2": 0,
+          "y2": 844,
+          "stroke": "#E2D9C8",
+          "strokeWidth": 0.5,
+          "opacity": 0.4
+        },
+        {
+          "type": "line",
+          "x1": 78,
+          "y1": 0,
+          "x2": 78,
+          "y2": 844,
+          "stroke": "#E2D9C8",
+          "strokeWidth": 0.5,
+          "opacity": 0.4
+        },
+        {
+          "type": "line",
+          "x1": 156,
+          "y1": 0,
+          "x2": 156,
+          "y2": 844,
+          "stroke": "#E2D9C8",
+          "strokeWidth": 0.5,
+          "opacity": 0.4
+        },
+        {
+          "type": "line",
+          "x1": 234,
+          "y1": 0,
+          "x2": 234,
+          "y2": 844,
+          "stroke": "#E2D9C8",
+          "strokeWidth": 0.5,
+          "opacity": 0.4
+        },
+        {
+          "type": "line",
+          "x1": 312,
+          "y1": 0,
+          "x2": 312,
+          "y2": 844,
+          "stroke": "#E2D9C8",
+          "strokeWidth": 0.5,
+          "opacity": 0.4
+        },
+        {
+          "type": "line",
+          "x1": 390,
+          "y1": 0,
+          "x2": 390,
+          "y2": 844,
+          "stroke": "#E2D9C8",
+          "strokeWidth": 0.5,
+          "opacity": 0.4
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 58,
+          "fill": "#FFFFFF",
+          "stroke": "#E8E0D0",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 37,
+          "content": "GLEAM",
+          "fontSize": 18,
+          "fill": "#1A1818",
+          "fontWeight": 900,
+          "letterSpacing": 3
+        },
+        {
+          "type": "text",
+          "x": 370,
+          "y": 37,
+          "content": "● Live",
+          "fontSize": 11,
+          "fill": "#15803D",
+          "fontWeight": 600,
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 58,
+          "width": 390,
+          "height": 36,
+          "fill": "#F5F0E8"
+        },
+        {
+          "type": "rect",
+          "x": 12,
+          "y": 64,
+          "width": 72,
+          "height": 24,
+          "fill": "#D97706",
+          "rx": 3,
+          "opacity": 0.12
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 80,
+          "content": "Overview",
+          "fontSize": 11,
+          "fill": "#D97706",
+          "fontWeight": 700
+        },
+        {
+          "type": "line",
+          "x1": 12,
+          "y1": 93,
+          "x2": 84,
+          "y2": 93,
+          "stroke": "#D97706",
+          "strokeWidth": 2
+        },
+        {
+          "type": "text",
+          "x": 108,
+          "y": 80,
+          "content": "Audience",
+          "fontSize": 11,
+          "fill": "#8A7F74",
+          "fontWeight": 500
+        },
+        {
+          "type": "text",
+          "x": 196,
+          "y": 80,
+          "content": "Content",
+          "fontSize": 11,
+          "fill": "#8A7F74",
+          "fontWeight": 500
+        },
+        {
+          "type": "text",
+          "x": 284,
+          "y": 80,
+          "content": "Revenue",
+          "fontSize": 11,
+          "fill": "#8A7F74",
+          "fontWeight": 500
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 128,
+          "content": "THIS WEEK",
+          "fontSize": 9,
+          "fill": "#8A7F74",
+          "fontWeight": 700,
+          "letterSpacing": 2
+        },
+        {
+          "type": "line",
+          "x1": 20,
+          "y1": 134,
+          "x2": 370,
+          "y2": 134,
+          "stroke": "#E8E0D0",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 142,
+          "width": 172,
+          "height": 88,
+          "fill": "#FFFFFF",
+          "rx": 4,
+          "stroke": "#E8E0D0",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 142,
+          "width": 172,
+          "height": 3,
+          "fill": "#D97706",
+          "opacity": 0.6
+        },
+        {
+          "type": "text",
+          "x": 30,
+          "y": 164,
+          "content": "SUBSCRIBERS",
+          "fontSize": 10,
+          "fill": "#8A7F74",
+          "fontWeight": 500,
+          "letterSpacing": 0.8
+        },
+        {
+          "type": "text",
+          "x": 30,
+          "y": 192,
+          "content": "12,847",
+          "fontSize": 28,
+          "fill": "#1A1818",
+          "fontWeight": 700,
+          "fontFamily": "Georgia, serif"
+        },
+        {
+          "type": "text",
+          "x": 30,
+          "y": 210,
+          "content": "+124 this week",
+          "fontSize": 10,
+          "fill": "#8A7F74"
+        },
+        {
+          "type": "text",
+          "x": 174,
+          "y": 192,
+          "content": "↑ 9.7%",
+          "fontSize": 11,
+          "fill": "#15803D",
+          "fontWeight": 600,
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 202,
+          "y": 142,
+          "width": 172,
+          "height": 88,
+          "fill": "#FFFFFF",
+          "rx": 4,
+          "stroke": "#E8E0D0",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rect",
+          "x": 202,
+          "y": 142,
+          "width": 172,
+          "height": 3,
+          "fill": "#D97706",
+          "opacity": 0.6
+        },
+        {
+          "type": "text",
+          "x": 216,
+          "y": 164,
+          "content": "OPEN RATE",
+          "fontSize": 10,
+          "fill": "#8A7F74",
+          "fontWeight": 500,
+          "letterSpacing": 0.8
+        },
+        {
+          "type": "text",
+          "x": 216,
+          "y": 192,
+          "content": "41.2%",
+          "fontSize": 28,
+          "fill": "#1A1818",
+          "fontWeight": 700,
+          "fontFamily": "Georgia, serif"
+        },
+        {
+          "type": "text",
+          "x": 216,
+          "y": 210,
+          "content": "Industry avg 21%",
+          "fontSize": 10,
+          "fill": "#8A7F74"
+        },
+        {
+          "type": "text",
+          "x": 360,
+          "y": 192,
+          "content": "↑ 2.1pp",
+          "fontSize": 11,
+          "fill": "#15803D",
+          "fontWeight": 600,
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 238,
+          "width": 172,
+          "height": 88,
+          "fill": "#FFFFFF",
+          "rx": 4,
+          "stroke": "#E8E0D0",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 238,
+          "width": 172,
+          "height": 3,
+          "fill": "#D97706",
+          "opacity": 0.6
+        },
+        {
+          "type": "text",
+          "x": 30,
+          "y": 260,
+          "content": "NEW POSTS",
+          "fontSize": 10,
+          "fill": "#8A7F74",
+          "fontWeight": 500,
+          "letterSpacing": 0.8
+        },
+        {
+          "type": "text",
+          "x": 30,
+          "y": 288,
+          "content": "6",
+          "fontSize": 28,
+          "fill": "#1A1818",
+          "fontWeight": 700,
+          "fontFamily": "Georgia, serif"
+        },
+        {
+          "type": "text",
+          "x": 30,
+          "y": 306,
+          "content": "published this week",
+          "fontSize": 10,
+          "fill": "#8A7F74"
+        },
+        {
+          "type": "rect",
+          "x": 202,
+          "y": 238,
+          "width": 172,
+          "height": 88,
+          "fill": "#FFFFFF",
+          "rx": 4,
+          "stroke": "#E8E0D0",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rect",
+          "x": 202,
+          "y": 238,
+          "width": 172,
+          "height": 3,
+          "fill": "#D97706",
+          "opacity": 0.6
+        },
+        {
+          "type": "text",
+          "x": 216,
+          "y": 260,
+          "content": "REVENUE",
+          "fontSize": 10,
+          "fill": "#8A7F74",
+          "fontWeight": 500,
+          "letterSpacing": 0.8
+        },
+        {
+          "type": "text",
+          "x": 216,
+          "y": 288,
+          "content": "$1,840",
+          "fontSize": 28,
+          "fill": "#1A1818",
+          "fontWeight": 700,
+          "fontFamily": "Georgia, serif"
+        },
+        {
+          "type": "text",
+          "x": 216,
+          "y": 306,
+          "content": "MRR this month",
+          "fontSize": 10,
+          "fill": "#8A7F74"
+        },
+        {
+          "type": "text",
+          "x": 360,
+          "y": 288,
+          "content": "↑ 12%",
+          "fontSize": 11,
+          "fill": "#15803D",
+          "fontWeight": 600,
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 340,
+          "width": 358,
+          "height": 130,
+          "fill": "#FFFFFF",
+          "rx": 4,
+          "stroke": "#E8E0D0",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 340,
+          "width": 358,
+          "height": 3,
+          "fill": "#D97706",
+          "opacity": 0.5
+        },
+        {
+          "type": "text",
+          "x": 30,
+          "y": 362,
+          "content": "SUBSCRIBER GROWTH",
+          "fontSize": 9,
+          "fill": "#8A7F74",
+          "fontWeight": 700,
+          "letterSpacing": 1.5
+        },
+        {
+          "type": "text",
+          "x": 360,
+          "y": 362,
+          "content": "30 days",
+          "fontSize": 9,
+          "fill": "#8A7F74",
+          "fontWeight": 500,
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 30,
+          "y": 419,
+          "width": 16,
+          "height": 31,
+          "fill": "#D97706",
+          "rx": 2,
+          "opacity": 0.4
+        },
+        {
+          "type": "rect",
+          "x": 54,
+          "y": 415,
+          "width": 16,
+          "height": 35,
+          "fill": "#D97706",
+          "rx": 2,
+          "opacity": 0.4
+        },
+        {
+          "type": "rect",
+          "x": 78,
+          "y": 417,
+          "width": 16,
+          "height": 33,
+          "fill": "#D97706",
+          "rx": 2,
+          "opacity": 0.4
+        },
+        {
+          "type": "rect",
+          "x": 102,
+          "y": 409,
+          "width": 16,
+          "height": 41,
+          "fill": "#D97706",
+          "rx": 2,
+          "opacity": 0.4
+        },
+        {
+          "type": "rect",
+          "x": 126,
+          "y": 404,
+          "width": 16,
+          "height": 46,
+          "fill": "#D97706",
+          "rx": 2,
+          "opacity": 0.4
+        },
+        {
+          "type": "rect",
+          "x": 150,
+          "y": 402,
+          "width": 16,
+          "height": 48,
+          "fill": "#D97706",
+          "rx": 2,
+          "opacity": 0.4
+        },
+        {
+          "type": "rect",
+          "x": 174,
+          "y": 404,
+          "width": 16,
+          "height": 46,
+          "fill": "#D97706",
+          "rx": 2,
+          "opacity": 0.4
+        },
+        {
+          "type": "rect",
+          "x": 198,
+          "y": 396,
+          "width": 16,
+          "height": 54,
+          "fill": "#D97706",
+          "rx": 2,
+          "opacity": 0.4
+        },
+        {
+          "type": "rect",
+          "x": 222,
+          "y": 397,
+          "width": 16,
+          "height": 53,
+          "fill": "#D97706",
+          "rx": 2,
+          "opacity": 0.4
+        },
+        {
+          "type": "rect",
+          "x": 246,
+          "y": 389,
+          "width": 16,
+          "height": 61,
+          "fill": "#D97706",
+          "rx": 2,
+          "opacity": 0.4
+        },
+        {
+          "type": "rect",
+          "x": 270,
+          "y": 390,
+          "width": 16,
+          "height": 60,
+          "fill": "#D97706",
+          "rx": 2,
+          "opacity": 0.4
+        },
+        {
+          "type": "rect",
+          "x": 294,
+          "y": 385,
+          "width": 16,
+          "height": 65,
+          "fill": "#D97706",
+          "rx": 2,
+          "opacity": 0.4
+        },
+        {
+          "type": "rect",
+          "x": 318,
+          "y": 387,
+          "width": 16,
+          "height": 63,
+          "fill": "#D97706",
+          "rx": 2,
+          "opacity": 0.4
+        },
+        {
+          "type": "rect",
+          "x": 342,
+          "y": 382,
+          "width": 16,
+          "height": 68,
+          "fill": "#D97706",
+          "rx": 2,
+          "opacity": 1
+        },
+        {
+          "type": "text",
+          "x": 30,
+          "y": 462,
+          "content": "Mar 12",
+          "fontSize": 9,
+          "fill": "#8A7F74",
+          "opacity": 0.7
+        },
+        {
+          "type": "text",
+          "x": 360,
+          "y": 462,
+          "content": "Apr 11",
+          "fontSize": 9,
+          "fill": "#8A7F74",
+          "textAnchor": "end",
+          "opacity": 0.7
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 496,
+          "content": "TOP POSTS THIS WEEK",
+          "fontSize": 9,
+          "fill": "#8A7F74",
+          "fontWeight": 700,
+          "letterSpacing": 1.5
+        },
+        {
+          "type": "line",
+          "x1": 20,
+          "y1": 502,
+          "x2": 370,
+          "y2": 502,
+          "stroke": "#E8E0D0",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 520,
+          "width": 358,
+          "height": 54,
+          "fill": "#FFFFFF",
+          "rx": 4,
+          "stroke": "#E8E0D0",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 30,
+          "y": 540,
+          "content": "The Art of Slow Growth",
+          "fontSize": 12,
+          "fill": "#1A1818",
+          "fontWeight": 600
+        },
+        {
+          "type": "text",
+          "x": 30,
+          "y": 558,
+          "content": "4,821 opens",
+          "fontSize": 10,
+          "fill": "#8A7F74"
+        },
+        {
+          "type": "rect",
+          "x": 200,
+          "y": 552,
+          "width": 100,
+          "height": 6,
+          "fill": "#E2D9C8",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 200,
+          "y": 552,
+          "width": 52,
+          "height": 6,
+          "fill": "#D97706",
+          "rx": 2
+        },
+        {
+          "type": "text",
+          "x": 360,
+          "y": 558,
+          "content": "52%",
+          "fontSize": 10,
+          "fill": "#D97706",
+          "fontWeight": 700,
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 582,
+          "width": 358,
+          "height": 54,
+          "fill": "#FFFFFF",
+          "rx": 4,
+          "stroke": "#E8E0D0",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 30,
+          "y": 602,
+          "content": "What Readers Actually Want",
+          "fontSize": 12,
+          "fill": "#1A1818",
+          "fontWeight": 600
+        },
+        {
+          "type": "text",
+          "x": 30,
+          "y": 620,
+          "content": "3,940 opens",
+          "fontSize": 10,
+          "fill": "#8A7F74"
+        },
+        {
+          "type": "rect",
+          "x": 200,
+          "y": 614,
+          "width": 100,
+          "height": 6,
+          "fill": "#E2D9C8",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 200,
+          "y": 614,
+          "width": 47,
+          "height": 6,
+          "fill": "#D97706",
+          "rx": 2
+        },
+        {
+          "type": "text",
+          "x": 360,
+          "y": 620,
+          "content": "47%",
+          "fontSize": 10,
+          "fill": "#D97706",
+          "fontWeight": 700,
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 644,
+          "width": 358,
+          "height": 54,
+          "fill": "#FFFFFF",
+          "rx": 4,
+          "stroke": "#E8E0D0",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 30,
+          "y": 664,
+          "content": "Building in Public: Month 6",
+          "fontSize": 12,
+          "fill": "#1A1818",
+          "fontWeight": 600
+        },
+        {
+          "type": "text",
+          "x": 30,
+          "y": 682,
+          "content": "2,872 opens",
+          "fontSize": 10,
+          "fill": "#8A7F74"
+        },
+        {
+          "type": "rect",
+          "x": 200,
+          "y": 676,
+          "width": 100,
+          "height": 6,
+          "fill": "#E2D9C8",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 200,
+          "y": 676,
+          "width": 38,
+          "height": 6,
+          "fill": "#D97706",
+          "rx": 2
+        },
+        {
+          "type": "text",
+          "x": 360,
+          "y": 682,
+          "content": "38%",
+          "fontSize": 10,
+          "fill": "#D97706",
+          "fontWeight": 700,
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 774,
+          "width": 390,
+          "height": 70,
+          "fill": "#FFFFFF",
+          "stroke": "#E8E0D0",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 39,
+          "y": 802,
+          "content": "⌂",
+          "fontSize": 18,
+          "fill": "#D97706",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 39,
+          "y": 822,
+          "content": "Home",
+          "fontSize": 9,
+          "fill": "#D97706",
+          "fontWeight": 700,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "line",
+          "x1": 21,
+          "y1": 774,
+          "x2": 57,
+          "y2": 774,
+          "stroke": "#D97706",
+          "strokeWidth": 2
+        },
+        {
+          "type": "text",
+          "x": 117,
+          "y": 802,
+          "content": "◎",
+          "fontSize": 18,
+          "fill": "#8A7F74",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 117,
+          "y": 822,
+          "content": "Audience",
+          "fontSize": 9,
+          "fill": "#8A7F74",
+          "fontWeight": 400,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 802,
+          "content": "✦",
+          "fontSize": 18,
+          "fill": "#8A7F74",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 822,
+          "content": "Content",
+          "fontSize": 9,
+          "fill": "#8A7F74",
+          "fontWeight": 400,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 273,
+          "y": 802,
+          "content": "$",
+          "fontSize": 18,
+          "fill": "#8A7F74",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 273,
+          "y": 822,
+          "content": "Revenue",
+          "fontSize": 9,
+          "fill": "#8A7F74",
+          "fontWeight": 400,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 351,
+          "y": 802,
+          "content": "○",
+          "fontSize": 18,
+          "fill": "#8A7F74",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 351,
+          "y": 822,
+          "content": "Profile",
+          "fontSize": 9,
+          "fill": "#8A7F74",
+          "fontWeight": 400,
+          "textAnchor": "middle"
+        }
+      ]
+    },
+    {
+      "name": "Audience",
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"390\" height=\"844\"><rect x=\"0\" y=\"0\" width=\"390\" height=\"844\" fill=\"#FAF7F2\"/><line x1=\"0\" y1=\"0\" x2=\"0\" y2=\"844\" stroke=\"#E2D9C8\" stroke-width=\"0.5\" opacity=\"0.4\"/><line x1=\"78\" y1=\"0\" x2=\"78\" y2=\"844\" stroke=\"#E2D9C8\" stroke-width=\"0.5\" opacity=\"0.4\"/><line x1=\"156\" y1=\"0\" x2=\"156\" y2=\"844\" stroke=\"#E2D9C8\" stroke-width=\"0.5\" opacity=\"0.4\"/><line x1=\"234\" y1=\"0\" x2=\"234\" y2=\"844\" stroke=\"#E2D9C8\" stroke-width=\"0.5\" opacity=\"0.4\"/><line x1=\"312\" y1=\"0\" x2=\"312\" y2=\"844\" stroke=\"#E2D9C8\" stroke-width=\"0.5\" opacity=\"0.4\"/><line x1=\"390\" y1=\"0\" x2=\"390\" y2=\"844\" stroke=\"#E2D9C8\" stroke-width=\"0.5\" opacity=\"0.4\"/><rect x=\"0\" y=\"0\" width=\"390\" height=\"58\" fill=\"#FFFFFF\" stroke=\"#E8E0D0\" stroke-width=\"1\"/><text x=\"20\" y=\"37\" font-size=\"18\" fill=\"#1A1818\" font-weight=\"900\" letter-spacing=\"3\">GLEAM</text><text x=\"370\" y=\"37\" font-size=\"11\" fill=\"#15803D\" font-weight=\"600\" text-anchor=\"end\">● Live</text><rect x=\"0\" y=\"58\" width=\"390\" height=\"36\" fill=\"#F5F0E8\"/><text x=\"20\" y=\"80\" font-size=\"11\" fill=\"#8A7F74\" font-weight=\"500\">Overview</text><rect x=\"100\" y=\"64\" width=\"72\" height=\"24\" fill=\"#D97706\" rx=\"3\" opacity=\"0.12\"/><text x=\"108\" y=\"80\" font-size=\"11\" fill=\"#D97706\" font-weight=\"700\">Audience</text><line x1=\"100\" y1=\"93\" x2=\"172\" y2=\"93\" stroke=\"#D97706\" stroke-width=\"2\"/><text x=\"196\" y=\"80\" font-size=\"11\" fill=\"#8A7F74\" font-weight=\"500\">Content</text><text x=\"284\" y=\"80\" font-size=\"11\" fill=\"#8A7F74\" font-weight=\"500\">Revenue</text><text x=\"20\" y=\"128\" font-size=\"9\" fill=\"#8A7F74\" font-weight=\"700\" letter-spacing=\"2\">YOUR READERS</text><line x1=\"20\" y1=\"134\" x2=\"370\" y2=\"134\" stroke=\"#E8E0D0\" stroke-width=\"1\"/><text x=\"20\" y=\"160\" font-size=\"42\" fill=\"#1A1818\" font-weight=\"900\" font-family=\"Georgia, serif\">12,847</text><text x=\"20\" y=\"182\" font-size=\"12\" fill=\"#8A7F74\">total subscribers</text><rect x=\"20\" y=\"192\" width=\"107\" height=\"22\" fill=\"#15803D\" rx=\"11\" opacity=\"0.15\"/><text x=\"73.5\" y=\"206\" font-size=\"9\" fill=\"#15803D\" font-weight=\"700\" text-anchor=\"middle\" letter-spacing=\"0.5\">+124 this week</text><rect x=\"16\" y=\"224\" width=\"358\" height=\"70\" fill=\"#FFFFFF\" rx=\"4\" stroke=\"#E8E0D0\" stroke-width=\"1\"/><rect x=\"16\" y=\"224\" width=\"358\" height=\"3\" fill=\"#9A3412\" opacity=\"0.7\"/><text x=\"30\" y=\"248\" font-size=\"9\" fill=\"#8A7F74\" font-weight=\"700\" letter-spacing=\"1.5\">FREE</text><text x=\"30\" y=\"270\" font-size=\"20\" fill=\"#1A1818\" font-weight=\"700\">10,209</text><rect x=\"30\" y=\"278\" width=\"200\" height=\"6\" fill=\"#E2D9C8\" rx=\"2\"/><rect x=\"30\" y=\"278\" width=\"159\" height=\"6\" fill=\"#8A7F74\" rx=\"2\"/><text x=\"360\" y=\"248\" font-size=\"9\" fill=\"#D97706\" font-weight=\"700\" text-anchor=\"end\" letter-spacing=\"1.5\">PAID</text><text x=\"360\" y=\"270\" font-size=\"20\" fill=\"#D97706\" font-weight=\"700\" text-anchor=\"end\">2,638</text><text x=\"360\" y=\"285\" font-size=\"10\" fill=\"#D97706\" font-weight=\"600\" text-anchor=\"end\">20.5%</text><text x=\"20\" y=\"320\" font-size=\"9\" fill=\"#8A7F74\" font-weight=\"700\" letter-spacing=\"1.5\">TOP LOCATIONS</text><line x1=\"20\" y1=\"326\" x2=\"370\" y2=\"326\" stroke=\"#E8E0D0\" stroke-width=\"1\"/><text x=\"20\" y=\"356\" font-size=\"12\" fill=\"#1A1818\" font-weight=\"500\">United States</text><rect x=\"20\" y=\"364\" width=\"260\" height=\"8\" fill=\"#E2D9C8\" rx=\"2\"/><rect x=\"20\" y=\"364\" width=\"109\" height=\"8\" fill=\"#D97706\" rx=\"2\"/><text x=\"370\" y=\"372\" font-size=\"11\" fill=\"#D97706\" font-weight=\"700\" text-anchor=\"end\">42%</text><text x=\"20\" y=\"398\" font-size=\"12\" fill=\"#1A1818\" font-weight=\"500\">United Kingdom</text><rect x=\"20\" y=\"406\" width=\"260\" height=\"8\" fill=\"#E2D9C8\" rx=\"2\"/><rect x=\"20\" y=\"406\" width=\"47\" height=\"8\" fill=\"#D97706\" rx=\"2\"/><text x=\"370\" y=\"414\" font-size=\"11\" fill=\"#D97706\" font-weight=\"700\" text-anchor=\"end\">18%</text><text x=\"20\" y=\"440\" font-size=\"12\" fill=\"#1A1818\" font-weight=\"500\">Canada</text><rect x=\"20\" y=\"448\" width=\"260\" height=\"8\" fill=\"#E2D9C8\" rx=\"2\"/><rect x=\"20\" y=\"448\" width=\"31\" height=\"8\" fill=\"#D97706\" rx=\"2\"/><text x=\"370\" y=\"456\" font-size=\"11\" fill=\"#D97706\" font-weight=\"700\" text-anchor=\"end\">12%</text><text x=\"20\" y=\"482\" font-size=\"12\" fill=\"#1A1818\" font-weight=\"500\">Australia</text><rect x=\"20\" y=\"490\" width=\"260\" height=\"8\" fill=\"#E2D9C8\" rx=\"2\"/><rect x=\"20\" y=\"490\" width=\"21\" height=\"8\" fill=\"#D97706\" rx=\"2\"/><text x=\"370\" y=\"498\" font-size=\"11\" fill=\"#D97706\" font-weight=\"700\" text-anchor=\"end\">8%</text><text x=\"20\" y=\"524\" font-size=\"12\" fill=\"#1A1818\" font-weight=\"500\">Germany</text><rect x=\"20\" y=\"532\" width=\"260\" height=\"8\" fill=\"#E2D9C8\" rx=\"2\"/><rect x=\"20\" y=\"532\" width=\"16\" height=\"8\" fill=\"#D97706\" rx=\"2\"/><text x=\"370\" y=\"540\" font-size=\"11\" fill=\"#D97706\" font-weight=\"700\" text-anchor=\"end\">6%</text><text x=\"20\" y=\"566\" font-size=\"9\" fill=\"#8A7F74\" font-weight=\"700\" letter-spacing=\"1.5\">HOW THEY FOUND YOU</text><line x1=\"20\" y1=\"572\" x2=\"370\" y2=\"572\" stroke=\"#E8E0D0\" stroke-width=\"1\"/><circle cx=\"30\" cy=\"598\" r=\"6\" fill=\"#D97706\"/><text x=\"46\" y=\"602\" font-size=\"12\" fill=\"#1A1818\">Direct link</text><text x=\"370\" y=\"602\" font-size=\"12\" fill=\"#D97706\" font-weight=\"700\" text-anchor=\"end\">38%</text><rect x=\"20\" y=\"614\" width=\"350\" height=\"6\" fill=\"#E2D9C8\" rx=\"2\"/><rect x=\"20\" y=\"614\" width=\"133\" height=\"6\" fill=\"#D97706\" rx=\"2\"/><circle cx=\"30\" cy=\"642\" r=\"6\" fill=\"#9A3412\"/><text x=\"46\" y=\"646\" font-size=\"12\" fill=\"#1A1818\">Twitter / X</text><text x=\"370\" y=\"646\" font-size=\"12\" fill=\"#9A3412\" font-weight=\"700\" text-anchor=\"end\">28%</text><rect x=\"20\" y=\"658\" width=\"350\" height=\"6\" fill=\"#E2D9C8\" rx=\"2\"/><rect x=\"20\" y=\"658\" width=\"98\" height=\"6\" fill=\"#9A3412\" rx=\"2\"/><circle cx=\"30\" cy=\"686\" r=\"6\" fill=\"#15803D\"/><text x=\"46\" y=\"690\" font-size=\"12\" fill=\"#1A1818\">Word of mouth</text><text x=\"370\" y=\"690\" font-size=\"12\" fill=\"#15803D\" font-weight=\"700\" text-anchor=\"end\">19%</text><rect x=\"20\" y=\"702\" width=\"350\" height=\"6\" fill=\"#E2D9C8\" rx=\"2\"/><rect x=\"20\" y=\"702\" width=\"67\" height=\"6\" fill=\"#15803D\" rx=\"2\"/><circle cx=\"30\" cy=\"730\" r=\"6\" fill=\"#8A7F74\"/><text x=\"46\" y=\"734\" font-size=\"12\" fill=\"#1A1818\">Search</text><text x=\"370\" y=\"734\" font-size=\"12\" fill=\"#8A7F74\" font-weight=\"700\" text-anchor=\"end\">15%</text><rect x=\"20\" y=\"746\" width=\"350\" height=\"6\" fill=\"#E2D9C8\" rx=\"2\"/><rect x=\"20\" y=\"746\" width=\"53\" height=\"6\" fill=\"#8A7F74\" rx=\"2\"/><rect x=\"0\" y=\"774\" width=\"390\" height=\"70\" fill=\"#FFFFFF\" stroke=\"#E8E0D0\" stroke-width=\"1\"/><text x=\"39\" y=\"802\" font-size=\"18\" fill=\"#8A7F74\" text-anchor=\"middle\">⌂</text><text x=\"39\" y=\"822\" font-size=\"9\" fill=\"#8A7F74\" font-weight=\"400\" text-anchor=\"middle\">Home</text><text x=\"117\" y=\"802\" font-size=\"18\" fill=\"#D97706\" text-anchor=\"middle\">◎</text><text x=\"117\" y=\"822\" font-size=\"9\" fill=\"#D97706\" font-weight=\"700\" text-anchor=\"middle\">Audience</text><line x1=\"99\" y1=\"774\" x2=\"135\" y2=\"774\" stroke=\"#D97706\" stroke-width=\"2\"/><text x=\"195\" y=\"802\" font-size=\"18\" fill=\"#8A7F74\" text-anchor=\"middle\">✦</text><text x=\"195\" y=\"822\" font-size=\"9\" fill=\"#8A7F74\" font-weight=\"400\" text-anchor=\"middle\">Content</text><text x=\"273\" y=\"802\" font-size=\"18\" fill=\"#8A7F74\" text-anchor=\"middle\">$</text><text x=\"273\" y=\"822\" font-size=\"9\" fill=\"#8A7F74\" font-weight=\"400\" text-anchor=\"middle\">Revenue</text><text x=\"351\" y=\"802\" font-size=\"18\" fill=\"#8A7F74\" text-anchor=\"middle\">○</text><text x=\"351\" y=\"822\" font-size=\"9\" fill=\"#8A7F74\" font-weight=\"400\" text-anchor=\"middle\">Profile</text></svg>",
+      "elements": [
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "fill": "#FAF7F2"
+        },
+        {
+          "type": "line",
+          "x1": 0,
+          "y1": 0,
+          "x2": 0,
+          "y2": 844,
+          "stroke": "#E2D9C8",
+          "strokeWidth": 0.5,
+          "opacity": 0.4
+        },
+        {
+          "type": "line",
+          "x1": 78,
+          "y1": 0,
+          "x2": 78,
+          "y2": 844,
+          "stroke": "#E2D9C8",
+          "strokeWidth": 0.5,
+          "opacity": 0.4
+        },
+        {
+          "type": "line",
+          "x1": 156,
+          "y1": 0,
+          "x2": 156,
+          "y2": 844,
+          "stroke": "#E2D9C8",
+          "strokeWidth": 0.5,
+          "opacity": 0.4
+        },
+        {
+          "type": "line",
+          "x1": 234,
+          "y1": 0,
+          "x2": 234,
+          "y2": 844,
+          "stroke": "#E2D9C8",
+          "strokeWidth": 0.5,
+          "opacity": 0.4
+        },
+        {
+          "type": "line",
+          "x1": 312,
+          "y1": 0,
+          "x2": 312,
+          "y2": 844,
+          "stroke": "#E2D9C8",
+          "strokeWidth": 0.5,
+          "opacity": 0.4
+        },
+        {
+          "type": "line",
+          "x1": 390,
+          "y1": 0,
+          "x2": 390,
+          "y2": 844,
+          "stroke": "#E2D9C8",
+          "strokeWidth": 0.5,
+          "opacity": 0.4
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 58,
+          "fill": "#FFFFFF",
+          "stroke": "#E8E0D0",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 37,
+          "content": "GLEAM",
+          "fontSize": 18,
+          "fill": "#1A1818",
+          "fontWeight": 900,
+          "letterSpacing": 3
+        },
+        {
+          "type": "text",
+          "x": 370,
+          "y": 37,
+          "content": "● Live",
+          "fontSize": 11,
+          "fill": "#15803D",
+          "fontWeight": 600,
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 58,
+          "width": 390,
+          "height": 36,
+          "fill": "#F5F0E8"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 80,
+          "content": "Overview",
+          "fontSize": 11,
+          "fill": "#8A7F74",
+          "fontWeight": 500
+        },
+        {
+          "type": "rect",
+          "x": 100,
+          "y": 64,
+          "width": 72,
+          "height": 24,
+          "fill": "#D97706",
+          "rx": 3,
+          "opacity": 0.12
+        },
+        {
+          "type": "text",
+          "x": 108,
+          "y": 80,
+          "content": "Audience",
+          "fontSize": 11,
+          "fill": "#D97706",
+          "fontWeight": 700
+        },
+        {
+          "type": "line",
+          "x1": 100,
+          "y1": 93,
+          "x2": 172,
+          "y2": 93,
+          "stroke": "#D97706",
+          "strokeWidth": 2
+        },
+        {
+          "type": "text",
+          "x": 196,
+          "y": 80,
+          "content": "Content",
+          "fontSize": 11,
+          "fill": "#8A7F74",
+          "fontWeight": 500
+        },
+        {
+          "type": "text",
+          "x": 284,
+          "y": 80,
+          "content": "Revenue",
+          "fontSize": 11,
+          "fill": "#8A7F74",
+          "fontWeight": 500
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 128,
+          "content": "YOUR READERS",
+          "fontSize": 9,
+          "fill": "#8A7F74",
+          "fontWeight": 700,
+          "letterSpacing": 2
+        },
+        {
+          "type": "line",
+          "x1": 20,
+          "y1": 134,
+          "x2": 370,
+          "y2": 134,
+          "stroke": "#E8E0D0",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 160,
+          "content": "12,847",
+          "fontSize": 42,
+          "fill": "#1A1818",
+          "fontWeight": 900,
+          "fontFamily": "Georgia, serif"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 182,
+          "content": "total subscribers",
+          "fontSize": 12,
+          "fill": "#8A7F74"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 192,
+          "width": 107,
+          "height": 22,
+          "fill": "#15803D",
+          "rx": 11,
+          "opacity": 0.15
+        },
+        {
+          "type": "text",
+          "x": 73.5,
+          "y": 206,
+          "content": "+124 this week",
+          "fontSize": 9,
+          "fill": "#15803D",
+          "fontWeight": 700,
+          "textAnchor": "middle",
+          "letterSpacing": 0.5
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 224,
+          "width": 358,
+          "height": 70,
+          "fill": "#FFFFFF",
+          "rx": 4,
+          "stroke": "#E8E0D0",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 224,
+          "width": 358,
+          "height": 3,
+          "fill": "#9A3412",
+          "opacity": 0.7
+        },
+        {
+          "type": "text",
+          "x": 30,
+          "y": 248,
+          "content": "FREE",
+          "fontSize": 9,
+          "fill": "#8A7F74",
+          "fontWeight": 700,
+          "letterSpacing": 1.5
+        },
+        {
+          "type": "text",
+          "x": 30,
+          "y": 270,
+          "content": "10,209",
+          "fontSize": 20,
+          "fill": "#1A1818",
+          "fontWeight": 700
+        },
+        {
+          "type": "rect",
+          "x": 30,
+          "y": 278,
+          "width": 200,
+          "height": 6,
+          "fill": "#E2D9C8",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 30,
+          "y": 278,
+          "width": 159,
+          "height": 6,
+          "fill": "#8A7F74",
+          "rx": 2
+        },
+        {
+          "type": "text",
+          "x": 360,
+          "y": 248,
+          "content": "PAID",
+          "fontSize": 9,
+          "fill": "#D97706",
+          "fontWeight": 700,
+          "textAnchor": "end",
+          "letterSpacing": 1.5
+        },
+        {
+          "type": "text",
+          "x": 360,
+          "y": 270,
+          "content": "2,638",
+          "fontSize": 20,
+          "fill": "#D97706",
+          "fontWeight": 700,
+          "textAnchor": "end"
+        },
+        {
+          "type": "text",
+          "x": 360,
+          "y": 285,
+          "content": "20.5%",
+          "fontSize": 10,
+          "fill": "#D97706",
+          "fontWeight": 600,
+          "textAnchor": "end"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 320,
+          "content": "TOP LOCATIONS",
+          "fontSize": 9,
+          "fill": "#8A7F74",
+          "fontWeight": 700,
+          "letterSpacing": 1.5
+        },
+        {
+          "type": "line",
+          "x1": 20,
+          "y1": 326,
+          "x2": 370,
+          "y2": 326,
+          "stroke": "#E8E0D0",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 356,
+          "content": "United States",
+          "fontSize": 12,
+          "fill": "#1A1818",
+          "fontWeight": 500
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 364,
+          "width": 260,
+          "height": 8,
+          "fill": "#E2D9C8",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 364,
+          "width": 109,
+          "height": 8,
+          "fill": "#D97706",
+          "rx": 2
+        },
+        {
+          "type": "text",
+          "x": 370,
+          "y": 372,
+          "content": "42%",
+          "fontSize": 11,
+          "fill": "#D97706",
+          "fontWeight": 700,
+          "textAnchor": "end"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 398,
+          "content": "United Kingdom",
+          "fontSize": 12,
+          "fill": "#1A1818",
+          "fontWeight": 500
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 406,
+          "width": 260,
+          "height": 8,
+          "fill": "#E2D9C8",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 406,
+          "width": 47,
+          "height": 8,
+          "fill": "#D97706",
+          "rx": 2
+        },
+        {
+          "type": "text",
+          "x": 370,
+          "y": 414,
+          "content": "18%",
+          "fontSize": 11,
+          "fill": "#D97706",
+          "fontWeight": 700,
+          "textAnchor": "end"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 440,
+          "content": "Canada",
+          "fontSize": 12,
+          "fill": "#1A1818",
+          "fontWeight": 500
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 448,
+          "width": 260,
+          "height": 8,
+          "fill": "#E2D9C8",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 448,
+          "width": 31,
+          "height": 8,
+          "fill": "#D97706",
+          "rx": 2
+        },
+        {
+          "type": "text",
+          "x": 370,
+          "y": 456,
+          "content": "12%",
+          "fontSize": 11,
+          "fill": "#D97706",
+          "fontWeight": 700,
+          "textAnchor": "end"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 482,
+          "content": "Australia",
+          "fontSize": 12,
+          "fill": "#1A1818",
+          "fontWeight": 500
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 490,
+          "width": 260,
+          "height": 8,
+          "fill": "#E2D9C8",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 490,
+          "width": 21,
+          "height": 8,
+          "fill": "#D97706",
+          "rx": 2
+        },
+        {
+          "type": "text",
+          "x": 370,
+          "y": 498,
+          "content": "8%",
+          "fontSize": 11,
+          "fill": "#D97706",
+          "fontWeight": 700,
+          "textAnchor": "end"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 524,
+          "content": "Germany",
+          "fontSize": 12,
+          "fill": "#1A1818",
+          "fontWeight": 500
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 532,
+          "width": 260,
+          "height": 8,
+          "fill": "#E2D9C8",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 532,
+          "width": 16,
+          "height": 8,
+          "fill": "#D97706",
+          "rx": 2
+        },
+        {
+          "type": "text",
+          "x": 370,
+          "y": 540,
+          "content": "6%",
+          "fontSize": 11,
+          "fill": "#D97706",
+          "fontWeight": 700,
+          "textAnchor": "end"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 566,
+          "content": "HOW THEY FOUND YOU",
+          "fontSize": 9,
+          "fill": "#8A7F74",
+          "fontWeight": 700,
+          "letterSpacing": 1.5
+        },
+        {
+          "type": "line",
+          "x1": 20,
+          "y1": 572,
+          "x2": 370,
+          "y2": 572,
+          "stroke": "#E8E0D0",
+          "strokeWidth": 1
+        },
+        {
+          "type": "circle",
+          "cx": 30,
+          "cy": 598,
+          "r": 6,
+          "fill": "#D97706"
+        },
+        {
+          "type": "text",
+          "x": 46,
+          "y": 602,
+          "content": "Direct link",
+          "fontSize": 12,
+          "fill": "#1A1818"
+        },
+        {
+          "type": "text",
+          "x": 370,
+          "y": 602,
+          "content": "38%",
+          "fontSize": 12,
+          "fill": "#D97706",
+          "fontWeight": 700,
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 614,
+          "width": 350,
+          "height": 6,
+          "fill": "#E2D9C8",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 614,
+          "width": 133,
+          "height": 6,
+          "fill": "#D97706",
+          "rx": 2
+        },
+        {
+          "type": "circle",
+          "cx": 30,
+          "cy": 642,
+          "r": 6,
+          "fill": "#9A3412"
+        },
+        {
+          "type": "text",
+          "x": 46,
+          "y": 646,
+          "content": "Twitter / X",
+          "fontSize": 12,
+          "fill": "#1A1818"
+        },
+        {
+          "type": "text",
+          "x": 370,
+          "y": 646,
+          "content": "28%",
+          "fontSize": 12,
+          "fill": "#9A3412",
+          "fontWeight": 700,
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 658,
+          "width": 350,
+          "height": 6,
+          "fill": "#E2D9C8",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 658,
+          "width": 98,
+          "height": 6,
+          "fill": "#9A3412",
+          "rx": 2
+        },
+        {
+          "type": "circle",
+          "cx": 30,
+          "cy": 686,
+          "r": 6,
+          "fill": "#15803D"
+        },
+        {
+          "type": "text",
+          "x": 46,
+          "y": 690,
+          "content": "Word of mouth",
+          "fontSize": 12,
+          "fill": "#1A1818"
+        },
+        {
+          "type": "text",
+          "x": 370,
+          "y": 690,
+          "content": "19%",
+          "fontSize": 12,
+          "fill": "#15803D",
+          "fontWeight": 700,
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 702,
+          "width": 350,
+          "height": 6,
+          "fill": "#E2D9C8",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 702,
+          "width": 67,
+          "height": 6,
+          "fill": "#15803D",
+          "rx": 2
+        },
+        {
+          "type": "circle",
+          "cx": 30,
+          "cy": 730,
+          "r": 6,
+          "fill": "#8A7F74"
+        },
+        {
+          "type": "text",
+          "x": 46,
+          "y": 734,
+          "content": "Search",
+          "fontSize": 12,
+          "fill": "#1A1818"
+        },
+        {
+          "type": "text",
+          "x": 370,
+          "y": 734,
+          "content": "15%",
+          "fontSize": 12,
+          "fill": "#8A7F74",
+          "fontWeight": 700,
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 746,
+          "width": 350,
+          "height": 6,
+          "fill": "#E2D9C8",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 746,
+          "width": 53,
+          "height": 6,
+          "fill": "#8A7F74",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 774,
+          "width": 390,
+          "height": 70,
+          "fill": "#FFFFFF",
+          "stroke": "#E8E0D0",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 39,
+          "y": 802,
+          "content": "⌂",
+          "fontSize": 18,
+          "fill": "#8A7F74",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 39,
+          "y": 822,
+          "content": "Home",
+          "fontSize": 9,
+          "fill": "#8A7F74",
+          "fontWeight": 400,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 117,
+          "y": 802,
+          "content": "◎",
+          "fontSize": 18,
+          "fill": "#D97706",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 117,
+          "y": 822,
+          "content": "Audience",
+          "fontSize": 9,
+          "fill": "#D97706",
+          "fontWeight": 700,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "line",
+          "x1": 99,
+          "y1": 774,
+          "x2": 135,
+          "y2": 774,
+          "stroke": "#D97706",
+          "strokeWidth": 2
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 802,
+          "content": "✦",
+          "fontSize": 18,
+          "fill": "#8A7F74",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 822,
+          "content": "Content",
+          "fontSize": 9,
+          "fill": "#8A7F74",
+          "fontWeight": 400,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 273,
+          "y": 802,
+          "content": "$",
+          "fontSize": 18,
+          "fill": "#8A7F74",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 273,
+          "y": 822,
+          "content": "Revenue",
+          "fontSize": 9,
+          "fill": "#8A7F74",
+          "fontWeight": 400,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 351,
+          "y": 802,
+          "content": "○",
+          "fontSize": 18,
+          "fill": "#8A7F74",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 351,
+          "y": 822,
+          "content": "Profile",
+          "fontSize": 9,
+          "fill": "#8A7F74",
+          "fontWeight": 400,
+          "textAnchor": "middle"
+        }
+      ]
+    },
+    {
+      "name": "Content",
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"390\" height=\"844\"><rect x=\"0\" y=\"0\" width=\"390\" height=\"844\" fill=\"#FAF7F2\"/><line x1=\"0\" y1=\"0\" x2=\"0\" y2=\"844\" stroke=\"#E2D9C8\" stroke-width=\"0.5\" opacity=\"0.4\"/><line x1=\"78\" y1=\"0\" x2=\"78\" y2=\"844\" stroke=\"#E2D9C8\" stroke-width=\"0.5\" opacity=\"0.4\"/><line x1=\"156\" y1=\"0\" x2=\"156\" y2=\"844\" stroke=\"#E2D9C8\" stroke-width=\"0.5\" opacity=\"0.4\"/><line x1=\"234\" y1=\"0\" x2=\"234\" y2=\"844\" stroke=\"#E2D9C8\" stroke-width=\"0.5\" opacity=\"0.4\"/><line x1=\"312\" y1=\"0\" x2=\"312\" y2=\"844\" stroke=\"#E2D9C8\" stroke-width=\"0.5\" opacity=\"0.4\"/><line x1=\"390\" y1=\"0\" x2=\"390\" y2=\"844\" stroke=\"#E2D9C8\" stroke-width=\"0.5\" opacity=\"0.4\"/><rect x=\"0\" y=\"0\" width=\"390\" height=\"58\" fill=\"#FFFFFF\" stroke=\"#E8E0D0\" stroke-width=\"1\"/><text x=\"20\" y=\"37\" font-size=\"18\" fill=\"#1A1818\" font-weight=\"900\" letter-spacing=\"3\">GLEAM</text><text x=\"370\" y=\"37\" font-size=\"11\" fill=\"#15803D\" font-weight=\"600\" text-anchor=\"end\">● Live</text><rect x=\"0\" y=\"58\" width=\"390\" height=\"36\" fill=\"#F5F0E8\"/><text x=\"20\" y=\"80\" font-size=\"11\" fill=\"#8A7F74\" font-weight=\"500\">Overview</text><text x=\"108\" y=\"80\" font-size=\"11\" fill=\"#8A7F74\" font-weight=\"500\">Audience</text><rect x=\"188\" y=\"64\" width=\"65\" height=\"24\" fill=\"#D97706\" rx=\"3\" opacity=\"0.12\"/><text x=\"196\" y=\"80\" font-size=\"11\" fill=\"#D97706\" font-weight=\"700\">Content</text><line x1=\"188\" y1=\"93\" x2=\"253\" y2=\"93\" stroke=\"#D97706\" stroke-width=\"2\"/><text x=\"284\" y=\"80\" font-size=\"11\" fill=\"#8A7F74\" font-weight=\"500\">Revenue</text><text x=\"20\" y=\"128\" font-size=\"9\" fill=\"#8A7F74\" font-weight=\"700\" letter-spacing=\"1.5\">CONTENT PERFORMANCE</text><line x1=\"20\" y1=\"134\" x2=\"370\" y2=\"134\" stroke=\"#E8E0D0\" stroke-width=\"1\"/><rect x=\"20\" y=\"144\" width=\"112\" height=\"60\" fill=\"#FFFFFF\" rx=\"4\" stroke=\"#E8E0D0\" stroke-width=\"1\"/><text x=\"32\" y=\"164\" font-size=\"9\" fill=\"#8A7F74\" font-weight=\"600\" letter-spacing=\"1\">Published</text><text x=\"32\" y=\"188\" font-size=\"24\" fill=\"#1A1818\" font-weight=\"800\" font-family=\"Georgia, serif\">47</text><rect x=\"142\" y=\"144\" width=\"112\" height=\"60\" fill=\"#FFFFFF\" rx=\"4\" stroke=\"#E8E0D0\" stroke-width=\"1\"/><text x=\"154\" y=\"164\" font-size=\"9\" fill=\"#8A7F74\" font-weight=\"600\" letter-spacing=\"1\">Avg Opens</text><text x=\"154\" y=\"188\" font-size=\"24\" fill=\"#1A1818\" font-weight=\"800\" font-family=\"Georgia, serif\">4.1K</text><rect x=\"264\" y=\"144\" width=\"112\" height=\"60\" fill=\"#FFFFFF\" rx=\"4\" stroke=\"#E8E0D0\" stroke-width=\"1\"/><text x=\"276\" y=\"164\" font-size=\"9\" fill=\"#8A7F74\" font-weight=\"600\" letter-spacing=\"1\">Avg Rate</text><text x=\"276\" y=\"188\" font-size=\"24\" fill=\"#1A1818\" font-weight=\"800\" font-family=\"Georgia, serif\">38%</text><text x=\"20\" y=\"228\" font-size=\"9\" fill=\"#8A7F74\" font-weight=\"700\" letter-spacing=\"1.5\">BY FORMAT</text><line x1=\"20\" y1=\"234\" x2=\"370\" y2=\"234\" stroke=\"#E8E0D0\" stroke-width=\"1\"/><rect x=\"16\" y=\"252\" width=\"358\" height=\"42\" fill=\"#FFFFFF\" rx=\"3\" stroke=\"#E8E0D0\" stroke-width=\"1\"/><circle cx=\"30\" cy=\"273\" r=\"5\" fill=\"#D97706\"/><text x=\"44\" y=\"277\" font-size=\"12\" fill=\"#1A1818\" font-weight=\"500\">Long-form essay</text><text x=\"44\" y=\"289\" font-size=\"9\" fill=\"#8A7F74\">22 posts</text><rect x=\"200\" y=\"267\" width=\"120\" height=\"6\" fill=\"#E2D9C8\" rx=\"2\"/><rect x=\"200\" y=\"267\" width=\"77\" height=\"6\" fill=\"#D97706\" rx=\"2\"/><text x=\"368\" y=\"273\" font-size=\"10\" fill=\"#D97706\" font-weight=\"700\" text-anchor=\"end\">64%</text><rect x=\"16\" y=\"302\" width=\"358\" height=\"42\" fill=\"#FFFFFF\" rx=\"3\" stroke=\"#E8E0D0\" stroke-width=\"1\"/><circle cx=\"30\" cy=\"323\" r=\"5\" fill=\"#9A3412\"/><text x=\"44\" y=\"327\" font-size=\"12\" fill=\"#1A1818\" font-weight=\"500\">Interview</text><text x=\"44\" y=\"339\" font-size=\"9\" fill=\"#8A7F74\">12 posts</text><rect x=\"200\" y=\"317\" width=\"120\" height=\"6\" fill=\"#E2D9C8\" rx=\"2\"/><rect x=\"200\" y=\"317\" width=\"62\" height=\"6\" fill=\"#9A3412\" rx=\"2\"/><text x=\"368\" y=\"323\" font-size=\"10\" fill=\"#9A3412\" font-weight=\"700\" text-anchor=\"end\">52%</text><rect x=\"16\" y=\"352\" width=\"358\" height=\"42\" fill=\"#FFFFFF\" rx=\"3\" stroke=\"#E8E0D0\" stroke-width=\"1\"/><circle cx=\"30\" cy=\"373\" r=\"5\" fill=\"#15803D\"/><text x=\"44\" y=\"377\" font-size=\"12\" fill=\"#1A1818\" font-weight=\"500\">Link roundup</text><text x=\"44\" y=\"389\" font-size=\"9\" fill=\"#8A7F74\">8 posts</text><rect x=\"200\" y=\"367\" width=\"120\" height=\"6\" fill=\"#E2D9C8\" rx=\"2\"/><rect x=\"200\" y=\"367\" width=\"37\" height=\"6\" fill=\"#15803D\" rx=\"2\"/><text x=\"368\" y=\"373\" font-size=\"10\" fill=\"#15803D\" font-weight=\"700\" text-anchor=\"end\">31%</text><rect x=\"16\" y=\"402\" width=\"358\" height=\"42\" fill=\"#FFFFFF\" rx=\"3\" stroke=\"#E8E0D0\" stroke-width=\"1\"/><circle cx=\"30\" cy=\"423\" r=\"5\" fill=\"#8A7F74\"/><text x=\"44\" y=\"427\" font-size=\"12\" fill=\"#1A1818\" font-weight=\"500\">Short take</text><text x=\"44\" y=\"439\" font-size=\"9\" fill=\"#8A7F74\">5 posts</text><rect x=\"200\" y=\"417\" width=\"120\" height=\"6\" fill=\"#E2D9C8\" rx=\"2\"/><rect x=\"200\" y=\"417\" width=\"53\" height=\"6\" fill=\"#8A7F74\" rx=\"2\"/><text x=\"368\" y=\"423\" font-size=\"10\" fill=\"#8A7F74\" font-weight=\"700\" text-anchor=\"end\">44%</text><text x=\"20\" y=\"462\" font-size=\"9\" fill=\"#8A7F74\" font-weight=\"700\" letter-spacing=\"1.5\">ALL-TIME BEST</text><line x1=\"20\" y1=\"468\" x2=\"370\" y2=\"468\" stroke=\"#E8E0D0\" stroke-width=\"1\"/><rect x=\"16\" y=\"476\" width=\"358\" height=\"110\" fill=\"#FFFFFF\" rx=\"4\" stroke=\"#D97706\" stroke-width=\"2\"/><rect x=\"16\" y=\"476\" width=\"358\" height=\"4\" fill=\"#D97706\"/><rect x=\"30\" y=\"488\" width=\"87.5\" height=\"22\" fill=\"#D97706\" rx=\"11\" opacity=\"0.15\"/><text x=\"73.75\" y=\"502\" font-size=\"9\" fill=\"#D97706\" font-weight=\"700\" text-anchor=\"middle\" letter-spacing=\"0.5\">MOST OPENED</text><text x=\"30\" y=\"524\" font-size=\"15\" fill=\"#1A1818\" font-weight=\"700\">Why Consistency Beats Virality</text><text x=\"30\" y=\"542\" font-size=\"10\" fill=\"#8A7F74\">Published Feb 18, 2026</text><line x1=\"30\" y1=\"554\" x2=\"360\" y2=\"554\" stroke=\"#E8E0D0\" stroke-width=\"1\"/><text x=\"30\" y=\"573\" font-size=\"11\" fill=\"#1A1818\" font-weight=\"600\">8,249 opens</text><text x=\"195\" y=\"573\" font-size=\"11\" fill=\"#D97706\" font-weight=\"700\">61% open rate</text><text x=\"20\" y=\"608\" font-size=\"9\" fill=\"#8A7F74\" font-weight=\"700\" letter-spacing=\"1.5\">RECENT</text><line x1=\"20\" y1=\"614\" x2=\"370\" y2=\"614\" stroke=\"#E8E0D0\" stroke-width=\"1\"/><rect x=\"16\" y=\"624\" width=\"358\" height=\"44\" fill=\"#FFFFFF\" rx=\"3\" stroke=\"#E8E0D0\" stroke-width=\"1\"/><text x=\"30\" y=\"642\" font-size=\"12\" fill=\"#1A1818\" font-weight=\"600\">The Art of Slow Growth</text><text x=\"30\" y=\"658\" font-size=\"10\" fill=\"#8A7F74\">Apr 8</text><text x=\"360\" y=\"650\" font-size=\"12\" fill=\"#D97706\" font-weight=\"700\" text-anchor=\"end\">4,821</text><rect x=\"16\" y=\"676\" width=\"358\" height=\"44\" fill=\"#FFFFFF\" rx=\"3\" stroke=\"#E8E0D0\" stroke-width=\"1\"/><text x=\"30\" y=\"694\" font-size=\"12\" fill=\"#1A1818\" font-weight=\"600\">What Readers Actually Want</text><text x=\"30\" y=\"710\" font-size=\"10\" fill=\"#8A7F74\">Apr 3</text><text x=\"360\" y=\"702\" font-size=\"12\" fill=\"#D97706\" font-weight=\"700\" text-anchor=\"end\">3,940</text><rect x=\"0\" y=\"774\" width=\"390\" height=\"70\" fill=\"#FFFFFF\" stroke=\"#E8E0D0\" stroke-width=\"1\"/><text x=\"39\" y=\"802\" font-size=\"18\" fill=\"#8A7F74\" text-anchor=\"middle\">⌂</text><text x=\"39\" y=\"822\" font-size=\"9\" fill=\"#8A7F74\" font-weight=\"400\" text-anchor=\"middle\">Home</text><text x=\"117\" y=\"802\" font-size=\"18\" fill=\"#8A7F74\" text-anchor=\"middle\">◎</text><text x=\"117\" y=\"822\" font-size=\"9\" fill=\"#8A7F74\" font-weight=\"400\" text-anchor=\"middle\">Audience</text><text x=\"195\" y=\"802\" font-size=\"18\" fill=\"#D97706\" text-anchor=\"middle\">✦</text><text x=\"195\" y=\"822\" font-size=\"9\" fill=\"#D97706\" font-weight=\"700\" text-anchor=\"middle\">Content</text><line x1=\"177\" y1=\"774\" x2=\"213\" y2=\"774\" stroke=\"#D97706\" stroke-width=\"2\"/><text x=\"273\" y=\"802\" font-size=\"18\" fill=\"#8A7F74\" text-anchor=\"middle\">$</text><text x=\"273\" y=\"822\" font-size=\"9\" fill=\"#8A7F74\" font-weight=\"400\" text-anchor=\"middle\">Revenue</text><text x=\"351\" y=\"802\" font-size=\"18\" fill=\"#8A7F74\" text-anchor=\"middle\">○</text><text x=\"351\" y=\"822\" font-size=\"9\" fill=\"#8A7F74\" font-weight=\"400\" text-anchor=\"middle\">Profile</text></svg>",
+      "elements": [
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "fill": "#FAF7F2"
+        },
+        {
+          "type": "line",
+          "x1": 0,
+          "y1": 0,
+          "x2": 0,
+          "y2": 844,
+          "stroke": "#E2D9C8",
+          "strokeWidth": 0.5,
+          "opacity": 0.4
+        },
+        {
+          "type": "line",
+          "x1": 78,
+          "y1": 0,
+          "x2": 78,
+          "y2": 844,
+          "stroke": "#E2D9C8",
+          "strokeWidth": 0.5,
+          "opacity": 0.4
+        },
+        {
+          "type": "line",
+          "x1": 156,
+          "y1": 0,
+          "x2": 156,
+          "y2": 844,
+          "stroke": "#E2D9C8",
+          "strokeWidth": 0.5,
+          "opacity": 0.4
+        },
+        {
+          "type": "line",
+          "x1": 234,
+          "y1": 0,
+          "x2": 234,
+          "y2": 844,
+          "stroke": "#E2D9C8",
+          "strokeWidth": 0.5,
+          "opacity": 0.4
+        },
+        {
+          "type": "line",
+          "x1": 312,
+          "y1": 0,
+          "x2": 312,
+          "y2": 844,
+          "stroke": "#E2D9C8",
+          "strokeWidth": 0.5,
+          "opacity": 0.4
+        },
+        {
+          "type": "line",
+          "x1": 390,
+          "y1": 0,
+          "x2": 390,
+          "y2": 844,
+          "stroke": "#E2D9C8",
+          "strokeWidth": 0.5,
+          "opacity": 0.4
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 58,
+          "fill": "#FFFFFF",
+          "stroke": "#E8E0D0",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 37,
+          "content": "GLEAM",
+          "fontSize": 18,
+          "fill": "#1A1818",
+          "fontWeight": 900,
+          "letterSpacing": 3
+        },
+        {
+          "type": "text",
+          "x": 370,
+          "y": 37,
+          "content": "● Live",
+          "fontSize": 11,
+          "fill": "#15803D",
+          "fontWeight": 600,
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 58,
+          "width": 390,
+          "height": 36,
+          "fill": "#F5F0E8"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 80,
+          "content": "Overview",
+          "fontSize": 11,
+          "fill": "#8A7F74",
+          "fontWeight": 500
+        },
+        {
+          "type": "text",
+          "x": 108,
+          "y": 80,
+          "content": "Audience",
+          "fontSize": 11,
+          "fill": "#8A7F74",
+          "fontWeight": 500
+        },
+        {
+          "type": "rect",
+          "x": 188,
+          "y": 64,
+          "width": 65,
+          "height": 24,
+          "fill": "#D97706",
+          "rx": 3,
+          "opacity": 0.12
+        },
+        {
+          "type": "text",
+          "x": 196,
+          "y": 80,
+          "content": "Content",
+          "fontSize": 11,
+          "fill": "#D97706",
+          "fontWeight": 700
+        },
+        {
+          "type": "line",
+          "x1": 188,
+          "y1": 93,
+          "x2": 253,
+          "y2": 93,
+          "stroke": "#D97706",
+          "strokeWidth": 2
+        },
+        {
+          "type": "text",
+          "x": 284,
+          "y": 80,
+          "content": "Revenue",
+          "fontSize": 11,
+          "fill": "#8A7F74",
+          "fontWeight": 500
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 128,
+          "content": "CONTENT PERFORMANCE",
+          "fontSize": 9,
+          "fill": "#8A7F74",
+          "fontWeight": 700,
+          "letterSpacing": 1.5
+        },
+        {
+          "type": "line",
+          "x1": 20,
+          "y1": 134,
+          "x2": 370,
+          "y2": 134,
+          "stroke": "#E8E0D0",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 144,
+          "width": 112,
+          "height": 60,
+          "fill": "#FFFFFF",
+          "rx": 4,
+          "stroke": "#E8E0D0",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 164,
+          "content": "Published",
+          "fontSize": 9,
+          "fill": "#8A7F74",
+          "fontWeight": 600,
+          "letterSpacing": 1
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 188,
+          "content": "47",
+          "fontSize": 24,
+          "fill": "#1A1818",
+          "fontWeight": 800,
+          "fontFamily": "Georgia, serif"
+        },
+        {
+          "type": "rect",
+          "x": 142,
+          "y": 144,
+          "width": 112,
+          "height": 60,
+          "fill": "#FFFFFF",
+          "rx": 4,
+          "stroke": "#E8E0D0",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 154,
+          "y": 164,
+          "content": "Avg Opens",
+          "fontSize": 9,
+          "fill": "#8A7F74",
+          "fontWeight": 600,
+          "letterSpacing": 1
+        },
+        {
+          "type": "text",
+          "x": 154,
+          "y": 188,
+          "content": "4.1K",
+          "fontSize": 24,
+          "fill": "#1A1818",
+          "fontWeight": 800,
+          "fontFamily": "Georgia, serif"
+        },
+        {
+          "type": "rect",
+          "x": 264,
+          "y": 144,
+          "width": 112,
+          "height": 60,
+          "fill": "#FFFFFF",
+          "rx": 4,
+          "stroke": "#E8E0D0",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 276,
+          "y": 164,
+          "content": "Avg Rate",
+          "fontSize": 9,
+          "fill": "#8A7F74",
+          "fontWeight": 600,
+          "letterSpacing": 1
+        },
+        {
+          "type": "text",
+          "x": 276,
+          "y": 188,
+          "content": "38%",
+          "fontSize": 24,
+          "fill": "#1A1818",
+          "fontWeight": 800,
+          "fontFamily": "Georgia, serif"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 228,
+          "content": "BY FORMAT",
+          "fontSize": 9,
+          "fill": "#8A7F74",
+          "fontWeight": 700,
+          "letterSpacing": 1.5
+        },
+        {
+          "type": "line",
+          "x1": 20,
+          "y1": 234,
+          "x2": 370,
+          "y2": 234,
+          "stroke": "#E8E0D0",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 252,
+          "width": 358,
+          "height": 42,
+          "fill": "#FFFFFF",
+          "rx": 3,
+          "stroke": "#E8E0D0",
+          "strokeWidth": 1
+        },
+        {
+          "type": "circle",
+          "cx": 30,
+          "cy": 273,
+          "r": 5,
+          "fill": "#D97706"
+        },
+        {
+          "type": "text",
+          "x": 44,
+          "y": 277,
+          "content": "Long-form essay",
+          "fontSize": 12,
+          "fill": "#1A1818",
+          "fontWeight": 500
+        },
+        {
+          "type": "text",
+          "x": 44,
+          "y": 289,
+          "content": "22 posts",
+          "fontSize": 9,
+          "fill": "#8A7F74"
+        },
+        {
+          "type": "rect",
+          "x": 200,
+          "y": 267,
+          "width": 120,
+          "height": 6,
+          "fill": "#E2D9C8",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 200,
+          "y": 267,
+          "width": 77,
+          "height": 6,
+          "fill": "#D97706",
+          "rx": 2
+        },
+        {
+          "type": "text",
+          "x": 368,
+          "y": 273,
+          "content": "64%",
+          "fontSize": 10,
+          "fill": "#D97706",
+          "fontWeight": 700,
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 302,
+          "width": 358,
+          "height": 42,
+          "fill": "#FFFFFF",
+          "rx": 3,
+          "stroke": "#E8E0D0",
+          "strokeWidth": 1
+        },
+        {
+          "type": "circle",
+          "cx": 30,
+          "cy": 323,
+          "r": 5,
+          "fill": "#9A3412"
+        },
+        {
+          "type": "text",
+          "x": 44,
+          "y": 327,
+          "content": "Interview",
+          "fontSize": 12,
+          "fill": "#1A1818",
+          "fontWeight": 500
+        },
+        {
+          "type": "text",
+          "x": 44,
+          "y": 339,
+          "content": "12 posts",
+          "fontSize": 9,
+          "fill": "#8A7F74"
+        },
+        {
+          "type": "rect",
+          "x": 200,
+          "y": 317,
+          "width": 120,
+          "height": 6,
+          "fill": "#E2D9C8",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 200,
+          "y": 317,
+          "width": 62,
+          "height": 6,
+          "fill": "#9A3412",
+          "rx": 2
+        },
+        {
+          "type": "text",
+          "x": 368,
+          "y": 323,
+          "content": "52%",
+          "fontSize": 10,
+          "fill": "#9A3412",
+          "fontWeight": 700,
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 352,
+          "width": 358,
+          "height": 42,
+          "fill": "#FFFFFF",
+          "rx": 3,
+          "stroke": "#E8E0D0",
+          "strokeWidth": 1
+        },
+        {
+          "type": "circle",
+          "cx": 30,
+          "cy": 373,
+          "r": 5,
+          "fill": "#15803D"
+        },
+        {
+          "type": "text",
+          "x": 44,
+          "y": 377,
+          "content": "Link roundup",
+          "fontSize": 12,
+          "fill": "#1A1818",
+          "fontWeight": 500
+        },
+        {
+          "type": "text",
+          "x": 44,
+          "y": 389,
+          "content": "8 posts",
+          "fontSize": 9,
+          "fill": "#8A7F74"
+        },
+        {
+          "type": "rect",
+          "x": 200,
+          "y": 367,
+          "width": 120,
+          "height": 6,
+          "fill": "#E2D9C8",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 200,
+          "y": 367,
+          "width": 37,
+          "height": 6,
+          "fill": "#15803D",
+          "rx": 2
+        },
+        {
+          "type": "text",
+          "x": 368,
+          "y": 373,
+          "content": "31%",
+          "fontSize": 10,
+          "fill": "#15803D",
+          "fontWeight": 700,
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 402,
+          "width": 358,
+          "height": 42,
+          "fill": "#FFFFFF",
+          "rx": 3,
+          "stroke": "#E8E0D0",
+          "strokeWidth": 1
+        },
+        {
+          "type": "circle",
+          "cx": 30,
+          "cy": 423,
+          "r": 5,
+          "fill": "#8A7F74"
+        },
+        {
+          "type": "text",
+          "x": 44,
+          "y": 427,
+          "content": "Short take",
+          "fontSize": 12,
+          "fill": "#1A1818",
+          "fontWeight": 500
+        },
+        {
+          "type": "text",
+          "x": 44,
+          "y": 439,
+          "content": "5 posts",
+          "fontSize": 9,
+          "fill": "#8A7F74"
+        },
+        {
+          "type": "rect",
+          "x": 200,
+          "y": 417,
+          "width": 120,
+          "height": 6,
+          "fill": "#E2D9C8",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 200,
+          "y": 417,
+          "width": 53,
+          "height": 6,
+          "fill": "#8A7F74",
+          "rx": 2
+        },
+        {
+          "type": "text",
+          "x": 368,
+          "y": 423,
+          "content": "44%",
+          "fontSize": 10,
+          "fill": "#8A7F74",
+          "fontWeight": 700,
+          "textAnchor": "end"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 462,
+          "content": "ALL-TIME BEST",
+          "fontSize": 9,
+          "fill": "#8A7F74",
+          "fontWeight": 700,
+          "letterSpacing": 1.5
+        },
+        {
+          "type": "line",
+          "x1": 20,
+          "y1": 468,
+          "x2": 370,
+          "y2": 468,
+          "stroke": "#E8E0D0",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 476,
+          "width": 358,
+          "height": 110,
+          "fill": "#FFFFFF",
+          "rx": 4,
+          "stroke": "#D97706",
+          "strokeWidth": 2
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 476,
+          "width": 358,
+          "height": 4,
+          "fill": "#D97706"
+        },
+        {
+          "type": "rect",
+          "x": 30,
+          "y": 488,
+          "width": 87.5,
+          "height": 22,
+          "fill": "#D97706",
+          "rx": 11,
+          "opacity": 0.15
+        },
+        {
+          "type": "text",
+          "x": 73.75,
+          "y": 502,
+          "content": "MOST OPENED",
+          "fontSize": 9,
+          "fill": "#D97706",
+          "fontWeight": 700,
+          "textAnchor": "middle",
+          "letterSpacing": 0.5
+        },
+        {
+          "type": "text",
+          "x": 30,
+          "y": 524,
+          "content": "Why Consistency Beats Virality",
+          "fontSize": 15,
+          "fill": "#1A1818",
+          "fontWeight": 700
+        },
+        {
+          "type": "text",
+          "x": 30,
+          "y": 542,
+          "content": "Published Feb 18, 2026",
+          "fontSize": 10,
+          "fill": "#8A7F74"
+        },
+        {
+          "type": "line",
+          "x1": 30,
+          "y1": 554,
+          "x2": 360,
+          "y2": 554,
+          "stroke": "#E8E0D0",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 30,
+          "y": 573,
+          "content": "8,249 opens",
+          "fontSize": 11,
+          "fill": "#1A1818",
+          "fontWeight": 600
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 573,
+          "content": "61% open rate",
+          "fontSize": 11,
+          "fill": "#D97706",
+          "fontWeight": 700
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 608,
+          "content": "RECENT",
+          "fontSize": 9,
+          "fill": "#8A7F74",
+          "fontWeight": 700,
+          "letterSpacing": 1.5
+        },
+        {
+          "type": "line",
+          "x1": 20,
+          "y1": 614,
+          "x2": 370,
+          "y2": 614,
+          "stroke": "#E8E0D0",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 624,
+          "width": 358,
+          "height": 44,
+          "fill": "#FFFFFF",
+          "rx": 3,
+          "stroke": "#E8E0D0",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 30,
+          "y": 642,
+          "content": "The Art of Slow Growth",
+          "fontSize": 12,
+          "fill": "#1A1818",
+          "fontWeight": 600
+        },
+        {
+          "type": "text",
+          "x": 30,
+          "y": 658,
+          "content": "Apr 8",
+          "fontSize": 10,
+          "fill": "#8A7F74"
+        },
+        {
+          "type": "text",
+          "x": 360,
+          "y": 650,
+          "content": "4,821",
+          "fontSize": 12,
+          "fill": "#D97706",
+          "fontWeight": 700,
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 676,
+          "width": 358,
+          "height": 44,
+          "fill": "#FFFFFF",
+          "rx": 3,
+          "stroke": "#E8E0D0",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 30,
+          "y": 694,
+          "content": "What Readers Actually Want",
+          "fontSize": 12,
+          "fill": "#1A1818",
+          "fontWeight": 600
+        },
+        {
+          "type": "text",
+          "x": 30,
+          "y": 710,
+          "content": "Apr 3",
+          "fontSize": 10,
+          "fill": "#8A7F74"
+        },
+        {
+          "type": "text",
+          "x": 360,
+          "y": 702,
+          "content": "3,940",
+          "fontSize": 12,
+          "fill": "#D97706",
+          "fontWeight": 700,
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 774,
+          "width": 390,
+          "height": 70,
+          "fill": "#FFFFFF",
+          "stroke": "#E8E0D0",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 39,
+          "y": 802,
+          "content": "⌂",
+          "fontSize": 18,
+          "fill": "#8A7F74",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 39,
+          "y": 822,
+          "content": "Home",
+          "fontSize": 9,
+          "fill": "#8A7F74",
+          "fontWeight": 400,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 117,
+          "y": 802,
+          "content": "◎",
+          "fontSize": 18,
+          "fill": "#8A7F74",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 117,
+          "y": 822,
+          "content": "Audience",
+          "fontSize": 9,
+          "fill": "#8A7F74",
+          "fontWeight": 400,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 802,
+          "content": "✦",
+          "fontSize": 18,
+          "fill": "#D97706",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 822,
+          "content": "Content",
+          "fontSize": 9,
+          "fill": "#D97706",
+          "fontWeight": 700,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "line",
+          "x1": 177,
+          "y1": 774,
+          "x2": 213,
+          "y2": 774,
+          "stroke": "#D97706",
+          "strokeWidth": 2
+        },
+        {
+          "type": "text",
+          "x": 273,
+          "y": 802,
+          "content": "$",
+          "fontSize": 18,
+          "fill": "#8A7F74",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 273,
+          "y": 822,
+          "content": "Revenue",
+          "fontSize": 9,
+          "fill": "#8A7F74",
+          "fontWeight": 400,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 351,
+          "y": 802,
+          "content": "○",
+          "fontSize": 18,
+          "fill": "#8A7F74",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 351,
+          "y": 822,
+          "content": "Profile",
+          "fontSize": 9,
+          "fill": "#8A7F74",
+          "fontWeight": 400,
+          "textAnchor": "middle"
+        }
+      ]
+    },
+    {
+      "name": "Revenue",
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"390\" height=\"844\"><rect x=\"0\" y=\"0\" width=\"390\" height=\"844\" fill=\"#FAF7F2\"/><line x1=\"0\" y1=\"0\" x2=\"0\" y2=\"844\" stroke=\"#E2D9C8\" stroke-width=\"0.5\" opacity=\"0.4\"/><line x1=\"78\" y1=\"0\" x2=\"78\" y2=\"844\" stroke=\"#E2D9C8\" stroke-width=\"0.5\" opacity=\"0.4\"/><line x1=\"156\" y1=\"0\" x2=\"156\" y2=\"844\" stroke=\"#E2D9C8\" stroke-width=\"0.5\" opacity=\"0.4\"/><line x1=\"234\" y1=\"0\" x2=\"234\" y2=\"844\" stroke=\"#E2D9C8\" stroke-width=\"0.5\" opacity=\"0.4\"/><line x1=\"312\" y1=\"0\" x2=\"312\" y2=\"844\" stroke=\"#E2D9C8\" stroke-width=\"0.5\" opacity=\"0.4\"/><line x1=\"390\" y1=\"0\" x2=\"390\" y2=\"844\" stroke=\"#E2D9C8\" stroke-width=\"0.5\" opacity=\"0.4\"/><rect x=\"0\" y=\"0\" width=\"390\" height=\"58\" fill=\"#FFFFFF\" stroke=\"#E8E0D0\" stroke-width=\"1\"/><text x=\"20\" y=\"37\" font-size=\"18\" fill=\"#1A1818\" font-weight=\"900\" letter-spacing=\"3\">GLEAM</text><text x=\"370\" y=\"37\" font-size=\"11\" fill=\"#15803D\" font-weight=\"600\" text-anchor=\"end\">● Live</text><rect x=\"0\" y=\"58\" width=\"390\" height=\"36\" fill=\"#F5F0E8\"/><text x=\"20\" y=\"80\" font-size=\"11\" fill=\"#8A7F74\" font-weight=\"500\">Overview</text><text x=\"108\" y=\"80\" font-size=\"11\" fill=\"#8A7F74\" font-weight=\"500\">Audience</text><text x=\"196\" y=\"80\" font-size=\"11\" fill=\"#8A7F74\" font-weight=\"500\">Content</text><rect x=\"276\" y=\"64\" width=\"65\" height=\"24\" fill=\"#D97706\" rx=\"3\" opacity=\"0.12\"/><text x=\"284\" y=\"80\" font-size=\"11\" fill=\"#D97706\" font-weight=\"700\">Revenue</text><line x1=\"276\" y1=\"93\" x2=\"341\" y2=\"93\" stroke=\"#D97706\" stroke-width=\"2\"/><text x=\"20\" y=\"128\" font-size=\"9\" fill=\"#8A7F74\" font-weight=\"700\" letter-spacing=\"1.5\">REVENUE SNAPSHOT</text><line x1=\"20\" y1=\"134\" x2=\"370\" y2=\"134\" stroke=\"#E8E0D0\" stroke-width=\"1\"/><rect x=\"16\" y=\"144\" width=\"358\" height=\"96\" fill=\"#FFFFFF\" rx=\"4\" stroke=\"#E8E0D0\" stroke-width=\"1\"/><rect x=\"16\" y=\"144\" width=\"6\" height=\"96\" fill=\"#D97706\"/><text x=\"36\" y=\"172\" font-size=\"9\" fill=\"#8A7F74\" font-weight=\"700\" letter-spacing=\"1\">MONTHLY RECURRING REVENUE</text><text x=\"36\" y=\"210\" font-size=\"40\" fill=\"#1A1818\" font-weight=\"900\" font-family=\"Georgia, serif\">$1,840</text><rect x=\"36\" y=\"220\" width=\"152.5\" height=\"22\" fill=\"#15803D\" rx=\"11\" opacity=\"0.15\"/><text x=\"112.25\" y=\"234\" font-size=\"9\" fill=\"#15803D\" font-weight=\"700\" text-anchor=\"middle\" letter-spacing=\"0.5\">+$212 from last month</text><text x=\"360\" y=\"210\" font-size=\"14\" fill=\"#15803D\" font-weight=\"700\" text-anchor=\"end\">↑ 13%</text><text x=\"20\" y=\"266\" font-size=\"9\" fill=\"#8A7F74\" font-weight=\"700\" letter-spacing=\"1.5\">REVENUE SOURCES</text><line x1=\"20\" y1=\"272\" x2=\"370\" y2=\"272\" stroke=\"#E8E0D0\" stroke-width=\"1\"/><rect x=\"16\" y=\"288\" width=\"358\" height=\"46\" fill=\"#FFFFFF\" rx=\"3\" stroke=\"#E8E0D0\" stroke-width=\"1\"/><circle cx=\"30\" cy=\"311\" r=\"6\" fill=\"#D97706\"/><text x=\"46\" y=\"308\" font-size=\"12\" fill=\"#1A1818\" font-weight=\"500\">Paid subscriptions</text><rect x=\"46\" y=\"318\" width=\"220\" height=\"7\" fill=\"#E2D9C8\" rx=\"2\"/><rect x=\"46\" y=\"318\" width=\"158\" height=\"7\" fill=\"#D97706\" rx=\"2\"/><text x=\"368\" y=\"311\" font-size=\"13\" fill=\"#D97706\" font-weight=\"700\" text-anchor=\"end\">$1,319</text><rect x=\"16\" y=\"342\" width=\"358\" height=\"46\" fill=\"#FFFFFF\" rx=\"3\" stroke=\"#E8E0D0\" stroke-width=\"1\"/><circle cx=\"30\" cy=\"365\" r=\"6\" fill=\"#9A3412\"/><text x=\"46\" y=\"362\" font-size=\"12\" fill=\"#1A1818\" font-weight=\"500\">Founding members</text><rect x=\"46\" y=\"372\" width=\"220\" height=\"7\" fill=\"#E2D9C8\" rx=\"2\"/><rect x=\"46\" y=\"372\" width=\"38\" height=\"7\" fill=\"#9A3412\" rx=\"2\"/><text x=\"368\" y=\"365\" font-size=\"13\" fill=\"#9A3412\" font-weight=\"700\" text-anchor=\"end\">$320</text><rect x=\"16\" y=\"396\" width=\"358\" height=\"46\" fill=\"#FFFFFF\" rx=\"3\" stroke=\"#E8E0D0\" stroke-width=\"1\"/><circle cx=\"30\" cy=\"419\" r=\"6\" fill=\"#15803D\"/><text x=\"46\" y=\"416\" font-size=\"12\" fill=\"#1A1818\" font-weight=\"500\">Sponsorships</text><rect x=\"46\" y=\"426\" width=\"220\" height=\"7\" fill=\"#E2D9C8\" rx=\"2\"/><rect x=\"46\" y=\"426\" width=\"19\" height=\"7\" fill=\"#15803D\" rx=\"2\"/><text x=\"368\" y=\"419\" font-size=\"13\" fill=\"#15803D\" font-weight=\"700\" text-anchor=\"end\">$160</text><rect x=\"16\" y=\"450\" width=\"358\" height=\"46\" fill=\"#FFFFFF\" rx=\"3\" stroke=\"#E8E0D0\" stroke-width=\"1\"/><circle cx=\"30\" cy=\"473\" r=\"6\" fill=\"#8A7F74\"/><text x=\"46\" y=\"470\" font-size=\"12\" fill=\"#1A1818\" font-weight=\"500\">One-time tips</text><rect x=\"46\" y=\"480\" width=\"220\" height=\"7\" fill=\"#E2D9C8\" rx=\"2\"/><rect x=\"46\" y=\"480\" width=\"5\" height=\"7\" fill=\"#8A7F74\" rx=\"2\"/><text x=\"368\" y=\"473\" font-size=\"13\" fill=\"#8A7F74\" font-weight=\"700\" text-anchor=\"end\">$41</text><text x=\"20\" y=\"512\" font-size=\"9\" fill=\"#8A7F74\" font-weight=\"700\" letter-spacing=\"1.5\">MRR TREND — 6 MONTHS</text><line x1=\"20\" y1=\"518\" x2=\"370\" y2=\"518\" stroke=\"#E8E0D0\" stroke-width=\"1\"/><rect x=\"16\" y=\"526\" width=\"358\" height=\"100\" fill=\"#FFFFFF\" rx=\"4\" stroke=\"#E8E0D0\" stroke-width=\"1\"/><rect x=\"36\" y=\"584\" width=\"36\" height=\"32\" fill=\"#D97706\" rx=\"2\" opacity=\"0.4\"/><text x=\"54\" y=\"614\" font-size=\"8\" fill=\"#8A7F74\" text-anchor=\"middle\">Nov</text><rect x=\"92\" y=\"580\" width=\"36\" height=\"36\" fill=\"#D97706\" rx=\"2\" opacity=\"0.4\"/><text x=\"110\" y=\"614\" font-size=\"8\" fill=\"#8A7F74\" text-anchor=\"middle\">Dec</text><rect x=\"148\" y=\"575\" width=\"36\" height=\"41\" fill=\"#D97706\" rx=\"2\" opacity=\"0.4\"/><text x=\"166\" y=\"614\" font-size=\"8\" fill=\"#8A7F74\" text-anchor=\"middle\">Jan</text><rect x=\"204\" y=\"568\" width=\"36\" height=\"48\" fill=\"#D97706\" rx=\"2\" opacity=\"0.4\"/><text x=\"222\" y=\"614\" font-size=\"8\" fill=\"#8A7F74\" text-anchor=\"middle\">Feb</text><rect x=\"260\" y=\"559\" width=\"36\" height=\"57\" fill=\"#D97706\" rx=\"2\" opacity=\"0.4\"/><text x=\"278\" y=\"614\" font-size=\"8\" fill=\"#8A7F74\" text-anchor=\"middle\">Mar</text><rect x=\"316\" y=\"552\" width=\"36\" height=\"64\" fill=\"#D97706\" rx=\"2\" opacity=\"1\"/><text x=\"334\" y=\"614\" font-size=\"8\" fill=\"#8A7F74\" text-anchor=\"middle\">Apr</text><rect x=\"16\" y=\"644\" width=\"172\" height=\"60\" fill=\"#FFFFFF\" rx=\"4\" stroke=\"#E8E0D0\" stroke-width=\"1\"/><text x=\"30\" y=\"666\" font-size=\"9\" fill=\"#8A7F74\" font-weight=\"600\" letter-spacing=\"1\">CHURN RATE</text><text x=\"30\" y=\"690\" font-size=\"22\" fill=\"#15803D\" font-weight=\"800\" font-family=\"Georgia, serif\">1.8%</text><rect x=\"202\" y=\"644\" width=\"172\" height=\"60\" fill=\"#FFFFFF\" rx=\"4\" stroke=\"#E8E0D0\" stroke-width=\"1\"/><text x=\"216\" y=\"666\" font-size=\"9\" fill=\"#8A7F74\" font-weight=\"600\" letter-spacing=\"1\">LTV</text><text x=\"216\" y=\"690\" font-size=\"22\" fill=\"#1A1818\" font-weight=\"800\" font-family=\"Georgia, serif\">$54.20</text><rect x=\"0\" y=\"774\" width=\"390\" height=\"70\" fill=\"#FFFFFF\" stroke=\"#E8E0D0\" stroke-width=\"1\"/><text x=\"39\" y=\"802\" font-size=\"18\" fill=\"#8A7F74\" text-anchor=\"middle\">⌂</text><text x=\"39\" y=\"822\" font-size=\"9\" fill=\"#8A7F74\" font-weight=\"400\" text-anchor=\"middle\">Home</text><text x=\"117\" y=\"802\" font-size=\"18\" fill=\"#8A7F74\" text-anchor=\"middle\">◎</text><text x=\"117\" y=\"822\" font-size=\"9\" fill=\"#8A7F74\" font-weight=\"400\" text-anchor=\"middle\">Audience</text><text x=\"195\" y=\"802\" font-size=\"18\" fill=\"#8A7F74\" text-anchor=\"middle\">✦</text><text x=\"195\" y=\"822\" font-size=\"9\" fill=\"#8A7F74\" font-weight=\"400\" text-anchor=\"middle\">Content</text><text x=\"273\" y=\"802\" font-size=\"18\" fill=\"#D97706\" text-anchor=\"middle\">$</text><text x=\"273\" y=\"822\" font-size=\"9\" fill=\"#D97706\" font-weight=\"700\" text-anchor=\"middle\">Revenue</text><line x1=\"255\" y1=\"774\" x2=\"291\" y2=\"774\" stroke=\"#D97706\" stroke-width=\"2\"/><text x=\"351\" y=\"802\" font-size=\"18\" fill=\"#8A7F74\" text-anchor=\"middle\">○</text><text x=\"351\" y=\"822\" font-size=\"9\" fill=\"#8A7F74\" font-weight=\"400\" text-anchor=\"middle\">Profile</text></svg>",
+      "elements": [
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "fill": "#FAF7F2"
+        },
+        {
+          "type": "line",
+          "x1": 0,
+          "y1": 0,
+          "x2": 0,
+          "y2": 844,
+          "stroke": "#E2D9C8",
+          "strokeWidth": 0.5,
+          "opacity": 0.4
+        },
+        {
+          "type": "line",
+          "x1": 78,
+          "y1": 0,
+          "x2": 78,
+          "y2": 844,
+          "stroke": "#E2D9C8",
+          "strokeWidth": 0.5,
+          "opacity": 0.4
+        },
+        {
+          "type": "line",
+          "x1": 156,
+          "y1": 0,
+          "x2": 156,
+          "y2": 844,
+          "stroke": "#E2D9C8",
+          "strokeWidth": 0.5,
+          "opacity": 0.4
+        },
+        {
+          "type": "line",
+          "x1": 234,
+          "y1": 0,
+          "x2": 234,
+          "y2": 844,
+          "stroke": "#E2D9C8",
+          "strokeWidth": 0.5,
+          "opacity": 0.4
+        },
+        {
+          "type": "line",
+          "x1": 312,
+          "y1": 0,
+          "x2": 312,
+          "y2": 844,
+          "stroke": "#E2D9C8",
+          "strokeWidth": 0.5,
+          "opacity": 0.4
+        },
+        {
+          "type": "line",
+          "x1": 390,
+          "y1": 0,
+          "x2": 390,
+          "y2": 844,
+          "stroke": "#E2D9C8",
+          "strokeWidth": 0.5,
+          "opacity": 0.4
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 58,
+          "fill": "#FFFFFF",
+          "stroke": "#E8E0D0",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 37,
+          "content": "GLEAM",
+          "fontSize": 18,
+          "fill": "#1A1818",
+          "fontWeight": 900,
+          "letterSpacing": 3
+        },
+        {
+          "type": "text",
+          "x": 370,
+          "y": 37,
+          "content": "● Live",
+          "fontSize": 11,
+          "fill": "#15803D",
+          "fontWeight": 600,
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 58,
+          "width": 390,
+          "height": 36,
+          "fill": "#F5F0E8"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 80,
+          "content": "Overview",
+          "fontSize": 11,
+          "fill": "#8A7F74",
+          "fontWeight": 500
+        },
+        {
+          "type": "text",
+          "x": 108,
+          "y": 80,
+          "content": "Audience",
+          "fontSize": 11,
+          "fill": "#8A7F74",
+          "fontWeight": 500
+        },
+        {
+          "type": "text",
+          "x": 196,
+          "y": 80,
+          "content": "Content",
+          "fontSize": 11,
+          "fill": "#8A7F74",
+          "fontWeight": 500
+        },
+        {
+          "type": "rect",
+          "x": 276,
+          "y": 64,
+          "width": 65,
+          "height": 24,
+          "fill": "#D97706",
+          "rx": 3,
+          "opacity": 0.12
+        },
+        {
+          "type": "text",
+          "x": 284,
+          "y": 80,
+          "content": "Revenue",
+          "fontSize": 11,
+          "fill": "#D97706",
+          "fontWeight": 700
+        },
+        {
+          "type": "line",
+          "x1": 276,
+          "y1": 93,
+          "x2": 341,
+          "y2": 93,
+          "stroke": "#D97706",
+          "strokeWidth": 2
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 128,
+          "content": "REVENUE SNAPSHOT",
+          "fontSize": 9,
+          "fill": "#8A7F74",
+          "fontWeight": 700,
+          "letterSpacing": 1.5
+        },
+        {
+          "type": "line",
+          "x1": 20,
+          "y1": 134,
+          "x2": 370,
+          "y2": 134,
+          "stroke": "#E8E0D0",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 144,
+          "width": 358,
+          "height": 96,
+          "fill": "#FFFFFF",
+          "rx": 4,
+          "stroke": "#E8E0D0",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 144,
+          "width": 6,
+          "height": 96,
+          "fill": "#D97706"
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 172,
+          "content": "MONTHLY RECURRING REVENUE",
+          "fontSize": 9,
+          "fill": "#8A7F74",
+          "fontWeight": 700,
+          "letterSpacing": 1
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 210,
+          "content": "$1,840",
+          "fontSize": 40,
+          "fill": "#1A1818",
+          "fontWeight": 900,
+          "fontFamily": "Georgia, serif"
+        },
+        {
+          "type": "rect",
+          "x": 36,
+          "y": 220,
+          "width": 152.5,
+          "height": 22,
+          "fill": "#15803D",
+          "rx": 11,
+          "opacity": 0.15
+        },
+        {
+          "type": "text",
+          "x": 112.25,
+          "y": 234,
+          "content": "+$212 from last month",
+          "fontSize": 9,
+          "fill": "#15803D",
+          "fontWeight": 700,
+          "textAnchor": "middle",
+          "letterSpacing": 0.5
+        },
+        {
+          "type": "text",
+          "x": 360,
+          "y": 210,
+          "content": "↑ 13%",
+          "fontSize": 14,
+          "fill": "#15803D",
+          "fontWeight": 700,
+          "textAnchor": "end"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 266,
+          "content": "REVENUE SOURCES",
+          "fontSize": 9,
+          "fill": "#8A7F74",
+          "fontWeight": 700,
+          "letterSpacing": 1.5
+        },
+        {
+          "type": "line",
+          "x1": 20,
+          "y1": 272,
+          "x2": 370,
+          "y2": 272,
+          "stroke": "#E8E0D0",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 288,
+          "width": 358,
+          "height": 46,
+          "fill": "#FFFFFF",
+          "rx": 3,
+          "stroke": "#E8E0D0",
+          "strokeWidth": 1
+        },
+        {
+          "type": "circle",
+          "cx": 30,
+          "cy": 311,
+          "r": 6,
+          "fill": "#D97706"
+        },
+        {
+          "type": "text",
+          "x": 46,
+          "y": 308,
+          "content": "Paid subscriptions",
+          "fontSize": 12,
+          "fill": "#1A1818",
+          "fontWeight": 500
+        },
+        {
+          "type": "rect",
+          "x": 46,
+          "y": 318,
+          "width": 220,
+          "height": 7,
+          "fill": "#E2D9C8",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 46,
+          "y": 318,
+          "width": 158,
+          "height": 7,
+          "fill": "#D97706",
+          "rx": 2
+        },
+        {
+          "type": "text",
+          "x": 368,
+          "y": 311,
+          "content": "$1,319",
+          "fontSize": 13,
+          "fill": "#D97706",
+          "fontWeight": 700,
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 342,
+          "width": 358,
+          "height": 46,
+          "fill": "#FFFFFF",
+          "rx": 3,
+          "stroke": "#E8E0D0",
+          "strokeWidth": 1
+        },
+        {
+          "type": "circle",
+          "cx": 30,
+          "cy": 365,
+          "r": 6,
+          "fill": "#9A3412"
+        },
+        {
+          "type": "text",
+          "x": 46,
+          "y": 362,
+          "content": "Founding members",
+          "fontSize": 12,
+          "fill": "#1A1818",
+          "fontWeight": 500
+        },
+        {
+          "type": "rect",
+          "x": 46,
+          "y": 372,
+          "width": 220,
+          "height": 7,
+          "fill": "#E2D9C8",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 46,
+          "y": 372,
+          "width": 38,
+          "height": 7,
+          "fill": "#9A3412",
+          "rx": 2
+        },
+        {
+          "type": "text",
+          "x": 368,
+          "y": 365,
+          "content": "$320",
+          "fontSize": 13,
+          "fill": "#9A3412",
+          "fontWeight": 700,
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 396,
+          "width": 358,
+          "height": 46,
+          "fill": "#FFFFFF",
+          "rx": 3,
+          "stroke": "#E8E0D0",
+          "strokeWidth": 1
+        },
+        {
+          "type": "circle",
+          "cx": 30,
+          "cy": 419,
+          "r": 6,
+          "fill": "#15803D"
+        },
+        {
+          "type": "text",
+          "x": 46,
+          "y": 416,
+          "content": "Sponsorships",
+          "fontSize": 12,
+          "fill": "#1A1818",
+          "fontWeight": 500
+        },
+        {
+          "type": "rect",
+          "x": 46,
+          "y": 426,
+          "width": 220,
+          "height": 7,
+          "fill": "#E2D9C8",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 46,
+          "y": 426,
+          "width": 19,
+          "height": 7,
+          "fill": "#15803D",
+          "rx": 2
+        },
+        {
+          "type": "text",
+          "x": 368,
+          "y": 419,
+          "content": "$160",
+          "fontSize": 13,
+          "fill": "#15803D",
+          "fontWeight": 700,
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 450,
+          "width": 358,
+          "height": 46,
+          "fill": "#FFFFFF",
+          "rx": 3,
+          "stroke": "#E8E0D0",
+          "strokeWidth": 1
+        },
+        {
+          "type": "circle",
+          "cx": 30,
+          "cy": 473,
+          "r": 6,
+          "fill": "#8A7F74"
+        },
+        {
+          "type": "text",
+          "x": 46,
+          "y": 470,
+          "content": "One-time tips",
+          "fontSize": 12,
+          "fill": "#1A1818",
+          "fontWeight": 500
+        },
+        {
+          "type": "rect",
+          "x": 46,
+          "y": 480,
+          "width": 220,
+          "height": 7,
+          "fill": "#E2D9C8",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 46,
+          "y": 480,
+          "width": 5,
+          "height": 7,
+          "fill": "#8A7F74",
+          "rx": 2
+        },
+        {
+          "type": "text",
+          "x": 368,
+          "y": 473,
+          "content": "$41",
+          "fontSize": 13,
+          "fill": "#8A7F74",
+          "fontWeight": 700,
+          "textAnchor": "end"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 512,
+          "content": "MRR TREND — 6 MONTHS",
+          "fontSize": 9,
+          "fill": "#8A7F74",
+          "fontWeight": 700,
+          "letterSpacing": 1.5
+        },
+        {
+          "type": "line",
+          "x1": 20,
+          "y1": 518,
+          "x2": 370,
+          "y2": 518,
+          "stroke": "#E8E0D0",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 526,
+          "width": 358,
+          "height": 100,
+          "fill": "#FFFFFF",
+          "rx": 4,
+          "stroke": "#E8E0D0",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rect",
+          "x": 36,
+          "y": 584,
+          "width": 36,
+          "height": 32,
+          "fill": "#D97706",
+          "rx": 2,
+          "opacity": 0.4
+        },
+        {
+          "type": "text",
+          "x": 54,
+          "y": 614,
+          "content": "Nov",
+          "fontSize": 8,
+          "fill": "#8A7F74",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 92,
+          "y": 580,
+          "width": 36,
+          "height": 36,
+          "fill": "#D97706",
+          "rx": 2,
+          "opacity": 0.4
+        },
+        {
+          "type": "text",
+          "x": 110,
+          "y": 614,
+          "content": "Dec",
+          "fontSize": 8,
+          "fill": "#8A7F74",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 148,
+          "y": 575,
+          "width": 36,
+          "height": 41,
+          "fill": "#D97706",
+          "rx": 2,
+          "opacity": 0.4
+        },
+        {
+          "type": "text",
+          "x": 166,
+          "y": 614,
+          "content": "Jan",
+          "fontSize": 8,
+          "fill": "#8A7F74",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 204,
+          "y": 568,
+          "width": 36,
+          "height": 48,
+          "fill": "#D97706",
+          "rx": 2,
+          "opacity": 0.4
+        },
+        {
+          "type": "text",
+          "x": 222,
+          "y": 614,
+          "content": "Feb",
+          "fontSize": 8,
+          "fill": "#8A7F74",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 260,
+          "y": 559,
+          "width": 36,
+          "height": 57,
+          "fill": "#D97706",
+          "rx": 2,
+          "opacity": 0.4
+        },
+        {
+          "type": "text",
+          "x": 278,
+          "y": 614,
+          "content": "Mar",
+          "fontSize": 8,
+          "fill": "#8A7F74",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 316,
+          "y": 552,
+          "width": 36,
+          "height": 64,
+          "fill": "#D97706",
+          "rx": 2,
+          "opacity": 1
+        },
+        {
+          "type": "text",
+          "x": 334,
+          "y": 614,
+          "content": "Apr",
+          "fontSize": 8,
+          "fill": "#8A7F74",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 644,
+          "width": 172,
+          "height": 60,
+          "fill": "#FFFFFF",
+          "rx": 4,
+          "stroke": "#E8E0D0",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 30,
+          "y": 666,
+          "content": "CHURN RATE",
+          "fontSize": 9,
+          "fill": "#8A7F74",
+          "fontWeight": 600,
+          "letterSpacing": 1
+        },
+        {
+          "type": "text",
+          "x": 30,
+          "y": 690,
+          "content": "1.8%",
+          "fontSize": 22,
+          "fill": "#15803D",
+          "fontWeight": 800,
+          "fontFamily": "Georgia, serif"
+        },
+        {
+          "type": "rect",
+          "x": 202,
+          "y": 644,
+          "width": 172,
+          "height": 60,
+          "fill": "#FFFFFF",
+          "rx": 4,
+          "stroke": "#E8E0D0",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 216,
+          "y": 666,
+          "content": "LTV",
+          "fontSize": 9,
+          "fill": "#8A7F74",
+          "fontWeight": 600,
+          "letterSpacing": 1
+        },
+        {
+          "type": "text",
+          "x": 216,
+          "y": 690,
+          "content": "$54.20",
+          "fontSize": 22,
+          "fill": "#1A1818",
+          "fontWeight": 800,
+          "fontFamily": "Georgia, serif"
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 774,
+          "width": 390,
+          "height": 70,
+          "fill": "#FFFFFF",
+          "stroke": "#E8E0D0",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 39,
+          "y": 802,
+          "content": "⌂",
+          "fontSize": 18,
+          "fill": "#8A7F74",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 39,
+          "y": 822,
+          "content": "Home",
+          "fontSize": 9,
+          "fill": "#8A7F74",
+          "fontWeight": 400,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 117,
+          "y": 802,
+          "content": "◎",
+          "fontSize": 18,
+          "fill": "#8A7F74",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 117,
+          "y": 822,
+          "content": "Audience",
+          "fontSize": 9,
+          "fill": "#8A7F74",
+          "fontWeight": 400,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 802,
+          "content": "✦",
+          "fontSize": 18,
+          "fill": "#8A7F74",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 822,
+          "content": "Content",
+          "fontSize": 9,
+          "fill": "#8A7F74",
+          "fontWeight": 400,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 273,
+          "y": 802,
+          "content": "$",
+          "fontSize": 18,
+          "fill": "#D97706",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 273,
+          "y": 822,
+          "content": "Revenue",
+          "fontSize": 9,
+          "fill": "#D97706",
+          "fontWeight": 700,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "line",
+          "x1": 255,
+          "y1": 774,
+          "x2": 291,
+          "y2": 774,
+          "stroke": "#D97706",
+          "strokeWidth": 2
+        },
+        {
+          "type": "text",
+          "x": 351,
+          "y": 802,
+          "content": "○",
+          "fontSize": 18,
+          "fill": "#8A7F74",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 351,
+          "y": 822,
+          "content": "Profile",
+          "fontSize": 9,
+          "fill": "#8A7F74",
+          "fontWeight": 400,
+          "textAnchor": "middle"
+        }
+      ]
+    },
+    {
+      "name": "Growth",
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"390\" height=\"844\"><rect x=\"0\" y=\"0\" width=\"390\" height=\"844\" fill=\"#FAF7F2\"/><line x1=\"0\" y1=\"0\" x2=\"0\" y2=\"844\" stroke=\"#E2D9C8\" stroke-width=\"0.5\" opacity=\"0.4\"/><line x1=\"78\" y1=\"0\" x2=\"78\" y2=\"844\" stroke=\"#E2D9C8\" stroke-width=\"0.5\" opacity=\"0.4\"/><line x1=\"156\" y1=\"0\" x2=\"156\" y2=\"844\" stroke=\"#E2D9C8\" stroke-width=\"0.5\" opacity=\"0.4\"/><line x1=\"234\" y1=\"0\" x2=\"234\" y2=\"844\" stroke=\"#E2D9C8\" stroke-width=\"0.5\" opacity=\"0.4\"/><line x1=\"312\" y1=\"0\" x2=\"312\" y2=\"844\" stroke=\"#E2D9C8\" stroke-width=\"0.5\" opacity=\"0.4\"/><line x1=\"390\" y1=\"0\" x2=\"390\" y2=\"844\" stroke=\"#E2D9C8\" stroke-width=\"0.5\" opacity=\"0.4\"/><rect x=\"0\" y=\"0\" width=\"390\" height=\"58\" fill=\"#FFFFFF\" stroke=\"#E8E0D0\" stroke-width=\"1\"/><text x=\"20\" y=\"37\" font-size=\"18\" fill=\"#1A1818\" font-weight=\"900\" letter-spacing=\"3\">GLEAM</text><text x=\"370\" y=\"37\" font-size=\"11\" fill=\"#15803D\" font-weight=\"600\" text-anchor=\"end\">● Live</text><rect x=\"0\" y=\"58\" width=\"390\" height=\"36\" fill=\"#F5F0E8\"/><rect x=\"16\" y=\"63\" width=\"32\" height=\"24\" fill=\"#D97706\" rx=\"3\"/><text x=\"32\" y=\"79\" font-size=\"11\" fill=\"#FFFFFF\" font-weight=\"700\" text-anchor=\"middle\">30d</text><text x=\"92\" y=\"79\" font-size=\"11\" fill=\"#8A7F74\" text-anchor=\"middle\">90d</text><text x=\"152\" y=\"79\" font-size=\"11\" fill=\"#8A7F74\" text-anchor=\"middle\">1yr</text><text x=\"212\" y=\"79\" font-size=\"11\" fill=\"#8A7F74\" text-anchor=\"middle\">All</text><text x=\"370\" y=\"79\" font-size=\"9\" fill=\"#8A7F74\" font-weight=\"700\" text-anchor=\"end\" letter-spacing=\"2\">GROWTH</text><text x=\"20\" y=\"128\" font-size=\"9\" fill=\"#8A7F74\" font-weight=\"700\" letter-spacing=\"1.5\">GROWTH METRICS</text><line x1=\"20\" y1=\"134\" x2=\"370\" y2=\"134\" stroke=\"#E8E0D0\" stroke-width=\"1\"/><rect x=\"16\" y=\"144\" width=\"114\" height=\"72\" fill=\"#FFFFFF\" rx=\"4\" stroke=\"#E8E0D0\" stroke-width=\"1\"/><rect x=\"16\" y=\"144\" width=\"114\" height=\"3\" fill=\"#15803D\" opacity=\"0.8\"/><text x=\"28\" y=\"162\" font-size=\"8\" fill=\"#8A7F74\" font-weight=\"700\" letter-spacing=\"1\">NET NEW</text><text x=\"28\" y=\"196\" font-size=\"24\" fill=\"#15803D\" font-weight=\"800\" font-family=\"Georgia, serif\">+124</text><text x=\"28\" y=\"208\" font-size=\"9\" fill=\"#8A7F74\">this week</text><rect x=\"140\" y=\"144\" width=\"114\" height=\"72\" fill=\"#FFFFFF\" rx=\"4\" stroke=\"#E8E0D0\" stroke-width=\"1\"/><rect x=\"140\" y=\"144\" width=\"114\" height=\"3\" fill=\"#D97706\" opacity=\"0.8\"/><text x=\"152\" y=\"162\" font-size=\"8\" fill=\"#8A7F74\" font-weight=\"700\" letter-spacing=\"1\">VIRAL COEFF</text><text x=\"152\" y=\"196\" font-size=\"24\" fill=\"#D97706\" font-weight=\"800\" font-family=\"Georgia, serif\">1.08</text><text x=\"152\" y=\"208\" font-size=\"9\" fill=\"#8A7F74\">k-factor</text><rect x=\"264\" y=\"144\" width=\"114\" height=\"72\" fill=\"#FFFFFF\" rx=\"4\" stroke=\"#E8E0D0\" stroke-width=\"1\"/><rect x=\"264\" y=\"144\" width=\"114\" height=\"3\" fill=\"#9A3412\" opacity=\"0.8\"/><text x=\"276\" y=\"162\" font-size=\"8\" fill=\"#8A7F74\" font-weight=\"700\" letter-spacing=\"1\">CHURN</text><text x=\"276\" y=\"196\" font-size=\"24\" fill=\"#9A3412\" font-weight=\"800\" font-family=\"Georgia, serif\">−18</text><text x=\"276\" y=\"208\" font-size=\"9\" fill=\"#8A7F74\">this week</text><text x=\"20\" y=\"236\" font-size=\"9\" fill=\"#8A7F74\" font-weight=\"700\" letter-spacing=\"1.5\">NET SUBSCRIBERS / WEEK</text><line x1=\"20\" y1=\"242\" x2=\"370\" y2=\"242\" stroke=\"#E8E0D0\" stroke-width=\"1\"/><rect x=\"16\" y=\"250\" width=\"358\" height=\"100\" fill=\"#FFFFFF\" rx=\"4\" stroke=\"#E8E0D0\" stroke-width=\"1\"/><line x1=\"30\" y1=\"300\" x2=\"360\" y2=\"300\" stroke=\"#E8E0D0\" stroke-width=\"1\" opacity=\"0.6\"/><text x=\"360\" y=\"298\" font-size=\"9\" fill=\"#8A7F74\" text-anchor=\"end\">0</text><rect x=\"34\" y=\"280\" width=\"32\" height=\"20\" fill=\"#15803D\" rx=\"2\" opacity=\"0.5\"/><rect x=\"82\" y=\"272\" width=\"32\" height=\"28\" fill=\"#15803D\" rx=\"2\" opacity=\"0.5\"/><rect x=\"130\" y=\"283\" width=\"32\" height=\"17\" fill=\"#15803D\" rx=\"2\" opacity=\"0.5\"/><rect x=\"178\" y=\"276\" width=\"32\" height=\"24\" fill=\"#15803D\" rx=\"2\" opacity=\"0.5\"/><rect x=\"226\" y=\"265\" width=\"32\" height=\"35\" fill=\"#15803D\" rx=\"2\" opacity=\"0.5\"/><rect x=\"274\" y=\"270\" width=\"32\" height=\"30\" fill=\"#15803D\" rx=\"2\" opacity=\"0.5\"/><rect x=\"322\" y=\"260\" width=\"32\" height=\"40\" fill=\"#15803D\" rx=\"2\" opacity=\"1\"/><text x=\"30\" y=\"342\" font-size=\"8\" fill=\"#8A7F74\">Week 1</text><text x=\"360\" y=\"342\" font-size=\"8\" fill=\"#8A7F74\" text-anchor=\"end\">This week</text><text x=\"20\" y=\"374\" font-size=\"9\" fill=\"#8A7F74\" font-weight=\"700\" letter-spacing=\"1.5\">TOP REFERRERS</text><line x1=\"20\" y1=\"380\" x2=\"370\" y2=\"380\" stroke=\"#E8E0D0\" stroke-width=\"1\"/><rect x=\"16\" y=\"394\" width=\"358\" height=\"42\" fill=\"#FFFFFF\" rx=\"3\" stroke=\"#E8E0D0\" stroke-width=\"1\"/><circle cx=\"32\" cy=\"415\" r=\"12\" fill=\"#F5F0E8\" stroke=\"#E8E0D0\" stroke-width=\"1\"/><text x=\"32\" y=\"419\" font-size=\"12\" fill=\"#D97706\" font-weight=\"700\" text-anchor=\"middle\">M</text><text x=\"54\" y=\"414\" font-size=\"13\" fill=\"#1A1818\" font-weight=\"600\">Morgan K.</text><text x=\"54\" y=\"428\" font-size=\"10\" fill=\"#8A7F74\">28 referrals</text><text x=\"370\" y=\"419\" font-size=\"13\" fill=\"#8A7F74\" font-weight=\"400\" text-anchor=\"end\">🥇</text><rect x=\"16\" y=\"444\" width=\"358\" height=\"42\" fill=\"#FFFFFF\" rx=\"3\" stroke=\"#E8E0D0\" stroke-width=\"1\"/><circle cx=\"32\" cy=\"465\" r=\"12\" fill=\"#F5F0E8\" stroke=\"#E8E0D0\" stroke-width=\"1\"/><text x=\"32\" y=\"469\" font-size=\"12\" fill=\"#D97706\" font-weight=\"700\" text-anchor=\"middle\">S</text><text x=\"54\" y=\"464\" font-size=\"13\" fill=\"#1A1818\" font-weight=\"600\">Sam Okafor</text><text x=\"54\" y=\"478\" font-size=\"10\" fill=\"#8A7F74\">19 referrals</text><text x=\"370\" y=\"469\" font-size=\"13\" fill=\"#8A7F74\" font-weight=\"400\" text-anchor=\"end\">🥈</text><rect x=\"16\" y=\"494\" width=\"358\" height=\"42\" fill=\"#FFFFFF\" rx=\"3\" stroke=\"#E8E0D0\" stroke-width=\"1\"/><circle cx=\"32\" cy=\"515\" r=\"12\" fill=\"#F5F0E8\" stroke=\"#E8E0D0\" stroke-width=\"1\"/><text x=\"32\" y=\"519\" font-size=\"12\" fill=\"#D97706\" font-weight=\"700\" text-anchor=\"middle\">P</text><text x=\"54\" y=\"514\" font-size=\"13\" fill=\"#1A1818\" font-weight=\"600\">Priya Singh</text><text x=\"54\" y=\"528\" font-size=\"10\" fill=\"#8A7F74\">15 referrals</text><text x=\"370\" y=\"519\" font-size=\"13\" fill=\"#8A7F74\" font-weight=\"400\" text-anchor=\"end\">🥉</text><rect x=\"16\" y=\"544\" width=\"358\" height=\"42\" fill=\"#FFFFFF\" rx=\"3\" stroke=\"#E8E0D0\" stroke-width=\"1\"/><circle cx=\"32\" cy=\"565\" r=\"12\" fill=\"#F5F0E8\" stroke=\"#E8E0D0\" stroke-width=\"1\"/><text x=\"32\" y=\"569\" font-size=\"12\" fill=\"#D97706\" font-weight=\"700\" text-anchor=\"middle\">A</text><text x=\"54\" y=\"564\" font-size=\"13\" fill=\"#1A1818\" font-weight=\"600\">Alex Chen</text><text x=\"54\" y=\"578\" font-size=\"10\" fill=\"#8A7F74\">11 referrals</text><text x=\"370\" y=\"569\" font-size=\"13\" fill=\"#8A7F74\" font-weight=\"500\" text-anchor=\"end\">#4</text><rect x=\"16\" y=\"594\" width=\"358\" height=\"42\" fill=\"#FFFFFF\" rx=\"3\" stroke=\"#E8E0D0\" stroke-width=\"1\"/><circle cx=\"32\" cy=\"615\" r=\"12\" fill=\"#F5F0E8\" stroke=\"#E8E0D0\" stroke-width=\"1\"/><text x=\"32\" y=\"619\" font-size=\"12\" fill=\"#D97706\" font-weight=\"700\" text-anchor=\"middle\">J</text><text x=\"54\" y=\"614\" font-size=\"13\" fill=\"#1A1818\" font-weight=\"600\">Jo Martinez</text><text x=\"54\" y=\"628\" font-size=\"10\" fill=\"#8A7F74\">8 referrals</text><text x=\"370\" y=\"619\" font-size=\"13\" fill=\"#8A7F74\" font-weight=\"500\" text-anchor=\"end\">#5</text><rect x=\"0\" y=\"774\" width=\"390\" height=\"70\" fill=\"#FFFFFF\" stroke=\"#E8E0D0\" stroke-width=\"1\"/><text x=\"39\" y=\"802\" font-size=\"18\" fill=\"#8A7F74\" text-anchor=\"middle\">⌂</text><text x=\"39\" y=\"822\" font-size=\"9\" fill=\"#8A7F74\" text-anchor=\"middle\">Home</text><text x=\"117\" y=\"802\" font-size=\"18\" fill=\"#8A7F74\" text-anchor=\"middle\">◎</text><text x=\"117\" y=\"822\" font-size=\"9\" fill=\"#8A7F74\" text-anchor=\"middle\">Audience</text><text x=\"195\" y=\"802\" font-size=\"18\" fill=\"#8A7F74\" text-anchor=\"middle\">✦</text><text x=\"195\" y=\"822\" font-size=\"9\" fill=\"#8A7F74\" text-anchor=\"middle\">Content</text><text x=\"273\" y=\"802\" font-size=\"18\" fill=\"#8A7F74\" text-anchor=\"middle\">$</text><text x=\"273\" y=\"822\" font-size=\"9\" fill=\"#8A7F74\" text-anchor=\"middle\">Revenue</text><text x=\"351\" y=\"802\" font-size=\"18\" fill=\"#8A7F74\" text-anchor=\"middle\">○</text><text x=\"351\" y=\"822\" font-size=\"9\" fill=\"#8A7F74\" text-anchor=\"middle\">Profile</text></svg>",
+      "elements": [
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "fill": "#FAF7F2"
+        },
+        {
+          "type": "line",
+          "x1": 0,
+          "y1": 0,
+          "x2": 0,
+          "y2": 844,
+          "stroke": "#E2D9C8",
+          "strokeWidth": 0.5,
+          "opacity": 0.4
+        },
+        {
+          "type": "line",
+          "x1": 78,
+          "y1": 0,
+          "x2": 78,
+          "y2": 844,
+          "stroke": "#E2D9C8",
+          "strokeWidth": 0.5,
+          "opacity": 0.4
+        },
+        {
+          "type": "line",
+          "x1": 156,
+          "y1": 0,
+          "x2": 156,
+          "y2": 844,
+          "stroke": "#E2D9C8",
+          "strokeWidth": 0.5,
+          "opacity": 0.4
+        },
+        {
+          "type": "line",
+          "x1": 234,
+          "y1": 0,
+          "x2": 234,
+          "y2": 844,
+          "stroke": "#E2D9C8",
+          "strokeWidth": 0.5,
+          "opacity": 0.4
+        },
+        {
+          "type": "line",
+          "x1": 312,
+          "y1": 0,
+          "x2": 312,
+          "y2": 844,
+          "stroke": "#E2D9C8",
+          "strokeWidth": 0.5,
+          "opacity": 0.4
+        },
+        {
+          "type": "line",
+          "x1": 390,
+          "y1": 0,
+          "x2": 390,
+          "y2": 844,
+          "stroke": "#E2D9C8",
+          "strokeWidth": 0.5,
+          "opacity": 0.4
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 58,
+          "fill": "#FFFFFF",
+          "stroke": "#E8E0D0",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 37,
+          "content": "GLEAM",
+          "fontSize": 18,
+          "fill": "#1A1818",
+          "fontWeight": 900,
+          "letterSpacing": 3
+        },
+        {
+          "type": "text",
+          "x": 370,
+          "y": 37,
+          "content": "● Live",
+          "fontSize": 11,
+          "fill": "#15803D",
+          "fontWeight": 600,
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 58,
+          "width": 390,
+          "height": 36,
+          "fill": "#F5F0E8"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 63,
+          "width": 32,
+          "height": 24,
+          "fill": "#D97706",
+          "rx": 3
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 79,
+          "content": "30d",
+          "fontSize": 11,
+          "fill": "#FFFFFF",
+          "fontWeight": 700,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 92,
+          "y": 79,
+          "content": "90d",
+          "fontSize": 11,
+          "fill": "#8A7F74",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 152,
+          "y": 79,
+          "content": "1yr",
+          "fontSize": 11,
+          "fill": "#8A7F74",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 212,
+          "y": 79,
+          "content": "All",
+          "fontSize": 11,
+          "fill": "#8A7F74",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 370,
+          "y": 79,
+          "content": "GROWTH",
+          "fontSize": 9,
+          "fill": "#8A7F74",
+          "fontWeight": 700,
+          "textAnchor": "end",
+          "letterSpacing": 2
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 128,
+          "content": "GROWTH METRICS",
+          "fontSize": 9,
+          "fill": "#8A7F74",
+          "fontWeight": 700,
+          "letterSpacing": 1.5
+        },
+        {
+          "type": "line",
+          "x1": 20,
+          "y1": 134,
+          "x2": 370,
+          "y2": 134,
+          "stroke": "#E8E0D0",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 144,
+          "width": 114,
+          "height": 72,
+          "fill": "#FFFFFF",
+          "rx": 4,
+          "stroke": "#E8E0D0",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 144,
+          "width": 114,
+          "height": 3,
+          "fill": "#15803D",
+          "opacity": 0.8
+        },
+        {
+          "type": "text",
+          "x": 28,
+          "y": 162,
+          "content": "NET NEW",
+          "fontSize": 8,
+          "fill": "#8A7F74",
+          "fontWeight": 700,
+          "letterSpacing": 1
+        },
+        {
+          "type": "text",
+          "x": 28,
+          "y": 196,
+          "content": "+124",
+          "fontSize": 24,
+          "fill": "#15803D",
+          "fontWeight": 800,
+          "fontFamily": "Georgia, serif"
+        },
+        {
+          "type": "text",
+          "x": 28,
+          "y": 208,
+          "content": "this week",
+          "fontSize": 9,
+          "fill": "#8A7F74"
+        },
+        {
+          "type": "rect",
+          "x": 140,
+          "y": 144,
+          "width": 114,
+          "height": 72,
+          "fill": "#FFFFFF",
+          "rx": 4,
+          "stroke": "#E8E0D0",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rect",
+          "x": 140,
+          "y": 144,
+          "width": 114,
+          "height": 3,
+          "fill": "#D97706",
+          "opacity": 0.8
+        },
+        {
+          "type": "text",
+          "x": 152,
+          "y": 162,
+          "content": "VIRAL COEFF",
+          "fontSize": 8,
+          "fill": "#8A7F74",
+          "fontWeight": 700,
+          "letterSpacing": 1
+        },
+        {
+          "type": "text",
+          "x": 152,
+          "y": 196,
+          "content": "1.08",
+          "fontSize": 24,
+          "fill": "#D97706",
+          "fontWeight": 800,
+          "fontFamily": "Georgia, serif"
+        },
+        {
+          "type": "text",
+          "x": 152,
+          "y": 208,
+          "content": "k-factor",
+          "fontSize": 9,
+          "fill": "#8A7F74"
+        },
+        {
+          "type": "rect",
+          "x": 264,
+          "y": 144,
+          "width": 114,
+          "height": 72,
+          "fill": "#FFFFFF",
+          "rx": 4,
+          "stroke": "#E8E0D0",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rect",
+          "x": 264,
+          "y": 144,
+          "width": 114,
+          "height": 3,
+          "fill": "#9A3412",
+          "opacity": 0.8
+        },
+        {
+          "type": "text",
+          "x": 276,
+          "y": 162,
+          "content": "CHURN",
+          "fontSize": 8,
+          "fill": "#8A7F74",
+          "fontWeight": 700,
+          "letterSpacing": 1
+        },
+        {
+          "type": "text",
+          "x": 276,
+          "y": 196,
+          "content": "−18",
+          "fontSize": 24,
+          "fill": "#9A3412",
+          "fontWeight": 800,
+          "fontFamily": "Georgia, serif"
+        },
+        {
+          "type": "text",
+          "x": 276,
+          "y": 208,
+          "content": "this week",
+          "fontSize": 9,
+          "fill": "#8A7F74"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 236,
+          "content": "NET SUBSCRIBERS / WEEK",
+          "fontSize": 9,
+          "fill": "#8A7F74",
+          "fontWeight": 700,
+          "letterSpacing": 1.5
+        },
+        {
+          "type": "line",
+          "x1": 20,
+          "y1": 242,
+          "x2": 370,
+          "y2": 242,
+          "stroke": "#E8E0D0",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 250,
+          "width": 358,
+          "height": 100,
+          "fill": "#FFFFFF",
+          "rx": 4,
+          "stroke": "#E8E0D0",
+          "strokeWidth": 1
+        },
+        {
+          "type": "line",
+          "x1": 30,
+          "y1": 300,
+          "x2": 360,
+          "y2": 300,
+          "stroke": "#E8E0D0",
+          "strokeWidth": 1,
+          "opacity": 0.6
+        },
+        {
+          "type": "text",
+          "x": 360,
+          "y": 298,
+          "content": "0",
+          "fontSize": 9,
+          "fill": "#8A7F74",
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 34,
+          "y": 280,
+          "width": 32,
+          "height": 20,
+          "fill": "#15803D",
+          "rx": 2,
+          "opacity": 0.5
+        },
+        {
+          "type": "rect",
+          "x": 82,
+          "y": 272,
+          "width": 32,
+          "height": 28,
+          "fill": "#15803D",
+          "rx": 2,
+          "opacity": 0.5
+        },
+        {
+          "type": "rect",
+          "x": 130,
+          "y": 283,
+          "width": 32,
+          "height": 17,
+          "fill": "#15803D",
+          "rx": 2,
+          "opacity": 0.5
+        },
+        {
+          "type": "rect",
+          "x": 178,
+          "y": 276,
+          "width": 32,
+          "height": 24,
+          "fill": "#15803D",
+          "rx": 2,
+          "opacity": 0.5
+        },
+        {
+          "type": "rect",
+          "x": 226,
+          "y": 265,
+          "width": 32,
+          "height": 35,
+          "fill": "#15803D",
+          "rx": 2,
+          "opacity": 0.5
+        },
+        {
+          "type": "rect",
+          "x": 274,
+          "y": 270,
+          "width": 32,
+          "height": 30,
+          "fill": "#15803D",
+          "rx": 2,
+          "opacity": 0.5
+        },
+        {
+          "type": "rect",
+          "x": 322,
+          "y": 260,
+          "width": 32,
+          "height": 40,
+          "fill": "#15803D",
+          "rx": 2,
+          "opacity": 1
+        },
+        {
+          "type": "text",
+          "x": 30,
+          "y": 342,
+          "content": "Week 1",
+          "fontSize": 8,
+          "fill": "#8A7F74"
+        },
+        {
+          "type": "text",
+          "x": 360,
+          "y": 342,
+          "content": "This week",
+          "fontSize": 8,
+          "fill": "#8A7F74",
+          "textAnchor": "end"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 374,
+          "content": "TOP REFERRERS",
+          "fontSize": 9,
+          "fill": "#8A7F74",
+          "fontWeight": 700,
+          "letterSpacing": 1.5
+        },
+        {
+          "type": "line",
+          "x1": 20,
+          "y1": 380,
+          "x2": 370,
+          "y2": 380,
+          "stroke": "#E8E0D0",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 394,
+          "width": 358,
+          "height": 42,
+          "fill": "#FFFFFF",
+          "rx": 3,
+          "stroke": "#E8E0D0",
+          "strokeWidth": 1
+        },
+        {
+          "type": "circle",
+          "cx": 32,
+          "cy": 415,
+          "r": 12,
+          "fill": "#F5F0E8",
+          "stroke": "#E8E0D0",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 419,
+          "content": "M",
+          "fontSize": 12,
+          "fill": "#D97706",
+          "fontWeight": 700,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 54,
+          "y": 414,
+          "content": "Morgan K.",
+          "fontSize": 13,
+          "fill": "#1A1818",
+          "fontWeight": 600
+        },
+        {
+          "type": "text",
+          "x": 54,
+          "y": 428,
+          "content": "28 referrals",
+          "fontSize": 10,
+          "fill": "#8A7F74"
+        },
+        {
+          "type": "text",
+          "x": 370,
+          "y": 419,
+          "content": "🥇",
+          "fontSize": 13,
+          "fill": "#8A7F74",
+          "fontWeight": 400,
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 444,
+          "width": 358,
+          "height": 42,
+          "fill": "#FFFFFF",
+          "rx": 3,
+          "stroke": "#E8E0D0",
+          "strokeWidth": 1
+        },
+        {
+          "type": "circle",
+          "cx": 32,
+          "cy": 465,
+          "r": 12,
+          "fill": "#F5F0E8",
+          "stroke": "#E8E0D0",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 469,
+          "content": "S",
+          "fontSize": 12,
+          "fill": "#D97706",
+          "fontWeight": 700,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 54,
+          "y": 464,
+          "content": "Sam Okafor",
+          "fontSize": 13,
+          "fill": "#1A1818",
+          "fontWeight": 600
+        },
+        {
+          "type": "text",
+          "x": 54,
+          "y": 478,
+          "content": "19 referrals",
+          "fontSize": 10,
+          "fill": "#8A7F74"
+        },
+        {
+          "type": "text",
+          "x": 370,
+          "y": 469,
+          "content": "🥈",
+          "fontSize": 13,
+          "fill": "#8A7F74",
+          "fontWeight": 400,
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 494,
+          "width": 358,
+          "height": 42,
+          "fill": "#FFFFFF",
+          "rx": 3,
+          "stroke": "#E8E0D0",
+          "strokeWidth": 1
+        },
+        {
+          "type": "circle",
+          "cx": 32,
+          "cy": 515,
+          "r": 12,
+          "fill": "#F5F0E8",
+          "stroke": "#E8E0D0",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 519,
+          "content": "P",
+          "fontSize": 12,
+          "fill": "#D97706",
+          "fontWeight": 700,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 54,
+          "y": 514,
+          "content": "Priya Singh",
+          "fontSize": 13,
+          "fill": "#1A1818",
+          "fontWeight": 600
+        },
+        {
+          "type": "text",
+          "x": 54,
+          "y": 528,
+          "content": "15 referrals",
+          "fontSize": 10,
+          "fill": "#8A7F74"
+        },
+        {
+          "type": "text",
+          "x": 370,
+          "y": 519,
+          "content": "🥉",
+          "fontSize": 13,
+          "fill": "#8A7F74",
+          "fontWeight": 400,
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 544,
+          "width": 358,
+          "height": 42,
+          "fill": "#FFFFFF",
+          "rx": 3,
+          "stroke": "#E8E0D0",
+          "strokeWidth": 1
+        },
+        {
+          "type": "circle",
+          "cx": 32,
+          "cy": 565,
+          "r": 12,
+          "fill": "#F5F0E8",
+          "stroke": "#E8E0D0",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 569,
+          "content": "A",
+          "fontSize": 12,
+          "fill": "#D97706",
+          "fontWeight": 700,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 54,
+          "y": 564,
+          "content": "Alex Chen",
+          "fontSize": 13,
+          "fill": "#1A1818",
+          "fontWeight": 600
+        },
+        {
+          "type": "text",
+          "x": 54,
+          "y": 578,
+          "content": "11 referrals",
+          "fontSize": 10,
+          "fill": "#8A7F74"
+        },
+        {
+          "type": "text",
+          "x": 370,
+          "y": 569,
+          "content": "#4",
+          "fontSize": 13,
+          "fill": "#8A7F74",
+          "fontWeight": 500,
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 594,
+          "width": 358,
+          "height": 42,
+          "fill": "#FFFFFF",
+          "rx": 3,
+          "stroke": "#E8E0D0",
+          "strokeWidth": 1
+        },
+        {
+          "type": "circle",
+          "cx": 32,
+          "cy": 615,
+          "r": 12,
+          "fill": "#F5F0E8",
+          "stroke": "#E8E0D0",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 619,
+          "content": "J",
+          "fontSize": 12,
+          "fill": "#D97706",
+          "fontWeight": 700,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 54,
+          "y": 614,
+          "content": "Jo Martinez",
+          "fontSize": 13,
+          "fill": "#1A1818",
+          "fontWeight": 600
+        },
+        {
+          "type": "text",
+          "x": 54,
+          "y": 628,
+          "content": "8 referrals",
+          "fontSize": 10,
+          "fill": "#8A7F74"
+        },
+        {
+          "type": "text",
+          "x": 370,
+          "y": 619,
+          "content": "#5",
+          "fontSize": 13,
+          "fill": "#8A7F74",
+          "fontWeight": 500,
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 774,
+          "width": 390,
+          "height": 70,
+          "fill": "#FFFFFF",
+          "stroke": "#E8E0D0",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 39,
+          "y": 802,
+          "content": "⌂",
+          "fontSize": 18,
+          "fill": "#8A7F74",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 39,
+          "y": 822,
+          "content": "Home",
+          "fontSize": 9,
+          "fill": "#8A7F74",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 117,
+          "y": 802,
+          "content": "◎",
+          "fontSize": 18,
+          "fill": "#8A7F74",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 117,
+          "y": 822,
+          "content": "Audience",
+          "fontSize": 9,
+          "fill": "#8A7F74",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 802,
+          "content": "✦",
+          "fontSize": 18,
+          "fill": "#8A7F74",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 822,
+          "content": "Content",
+          "fontSize": 9,
+          "fill": "#8A7F74",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 273,
+          "y": 802,
+          "content": "$",
+          "fontSize": 18,
+          "fill": "#8A7F74",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 273,
+          "y": 822,
+          "content": "Revenue",
+          "fontSize": 9,
+          "fill": "#8A7F74",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 351,
+          "y": 802,
+          "content": "○",
+          "fontSize": 18,
+          "fill": "#8A7F74",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 351,
+          "y": 822,
+          "content": "Profile",
+          "fontSize": 9,
+          "fill": "#8A7F74",
+          "textAnchor": "middle"
+        }
+      ]
+    },
+    {
+      "name": "Profile",
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"390\" height=\"844\"><rect x=\"0\" y=\"0\" width=\"390\" height=\"844\" fill=\"#FAF7F2\"/><line x1=\"0\" y1=\"0\" x2=\"0\" y2=\"844\" stroke=\"#E2D9C8\" stroke-width=\"0.5\" opacity=\"0.4\"/><line x1=\"78\" y1=\"0\" x2=\"78\" y2=\"844\" stroke=\"#E2D9C8\" stroke-width=\"0.5\" opacity=\"0.4\"/><line x1=\"156\" y1=\"0\" x2=\"156\" y2=\"844\" stroke=\"#E2D9C8\" stroke-width=\"0.5\" opacity=\"0.4\"/><line x1=\"234\" y1=\"0\" x2=\"234\" y2=\"844\" stroke=\"#E2D9C8\" stroke-width=\"0.5\" opacity=\"0.4\"/><line x1=\"312\" y1=\"0\" x2=\"312\" y2=\"844\" stroke=\"#E2D9C8\" stroke-width=\"0.5\" opacity=\"0.4\"/><line x1=\"390\" y1=\"0\" x2=\"390\" y2=\"844\" stroke=\"#E2D9C8\" stroke-width=\"0.5\" opacity=\"0.4\"/><rect x=\"0\" y=\"0\" width=\"390\" height=\"58\" fill=\"#FFFFFF\" stroke=\"#E8E0D0\" stroke-width=\"1\"/><text x=\"20\" y=\"37\" font-size=\"18\" fill=\"#1A1818\" font-weight=\"900\" letter-spacing=\"3\">GLEAM</text><text x=\"370\" y=\"37\" font-size=\"12\" fill=\"#D97706\" font-weight=\"600\" text-anchor=\"end\">Settings</text><rect x=\"0\" y=\"58\" width=\"390\" height=\"150\" fill=\"#FFFFFF\" stroke=\"#E8E0D0\" stroke-width=\"1\"/><circle cx=\"195\" cy=\"132\" r=\"38\" fill=\"#F5F0E8\" stroke=\"#E8E0D0\" stroke-width=\"2\"/><text x=\"195\" y=\"140\" font-size=\"32\" fill=\"#D97706\" font-weight=\"700\" text-anchor=\"middle\">E</text><text x=\"195\" y=\"194\" font-size=\"18\" fill=\"#1A1818\" font-weight=\"700\" font-family=\"Georgia, serif\" text-anchor=\"middle\">Elena Voss</text><text x=\"195\" y=\"210\" font-size=\"11\" fill=\"#8A7F74\" text-anchor=\"middle\">the.elena.letter@substack.com</text><rect x=\"150\" y=\"218\" width=\"87.5\" height=\"22\" fill=\"#D97706\" rx=\"11\" opacity=\"0.15\"/><text x=\"193.75\" y=\"232\" font-size=\"9\" fill=\"#D97706\" font-weight=\"700\" text-anchor=\"middle\" letter-spacing=\"0.5\">PRO CREATOR</text><line x1=\"20\" y1=\"248\" x2=\"370\" y2=\"248\" stroke=\"#E8E0D0\" stroke-width=\"1\"/><text x=\"20\" y=\"268\" font-size=\"9\" fill=\"#8A7F74\" font-weight=\"700\" letter-spacing=\"1.5\">YOUR GLEAM STATS</text><rect x=\"16\" y=\"282\" width=\"358\" height=\"44\" fill=\"#FFFFFF\" rx=\"3\" stroke=\"#E8E0D0\" stroke-width=\"1\"/><text x=\"30\" y=\"308\" font-size=\"12\" fill=\"#8A7F74\">Member since</text><text x=\"360\" y=\"308\" font-size=\"12\" fill=\"#1A1818\" font-weight=\"700\" text-anchor=\"end\">Jan 2025</text><rect x=\"16\" y=\"334\" width=\"358\" height=\"44\" fill=\"#FFFFFF\" rx=\"3\" stroke=\"#E8E0D0\" stroke-width=\"1\"/><text x=\"30\" y=\"360\" font-size=\"12\" fill=\"#8A7F74\">Heartbeat score</text><text x=\"360\" y=\"360\" font-size=\"12\" fill=\"#1A1818\" font-weight=\"700\" text-anchor=\"end\">94 / 100</text><rect x=\"16\" y=\"386\" width=\"358\" height=\"44\" fill=\"#FFFFFF\" rx=\"3\" stroke=\"#E8E0D0\" stroke-width=\"1\"/><text x=\"30\" y=\"412\" font-size=\"12\" fill=\"#8A7F74\">Consistency</text><text x=\"360\" y=\"412\" font-size=\"12\" fill=\"#1A1818\" font-weight=\"700\" text-anchor=\"end\">47 weeks</text><rect x=\"16\" y=\"438\" width=\"358\" height=\"44\" fill=\"#FFFFFF\" rx=\"3\" stroke=\"#E8E0D0\" stroke-width=\"1\"/><text x=\"30\" y=\"464\" font-size=\"12\" fill=\"#8A7F74\">Best open rate</text><text x=\"360\" y=\"464\" font-size=\"12\" fill=\"#1A1818\" font-weight=\"700\" text-anchor=\"end\">61%</text><line x1=\"20\" y1=\"498\" x2=\"370\" y2=\"498\" stroke=\"#E8E0D0\" stroke-width=\"1\"/><text x=\"20\" y=\"518\" font-size=\"9\" fill=\"#8A7F74\" font-weight=\"700\" letter-spacing=\"1.5\">YOUR PLAN</text><rect x=\"16\" y=\"526\" width=\"358\" height=\"80\" fill=\"#FFFFFF\" rx=\"4\" stroke=\"#D97706\" stroke-width=\"2\"/><rect x=\"16\" y=\"526\" width=\"6\" height=\"80\" fill=\"#D97706\"/><text x=\"36\" y=\"551\" font-size=\"13\" fill=\"#1A1818\" font-weight=\"800\" letter-spacing=\"1\">GLEAM PRO</text><text x=\"36\" y=\"568\" font-size=\"11\" fill=\"#8A7F74\">Unlimited subscribers · Advanced analytics</text><text x=\"36\" y=\"584\" font-size=\"10\" fill=\"#8A7F74\">Billed annually — renews Jan 2027</text><text x=\"360\" y=\"555\" font-size=\"16\" fill=\"#D97706\" font-weight=\"700\" text-anchor=\"end\">$19/mo</text><line x1=\"20\" y1=\"626\" x2=\"370\" y2=\"626\" stroke=\"#E8E0D0\" stroke-width=\"1\"/><text x=\"20\" y=\"646\" font-size=\"9\" fill=\"#8A7F74\" font-weight=\"700\" letter-spacing=\"1.5\">CONNECTED</text><rect x=\"16\" y=\"660\" width=\"358\" height=\"34\" fill=\"#FFFFFF\" rx=\"3\" stroke=\"#E8E0D0\" stroke-width=\"1\"/><text x=\"30\" y=\"682\" font-size=\"12\" fill=\"#1A1818\" font-weight=\"500\">Stripe</text><text x=\"360\" y=\"682\" font-size=\"10\" fill=\"#15803D\" font-weight=\"600\" text-anchor=\"end\">Active</text><rect x=\"16\" y=\"702\" width=\"358\" height=\"34\" fill=\"#FFFFFF\" rx=\"3\" stroke=\"#E8E0D0\" stroke-width=\"1\"/><text x=\"30\" y=\"724\" font-size=\"12\" fill=\"#1A1818\" font-weight=\"500\">Substack Import</text><text x=\"360\" y=\"724\" font-size=\"10\" fill=\"#15803D\" font-weight=\"600\" text-anchor=\"end\">Active</text><rect x=\"16\" y=\"744\" width=\"358\" height=\"34\" fill=\"#FFFFFF\" rx=\"3\" stroke=\"#E8E0D0\" stroke-width=\"1\"/><text x=\"30\" y=\"766\" font-size=\"12\" fill=\"#1A1818\" font-weight=\"500\">Mailchimp</text><text x=\"360\" y=\"766\" font-size=\"10\" fill=\"#8A7F74\" font-weight=\"400\" text-anchor=\"end\">Not connected</text><rect x=\"0\" y=\"774\" width=\"390\" height=\"70\" fill=\"#FFFFFF\" stroke=\"#E8E0D0\" stroke-width=\"1\"/><text x=\"39\" y=\"802\" font-size=\"18\" fill=\"#8A7F74\" text-anchor=\"middle\">⌂</text><text x=\"39\" y=\"822\" font-size=\"9\" fill=\"#8A7F74\" font-weight=\"400\" text-anchor=\"middle\">Home</text><text x=\"117\" y=\"802\" font-size=\"18\" fill=\"#8A7F74\" text-anchor=\"middle\">◎</text><text x=\"117\" y=\"822\" font-size=\"9\" fill=\"#8A7F74\" font-weight=\"400\" text-anchor=\"middle\">Audience</text><text x=\"195\" y=\"802\" font-size=\"18\" fill=\"#8A7F74\" text-anchor=\"middle\">✦</text><text x=\"195\" y=\"822\" font-size=\"9\" fill=\"#8A7F74\" font-weight=\"400\" text-anchor=\"middle\">Content</text><text x=\"273\" y=\"802\" font-size=\"18\" fill=\"#8A7F74\" text-anchor=\"middle\">$</text><text x=\"273\" y=\"822\" font-size=\"9\" fill=\"#8A7F74\" font-weight=\"400\" text-anchor=\"middle\">Revenue</text><text x=\"351\" y=\"802\" font-size=\"18\" fill=\"#D97706\" text-anchor=\"middle\">○</text><text x=\"351\" y=\"822\" font-size=\"9\" fill=\"#D97706\" font-weight=\"700\" text-anchor=\"middle\">Profile</text><line x1=\"333\" y1=\"774\" x2=\"369\" y2=\"774\" stroke=\"#D97706\" stroke-width=\"2\"/></svg>",
+      "elements": [
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "fill": "#FAF7F2"
+        },
+        {
+          "type": "line",
+          "x1": 0,
+          "y1": 0,
+          "x2": 0,
+          "y2": 844,
+          "stroke": "#E2D9C8",
+          "strokeWidth": 0.5,
+          "opacity": 0.4
+        },
+        {
+          "type": "line",
+          "x1": 78,
+          "y1": 0,
+          "x2": 78,
+          "y2": 844,
+          "stroke": "#E2D9C8",
+          "strokeWidth": 0.5,
+          "opacity": 0.4
+        },
+        {
+          "type": "line",
+          "x1": 156,
+          "y1": 0,
+          "x2": 156,
+          "y2": 844,
+          "stroke": "#E2D9C8",
+          "strokeWidth": 0.5,
+          "opacity": 0.4
+        },
+        {
+          "type": "line",
+          "x1": 234,
+          "y1": 0,
+          "x2": 234,
+          "y2": 844,
+          "stroke": "#E2D9C8",
+          "strokeWidth": 0.5,
+          "opacity": 0.4
+        },
+        {
+          "type": "line",
+          "x1": 312,
+          "y1": 0,
+          "x2": 312,
+          "y2": 844,
+          "stroke": "#E2D9C8",
+          "strokeWidth": 0.5,
+          "opacity": 0.4
+        },
+        {
+          "type": "line",
+          "x1": 390,
+          "y1": 0,
+          "x2": 390,
+          "y2": 844,
+          "stroke": "#E2D9C8",
+          "strokeWidth": 0.5,
+          "opacity": 0.4
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 58,
+          "fill": "#FFFFFF",
+          "stroke": "#E8E0D0",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 37,
+          "content": "GLEAM",
+          "fontSize": 18,
+          "fill": "#1A1818",
+          "fontWeight": 900,
+          "letterSpacing": 3
+        },
+        {
+          "type": "text",
+          "x": 370,
+          "y": 37,
+          "content": "Settings",
+          "fontSize": 12,
+          "fill": "#D97706",
+          "fontWeight": 600,
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 58,
+          "width": 390,
+          "height": 150,
+          "fill": "#FFFFFF",
+          "stroke": "#E8E0D0",
+          "strokeWidth": 1
+        },
+        {
+          "type": "circle",
+          "cx": 195,
+          "cy": 132,
+          "r": 38,
+          "fill": "#F5F0E8",
+          "stroke": "#E8E0D0",
+          "strokeWidth": 2
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 140,
+          "content": "E",
+          "fontSize": 32,
+          "fill": "#D97706",
+          "fontWeight": 700,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 194,
+          "content": "Elena Voss",
+          "fontSize": 18,
+          "fill": "#1A1818",
+          "fontWeight": 700,
+          "fontFamily": "Georgia, serif",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 210,
+          "content": "the.elena.letter@substack.com",
+          "fontSize": 11,
+          "fill": "#8A7F74",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 150,
+          "y": 218,
+          "width": 87.5,
+          "height": 22,
+          "fill": "#D97706",
+          "rx": 11,
+          "opacity": 0.15
+        },
+        {
+          "type": "text",
+          "x": 193.75,
+          "y": 232,
+          "content": "PRO CREATOR",
+          "fontSize": 9,
+          "fill": "#D97706",
+          "fontWeight": 700,
+          "textAnchor": "middle",
+          "letterSpacing": 0.5
+        },
+        {
+          "type": "line",
+          "x1": 20,
+          "y1": 248,
+          "x2": 370,
+          "y2": 248,
+          "stroke": "#E8E0D0",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 268,
+          "content": "YOUR GLEAM STATS",
+          "fontSize": 9,
+          "fill": "#8A7F74",
+          "fontWeight": 700,
+          "letterSpacing": 1.5
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 282,
+          "width": 358,
+          "height": 44,
+          "fill": "#FFFFFF",
+          "rx": 3,
+          "stroke": "#E8E0D0",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 30,
+          "y": 308,
+          "content": "Member since",
+          "fontSize": 12,
+          "fill": "#8A7F74"
+        },
+        {
+          "type": "text",
+          "x": 360,
+          "y": 308,
+          "content": "Jan 2025",
+          "fontSize": 12,
+          "fill": "#1A1818",
+          "fontWeight": 700,
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 334,
+          "width": 358,
+          "height": 44,
+          "fill": "#FFFFFF",
+          "rx": 3,
+          "stroke": "#E8E0D0",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 30,
+          "y": 360,
+          "content": "Heartbeat score",
+          "fontSize": 12,
+          "fill": "#8A7F74"
+        },
+        {
+          "type": "text",
+          "x": 360,
+          "y": 360,
+          "content": "94 / 100",
+          "fontSize": 12,
+          "fill": "#1A1818",
+          "fontWeight": 700,
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 386,
+          "width": 358,
+          "height": 44,
+          "fill": "#FFFFFF",
+          "rx": 3,
+          "stroke": "#E8E0D0",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 30,
+          "y": 412,
+          "content": "Consistency",
+          "fontSize": 12,
+          "fill": "#8A7F74"
+        },
+        {
+          "type": "text",
+          "x": 360,
+          "y": 412,
+          "content": "47 weeks",
+          "fontSize": 12,
+          "fill": "#1A1818",
+          "fontWeight": 700,
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 438,
+          "width": 358,
+          "height": 44,
+          "fill": "#FFFFFF",
+          "rx": 3,
+          "stroke": "#E8E0D0",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 30,
+          "y": 464,
+          "content": "Best open rate",
+          "fontSize": 12,
+          "fill": "#8A7F74"
+        },
+        {
+          "type": "text",
+          "x": 360,
+          "y": 464,
+          "content": "61%",
+          "fontSize": 12,
+          "fill": "#1A1818",
+          "fontWeight": 700,
+          "textAnchor": "end"
+        },
+        {
+          "type": "line",
+          "x1": 20,
+          "y1": 498,
+          "x2": 370,
+          "y2": 498,
+          "stroke": "#E8E0D0",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 518,
+          "content": "YOUR PLAN",
+          "fontSize": 9,
+          "fill": "#8A7F74",
+          "fontWeight": 700,
+          "letterSpacing": 1.5
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 526,
+          "width": 358,
+          "height": 80,
+          "fill": "#FFFFFF",
+          "rx": 4,
+          "stroke": "#D97706",
+          "strokeWidth": 2
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 526,
+          "width": 6,
+          "height": 80,
+          "fill": "#D97706"
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 551,
+          "content": "GLEAM PRO",
+          "fontSize": 13,
+          "fill": "#1A1818",
+          "fontWeight": 800,
+          "letterSpacing": 1
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 568,
+          "content": "Unlimited subscribers · Advanced analytics",
+          "fontSize": 11,
+          "fill": "#8A7F74"
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 584,
+          "content": "Billed annually — renews Jan 2027",
+          "fontSize": 10,
+          "fill": "#8A7F74"
+        },
+        {
+          "type": "text",
+          "x": 360,
+          "y": 555,
+          "content": "$19/mo",
+          "fontSize": 16,
+          "fill": "#D97706",
+          "fontWeight": 700,
+          "textAnchor": "end"
+        },
+        {
+          "type": "line",
+          "x1": 20,
+          "y1": 626,
+          "x2": 370,
+          "y2": 626,
+          "stroke": "#E8E0D0",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 646,
+          "content": "CONNECTED",
+          "fontSize": 9,
+          "fill": "#8A7F74",
+          "fontWeight": 700,
+          "letterSpacing": 1.5
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 660,
+          "width": 358,
+          "height": 34,
+          "fill": "#FFFFFF",
+          "rx": 3,
+          "stroke": "#E8E0D0",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 30,
+          "y": 682,
+          "content": "Stripe",
+          "fontSize": 12,
+          "fill": "#1A1818",
+          "fontWeight": 500
+        },
+        {
+          "type": "text",
+          "x": 360,
+          "y": 682,
+          "content": "Active",
+          "fontSize": 10,
+          "fill": "#15803D",
+          "fontWeight": 600,
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 702,
+          "width": 358,
+          "height": 34,
+          "fill": "#FFFFFF",
+          "rx": 3,
+          "stroke": "#E8E0D0",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 30,
+          "y": 724,
+          "content": "Substack Import",
+          "fontSize": 12,
+          "fill": "#1A1818",
+          "fontWeight": 500
+        },
+        {
+          "type": "text",
+          "x": 360,
+          "y": 724,
+          "content": "Active",
+          "fontSize": 10,
+          "fill": "#15803D",
+          "fontWeight": 600,
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 744,
+          "width": 358,
+          "height": 34,
+          "fill": "#FFFFFF",
+          "rx": 3,
+          "stroke": "#E8E0D0",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 30,
+          "y": 766,
+          "content": "Mailchimp",
+          "fontSize": 12,
+          "fill": "#1A1818",
+          "fontWeight": 500
+        },
+        {
+          "type": "text",
+          "x": 360,
+          "y": 766,
+          "content": "Not connected",
+          "fontSize": 10,
+          "fill": "#8A7F74",
+          "fontWeight": 400,
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 774,
+          "width": 390,
+          "height": 70,
+          "fill": "#FFFFFF",
+          "stroke": "#E8E0D0",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 39,
+          "y": 802,
+          "content": "⌂",
+          "fontSize": 18,
+          "fill": "#8A7F74",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 39,
+          "y": 822,
+          "content": "Home",
+          "fontSize": 9,
+          "fill": "#8A7F74",
+          "fontWeight": 400,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 117,
+          "y": 802,
+          "content": "◎",
+          "fontSize": 18,
+          "fill": "#8A7F74",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 117,
+          "y": 822,
+          "content": "Audience",
+          "fontSize": 9,
+          "fill": "#8A7F74",
+          "fontWeight": 400,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 802,
+          "content": "✦",
+          "fontSize": 18,
+          "fill": "#8A7F74",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 822,
+          "content": "Content",
+          "fontSize": 9,
+          "fill": "#8A7F74",
+          "fontWeight": 400,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 273,
+          "y": 802,
+          "content": "$",
+          "fontSize": 18,
+          "fill": "#8A7F74",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 273,
+          "y": 822,
+          "content": "Revenue",
+          "fontSize": 9,
+          "fill": "#8A7F74",
+          "fontWeight": 400,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 351,
+          "y": 802,
+          "content": "○",
+          "fontSize": 18,
+          "fill": "#D97706",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 351,
+          "y": 822,
+          "content": "Profile",
+          "fontSize": 9,
+          "fill": "#D97706",
+          "fontWeight": 700,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "line",
+          "x1": 333,
+          "y1": 774,
+          "x2": 369,
+          "y2": 774,
+          "stroke": "#D97706",
+          "strokeWidth": 2
+        }
+      ]
+    }
+  ]
+}

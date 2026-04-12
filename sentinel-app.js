@@ -1,0 +1,330 @@
+/**
+ * SENTINEL — API Security Intelligence
+ * RAM Design Heartbeat | Dark theme
+ * Inspired by: Evervault customers page (godly.website) — deep navy #010314,
+ * encrypted data aesthetics, security-first SaaS visual language.
+ * Also: Linear + Midday (darkmodedesign.com) for clean dark dashboard structure.
+ */
+const fs = require('fs');
+
+const pen = {
+  version: "2.8",
+  meta: {
+    name: "SENTINEL",
+    tagline: "API security intelligence, always watching",
+    slug: "sentinel",
+    archetype: "security-intelligence",
+    theme: "dark",
+    description: "Dark-theme API security intelligence platform. Inspired by Evervault (godly.website) — deep near-black navy #010314, encrypted data flow visualization, threat monitoring. Linear/Midday (darkmodedesign.com) for clean dark structure.",
+    palette: {
+      bg:      "#010314",
+      surface: "#070C22",
+      border:  "#12183D",
+      text:    "#DFE1F4",
+      muted:   "#6B7094",
+      accent:  "#5B6EF5",
+      accent2: "#22D3B4",
+      danger:  "#F45C5C",
+      warn:    "#F5A623"
+    }
+  },
+  screens: [
+    {
+      id: "overview",
+      label: "Overview",
+      background: { type: "solid", color: "#010314" },
+      elements: [
+        { type: "rectangle", id: "statusbar", x: 0, y: 0, width: 390, height: 44, fill: { type: "solid", color: "#010314" } },
+        { type: "rectangle", id: "nav-bg", x: 0, y: 44, width: 390, height: 56, fill: { type: "solid", color: "#070C22" }, stroke: { color: "#12183D", width: 1 } },
+        { type: "text", id: "app-name", x: 20, y: 58, width: 160, height: 28, content: "SENTINEL", style: { fontSize: 18, fontWeight: "700", color: "#DFE1F4", letterSpacing: 3 } },
+        { type: "rectangle", id: "live-badge", x: 314, y: 56, width: 56, height: 28, fill: { type: "solid", color: "#0D1435" }, cornerRadius: 6, stroke: { color: "#5B6EF5", width: 1 } },
+        { type: "text", id: "live-text", x: 320, y: 63, width: 44, height: 14, content: "● LIVE", style: { fontSize: 9, fontWeight: "600", color: "#22D3B4", letterSpacing: 1 } },
+        // Security posture card
+        { type: "rectangle", id: "score-card", x: 16, y: 116, width: 358, height: 120, fill: { type: "solid", color: "#070C22" }, cornerRadius: 16, stroke: { color: "#12183D", width: 1 } },
+        { type: "text", id: "score-label", x: 32, y: 132, width: 180, height: 16, content: "SECURITY POSTURE", style: { fontSize: 10, fontWeight: "600", color: "#6B7094", letterSpacing: 2 } },
+        { type: "text", id: "score-value", x: 32, y: 150, width: 90, height: 52, content: "94", style: { fontSize: 52, fontWeight: "800", color: "#22D3B4" } },
+        { type: "text", id: "score-sub", x: 32, y: 204, width: 140, height: 16, content: "/ 100  ·  Excellent", style: { fontSize: 12, fontWeight: "400", color: "#6B7094" } },
+        { type: "rectangle", id: "gauge-bg", x: 252, y: 148, width: 100, height: 8, fill: { type: "solid", color: "#12183D" }, cornerRadius: 4 },
+        { type: "rectangle", id: "gauge-fill", x: 252, y: 148, width: 94, height: 8, fill: { type: "solid", color: "#22D3B4" }, cornerRadius: 4 },
+        { type: "text", id: "gauge-pct", x: 252, y: 162, width: 120, height: 14, content: "94% endpoints secured", style: { fontSize: 10, fontWeight: "500", color: "#6B7094" } },
+        { type: "text", id: "scan-time", x: 252, y: 180, width: 120, height: 12, content: "Last scan: 2 min ago", style: { fontSize: 10, fontWeight: "400", color: "#4A4F6B" } },
+        // Stats row
+        { type: "rectangle", id: "stats-bg", x: 16, y: 248, width: 358, height: 72, fill: { type: "solid", color: "#070C22" }, cornerRadius: 12, stroke: { color: "#12183D", width: 1 } },
+        { type: "text", id: "s1-val", x: 32, y: 262, width: 80, height: 24, content: "1,247", style: { fontSize: 20, fontWeight: "700", color: "#DFE1F4" } },
+        { type: "text", id: "s1-lbl", x: 32, y: 288, width: 80, height: 14, content: "API calls / hr", style: { fontSize: 10, fontWeight: "400", color: "#6B7094" } },
+        { type: "rectangle", id: "sdiv1", x: 146, y: 258, width: 1, height: 48, fill: { type: "solid", color: "#12183D" } },
+        { type: "text", id: "s2-val", x: 164, y: 262, width: 60, height: 24, content: "3", style: { fontSize: 20, fontWeight: "700", color: "#F45C5C" } },
+        { type: "text", id: "s2-lbl", x: 164, y: 288, width: 80, height: 14, content: "Threats blocked", style: { fontSize: 10, fontWeight: "400", color: "#6B7094" } },
+        { type: "rectangle", id: "sdiv2", x: 260, y: 258, width: 1, height: 48, fill: { type: "solid", color: "#12183D" } },
+        { type: "text", id: "s3-val", x: 278, y: 262, width: 60, height: 24, content: "99.8%", style: { fontSize: 20, fontWeight: "700", color: "#22D3B4" } },
+        { type: "text", id: "s3-lbl", x: 278, y: 288, width: 80, height: 14, content: "Uptime (30d)", style: { fontSize: 10, fontWeight: "400", color: "#6B7094" } },
+        // Alerts
+        { type: "text", id: "alerts-h", x: 20, y: 340, width: 200, height: 16, content: "ACTIVE ALERTS", style: { fontSize: 10, fontWeight: "600", color: "#6B7094", letterSpacing: 2 } },
+        { type: "text", id: "alerts-n", x: 344, y: 340, width: 24, height: 16, content: "3", style: { fontSize: 10, fontWeight: "600", color: "#F45C5C" } },
+        // Alert 1
+        { type: "rectangle", id: "a1-bg", x: 16, y: 364, width: 358, height: 60, fill: { type: "solid", color: "#0F0A1A" }, cornerRadius: 10, stroke: { color: "#F45C5C33", width: 1 } },
+        { type: "rectangle", id: "a1-dot", x: 32, y: 388, width: 8, height: 8, fill: { type: "solid", color: "#F45C5C" }, cornerRadius: 4 },
+        { type: "text", id: "a1-title", x: 50, y: 372, width: 250, height: 18, content: "Unusual spike — /v2/auth/token", style: { fontSize: 13, fontWeight: "600", color: "#DFE1F4" } },
+        { type: "text", id: "a1-sub", x: 50, y: 392, width: 240, height: 14, content: "847 req/min from AS12345 · 4 min ago", style: { fontSize: 11, fontWeight: "400", color: "#6B7094" } },
+        { type: "rectangle", id: "a1-badge", x: 318, y: 374, width: 40, height: 18, fill: { type: "solid", color: "#F45C5C22" }, cornerRadius: 4 },
+        { type: "text", id: "a1-badge-t", x: 318, y: 378, width: 40, height: 12, content: "HIGH", style: { fontSize: 9, fontWeight: "700", color: "#F45C5C", textAlign: "center", letterSpacing: 1 } },
+        // Alert 2
+        { type: "rectangle", id: "a2-bg", x: 16, y: 432, width: 358, height: 60, fill: { type: "solid", color: "#070C22" }, cornerRadius: 10, stroke: { color: "#F5A62333", width: 1 } },
+        { type: "rectangle", id: "a2-dot", x: 32, y: 456, width: 8, height: 8, fill: { type: "solid", color: "#F5A623" }, cornerRadius: 4 },
+        { type: "text", id: "a2-title", x: 50, y: 440, width: 250, height: 18, content: "New IP range accessing /admin", style: { fontSize: 13, fontWeight: "600", color: "#DFE1F4" } },
+        { type: "text", id: "a2-sub", x: 50, y: 460, width: 240, height: 14, content: "From 203.0.113.0/24 · First seen today", style: { fontSize: 11, fontWeight: "400", color: "#6B7094" } },
+        { type: "rectangle", id: "a2-badge", x: 310, y: 442, width: 52, height: 18, fill: { type: "solid", color: "#F5A62322" }, cornerRadius: 4 },
+        { type: "text", id: "a2-badge-t", x: 310, y: 446, width: 52, height: 12, content: "MEDIUM", style: { fontSize: 8, fontWeight: "700", color: "#F5A623", textAlign: "center", letterSpacing: 1 } },
+        // Alert 3
+        { type: "rectangle", id: "a3-bg", x: 16, y: 500, width: 358, height: 60, fill: { type: "solid", color: "#070C22" }, cornerRadius: 10, stroke: { color: "#5B6EF533", width: 1 } },
+        { type: "rectangle", id: "a3-dot", x: 32, y: 524, width: 8, height: 8, fill: { type: "solid", color: "#5B6EF5" }, cornerRadius: 4 },
+        { type: "text", id: "a3-title", x: 50, y: 508, width: 250, height: 18, content: "Unrecognised client on /webhooks", style: { fontSize: 13, fontWeight: "600", color: "#DFE1F4" } },
+        { type: "text", id: "a3-sub", x: 50, y: 528, width: 240, height: 14, content: "First access from EU-West-3 region", style: { fontSize: 11, fontWeight: "400", color: "#6B7094" } },
+        { type: "rectangle", id: "a3-badge", x: 322, y: 510, width: 36, height: 18, fill: { type: "solid", color: "#5B6EF522" }, cornerRadius: 4 },
+        { type: "text", id: "a3-badge-t", x: 322, y: 514, width: 36, height: 12, content: "NEW", style: { fontSize: 9, fontWeight: "700", color: "#5B6EF5", textAlign: "center", letterSpacing: 1 } },
+        // Bottom nav
+        { type: "rectangle", id: "bn", x: 0, y: 720, width: 390, height: 82, fill: { type: "solid", color: "#070C22" }, stroke: { color: "#12183D", width: 1 } },
+        { type: "text", id: "nav1", x: 28, y: 736, width: 48, height: 32, content: "Home", style: { fontSize: 10, fontWeight: "500", color: "#5B6EF5", textAlign: "center" } },
+        { type: "text", id: "nav2", x: 118, y: 736, width: 48, height: 32, content: "Flows", style: { fontSize: 10, fontWeight: "400", color: "#4A4F6B", textAlign: "center" } },
+        { type: "text", id: "nav3", x: 208, y: 736, width: 48, height: 32, content: "Access", style: { fontSize: 10, fontWeight: "400", color: "#4A4F6B", textAlign: "center" } },
+        { type: "text", id: "nav4", x: 298, y: 736, width: 48, height: 32, content: "Log", style: { fontSize: 10, fontWeight: "400", color: "#4A4F6B", textAlign: "center" } }
+      ]
+    },
+    {
+      id: "flows",
+      label: "Flows",
+      background: { type: "solid", color: "#010314" },
+      elements: [
+        { type: "rectangle", id: "sb", x: 0, y: 0, width: 390, height: 44, fill: { type: "solid", color: "#010314" } },
+        { type: "rectangle", id: "nh", x: 0, y: 44, width: 390, height: 56, fill: { type: "solid", color: "#070C22" }, stroke: { color: "#12183D", width: 1 } },
+        { type: "text", id: "pt", x: 20, y: 58, width: 200, height: 28, content: "Encrypted Flows", style: { fontSize: 18, fontWeight: "700", color: "#DFE1F4" } },
+        { type: "text", id: "ps", x: 20, y: 106, width: 280, height: 16, content: "LIVE DATA PATHWAYS  ·  12 active", style: { fontSize: 10, fontWeight: "600", color: "#6B7094", letterSpacing: 2 } },
+        // Node diagram
+        { type: "rectangle", id: "nc", x: 24, y: 138, width: 80, height: 44, fill: { type: "solid", color: "#070C22" }, cornerRadius: 10, stroke: { color: "#5B6EF5", width: 1.5 } },
+        { type: "text", id: "nc-l", x: 24, y: 150, width: 80, height: 20, content: "CLIENT / 12 IPs", style: { fontSize: 9, fontWeight: "600", color: "#DFE1F4", textAlign: "center" } },
+        { type: "rectangle", id: "fl1", x: 104, y: 158, width: 60, height: 2, fill: { type: "solid", color: "#5B6EF533" } },
+        { type: "rectangle", id: "ne", x: 164, y: 130, width: 64, height: 60, fill: { type: "solid", color: "#0D1140" }, cornerRadius: 10, stroke: { color: "#5B6EF5", width: 2 } },
+        { type: "text", id: "ne-icon", x: 164, y: 142, width: 64, height: 20, content: "ENCRYPT", style: { fontSize: 8, fontWeight: "800", color: "#5B6EF5", textAlign: "center", letterSpacing: 1 } },
+        { type: "text", id: "ne-l", x: 164, y: 162, width: 64, height: 14, content: "ENGINE", style: { fontSize: 8, fontWeight: "600", color: "#5B6EF5AA", textAlign: "center", letterSpacing: 2 } },
+        { type: "rectangle", id: "fl2", x: 228, y: 158, width: 60, height: 2, fill: { type: "solid", color: "#22D3B433" } },
+        { type: "rectangle", id: "na", x: 288, y: 138, width: 80, height: 44, fill: { type: "solid", color: "#070C22" }, cornerRadius: 10, stroke: { color: "#22D3B4", width: 1.5 } },
+        { type: "text", id: "na-l", x: 288, y: 150, width: 80, height: 20, content: "API  /v2/*", style: { fontSize: 9, fontWeight: "600", color: "#DFE1F4", textAlign: "center" } },
+        { type: "rectangle", id: "enc-pill", x: 150, y: 202, width: 92, height: 22, fill: { type: "solid", color: "#22D3B414" }, cornerRadius: 11, stroke: { color: "#22D3B4", width: 1 } },
+        { type: "text", id: "enc-t", x: 150, y: 207, width: 92, height: 12, content: "AES-256 encrypted", style: { fontSize: 9, fontWeight: "600", color: "#22D3B4", textAlign: "center" } },
+        { type: "text", id: "fh", x: 20, y: 244, width: 200, height: 16, content: "ACTIVE FLOWS", style: { fontSize: 10, fontWeight: "600", color: "#6B7094", letterSpacing: 2 } },
+        // Flow rows
+        { type: "rectangle", id: "f0-bg", x: 16, y: 270, width: 358, height: 64, fill: { type: "solid", color: "#070C22" }, cornerRadius: 10, stroke: { color: "#12183D", width: 1 } },
+        { type: "text", id: "f0-lbl", x: 32, y: 282, width: 220, height: 18, content: "/v2/auth/token", style: { fontSize: 13, fontWeight: "600", color: "#DFE1F4" } },
+        { type: "text", id: "f0-req", x: 32, y: 302, width: 120, height: 14, content: "328 req/min", style: { fontSize: 11, fontWeight: "400", color: "#6B7094" } },
+        { type: "rectangle", id: "f0-enc", x: 254, y: 284, width: 80, height: 18, fill: { type: "solid", color: "#22D3B418" }, cornerRadius: 4 },
+        { type: "text", id: "f0-enc-t", x: 254, y: 288, width: 80, height: 12, content: "AES-256", style: { fontSize: 9, fontWeight: "700", color: "#22D3B4", textAlign: "center" } },
+        { type: "rectangle", id: "f0-bar-bg", x: 32, y: 320, width: 296, height: 4, fill: { type: "solid", color: "#12183D" }, cornerRadius: 2 },
+        { type: "rectangle", id: "f0-bar", x: 32, y: 320, width: 231, height: 4, fill: { type: "solid", color: "#22D3B4" }, cornerRadius: 2 },
+        { type: "rectangle", id: "f1-bg", x: 16, y: 346, width: 358, height: 64, fill: { type: "solid", color: "#070C22" }, cornerRadius: 10, stroke: { color: "#12183D", width: 1 } },
+        { type: "text", id: "f1-lbl", x: 32, y: 358, width: 220, height: 18, content: "/v2/payments/charge", style: { fontSize: 13, fontWeight: "600", color: "#DFE1F4" } },
+        { type: "text", id: "f1-req", x: 32, y: 378, width: 120, height: 14, content: "64 req/min", style: { fontSize: 11, fontWeight: "400", color: "#6B7094" } },
+        { type: "rectangle", id: "f1-enc", x: 254, y: 360, width: 80, height: 18, fill: { type: "solid", color: "#5B6EF518" }, cornerRadius: 4 },
+        { type: "text", id: "f1-enc-t", x: 254, y: 364, width: 80, height: 12, content: "RSA-2048", style: { fontSize: 9, fontWeight: "700", color: "#5B6EF5", textAlign: "center" } },
+        { type: "rectangle", id: "f1-bar-bg", x: 32, y: 396, width: 296, height: 4, fill: { type: "solid", color: "#12183D" }, cornerRadius: 2 },
+        { type: "rectangle", id: "f1-bar", x: 32, y: 396, width: 133, height: 4, fill: { type: "solid", color: "#5B6EF5" }, cornerRadius: 2 },
+        { type: "rectangle", id: "f2-bg", x: 16, y: 422, width: 358, height: 64, fill: { type: "solid", color: "#070C22" }, cornerRadius: 10, stroke: { color: "#12183D", width: 1 } },
+        { type: "text", id: "f2-lbl", x: 32, y: 434, width: 220, height: 18, content: "/v1/users/profile", style: { fontSize: 13, fontWeight: "600", color: "#DFE1F4" } },
+        { type: "text", id: "f2-req", x: 32, y: 454, width: 120, height: 14, content: "112 req/min", style: { fontSize: 11, fontWeight: "400", color: "#6B7094" } },
+        { type: "rectangle", id: "f2-enc", x: 254, y: 436, width: 80, height: 18, fill: { type: "solid", color: "#22D3B418" }, cornerRadius: 4 },
+        { type: "text", id: "f2-enc-t", x: 254, y: 440, width: 80, height: 12, content: "AES-256", style: { fontSize: 9, fontWeight: "700", color: "#22D3B4", textAlign: "center" } },
+        { type: "rectangle", id: "f2-bar-bg", x: 32, y: 472, width: 296, height: 4, fill: { type: "solid", color: "#12183D" }, cornerRadius: 2 },
+        { type: "rectangle", id: "f2-bar", x: 32, y: 472, width: 163, height: 4, fill: { type: "solid", color: "#22D3B4" }, cornerRadius: 2 },
+        { type: "rectangle", id: "f3-bg", x: 16, y: 498, width: 358, height: 64, fill: { type: "solid", color: "#070C22" }, cornerRadius: 10, stroke: { color: "#12183D", width: 1 } },
+        { type: "text", id: "f3-lbl", x: 32, y: 510, width: 220, height: 18, content: "/v2/data/export", style: { fontSize: 13, fontWeight: "600", color: "#DFE1F4" } },
+        { type: "text", id: "f3-req", x: 32, y: 530, width: 120, height: 14, content: "8 req/min", style: { fontSize: 11, fontWeight: "400", color: "#6B7094" } },
+        { type: "rectangle", id: "f3-enc", x: 254, y: 512, width: 80, height: 18, fill: { type: "solid", color: "#F5A62318" }, cornerRadius: 4 },
+        { type: "text", id: "f3-enc-t", x: 254, y: 516, width: 80, height: 12, content: "ChaCha20", style: { fontSize: 9, fontWeight: "700", color: "#F5A623", textAlign: "center" } },
+        { type: "rectangle", id: "f3-bar-bg", x: 32, y: 548, width: 296, height: 4, fill: { type: "solid", color: "#12183D" }, cornerRadius: 2 },
+        { type: "rectangle", id: "f3-bar", x: 32, y: 548, width: 65, height: 4, fill: { type: "solid", color: "#F5A623" }, cornerRadius: 2 },
+        // Bottom nav
+        { type: "rectangle", id: "bn", x: 0, y: 720, width: 390, height: 82, fill: { type: "solid", color: "#070C22" }, stroke: { color: "#12183D", width: 1 } },
+        { type: "text", id: "nav1", x: 28, y: 736, width: 48, height: 32, content: "Home", style: { fontSize: 10, fontWeight: "400", color: "#4A4F6B", textAlign: "center" } },
+        { type: "text", id: "nav2", x: 118, y: 736, width: 48, height: 32, content: "Flows", style: { fontSize: 10, fontWeight: "500", color: "#5B6EF5", textAlign: "center" } },
+        { type: "text", id: "nav3", x: 208, y: 736, width: 48, height: 32, content: "Access", style: { fontSize: 10, fontWeight: "400", color: "#4A4F6B", textAlign: "center" } },
+        { type: "text", id: "nav4", x: 298, y: 736, width: 48, height: 32, content: "Log", style: { fontSize: 10, fontWeight: "400", color: "#4A4F6B", textAlign: "center" } }
+      ]
+    },
+    {
+      id: "access",
+      label: "Access",
+      background: { type: "solid", color: "#010314" },
+      elements: [
+        { type: "rectangle", id: "sb", x: 0, y: 0, width: 390, height: 44, fill: { type: "solid", color: "#010314" } },
+        { type: "rectangle", id: "nh", x: 0, y: 44, width: 390, height: 56, fill: { type: "solid", color: "#070C22" }, stroke: { color: "#12183D", width: 1 } },
+        { type: "text", id: "pt", x: 20, y: 58, width: 240, height: 28, content: "Access Anomalies", style: { fontSize: 18, fontWeight: "700", color: "#DFE1F4" } },
+        { type: "rectangle", id: "risk-hero", x: 16, y: 116, width: 358, height: 84, fill: { type: "solid", color: "#0F0A1A" }, cornerRadius: 16, stroke: { color: "#F45C5C33", width: 1 } },
+        { type: "text", id: "risk-lbl", x: 32, y: 128, width: 220, height: 16, content: "ANOMALY SCORE THIS HOUR", style: { fontSize: 10, fontWeight: "600", color: "#6B7094", letterSpacing: 2 } },
+        { type: "text", id: "risk-val", x: 32, y: 148, width: 80, height: 36, content: "38", style: { fontSize: 36, fontWeight: "800", color: "#F45C5C" } },
+        { type: "text", id: "risk-sub", x: 32, y: 186, width: 180, height: 14, content: "↑ 22 pts from previous hour", style: { fontSize: 11, fontWeight: "400", color: "#F45C5C99" } },
+        { type: "rectangle", id: "sp0", x: 272, y: 155, width: 7, height: 37, fill: { type: "solid", color: "#F45C5C44" }, cornerRadius: 2 },
+        { type: "rectangle", id: "sp1", x: 282, y: 164, width: 7, height: 28, fill: { type: "solid", color: "#F45C5C44" }, cornerRadius: 2 },
+        { type: "rectangle", id: "sp2", x: 292, y: 169, width: 7, height: 23, fill: { type: "solid", color: "#F45C5C44" }, cornerRadius: 2 },
+        { type: "rectangle", id: "sp3", x: 302, y: 156, width: 7, height: 36, fill: { type: "solid", color: "#F45C5C44" }, cornerRadius: 2 },
+        { type: "rectangle", id: "sp4", x: 312, y: 147, width: 7, height: 45, fill: { type: "solid", color: "#F45C5C66" }, cornerRadius: 2 },
+        { type: "rectangle", id: "sp5", x: 322, y: 142, width: 7, height: 50, fill: { type: "solid", color: "#F45C5C88" }, cornerRadius: 2 },
+        { type: "rectangle", id: "sp6", x: 332, y: 136, width: 7, height: 56, fill: { type: "solid", color: "#F45C5CCC" }, cornerRadius: 2 },
+        { type: "rectangle", id: "sp7", x: 342, y: 148, width: 7, height: 44, fill: { type: "solid", color: "#F45C5C" }, cornerRadius: 2 },
+        { type: "text", id: "ah", x: 20, y: 220, width: 220, height: 16, content: "DETECTED ANOMALIES", style: { fontSize: 10, fontWeight: "600", color: "#6B7094", letterSpacing: 2 } },
+        // Anomaly 1
+        { type: "rectangle", id: "an0-bg", x: 16, y: 246, width: 358, height: 68, fill: { type: "solid", color: "#070C22" }, cornerRadius: 10, stroke: { color: "#F45C5C33", width: 1 } },
+        { type: "text", id: "an0-type", x: 32, y: 256, width: 160, height: 18, content: "Brute Force", style: { fontSize: 13, fontWeight: "700", color: "#DFE1F4" } },
+        { type: "text", id: "an0-ep", x: 32, y: 276, width: 200, height: 14, content: "/v2/auth/login", style: { fontSize: 11, fontWeight: "400", color: "#6B7094" } },
+        { type: "text", id: "an0-detail", x: 32, y: 292, width: 220, height: 12, content: "412 failed attempts  ·  1 IP", style: { fontSize: 10, fontWeight: "400", color: "#4A4F6B" } },
+        { type: "rectangle", id: "an0-score-bg", x: 306, y: 264, width: 44, height: 28, fill: { type: "solid", color: "#F45C5C22" }, cornerRadius: 8 },
+        { type: "text", id: "an0-score", x: 306, y: 268, width: 44, height: 20, content: "92", style: { fontSize: 18, fontWeight: "800", color: "#F45C5C", textAlign: "center" } },
+        // Anomaly 2
+        { type: "rectangle", id: "an1-bg", x: 16, y: 326, width: 358, height: 68, fill: { type: "solid", color: "#070C22" }, cornerRadius: 10, stroke: { color: "#F5A62333", width: 1 } },
+        { type: "text", id: "an1-type", x: 32, y: 336, width: 160, height: 18, content: "Data Exfiltration", style: { fontSize: 13, fontWeight: "700", color: "#DFE1F4" } },
+        { type: "text", id: "an1-ep", x: 32, y: 356, width: 200, height: 14, content: "/v2/data/export", style: { fontSize: 11, fontWeight: "400", color: "#6B7094" } },
+        { type: "text", id: "an1-detail", x: 32, y: 372, width: 220, height: 12, content: "Unusually large response body", style: { fontSize: 10, fontWeight: "400", color: "#4A4F6B" } },
+        { type: "rectangle", id: "an1-score-bg", x: 306, y: 344, width: 44, height: 28, fill: { type: "solid", color: "#F5A62322" }, cornerRadius: 8 },
+        { type: "text", id: "an1-score", x: 306, y: 348, width: 44, height: 20, content: "67", style: { fontSize: 18, fontWeight: "800", color: "#F5A623", textAlign: "center" } },
+        // Anomaly 3
+        { type: "rectangle", id: "an2-bg", x: 16, y: 406, width: 358, height: 68, fill: { type: "solid", color: "#070C22" }, cornerRadius: 10, stroke: { color: "#F5A62333", width: 1 } },
+        { type: "text", id: "an2-type", x: 32, y: 416, width: 160, height: 18, content: "Rate Abuse", style: { fontSize: 13, fontWeight: "700", color: "#DFE1F4" } },
+        { type: "text", id: "an2-ep", x: 32, y: 436, width: 200, height: 14, content: "/v1/search", style: { fontSize: 11, fontWeight: "400", color: "#6B7094" } },
+        { type: "text", id: "an2-detail", x: 32, y: 452, width: 220, height: 12, content: "3,200 req/hr from a single key", style: { fontSize: 10, fontWeight: "400", color: "#4A4F6B" } },
+        { type: "rectangle", id: "an2-score-bg", x: 306, y: 424, width: 44, height: 28, fill: { type: "solid", color: "#F5A62322" }, cornerRadius: 8 },
+        { type: "text", id: "an2-score", x: 306, y: 428, width: 44, height: 20, content: "55", style: { fontSize: 18, fontWeight: "800", color: "#F5A623", textAlign: "center" } },
+        // Anomaly 4
+        { type: "rectangle", id: "an3-bg", x: 16, y: 486, width: 358, height: 68, fill: { type: "solid", color: "#070C22" }, cornerRadius: 10, stroke: { color: "#5B6EF533", width: 1 } },
+        { type: "text", id: "an3-type", x: 32, y: 496, width: 160, height: 18, content: "New Attack Vector", style: { fontSize: 13, fontWeight: "700", color: "#DFE1F4" } },
+        { type: "text", id: "an3-ep", x: 32, y: 516, width: 200, height: 14, content: "/v2/webhooks", style: { fontSize: 11, fontWeight: "400", color: "#6B7094" } },
+        { type: "text", id: "an3-detail", x: 32, y: 532, width: 220, height: 12, content: "First access from this region", style: { fontSize: 10, fontWeight: "400", color: "#4A4F6B" } },
+        { type: "rectangle", id: "an3-score-bg", x: 306, y: 504, width: 44, height: 28, fill: { type: "solid", color: "#5B6EF522" }, cornerRadius: 8 },
+        { type: "text", id: "an3-score", x: 306, y: 508, width: 44, height: 20, content: "34", style: { fontSize: 18, fontWeight: "800", color: "#5B6EF5", textAlign: "center" } },
+        // Bottom nav
+        { type: "rectangle", id: "bn", x: 0, y: 720, width: 390, height: 82, fill: { type: "solid", color: "#070C22" }, stroke: { color: "#12183D", width: 1 } },
+        { type: "text", id: "nav1", x: 28, y: 736, width: 48, height: 32, content: "Home", style: { fontSize: 10, fontWeight: "400", color: "#4A4F6B", textAlign: "center" } },
+        { type: "text", id: "nav2", x: 118, y: 736, width: 48, height: 32, content: "Flows", style: { fontSize: 10, fontWeight: "400", color: "#4A4F6B", textAlign: "center" } },
+        { type: "text", id: "nav3", x: 208, y: 736, width: 48, height: 32, content: "Access", style: { fontSize: 10, fontWeight: "500", color: "#5B6EF5", textAlign: "center" } },
+        { type: "text", id: "nav4", x: 298, y: 736, width: 48, height: 32, content: "Log", style: { fontSize: 10, fontWeight: "400", color: "#4A4F6B", textAlign: "center" } }
+      ]
+    },
+    {
+      id: "endpoints",
+      label: "Endpoints",
+      background: { type: "solid", color: "#010314" },
+      elements: [
+        { type: "rectangle", id: "sb", x: 0, y: 0, width: 390, height: 44, fill: { type: "solid", color: "#010314" } },
+        { type: "rectangle", id: "nh", x: 0, y: 44, width: 390, height: 56, fill: { type: "solid", color: "#070C22" }, stroke: { color: "#12183D", width: 1 } },
+        { type: "text", id: "pt", x: 20, y: 58, width: 200, height: 28, content: "Endpoints", style: { fontSize: 18, fontWeight: "700", color: "#DFE1F4" } },
+        { type: "rectangle", id: "search-bg", x: 16, y: 116, width: 358, height: 40, fill: { type: "solid", color: "#070C22" }, cornerRadius: 10, stroke: { color: "#12183D", width: 1 } },
+        { type: "text", id: "search-t", x: 40, y: 128, width: 240, height: 16, content: "Search endpoints…", style: { fontSize: 13, fontWeight: "400", color: "#4A4F6B" } },
+        // Filter pills
+        { type: "rectangle", id: "p0", x: 16, y: 168, width: 76, height: 28, fill: { type: "solid", color: "#5B6EF5" }, cornerRadius: 14 },
+        { type: "text", id: "p0-t", x: 16, y: 175, width: 76, height: 14, content: "All", style: { fontSize: 11, fontWeight: "700", color: "#FFFFFF", textAlign: "center" } },
+        { type: "rectangle", id: "p1", x: 100, y: 168, width: 76, height: 28, fill: { type: "solid", color: "#070C22" }, cornerRadius: 14, stroke: { color: "#12183D", width: 1 } },
+        { type: "text", id: "p1-t", x: 100, y: 175, width: 76, height: 14, content: "At Risk", style: { fontSize: 11, fontWeight: "400", color: "#6B7094", textAlign: "center" } },
+        { type: "rectangle", id: "p2", x: 184, y: 168, width: 76, height: 28, fill: { type: "solid", color: "#070C22" }, cornerRadius: 14, stroke: { color: "#12183D", width: 1 } },
+        { type: "text", id: "p2-t", x: 184, y: 175, width: 76, height: 14, content: "Secured", style: { fontSize: 11, fontWeight: "400", color: "#6B7094", textAlign: "center" } },
+        { type: "rectangle", id: "p3", x: 268, y: 168, width: 76, height: 28, fill: { type: "solid", color: "#070C22" }, cornerRadius: 14, stroke: { color: "#12183D", width: 1 } },
+        { type: "text", id: "p3-t", x: 268, y: 175, width: 76, height: 14, content: "New", style: { fontSize: 11, fontWeight: "400", color: "#6B7094", textAlign: "center" } },
+        // Endpoint rows
+        { type: "rectangle", id: "ep0-bg", x: 16, y: 212, width: 358, height: 76, fill: { type: "solid", color: "#070C22" }, cornerRadius: 10, stroke: { color: "#12183D", width: 1 } },
+        { type: "rectangle", id: "ep0-mb", x: 28, y: 224, width: 36, height: 18, fill: { type: "solid", color: "#0D1140" }, cornerRadius: 4 },
+        { type: "text", id: "ep0-mt", x: 28, y: 228, width: 36, height: 10, content: "POST", style: { fontSize: 8, fontWeight: "700", color: "#5B6EF5", textAlign: "center", letterSpacing: 1 } },
+        { type: "text", id: "ep0-path", x: 72, y: 224, width: 220, height: 18, content: "/v2/auth/token", style: { fontSize: 12, fontWeight: "600", color: "#DFE1F4" } },
+        { type: "rectangle", id: "ep0-rb", x: 300, y: 222, width: 58, height: 20, fill: { type: "solid", color: "#F45C5C22" }, cornerRadius: 4 },
+        { type: "text", id: "ep0-rt", x: 300, y: 226, width: 58, height: 12, content: "HIGH", style: { fontSize: 9, fontWeight: "700", color: "#F45C5C", textAlign: "center" } },
+        { type: "text", id: "ep0-s", x: 28, y: 250, width: 320, height: 14, content: "p50 48ms    p99 312ms    328/min", style: { fontSize: 10, fontWeight: "500", color: "#6B7094" } },
+        { type: "rectangle", id: "ep0-div", x: 28, y: 268, width: 330, height: 1, fill: { type: "solid", color: "#12183D" } },
+        { type: "rectangle", id: "ep1-bg", x: 16, y: 300, width: 358, height: 76, fill: { type: "solid", color: "#070C22" }, cornerRadius: 10, stroke: { color: "#12183D", width: 1 } },
+        { type: "rectangle", id: "ep1-mb", x: 28, y: 312, width: 36, height: 18, fill: { type: "solid", color: "#0D1140" }, cornerRadius: 4 },
+        { type: "text", id: "ep1-mt", x: 28, y: 316, width: 36, height: 10, content: "GET", style: { fontSize: 8, fontWeight: "700", color: "#5B6EF5", textAlign: "center", letterSpacing: 1 } },
+        { type: "text", id: "ep1-path", x: 72, y: 312, width: 220, height: 18, content: "/v2/users/{id}", style: { fontSize: 12, fontWeight: "600", color: "#DFE1F4" } },
+        { type: "rectangle", id: "ep1-rb", x: 292, y: 310, width: 66, height: 20, fill: { type: "solid", color: "#22D3B422" }, cornerRadius: 4 },
+        { type: "text", id: "ep1-rt", x: 292, y: 314, width: 66, height: 12, content: "SECURE", style: { fontSize: 9, fontWeight: "700", color: "#22D3B4", textAlign: "center" } },
+        { type: "text", id: "ep1-s", x: 28, y: 338, width: 320, height: 14, content: "p50 12ms    p99 89ms    112/min", style: { fontSize: 10, fontWeight: "500", color: "#6B7094" } },
+        { type: "rectangle", id: "ep2-bg", x: 16, y: 388, width: 358, height: 76, fill: { type: "solid", color: "#070C22" }, cornerRadius: 10, stroke: { color: "#12183D", width: 1 } },
+        { type: "rectangle", id: "ep2-mb", x: 28, y: 400, width: 36, height: 18, fill: { type: "solid", color: "#0D1140" }, cornerRadius: 4 },
+        { type: "text", id: "ep2-mt", x: 28, y: 404, width: 36, height: 10, content: "POST", style: { fontSize: 8, fontWeight: "700", color: "#5B6EF5", textAlign: "center", letterSpacing: 1 } },
+        { type: "text", id: "ep2-path", x: 72, y: 400, width: 220, height: 18, content: "/v2/payments", style: { fontSize: 12, fontWeight: "600", color: "#DFE1F4" } },
+        { type: "rectangle", id: "ep2-rb", x: 292, y: 398, width: 66, height: 20, fill: { type: "solid", color: "#22D3B422" }, cornerRadius: 4 },
+        { type: "text", id: "ep2-rt", x: 292, y: 402, width: 66, height: 12, content: "SECURE", style: { fontSize: 9, fontWeight: "700", color: "#22D3B4", textAlign: "center" } },
+        { type: "text", id: "ep2-s", x: 28, y: 426, width: 320, height: 14, content: "p50 220ms    p99 890ms    64/min", style: { fontSize: 10, fontWeight: "500", color: "#6B7094" } },
+        { type: "rectangle", id: "ep3-bg", x: 16, y: 476, width: 358, height: 76, fill: { type: "solid", color: "#070C22" }, cornerRadius: 10, stroke: { color: "#12183D", width: 1 } },
+        { type: "rectangle", id: "ep3-mb", x: 28, y: 488, width: 36, height: 18, fill: { type: "solid", color: "#0D1140" }, cornerRadius: 4 },
+        { type: "text", id: "ep3-mt", x: 28, y: 492, width: 36, height: 10, content: "GET", style: { fontSize: 8, fontWeight: "700", color: "#5B6EF5", textAlign: "center", letterSpacing: 1 } },
+        { type: "text", id: "ep3-path", x: 72, y: 488, width: 220, height: 18, content: "/v1/search", style: { fontSize: 12, fontWeight: "600", color: "#DFE1F4" } },
+        { type: "rectangle", id: "ep3-rb", x: 296, y: 486, width: 62, height: 20, fill: { type: "solid", color: "#F5A62322" }, cornerRadius: 4 },
+        { type: "text", id: "ep3-rt", x: 296, y: 490, width: 62, height: 12, content: "WARN", style: { fontSize: 9, fontWeight: "700", color: "#F5A623", textAlign: "center" } },
+        { type: "text", id: "ep3-s", x: 28, y: 514, width: 320, height: 14, content: "p50 34ms    p99 210ms    891/min", style: { fontSize: 10, fontWeight: "500", color: "#6B7094" } },
+        // Bottom nav
+        { type: "rectangle", id: "bn", x: 0, y: 720, width: 390, height: 82, fill: { type: "solid", color: "#070C22" }, stroke: { color: "#12183D", width: 1 } },
+        { type: "text", id: "nav1", x: 28, y: 736, width: 48, height: 32, content: "Home", style: { fontSize: 10, fontWeight: "400", color: "#4A4F6B", textAlign: "center" } },
+        { type: "text", id: "nav2", x: 118, y: 736, width: 48, height: 32, content: "Flows", style: { fontSize: 10, fontWeight: "400", color: "#4A4F6B", textAlign: "center" } },
+        { type: "text", id: "nav3", x: 208, y: 736, width: 48, height: 32, content: "Access", style: { fontSize: 10, fontWeight: "400", color: "#4A4F6B", textAlign: "center" } },
+        { type: "text", id: "nav4", x: 298, y: 736, width: 48, height: 32, content: "Log", style: { fontSize: 10, fontWeight: "500", color: "#5B6EF5", textAlign: "center" } }
+      ]
+    },
+    {
+      id: "log",
+      label: "Audit Log",
+      background: { type: "solid", color: "#010314" },
+      elements: [
+        { type: "rectangle", id: "sb", x: 0, y: 0, width: 390, height: 44, fill: { type: "solid", color: "#010314" } },
+        { type: "rectangle", id: "nh", x: 0, y: 44, width: 390, height: 56, fill: { type: "solid", color: "#070C22" }, stroke: { color: "#12183D", width: 1 } },
+        { type: "text", id: "pt", x: 20, y: 58, width: 200, height: 28, content: "Audit Log", style: { fontSize: 18, fontWeight: "700", color: "#DFE1F4" } },
+        { type: "text", id: "exp", x: 310, y: 62, width: 60, height: 20, content: "Export", style: { fontSize: 11, fontWeight: "600", color: "#5B6EF5" } },
+        { type: "text", id: "ts-h", x: 20, y: 110, width: 300, height: 16, content: "TODAY  ·  30 MAR 2026  ·  47 events", style: { fontSize: 10, fontWeight: "600", color: "#6B7094", letterSpacing: 2 } },
+        // Log entry 1
+        { type: "rectangle", id: "l0-acc", x: 16, y: 140, width: 3, height: 58, fill: { type: "solid", color: "#F45C5C" }, cornerRadius: 2 },
+        { type: "rectangle", id: "l0-bg", x: 24, y: 138, width: 350, height: 64, fill: { type: "solid", color: "#070C22" }, cornerRadius: 10, stroke: { color: "#12183D", width: 1 } },
+        { type: "text", id: "l0-time", x: 38, y: 148, width: 70, height: 14, content: "14:32:07", style: { fontSize: 10, fontWeight: "500", color: "#4A4F6B" } },
+        { type: "rectangle", id: "l0-ev-bg", x: 114, y: 146, width: 110, height: 18, fill: { type: "solid", color: "#F45C5C18" }, cornerRadius: 4 },
+        { type: "text", id: "l0-ev", x: 114, y: 150, width: 110, height: 12, content: "THREAT_BLOCKED", style: { fontSize: 8, fontWeight: "700", color: "#F45C5C", letterSpacing: 0.8 } },
+        { type: "text", id: "l0-msg", x: 38, y: 172, width: 310, height: 16, content: "Brute force blocked on /auth/token", style: { fontSize: 12, fontWeight: "500", color: "#A8AECF" } },
+        // Log entry 2
+        { type: "rectangle", id: "l1-acc", x: 16, y: 216, width: 3, height: 58, fill: { type: "solid", color: "#22D3B4" }, cornerRadius: 2 },
+        { type: "rectangle", id: "l1-bg", x: 24, y: 214, width: 350, height: 64, fill: { type: "solid", color: "#070C22" }, cornerRadius: 10, stroke: { color: "#12183D", width: 1 } },
+        { type: "text", id: "l1-time", x: 38, y: 224, width: 70, height: 14, content: "14:29:41", style: { fontSize: 10, fontWeight: "500", color: "#4A4F6B" } },
+        { type: "rectangle", id: "l1-ev-bg", x: 114, y: 222, width: 96, height: 18, fill: { type: "solid", color: "#22D3B418" }, cornerRadius: 4 },
+        { type: "text", id: "l1-ev", x: 114, y: 226, width: 96, height: 12, content: "KEY_ROTATED", style: { fontSize: 8, fontWeight: "700", color: "#22D3B4", letterSpacing: 0.8 } },
+        { type: "text", id: "l1-msg", x: 38, y: 248, width: 310, height: 16, content: "API key rotated: sk_prod_...3x9f", style: { fontSize: 12, fontWeight: "500", color: "#A8AECF" } },
+        // Log entry 3
+        { type: "rectangle", id: "l2-acc", x: 16, y: 292, width: 3, height: 58, fill: { type: "solid", color: "#5B6EF5" }, cornerRadius: 2 },
+        { type: "rectangle", id: "l2-bg", x: 24, y: 290, width: 350, height: 64, fill: { type: "solid", color: "#070C22" }, cornerRadius: 10, stroke: { color: "#12183D", width: 1 } },
+        { type: "text", id: "l2-time", x: 38, y: 300, width: 70, height: 14, content: "14:21:18", style: { fontSize: 10, fontWeight: "500", color: "#4A4F6B" } },
+        { type: "rectangle", id: "l2-ev-bg", x: 114, y: 298, width: 112, height: 18, fill: { type: "solid", color: "#5B6EF518" }, cornerRadius: 4 },
+        { type: "text", id: "l2-ev", x: 114, y: 302, width: 112, height: 12, content: "FLOW_ENCRYPTED", style: { fontSize: 8, fontWeight: "700", color: "#5B6EF5", letterSpacing: 0.8 } },
+        { type: "text", id: "l2-msg", x: 38, y: 324, width: 310, height: 16, content: "New flow secured: /v2/data/export", style: { fontSize: 12, fontWeight: "500", color: "#A8AECF" } },
+        // Log entry 4
+        { type: "rectangle", id: "l3-acc", x: 16, y: 368, width: 3, height: 58, fill: { type: "solid", color: "#F5A623" }, cornerRadius: 2 },
+        { type: "rectangle", id: "l3-bg", x: 24, y: 366, width: 350, height: 64, fill: { type: "solid", color: "#070C22" }, cornerRadius: 10, stroke: { color: "#12183D", width: 1 } },
+        { type: "text", id: "l3-time", x: 38, y: 376, width: 70, height: 14, content: "14:18:05", style: { fontSize: 10, fontWeight: "500", color: "#4A4F6B" } },
+        { type: "rectangle", id: "l3-ev-bg", x: 114, y: 374, width: 112, height: 18, fill: { type: "solid", color: "#F5A62318" }, cornerRadius: 4 },
+        { type: "text", id: "l3-ev", x: 114, y: 378, width: 112, height: 12, content: "ANOMALY_RAISED", style: { fontSize: 8, fontWeight: "700", color: "#F5A623", letterSpacing: 0.8 } },
+        { type: "text", id: "l3-msg", x: 38, y: 400, width: 310, height: 16, content: "Rate abuse detected: /v1/search", style: { fontSize: 12, fontWeight: "500", color: "#A8AECF" } },
+        // Log entry 5
+        { type: "rectangle", id: "l4-acc", x: 16, y: 444, width: 3, height: 58, fill: { type: "solid", color: "#22D3B4" }, cornerRadius: 2 },
+        { type: "rectangle", id: "l4-bg", x: 24, y: 442, width: 350, height: 64, fill: { type: "solid", color: "#070C22" }, cornerRadius: 10, stroke: { color: "#12183D", width: 1 } },
+        { type: "text", id: "l4-time", x: 38, y: 452, width: 70, height: 14, content: "14:12:33", style: { fontSize: 10, fontWeight: "500", color: "#4A4F6B" } },
+        { type: "rectangle", id: "l4-ev-bg", x: 114, y: 450, width: 112, height: 18, fill: { type: "solid", color: "#22D3B418" }, cornerRadius: 4 },
+        { type: "text", id: "l4-ev", x: 114, y: 454, width: 112, height: 12, content: "SCAN_COMPLETE", style: { fontSize: 8, fontWeight: "700", color: "#22D3B4", letterSpacing: 0.8 } },
+        { type: "text", id: "l4-msg", x: 38, y: 476, width: 310, height: 16, content: "Full scan complete: 94 endpoints OK", style: { fontSize: 12, fontWeight: "500", color: "#A8AECF" } },
+        // Log entry 6
+        { type: "rectangle", id: "l5-acc", x: 16, y: 520, width: 3, height: 58, fill: { type: "solid", color: "#F45C5C" }, cornerRadius: 2 },
+        { type: "rectangle", id: "l5-bg", x: 24, y: 518, width: 350, height: 64, fill: { type: "solid", color: "#070C22" }, cornerRadius: 10, stroke: { color: "#12183D", width: 1 } },
+        { type: "text", id: "l5-time", x: 38, y: 528, width: 70, height: 14, content: "14:01:55", style: { fontSize: 10, fontWeight: "500", color: "#4A4F6B" } },
+        { type: "rectangle", id: "l5-ev-bg", x: 114, y: 526, width: 110, height: 18, fill: { type: "solid", color: "#F45C5C18" }, cornerRadius: 4 },
+        { type: "text", id: "l5-ev", x: 114, y: 530, width: 110, height: 12, content: "THREAT_BLOCKED", style: { fontSize: 8, fontWeight: "700", color: "#F45C5C", letterSpacing: 0.8 } },
+        { type: "text", id: "l5-msg", x: 38, y: 552, width: 310, height: 16, content: "SQL injection attempt on /v2/users", style: { fontSize: 12, fontWeight: "500", color: "#A8AECF" } },
+        // Bottom nav
+        { type: "rectangle", id: "bn", x: 0, y: 720, width: 390, height: 82, fill: { type: "solid", color: "#070C22" }, stroke: { color: "#12183D", width: 1 } },
+        { type: "text", id: "nav1", x: 28, y: 736, width: 48, height: 32, content: "Home", style: { fontSize: 10, fontWeight: "400", color: "#4A4F6B", textAlign: "center" } },
+        { type: "text", id: "nav2", x: 118, y: 736, width: 48, height: 32, content: "Flows", style: { fontSize: 10, fontWeight: "400", color: "#4A4F6B", textAlign: "center" } },
+        { type: "text", id: "nav3", x: 208, y: 736, width: 48, height: 32, content: "Access", style: { fontSize: 10, fontWeight: "400", color: "#4A4F6B", textAlign: "center" } },
+        { type: "text", id: "nav4", x: 298, y: 736, width: 48, height: 32, content: "Log", style: { fontSize: 10, fontWeight: "500", color: "#5B6EF5", textAlign: "center" } }
+      ]
+    }
+  ]
+};
+
+fs.writeFileSync('sentinel.pen', JSON.stringify(pen, null, 2));
+console.log('✓ sentinel.pen written —', pen.screens.length, 'screens');

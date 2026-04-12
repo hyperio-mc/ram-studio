@@ -1,0 +1,801 @@
+const https = require('https');
+const fs = require('fs');
+const path = require('path');
+
+const SLUG = 'cashline';
+const APP_NAME = 'Cashline';
+const TAGLINE = 'Cash flow intelligence for independent consultants';
+
+function request(options, body = null) {
+  return new Promise((resolve, reject) => {
+    const req = https.request(options, res => {
+      let data = '';
+      res.on('data', chunk => data += chunk);
+      res.on('end', () => resolve({ status: res.statusCode, body: data, headers: res.headers }));
+    });
+    req.on('error', reject);
+    if (body) req.write(body);
+    req.end();
+  });
+}
+
+async function publish(slug, html, title, subdomain = 'ram') {
+  const body = JSON.stringify({ slug, html, title });
+  const res = await request({
+    hostname: 'zenbin.org',
+    path: '/api/publish',
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Content-Length': Buffer.byteLength(body),
+      'X-Subdomain': subdomain
+    }
+  }, body);
+  if (res.status === 200 || res.status === 201) {
+    console.log(`✓ Published: https://${subdomain}.zenbin.org/${slug}`);
+    return `https://${subdomain}.zenbin.org/${slug}`;
+  } else {
+    console.error(`✗ Publish failed (${res.status}):`, res.body.slice(0, 200));
+    throw new Error(`Publish failed: ${res.status}`);
+  }
+}
+
+// ── HERO PAGE ────────────────────────────────────────────────────────────────
+const heroHtml = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cashline — ${TAGLINE}</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #F5F3EE;
+    --surface: #FFFFFF;
+    --surface-alt: #EBE9E3;
+    --text: #1A1714;
+    --muted: rgba(26,23,20,0.45);
+    --accent: #2563EB;
+    --accent-soft: rgba(37,99,235,0.10);
+    --success: #059669;
+    --success-soft: rgba(5,150,105,0.12);
+    --warning: #D97706;
+    --warning-soft: rgba(217,119,6,0.10);
+    --danger: #DC2626;
+    --border: rgba(26,23,20,0.09);
+    --shadow-sm: 0 1px 3px rgba(26,23,20,0.06), 0 1px 2px rgba(26,23,20,0.04);
+    --shadow-md: 0 4px 12px rgba(26,23,20,0.08), 0 1px 3px rgba(26,23,20,0.04);
+    --shadow-lg: 0 12px 40px rgba(26,23,20,0.10), 0 4px 10px rgba(26,23,20,0.05);
+    --r: 12px;
+    --font: 'Inter', -apple-system, sans-serif;
+  }
+
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+  body {
+    font-family: var(--font);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 40px; height: 60px;
+    background: rgba(245,243,238,0.88); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 16px; font-weight: 700; letter-spacing: -0.03em; color: var(--text);
+    text-decoration: none;
+  }
+  .nav-logo-mark {
+    width: 28px; height: 28px; border-radius: 7px;
+    background: var(--accent);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .nav-logo-mark svg { color: #fff; }
+  .nav-links { display: flex; gap: 28px; }
+  .nav-links a {
+    font-size: 13px; font-weight: 500; color: var(--muted);
+    text-decoration: none; letter-spacing: -0.01em;
+    transition: color 0.15s;
+  }
+  .nav-links a:hover { color: var(--text); }
+  .nav-cta {
+    display: flex; align-items: center; gap: 8px;
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 8px 16px; border-radius: 8px;
+    font-size: 13px; font-weight: 600; letter-spacing: -0.01em;
+    text-decoration: none; border: none; cursor: pointer;
+    transition: all 0.15s;
+  }
+  .btn-ghost {
+    background: transparent; color: var(--muted);
+  }
+  .btn-ghost:hover { color: var(--text); background: var(--surface-alt); }
+  .btn-primary {
+    background: var(--accent); color: #fff;
+    box-shadow: 0 1px 3px rgba(37,99,235,0.3);
+  }
+  .btn-primary:hover { background: #1d4ed8; transform: translateY(-1px); }
+
+  /* ── HERO ── */
+  .hero {
+    max-width: 1100px; margin: 0 auto;
+    padding: 100px 40px 80px;
+    display: grid; grid-template-columns: 1fr 480px; gap: 80px; align-items: center;
+  }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 5px 12px 5px 8px; border-radius: 100px;
+    background: var(--accent-soft); border: 1px solid rgba(37,99,235,0.15);
+    font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 24px;
+  }
+  .eyebrow-dot {
+    width: 6px; height: 6px; border-radius: 50%; background: var(--accent);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+  .hero-title {
+    font-size: 52px; font-weight: 800; line-height: 1.05;
+    letter-spacing: -0.04em; color: var(--text);
+    margin-bottom: 20px;
+  }
+  .hero-title em {
+    font-style: normal; color: var(--accent);
+  }
+  .hero-sub {
+    font-size: 17px; color: var(--muted);
+    line-height: 1.6; margin-bottom: 36px;
+    max-width: 420px; font-weight: 400;
+  }
+  .hero-actions { display: flex; gap: 12px; align-items: center; margin-bottom: 48px; }
+  .btn-lg {
+    padding: 13px 24px; font-size: 15px; border-radius: 10px;
+  }
+  .hero-social-proof {
+    display: flex; align-items: center; gap: 12px;
+    font-size: 12px; color: var(--muted); font-weight: 500;
+  }
+  .avatar-stack { display: flex; }
+  .avatar {
+    width: 28px; height: 28px; border-radius: 50%;
+    border: 2px solid var(--bg);
+    margin-left: -8px; first-of-type { margin-left: 0; }
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 700; color: #fff;
+  }
+  .a1 { background: #2563EB; }
+  .a2 { background: #059669; }
+  .a3 { background: #D97706; }
+  .a4 { background: #7C3AED; }
+
+  /* ── HERO MOCKUP ── */
+  .hero-mockup {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+    font-size: 12px;
+  }
+  .mockup-header {
+    padding: 16px 20px 12px;
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .mockup-title {
+    font-size: 13px; font-weight: 700; letter-spacing: -0.02em;
+  }
+  .mockup-badge {
+    font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em;
+    padding: 3px 8px; border-radius: 100px;
+    background: var(--success-soft); color: var(--success);
+  }
+  .mockup-body { padding: 20px; }
+
+  /* position card */
+  .pos-card {
+    background: var(--bg); border-radius: var(--r); padding: 20px;
+    margin-bottom: 16px; border: 1px solid var(--border);
+  }
+  .pos-label {
+    font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 8px;
+  }
+  .pos-value {
+    font-size: 32px; font-weight: 800; letter-spacing: -0.04em;
+    color: var(--text); margin-bottom: 4px;
+  }
+  .pos-delta {
+    font-size: 12px; font-weight: 600; color: var(--success);
+    display: flex; align-items: center; gap: 4px;
+  }
+
+  /* stat row */
+  .stat-row {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 16px;
+  }
+  .stat-cell {
+    background: var(--bg); border-radius: 8px; padding: 12px;
+    border: 1px solid var(--border);
+  }
+  .stat-cell-label {
+    font-size: 9px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 4px;
+  }
+  .stat-cell-value { font-size: 14px; font-weight: 700; letter-spacing: -0.02em; }
+
+  /* signal banner */
+  .signal-banner {
+    display: flex; align-items: flex-start; gap: 10px;
+    padding: 12px 14px; border-radius: 10px;
+    background: var(--warning-soft); border: 1px solid rgba(217,119,6,0.15);
+    margin-bottom: 16px;
+  }
+  .signal-icon {
+    width: 20px; height: 20px; border-radius: 6px;
+    background: rgba(217,119,6,0.15); display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; margin-top: 1px; color: var(--warning); font-size: 11px;
+  }
+  .signal-content { flex: 1; }
+  .signal-eyebrow {
+    font-size: 9px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--warning); margin-bottom: 2px;
+  }
+  .signal-text { font-size: 11px; color: var(--text); line-height: 1.4; }
+
+  /* feed */
+  .feed-label {
+    font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 8px;
+  }
+  .feed-item {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 8px 0; border-bottom: 1px solid var(--border);
+    gap: 8px;
+  }
+  .feed-item:last-child { border-bottom: none; }
+  .feed-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+  .dot-in { background: var(--success); }
+  .dot-out { background: var(--danger); }
+  .dot-pending { background: var(--warning); }
+  .feed-item-name { font-size: 11px; font-weight: 500; flex: 1; min-width: 0; }
+  .feed-item-trunc {
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    display: block; font-size: 11px; font-weight: 500;
+  }
+  .feed-item-date { font-size: 10px; color: var(--muted); }
+  .feed-amount { font-size: 12px; font-weight: 700; letter-spacing: -0.02em; flex-shrink: 0; }
+  .amount-in { color: var(--success); }
+  .amount-out { color: var(--danger); }
+  .amount-pending { color: var(--warning); }
+
+  /* mockup nav */
+  .mockup-nav {
+    display: flex; border-top: 1px solid var(--border);
+    padding: 10px 16px 12px;
+    background: var(--surface);
+  }
+  .nav-item {
+    flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px;
+    font-size: 9px; font-weight: 600; color: var(--muted); letter-spacing: 0.04em;
+  }
+  .nav-item.active { color: var(--accent); }
+  .nav-icon {
+    width: 20px; height: 20px; border-radius: 6px;
+    display: flex; align-items: center; justify-content: center; font-size: 13px;
+  }
+  .nav-item.active .nav-icon { background: var(--accent-soft); }
+  .nav-badge-wrap { position: relative; }
+  .nav-badge {
+    position: absolute; top: -4px; right: -6px;
+    background: var(--accent); color: #fff;
+    font-size: 7px; font-weight: 700; width: 14px; height: 14px;
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    border: 2px solid var(--surface);
+  }
+
+  /* ── FEATURES ── */
+  .features {
+    max-width: 1100px; margin: 0 auto; padding: 80px 40px;
+  }
+  .section-label {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 16px;
+  }
+  .section-title {
+    font-size: 36px; font-weight: 800; letter-spacing: -0.03em;
+    color: var(--text); margin-bottom: 16px; max-width: 480px;
+  }
+  .section-sub {
+    font-size: 16px; color: var(--muted); line-height: 1.6;
+    max-width: 480px; margin-bottom: 56px;
+  }
+  .features-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  }
+  .feature-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--r); padding: 28px;
+    transition: all 0.2s;
+  }
+  .feature-card:hover {
+    box-shadow: var(--shadow-md); transform: translateY(-2px);
+  }
+  .feature-icon-wrap {
+    width: 44px; height: 44px; border-radius: 10px;
+    background: var(--accent-soft); display: flex; align-items: center; justify-content: center;
+    margin-bottom: 20px; font-size: 20px;
+  }
+  .feature-name {
+    font-size: 15px; font-weight: 700; letter-spacing: -0.02em;
+    color: var(--text); margin-bottom: 8px;
+  }
+  .feature-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+  /* ── SIGNALS SHOWCASE ── */
+  .signals-section {
+    background: var(--text); color: #fff;
+    padding: 80px 40px;
+  }
+  .signals-inner { max-width: 1100px; margin: 0 auto; }
+  .signals-label {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+    color: rgba(255,255,255,0.4); margin-bottom: 16px;
+  }
+  .signals-title {
+    font-size: 36px; font-weight: 800; letter-spacing: -0.03em;
+    color: #fff; margin-bottom: 16px; max-width: 520px;
+  }
+  .signals-sub {
+    font-size: 15px; color: rgba(255,255,255,0.5); line-height: 1.6;
+    max-width: 460px; margin-bottom: 48px;
+  }
+  .signals-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;
+  }
+  .signal-item {
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--r); padding: 24px;
+  }
+  .signal-item-priority {
+    display: inline-block;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 3px 8px; border-radius: 100px; margin-bottom: 12px;
+  }
+  .priority-high { background: rgba(220,38,38,0.2); color: #FCA5A5; }
+  .priority-med { background: rgba(217,119,6,0.2); color: #FCD34D; }
+  .priority-low { background: rgba(5,150,105,0.2); color: #6EE7B7; }
+  .signal-item-title {
+    font-size: 14px; font-weight: 700; letter-spacing: -0.02em;
+    color: #fff; margin-bottom: 8px;
+  }
+  .signal-item-body {
+    font-size: 12px; color: rgba(255,255,255,0.5); line-height: 1.5;
+  }
+
+  /* ── SCREENS ── */
+  .screens-section { padding: 80px 40px; max-width: 1100px; margin: 0 auto; }
+  .screens-grid {
+    display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-top: 48px;
+  }
+  .screen-thumb {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 12px; aspect-ratio: 9/16; overflow: hidden;
+    transition: all 0.2s; cursor: pointer;
+  }
+  .screen-thumb:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+  .screen-header {
+    padding: 12px 14px 8px;
+    border-bottom: 1px solid var(--border);
+    font-size: 10px; font-weight: 700; letter-spacing: -0.01em; color: var(--text);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .screen-dot { width: 5px; height: 5px; border-radius: 50%; }
+  .screen-body { padding: 10px 14px; }
+  .sblock {
+    border-radius: 6px; margin-bottom: 6px;
+  }
+  .sblock-lg { height: 36px; background: var(--bg); }
+  .sblock-md { height: 20px; background: var(--bg); }
+  .sblock-sm { height: 10px; width: 70%; background: var(--bg); }
+  .sblock-accent { background: var(--accent-soft); }
+  .sblock-warn { background: var(--warning-soft); }
+  .sblock-success { background: var(--success-soft); }
+  .sblock-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; margin-bottom: 6px; }
+  .screen-label { text-align: center; font-size: 11px; font-weight: 600; color: var(--muted); margin-top: 10px; }
+
+  /* ── CTA ── */
+  .cta-section {
+    padding: 80px 40px; text-align: center; max-width: 600px; margin: 0 auto;
+  }
+  .cta-title {
+    font-size: 40px; font-weight: 800; letter-spacing: -0.04em; margin-bottom: 16px;
+  }
+  .cta-sub { font-size: 16px; color: var(--muted); margin-bottom: 32px; line-height: 1.6; }
+  .cta-note { font-size: 12px; color: var(--muted); margin-top: 14px; }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border); padding: 32px 40px;
+    display: flex; align-items: center; justify-content: space-between;
+    font-size: 12px; color: var(--muted); max-width: 1100px; margin: 0 auto;
+  }
+  .footer-brand { font-weight: 700; color: var(--text); }
+  .footer-note { font-size: 11px; color: var(--muted); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">
+    <div class="nav-logo-mark">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+      </svg>
+    </div>
+    Cashline
+  </a>
+  <div class="nav-links">
+    <a href="#">Features</a>
+    <a href="#">Signals</a>
+    <a href="#">Pricing</a>
+    <a href="#">Docs</a>
+  </div>
+  <div class="nav-cta">
+    <a href="#" class="btn btn-ghost">Sign in</a>
+    <a href="#" class="btn btn-primary">Start free</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">
+      <span class="eyebrow-dot"></span>
+      AI-powered · For consultants
+    </div>
+    <h1 class="hero-title">
+      Your cash flow,<br>
+      <em>always thinking</em>
+    </h1>
+    <p class="hero-sub">
+      Cashline monitors your finances continuously — detecting late invoices, forecasting runway, and surfacing opportunities before you'd think to look.
+    </p>
+    <div class="hero-actions">
+      <a href="/cashline-mock" class="btn btn-primary btn-lg">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+        Try the mock
+      </a>
+      <a href="#" class="btn btn-ghost btn-lg">See how it works</a>
+    </div>
+    <div class="hero-social-proof">
+      <div class="avatar-stack">
+        <div class="avatar a1">JR</div>
+        <div class="avatar a2">SK</div>
+        <div class="avatar a3">ML</div>
+        <div class="avatar a4">DP</div>
+      </div>
+      <span>Trusted by 1,200+ independent consultants</span>
+    </div>
+  </div>
+
+  <!-- HERO MOCKUP -->
+  <div class="hero-mockup">
+    <div class="mockup-header">
+      <span class="mockup-title">Pulse</span>
+      <span class="mockup-badge">● Live</span>
+    </div>
+    <div class="mockup-body">
+      <div class="pos-card">
+        <div class="pos-label">Net Position · March 2026</div>
+        <div class="pos-value">$48,320</div>
+        <div class="pos-delta">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"></polyline></svg>
+          +$6,140 vs last month
+        </div>
+      </div>
+      <div class="stat-row">
+        <div class="stat-cell">
+          <div class="stat-cell-label">Runway</div>
+          <div class="stat-cell-value">94 days</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-cell-label">Outstanding</div>
+          <div class="stat-cell-value" style="color: var(--warning)">$12,500</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-cell-label">Month In</div>
+          <div class="stat-cell-value" style="color: var(--success)">$19,200</div>
+        </div>
+      </div>
+      <div class="signal-banner">
+        <div class="signal-icon">⚡</div>
+        <div class="signal-content">
+          <div class="signal-eyebrow">AI Signal</div>
+          <div class="signal-text">3 invoices past 14 days — nudge now to avoid 30-day mark</div>
+        </div>
+      </div>
+      <div class="feed-label">Recent Activity</div>
+      <div class="feed-item">
+        <div class="feed-dot dot-in"></div>
+        <div class="feed-item-name">
+          <span class="feed-item-trunc">Stripe payout · Acme Corp Q1</span>
+          <span class="feed-item-date">Today</span>
+        </div>
+        <div class="feed-amount amount-in">+$8,400</div>
+      </div>
+      <div class="feed-item">
+        <div class="feed-dot dot-out"></div>
+        <div class="feed-item-name">
+          <span class="feed-item-trunc">AWS · Cloud infrastructure</span>
+          <span class="feed-item-date">Today</span>
+        </div>
+        <div class="feed-amount amount-out">-$312</div>
+      </div>
+      <div class="feed-item">
+        <div class="feed-dot dot-pending"></div>
+        <div class="feed-item-name">
+          <span class="feed-item-trunc">Invoice #INV-047 sent · Palta</span>
+          <span class="feed-item-date">Yesterday</span>
+        </div>
+        <div class="feed-amount amount-pending">$4,500</div>
+      </div>
+      <div class="feed-item">
+        <div class="feed-dot dot-in"></div>
+        <div class="feed-item-name">
+          <span class="feed-item-trunc">Stripe payout · Reflex Studio</span>
+          <span class="feed-item-date">Mar 22</span>
+        </div>
+        <div class="feed-amount amount-in">+$6,300</div>
+      </div>
+    </div>
+    <div class="mockup-nav">
+      <div class="nav-item active">
+        <div class="nav-icon">📊</div>
+        Pulse
+      </div>
+      <div class="nav-item">
+        <div class="nav-icon">📈</div>
+        Cashflow
+      </div>
+      <div class="nav-item">
+        <div class="nav-badge-wrap">
+          <div class="nav-icon">⚡</div>
+          <div class="nav-badge">4</div>
+        </div>
+        Signals
+      </div>
+      <div class="nav-item">
+        <div class="nav-icon">🗂</div>
+        Projects
+      </div>
+      <div class="nav-item">
+        <div class="nav-icon">📄</div>
+        Invoice
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features">
+  <div class="section-label">Built different</div>
+  <h2 class="section-title">Finance that works while you sleep</h2>
+  <p class="section-sub">Most dashboards show you the past. Cashline monitors the present and forecasts the future — automatically.</p>
+
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon-wrap">⚡</div>
+      <div class="feature-name">AI Signals</div>
+      <div class="feature-desc">Proactive alerts when invoices age, costs spike, or opportunities emerge. Not just notifications — context and recommended actions.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon-wrap">📈</div>
+      <div class="feature-name">Cashflow Forecast</div>
+      <div class="feature-desc">See projected vs actual across any time period. Know your end-of-month position days before it happens.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon-wrap">🗂</div>
+      <div class="feature-name">Project Profitability</div>
+      <div class="feature-desc">Track hours, revenue, and health by client. Know immediately which projects are worth more of your time.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon-wrap">📄</div>
+      <div class="feature-name">Intelligent Invoicing</div>
+      <div class="feature-desc">Create and send invoices in seconds. The agent suggests payment terms based on each client's payment history.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon-wrap">🛡</div>
+      <div class="feature-name">Tax Reserve Tracking</div>
+      <div class="feature-desc">Automatically calculates and tracks your estimated tax obligations. No more April surprises.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon-wrap">🔗</div>
+      <div class="feature-name">Bank Sync</div>
+      <div class="feature-desc">Connects to your business accounts and automatically categorizes transactions. No manual entry.</div>
+    </div>
+  </div>
+</section>
+
+<!-- SIGNALS SHOWCASE -->
+<section class="signals-section">
+  <div class="signals-inner">
+    <div class="signals-label">AI Signals — The novel screen</div>
+    <h2 class="signals-title">Your agent never stops watching</h2>
+    <p class="signals-sub">Inspired by Linear's agent-tasks paradigm — Cashline's AI agent continuously monitors financial patterns and surfaces ranked signals.</p>
+    <div class="signals-grid">
+      <div class="signal-item">
+        <span class="signal-item-priority priority-high">High priority</span>
+        <div class="signal-item-title">Invoice cluster aging</div>
+        <div class="signal-item-body">INV-044, INV-045, INV-047 haven't been paid. Combined: $12,500. At 30+ days, collection probability drops 18%.</div>
+      </div>
+      <div class="signal-item">
+        <span class="signal-item-priority priority-med">Medium</span>
+        <div class="signal-item-title">Q1 revenue ahead of target</div>
+        <div class="signal-item-body">You've hit 94% of your Q1 goal with 6 days remaining. Stretch target of $52K is achievable if Palta pays this week.</div>
+      </div>
+      <div class="signal-item">
+        <span class="signal-item-priority priority-med">Medium</span>
+        <div class="signal-item-title">Tool spend increased 34%</div>
+        <div class="signal-item-body">Software costs rose from $924 → $1,240 MoM. New additions: Cursor Pro, Raycast Pro, Linear.</div>
+      </div>
+      <div class="signal-item">
+        <span class="signal-item-priority priority-low">Low</span>
+        <div class="signal-item-title">Tax estimate due in 18 days</div>
+        <div class="signal-item-body">Q1 estimated tax of ~$4,224 is due Apr 15. Your reserve account has $4,800 — you're covered.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCREENS PREVIEW -->
+<section class="screens-section">
+  <div class="section-label">5 screens · Full flow</div>
+  <h2 class="section-title">Every screen your business needs</h2>
+
+  <div class="screens-grid">
+    <!-- Pulse -->
+    <div>
+      <div class="screen-thumb">
+        <div class="screen-header">
+          Pulse
+          <div class="screen-dot" style="background:var(--success)"></div>
+        </div>
+        <div class="screen-body">
+          <div class="sblock sblock-lg" style="background:var(--accent-soft);border-radius:10px;"></div>
+          <div class="sblock-row"><div class="sblock sblock-md"></div><div class="sblock sblock-md" style="background:var(--warning-soft)"></div><div class="sblock sblock-md" style="background:var(--success-soft)"></div></div>
+          <div class="sblock sblock-md sblock-warn" style="height:28px"></div>
+          <div class="sblock sblock-sm"></div>
+          <div class="sblock sblock-sm" style="width:90%"></div>
+          <div class="sblock sblock-sm" style="width:80%"></div>
+          <div class="sblock sblock-sm"></div>
+        </div>
+      </div>
+      <div class="screen-label">Pulse</div>
+    </div>
+    <!-- Cashflow -->
+    <div>
+      <div class="screen-thumb">
+        <div class="screen-header">
+          Cashflow
+          <div class="screen-dot" style="background:var(--accent)"></div>
+        </div>
+        <div class="screen-body">
+          <div class="sblock sblock-sm" style="width:80%;background:var(--accent-soft)"></div>
+          <div class="sblock" style="height:60px;background: linear-gradient(135deg, var(--accent-soft), var(--success-soft));border-radius:8px;margin-bottom:6px;"></div>
+          <div class="sblock sblock-sm"></div>
+          <div class="sblock sblock-sm" style="width:90%"></div>
+          <div class="sblock sblock-sm" style="width:60%;background:var(--warning-soft)"></div>
+          <div class="sblock sblock-sm" style="width:30%;background:var(--success-soft)"></div>
+        </div>
+      </div>
+      <div class="screen-label">Cashflow</div>
+    </div>
+    <!-- Signals -->
+    <div>
+      <div class="screen-thumb" style="border-color:rgba(37,99,235,0.2)">
+        <div class="screen-header" style="background:var(--accent-soft)">
+          Signals ⚡
+          <div style="background:var(--accent);color:#fff;font-size:8px;font-weight:700;padding:2px 6px;border-radius:10px;">4</div>
+        </div>
+        <div class="screen-body">
+          <div class="sblock sblock-md sblock-warn" style="height:48px;margin-bottom:6px;"></div>
+          <div class="sblock sblock-md sblock-success" style="height:44px;margin-bottom:6px;"></div>
+          <div class="sblock sblock-md" style="height:40px;background:var(--surface-alt);margin-bottom:6px;"></div>
+          <div class="sblock sblock-md sblock-success" style="height:38px;"></div>
+        </div>
+      </div>
+      <div class="screen-label">Signals</div>
+    </div>
+    <!-- Projects -->
+    <div>
+      <div class="screen-thumb">
+        <div class="screen-header">
+          Projects
+          <div class="screen-dot" style="background:var(--muted)"></div>
+        </div>
+        <div class="screen-body">
+          <div class="sblock-row"><div class="sblock sblock-md" style="height:28px"></div><div class="sblock sblock-md" style="height:28px"></div><div class="sblock sblock-md" style="height:28px"></div></div>
+          <div class="sblock sblock-md" style="height:26px"></div>
+          <div class="sblock sblock-md" style="height:26px;background:var(--warning-soft)"></div>
+          <div class="sblock sblock-md" style="height:26px"></div>
+          <div class="sblock sblock-md" style="height:26px;background:var(--surface-alt)"></div>
+        </div>
+      </div>
+      <div class="screen-label">Projects</div>
+    </div>
+    <!-- Invoice -->
+    <div>
+      <div class="screen-thumb">
+        <div class="screen-header">
+          Invoice
+          <div class="screen-dot" style="background:var(--muted)"></div>
+        </div>
+        <div class="screen-body">
+          <div class="sblock sblock-sm" style="width:60%"></div>
+          <div class="sblock sblock-md" style="height:24px"></div>
+          <div class="sblock sblock-md" style="height:24px"></div>
+          <div class="sblock sblock-md" style="height:44px;background:var(--surface-alt)"></div>
+          <div class="sblock sblock-md sblock-accent" style="height:28px;border-radius:8px;"></div>
+          <div class="sblock sblock-md sblock-success" style="height:22px;border-radius:6px;"></div>
+        </div>
+      </div>
+      <div class="screen-label">Invoice</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <h2 class="cta-title">Know before you need to.</h2>
+  <p class="cta-sub">Start your free 14-day trial. No credit card required. Full access from day one.</p>
+  <a href="/cashline-mock" class="btn btn-primary btn-lg">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+    Explore the interactive mock
+  </a>
+  <div class="cta-note">Interactive prototype → ram.zenbin.org/cashline-mock</div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>
+    <span class="footer-brand">Cashline</span> — Design concept by RAM
+  </span>
+  <span class="footer-note">Inspired by Midday.ai (godly.website) + Linear agent-tasks UI patterns</span>
+</footer>
+
+</body>
+</html>`;
+
+// ── VIEWER PAGE ──────────────────────────────────────────────────────────────
+const penJson = fs.readFileSync(path.join(__dirname, 'cashline.pen'), 'utf8');
+const viewerTemplate = fs.readFileSync(path.join(__dirname, 'penviewer-app.html'), 'utf8').toString();
+const injection = `<script>window.EMBEDDED_PEN = ${JSON.stringify(penJson)};<\/script>`;
+const viewerHtml = viewerTemplate.replace('<script>', injection + '\n<script>');
+
+async function main() {
+  console.log('Publishing Cashline...\n');
+  await publish(SLUG, heroHtml, `Cashline — ${TAGLINE}`);
+  await publish(`${SLUG}-viewer`, viewerHtml, `Cashline — Pen Viewer`);
+  console.log('\n✓ All pages published');
+}
+
+main().catch(err => {
+  console.error('Error:', err.message);
+  process.exit(1);
+});

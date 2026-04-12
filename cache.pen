@@ -1,0 +1,1140 @@
+{
+  "version": "2.8",
+  "meta": {
+    "name": "CACHE",
+    "tagline": "pull reference. build vision.",
+    "archetype": "design-tool-creative",
+    "author": "RAM Design Heartbeat",
+    "created": "2026-03-31T05:10:54.304Z",
+    "theme": "dark",
+    "slug": "cache",
+    "inspiration": "Neon DB hero on darkmodedesign.com — glowing vertical bars on pure black as ambient decoration; NOA accessories grid on land-book.com — editorial photography thumbnails on dark; Huehaus Studio on minimal.gallery — floating colorful pill labels; Anil Kody dev portfolio — ALL-CAPS ultra-bold condensed type as primary visual identity"
+  },
+  "palette": {
+    "bg": "#0A0A0E",
+    "surface": "#141418",
+    "surfaceAlt": "#1C1C22",
+    "text": "#F4F0E8",
+    "textMuted": "rgba(244,240,232,0.45)",
+    "textFaint": "rgba(244,240,232,0.22)",
+    "accent": "#7C5CF6",
+    "accentSoft": "rgba(124,92,246,0.14)",
+    "accentGlow": "rgba(124,92,246,0.30)",
+    "accent2": "#F7913A",
+    "accent2Soft": "rgba(247,145,58,0.14)",
+    "accent2Glow": "rgba(247,145,58,0.25)",
+    "teal": "#2DD4BF",
+    "tealSoft": "rgba(45,212,191,0.14)",
+    "border": "rgba(244,240,232,0.09)",
+    "borderFocus": "rgba(124,92,246,0.50)",
+    "pill1": "#7C5CF6",
+    "pill2": "#F7913A",
+    "pill3": "#2DD4BF",
+    "pill4": "#F472B6",
+    "pill5": "#84CC16",
+    "pill6": "#FBBF24"
+  },
+  "darkPalette": {
+    "bg": "#0A0A0E",
+    "surface": "#141418",
+    "text": "#F4F0E8",
+    "accent": "#7C5CF6",
+    "accent2": "#F7913A",
+    "muted": "rgba(244,240,232,0.45)"
+  },
+  "lightPalette": {
+    "bg": "#F7F5F2",
+    "surface": "#FFFFFF",
+    "text": "#141418",
+    "accent": "#6B46F5",
+    "accent2": "#E8800A",
+    "muted": "rgba(20,20,24,0.45)"
+  },
+  "typography": {
+    "display": {
+      "family": "'Inter', system-ui, sans-serif",
+      "weight": 900,
+      "size": 36,
+      "tracking": "-0.01em",
+      "transform": "uppercase"
+    },
+    "heading": {
+      "family": "Georgia, 'Times New Roman', serif",
+      "weight": 400,
+      "size": 20,
+      "tracking": "-0.01em"
+    },
+    "label": {
+      "family": "'Inter', system-ui, sans-serif",
+      "weight": 700,
+      "size": 10,
+      "tracking": "0.12em",
+      "transform": "uppercase"
+    },
+    "body": {
+      "family": "'Inter', system-ui, sans-serif",
+      "weight": 400,
+      "size": 14
+    },
+    "mono": {
+      "family": "'JetBrains Mono', 'Fira Code', monospace",
+      "weight": 500,
+      "size": 12
+    }
+  },
+  "screens": [
+    {
+      "id": "home",
+      "label": "Home",
+      "description": "CACHE command center. Dark near-black bg. ALL-CAPS wordmark. Ambient vertical glow bars behind hero card (nod to Neon DB). Featured pull displayed as full-width editorial card. Quick collection access pills in 6 colors (Huehaus Studio nod).",
+      "components": [
+        {
+          "type": "status-bar",
+          "time": "09:41",
+          "style": "dark",
+          "indicators": [
+            "signal",
+            "wifi",
+            "battery"
+          ]
+        },
+        {
+          "type": "topbar",
+          "style": "minimal-dark",
+          "left": {
+            "type": "wordmark",
+            "text": "CACHE",
+            "font": {
+              "family": "Inter, system-ui",
+              "weight": 900,
+              "size": 22,
+              "tracking": "0.08em",
+              "transform": "uppercase"
+            },
+            "color": "#F4F0E8"
+          },
+          "right": [
+            {
+              "type": "avatar-chip",
+              "initials": "MK",
+              "size": 32,
+              "bg": "#7C5CF6",
+              "color": "#fff"
+            }
+          ]
+        },
+        {
+          "type": "text-pair",
+          "label": "MORNING",
+          "labelStyle": {
+            "font": "Inter 700 10px",
+            "tracking": "0.12em",
+            "color": "rgba(244,240,232,0.40)"
+          },
+          "value": "What are you pulling today?",
+          "valueStyle": {
+            "font": "Georgia 20px",
+            "color": "#F4F0E8",
+            "style": "italic"
+          },
+          "spacing": {
+            "top": 16,
+            "bottom": 12
+          }
+        },
+        {
+          "type": "pill-row",
+          "label": "QUICK ACCESS",
+          "scrollable": true,
+          "items": [
+            {
+              "text": "Branding",
+              "color": "#7C5CF6",
+              "bg": "rgba(124,92,246,0.14)",
+              "active": true
+            },
+            {
+              "text": "Type",
+              "color": "#F7913A",
+              "bg": "rgba(247,145,58,0.14)"
+            },
+            {
+              "text": "Motion",
+              "color": "#2DD4BF",
+              "bg": "rgba(45,212,191,0.14)"
+            },
+            {
+              "text": "Editorial",
+              "color": "#F472B6",
+              "bg": "rgba(244,114,182,0.14)"
+            },
+            {
+              "text": "UI/UX",
+              "color": "#84CC16",
+              "bg": "rgba(132,204,22,0.14)"
+            },
+            {
+              "text": "Product",
+              "color": "#FBBF24",
+              "bg": "rgba(251,191,36,0.14)"
+            }
+          ]
+        },
+        {
+          "type": "card-hero",
+          "label": "FEATURED PULL",
+          "style": "dark-editorial",
+          "bg": "#1C1C22",
+          "border": "rgba(124,92,246,0.30)",
+          "glowColor": "rgba(124,92,246,0.12)",
+          "content": {
+            "eyebrow": "BRANDING",
+            "eyebrowColor": "#7C5CF6",
+            "title": "Cactus Club identity system — restrained luxury through negative space",
+            "titleFont": "Georgia, serif",
+            "meta": "Saved 2h ago · via Muzli",
+            "tags": [
+              "identity",
+              "luxury",
+              "negative space",
+              "sans"
+            ]
+          },
+          "hasImage": true,
+          "imagePlaceholder": {
+            "type": "gradient-abstract",
+            "colors": [
+              "#7C5CF6",
+              "#2DD4BF"
+            ],
+            "aspect": "16/9"
+          },
+          "cta": {
+            "text": "Open Pull",
+            "style": "ghost-accent"
+          }
+        },
+        {
+          "type": "section-header",
+          "label": "RECENT PULLS",
+          "action": {
+            "text": "See All",
+            "href": "#"
+          }
+        },
+        {
+          "type": "pull-strip",
+          "scrollable": true,
+          "items": [
+            {
+              "thumbnail": {
+                "type": "color-block",
+                "bg": "#F7913A"
+              },
+              "tag": "Type",
+              "tagColor": "#F7913A",
+              "title": "Druk condensed in use",
+              "meta": "30m ago"
+            },
+            {
+              "thumbnail": {
+                "type": "color-block",
+                "bg": "#2DD4BF"
+              },
+              "tag": "Motion",
+              "tagColor": "#2DD4BF",
+              "title": "Scroll transition reel",
+              "meta": "1h ago"
+            },
+            {
+              "thumbnail": {
+                "type": "color-block",
+                "bg": "#F472B6"
+              },
+              "tag": "Editorial",
+              "tagColor": "#F472B6",
+              "title": "Kinfolk vol.52 spreads",
+              "meta": "3h ago"
+            }
+          ]
+        },
+        {
+          "type": "ambient-decoration",
+          "style": "vertical-glow-bars",
+          "position": "behind-hero",
+          "colors": [
+            "#7C5CF6",
+            "#2DD4BF",
+            "#F7913A"
+          ],
+          "opacity": 0.18,
+          "note": "Neon DB-inspired glowing vertical bars as atmospheric decoration"
+        }
+      ]
+    },
+    {
+      "id": "discover",
+      "label": "Discover",
+      "description": "Discovery feed. Color-coded category pills scroll horizontally. Below: masonry-style reference grid (2-col tight). Each card has category badge (colored dot+text), title, and image thumbnail. Inspired by NOA accessories grid + Huehaus colorful pills.",
+      "components": [
+        {
+          "type": "topbar",
+          "style": "search-prominent",
+          "content": {
+            "searchPlaceholder": "Search references…",
+            "searchBg": "#141418",
+            "searchBorder": "rgba(244,240,232,0.09)",
+            "rightIcon": "filter"
+          }
+        },
+        {
+          "type": "pill-row",
+          "scrollable": true,
+          "spacing": {
+            "top": 8,
+            "bottom": 12
+          },
+          "items": [
+            {
+              "text": "All",
+              "color": "#F4F0E8",
+              "bg": "#1C1C22",
+              "active": true
+            },
+            {
+              "text": "Branding",
+              "color": "#7C5CF6",
+              "bg": "rgba(124,92,246,0.14)"
+            },
+            {
+              "text": "Type",
+              "color": "#F7913A",
+              "bg": "rgba(247,145,58,0.14)"
+            },
+            {
+              "text": "Motion",
+              "color": "#2DD4BF",
+              "bg": "rgba(45,212,191,0.14)"
+            },
+            {
+              "text": "Editorial",
+              "color": "#F472B6",
+              "bg": "rgba(244,114,182,0.14)"
+            },
+            {
+              "text": "UI",
+              "color": "#84CC16",
+              "bg": "rgba(132,204,22,0.14)"
+            },
+            {
+              "text": "Product",
+              "color": "#FBBF24",
+              "bg": "rgba(251,191,36,0.14)"
+            }
+          ]
+        },
+        {
+          "type": "section-header",
+          "label": "TRENDING THIS WEEK"
+        },
+        {
+          "type": "masonry-grid",
+          "columns": 2,
+          "gap": 10,
+          "items": [
+            {
+              "id": "m1",
+              "height": "tall",
+              "thumbnail": {
+                "type": "gradient",
+                "colors": [
+                  "#1C1C22",
+                  "#7C5CF6"
+                ]
+              },
+              "tag": {
+                "text": "Branding",
+                "color": "#7C5CF6",
+                "dot": true
+              },
+              "title": "Acid Sans type specimen",
+              "saves": "1.2k"
+            },
+            {
+              "id": "m2",
+              "height": "short",
+              "thumbnail": {
+                "type": "gradient",
+                "colors": [
+                  "#1C1C22",
+                  "#F7913A"
+                ]
+              },
+              "tag": {
+                "text": "Type",
+                "color": "#F7913A",
+                "dot": true
+              },
+              "title": "Display clash — Canela + Neue Haas",
+              "saves": "847"
+            },
+            {
+              "id": "m3",
+              "height": "short",
+              "thumbnail": {
+                "type": "gradient",
+                "colors": [
+                  "#1C1C22",
+                  "#2DD4BF"
+                ]
+              },
+              "tag": {
+                "text": "Motion",
+                "color": "#2DD4BF",
+                "dot": true
+              },
+              "title": "Scroll-driven text reveal",
+              "saves": "622"
+            },
+            {
+              "id": "m4",
+              "height": "tall",
+              "thumbnail": {
+                "type": "gradient",
+                "colors": [
+                  "#1C1C22",
+                  "#F472B6"
+                ]
+              },
+              "tag": {
+                "text": "Editorial",
+                "color": "#F472B6",
+                "dot": true
+              },
+              "title": "Printed Matter 2025 cover series",
+              "saves": "1.1k"
+            },
+            {
+              "id": "m5",
+              "height": "short",
+              "thumbnail": {
+                "type": "gradient",
+                "colors": [
+                  "#1C1C22",
+                  "#84CC16"
+                ]
+              },
+              "tag": {
+                "text": "UI",
+                "color": "#84CC16",
+                "dot": true
+              },
+              "title": "Glass morphism 2.0",
+              "saves": "389"
+            },
+            {
+              "id": "m6",
+              "height": "short",
+              "thumbnail": {
+                "type": "gradient",
+                "colors": [
+                  "#1C1C22",
+                  "#FBBF24"
+                ]
+              },
+              "tag": {
+                "text": "Product",
+                "color": "#FBBF24",
+                "dot": true
+              },
+              "title": "Kettle Form — object photography on black",
+              "saves": "715"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pull-detail",
+      "label": "Pull Detail",
+      "description": "Full-screen reference detail. Image takes top 45% of screen. Below: title in Georgia serif italic, tag chips in their colors, metadata, notes field, Similar strip. 'PULL TO COLLECTION' action bar at bottom. Inspired by Mortons' object-on-black aesthetic.",
+      "components": [
+        {
+          "type": "back-nav",
+          "label": "Discover",
+          "rightAction": {
+            "icon": "share",
+            "label": "Share"
+          },
+          "style": "overlay"
+        },
+        {
+          "type": "image-hero",
+          "aspect": "4/3",
+          "bg": "#0A0A0E",
+          "content": {
+            "type": "gradient-abstract",
+            "colors": [
+              "#141418",
+              "#7C5CF6",
+              "#2DD4BF"
+            ],
+            "opacity": 0.8
+          },
+          "label": "BRANDING",
+          "labelColor": "#7C5CF6",
+          "labelPosition": "bottom-left",
+          "style": "full-bleed-with-fade",
+          "fadeColor": "#0A0A0E"
+        },
+        {
+          "type": "detail-body",
+          "title": "Cactus Club identity system — restrained luxury through negative space",
+          "titleFont": {
+            "family": "Georgia, serif",
+            "style": "italic",
+            "size": 22,
+            "weight": 400
+          },
+          "meta": [
+            {
+              "icon": "clock",
+              "text": "Saved 2 hours ago"
+            },
+            {
+              "icon": "link",
+              "text": "via Muzli"
+            },
+            {
+              "icon": "eye",
+              "text": "847 views in your network"
+            }
+          ],
+          "spacing": {
+            "top": 16,
+            "between": 8
+          }
+        },
+        {
+          "type": "tag-cluster",
+          "label": "TAGS",
+          "items": [
+            {
+              "text": "identity",
+              "color": "#7C5CF6",
+              "bg": "rgba(124,92,246,0.14)"
+            },
+            {
+              "text": "luxury",
+              "color": "#FBBF24",
+              "bg": "rgba(251,191,36,0.14)"
+            },
+            {
+              "text": "negative space",
+              "color": "#2DD4BF",
+              "bg": "rgba(45,212,191,0.14)"
+            },
+            {
+              "text": "wordmark",
+              "color": "#F7913A",
+              "bg": "rgba(247,145,58,0.14)"
+            },
+            {
+              "text": "sans-serif",
+              "color": "#F472B6",
+              "bg": "rgba(244,114,182,0.14)"
+            }
+          ]
+        },
+        {
+          "type": "notes-field",
+          "label": "NOTES",
+          "placeholder": "Add your thoughts on this reference…",
+          "bg": "#141418",
+          "border": "rgba(244,240,232,0.09)",
+          "focusBorder": "rgba(124,92,246,0.50)"
+        },
+        {
+          "type": "section-header",
+          "label": "SIMILAR PULLS"
+        },
+        {
+          "type": "horizontal-scroll-row",
+          "itemSize": {
+            "w": 120,
+            "h": 90
+          },
+          "items": [
+            {
+              "bg": "#1C1C22",
+              "accent": "#F7913A",
+              "tag": "Branding"
+            },
+            {
+              "bg": "#1C1C22",
+              "accent": "#2DD4BF",
+              "tag": "Type"
+            },
+            {
+              "bg": "#1C1C22",
+              "accent": "#F472B6",
+              "tag": "Editorial"
+            }
+          ]
+        },
+        {
+          "type": "action-bar",
+          "style": "dark-floating",
+          "bg": "#14141880",
+          "blur": 20,
+          "actions": [
+            {
+              "type": "icon-button",
+              "icon": "bookmark",
+              "label": "Save",
+              "style": "ghost"
+            },
+            {
+              "type": "primary-button",
+              "label": "PULL TO COLLECTION",
+              "style": "accent-filled",
+              "bg": "#7C5CF6",
+              "color": "#fff"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "collection",
+      "label": "Collection",
+      "description": "A named collection. Title in ALL-CAPS bold 900 weight (Anil Kody influence). Colored accent line under title. Stats row: Pulls count, Last updated, Collaborators. Grid of thumbnails with colored border/glow. Share/Export action.",
+      "components": [
+        {
+          "type": "back-nav",
+          "label": "My Cache",
+          "rightAction": {
+            "icon": "dots",
+            "label": "Options"
+          }
+        },
+        {
+          "type": "collection-header",
+          "name": "DARK BRAND REFS",
+          "nameFont": {
+            "family": "Inter, system-ui",
+            "weight": 900,
+            "size": 28,
+            "tracking": "-0.01em",
+            "transform": "uppercase"
+          },
+          "nameColor": "#F4F0E8",
+          "accentLine": {
+            "color": "#7C5CF6",
+            "width": 32,
+            "height": 3
+          },
+          "description": "Premium identity systems that use restraint and darkness as luxury signal",
+          "descriptionFont": {
+            "family": "Georgia, serif",
+            "style": "italic",
+            "size": 14
+          },
+          "descriptionColor": "rgba(244,240,232,0.55)",
+          "createdBy": "MK",
+          "createdByColor": "#7C5CF6"
+        },
+        {
+          "type": "stats-row",
+          "items": [
+            {
+              "value": "47",
+              "label": "PULLS",
+              "color": "#F4F0E8"
+            },
+            {
+              "value": "12",
+              "label": "DAYS AGO",
+              "color": "#F7913A"
+            },
+            {
+              "value": "3",
+              "label": "COLLABS",
+              "color": "#7C5CF6"
+            }
+          ],
+          "divider": "dot",
+          "dividerColor": "rgba(244,240,232,0.12)"
+        },
+        {
+          "type": "filter-pills",
+          "items": [
+            {
+              "text": "All",
+              "active": true
+            },
+            {
+              "text": "Branding"
+            },
+            {
+              "text": "Type"
+            },
+            {
+              "text": "Spatial"
+            }
+          ],
+          "style": "minimal-underline",
+          "activeColor": "#7C5CF6"
+        },
+        {
+          "type": "grid-3col",
+          "gap": 8,
+          "items": [
+            {
+              "bg": "#1C1C22",
+              "glow": "rgba(124,92,246,0.25)",
+              "tag": "Branding"
+            },
+            {
+              "bg": "#1C1C22",
+              "glow": "rgba(247,145,58,0.25)",
+              "tag": "Type"
+            },
+            {
+              "bg": "#1C1C22",
+              "glow": "rgba(45,212,191,0.25)",
+              "tag": "Motion"
+            },
+            {
+              "bg": "#1C1C22",
+              "glow": "rgba(244,114,182,0.25)",
+              "tag": "Edit."
+            },
+            {
+              "bg": "#1C1C22",
+              "glow": "rgba(132,204,22,0.25)",
+              "tag": "UI"
+            },
+            {
+              "bg": "#1C1C22",
+              "glow": "rgba(251,191,36,0.25)",
+              "tag": "Prod."
+            },
+            {
+              "bg": "#1C1C22",
+              "glow": "rgba(124,92,246,0.25)",
+              "tag": "Brand."
+            },
+            {
+              "bg": "#1C1C22",
+              "glow": "rgba(247,145,58,0.25)",
+              "tag": "Type"
+            },
+            {
+              "bg": "#1C1C22",
+              "glow": "rgba(45,212,191,0.25)",
+              "tag": "Mot."
+            }
+          ],
+          "itemAspect": "1/1"
+        },
+        {
+          "type": "action-row",
+          "actions": [
+            {
+              "icon": "share",
+              "label": "Share Collection",
+              "style": "ghost"
+            },
+            {
+              "icon": "download",
+              "label": "Export",
+              "style": "ghost"
+            },
+            {
+              "icon": "plus",
+              "label": "Add Pulls",
+              "style": "accent-filled",
+              "bg": "#7C5CF6"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "add-pull",
+      "label": "Add Pull",
+      "description": "New pull capture screen. URL input at top with paste shortcut. Image preview (gradient placeholder). Quick tag input with autocomplete pills. Collection selector. 'PULL IT' CTA. Minimal dark keyboard-aware layout.",
+      "components": [
+        {
+          "type": "modal-header",
+          "title": "NEW PULL",
+          "titleFont": {
+            "family": "Inter, system-ui",
+            "weight": 900,
+            "size": 20,
+            "tracking": "0.06em",
+            "transform": "uppercase"
+          },
+          "subtitle": "Drop a URL or paste an image",
+          "subtitleFont": {
+            "family": "Georgia, serif",
+            "style": "italic",
+            "size": 14
+          },
+          "dismissButton": true,
+          "style": "dark-sheet"
+        },
+        {
+          "type": "input-card",
+          "label": "SOURCE URL",
+          "placeholder": "https://…",
+          "bg": "#141418",
+          "border": "rgba(244,240,232,0.09)",
+          "focusBorder": "rgba(124,92,246,0.50)",
+          "leftIcon": "link",
+          "rightAction": {
+            "icon": "clipboard",
+            "label": "Paste",
+            "color": "#7C5CF6"
+          },
+          "style": "dark-underline"
+        },
+        {
+          "type": "preview-card",
+          "label": "PREVIEW",
+          "aspect": "16/9",
+          "bg": "#141418",
+          "border": "rgba(244,240,232,0.06)",
+          "content": {
+            "type": "gradient-placeholder",
+            "colors": [
+              "#7C5CF6",
+              "#2DD4BF"
+            ],
+            "opacity": 0.4
+          },
+          "autofilled": {
+            "title": "Cactus Club rebrand 2025",
+            "source": "Muzli"
+          }
+        },
+        {
+          "type": "tag-input",
+          "label": "TAGS",
+          "placeholder": "Add tags…",
+          "suggestions": [
+            {
+              "text": "identity",
+              "color": "#7C5CF6"
+            },
+            {
+              "text": "luxury",
+              "color": "#FBBF24"
+            },
+            {
+              "text": "dark",
+              "color": "#2DD4BF"
+            },
+            {
+              "text": "minimal",
+              "color": "#F472B6"
+            }
+          ],
+          "addedTags": [
+            {
+              "text": "identity",
+              "color": "#7C5CF6"
+            },
+            {
+              "text": "luxury",
+              "color": "#FBBF24"
+            }
+          ]
+        },
+        {
+          "type": "collection-selector",
+          "label": "ADD TO COLLECTION",
+          "options": [
+            {
+              "icon": "●",
+              "color": "#7C5CF6",
+              "name": "DARK BRAND REFS",
+              "count": 47,
+              "selected": true
+            },
+            {
+              "icon": "●",
+              "color": "#F7913A",
+              "name": "TYPE EXPERIMENTS",
+              "count": 31
+            },
+            {
+              "icon": "●",
+              "color": "#2DD4BF",
+              "name": "MOTION INSPO",
+              "count": 18
+            },
+            {
+              "icon": "+",
+              "color": "rgba(244,240,232,0.30)",
+              "name": "New Collection…"
+            }
+          ],
+          "bg": "#141418",
+          "border": "rgba(244,240,232,0.09)",
+          "selectedBg": "rgba(124,92,246,0.14)",
+          "selectedBorder": "rgba(124,92,246,0.30)"
+        },
+        {
+          "type": "action-bar",
+          "style": "bottom-sticky",
+          "bg": "#0A0A0E",
+          "topBorder": "rgba(244,240,232,0.07)",
+          "actions": [
+            {
+              "type": "primary-button",
+              "label": "PULL IT",
+              "style": "accent-filled",
+              "bg": "#7C5CF6",
+              "color": "#fff",
+              "font": {
+                "family": "Inter",
+                "weight": 900,
+                "tracking": "0.06em",
+                "transform": "uppercase"
+              },
+              "fullWidth": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "profile",
+      "label": "Profile",
+      "description": "My Cache profile. 'MY CACHE' in ALL-CAPS display heading. Avatar with violet glow ring. Stats: Pulls total, Collections, Following. Active collections as large dark cards with colored name pills. Recent activity list. Settings shortcut.",
+      "components": [
+        {
+          "type": "topbar",
+          "style": "minimal-dark",
+          "left": {
+            "type": "wordmark",
+            "text": "MY CACHE",
+            "font": {
+              "weight": 900,
+              "size": 18,
+              "tracking": "0.08em",
+              "transform": "uppercase"
+            },
+            "color": "#F4F0E8"
+          },
+          "right": [
+            {
+              "type": "icon",
+              "icon": "settings",
+              "color": "rgba(244,240,232,0.50)"
+            }
+          ]
+        },
+        {
+          "type": "profile-card",
+          "style": "dark-centered",
+          "avatar": {
+            "type": "monogram",
+            "initials": "MK",
+            "size": 64,
+            "bg": "#1C1C22",
+            "border": "3px solid #7C5CF6",
+            "glow": "0 0 20px rgba(124,92,246,0.35)",
+            "font": {
+              "weight": 700,
+              "size": 22
+            }
+          },
+          "name": "Maya Kurosawa",
+          "handle": "@mkref",
+          "handleColor": "#7C5CF6",
+          "tagline": "design director — pulled 847 references this year",
+          "taglineFont": {
+            "family": "Georgia, serif",
+            "style": "italic",
+            "size": 13
+          },
+          "taglineColor": "rgba(244,240,232,0.50)"
+        },
+        {
+          "type": "stats-row-lg",
+          "items": [
+            {
+              "value": "847",
+              "label": "PULLS",
+              "color": "#F4F0E8"
+            },
+            {
+              "value": "12",
+              "label": "COLLECTIONS",
+              "color": "#F4F0E8"
+            },
+            {
+              "value": "38",
+              "label": "FOLLOWING",
+              "color": "#F4F0E8"
+            }
+          ],
+          "valueFont": {
+            "family": "Inter",
+            "weight": 900,
+            "size": 26
+          },
+          "labelFont": {
+            "family": "Inter",
+            "weight": 700,
+            "size": 9,
+            "tracking": "0.12em"
+          },
+          "labelColor": "rgba(244,240,232,0.40)",
+          "divider": "vertical-line",
+          "dividerColor": "rgba(244,240,232,0.10)"
+        },
+        {
+          "type": "section-header",
+          "label": "ACTIVE COLLECTIONS",
+          "action": {
+            "text": "Manage",
+            "href": "#"
+          }
+        },
+        {
+          "type": "collection-card-list",
+          "items": [
+            {
+              "name": "DARK BRAND REFS",
+              "nameColor": "#7C5CF6",
+              "count": 47,
+              "thumbs": 3,
+              "thumbColors": [
+                "#7C5CF6",
+                "#2DD4BF",
+                "#F472B6"
+              ],
+              "lastPull": "2h ago",
+              "bg": "#141418",
+              "border": "rgba(124,92,246,0.22)"
+            },
+            {
+              "name": "TYPE EXPERIMENTS",
+              "nameColor": "#F7913A",
+              "count": 31,
+              "thumbs": 3,
+              "thumbColors": [
+                "#F7913A",
+                "#FBBF24",
+                "#84CC16"
+              ],
+              "lastPull": "1d ago",
+              "bg": "#141418",
+              "border": "rgba(247,145,58,0.22)"
+            },
+            {
+              "name": "MOTION INSPO",
+              "nameColor": "#2DD4BF",
+              "count": 18,
+              "thumbs": 3,
+              "thumbColors": [
+                "#2DD4BF",
+                "#7C5CF6",
+                "#F472B6"
+              ],
+              "lastPull": "3d ago",
+              "bg": "#141418",
+              "border": "rgba(45,212,191,0.22)"
+            }
+          ],
+          "itemFont": {
+            "family": "Inter",
+            "weight": 900,
+            "size": 13,
+            "tracking": "0.06em",
+            "transform": "uppercase"
+          }
+        },
+        {
+          "type": "section-header",
+          "label": "RECENT ACTIVITY",
+          "spacing": {
+            "top": 16
+          }
+        },
+        {
+          "type": "activity-list",
+          "items": [
+            {
+              "type": "pull",
+              "text": "Pulled Cactus Club identity",
+              "collection": "DARK BRAND REFS",
+              "collectionColor": "#7C5CF6",
+              "time": "2h ago"
+            },
+            {
+              "type": "pull",
+              "text": "Pulled Druk condensed specimen",
+              "collection": "TYPE EXPERIMENTS",
+              "collectionColor": "#F7913A",
+              "time": "5h ago"
+            },
+            {
+              "type": "follow",
+              "text": "Started following @nnives",
+              "time": "1d ago"
+            }
+          ],
+          "itemStyle": {
+            "bg": "#141418",
+            "border": "rgba(244,240,232,0.06)",
+            "radius": 10
+          }
+        }
+      ]
+    }
+  ],
+  "navigation": {
+    "type": "tab-bar",
+    "style": "dark-floating",
+    "bg": "rgba(10,10,14,0.90)",
+    "blur": 24,
+    "border": "rgba(244,240,232,0.07)",
+    "activeColor": "#7C5CF6",
+    "inactiveColor": "rgba(244,240,232,0.35)",
+    "items": [
+      {
+        "id": "home",
+        "icon": "home",
+        "label": "Home"
+      },
+      {
+        "id": "discover",
+        "icon": "search",
+        "label": "Discover"
+      },
+      {
+        "id": "add-pull",
+        "icon": "plus",
+        "label": "Pull",
+        "special": true,
+        "specialBg": "#7C5CF6",
+        "specialGlow": "rgba(124,92,246,0.40)"
+      },
+      {
+        "id": "collection",
+        "icon": "layers",
+        "label": "Collections"
+      },
+      {
+        "id": "profile",
+        "icon": "user",
+        "label": "Profile"
+      }
+    ]
+  }
+}

@@ -1,0 +1,4262 @@
+{
+  "version": "2.8",
+  "metadata": {
+    "name": "PAVE",
+    "tagline": "wealth, made clear",
+    "author": "RAM",
+    "date": "2026-04-09",
+    "theme": "light",
+    "heartbeat": 406,
+    "elements": 455,
+    "archetype": "personal-finance",
+    "inspiration": "Old Tom Capital (minimal.gallery) + Sparkles warm palette (lapa.ninja)"
+  },
+  "screens": [
+    {
+      "name": "Portfolio Overview",
+      "width": 390,
+      "height": 844,
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"390\" height=\"844\" viewBox=\"0 0 390 844\"><rect x=\"0\" y=\"0\" width=\"390\" height=\"844\" fill=\"#F9F7F4\"/>\n<text x=\"20\" y=\"54\" fill=\"#1A1714\" font-size=\"13\" font-weight=\"600\">9:41</text>\n<text x=\"370\" y=\"54\" fill=\"#1A1714\" font-size=\"12\" text-anchor=\"end\" opacity=\"0.6\">⊙ ⊙⊙</text>\n<text x=\"20\" y=\"92\" fill=\"#8C8078\" font-size=\"13\">Good morning, Alex</text>\n<text x=\"20\" y=\"118\" fill=\"#1A1714\" font-size=\"24\" font-weight=\"700\" letter-spacing=\"0.12em\">PAVE</text>\n<circle cx=\"358\" cy=\"108\" r=\"16\" fill=\"#F2EEE8\"/>\n<text x=\"358\" y=\"113\" fill=\"#0F766E\" font-size=\"14\" text-anchor=\"middle\">◎</text>\n<rect x=\"20\" y=\"148\" width=\"350\" height=\"180\" fill=\"#FFFFFF\" rx=\"16\" stroke=\"#E5DDD5\" stroke-width=\"1\"/>\n<text x=\"36\" y=\"178\" fill=\"#8C8078\" font-size=\"11\" letter-spacing=\"0.06em\">Total Portfolio Value</text>\n<text x=\"36\" y=\"218\" fill=\"#1A1714\" font-size=\"38\" font-weight=\"700\">$284,391</text>\n<text x=\"36\" y=\"248\" fill=\"#16A34A\" font-size=\"13\" font-weight=\"600\">↑ $4,218  </text>\n<text x=\"148\" y=\"248\" fill=\"#16A34A\" font-size=\"13\">+1.51% today</text>\n<line x1=\"36\" y1=\"310\" x2=\"63\" y2=\"305\" stroke=\"#0F766E\" stroke-width=\"2\"/>\n<line x1=\"63\" y1=\"305\" x2=\"90\" y2=\"308\" stroke=\"#0F766E\" stroke-width=\"2\"/>\n<line x1=\"90\" y1=\"308\" x2=\"117\" y2=\"298\" stroke=\"#0F766E\" stroke-width=\"2\"/>\n<line x1=\"117\" y1=\"298\" x2=\"144\" y2=\"302\" stroke=\"#0F766E\" stroke-width=\"2\"/>\n<line x1=\"144\" y1=\"302\" x2=\"171\" y2=\"295\" stroke=\"#0F766E\" stroke-width=\"2\"/>\n<line x1=\"171\" y1=\"295\" x2=\"198\" y2=\"288\" stroke=\"#0F766E\" stroke-width=\"2\"/>\n<line x1=\"198\" y1=\"288\" x2=\"225\" y2=\"292\" stroke=\"#0F766E\" stroke-width=\"2\"/>\n<line x1=\"225\" y1=\"292\" x2=\"252\" y2=\"285\" stroke=\"#0F766E\" stroke-width=\"2\"/>\n<line x1=\"252\" y1=\"285\" x2=\"279\" y2=\"280\" stroke=\"#0F766E\" stroke-width=\"2\"/>\n<line x1=\"279\" y1=\"280\" x2=\"306\" y2=\"275\" stroke=\"#0F766E\" stroke-width=\"2\"/>\n<line x1=\"306\" y1=\"275\" x2=\"333\" y2=\"278\" stroke=\"#0F766E\" stroke-width=\"2\"/>\n<circle cx=\"36\" cy=\"310\" r=\"2.5\" fill=\"#0F766E\"/>\n<circle cx=\"63\" cy=\"305\" r=\"2.5\" fill=\"#0F766E\"/>\n<circle cx=\"90\" cy=\"308\" r=\"2.5\" fill=\"#0F766E\"/>\n<circle cx=\"117\" cy=\"298\" r=\"2.5\" fill=\"#0F766E\"/>\n<circle cx=\"144\" cy=\"302\" r=\"2.5\" fill=\"#0F766E\"/>\n<circle cx=\"171\" cy=\"295\" r=\"2.5\" fill=\"#0F766E\"/>\n<circle cx=\"198\" cy=\"288\" r=\"2.5\" fill=\"#0F766E\"/>\n<circle cx=\"225\" cy=\"292\" r=\"2.5\" fill=\"#0F766E\"/>\n<circle cx=\"252\" cy=\"285\" r=\"2.5\" fill=\"#0F766E\"/>\n<circle cx=\"279\" cy=\"280\" r=\"2.5\" fill=\"#0F766E\"/>\n<circle cx=\"306\" cy=\"275\" r=\"2.5\" fill=\"#0F766E\"/>\n<circle cx=\"333\" cy=\"278\" r=\"2.5\" fill=\"#0F766E\"/>\n<text x=\"36\" y=\"330\" fill=\"#8C8078\" font-size=\"10\">1W</text>\n<text x=\"100\" y=\"330\" fill=\"#0F766E\" font-size=\"10\" font-weight=\"600\">1M</text>\n<text x=\"164\" y=\"330\" fill=\"#8C8078\" font-size=\"10\">3M</text>\n<text x=\"228\" y=\"330\" fill=\"#8C8078\" font-size=\"10\">1Y</text>\n<text x=\"292\" y=\"330\" fill=\"#8C8078\" font-size=\"10\">ALL</text>\n<text x=\"20\" y=\"360\" fill=\"#1A1714\" font-size=\"13\" font-weight=\"600\" letter-spacing=\"0.04em\">Allocation</text>\n<rect x=\"20\" y=\"374\" width=\"145\" height=\"10\" fill=\"#0F766E\" rx=\"5\"/>\n<rect x=\"167\" y=\"374\" width=\"78.5\" height=\"10\" fill=\"#C2410C\" rx=\"5\"/>\n<rect x=\"247.5\" y=\"374\" width=\"61\" height=\"10\" fill=\"#D97706\" rx=\"5\"/>\n<rect x=\"310.5\" y=\"374\" width=\"33\" height=\"10\" fill=\"#16A34A\" rx=\"5\"/>\n<rect x=\"345.5\" y=\"374\" width=\"22.5\" height=\"10\" fill=\"#8C8078\" rx=\"5\"/>\n<circle cx=\"25\" cy=\"404\" r=\"4\" fill=\"#0F766E\"/>\n<text x=\"38\" y=\"408\" fill=\"#1A1714\" font-size=\"12\">US Equities</text>\n<text x=\"180\" y=\"408\" fill=\"#1A1714\" font-size=\"12\" font-weight=\"600\" text-anchor=\"end\">42%</text>\n<circle cx=\"25\" cy=\"432\" r=\"4\" fill=\"#C2410C\"/>\n<text x=\"38\" y=\"436\" fill=\"#1A1714\" font-size=\"12\">Int'l Stocks</text>\n<text x=\"180\" y=\"436\" fill=\"#1A1714\" font-size=\"12\" font-weight=\"600\" text-anchor=\"end\">23%</text>\n<circle cx=\"25\" cy=\"460\" r=\"4\" fill=\"#D97706\"/>\n<text x=\"38\" y=\"464\" fill=\"#1A1714\" font-size=\"12\">Fixed Income</text>\n<text x=\"180\" y=\"464\" fill=\"#1A1714\" font-size=\"12\" font-weight=\"600\" text-anchor=\"end\">18%</text>\n<circle cx=\"205\" cy=\"404\" r=\"4\" fill=\"#16A34A\"/>\n<text x=\"218\" y=\"408\" fill=\"#1A1714\" font-size=\"12\">Real Estate</text>\n<text x=\"360\" y=\"408\" fill=\"#1A1714\" font-size=\"12\" font-weight=\"600\" text-anchor=\"end\">10%</text>\n<circle cx=\"205\" cy=\"432\" r=\"4\" fill=\"#8C8078\"/>\n<text x=\"218\" y=\"436\" fill=\"#1A1714\" font-size=\"12\">Cash</text>\n<text x=\"360\" y=\"436\" fill=\"#1A1714\" font-size=\"12\" font-weight=\"600\" text-anchor=\"end\">7%</text>\n<text x=\"20\" y=\"510\" fill=\"#1A1714\" font-size=\"13\" font-weight=\"600\" letter-spacing=\"0.04em\">Quick Actions</text>\n<rect x=\"20\" y=\"522\" width=\"76\" height=\"64\" fill=\"#FFFFFF\" rx=\"12\" stroke=\"#E5DDD5\" stroke-width=\"1\"/>\n<text x=\"58\" y=\"550\" fill=\"#0F766E\" font-size=\"20\" font-weight=\"700\" text-anchor=\"middle\">↑</text>\n<text x=\"58\" y=\"570\" fill=\"#8C8078\" font-size=\"10\" text-anchor=\"middle\">Send</text>\n<rect x=\"108\" y=\"522\" width=\"76\" height=\"64\" fill=\"#FFFFFF\" rx=\"12\" stroke=\"#E5DDD5\" stroke-width=\"1\"/>\n<text x=\"146\" y=\"550\" fill=\"#0F766E\" font-size=\"20\" font-weight=\"700\" text-anchor=\"middle\">↓</text>\n<text x=\"146\" y=\"570\" fill=\"#8C8078\" font-size=\"10\" text-anchor=\"middle\">Receive</text>\n<rect x=\"196\" y=\"522\" width=\"76\" height=\"64\" fill=\"#FFFFFF\" rx=\"12\" stroke=\"#E5DDD5\" stroke-width=\"1\"/>\n<text x=\"234\" y=\"550\" fill=\"#0F766E\" font-size=\"20\" font-weight=\"700\" text-anchor=\"middle\">⇄</text>\n<text x=\"234\" y=\"570\" fill=\"#8C8078\" font-size=\"10\" text-anchor=\"middle\">Exchange</text>\n<rect x=\"284\" y=\"522\" width=\"76\" height=\"64\" fill=\"#FFFFFF\" rx=\"12\" stroke=\"#E5DDD5\" stroke-width=\"1\"/>\n<text x=\"322\" y=\"550\" fill=\"#0F766E\" font-size=\"20\" font-weight=\"700\" text-anchor=\"middle\">+</text>\n<text x=\"322\" y=\"570\" fill=\"#8C8078\" font-size=\"10\" text-anchor=\"middle\">Add</text>\n<text x=\"20\" y=\"610\" fill=\"#1A1714\" font-size=\"13\" font-weight=\"600\" letter-spacing=\"0.04em\">Recent Activity</text>\n<text x=\"370\" y=\"610\" fill=\"#0F766E\" font-size=\"12\" text-anchor=\"end\">See all →</text>\n<rect x=\"20\" y=\"628\" width=\"350\" height=\"48\" fill=\"#FFFFFF\" rx=\"10\" stroke=\"#E5DDD5\" stroke-width=\"1\"/>\n<circle cx=\"44\" cy=\"652\" r=\"14\" fill=\"#16A34A\" opacity=\"0.15\"/>\n<text x=\"44\" y=\"656\" fill=\"#16A34A\" font-size=\"10\" text-anchor=\"middle\">▲</text>\n<text x=\"66\" y=\"648\" fill=\"#1A1714\" font-size=\"13\" font-weight=\"600\">Apple Inc.</text>\n<text x=\"66\" y=\"663\" fill=\"#8C8078\" font-size=\"11\">Bought · +10 shares</text>\n<text x=\"360\" y=\"656\" fill=\"#16A34A\" font-size=\"13\" font-weight=\"600\" text-anchor=\"end\">$1,840</text>\n<rect x=\"20\" y=\"684\" width=\"350\" height=\"48\" fill=\"#FFFFFF\" rx=\"10\" stroke=\"#E5DDD5\" stroke-width=\"1\"/>\n<circle cx=\"44\" cy=\"708\" r=\"14\" fill=\"#16A34A\" opacity=\"0.15\"/>\n<text x=\"44\" y=\"712\" fill=\"#16A34A\" font-size=\"10\" text-anchor=\"middle\">$</text>\n<text x=\"66\" y=\"704\" fill=\"#1A1714\" font-size=\"13\" font-weight=\"600\">Dividend</text>\n<text x=\"66\" y=\"719\" fill=\"#8C8078\" font-size=\"11\">Received · MSFT</text>\n<text x=\"360\" y=\"712\" fill=\"#16A34A\" font-size=\"13\" font-weight=\"600\" text-anchor=\"end\">+$48.20</text>\n<rect x=\"20\" y=\"740\" width=\"350\" height=\"48\" fill=\"#FFFFFF\" rx=\"10\" stroke=\"#E5DDD5\" stroke-width=\"1\"/>\n<circle cx=\"44\" cy=\"764\" r=\"14\" fill=\"#DC2626\" opacity=\"0.15\"/>\n<text x=\"44\" y=\"768\" fill=\"#DC2626\" font-size=\"10\" text-anchor=\"middle\">▼</text>\n<text x=\"66\" y=\"760\" fill=\"#1A1714\" font-size=\"13\" font-weight=\"600\">Vanguard ETF</text>\n<text x=\"66\" y=\"775\" fill=\"#8C8078\" font-size=\"11\">Sold · -5 shares</text>\n<text x=\"360\" y=\"768\" fill=\"#DC2626\" font-size=\"13\" font-weight=\"600\" text-anchor=\"end\">-$940</text>\n<rect x=\"0\" y=\"780\" width=\"390\" height=\"64\" fill=\"#FFFFFF\" stroke=\"#E5DDD5\" stroke-width=\"1\"/>\n<text x=\"39\" y=\"808\" fill=\"#0F766E\" font-size=\"20\" text-anchor=\"middle\">⊞</text>\n<text x=\"39\" y=\"828\" fill=\"#0F766E\" font-size=\"9\" font-weight=\"600\" text-anchor=\"middle\">Portfolio</text>\n<text x=\"117\" y=\"808\" fill=\"#8C8078\" font-size=\"20\" text-anchor=\"middle\">◈</text>\n<text x=\"117\" y=\"828\" fill=\"#8C8078\" font-size=\"9\" font-weight=\"400\" text-anchor=\"middle\">Holdings</text>\n<text x=\"195\" y=\"808\" fill=\"#8C8078\" font-size=\"20\" text-anchor=\"middle\">◉</text>\n<text x=\"195\" y=\"828\" fill=\"#8C8078\" font-size=\"9\" font-weight=\"400\" text-anchor=\"middle\">Insights</text>\n<text x=\"273\" y=\"808\" fill=\"#8C8078\" font-size=\"20\" text-anchor=\"middle\">◎</text>\n<text x=\"273\" y=\"828\" fill=\"#8C8078\" font-size=\"9\" font-weight=\"400\" text-anchor=\"middle\">Goals</text>\n<text x=\"351\" y=\"808\" fill=\"#8C8078\" font-size=\"20\" text-anchor=\"middle\">○</text>\n<text x=\"351\" y=\"828\" fill=\"#8C8078\" font-size=\"9\" font-weight=\"400\" text-anchor=\"middle\">Profile</text></svg>",
+      "elements": [
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "fill": "#F9F7F4"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 54,
+          "content": "9:41",
+          "fontSize": 13,
+          "fill": "#1A1714",
+          "fontWeight": 600
+        },
+        {
+          "type": "text",
+          "x": 370,
+          "y": 54,
+          "content": "⊙ ⊙⊙",
+          "fontSize": 12,
+          "fill": "#1A1714",
+          "textAnchor": "end",
+          "opacity": 0.6
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 92,
+          "content": "Good morning, Alex",
+          "fontSize": 13,
+          "fill": "#8C8078"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 118,
+          "content": "PAVE",
+          "fontSize": 24,
+          "fill": "#1A1714",
+          "fontWeight": 700,
+          "letterSpacing": "0.12em"
+        },
+        {
+          "type": "circle",
+          "cx": 358,
+          "cy": 108,
+          "r": 16,
+          "fill": "#F2EEE8"
+        },
+        {
+          "type": "text",
+          "x": 358,
+          "y": 113,
+          "content": "◎",
+          "fontSize": 14,
+          "fill": "#0F766E",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 148,
+          "width": 350,
+          "height": 180,
+          "fill": "#FFFFFF",
+          "rx": 16,
+          "stroke": "#E5DDD5",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 178,
+          "content": "Total Portfolio Value",
+          "fontSize": 11,
+          "fill": "#8C8078",
+          "letterSpacing": "0.06em"
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 218,
+          "content": "$284,391",
+          "fontSize": 38,
+          "fill": "#1A1714",
+          "fontWeight": 700
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 248,
+          "content": "↑ $4,218  ",
+          "fontSize": 13,
+          "fill": "#16A34A",
+          "fontWeight": 600
+        },
+        {
+          "type": "text",
+          "x": 148,
+          "y": 248,
+          "content": "+1.51% today",
+          "fontSize": 13,
+          "fill": "#16A34A"
+        },
+        {
+          "type": "line",
+          "x1": 36,
+          "y1": 310,
+          "x2": 63,
+          "y2": 305,
+          "stroke": "#0F766E",
+          "strokeWidth": 2
+        },
+        {
+          "type": "line",
+          "x1": 63,
+          "y1": 305,
+          "x2": 90,
+          "y2": 308,
+          "stroke": "#0F766E",
+          "strokeWidth": 2
+        },
+        {
+          "type": "line",
+          "x1": 90,
+          "y1": 308,
+          "x2": 117,
+          "y2": 298,
+          "stroke": "#0F766E",
+          "strokeWidth": 2
+        },
+        {
+          "type": "line",
+          "x1": 117,
+          "y1": 298,
+          "x2": 144,
+          "y2": 302,
+          "stroke": "#0F766E",
+          "strokeWidth": 2
+        },
+        {
+          "type": "line",
+          "x1": 144,
+          "y1": 302,
+          "x2": 171,
+          "y2": 295,
+          "stroke": "#0F766E",
+          "strokeWidth": 2
+        },
+        {
+          "type": "line",
+          "x1": 171,
+          "y1": 295,
+          "x2": 198,
+          "y2": 288,
+          "stroke": "#0F766E",
+          "strokeWidth": 2
+        },
+        {
+          "type": "line",
+          "x1": 198,
+          "y1": 288,
+          "x2": 225,
+          "y2": 292,
+          "stroke": "#0F766E",
+          "strokeWidth": 2
+        },
+        {
+          "type": "line",
+          "x1": 225,
+          "y1": 292,
+          "x2": 252,
+          "y2": 285,
+          "stroke": "#0F766E",
+          "strokeWidth": 2
+        },
+        {
+          "type": "line",
+          "x1": 252,
+          "y1": 285,
+          "x2": 279,
+          "y2": 280,
+          "stroke": "#0F766E",
+          "strokeWidth": 2
+        },
+        {
+          "type": "line",
+          "x1": 279,
+          "y1": 280,
+          "x2": 306,
+          "y2": 275,
+          "stroke": "#0F766E",
+          "strokeWidth": 2
+        },
+        {
+          "type": "line",
+          "x1": 306,
+          "y1": 275,
+          "x2": 333,
+          "y2": 278,
+          "stroke": "#0F766E",
+          "strokeWidth": 2
+        },
+        {
+          "type": "circle",
+          "cx": 36,
+          "cy": 310,
+          "r": 2.5,
+          "fill": "#0F766E"
+        },
+        {
+          "type": "circle",
+          "cx": 63,
+          "cy": 305,
+          "r": 2.5,
+          "fill": "#0F766E"
+        },
+        {
+          "type": "circle",
+          "cx": 90,
+          "cy": 308,
+          "r": 2.5,
+          "fill": "#0F766E"
+        },
+        {
+          "type": "circle",
+          "cx": 117,
+          "cy": 298,
+          "r": 2.5,
+          "fill": "#0F766E"
+        },
+        {
+          "type": "circle",
+          "cx": 144,
+          "cy": 302,
+          "r": 2.5,
+          "fill": "#0F766E"
+        },
+        {
+          "type": "circle",
+          "cx": 171,
+          "cy": 295,
+          "r": 2.5,
+          "fill": "#0F766E"
+        },
+        {
+          "type": "circle",
+          "cx": 198,
+          "cy": 288,
+          "r": 2.5,
+          "fill": "#0F766E"
+        },
+        {
+          "type": "circle",
+          "cx": 225,
+          "cy": 292,
+          "r": 2.5,
+          "fill": "#0F766E"
+        },
+        {
+          "type": "circle",
+          "cx": 252,
+          "cy": 285,
+          "r": 2.5,
+          "fill": "#0F766E"
+        },
+        {
+          "type": "circle",
+          "cx": 279,
+          "cy": 280,
+          "r": 2.5,
+          "fill": "#0F766E"
+        },
+        {
+          "type": "circle",
+          "cx": 306,
+          "cy": 275,
+          "r": 2.5,
+          "fill": "#0F766E"
+        },
+        {
+          "type": "circle",
+          "cx": 333,
+          "cy": 278,
+          "r": 2.5,
+          "fill": "#0F766E"
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 330,
+          "content": "1W",
+          "fontSize": 10,
+          "fill": "#8C8078"
+        },
+        {
+          "type": "text",
+          "x": 100,
+          "y": 330,
+          "content": "1M",
+          "fontSize": 10,
+          "fill": "#0F766E",
+          "fontWeight": 600
+        },
+        {
+          "type": "text",
+          "x": 164,
+          "y": 330,
+          "content": "3M",
+          "fontSize": 10,
+          "fill": "#8C8078"
+        },
+        {
+          "type": "text",
+          "x": 228,
+          "y": 330,
+          "content": "1Y",
+          "fontSize": 10,
+          "fill": "#8C8078"
+        },
+        {
+          "type": "text",
+          "x": 292,
+          "y": 330,
+          "content": "ALL",
+          "fontSize": 10,
+          "fill": "#8C8078"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 360,
+          "content": "Allocation",
+          "fontSize": 13,
+          "fill": "#1A1714",
+          "fontWeight": 600,
+          "letterSpacing": "0.04em"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 374,
+          "width": 145,
+          "height": 10,
+          "fill": "#0F766E",
+          "rx": 5
+        },
+        {
+          "type": "rect",
+          "x": 167,
+          "y": 374,
+          "width": 78.5,
+          "height": 10,
+          "fill": "#C2410C",
+          "rx": 5
+        },
+        {
+          "type": "rect",
+          "x": 247.5,
+          "y": 374,
+          "width": 61,
+          "height": 10,
+          "fill": "#D97706",
+          "rx": 5
+        },
+        {
+          "type": "rect",
+          "x": 310.5,
+          "y": 374,
+          "width": 33,
+          "height": 10,
+          "fill": "#16A34A",
+          "rx": 5
+        },
+        {
+          "type": "rect",
+          "x": 345.5,
+          "y": 374,
+          "width": 22.5,
+          "height": 10,
+          "fill": "#8C8078",
+          "rx": 5
+        },
+        {
+          "type": "circle",
+          "cx": 25,
+          "cy": 404,
+          "r": 4,
+          "fill": "#0F766E"
+        },
+        {
+          "type": "text",
+          "x": 38,
+          "y": 408,
+          "content": "US Equities",
+          "fontSize": 12,
+          "fill": "#1A1714"
+        },
+        {
+          "type": "text",
+          "x": 180,
+          "y": 408,
+          "content": "42%",
+          "fontSize": 12,
+          "fill": "#1A1714",
+          "fontWeight": 600,
+          "textAnchor": "end"
+        },
+        {
+          "type": "circle",
+          "cx": 25,
+          "cy": 432,
+          "r": 4,
+          "fill": "#C2410C"
+        },
+        {
+          "type": "text",
+          "x": 38,
+          "y": 436,
+          "content": "Int'l Stocks",
+          "fontSize": 12,
+          "fill": "#1A1714"
+        },
+        {
+          "type": "text",
+          "x": 180,
+          "y": 436,
+          "content": "23%",
+          "fontSize": 12,
+          "fill": "#1A1714",
+          "fontWeight": 600,
+          "textAnchor": "end"
+        },
+        {
+          "type": "circle",
+          "cx": 25,
+          "cy": 460,
+          "r": 4,
+          "fill": "#D97706"
+        },
+        {
+          "type": "text",
+          "x": 38,
+          "y": 464,
+          "content": "Fixed Income",
+          "fontSize": 12,
+          "fill": "#1A1714"
+        },
+        {
+          "type": "text",
+          "x": 180,
+          "y": 464,
+          "content": "18%",
+          "fontSize": 12,
+          "fill": "#1A1714",
+          "fontWeight": 600,
+          "textAnchor": "end"
+        },
+        {
+          "type": "circle",
+          "cx": 205,
+          "cy": 404,
+          "r": 4,
+          "fill": "#16A34A"
+        },
+        {
+          "type": "text",
+          "x": 218,
+          "y": 408,
+          "content": "Real Estate",
+          "fontSize": 12,
+          "fill": "#1A1714"
+        },
+        {
+          "type": "text",
+          "x": 360,
+          "y": 408,
+          "content": "10%",
+          "fontSize": 12,
+          "fill": "#1A1714",
+          "fontWeight": 600,
+          "textAnchor": "end"
+        },
+        {
+          "type": "circle",
+          "cx": 205,
+          "cy": 432,
+          "r": 4,
+          "fill": "#8C8078"
+        },
+        {
+          "type": "text",
+          "x": 218,
+          "y": 436,
+          "content": "Cash",
+          "fontSize": 12,
+          "fill": "#1A1714"
+        },
+        {
+          "type": "text",
+          "x": 360,
+          "y": 436,
+          "content": "7%",
+          "fontSize": 12,
+          "fill": "#1A1714",
+          "fontWeight": 600,
+          "textAnchor": "end"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 510,
+          "content": "Quick Actions",
+          "fontSize": 13,
+          "fill": "#1A1714",
+          "fontWeight": 600,
+          "letterSpacing": "0.04em"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 522,
+          "width": 76,
+          "height": 64,
+          "fill": "#FFFFFF",
+          "rx": 12,
+          "stroke": "#E5DDD5",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 58,
+          "y": 550,
+          "content": "↑",
+          "fontSize": 20,
+          "fill": "#0F766E",
+          "fontWeight": 700,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 58,
+          "y": 570,
+          "content": "Send",
+          "fontSize": 10,
+          "fill": "#8C8078",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 108,
+          "y": 522,
+          "width": 76,
+          "height": 64,
+          "fill": "#FFFFFF",
+          "rx": 12,
+          "stroke": "#E5DDD5",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 146,
+          "y": 550,
+          "content": "↓",
+          "fontSize": 20,
+          "fill": "#0F766E",
+          "fontWeight": 700,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 146,
+          "y": 570,
+          "content": "Receive",
+          "fontSize": 10,
+          "fill": "#8C8078",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 196,
+          "y": 522,
+          "width": 76,
+          "height": 64,
+          "fill": "#FFFFFF",
+          "rx": 12,
+          "stroke": "#E5DDD5",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 234,
+          "y": 550,
+          "content": "⇄",
+          "fontSize": 20,
+          "fill": "#0F766E",
+          "fontWeight": 700,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 234,
+          "y": 570,
+          "content": "Exchange",
+          "fontSize": 10,
+          "fill": "#8C8078",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 284,
+          "y": 522,
+          "width": 76,
+          "height": 64,
+          "fill": "#FFFFFF",
+          "rx": 12,
+          "stroke": "#E5DDD5",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 322,
+          "y": 550,
+          "content": "+",
+          "fontSize": 20,
+          "fill": "#0F766E",
+          "fontWeight": 700,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 322,
+          "y": 570,
+          "content": "Add",
+          "fontSize": 10,
+          "fill": "#8C8078",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 610,
+          "content": "Recent Activity",
+          "fontSize": 13,
+          "fill": "#1A1714",
+          "fontWeight": 600,
+          "letterSpacing": "0.04em"
+        },
+        {
+          "type": "text",
+          "x": 370,
+          "y": 610,
+          "content": "See all →",
+          "fontSize": 12,
+          "fill": "#0F766E",
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 628,
+          "width": 350,
+          "height": 48,
+          "fill": "#FFFFFF",
+          "rx": 10,
+          "stroke": "#E5DDD5",
+          "strokeWidth": 1
+        },
+        {
+          "type": "circle",
+          "cx": 44,
+          "cy": 652,
+          "r": 14,
+          "fill": "#16A34A",
+          "opacity": 0.15
+        },
+        {
+          "type": "text",
+          "x": 44,
+          "y": 656,
+          "content": "▲",
+          "fontSize": 10,
+          "fill": "#16A34A",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 66,
+          "y": 648,
+          "content": "Apple Inc.",
+          "fontSize": 13,
+          "fill": "#1A1714",
+          "fontWeight": 600
+        },
+        {
+          "type": "text",
+          "x": 66,
+          "y": 663,
+          "content": "Bought · +10 shares",
+          "fontSize": 11,
+          "fill": "#8C8078"
+        },
+        {
+          "type": "text",
+          "x": 360,
+          "y": 656,
+          "content": "$1,840",
+          "fontSize": 13,
+          "fill": "#16A34A",
+          "fontWeight": 600,
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 684,
+          "width": 350,
+          "height": 48,
+          "fill": "#FFFFFF",
+          "rx": 10,
+          "stroke": "#E5DDD5",
+          "strokeWidth": 1
+        },
+        {
+          "type": "circle",
+          "cx": 44,
+          "cy": 708,
+          "r": 14,
+          "fill": "#16A34A",
+          "opacity": 0.15
+        },
+        {
+          "type": "text",
+          "x": 44,
+          "y": 712,
+          "content": "$",
+          "fontSize": 10,
+          "fill": "#16A34A",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 66,
+          "y": 704,
+          "content": "Dividend",
+          "fontSize": 13,
+          "fill": "#1A1714",
+          "fontWeight": 600
+        },
+        {
+          "type": "text",
+          "x": 66,
+          "y": 719,
+          "content": "Received · MSFT",
+          "fontSize": 11,
+          "fill": "#8C8078"
+        },
+        {
+          "type": "text",
+          "x": 360,
+          "y": 712,
+          "content": "+$48.20",
+          "fontSize": 13,
+          "fill": "#16A34A",
+          "fontWeight": 600,
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 740,
+          "width": 350,
+          "height": 48,
+          "fill": "#FFFFFF",
+          "rx": 10,
+          "stroke": "#E5DDD5",
+          "strokeWidth": 1
+        },
+        {
+          "type": "circle",
+          "cx": 44,
+          "cy": 764,
+          "r": 14,
+          "fill": "#DC2626",
+          "opacity": 0.15
+        },
+        {
+          "type": "text",
+          "x": 44,
+          "y": 768,
+          "content": "▼",
+          "fontSize": 10,
+          "fill": "#DC2626",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 66,
+          "y": 760,
+          "content": "Vanguard ETF",
+          "fontSize": 13,
+          "fill": "#1A1714",
+          "fontWeight": 600
+        },
+        {
+          "type": "text",
+          "x": 66,
+          "y": 775,
+          "content": "Sold · -5 shares",
+          "fontSize": 11,
+          "fill": "#8C8078"
+        },
+        {
+          "type": "text",
+          "x": 360,
+          "y": 768,
+          "content": "-$940",
+          "fontSize": 13,
+          "fill": "#DC2626",
+          "fontWeight": 600,
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 780,
+          "width": 390,
+          "height": 64,
+          "fill": "#FFFFFF",
+          "stroke": "#E5DDD5",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 39,
+          "y": 808,
+          "content": "⊞",
+          "fontSize": 20,
+          "fill": "#0F766E",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 39,
+          "y": 828,
+          "content": "Portfolio",
+          "fontSize": 9,
+          "fill": "#0F766E",
+          "fontWeight": 600,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 117,
+          "y": 808,
+          "content": "◈",
+          "fontSize": 20,
+          "fill": "#8C8078",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 117,
+          "y": 828,
+          "content": "Holdings",
+          "fontSize": 9,
+          "fill": "#8C8078",
+          "fontWeight": 400,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 808,
+          "content": "◉",
+          "fontSize": 20,
+          "fill": "#8C8078",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 828,
+          "content": "Insights",
+          "fontSize": 9,
+          "fill": "#8C8078",
+          "fontWeight": 400,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 273,
+          "y": 808,
+          "content": "◎",
+          "fontSize": 20,
+          "fill": "#8C8078",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 273,
+          "y": 828,
+          "content": "Goals",
+          "fontSize": 9,
+          "fill": "#8C8078",
+          "fontWeight": 400,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 351,
+          "y": 808,
+          "content": "○",
+          "fontSize": 20,
+          "fill": "#8C8078",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 351,
+          "y": 828,
+          "content": "Profile",
+          "fontSize": 9,
+          "fill": "#8C8078",
+          "fontWeight": 400,
+          "textAnchor": "middle"
+        }
+      ]
+    },
+    {
+      "name": "Holdings",
+      "width": 390,
+      "height": 844,
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"390\" height=\"844\" viewBox=\"0 0 390 844\"><rect x=\"0\" y=\"0\" width=\"390\" height=\"844\" fill=\"#F9F7F4\"/>\n<text x=\"20\" y=\"54\" fill=\"#1A1714\" font-size=\"13\" font-weight=\"600\">9:41</text>\n<text x=\"195\" y=\"96\" fill=\"#1A1714\" font-size=\"18\" font-weight=\"700\" text-anchor=\"middle\">Holdings</text>\n<rect x=\"20\" y=\"112\" width=\"66\" height=\"28\" fill=\"#0F766E\" rx=\"14\" stroke=\"#0F766E\" stroke-width=\"1\"/>\n<text x=\"53\" y=\"130\" fill=\"#FFFFFF\" font-size=\"11\" font-weight=\"600\" text-anchor=\"middle\">All</text>\n<rect x=\"92\" y=\"112\" width=\"66\" height=\"28\" fill=\"#FFFFFF\" rx=\"14\" stroke=\"#E5DDD5\" stroke-width=\"1\"/>\n<text x=\"125\" y=\"130\" fill=\"#1A1714\" font-size=\"11\" font-weight=\"400\" text-anchor=\"middle\">Stocks</text>\n<rect x=\"164\" y=\"112\" width=\"66\" height=\"28\" fill=\"#FFFFFF\" rx=\"14\" stroke=\"#E5DDD5\" stroke-width=\"1\"/>\n<text x=\"197\" y=\"130\" fill=\"#1A1714\" font-size=\"11\" font-weight=\"400\" text-anchor=\"middle\">ETFs</text>\n<rect x=\"236\" y=\"112\" width=\"66\" height=\"28\" fill=\"#FFFFFF\" rx=\"14\" stroke=\"#E5DDD5\" stroke-width=\"1\"/>\n<text x=\"269\" y=\"130\" fill=\"#1A1714\" font-size=\"11\" font-weight=\"400\" text-anchor=\"middle\">Bonds</text>\n<rect x=\"308\" y=\"112\" width=\"66\" height=\"28\" fill=\"#FFFFFF\" rx=\"14\" stroke=\"#E5DDD5\" stroke-width=\"1\"/>\n<text x=\"341\" y=\"130\" fill=\"#1A1714\" font-size=\"11\" font-weight=\"400\" text-anchor=\"middle\">Cash</text>\n<rect x=\"20\" y=\"152\" width=\"350\" height=\"52\" fill=\"#FFFFFF\" rx=\"12\" stroke=\"#E5DDD5\" stroke-width=\"1\"/>\n<text x=\"36\" y=\"174\" fill=\"#8C8078\" font-size=\"11\">Total Invested</text>\n<text x=\"36\" y=\"192\" fill=\"#1A1714\" font-size=\"16\" font-weight=\"700\">$198,840</text>\n<line x1=\"180\" y1=\"162\" x2=\"180\" y2=\"194\" stroke=\"#E5DDD5\" stroke-width=\"1\"/>\n<text x=\"196\" y=\"174\" fill=\"#8C8078\" font-size=\"11\">Total Gain/Loss</text>\n<text x=\"196\" y=\"192\" fill=\"#16A34A\" font-size=\"13\" font-weight=\"600\">+$21,640  +12.2%</text>\n<rect x=\"20\" y=\"218\" width=\"350\" height=\"78\" fill=\"#FFFFFF\" rx=\"12\" stroke=\"#E5DDD5\" stroke-width=\"1\"/>\n<rect x=\"36\" y=\"234\" width=\"44\" height=\"44\" fill=\"#F2EEE8\" rx=\"8\"/>\n<text x=\"58\" y=\"261\" fill=\"#0F766E\" font-size=\"10\" font-weight=\"700\" text-anchor=\"middle\" letter-spacing=\"0.04em\">AAP</text>\n<text x=\"90\" y=\"246\" fill=\"#1A1714\" font-size=\"13\" font-weight=\"600\">Apple Inc.</text>\n<text x=\"90\" y=\"266\" fill=\"#8C8078\" font-size=\"11\">42 shares</text>\n<text x=\"360\" y=\"246\" fill=\"#1A1714\" font-size=\"15\" font-weight=\"700\" text-anchor=\"end\">$9,114</text>\n<text x=\"360\" y=\"268\" fill=\"#16A34A\" font-size=\"11\" font-weight=\"600\" text-anchor=\"end\">+2.34%</text>\n<rect x=\"90\" y=\"278\" width=\"36.456\" height=\"3\" fill=\"#16A34A\" rx=\"2\" opacity=\"0.35\"/>\n<rect x=\"20\" y=\"304\" width=\"350\" height=\"78\" fill=\"#FFFFFF\" rx=\"12\" stroke=\"#E5DDD5\" stroke-width=\"1\"/>\n<rect x=\"36\" y=\"320\" width=\"44\" height=\"44\" fill=\"#F2EEE8\" rx=\"8\"/>\n<text x=\"58\" y=\"347\" fill=\"#0F766E\" font-size=\"10\" font-weight=\"700\" text-anchor=\"middle\" letter-spacing=\"0.04em\">VTI</text>\n<text x=\"90\" y=\"332\" fill=\"#1A1714\" font-size=\"13\" font-weight=\"600\">Vanguard Total Market</text>\n<text x=\"90\" y=\"352\" fill=\"#8C8078\" font-size=\"11\">88 shares</text>\n<text x=\"360\" y=\"332\" fill=\"#1A1714\" font-size=\"15\" font-weight=\"700\" text-anchor=\"end\">$21,208</text>\n<text x=\"360\" y=\"354\" fill=\"#16A34A\" font-size=\"11\" font-weight=\"600\" text-anchor=\"end\">+0.87%</text>\n<rect x=\"90\" y=\"364\" width=\"84.832\" height=\"3\" fill=\"#16A34A\" rx=\"2\" opacity=\"0.35\"/>\n<rect x=\"20\" y=\"390\" width=\"350\" height=\"78\" fill=\"#FFFFFF\" rx=\"12\" stroke=\"#E5DDD5\" stroke-width=\"1\"/>\n<rect x=\"36\" y=\"406\" width=\"44\" height=\"44\" fill=\"#F2EEE8\" rx=\"8\"/>\n<text x=\"58\" y=\"433\" fill=\"#0F766E\" font-size=\"10\" font-weight=\"700\" text-anchor=\"middle\" letter-spacing=\"0.04em\">MSF</text>\n<text x=\"90\" y=\"418\" fill=\"#1A1714\" font-size=\"13\" font-weight=\"600\">Microsoft Corp.</text>\n<text x=\"90\" y=\"438\" fill=\"#8C8078\" font-size=\"11\">30 shares</text>\n<text x=\"360\" y=\"418\" fill=\"#1A1714\" font-size=\"15\" font-weight=\"700\" text-anchor=\"end\">$12,300</text>\n<text x=\"360\" y=\"440\" fill=\"#16A34A\" font-size=\"11\" font-weight=\"600\" text-anchor=\"end\">+1.12%</text>\n<rect x=\"90\" y=\"450\" width=\"49.2\" height=\"3\" fill=\"#16A34A\" rx=\"2\" opacity=\"0.35\"/>\n<rect x=\"20\" y=\"476\" width=\"350\" height=\"78\" fill=\"#FFFFFF\" rx=\"12\" stroke=\"#E5DDD5\" stroke-width=\"1\"/>\n<rect x=\"36\" y=\"492\" width=\"44\" height=\"44\" fill=\"#F2EEE8\" rx=\"8\"/>\n<text x=\"58\" y=\"519\" fill=\"#0F766E\" font-size=\"10\" font-weight=\"700\" text-anchor=\"middle\" letter-spacing=\"0.04em\">BND</text>\n<text x=\"90\" y=\"504\" fill=\"#1A1714\" font-size=\"13\" font-weight=\"600\">Vanguard Total Bond</text>\n<text x=\"90\" y=\"524\" fill=\"#8C8078\" font-size=\"11\">150 shares</text>\n<text x=\"360\" y=\"504\" fill=\"#1A1714\" font-size=\"15\" font-weight=\"700\" text-anchor=\"end\">$11,625</text>\n<text x=\"360\" y=\"526\" fill=\"#DC2626\" font-size=\"11\" font-weight=\"600\" text-anchor=\"end\">-0.23%</text>\n<rect x=\"90\" y=\"536\" width=\"46.5\" height=\"3\" fill=\"#DC2626\" rx=\"2\" opacity=\"0.35\"/>\n<rect x=\"20\" y=\"562\" width=\"350\" height=\"78\" fill=\"#FFFFFF\" rx=\"12\" stroke=\"#E5DDD5\" stroke-width=\"1\"/>\n<rect x=\"36\" y=\"578\" width=\"44\" height=\"44\" fill=\"#F2EEE8\" rx=\"8\"/>\n<text x=\"58\" y=\"605\" fill=\"#0F766E\" font-size=\"10\" font-weight=\"700\" text-anchor=\"middle\" letter-spacing=\"0.04em\">AMZ</text>\n<text x=\"90\" y=\"590\" fill=\"#1A1714\" font-size=\"13\" font-weight=\"600\">Amazon.com</text>\n<text x=\"90\" y=\"610\" fill=\"#8C8078\" font-size=\"11\">8 shares</text>\n<text x=\"360\" y=\"590\" fill=\"#1A1714\" font-size=\"15\" font-weight=\"700\" text-anchor=\"end\">$14,240</text>\n<text x=\"360\" y=\"612\" fill=\"#16A34A\" font-size=\"11\" font-weight=\"600\" text-anchor=\"end\">+3.41%</text>\n<rect x=\"90\" y=\"622\" width=\"56.96\" height=\"3\" fill=\"#16A34A\" rx=\"2\" opacity=\"0.35\"/>\n<rect x=\"20\" y=\"648\" width=\"350\" height=\"78\" fill=\"#FFFFFF\" rx=\"12\" stroke=\"#E5DDD5\" stroke-width=\"1\"/>\n<rect x=\"36\" y=\"664\" width=\"44\" height=\"44\" fill=\"#F2EEE8\" rx=\"8\"/>\n<text x=\"58\" y=\"691\" fill=\"#0F766E\" font-size=\"10\" font-weight=\"700\" text-anchor=\"middle\" letter-spacing=\"0.04em\">VNQ</text>\n<text x=\"90\" y=\"676\" fill=\"#1A1714\" font-size=\"13\" font-weight=\"600\">Vanguard Real Estate</text>\n<text x=\"90\" y=\"696\" fill=\"#8C8078\" font-size=\"11\">60 shares</text>\n<text x=\"360\" y=\"676\" fill=\"#1A1714\" font-size=\"15\" font-weight=\"700\" text-anchor=\"end\">$5,220</text>\n<text x=\"360\" y=\"698\" fill=\"#DC2626\" font-size=\"11\" font-weight=\"600\" text-anchor=\"end\">-0.55%</text>\n<rect x=\"90\" y=\"708\" width=\"20.88\" height=\"3\" fill=\"#DC2626\" rx=\"2\" opacity=\"0.35\"/>\n<rect x=\"0\" y=\"780\" width=\"390\" height=\"64\" fill=\"#FFFFFF\" stroke=\"#E5DDD5\" stroke-width=\"1\"/>\n<text x=\"39\" y=\"808\" fill=\"#8C8078\" font-size=\"20\" text-anchor=\"middle\">⊞</text>\n<text x=\"39\" y=\"828\" fill=\"#8C8078\" font-size=\"9\" font-weight=\"400\" text-anchor=\"middle\">Portfolio</text>\n<text x=\"117\" y=\"808\" fill=\"#0F766E\" font-size=\"20\" text-anchor=\"middle\">◈</text>\n<text x=\"117\" y=\"828\" fill=\"#0F766E\" font-size=\"9\" font-weight=\"600\" text-anchor=\"middle\">Holdings</text>\n<text x=\"195\" y=\"808\" fill=\"#8C8078\" font-size=\"20\" text-anchor=\"middle\">◉</text>\n<text x=\"195\" y=\"828\" fill=\"#8C8078\" font-size=\"9\" font-weight=\"400\" text-anchor=\"middle\">Insights</text>\n<text x=\"273\" y=\"808\" fill=\"#8C8078\" font-size=\"20\" text-anchor=\"middle\">◎</text>\n<text x=\"273\" y=\"828\" fill=\"#8C8078\" font-size=\"9\" font-weight=\"400\" text-anchor=\"middle\">Goals</text>\n<text x=\"351\" y=\"808\" fill=\"#8C8078\" font-size=\"20\" text-anchor=\"middle\">○</text>\n<text x=\"351\" y=\"828\" fill=\"#8C8078\" font-size=\"9\" font-weight=\"400\" text-anchor=\"middle\">Profile</text></svg>",
+      "elements": [
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "fill": "#F9F7F4"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 54,
+          "content": "9:41",
+          "fontSize": 13,
+          "fill": "#1A1714",
+          "fontWeight": 600
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 96,
+          "content": "Holdings",
+          "fontSize": 18,
+          "fill": "#1A1714",
+          "fontWeight": 700,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 112,
+          "width": 66,
+          "height": 28,
+          "fill": "#0F766E",
+          "rx": 14,
+          "stroke": "#0F766E",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 53,
+          "y": 130,
+          "content": "All",
+          "fontSize": 11,
+          "fill": "#FFFFFF",
+          "fontWeight": 600,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 92,
+          "y": 112,
+          "width": 66,
+          "height": 28,
+          "fill": "#FFFFFF",
+          "rx": 14,
+          "stroke": "#E5DDD5",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 125,
+          "y": 130,
+          "content": "Stocks",
+          "fontSize": 11,
+          "fill": "#1A1714",
+          "fontWeight": 400,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 164,
+          "y": 112,
+          "width": 66,
+          "height": 28,
+          "fill": "#FFFFFF",
+          "rx": 14,
+          "stroke": "#E5DDD5",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 197,
+          "y": 130,
+          "content": "ETFs",
+          "fontSize": 11,
+          "fill": "#1A1714",
+          "fontWeight": 400,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 236,
+          "y": 112,
+          "width": 66,
+          "height": 28,
+          "fill": "#FFFFFF",
+          "rx": 14,
+          "stroke": "#E5DDD5",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 269,
+          "y": 130,
+          "content": "Bonds",
+          "fontSize": 11,
+          "fill": "#1A1714",
+          "fontWeight": 400,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 308,
+          "y": 112,
+          "width": 66,
+          "height": 28,
+          "fill": "#FFFFFF",
+          "rx": 14,
+          "stroke": "#E5DDD5",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 341,
+          "y": 130,
+          "content": "Cash",
+          "fontSize": 11,
+          "fill": "#1A1714",
+          "fontWeight": 400,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 152,
+          "width": 350,
+          "height": 52,
+          "fill": "#FFFFFF",
+          "rx": 12,
+          "stroke": "#E5DDD5",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 174,
+          "content": "Total Invested",
+          "fontSize": 11,
+          "fill": "#8C8078"
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 192,
+          "content": "$198,840",
+          "fontSize": 16,
+          "fill": "#1A1714",
+          "fontWeight": 700
+        },
+        {
+          "type": "line",
+          "x1": 180,
+          "y1": 162,
+          "x2": 180,
+          "y2": 194,
+          "stroke": "#E5DDD5",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 196,
+          "y": 174,
+          "content": "Total Gain/Loss",
+          "fontSize": 11,
+          "fill": "#8C8078"
+        },
+        {
+          "type": "text",
+          "x": 196,
+          "y": 192,
+          "content": "+$21,640  +12.2%",
+          "fontSize": 13,
+          "fill": "#16A34A",
+          "fontWeight": 600
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 218,
+          "width": 350,
+          "height": 78,
+          "fill": "#FFFFFF",
+          "rx": 12,
+          "stroke": "#E5DDD5",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rect",
+          "x": 36,
+          "y": 234,
+          "width": 44,
+          "height": 44,
+          "fill": "#F2EEE8",
+          "rx": 8
+        },
+        {
+          "type": "text",
+          "x": 58,
+          "y": 261,
+          "content": "AAP",
+          "fontSize": 10,
+          "fill": "#0F766E",
+          "fontWeight": 700,
+          "textAnchor": "middle",
+          "letterSpacing": "0.04em"
+        },
+        {
+          "type": "text",
+          "x": 90,
+          "y": 246,
+          "content": "Apple Inc.",
+          "fontSize": 13,
+          "fill": "#1A1714",
+          "fontWeight": 600
+        },
+        {
+          "type": "text",
+          "x": 90,
+          "y": 266,
+          "content": "42 shares",
+          "fontSize": 11,
+          "fill": "#8C8078"
+        },
+        {
+          "type": "text",
+          "x": 360,
+          "y": 246,
+          "content": "$9,114",
+          "fontSize": 15,
+          "fill": "#1A1714",
+          "fontWeight": 700,
+          "textAnchor": "end"
+        },
+        {
+          "type": "text",
+          "x": 360,
+          "y": 268,
+          "content": "+2.34%",
+          "fontSize": 11,
+          "fill": "#16A34A",
+          "fontWeight": 600,
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 90,
+          "y": 278,
+          "width": 36.456,
+          "height": 3,
+          "fill": "#16A34A",
+          "rx": 2,
+          "opacity": 0.35
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 304,
+          "width": 350,
+          "height": 78,
+          "fill": "#FFFFFF",
+          "rx": 12,
+          "stroke": "#E5DDD5",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rect",
+          "x": 36,
+          "y": 320,
+          "width": 44,
+          "height": 44,
+          "fill": "#F2EEE8",
+          "rx": 8
+        },
+        {
+          "type": "text",
+          "x": 58,
+          "y": 347,
+          "content": "VTI",
+          "fontSize": 10,
+          "fill": "#0F766E",
+          "fontWeight": 700,
+          "textAnchor": "middle",
+          "letterSpacing": "0.04em"
+        },
+        {
+          "type": "text",
+          "x": 90,
+          "y": 332,
+          "content": "Vanguard Total Market",
+          "fontSize": 13,
+          "fill": "#1A1714",
+          "fontWeight": 600
+        },
+        {
+          "type": "text",
+          "x": 90,
+          "y": 352,
+          "content": "88 shares",
+          "fontSize": 11,
+          "fill": "#8C8078"
+        },
+        {
+          "type": "text",
+          "x": 360,
+          "y": 332,
+          "content": "$21,208",
+          "fontSize": 15,
+          "fill": "#1A1714",
+          "fontWeight": 700,
+          "textAnchor": "end"
+        },
+        {
+          "type": "text",
+          "x": 360,
+          "y": 354,
+          "content": "+0.87%",
+          "fontSize": 11,
+          "fill": "#16A34A",
+          "fontWeight": 600,
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 90,
+          "y": 364,
+          "width": 84.832,
+          "height": 3,
+          "fill": "#16A34A",
+          "rx": 2,
+          "opacity": 0.35
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 390,
+          "width": 350,
+          "height": 78,
+          "fill": "#FFFFFF",
+          "rx": 12,
+          "stroke": "#E5DDD5",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rect",
+          "x": 36,
+          "y": 406,
+          "width": 44,
+          "height": 44,
+          "fill": "#F2EEE8",
+          "rx": 8
+        },
+        {
+          "type": "text",
+          "x": 58,
+          "y": 433,
+          "content": "MSF",
+          "fontSize": 10,
+          "fill": "#0F766E",
+          "fontWeight": 700,
+          "textAnchor": "middle",
+          "letterSpacing": "0.04em"
+        },
+        {
+          "type": "text",
+          "x": 90,
+          "y": 418,
+          "content": "Microsoft Corp.",
+          "fontSize": 13,
+          "fill": "#1A1714",
+          "fontWeight": 600
+        },
+        {
+          "type": "text",
+          "x": 90,
+          "y": 438,
+          "content": "30 shares",
+          "fontSize": 11,
+          "fill": "#8C8078"
+        },
+        {
+          "type": "text",
+          "x": 360,
+          "y": 418,
+          "content": "$12,300",
+          "fontSize": 15,
+          "fill": "#1A1714",
+          "fontWeight": 700,
+          "textAnchor": "end"
+        },
+        {
+          "type": "text",
+          "x": 360,
+          "y": 440,
+          "content": "+1.12%",
+          "fontSize": 11,
+          "fill": "#16A34A",
+          "fontWeight": 600,
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 90,
+          "y": 450,
+          "width": 49.2,
+          "height": 3,
+          "fill": "#16A34A",
+          "rx": 2,
+          "opacity": 0.35
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 476,
+          "width": 350,
+          "height": 78,
+          "fill": "#FFFFFF",
+          "rx": 12,
+          "stroke": "#E5DDD5",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rect",
+          "x": 36,
+          "y": 492,
+          "width": 44,
+          "height": 44,
+          "fill": "#F2EEE8",
+          "rx": 8
+        },
+        {
+          "type": "text",
+          "x": 58,
+          "y": 519,
+          "content": "BND",
+          "fontSize": 10,
+          "fill": "#0F766E",
+          "fontWeight": 700,
+          "textAnchor": "middle",
+          "letterSpacing": "0.04em"
+        },
+        {
+          "type": "text",
+          "x": 90,
+          "y": 504,
+          "content": "Vanguard Total Bond",
+          "fontSize": 13,
+          "fill": "#1A1714",
+          "fontWeight": 600
+        },
+        {
+          "type": "text",
+          "x": 90,
+          "y": 524,
+          "content": "150 shares",
+          "fontSize": 11,
+          "fill": "#8C8078"
+        },
+        {
+          "type": "text",
+          "x": 360,
+          "y": 504,
+          "content": "$11,625",
+          "fontSize": 15,
+          "fill": "#1A1714",
+          "fontWeight": 700,
+          "textAnchor": "end"
+        },
+        {
+          "type": "text",
+          "x": 360,
+          "y": 526,
+          "content": "-0.23%",
+          "fontSize": 11,
+          "fill": "#DC2626",
+          "fontWeight": 600,
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 90,
+          "y": 536,
+          "width": 46.5,
+          "height": 3,
+          "fill": "#DC2626",
+          "rx": 2,
+          "opacity": 0.35
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 562,
+          "width": 350,
+          "height": 78,
+          "fill": "#FFFFFF",
+          "rx": 12,
+          "stroke": "#E5DDD5",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rect",
+          "x": 36,
+          "y": 578,
+          "width": 44,
+          "height": 44,
+          "fill": "#F2EEE8",
+          "rx": 8
+        },
+        {
+          "type": "text",
+          "x": 58,
+          "y": 605,
+          "content": "AMZ",
+          "fontSize": 10,
+          "fill": "#0F766E",
+          "fontWeight": 700,
+          "textAnchor": "middle",
+          "letterSpacing": "0.04em"
+        },
+        {
+          "type": "text",
+          "x": 90,
+          "y": 590,
+          "content": "Amazon.com",
+          "fontSize": 13,
+          "fill": "#1A1714",
+          "fontWeight": 600
+        },
+        {
+          "type": "text",
+          "x": 90,
+          "y": 610,
+          "content": "8 shares",
+          "fontSize": 11,
+          "fill": "#8C8078"
+        },
+        {
+          "type": "text",
+          "x": 360,
+          "y": 590,
+          "content": "$14,240",
+          "fontSize": 15,
+          "fill": "#1A1714",
+          "fontWeight": 700,
+          "textAnchor": "end"
+        },
+        {
+          "type": "text",
+          "x": 360,
+          "y": 612,
+          "content": "+3.41%",
+          "fontSize": 11,
+          "fill": "#16A34A",
+          "fontWeight": 600,
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 90,
+          "y": 622,
+          "width": 56.96,
+          "height": 3,
+          "fill": "#16A34A",
+          "rx": 2,
+          "opacity": 0.35
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 648,
+          "width": 350,
+          "height": 78,
+          "fill": "#FFFFFF",
+          "rx": 12,
+          "stroke": "#E5DDD5",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rect",
+          "x": 36,
+          "y": 664,
+          "width": 44,
+          "height": 44,
+          "fill": "#F2EEE8",
+          "rx": 8
+        },
+        {
+          "type": "text",
+          "x": 58,
+          "y": 691,
+          "content": "VNQ",
+          "fontSize": 10,
+          "fill": "#0F766E",
+          "fontWeight": 700,
+          "textAnchor": "middle",
+          "letterSpacing": "0.04em"
+        },
+        {
+          "type": "text",
+          "x": 90,
+          "y": 676,
+          "content": "Vanguard Real Estate",
+          "fontSize": 13,
+          "fill": "#1A1714",
+          "fontWeight": 600
+        },
+        {
+          "type": "text",
+          "x": 90,
+          "y": 696,
+          "content": "60 shares",
+          "fontSize": 11,
+          "fill": "#8C8078"
+        },
+        {
+          "type": "text",
+          "x": 360,
+          "y": 676,
+          "content": "$5,220",
+          "fontSize": 15,
+          "fill": "#1A1714",
+          "fontWeight": 700,
+          "textAnchor": "end"
+        },
+        {
+          "type": "text",
+          "x": 360,
+          "y": 698,
+          "content": "-0.55%",
+          "fontSize": 11,
+          "fill": "#DC2626",
+          "fontWeight": 600,
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 90,
+          "y": 708,
+          "width": 20.88,
+          "height": 3,
+          "fill": "#DC2626",
+          "rx": 2,
+          "opacity": 0.35
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 780,
+          "width": 390,
+          "height": 64,
+          "fill": "#FFFFFF",
+          "stroke": "#E5DDD5",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 39,
+          "y": 808,
+          "content": "⊞",
+          "fontSize": 20,
+          "fill": "#8C8078",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 39,
+          "y": 828,
+          "content": "Portfolio",
+          "fontSize": 9,
+          "fill": "#8C8078",
+          "fontWeight": 400,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 117,
+          "y": 808,
+          "content": "◈",
+          "fontSize": 20,
+          "fill": "#0F766E",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 117,
+          "y": 828,
+          "content": "Holdings",
+          "fontSize": 9,
+          "fill": "#0F766E",
+          "fontWeight": 600,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 808,
+          "content": "◉",
+          "fontSize": 20,
+          "fill": "#8C8078",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 828,
+          "content": "Insights",
+          "fontSize": 9,
+          "fill": "#8C8078",
+          "fontWeight": 400,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 273,
+          "y": 808,
+          "content": "◎",
+          "fontSize": 20,
+          "fill": "#8C8078",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 273,
+          "y": 828,
+          "content": "Goals",
+          "fontSize": 9,
+          "fill": "#8C8078",
+          "fontWeight": 400,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 351,
+          "y": 808,
+          "content": "○",
+          "fontSize": 20,
+          "fill": "#8C8078",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 351,
+          "y": 828,
+          "content": "Profile",
+          "fontSize": 9,
+          "fill": "#8C8078",
+          "fontWeight": 400,
+          "textAnchor": "middle"
+        }
+      ]
+    },
+    {
+      "name": "Insights",
+      "width": 390,
+      "height": 844,
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"390\" height=\"844\" viewBox=\"0 0 390 844\"><rect x=\"0\" y=\"0\" width=\"390\" height=\"844\" fill=\"#F9F7F4\"/>\n<text x=\"20\" y=\"54\" fill=\"#1A1714\" font-size=\"13\" font-weight=\"600\">9:41</text>\n<text x=\"195\" y=\"96\" fill=\"#1A1714\" font-size=\"18\" font-weight=\"700\" text-anchor=\"middle\">Insights</text>\n<rect x=\"20\" y=\"112\" width=\"62\" height=\"26\" fill=\"transparent\" rx=\"13\"/>\n<text x=\"51\" y=\"129\" fill=\"#8C8078\" font-size=\"11\" font-weight=\"400\" text-anchor=\"middle\">7D</text>\n<rect x=\"90\" y=\"112\" width=\"62\" height=\"26\" fill=\"transparent\" rx=\"13\"/>\n<text x=\"121\" y=\"129\" fill=\"#8C8078\" font-size=\"11\" font-weight=\"400\" text-anchor=\"middle\">1M</text>\n<rect x=\"160\" y=\"112\" width=\"62\" height=\"26\" fill=\"transparent\" rx=\"13\"/>\n<text x=\"191\" y=\"129\" fill=\"#8C8078\" font-size=\"11\" font-weight=\"400\" text-anchor=\"middle\">3M</text>\n<rect x=\"230\" y=\"112\" width=\"62\" height=\"26\" fill=\"#0F766E\" rx=\"13\"/>\n<text x=\"261\" y=\"129\" fill=\"#FFFFFF\" font-size=\"11\" font-weight=\"700\" text-anchor=\"middle\">1Y</text>\n<rect x=\"300\" y=\"112\" width=\"62\" height=\"26\" fill=\"transparent\" rx=\"13\"/>\n<text x=\"331\" y=\"129\" fill=\"#8C8078\" font-size=\"11\" font-weight=\"400\" text-anchor=\"middle\">ALL</text>\n<rect x=\"20\" y=\"148\" width=\"350\" height=\"160\" fill=\"#FFFFFF\" rx=\"16\" stroke=\"#E5DDD5\" stroke-width=\"1\"/>\n<text x=\"36\" y=\"170\" fill=\"#8C8078\" font-size=\"11\" letter-spacing=\"0.04em\">Net Worth Growth</text>\n<text x=\"36\" y=\"194\" fill=\"#1A1714\" font-size=\"28\" font-weight=\"700\">$284,391</text>\n<text x=\"36\" y=\"216\" fill=\"#16A34A\" font-size=\"12\" font-weight=\"600\">↑ 12.2% this year</text>\n<rect x=\"24\" y=\"291.1111111111111\" width=\"20\" height=\"8.88888888888889\" fill=\"#F2EEE8\" rx=\"4\"/>\n<text x=\"34\" y=\"312\" fill=\"#8C8078\" font-size=\"8\" text-anchor=\"middle\">Apr</text>\n<rect x=\"52\" y=\"284\" width=\"20\" height=\"16\" fill=\"#F2EEE8\" rx=\"4\"/>\n<rect x=\"80\" y=\"286.6666666666667\" width=\"20\" height=\"13.333333333333332\" fill=\"#F2EEE8\" rx=\"4\"/>\n<rect x=\"108\" y=\"275.1111111111111\" width=\"20\" height=\"24.88888888888889\" fill=\"#F2EEE8\" rx=\"4\"/>\n<text x=\"118\" y=\"312\" fill=\"#8C8078\" font-size=\"8\" text-anchor=\"middle\">Jul</text>\n<rect x=\"136\" y=\"268.8888888888889\" width=\"20\" height=\"31.11111111111111\" fill=\"#F2EEE8\" rx=\"4\"/>\n<rect x=\"164\" y=\"264.44444444444446\" width=\"20\" height=\"35.55555555555556\" fill=\"#F2EEE8\" rx=\"4\"/>\n<rect x=\"192\" y=\"257.3333333333333\" width=\"20\" height=\"42.666666666666664\" fill=\"#F2EEE8\" rx=\"4\"/>\n<text x=\"202\" y=\"312\" fill=\"#8C8078\" font-size=\"8\" text-anchor=\"middle\">Oct</text>\n<rect x=\"220\" y=\"260.8888888888889\" width=\"20\" height=\"39.11111111111111\" fill=\"#F2EEE8\" rx=\"4\"/>\n<rect x=\"248\" y=\"251.11111111111111\" width=\"20\" height=\"48.88888888888889\" fill=\"#F2EEE8\" rx=\"4\"/>\n<rect x=\"276\" y=\"248.44444444444446\" width=\"20\" height=\"51.55555555555556\" fill=\"#F2EEE8\" rx=\"4\"/>\n<text x=\"286\" y=\"312\" fill=\"#8C8078\" font-size=\"8\" text-anchor=\"middle\">Jan</text>\n<rect x=\"304\" y=\"239.55555555555554\" width=\"20\" height=\"60.44444444444444\" fill=\"#F2EEE8\" rx=\"4\"/>\n<rect x=\"332\" y=\"225.33333333333331\" width=\"20\" height=\"74.66666666666667\" fill=\"#0F766E\" rx=\"4\"/>\n<text x=\"20\" y=\"328\" fill=\"#1A1714\" font-size=\"13\" font-weight=\"600\" letter-spacing=\"0.04em\">Financial Health</text>\n<rect x=\"20\" y=\"346\" width=\"168\" height=\"88\" fill=\"#FFFFFF\" rx=\"12\" stroke=\"#E5DDD5\" stroke-width=\"1\"/>\n<circle cx=\"42\" cy=\"368\" r=\"10\" fill=\"#16A34A\" opacity=\"0.15\"/>\n<text x=\"42\" y=\"373\" fill=\"#16A34A\" font-size=\"10\" font-weight=\"700\" text-anchor=\"middle\">↑</text>\n<text x=\"60\" y=\"374\" fill=\"#8C8078\" font-size=\"10\">Savings Rate</text>\n<text x=\"36\" y=\"400\" fill=\"#1A1714\" font-size=\"20\" font-weight=\"700\">28%</text>\n<text x=\"36\" y=\"417\" fill=\"#8C8078\" font-size=\"10\">of income</text>\n<rect x=\"200\" y=\"346\" width=\"168\" height=\"88\" fill=\"#FFFFFF\" rx=\"12\" stroke=\"#E5DDD5\" stroke-width=\"1\"/>\n<circle cx=\"222\" cy=\"368\" r=\"10\" fill=\"#0F766E\" opacity=\"0.15\"/>\n<text x=\"222\" y=\"373\" fill=\"#0F766E\" font-size=\"10\" font-weight=\"700\" text-anchor=\"middle\">◈</text>\n<text x=\"240\" y=\"374\" fill=\"#8C8078\" font-size=\"10\">Expense Ratio</text>\n<text x=\"216\" y=\"400\" fill=\"#1A1714\" font-size=\"20\" font-weight=\"700\">0.12%</text>\n<text x=\"216\" y=\"417\" fill=\"#8C8078\" font-size=\"10\">avg fund cost</text>\n<rect x=\"20\" y=\"446\" width=\"168\" height=\"88\" fill=\"#FFFFFF\" rx=\"12\" stroke=\"#E5DDD5\" stroke-width=\"1\"/>\n<circle cx=\"42\" cy=\"468\" r=\"10\" fill=\"#C2410C\" opacity=\"0.15\"/>\n<text x=\"42\" y=\"473\" fill=\"#C2410C\" font-size=\"10\" font-weight=\"700\" text-anchor=\"middle\">●</text>\n<text x=\"60\" y=\"474\" fill=\"#8C8078\" font-size=\"10\">Diversification</text>\n<text x=\"36\" y=\"500\" fill=\"#1A1714\" font-size=\"20\" font-weight=\"700\">91/100</text>\n<text x=\"36\" y=\"517\" fill=\"#8C8078\" font-size=\"10\">score</text>\n<rect x=\"200\" y=\"446\" width=\"168\" height=\"88\" fill=\"#FFFFFF\" rx=\"12\" stroke=\"#E5DDD5\" stroke-width=\"1\"/>\n<circle cx=\"222\" cy=\"468\" r=\"10\" fill=\"#D97706\" opacity=\"0.15\"/>\n<text x=\"222\" y=\"473\" fill=\"#D97706\" font-size=\"10\" font-weight=\"700\" text-anchor=\"middle\">◎</text>\n<text x=\"240\" y=\"474\" fill=\"#8C8078\" font-size=\"10\">Risk Level</text>\n<text x=\"216\" y=\"500\" fill=\"#1A1714\" font-size=\"20\" font-weight=\"700\">Moderate</text>\n<text x=\"216\" y=\"517\" fill=\"#8C8078\" font-size=\"10\">balanced profile</text>\n<text x=\"20\" y=\"560\" fill=\"#1A1714\" font-size=\"13\" font-weight=\"600\" letter-spacing=\"0.04em\">Smart Alerts</text>\n<rect x=\"20\" y=\"578\" width=\"350\" height=\"54\" fill=\"#FFFFFF\" rx=\"10\" stroke=\"#E5DDD5\" stroke-width=\"1\"/>\n<rect x=\"20\" y=\"578\" width=\"4\" height=\"54\" fill=\"#D97706\" rx=\"2\"/>\n<text x=\"36\" y=\"598\" fill=\"#1A1714\" font-size=\"12\" font-weight=\"700\">Rebalancing Due</text>\n<text x=\"36\" y=\"616\" fill=\"#8C8078\" font-size=\"10\">US Equities are 4% above target allocation.</text>\n<rect x=\"20\" y=\"640\" width=\"350\" height=\"54\" fill=\"#FFFFFF\" rx=\"10\" stroke=\"#E5DDD5\" stroke-width=\"1\"/>\n<rect x=\"20\" y=\"640\" width=\"4\" height=\"54\" fill=\"#16A34A\" rx=\"2\"/>\n<text x=\"36\" y=\"660\" fill=\"#1A1714\" font-size=\"12\" font-weight=\"700\">Dividend incoming</text>\n<text x=\"36\" y=\"678\" fill=\"#8C8078\" font-size=\"10\">MSFT pays $0.75/share on Apr 15.</text>\n<rect x=\"20\" y=\"702\" width=\"350\" height=\"54\" fill=\"#FFFFFF\" rx=\"10\" stroke=\"#E5DDD5\" stroke-width=\"1\"/>\n<rect x=\"20\" y=\"702\" width=\"4\" height=\"54\" fill=\"#0F766E\" rx=\"2\"/>\n<text x=\"36\" y=\"722\" fill=\"#1A1714\" font-size=\"12\" font-weight=\"700\">Tax-loss opportunity</text>\n<text x=\"36\" y=\"740\" fill=\"#8C8078\" font-size=\"10\">VNQ is down 6% — consider harvesting before month end.</text>\n<rect x=\"0\" y=\"780\" width=\"390\" height=\"64\" fill=\"#FFFFFF\" stroke=\"#E5DDD5\" stroke-width=\"1\"/>\n<text x=\"39\" y=\"808\" fill=\"#8C8078\" font-size=\"20\" text-anchor=\"middle\">⊞</text>\n<text x=\"39\" y=\"828\" fill=\"#8C8078\" font-size=\"9\" font-weight=\"400\" text-anchor=\"middle\">Portfolio</text>\n<text x=\"117\" y=\"808\" fill=\"#8C8078\" font-size=\"20\" text-anchor=\"middle\">◈</text>\n<text x=\"117\" y=\"828\" fill=\"#8C8078\" font-size=\"9\" font-weight=\"400\" text-anchor=\"middle\">Holdings</text>\n<text x=\"195\" y=\"808\" fill=\"#0F766E\" font-size=\"20\" text-anchor=\"middle\">◉</text>\n<text x=\"195\" y=\"828\" fill=\"#0F766E\" font-size=\"9\" font-weight=\"600\" text-anchor=\"middle\">Insights</text>\n<text x=\"273\" y=\"808\" fill=\"#8C8078\" font-size=\"20\" text-anchor=\"middle\">◎</text>\n<text x=\"273\" y=\"828\" fill=\"#8C8078\" font-size=\"9\" font-weight=\"400\" text-anchor=\"middle\">Goals</text>\n<text x=\"351\" y=\"808\" fill=\"#8C8078\" font-size=\"20\" text-anchor=\"middle\">○</text>\n<text x=\"351\" y=\"828\" fill=\"#8C8078\" font-size=\"9\" font-weight=\"400\" text-anchor=\"middle\">Profile</text></svg>",
+      "elements": [
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "fill": "#F9F7F4"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 54,
+          "content": "9:41",
+          "fontSize": 13,
+          "fill": "#1A1714",
+          "fontWeight": 600
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 96,
+          "content": "Insights",
+          "fontSize": 18,
+          "fill": "#1A1714",
+          "fontWeight": 700,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 112,
+          "width": 62,
+          "height": 26,
+          "fill": "transparent",
+          "rx": 13
+        },
+        {
+          "type": "text",
+          "x": 51,
+          "y": 129,
+          "content": "7D",
+          "fontSize": 11,
+          "fill": "#8C8078",
+          "fontWeight": 400,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 90,
+          "y": 112,
+          "width": 62,
+          "height": 26,
+          "fill": "transparent",
+          "rx": 13
+        },
+        {
+          "type": "text",
+          "x": 121,
+          "y": 129,
+          "content": "1M",
+          "fontSize": 11,
+          "fill": "#8C8078",
+          "fontWeight": 400,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 160,
+          "y": 112,
+          "width": 62,
+          "height": 26,
+          "fill": "transparent",
+          "rx": 13
+        },
+        {
+          "type": "text",
+          "x": 191,
+          "y": 129,
+          "content": "3M",
+          "fontSize": 11,
+          "fill": "#8C8078",
+          "fontWeight": 400,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 230,
+          "y": 112,
+          "width": 62,
+          "height": 26,
+          "fill": "#0F766E",
+          "rx": 13
+        },
+        {
+          "type": "text",
+          "x": 261,
+          "y": 129,
+          "content": "1Y",
+          "fontSize": 11,
+          "fill": "#FFFFFF",
+          "fontWeight": 700,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 300,
+          "y": 112,
+          "width": 62,
+          "height": 26,
+          "fill": "transparent",
+          "rx": 13
+        },
+        {
+          "type": "text",
+          "x": 331,
+          "y": 129,
+          "content": "ALL",
+          "fontSize": 11,
+          "fill": "#8C8078",
+          "fontWeight": 400,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 148,
+          "width": 350,
+          "height": 160,
+          "fill": "#FFFFFF",
+          "rx": 16,
+          "stroke": "#E5DDD5",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 170,
+          "content": "Net Worth Growth",
+          "fontSize": 11,
+          "fill": "#8C8078",
+          "letterSpacing": "0.04em"
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 194,
+          "content": "$284,391",
+          "fontSize": 28,
+          "fill": "#1A1714",
+          "fontWeight": 700
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 216,
+          "content": "↑ 12.2% this year",
+          "fontSize": 12,
+          "fill": "#16A34A",
+          "fontWeight": 600
+        },
+        {
+          "type": "rect",
+          "x": 24,
+          "y": 291.1111111111111,
+          "width": 20,
+          "height": 8.88888888888889,
+          "fill": "#F2EEE8",
+          "rx": 4
+        },
+        {
+          "type": "text",
+          "x": 34,
+          "y": 312,
+          "content": "Apr",
+          "fontSize": 8,
+          "fill": "#8C8078",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 52,
+          "y": 284,
+          "width": 20,
+          "height": 16,
+          "fill": "#F2EEE8",
+          "rx": 4
+        },
+        {
+          "type": "rect",
+          "x": 80,
+          "y": 286.6666666666667,
+          "width": 20,
+          "height": 13.333333333333332,
+          "fill": "#F2EEE8",
+          "rx": 4
+        },
+        {
+          "type": "rect",
+          "x": 108,
+          "y": 275.1111111111111,
+          "width": 20,
+          "height": 24.88888888888889,
+          "fill": "#F2EEE8",
+          "rx": 4
+        },
+        {
+          "type": "text",
+          "x": 118,
+          "y": 312,
+          "content": "Jul",
+          "fontSize": 8,
+          "fill": "#8C8078",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 136,
+          "y": 268.8888888888889,
+          "width": 20,
+          "height": 31.11111111111111,
+          "fill": "#F2EEE8",
+          "rx": 4
+        },
+        {
+          "type": "rect",
+          "x": 164,
+          "y": 264.44444444444446,
+          "width": 20,
+          "height": 35.55555555555556,
+          "fill": "#F2EEE8",
+          "rx": 4
+        },
+        {
+          "type": "rect",
+          "x": 192,
+          "y": 257.3333333333333,
+          "width": 20,
+          "height": 42.666666666666664,
+          "fill": "#F2EEE8",
+          "rx": 4
+        },
+        {
+          "type": "text",
+          "x": 202,
+          "y": 312,
+          "content": "Oct",
+          "fontSize": 8,
+          "fill": "#8C8078",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 220,
+          "y": 260.8888888888889,
+          "width": 20,
+          "height": 39.11111111111111,
+          "fill": "#F2EEE8",
+          "rx": 4
+        },
+        {
+          "type": "rect",
+          "x": 248,
+          "y": 251.11111111111111,
+          "width": 20,
+          "height": 48.88888888888889,
+          "fill": "#F2EEE8",
+          "rx": 4
+        },
+        {
+          "type": "rect",
+          "x": 276,
+          "y": 248.44444444444446,
+          "width": 20,
+          "height": 51.55555555555556,
+          "fill": "#F2EEE8",
+          "rx": 4
+        },
+        {
+          "type": "text",
+          "x": 286,
+          "y": 312,
+          "content": "Jan",
+          "fontSize": 8,
+          "fill": "#8C8078",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 304,
+          "y": 239.55555555555554,
+          "width": 20,
+          "height": 60.44444444444444,
+          "fill": "#F2EEE8",
+          "rx": 4
+        },
+        {
+          "type": "rect",
+          "x": 332,
+          "y": 225.33333333333331,
+          "width": 20,
+          "height": 74.66666666666667,
+          "fill": "#0F766E",
+          "rx": 4
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 328,
+          "content": "Financial Health",
+          "fontSize": 13,
+          "fill": "#1A1714",
+          "fontWeight": 600,
+          "letterSpacing": "0.04em"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 346,
+          "width": 168,
+          "height": 88,
+          "fill": "#FFFFFF",
+          "rx": 12,
+          "stroke": "#E5DDD5",
+          "strokeWidth": 1
+        },
+        {
+          "type": "circle",
+          "cx": 42,
+          "cy": 368,
+          "r": 10,
+          "fill": "#16A34A",
+          "opacity": 0.15
+        },
+        {
+          "type": "text",
+          "x": 42,
+          "y": 373,
+          "content": "↑",
+          "fontSize": 10,
+          "fill": "#16A34A",
+          "fontWeight": 700,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 60,
+          "y": 374,
+          "content": "Savings Rate",
+          "fontSize": 10,
+          "fill": "#8C8078"
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 400,
+          "content": "28%",
+          "fontSize": 20,
+          "fill": "#1A1714",
+          "fontWeight": 700
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 417,
+          "content": "of income",
+          "fontSize": 10,
+          "fill": "#8C8078"
+        },
+        {
+          "type": "rect",
+          "x": 200,
+          "y": 346,
+          "width": 168,
+          "height": 88,
+          "fill": "#FFFFFF",
+          "rx": 12,
+          "stroke": "#E5DDD5",
+          "strokeWidth": 1
+        },
+        {
+          "type": "circle",
+          "cx": 222,
+          "cy": 368,
+          "r": 10,
+          "fill": "#0F766E",
+          "opacity": 0.15
+        },
+        {
+          "type": "text",
+          "x": 222,
+          "y": 373,
+          "content": "◈",
+          "fontSize": 10,
+          "fill": "#0F766E",
+          "fontWeight": 700,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 240,
+          "y": 374,
+          "content": "Expense Ratio",
+          "fontSize": 10,
+          "fill": "#8C8078"
+        },
+        {
+          "type": "text",
+          "x": 216,
+          "y": 400,
+          "content": "0.12%",
+          "fontSize": 20,
+          "fill": "#1A1714",
+          "fontWeight": 700
+        },
+        {
+          "type": "text",
+          "x": 216,
+          "y": 417,
+          "content": "avg fund cost",
+          "fontSize": 10,
+          "fill": "#8C8078"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 446,
+          "width": 168,
+          "height": 88,
+          "fill": "#FFFFFF",
+          "rx": 12,
+          "stroke": "#E5DDD5",
+          "strokeWidth": 1
+        },
+        {
+          "type": "circle",
+          "cx": 42,
+          "cy": 468,
+          "r": 10,
+          "fill": "#C2410C",
+          "opacity": 0.15
+        },
+        {
+          "type": "text",
+          "x": 42,
+          "y": 473,
+          "content": "●",
+          "fontSize": 10,
+          "fill": "#C2410C",
+          "fontWeight": 700,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 60,
+          "y": 474,
+          "content": "Diversification",
+          "fontSize": 10,
+          "fill": "#8C8078"
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 500,
+          "content": "91/100",
+          "fontSize": 20,
+          "fill": "#1A1714",
+          "fontWeight": 700
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 517,
+          "content": "score",
+          "fontSize": 10,
+          "fill": "#8C8078"
+        },
+        {
+          "type": "rect",
+          "x": 200,
+          "y": 446,
+          "width": 168,
+          "height": 88,
+          "fill": "#FFFFFF",
+          "rx": 12,
+          "stroke": "#E5DDD5",
+          "strokeWidth": 1
+        },
+        {
+          "type": "circle",
+          "cx": 222,
+          "cy": 468,
+          "r": 10,
+          "fill": "#D97706",
+          "opacity": 0.15
+        },
+        {
+          "type": "text",
+          "x": 222,
+          "y": 473,
+          "content": "◎",
+          "fontSize": 10,
+          "fill": "#D97706",
+          "fontWeight": 700,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 240,
+          "y": 474,
+          "content": "Risk Level",
+          "fontSize": 10,
+          "fill": "#8C8078"
+        },
+        {
+          "type": "text",
+          "x": 216,
+          "y": 500,
+          "content": "Moderate",
+          "fontSize": 20,
+          "fill": "#1A1714",
+          "fontWeight": 700
+        },
+        {
+          "type": "text",
+          "x": 216,
+          "y": 517,
+          "content": "balanced profile",
+          "fontSize": 10,
+          "fill": "#8C8078"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 560,
+          "content": "Smart Alerts",
+          "fontSize": 13,
+          "fill": "#1A1714",
+          "fontWeight": 600,
+          "letterSpacing": "0.04em"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 578,
+          "width": 350,
+          "height": 54,
+          "fill": "#FFFFFF",
+          "rx": 10,
+          "stroke": "#E5DDD5",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 578,
+          "width": 4,
+          "height": 54,
+          "fill": "#D97706",
+          "rx": 2
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 598,
+          "content": "Rebalancing Due",
+          "fontSize": 12,
+          "fill": "#1A1714",
+          "fontWeight": 700
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 616,
+          "content": "US Equities are 4% above target allocation.",
+          "fontSize": 10,
+          "fill": "#8C8078"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 640,
+          "width": 350,
+          "height": 54,
+          "fill": "#FFFFFF",
+          "rx": 10,
+          "stroke": "#E5DDD5",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 640,
+          "width": 4,
+          "height": 54,
+          "fill": "#16A34A",
+          "rx": 2
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 660,
+          "content": "Dividend incoming",
+          "fontSize": 12,
+          "fill": "#1A1714",
+          "fontWeight": 700
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 678,
+          "content": "MSFT pays $0.75/share on Apr 15.",
+          "fontSize": 10,
+          "fill": "#8C8078"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 702,
+          "width": 350,
+          "height": 54,
+          "fill": "#FFFFFF",
+          "rx": 10,
+          "stroke": "#E5DDD5",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 702,
+          "width": 4,
+          "height": 54,
+          "fill": "#0F766E",
+          "rx": 2
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 722,
+          "content": "Tax-loss opportunity",
+          "fontSize": 12,
+          "fill": "#1A1714",
+          "fontWeight": 700
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 740,
+          "content": "VNQ is down 6% — consider harvesting before month end.",
+          "fontSize": 10,
+          "fill": "#8C8078"
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 780,
+          "width": 390,
+          "height": 64,
+          "fill": "#FFFFFF",
+          "stroke": "#E5DDD5",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 39,
+          "y": 808,
+          "content": "⊞",
+          "fontSize": 20,
+          "fill": "#8C8078",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 39,
+          "y": 828,
+          "content": "Portfolio",
+          "fontSize": 9,
+          "fill": "#8C8078",
+          "fontWeight": 400,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 117,
+          "y": 808,
+          "content": "◈",
+          "fontSize": 20,
+          "fill": "#8C8078",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 117,
+          "y": 828,
+          "content": "Holdings",
+          "fontSize": 9,
+          "fill": "#8C8078",
+          "fontWeight": 400,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 808,
+          "content": "◉",
+          "fontSize": 20,
+          "fill": "#0F766E",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 828,
+          "content": "Insights",
+          "fontSize": 9,
+          "fill": "#0F766E",
+          "fontWeight": 600,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 273,
+          "y": 808,
+          "content": "◎",
+          "fontSize": 20,
+          "fill": "#8C8078",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 273,
+          "y": 828,
+          "content": "Goals",
+          "fontSize": 9,
+          "fill": "#8C8078",
+          "fontWeight": 400,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 351,
+          "y": 808,
+          "content": "○",
+          "fontSize": 20,
+          "fill": "#8C8078",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 351,
+          "y": 828,
+          "content": "Profile",
+          "fontSize": 9,
+          "fill": "#8C8078",
+          "fontWeight": 400,
+          "textAnchor": "middle"
+        }
+      ]
+    },
+    {
+      "name": "Goals",
+      "width": 390,
+      "height": 844,
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"390\" height=\"844\" viewBox=\"0 0 390 844\"><rect x=\"0\" y=\"0\" width=\"390\" height=\"844\" fill=\"#F9F7F4\"/>\n<text x=\"20\" y=\"54\" fill=\"#1A1714\" font-size=\"13\" font-weight=\"600\">9:41</text>\n<text x=\"195\" y=\"96\" fill=\"#1A1714\" font-size=\"18\" font-weight=\"700\" text-anchor=\"middle\">Goals</text>\n<rect x=\"330\" y=\"78\" width=\"48\" height=\"30\" fill=\"#0F766E\" rx=\"15\"/>\n<text x=\"354\" y=\"97\" fill=\"#FFFFFF\" font-size=\"10\" font-weight=\"600\" text-anchor=\"middle\">+ New</text>\n<rect x=\"20\" y=\"118\" width=\"350\" height=\"144\" fill=\"#FFFFFF\" rx=\"16\" stroke=\"#E5DDD5\" stroke-width=\"1\"/>\n<text x=\"36\" y=\"148\" fill=\"#1A1714\" font-size=\"22\">🏖</text>\n<text x=\"68\" y=\"144\" fill=\"#1A1714\" font-size=\"15\" font-weight=\"700\">Early Retirement</text>\n<text x=\"68\" y=\"162\" fill=\"#8C8078\" font-size=\"11\">Target · 2042</text>\n<text x=\"36\" y=\"188\" fill=\"#1A1714\" font-size=\"22\" font-weight=\"700\">$284,391</text>\n<text x=\"36\" y=\"206\" fill=\"#8C8078\" font-size=\"11\">of $1,200,000</text>\n<rect x=\"310\" y=\"134\" width=\"64\" height=\"24\" fill=\"#F2EEE8\" rx=\"12\"/>\n<text x=\"342\" y=\"150\" fill=\"#0F766E\" font-size=\"10\" font-weight=\"700\" text-anchor=\"middle\">24%</text>\n<rect x=\"36\" y=\"222\" width=\"314\" height=\"8\" fill=\"#F2EEE8\" rx=\"4\"/>\n<rect x=\"36\" y=\"222\" width=\"75.36\" height=\"8\" fill=\"#0F766E\" rx=\"4\"/>\n<text x=\"36\" y=\"244\" fill=\"#8C8078\" font-size=\"10\">24% funded</text>\n<text x=\"350\" y=\"244\" fill=\"#0F766E\" font-size=\"10\" text-anchor=\"end\">+$76,000/mo to hit goal</text>\n<rect x=\"20\" y=\"274\" width=\"350\" height=\"144\" fill=\"#FFFFFF\" rx=\"16\" stroke=\"#E5DDD5\" stroke-width=\"1\"/>\n<text x=\"36\" y=\"304\" fill=\"#1A1714\" font-size=\"22\">🏡</text>\n<text x=\"68\" y=\"300\" fill=\"#1A1714\" font-size=\"15\" font-weight=\"700\">House Down Payment</text>\n<text x=\"68\" y=\"318\" fill=\"#8C8078\" font-size=\"11\">Target · 2026</text>\n<text x=\"36\" y=\"344\" fill=\"#1A1714\" font-size=\"22\" font-weight=\"700\">$89,400</text>\n<text x=\"36\" y=\"362\" fill=\"#8C8078\" font-size=\"11\">of $120,000</text>\n<rect x=\"310\" y=\"290\" width=\"64\" height=\"24\" fill=\"#F2EEE8\" rx=\"12\"/>\n<text x=\"342\" y=\"306\" fill=\"#16A34A\" font-size=\"10\" font-weight=\"700\" text-anchor=\"middle\">75%</text>\n<rect x=\"36\" y=\"378\" width=\"314\" height=\"8\" fill=\"#F2EEE8\" rx=\"4\"/>\n<rect x=\"36\" y=\"378\" width=\"235.5\" height=\"8\" fill=\"#16A34A\" rx=\"4\"/>\n<text x=\"36\" y=\"400\" fill=\"#8C8078\" font-size=\"10\">75% funded</text>\n<text x=\"350\" y=\"400\" fill=\"#16A34A\" font-size=\"10\" text-anchor=\"end\">+$2,500/mo to hit goal</text>\n<rect x=\"20\" y=\"430\" width=\"350\" height=\"144\" fill=\"#FFFFFF\" rx=\"16\" stroke=\"#E5DDD5\" stroke-width=\"1\"/>\n<text x=\"36\" y=\"460\" fill=\"#1A1714\" font-size=\"22\">⛑</text>\n<text x=\"68\" y=\"456\" fill=\"#1A1714\" font-size=\"15\" font-weight=\"700\">Emergency Fund</text>\n<text x=\"68\" y=\"474\" fill=\"#8C8078\" font-size=\"11\">Target · Done</text>\n<text x=\"36\" y=\"500\" fill=\"#1A1714\" font-size=\"22\" font-weight=\"700\">$30,000</text>\n<text x=\"36\" y=\"518\" fill=\"#8C8078\" font-size=\"11\">of $30,000</text>\n<rect x=\"310\" y=\"446\" width=\"64\" height=\"24\" fill=\"#C2410C\" rx=\"12\"/>\n<text x=\"342\" y=\"462\" fill=\"#FFFFFF\" font-size=\"10\" font-weight=\"700\" text-anchor=\"middle\">✓ Complete</text>\n<rect x=\"36\" y=\"534\" width=\"314\" height=\"8\" fill=\"#F2EEE8\" rx=\"4\"/>\n<rect x=\"36\" y=\"534\" width=\"314\" height=\"8\" fill=\"#C2410C\" rx=\"4\"/>\n<text x=\"36\" y=\"556\" fill=\"#8C8078\" font-size=\"10\">100% funded</text>\n<rect x=\"20\" y=\"586\" width=\"350\" height=\"144\" fill=\"#FFFFFF\" rx=\"16\" stroke=\"#E5DDD5\" stroke-width=\"1\"/>\n<text x=\"36\" y=\"616\" fill=\"#1A1714\" font-size=\"22\">✈</text>\n<text x=\"68\" y=\"612\" fill=\"#1A1714\" font-size=\"15\" font-weight=\"700\">Travel Fund</text>\n<text x=\"68\" y=\"630\" fill=\"#8C8078\" font-size=\"11\">Target · Dec 2025</text>\n<text x=\"36\" y=\"656\" fill=\"#1A1714\" font-size=\"22\" font-weight=\"700\">$4,200</text>\n<text x=\"36\" y=\"674\" fill=\"#8C8078\" font-size=\"11\">of $8,000</text>\n<rect x=\"310\" y=\"602\" width=\"64\" height=\"24\" fill=\"#F2EEE8\" rx=\"12\"/>\n<text x=\"342\" y=\"618\" fill=\"#D97706\" font-size=\"10\" font-weight=\"700\" text-anchor=\"middle\">53%</text>\n<rect x=\"36\" y=\"690\" width=\"314\" height=\"8\" fill=\"#F2EEE8\" rx=\"4\"/>\n<rect x=\"36\" y=\"690\" width=\"166.42\" height=\"8\" fill=\"#D97706\" rx=\"4\"/>\n<text x=\"36\" y=\"712\" fill=\"#8C8078\" font-size=\"10\">53% funded</text>\n<text x=\"350\" y=\"712\" fill=\"#D97706\" font-size=\"10\" text-anchor=\"end\">+$314/mo to hit goal</text>\n<rect x=\"0\" y=\"780\" width=\"390\" height=\"64\" fill=\"#FFFFFF\" stroke=\"#E5DDD5\" stroke-width=\"1\"/>\n<text x=\"39\" y=\"808\" fill=\"#8C8078\" font-size=\"20\" text-anchor=\"middle\">⊞</text>\n<text x=\"39\" y=\"828\" fill=\"#8C8078\" font-size=\"9\" font-weight=\"400\" text-anchor=\"middle\">Portfolio</text>\n<text x=\"117\" y=\"808\" fill=\"#8C8078\" font-size=\"20\" text-anchor=\"middle\">◈</text>\n<text x=\"117\" y=\"828\" fill=\"#8C8078\" font-size=\"9\" font-weight=\"400\" text-anchor=\"middle\">Holdings</text>\n<text x=\"195\" y=\"808\" fill=\"#8C8078\" font-size=\"20\" text-anchor=\"middle\">◉</text>\n<text x=\"195\" y=\"828\" fill=\"#8C8078\" font-size=\"9\" font-weight=\"400\" text-anchor=\"middle\">Insights</text>\n<text x=\"273\" y=\"808\" fill=\"#0F766E\" font-size=\"20\" text-anchor=\"middle\">◎</text>\n<text x=\"273\" y=\"828\" fill=\"#0F766E\" font-size=\"9\" font-weight=\"600\" text-anchor=\"middle\">Goals</text>\n<text x=\"351\" y=\"808\" fill=\"#8C8078\" font-size=\"20\" text-anchor=\"middle\">○</text>\n<text x=\"351\" y=\"828\" fill=\"#8C8078\" font-size=\"9\" font-weight=\"400\" text-anchor=\"middle\">Profile</text></svg>",
+      "elements": [
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "fill": "#F9F7F4"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 54,
+          "content": "9:41",
+          "fontSize": 13,
+          "fill": "#1A1714",
+          "fontWeight": 600
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 96,
+          "content": "Goals",
+          "fontSize": 18,
+          "fill": "#1A1714",
+          "fontWeight": 700,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 330,
+          "y": 78,
+          "width": 48,
+          "height": 30,
+          "fill": "#0F766E",
+          "rx": 15
+        },
+        {
+          "type": "text",
+          "x": 354,
+          "y": 97,
+          "content": "+ New",
+          "fontSize": 10,
+          "fill": "#FFFFFF",
+          "fontWeight": 600,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 118,
+          "width": 350,
+          "height": 144,
+          "fill": "#FFFFFF",
+          "rx": 16,
+          "stroke": "#E5DDD5",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 148,
+          "content": "🏖",
+          "fontSize": 22,
+          "fill": "#1A1714"
+        },
+        {
+          "type": "text",
+          "x": 68,
+          "y": 144,
+          "content": "Early Retirement",
+          "fontSize": 15,
+          "fill": "#1A1714",
+          "fontWeight": 700
+        },
+        {
+          "type": "text",
+          "x": 68,
+          "y": 162,
+          "content": "Target · 2042",
+          "fontSize": 11,
+          "fill": "#8C8078"
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 188,
+          "content": "$284,391",
+          "fontSize": 22,
+          "fill": "#1A1714",
+          "fontWeight": 700
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 206,
+          "content": "of $1,200,000",
+          "fontSize": 11,
+          "fill": "#8C8078"
+        },
+        {
+          "type": "rect",
+          "x": 310,
+          "y": 134,
+          "width": 64,
+          "height": 24,
+          "fill": "#F2EEE8",
+          "rx": 12
+        },
+        {
+          "type": "text",
+          "x": 342,
+          "y": 150,
+          "content": "24%",
+          "fontSize": 10,
+          "fill": "#0F766E",
+          "fontWeight": 700,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 36,
+          "y": 222,
+          "width": 314,
+          "height": 8,
+          "fill": "#F2EEE8",
+          "rx": 4
+        },
+        {
+          "type": "rect",
+          "x": 36,
+          "y": 222,
+          "width": 75.36,
+          "height": 8,
+          "fill": "#0F766E",
+          "rx": 4
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 244,
+          "content": "24% funded",
+          "fontSize": 10,
+          "fill": "#8C8078"
+        },
+        {
+          "type": "text",
+          "x": 350,
+          "y": 244,
+          "content": "+$76,000/mo to hit goal",
+          "fontSize": 10,
+          "fill": "#0F766E",
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 274,
+          "width": 350,
+          "height": 144,
+          "fill": "#FFFFFF",
+          "rx": 16,
+          "stroke": "#E5DDD5",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 304,
+          "content": "🏡",
+          "fontSize": 22,
+          "fill": "#1A1714"
+        },
+        {
+          "type": "text",
+          "x": 68,
+          "y": 300,
+          "content": "House Down Payment",
+          "fontSize": 15,
+          "fill": "#1A1714",
+          "fontWeight": 700
+        },
+        {
+          "type": "text",
+          "x": 68,
+          "y": 318,
+          "content": "Target · 2026",
+          "fontSize": 11,
+          "fill": "#8C8078"
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 344,
+          "content": "$89,400",
+          "fontSize": 22,
+          "fill": "#1A1714",
+          "fontWeight": 700
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 362,
+          "content": "of $120,000",
+          "fontSize": 11,
+          "fill": "#8C8078"
+        },
+        {
+          "type": "rect",
+          "x": 310,
+          "y": 290,
+          "width": 64,
+          "height": 24,
+          "fill": "#F2EEE8",
+          "rx": 12
+        },
+        {
+          "type": "text",
+          "x": 342,
+          "y": 306,
+          "content": "75%",
+          "fontSize": 10,
+          "fill": "#16A34A",
+          "fontWeight": 700,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 36,
+          "y": 378,
+          "width": 314,
+          "height": 8,
+          "fill": "#F2EEE8",
+          "rx": 4
+        },
+        {
+          "type": "rect",
+          "x": 36,
+          "y": 378,
+          "width": 235.5,
+          "height": 8,
+          "fill": "#16A34A",
+          "rx": 4
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 400,
+          "content": "75% funded",
+          "fontSize": 10,
+          "fill": "#8C8078"
+        },
+        {
+          "type": "text",
+          "x": 350,
+          "y": 400,
+          "content": "+$2,500/mo to hit goal",
+          "fontSize": 10,
+          "fill": "#16A34A",
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 430,
+          "width": 350,
+          "height": 144,
+          "fill": "#FFFFFF",
+          "rx": 16,
+          "stroke": "#E5DDD5",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 460,
+          "content": "⛑",
+          "fontSize": 22,
+          "fill": "#1A1714"
+        },
+        {
+          "type": "text",
+          "x": 68,
+          "y": 456,
+          "content": "Emergency Fund",
+          "fontSize": 15,
+          "fill": "#1A1714",
+          "fontWeight": 700
+        },
+        {
+          "type": "text",
+          "x": 68,
+          "y": 474,
+          "content": "Target · Done",
+          "fontSize": 11,
+          "fill": "#8C8078"
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 500,
+          "content": "$30,000",
+          "fontSize": 22,
+          "fill": "#1A1714",
+          "fontWeight": 700
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 518,
+          "content": "of $30,000",
+          "fontSize": 11,
+          "fill": "#8C8078"
+        },
+        {
+          "type": "rect",
+          "x": 310,
+          "y": 446,
+          "width": 64,
+          "height": 24,
+          "fill": "#C2410C",
+          "rx": 12
+        },
+        {
+          "type": "text",
+          "x": 342,
+          "y": 462,
+          "content": "✓ Complete",
+          "fontSize": 10,
+          "fill": "#FFFFFF",
+          "fontWeight": 700,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 36,
+          "y": 534,
+          "width": 314,
+          "height": 8,
+          "fill": "#F2EEE8",
+          "rx": 4
+        },
+        {
+          "type": "rect",
+          "x": 36,
+          "y": 534,
+          "width": 314,
+          "height": 8,
+          "fill": "#C2410C",
+          "rx": 4
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 556,
+          "content": "100% funded",
+          "fontSize": 10,
+          "fill": "#8C8078"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 586,
+          "width": 350,
+          "height": 144,
+          "fill": "#FFFFFF",
+          "rx": 16,
+          "stroke": "#E5DDD5",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 616,
+          "content": "✈",
+          "fontSize": 22,
+          "fill": "#1A1714"
+        },
+        {
+          "type": "text",
+          "x": 68,
+          "y": 612,
+          "content": "Travel Fund",
+          "fontSize": 15,
+          "fill": "#1A1714",
+          "fontWeight": 700
+        },
+        {
+          "type": "text",
+          "x": 68,
+          "y": 630,
+          "content": "Target · Dec 2025",
+          "fontSize": 11,
+          "fill": "#8C8078"
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 656,
+          "content": "$4,200",
+          "fontSize": 22,
+          "fill": "#1A1714",
+          "fontWeight": 700
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 674,
+          "content": "of $8,000",
+          "fontSize": 11,
+          "fill": "#8C8078"
+        },
+        {
+          "type": "rect",
+          "x": 310,
+          "y": 602,
+          "width": 64,
+          "height": 24,
+          "fill": "#F2EEE8",
+          "rx": 12
+        },
+        {
+          "type": "text",
+          "x": 342,
+          "y": 618,
+          "content": "53%",
+          "fontSize": 10,
+          "fill": "#D97706",
+          "fontWeight": 700,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 36,
+          "y": 690,
+          "width": 314,
+          "height": 8,
+          "fill": "#F2EEE8",
+          "rx": 4
+        },
+        {
+          "type": "rect",
+          "x": 36,
+          "y": 690,
+          "width": 166.42,
+          "height": 8,
+          "fill": "#D97706",
+          "rx": 4
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 712,
+          "content": "53% funded",
+          "fontSize": 10,
+          "fill": "#8C8078"
+        },
+        {
+          "type": "text",
+          "x": 350,
+          "y": 712,
+          "content": "+$314/mo to hit goal",
+          "fontSize": 10,
+          "fill": "#D97706",
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 780,
+          "width": 390,
+          "height": 64,
+          "fill": "#FFFFFF",
+          "stroke": "#E5DDD5",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 39,
+          "y": 808,
+          "content": "⊞",
+          "fontSize": 20,
+          "fill": "#8C8078",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 39,
+          "y": 828,
+          "content": "Portfolio",
+          "fontSize": 9,
+          "fill": "#8C8078",
+          "fontWeight": 400,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 117,
+          "y": 808,
+          "content": "◈",
+          "fontSize": 20,
+          "fill": "#8C8078",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 117,
+          "y": 828,
+          "content": "Holdings",
+          "fontSize": 9,
+          "fill": "#8C8078",
+          "fontWeight": 400,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 808,
+          "content": "◉",
+          "fontSize": 20,
+          "fill": "#8C8078",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 828,
+          "content": "Insights",
+          "fontSize": 9,
+          "fill": "#8C8078",
+          "fontWeight": 400,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 273,
+          "y": 808,
+          "content": "◎",
+          "fontSize": 20,
+          "fill": "#0F766E",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 273,
+          "y": 828,
+          "content": "Goals",
+          "fontSize": 9,
+          "fill": "#0F766E",
+          "fontWeight": 600,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 351,
+          "y": 808,
+          "content": "○",
+          "fontSize": 20,
+          "fill": "#8C8078",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 351,
+          "y": 828,
+          "content": "Profile",
+          "fontSize": 9,
+          "fill": "#8C8078",
+          "fontWeight": 400,
+          "textAnchor": "middle"
+        }
+      ]
+    },
+    {
+      "name": "Transactions",
+      "width": 390,
+      "height": 844,
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"390\" height=\"844\" viewBox=\"0 0 390 844\"><rect x=\"0\" y=\"0\" width=\"390\" height=\"844\" fill=\"#F9F7F4\"/>\n<text x=\"20\" y=\"54\" fill=\"#1A1714\" font-size=\"13\" font-weight=\"600\">9:41</text>\n<text x=\"195\" y=\"96\" fill=\"#1A1714\" font-size=\"18\" font-weight=\"700\" text-anchor=\"middle\">Activity</text>\n<rect x=\"20\" y=\"112\" width=\"350\" height=\"38\" fill=\"#FFFFFF\" rx=\"19\" stroke=\"#E5DDD5\" stroke-width=\"1\"/>\n<text x=\"46\" y=\"135\" fill=\"#8C8078\" font-size=\"16\" font-weight=\"400\">⌕</text>\n<text x=\"68\" y=\"136\" fill=\"#8C8078\" font-size=\"12\">Search transactions...</text>\n<text x=\"20\" y=\"168\" fill=\"#8C8078\" font-size=\"10\" font-weight=\"600\" letter-spacing=\"0.1em\">APRIL 2026</text>\n<rect x=\"20\" y=\"182\" width=\"350\" height=\"62\" fill=\"#FFFFFF\" rx=\"10\" stroke=\"#E5DDD5\" stroke-width=\"1\"/>\n<circle cx=\"44\" cy=\"213\" r=\"14\" fill=\"#C2410C\" opacity=\"0.12\"/>\n<text x=\"44\" y=\"218\" fill=\"#C2410C\" font-size=\"11\" font-weight=\"700\" text-anchor=\"middle\">▲</text>\n<text x=\"66\" y=\"206\" fill=\"#1A1714\" font-size=\"13\" font-weight=\"600\">Apple Inc.</text>\n<text x=\"66\" y=\"224\" fill=\"#8C8078\" font-size=\"10\">Buy · 5 shares @ $191</text>\n<text x=\"360\" y=\"206\" fill=\"#8C8078\" font-size=\"10\" text-anchor=\"end\">9 Apr</text>\n<text x=\"360\" y=\"226\" fill=\"#C2410C\" font-size=\"13\" font-weight=\"600\" text-anchor=\"end\">-$955</text>\n<rect x=\"20\" y=\"254\" width=\"350\" height=\"62\" fill=\"#FFFFFF\" rx=\"10\" stroke=\"#E5DDD5\" stroke-width=\"1\"/>\n<circle cx=\"44\" cy=\"285\" r=\"14\" fill=\"#16A34A\" opacity=\"0.12\"/>\n<text x=\"44\" y=\"290\" fill=\"#16A34A\" font-size=\"11\" font-weight=\"700\" text-anchor=\"middle\">$</text>\n<text x=\"66\" y=\"278\" fill=\"#1A1714\" font-size=\"13\" font-weight=\"600\">Dividend</text>\n<text x=\"66\" y=\"296\" fill=\"#8C8078\" font-size=\"10\">VTI Distribution</text>\n<text x=\"360\" y=\"278\" fill=\"#8C8078\" font-size=\"10\" text-anchor=\"end\">9 Apr</text>\n<text x=\"360\" y=\"298\" fill=\"#16A34A\" font-size=\"13\" font-weight=\"600\" text-anchor=\"end\">+$82.40</text>\n<rect x=\"20\" y=\"326\" width=\"350\" height=\"62\" fill=\"#FFFFFF\" rx=\"10\" stroke=\"#E5DDD5\" stroke-width=\"1\"/>\n<circle cx=\"44\" cy=\"357\" r=\"14\" fill=\"#16A34A\" opacity=\"0.12\"/>\n<text x=\"44\" y=\"362\" fill=\"#16A34A\" font-size=\"11\" font-weight=\"700\" text-anchor=\"middle\">▼</text>\n<text x=\"66\" y=\"350\" fill=\"#1A1714\" font-size=\"13\" font-weight=\"600\">VNQ</text>\n<text x=\"66\" y=\"368\" fill=\"#8C8078\" font-size=\"10\">Sell · 10 shares @ $87</text>\n<text x=\"360\" y=\"350\" fill=\"#8C8078\" font-size=\"10\" text-anchor=\"end\">8 Apr</text>\n<text x=\"360\" y=\"370\" fill=\"#16A34A\" font-size=\"13\" font-weight=\"600\" text-anchor=\"end\">+$870</text>\n<rect x=\"20\" y=\"398\" width=\"350\" height=\"62\" fill=\"#FFFFFF\" rx=\"10\" stroke=\"#E5DDD5\" stroke-width=\"1\"/>\n<circle cx=\"44\" cy=\"429\" r=\"14\" fill=\"#8C8078\" opacity=\"0.12\"/>\n<text x=\"44\" y=\"434\" fill=\"#8C8078\" font-size=\"11\" font-weight=\"700\" text-anchor=\"middle\">⇄</text>\n<text x=\"66\" y=\"422\" fill=\"#1A1714\" font-size=\"13\" font-weight=\"600\">Portfolio Rebalance</text>\n<text x=\"66\" y=\"440\" fill=\"#8C8078\" font-size=\"10\">Auto-rebalance executed</text>\n<text x=\"360\" y=\"422\" fill=\"#8C8078\" font-size=\"10\" text-anchor=\"end\">8 Apr</text>\n<text x=\"360\" y=\"442\" fill=\"#8C8078\" font-size=\"13\" font-weight=\"600\" text-anchor=\"end\">—</text>\n<rect x=\"20\" y=\"470\" width=\"350\" height=\"62\" fill=\"#FFFFFF\" rx=\"10\" stroke=\"#E5DDD5\" stroke-width=\"1\"/>\n<circle cx=\"44\" cy=\"501\" r=\"14\" fill=\"#C2410C\" opacity=\"0.12\"/>\n<text x=\"44\" y=\"506\" fill=\"#C2410C\" font-size=\"11\" font-weight=\"700\" text-anchor=\"middle\">▲</text>\n<text x=\"66\" y=\"494\" fill=\"#1A1714\" font-size=\"13\" font-weight=\"600\">Microsoft Corp.</text>\n<text x=\"66\" y=\"512\" fill=\"#8C8078\" font-size=\"10\">Buy · 3 shares @ $410</text>\n<text x=\"360\" y=\"494\" fill=\"#8C8078\" font-size=\"10\" text-anchor=\"end\">7 Apr</text>\n<text x=\"360\" y=\"514\" fill=\"#C2410C\" font-size=\"13\" font-weight=\"600\" text-anchor=\"end\">-$1,230</text>\n<rect x=\"20\" y=\"542\" width=\"350\" height=\"62\" fill=\"#FFFFFF\" rx=\"10\" stroke=\"#E5DDD5\" stroke-width=\"1\"/>\n<circle cx=\"44\" cy=\"573\" r=\"14\" fill=\"#16A34A\" opacity=\"0.12\"/>\n<text x=\"44\" y=\"578\" fill=\"#16A34A\" font-size=\"11\" font-weight=\"700\" text-anchor=\"middle\">$</text>\n<text x=\"66\" y=\"566\" fill=\"#1A1714\" font-size=\"13\" font-weight=\"600\">Cash Deposit</text>\n<text x=\"66\" y=\"584\" fill=\"#8C8078\" font-size=\"10\">Monthly contribution</text>\n<text x=\"360\" y=\"566\" fill=\"#8C8078\" font-size=\"10\" text-anchor=\"end\">5 Apr</text>\n<text x=\"360\" y=\"586\" fill=\"#16A34A\" font-size=\"13\" font-weight=\"600\" text-anchor=\"end\">+$2,000</text>\n<rect x=\"20\" y=\"614\" width=\"350\" height=\"62\" fill=\"#FFFFFF\" rx=\"10\" stroke=\"#E5DDD5\" stroke-width=\"1\"/>\n<circle cx=\"44\" cy=\"645\" r=\"14\" fill=\"#C2410C\" opacity=\"0.12\"/>\n<text x=\"44\" y=\"650\" fill=\"#C2410C\" font-size=\"11\" font-weight=\"700\" text-anchor=\"middle\">▲</text>\n<text x=\"66\" y=\"638\" fill=\"#1A1714\" font-size=\"13\" font-weight=\"600\">Vanguard BND</text>\n<text x=\"66\" y=\"656\" fill=\"#8C8078\" font-size=\"10\">Buy · 20 shares @ $77.50</text>\n<text x=\"360\" y=\"638\" fill=\"#8C8078\" font-size=\"10\" text-anchor=\"end\">2 Apr</text>\n<text x=\"360\" y=\"658\" fill=\"#C2410C\" font-size=\"13\" font-weight=\"600\" text-anchor=\"end\">-$1,550</text>\n<rect x=\"0\" y=\"780\" width=\"390\" height=\"64\" fill=\"#FFFFFF\" stroke=\"#E5DDD5\" stroke-width=\"1\"/>\n<text x=\"39\" y=\"808\" fill=\"#8C8078\" font-size=\"20\" text-anchor=\"middle\">⊞</text>\n<text x=\"39\" y=\"828\" fill=\"#8C8078\" font-size=\"9\" font-weight=\"400\" text-anchor=\"middle\">Portfolio</text>\n<text x=\"117\" y=\"808\" fill=\"#8C8078\" font-size=\"20\" text-anchor=\"middle\">◈</text>\n<text x=\"117\" y=\"828\" fill=\"#8C8078\" font-size=\"9\" font-weight=\"400\" text-anchor=\"middle\">Holdings</text>\n<text x=\"195\" y=\"808\" fill=\"#8C8078\" font-size=\"20\" text-anchor=\"middle\">◉</text>\n<text x=\"195\" y=\"828\" fill=\"#8C8078\" font-size=\"9\" font-weight=\"400\" text-anchor=\"middle\">Insights</text>\n<text x=\"273\" y=\"808\" fill=\"#8C8078\" font-size=\"20\" text-anchor=\"middle\">◎</text>\n<text x=\"273\" y=\"828\" fill=\"#8C8078\" font-size=\"9\" font-weight=\"400\" text-anchor=\"middle\">Goals</text>\n<text x=\"351\" y=\"808\" fill=\"#8C8078\" font-size=\"20\" text-anchor=\"middle\">○</text>\n<text x=\"351\" y=\"828\" fill=\"#8C8078\" font-size=\"9\" font-weight=\"400\" text-anchor=\"middle\">Profile</text></svg>",
+      "elements": [
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "fill": "#F9F7F4"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 54,
+          "content": "9:41",
+          "fontSize": 13,
+          "fill": "#1A1714",
+          "fontWeight": 600
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 96,
+          "content": "Activity",
+          "fontSize": 18,
+          "fill": "#1A1714",
+          "fontWeight": 700,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 112,
+          "width": 350,
+          "height": 38,
+          "fill": "#FFFFFF",
+          "rx": 19,
+          "stroke": "#E5DDD5",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 46,
+          "y": 135,
+          "content": "⌕",
+          "fontSize": 16,
+          "fill": "#8C8078",
+          "fontWeight": 400
+        },
+        {
+          "type": "text",
+          "x": 68,
+          "y": 136,
+          "content": "Search transactions...",
+          "fontSize": 12,
+          "fill": "#8C8078"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 168,
+          "content": "APRIL 2026",
+          "fontSize": 10,
+          "fill": "#8C8078",
+          "fontWeight": 600,
+          "letterSpacing": "0.1em"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 182,
+          "width": 350,
+          "height": 62,
+          "fill": "#FFFFFF",
+          "rx": 10,
+          "stroke": "#E5DDD5",
+          "strokeWidth": 1
+        },
+        {
+          "type": "circle",
+          "cx": 44,
+          "cy": 213,
+          "r": 14,
+          "fill": "#C2410C",
+          "opacity": 0.12
+        },
+        {
+          "type": "text",
+          "x": 44,
+          "y": 218,
+          "content": "▲",
+          "fontSize": 11,
+          "fill": "#C2410C",
+          "fontWeight": 700,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 66,
+          "y": 206,
+          "content": "Apple Inc.",
+          "fontSize": 13,
+          "fill": "#1A1714",
+          "fontWeight": 600
+        },
+        {
+          "type": "text",
+          "x": 66,
+          "y": 224,
+          "content": "Buy · 5 shares @ $191",
+          "fontSize": 10,
+          "fill": "#8C8078"
+        },
+        {
+          "type": "text",
+          "x": 360,
+          "y": 206,
+          "content": "9 Apr",
+          "fontSize": 10,
+          "fill": "#8C8078",
+          "textAnchor": "end"
+        },
+        {
+          "type": "text",
+          "x": 360,
+          "y": 226,
+          "content": "-$955",
+          "fontSize": 13,
+          "fill": "#C2410C",
+          "fontWeight": 600,
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 254,
+          "width": 350,
+          "height": 62,
+          "fill": "#FFFFFF",
+          "rx": 10,
+          "stroke": "#E5DDD5",
+          "strokeWidth": 1
+        },
+        {
+          "type": "circle",
+          "cx": 44,
+          "cy": 285,
+          "r": 14,
+          "fill": "#16A34A",
+          "opacity": 0.12
+        },
+        {
+          "type": "text",
+          "x": 44,
+          "y": 290,
+          "content": "$",
+          "fontSize": 11,
+          "fill": "#16A34A",
+          "fontWeight": 700,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 66,
+          "y": 278,
+          "content": "Dividend",
+          "fontSize": 13,
+          "fill": "#1A1714",
+          "fontWeight": 600
+        },
+        {
+          "type": "text",
+          "x": 66,
+          "y": 296,
+          "content": "VTI Distribution",
+          "fontSize": 10,
+          "fill": "#8C8078"
+        },
+        {
+          "type": "text",
+          "x": 360,
+          "y": 278,
+          "content": "9 Apr",
+          "fontSize": 10,
+          "fill": "#8C8078",
+          "textAnchor": "end"
+        },
+        {
+          "type": "text",
+          "x": 360,
+          "y": 298,
+          "content": "+$82.40",
+          "fontSize": 13,
+          "fill": "#16A34A",
+          "fontWeight": 600,
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 326,
+          "width": 350,
+          "height": 62,
+          "fill": "#FFFFFF",
+          "rx": 10,
+          "stroke": "#E5DDD5",
+          "strokeWidth": 1
+        },
+        {
+          "type": "circle",
+          "cx": 44,
+          "cy": 357,
+          "r": 14,
+          "fill": "#16A34A",
+          "opacity": 0.12
+        },
+        {
+          "type": "text",
+          "x": 44,
+          "y": 362,
+          "content": "▼",
+          "fontSize": 11,
+          "fill": "#16A34A",
+          "fontWeight": 700,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 66,
+          "y": 350,
+          "content": "VNQ",
+          "fontSize": 13,
+          "fill": "#1A1714",
+          "fontWeight": 600
+        },
+        {
+          "type": "text",
+          "x": 66,
+          "y": 368,
+          "content": "Sell · 10 shares @ $87",
+          "fontSize": 10,
+          "fill": "#8C8078"
+        },
+        {
+          "type": "text",
+          "x": 360,
+          "y": 350,
+          "content": "8 Apr",
+          "fontSize": 10,
+          "fill": "#8C8078",
+          "textAnchor": "end"
+        },
+        {
+          "type": "text",
+          "x": 360,
+          "y": 370,
+          "content": "+$870",
+          "fontSize": 13,
+          "fill": "#16A34A",
+          "fontWeight": 600,
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 398,
+          "width": 350,
+          "height": 62,
+          "fill": "#FFFFFF",
+          "rx": 10,
+          "stroke": "#E5DDD5",
+          "strokeWidth": 1
+        },
+        {
+          "type": "circle",
+          "cx": 44,
+          "cy": 429,
+          "r": 14,
+          "fill": "#8C8078",
+          "opacity": 0.12
+        },
+        {
+          "type": "text",
+          "x": 44,
+          "y": 434,
+          "content": "⇄",
+          "fontSize": 11,
+          "fill": "#8C8078",
+          "fontWeight": 700,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 66,
+          "y": 422,
+          "content": "Portfolio Rebalance",
+          "fontSize": 13,
+          "fill": "#1A1714",
+          "fontWeight": 600
+        },
+        {
+          "type": "text",
+          "x": 66,
+          "y": 440,
+          "content": "Auto-rebalance executed",
+          "fontSize": 10,
+          "fill": "#8C8078"
+        },
+        {
+          "type": "text",
+          "x": 360,
+          "y": 422,
+          "content": "8 Apr",
+          "fontSize": 10,
+          "fill": "#8C8078",
+          "textAnchor": "end"
+        },
+        {
+          "type": "text",
+          "x": 360,
+          "y": 442,
+          "content": "—",
+          "fontSize": 13,
+          "fill": "#8C8078",
+          "fontWeight": 600,
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 470,
+          "width": 350,
+          "height": 62,
+          "fill": "#FFFFFF",
+          "rx": 10,
+          "stroke": "#E5DDD5",
+          "strokeWidth": 1
+        },
+        {
+          "type": "circle",
+          "cx": 44,
+          "cy": 501,
+          "r": 14,
+          "fill": "#C2410C",
+          "opacity": 0.12
+        },
+        {
+          "type": "text",
+          "x": 44,
+          "y": 506,
+          "content": "▲",
+          "fontSize": 11,
+          "fill": "#C2410C",
+          "fontWeight": 700,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 66,
+          "y": 494,
+          "content": "Microsoft Corp.",
+          "fontSize": 13,
+          "fill": "#1A1714",
+          "fontWeight": 600
+        },
+        {
+          "type": "text",
+          "x": 66,
+          "y": 512,
+          "content": "Buy · 3 shares @ $410",
+          "fontSize": 10,
+          "fill": "#8C8078"
+        },
+        {
+          "type": "text",
+          "x": 360,
+          "y": 494,
+          "content": "7 Apr",
+          "fontSize": 10,
+          "fill": "#8C8078",
+          "textAnchor": "end"
+        },
+        {
+          "type": "text",
+          "x": 360,
+          "y": 514,
+          "content": "-$1,230",
+          "fontSize": 13,
+          "fill": "#C2410C",
+          "fontWeight": 600,
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 542,
+          "width": 350,
+          "height": 62,
+          "fill": "#FFFFFF",
+          "rx": 10,
+          "stroke": "#E5DDD5",
+          "strokeWidth": 1
+        },
+        {
+          "type": "circle",
+          "cx": 44,
+          "cy": 573,
+          "r": 14,
+          "fill": "#16A34A",
+          "opacity": 0.12
+        },
+        {
+          "type": "text",
+          "x": 44,
+          "y": 578,
+          "content": "$",
+          "fontSize": 11,
+          "fill": "#16A34A",
+          "fontWeight": 700,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 66,
+          "y": 566,
+          "content": "Cash Deposit",
+          "fontSize": 13,
+          "fill": "#1A1714",
+          "fontWeight": 600
+        },
+        {
+          "type": "text",
+          "x": 66,
+          "y": 584,
+          "content": "Monthly contribution",
+          "fontSize": 10,
+          "fill": "#8C8078"
+        },
+        {
+          "type": "text",
+          "x": 360,
+          "y": 566,
+          "content": "5 Apr",
+          "fontSize": 10,
+          "fill": "#8C8078",
+          "textAnchor": "end"
+        },
+        {
+          "type": "text",
+          "x": 360,
+          "y": 586,
+          "content": "+$2,000",
+          "fontSize": 13,
+          "fill": "#16A34A",
+          "fontWeight": 600,
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 614,
+          "width": 350,
+          "height": 62,
+          "fill": "#FFFFFF",
+          "rx": 10,
+          "stroke": "#E5DDD5",
+          "strokeWidth": 1
+        },
+        {
+          "type": "circle",
+          "cx": 44,
+          "cy": 645,
+          "r": 14,
+          "fill": "#C2410C",
+          "opacity": 0.12
+        },
+        {
+          "type": "text",
+          "x": 44,
+          "y": 650,
+          "content": "▲",
+          "fontSize": 11,
+          "fill": "#C2410C",
+          "fontWeight": 700,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 66,
+          "y": 638,
+          "content": "Vanguard BND",
+          "fontSize": 13,
+          "fill": "#1A1714",
+          "fontWeight": 600
+        },
+        {
+          "type": "text",
+          "x": 66,
+          "y": 656,
+          "content": "Buy · 20 shares @ $77.50",
+          "fontSize": 10,
+          "fill": "#8C8078"
+        },
+        {
+          "type": "text",
+          "x": 360,
+          "y": 638,
+          "content": "2 Apr",
+          "fontSize": 10,
+          "fill": "#8C8078",
+          "textAnchor": "end"
+        },
+        {
+          "type": "text",
+          "x": 360,
+          "y": 658,
+          "content": "-$1,550",
+          "fontSize": 13,
+          "fill": "#C2410C",
+          "fontWeight": 600,
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 780,
+          "width": 390,
+          "height": 64,
+          "fill": "#FFFFFF",
+          "stroke": "#E5DDD5",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 39,
+          "y": 808,
+          "content": "⊞",
+          "fontSize": 20,
+          "fill": "#8C8078",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 39,
+          "y": 828,
+          "content": "Portfolio",
+          "fontSize": 9,
+          "fill": "#8C8078",
+          "fontWeight": 400,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 117,
+          "y": 808,
+          "content": "◈",
+          "fontSize": 20,
+          "fill": "#8C8078",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 117,
+          "y": 828,
+          "content": "Holdings",
+          "fontSize": 9,
+          "fill": "#8C8078",
+          "fontWeight": 400,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 808,
+          "content": "◉",
+          "fontSize": 20,
+          "fill": "#8C8078",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 828,
+          "content": "Insights",
+          "fontSize": 9,
+          "fill": "#8C8078",
+          "fontWeight": 400,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 273,
+          "y": 808,
+          "content": "◎",
+          "fontSize": 20,
+          "fill": "#8C8078",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 273,
+          "y": 828,
+          "content": "Goals",
+          "fontSize": 9,
+          "fill": "#8C8078",
+          "fontWeight": 400,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 351,
+          "y": 808,
+          "content": "○",
+          "fontSize": 20,
+          "fill": "#8C8078",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 351,
+          "y": 828,
+          "content": "Profile",
+          "fontSize": 9,
+          "fill": "#8C8078",
+          "fontWeight": 400,
+          "textAnchor": "middle"
+        }
+      ]
+    },
+    {
+      "name": "Profile",
+      "width": 390,
+      "height": 844,
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"390\" height=\"844\" viewBox=\"0 0 390 844\"><rect x=\"0\" y=\"0\" width=\"390\" height=\"844\" fill=\"#F9F7F4\"/>\n<text x=\"20\" y=\"54\" fill=\"#1A1714\" font-size=\"13\" font-weight=\"600\">9:41</text>\n<text x=\"195\" y=\"96\" fill=\"#1A1714\" font-size=\"18\" font-weight=\"700\" text-anchor=\"middle\">Profile</text>\n<circle cx=\"195\" cy=\"160\" r=\"48\" fill=\"#F2EEE8\"/>\n<circle cx=\"195\" cy=\"160\" r=\"48\" fill=\"#0F766E\" opacity=\"0.12\"/>\n<text x=\"195\" y=\"168\" fill=\"#0F766E\" font-size=\"36\" font-weight=\"700\" text-anchor=\"middle\">A</text>\n<text x=\"195\" y=\"226\" fill=\"#1A1714\" font-size=\"20\" font-weight=\"700\" text-anchor=\"middle\">Alex Rivera</text>\n<text x=\"195\" y=\"246\" fill=\"#8C8078\" font-size=\"12\" text-anchor=\"middle\">Member since Jan 2022</text>\n<rect x=\"153\" y=\"258\" width=\"84\" height=\"22\" fill=\"#0F766E\" rx=\"11\"/>\n<text x=\"195\" y=\"273\" fill=\"#FFFFFF\" font-size=\"9\" font-weight=\"700\" text-anchor=\"middle\" letter-spacing=\"0.08em\">PREMIUM</text>\n<rect x=\"20\" y=\"294\" width=\"350\" height=\"60\" fill=\"#FFFFFF\" rx=\"12\" stroke=\"#E5DDD5\" stroke-width=\"1\"/>\n<text x=\"76\" y=\"316\" fill=\"#1A1714\" font-size=\"18\" font-weight=\"700\" text-anchor=\"middle\">34</text>\n<text x=\"76\" y=\"337\" fill=\"#8C8078\" font-size=\"10\" text-anchor=\"middle\">Age</text>\n<line x1=\"152\" y1=\"306\" x2=\"152\" y2=\"342\" stroke=\"#E5DDD5\" stroke-width=\"1\"/>\n<text x=\"196\" y=\"316\" fill=\"#1A1714\" font-size=\"18\" font-weight=\"700\" text-anchor=\"middle\">4y 3m</text>\n<text x=\"196\" y=\"337\" fill=\"#8C8078\" font-size=\"10\" text-anchor=\"middle\">Invested</text>\n<line x1=\"272\" y1=\"306\" x2=\"272\" y2=\"342\" stroke=\"#E5DDD5\" stroke-width=\"1\"/>\n<text x=\"316\" y=\"316\" fill=\"#1A1714\" font-size=\"18\" font-weight=\"700\" text-anchor=\"middle\">+12.2%</text>\n<text x=\"316\" y=\"337\" fill=\"#8C8078\" font-size=\"10\" text-anchor=\"middle\">Returns</text>\n<text x=\"20\" y=\"370\" fill=\"#8C8078\" font-size=\"10\" font-weight=\"600\" letter-spacing=\"0.08em\">PREFERENCES</text>\n<rect x=\"20\" y=\"384\" width=\"350\" height=\"146\" fill=\"#FFFFFF\" rx=\"12\" stroke=\"#E5DDD5\" stroke-width=\"1\"/>\n<text x=\"36\" y=\"414\" fill=\"#1A1714\" font-size=\"13\">Investment Style</text>\n<text x=\"360\" y=\"414\" fill=\"#8C8078\" font-size=\"16\" text-anchor=\"end\">›</text>\n<line x1=\"36\" y1=\"436\" x2=\"360\" y2=\"436\" stroke=\"#E5DDD5\" stroke-width=\"1\" opacity=\"0.5\"/>\n<text x=\"36\" y=\"462\" fill=\"#1A1714\" font-size=\"13\">Risk Tolerance</text>\n<text x=\"360\" y=\"462\" fill=\"#8C8078\" font-size=\"16\" text-anchor=\"end\">›</text>\n<line x1=\"36\" y1=\"484\" x2=\"360\" y2=\"484\" stroke=\"#E5DDD5\" stroke-width=\"1\" opacity=\"0.5\"/>\n<text x=\"36\" y=\"510\" fill=\"#1A1714\" font-size=\"13\">Notification Settings</text>\n<text x=\"360\" y=\"510\" fill=\"#8C8078\" font-size=\"16\" text-anchor=\"end\">›</text>\n<text x=\"20\" y=\"548\" fill=\"#8C8078\" font-size=\"10\" font-weight=\"600\" letter-spacing=\"0.08em\">SECURITY</text>\n<rect x=\"20\" y=\"562\" width=\"350\" height=\"146\" fill=\"#FFFFFF\" rx=\"12\" stroke=\"#E5DDD5\" stroke-width=\"1\"/>\n<text x=\"36\" y=\"592\" fill=\"#1A1714\" font-size=\"13\">Face ID / Touch ID</text>\n<text x=\"360\" y=\"592\" fill=\"#8C8078\" font-size=\"16\" text-anchor=\"end\">›</text>\n<line x1=\"36\" y1=\"614\" x2=\"360\" y2=\"614\" stroke=\"#E5DDD5\" stroke-width=\"1\" opacity=\"0.5\"/>\n<text x=\"36\" y=\"640\" fill=\"#1A1714\" font-size=\"13\">Two-Factor Auth</text>\n<text x=\"360\" y=\"640\" fill=\"#8C8078\" font-size=\"16\" text-anchor=\"end\">›</text>\n<line x1=\"36\" y1=\"662\" x2=\"360\" y2=\"662\" stroke=\"#E5DDD5\" stroke-width=\"1\" opacity=\"0.5\"/>\n<text x=\"36\" y=\"688\" fill=\"#1A1714\" font-size=\"13\">Change Password</text>\n<text x=\"360\" y=\"688\" fill=\"#8C8078\" font-size=\"16\" text-anchor=\"end\">›</text>\n<text x=\"20\" y=\"726\" fill=\"#8C8078\" font-size=\"10\" font-weight=\"600\" letter-spacing=\"0.08em\">ACCOUNT</text>\n<rect x=\"20\" y=\"740\" width=\"350\" height=\"146\" fill=\"#FFFFFF\" rx=\"12\" stroke=\"#E5DDD5\" stroke-width=\"1\"/>\n<text x=\"36\" y=\"770\" fill=\"#1A1714\" font-size=\"13\">Connected Brokers</text>\n<text x=\"360\" y=\"770\" fill=\"#8C8078\" font-size=\"16\" text-anchor=\"end\">›</text>\n<line x1=\"36\" y1=\"792\" x2=\"360\" y2=\"792\" stroke=\"#E5DDD5\" stroke-width=\"1\" opacity=\"0.5\"/>\n<text x=\"36\" y=\"818\" fill=\"#1A1714\" font-size=\"13\">Tax Documents</text>\n<text x=\"360\" y=\"818\" fill=\"#8C8078\" font-size=\"16\" text-anchor=\"end\">›</text>\n<line x1=\"36\" y1=\"840\" x2=\"360\" y2=\"840\" stroke=\"#E5DDD5\" stroke-width=\"1\" opacity=\"0.5\"/>\n<text x=\"36\" y=\"866\" fill=\"#1A1714\" font-size=\"13\">Data Export</text>\n<text x=\"360\" y=\"866\" fill=\"#8C8078\" font-size=\"16\" text-anchor=\"end\">›</text>\n<rect x=\"0\" y=\"780\" width=\"390\" height=\"64\" fill=\"#FFFFFF\" stroke=\"#E5DDD5\" stroke-width=\"1\"/>\n<text x=\"39\" y=\"808\" fill=\"#8C8078\" font-size=\"20\" text-anchor=\"middle\">⊞</text>\n<text x=\"39\" y=\"828\" fill=\"#8C8078\" font-size=\"9\" font-weight=\"400\" text-anchor=\"middle\">Portfolio</text>\n<text x=\"117\" y=\"808\" fill=\"#8C8078\" font-size=\"20\" text-anchor=\"middle\">◈</text>\n<text x=\"117\" y=\"828\" fill=\"#8C8078\" font-size=\"9\" font-weight=\"400\" text-anchor=\"middle\">Holdings</text>\n<text x=\"195\" y=\"808\" fill=\"#8C8078\" font-size=\"20\" text-anchor=\"middle\">◉</text>\n<text x=\"195\" y=\"828\" fill=\"#8C8078\" font-size=\"9\" font-weight=\"400\" text-anchor=\"middle\">Insights</text>\n<text x=\"273\" y=\"808\" fill=\"#8C8078\" font-size=\"20\" text-anchor=\"middle\">◎</text>\n<text x=\"273\" y=\"828\" fill=\"#8C8078\" font-size=\"9\" font-weight=\"400\" text-anchor=\"middle\">Goals</text>\n<text x=\"351\" y=\"808\" fill=\"#0F766E\" font-size=\"20\" text-anchor=\"middle\">○</text>\n<text x=\"351\" y=\"828\" fill=\"#0F766E\" font-size=\"9\" font-weight=\"600\" text-anchor=\"middle\">Profile</text></svg>",
+      "elements": [
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "fill": "#F9F7F4"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 54,
+          "content": "9:41",
+          "fontSize": 13,
+          "fill": "#1A1714",
+          "fontWeight": 600
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 96,
+          "content": "Profile",
+          "fontSize": 18,
+          "fill": "#1A1714",
+          "fontWeight": 700,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "circle",
+          "cx": 195,
+          "cy": 160,
+          "r": 48,
+          "fill": "#F2EEE8"
+        },
+        {
+          "type": "circle",
+          "cx": 195,
+          "cy": 160,
+          "r": 48,
+          "fill": "#0F766E",
+          "opacity": 0.12
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 168,
+          "content": "A",
+          "fontSize": 36,
+          "fill": "#0F766E",
+          "fontWeight": 700,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 226,
+          "content": "Alex Rivera",
+          "fontSize": 20,
+          "fill": "#1A1714",
+          "fontWeight": 700,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 246,
+          "content": "Member since Jan 2022",
+          "fontSize": 12,
+          "fill": "#8C8078",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 153,
+          "y": 258,
+          "width": 84,
+          "height": 22,
+          "fill": "#0F766E",
+          "rx": 11
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 273,
+          "content": "PREMIUM",
+          "fontSize": 9,
+          "fill": "#FFFFFF",
+          "fontWeight": 700,
+          "textAnchor": "middle",
+          "letterSpacing": "0.08em"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 294,
+          "width": 350,
+          "height": 60,
+          "fill": "#FFFFFF",
+          "rx": 12,
+          "stroke": "#E5DDD5",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 76,
+          "y": 316,
+          "content": "34",
+          "fontSize": 18,
+          "fill": "#1A1714",
+          "fontWeight": 700,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 76,
+          "y": 337,
+          "content": "Age",
+          "fontSize": 10,
+          "fill": "#8C8078",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "line",
+          "x1": 152,
+          "y1": 306,
+          "x2": 152,
+          "y2": 342,
+          "stroke": "#E5DDD5",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 196,
+          "y": 316,
+          "content": "4y 3m",
+          "fontSize": 18,
+          "fill": "#1A1714",
+          "fontWeight": 700,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 196,
+          "y": 337,
+          "content": "Invested",
+          "fontSize": 10,
+          "fill": "#8C8078",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "line",
+          "x1": 272,
+          "y1": 306,
+          "x2": 272,
+          "y2": 342,
+          "stroke": "#E5DDD5",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 316,
+          "y": 316,
+          "content": "+12.2%",
+          "fontSize": 18,
+          "fill": "#1A1714",
+          "fontWeight": 700,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 316,
+          "y": 337,
+          "content": "Returns",
+          "fontSize": 10,
+          "fill": "#8C8078",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 370,
+          "content": "PREFERENCES",
+          "fontSize": 10,
+          "fill": "#8C8078",
+          "fontWeight": 600,
+          "letterSpacing": "0.08em"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 384,
+          "width": 350,
+          "height": 146,
+          "fill": "#FFFFFF",
+          "rx": 12,
+          "stroke": "#E5DDD5",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 414,
+          "content": "Investment Style",
+          "fontSize": 13,
+          "fill": "#1A1714"
+        },
+        {
+          "type": "text",
+          "x": 360,
+          "y": 414,
+          "content": "›",
+          "fontSize": 16,
+          "fill": "#8C8078",
+          "textAnchor": "end"
+        },
+        {
+          "type": "line",
+          "x1": 36,
+          "y1": 436,
+          "x2": 360,
+          "y2": 436,
+          "stroke": "#E5DDD5",
+          "strokeWidth": 1,
+          "opacity": 0.5
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 462,
+          "content": "Risk Tolerance",
+          "fontSize": 13,
+          "fill": "#1A1714"
+        },
+        {
+          "type": "text",
+          "x": 360,
+          "y": 462,
+          "content": "›",
+          "fontSize": 16,
+          "fill": "#8C8078",
+          "textAnchor": "end"
+        },
+        {
+          "type": "line",
+          "x1": 36,
+          "y1": 484,
+          "x2": 360,
+          "y2": 484,
+          "stroke": "#E5DDD5",
+          "strokeWidth": 1,
+          "opacity": 0.5
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 510,
+          "content": "Notification Settings",
+          "fontSize": 13,
+          "fill": "#1A1714"
+        },
+        {
+          "type": "text",
+          "x": 360,
+          "y": 510,
+          "content": "›",
+          "fontSize": 16,
+          "fill": "#8C8078",
+          "textAnchor": "end"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 548,
+          "content": "SECURITY",
+          "fontSize": 10,
+          "fill": "#8C8078",
+          "fontWeight": 600,
+          "letterSpacing": "0.08em"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 562,
+          "width": 350,
+          "height": 146,
+          "fill": "#FFFFFF",
+          "rx": 12,
+          "stroke": "#E5DDD5",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 592,
+          "content": "Face ID / Touch ID",
+          "fontSize": 13,
+          "fill": "#1A1714"
+        },
+        {
+          "type": "text",
+          "x": 360,
+          "y": 592,
+          "content": "›",
+          "fontSize": 16,
+          "fill": "#8C8078",
+          "textAnchor": "end"
+        },
+        {
+          "type": "line",
+          "x1": 36,
+          "y1": 614,
+          "x2": 360,
+          "y2": 614,
+          "stroke": "#E5DDD5",
+          "strokeWidth": 1,
+          "opacity": 0.5
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 640,
+          "content": "Two-Factor Auth",
+          "fontSize": 13,
+          "fill": "#1A1714"
+        },
+        {
+          "type": "text",
+          "x": 360,
+          "y": 640,
+          "content": "›",
+          "fontSize": 16,
+          "fill": "#8C8078",
+          "textAnchor": "end"
+        },
+        {
+          "type": "line",
+          "x1": 36,
+          "y1": 662,
+          "x2": 360,
+          "y2": 662,
+          "stroke": "#E5DDD5",
+          "strokeWidth": 1,
+          "opacity": 0.5
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 688,
+          "content": "Change Password",
+          "fontSize": 13,
+          "fill": "#1A1714"
+        },
+        {
+          "type": "text",
+          "x": 360,
+          "y": 688,
+          "content": "›",
+          "fontSize": 16,
+          "fill": "#8C8078",
+          "textAnchor": "end"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 726,
+          "content": "ACCOUNT",
+          "fontSize": 10,
+          "fill": "#8C8078",
+          "fontWeight": 600,
+          "letterSpacing": "0.08em"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 740,
+          "width": 350,
+          "height": 146,
+          "fill": "#FFFFFF",
+          "rx": 12,
+          "stroke": "#E5DDD5",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 770,
+          "content": "Connected Brokers",
+          "fontSize": 13,
+          "fill": "#1A1714"
+        },
+        {
+          "type": "text",
+          "x": 360,
+          "y": 770,
+          "content": "›",
+          "fontSize": 16,
+          "fill": "#8C8078",
+          "textAnchor": "end"
+        },
+        {
+          "type": "line",
+          "x1": 36,
+          "y1": 792,
+          "x2": 360,
+          "y2": 792,
+          "stroke": "#E5DDD5",
+          "strokeWidth": 1,
+          "opacity": 0.5
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 818,
+          "content": "Tax Documents",
+          "fontSize": 13,
+          "fill": "#1A1714"
+        },
+        {
+          "type": "text",
+          "x": 360,
+          "y": 818,
+          "content": "›",
+          "fontSize": 16,
+          "fill": "#8C8078",
+          "textAnchor": "end"
+        },
+        {
+          "type": "line",
+          "x1": 36,
+          "y1": 840,
+          "x2": 360,
+          "y2": 840,
+          "stroke": "#E5DDD5",
+          "strokeWidth": 1,
+          "opacity": 0.5
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 866,
+          "content": "Data Export",
+          "fontSize": 13,
+          "fill": "#1A1714"
+        },
+        {
+          "type": "text",
+          "x": 360,
+          "y": 866,
+          "content": "›",
+          "fontSize": 16,
+          "fill": "#8C8078",
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 780,
+          "width": 390,
+          "height": 64,
+          "fill": "#FFFFFF",
+          "stroke": "#E5DDD5",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 39,
+          "y": 808,
+          "content": "⊞",
+          "fontSize": 20,
+          "fill": "#8C8078",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 39,
+          "y": 828,
+          "content": "Portfolio",
+          "fontSize": 9,
+          "fill": "#8C8078",
+          "fontWeight": 400,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 117,
+          "y": 808,
+          "content": "◈",
+          "fontSize": 20,
+          "fill": "#8C8078",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 117,
+          "y": 828,
+          "content": "Holdings",
+          "fontSize": 9,
+          "fill": "#8C8078",
+          "fontWeight": 400,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 808,
+          "content": "◉",
+          "fontSize": 20,
+          "fill": "#8C8078",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 828,
+          "content": "Insights",
+          "fontSize": 9,
+          "fill": "#8C8078",
+          "fontWeight": 400,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 273,
+          "y": 808,
+          "content": "◎",
+          "fontSize": 20,
+          "fill": "#8C8078",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 273,
+          "y": 828,
+          "content": "Goals",
+          "fontSize": 9,
+          "fill": "#8C8078",
+          "fontWeight": 400,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 351,
+          "y": 808,
+          "content": "○",
+          "fontSize": 20,
+          "fill": "#0F766E",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 351,
+          "y": 828,
+          "content": "Profile",
+          "fontSize": 9,
+          "fill": "#0F766E",
+          "fontWeight": 600,
+          "textAnchor": "middle"
+        }
+      ]
+    }
+  ]
+}
