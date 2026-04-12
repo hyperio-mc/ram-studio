@@ -1,0 +1,5199 @@
+{
+  "version": "2.8",
+  "metadata": {
+    "name": "VANE — Hyper-local Weather Intelligence",
+    "author": "RAM",
+    "date": "2026-04-12",
+    "theme": "dark",
+    "heartbeat": 492,
+    "elements": 551,
+    "palette": {
+      "bg": "#06091A",
+      "accent": "#1E6EFF",
+      "text": "#DCE8FF"
+    }
+  },
+  "screens": [
+    {
+      "name": "Now",
+      "elements": [
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "w": 390,
+          "h": 844,
+          "fill": "#06091A"
+        },
+        {
+          "type": "rect",
+          "x": 60,
+          "y": 80,
+          "w": 270,
+          "h": 270,
+          "fill": "rgba(26,108,255,0.10)",
+          "rx": 135
+        },
+        {
+          "type": "rect",
+          "x": 80,
+          "y": 100,
+          "w": 230,
+          "h": 230,
+          "fill": "rgba(26,110,255,0.06)",
+          "rx": 115
+        },
+        {
+          "type": "text",
+          "x": 16,
+          "y": 28,
+          "content": "9:41",
+          "size": 15,
+          "fill": "#DCE8FF",
+          "fw": 500,
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "text",
+          "x": 374,
+          "y": 28,
+          "content": "◈ GPS  ●●●  88%",
+          "size": 12,
+          "fill": "#7A9ACC",
+          "anchor": "end",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 62,
+          "content": "VANE",
+          "size": 13,
+          "fill": "#1E6EFF",
+          "fw": 700,
+          "ls": 3,
+          "font": "Inter Tight,Inter,sans-serif"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 84,
+          "content": "Stinson Beach, CA",
+          "size": 22,
+          "fill": "#DCE8FF",
+          "fw": 600
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 108,
+          "content": "Updated 3 min ago",
+          "size": 12,
+          "fill": "#7A9ACC"
+        },
+        {
+          "type": "line",
+          "x1": 20,
+          "y1": 122,
+          "x2": 370,
+          "y2": 122,
+          "stroke": "rgba(42,100,255,0.18)",
+          "sw": 0.5
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 220,
+          "content": "14°",
+          "size": 96,
+          "fill": "#DCE8FF",
+          "anchor": "middle",
+          "fw": 200,
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 240,
+          "content": "CELSIUS",
+          "size": 9,
+          "fill": "#3D5A8A",
+          "anchor": "middle",
+          "ls": 3,
+          "font": "Inter Tight,Inter,sans-serif"
+        },
+        {
+          "type": "rect",
+          "x": 143,
+          "y": 252,
+          "w": 104,
+          "h": 28,
+          "fill": "#0A3A99",
+          "rx": 14
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 270,
+          "content": "Partly Cloudy",
+          "size": 12,
+          "fill": "#4A8AFF",
+          "anchor": "middle",
+          "fw": 500
+        },
+        {
+          "type": "text",
+          "x": 135,
+          "y": 302,
+          "content": "Feels 11°",
+          "size": 13,
+          "fill": "#7A9ACC",
+          "anchor": "middle",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 302,
+          "content": "↑ 17°",
+          "size": 13,
+          "fill": "#4A8AFF",
+          "anchor": "middle",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "text",
+          "x": 255,
+          "y": 302,
+          "content": "↓ 9°",
+          "size": 13,
+          "fill": "#7A9ACC",
+          "anchor": "middle",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "line",
+          "x1": 20,
+          "y1": 324,
+          "x2": 370,
+          "y2": 324,
+          "stroke": "rgba(42,100,255,0.18)",
+          "sw": 0.4
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 348,
+          "content": "WIND",
+          "size": 10,
+          "fill": "#3D5A8A",
+          "fw": 700,
+          "ls": 2,
+          "font": "Inter Tight,Inter,sans-serif"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 374,
+          "content": "18",
+          "size": 42,
+          "fill": "#1E6EFF",
+          "fw": 300,
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "text",
+          "x": 62,
+          "y": 374,
+          "content": "km/h",
+          "size": 14,
+          "fill": "#7A9ACC",
+          "font": "Inter Tight,Inter,sans-serif"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 394,
+          "content": "SSW — gusts 28 km/h",
+          "size": 12,
+          "fill": "#7A9ACC",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "circle",
+          "cx": 320,
+          "cy": 362,
+          "r": 36,
+          "fill": "#141E38",
+          "stroke": "rgba(42,100,255,0.18)",
+          "sw": 1
+        },
+        {
+          "type": "circle",
+          "cx": 320,
+          "cy": 362,
+          "r": 28,
+          "fill": "rgba(30,110,255,0.08)"
+        },
+        {
+          "type": "text",
+          "x": 320,
+          "y": 344,
+          "content": "N",
+          "size": 8,
+          "fill": "#3D5A8A",
+          "anchor": "middle",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "text",
+          "x": 342,
+          "y": 366,
+          "content": "E",
+          "size": 8,
+          "fill": "#3D5A8A",
+          "anchor": "middle",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "text",
+          "x": 320,
+          "y": 388,
+          "content": "S",
+          "size": 8,
+          "fill": "#3D5A8A",
+          "anchor": "middle",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "text",
+          "x": 298,
+          "y": 366,
+          "content": "W",
+          "size": 8,
+          "fill": "#3D5A8A",
+          "anchor": "middle",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "line",
+          "x1": 320,
+          "y1": 362,
+          "x2": 312.3463313526982,
+          "y2": 380.47759065022575,
+          "stroke": "#1E6EFF",
+          "sw": 2
+        },
+        {
+          "type": "circle",
+          "cx": 320,
+          "cy": 362,
+          "r": 3,
+          "fill": "#1E6EFF"
+        },
+        {
+          "type": "line",
+          "x1": 20,
+          "y1": 418,
+          "x2": 370,
+          "y2": 418,
+          "stroke": "rgba(42,100,255,0.18)",
+          "sw": 0.4
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 428,
+          "w": 171,
+          "h": 52,
+          "fill": "#101830",
+          "rx": 10
+        },
+        {
+          "type": "text",
+          "x": 28,
+          "y": 444,
+          "content": "HUMIDITY",
+          "size": 9,
+          "fill": "#3D5A8A",
+          "fw": 600,
+          "ls": 1.5,
+          "font": "Inter Tight,Inter,sans-serif"
+        },
+        {
+          "type": "text",
+          "x": 28,
+          "y": 470,
+          "content": "78%",
+          "size": 18,
+          "fill": "#DCE8FF",
+          "fw": 300,
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "rect",
+          "x": 201,
+          "y": 428,
+          "w": 171,
+          "h": 52,
+          "fill": "#101830",
+          "rx": 10
+        },
+        {
+          "type": "text",
+          "x": 213,
+          "y": 444,
+          "content": "PRESSURE",
+          "size": 9,
+          "fill": "#3D5A8A",
+          "fw": 600,
+          "ls": 1.5,
+          "font": "Inter Tight,Inter,sans-serif"
+        },
+        {
+          "type": "text",
+          "x": 213,
+          "y": 470,
+          "content": "1012",
+          "size": 18,
+          "fill": "#DCE8FF",
+          "fw": 300,
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 486,
+          "w": 171,
+          "h": 52,
+          "fill": "#101830",
+          "rx": 10
+        },
+        {
+          "type": "text",
+          "x": 28,
+          "y": 502,
+          "content": "VISIBILITY",
+          "size": 9,
+          "fill": "#3D5A8A",
+          "fw": 600,
+          "ls": 1.5,
+          "font": "Inter Tight,Inter,sans-serif"
+        },
+        {
+          "type": "text",
+          "x": 28,
+          "y": 528,
+          "content": "16 km",
+          "size": 18,
+          "fill": "#DCE8FF",
+          "fw": 300,
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "rect",
+          "x": 201,
+          "y": 486,
+          "w": 171,
+          "h": 52,
+          "fill": "#101830",
+          "rx": 10
+        },
+        {
+          "type": "text",
+          "x": 213,
+          "y": 502,
+          "content": "UV INDEX",
+          "size": 9,
+          "fill": "#3D5A8A",
+          "fw": 600,
+          "ls": 1.5,
+          "font": "Inter Tight,Inter,sans-serif"
+        },
+        {
+          "type": "text",
+          "x": 213,
+          "y": 528,
+          "content": "3 · Low",
+          "size": 18,
+          "fill": "#DCE8FF",
+          "fw": 300,
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "line",
+          "x1": 20,
+          "y1": 578,
+          "x2": 370,
+          "y2": 578,
+          "stroke": "rgba(42,100,255,0.18)",
+          "sw": 0.4
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 600,
+          "content": "SURF CONDITIONS",
+          "size": 10,
+          "fill": "#3D5A8A",
+          "fw": 700,
+          "ls": 2,
+          "font": "Inter Tight,Inter,sans-serif"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 612,
+          "w": 350,
+          "h": 44,
+          "fill": "#141E38",
+          "rx": 10,
+          "stroke": "rgba(42,100,255,0.18)",
+          "sw": 1
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 638,
+          "content": "1.2 – 1.8 m",
+          "size": 16,
+          "fill": "#4A8AFF",
+          "fw": 500,
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "text",
+          "x": 354,
+          "y": 638,
+          "content": "12s period · W swell",
+          "size": 12,
+          "fill": "#7A9ACC",
+          "anchor": "end",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "line",
+          "x1": 20,
+          "y1": 668,
+          "x2": 370,
+          "y2": 668,
+          "stroke": "rgba(42,100,255,0.18)",
+          "sw": 0.4
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 688,
+          "content": "AIR QUALITY",
+          "size": 10,
+          "fill": "#3D5A8A",
+          "fw": 700,
+          "ls": 2,
+          "font": "Inter Tight,Inter,sans-serif"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 700,
+          "w": 350,
+          "h": 14,
+          "fill": "#101830",
+          "rx": 7
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 700,
+          "w": 98.00000000000001,
+          "h": 14,
+          "fill": "#22C55E",
+          "rx": 7
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 730,
+          "content": "AQI 32 — Good",
+          "size": 13,
+          "fill": "#22C55E",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "text",
+          "x": 370,
+          "y": 730,
+          "content": "PM 2.5: 7 μg/m³",
+          "size": 12,
+          "fill": "#7A9ACC",
+          "anchor": "end",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 772,
+          "w": 390,
+          "h": 72,
+          "fill": "#0C1228"
+        },
+        {
+          "type": "line",
+          "x1": 0,
+          "y1": 772,
+          "x2": 390,
+          "y2": 772,
+          "stroke": "rgba(42,100,255,0.18)",
+          "sw": 0.5
+        },
+        {
+          "type": "rect",
+          "x": 7,
+          "y": 776,
+          "w": 64,
+          "h": 4,
+          "fill": "#1E6EFF",
+          "rx": 2
+        },
+        {
+          "type": "text",
+          "x": 39,
+          "y": 800,
+          "content": "●",
+          "size": 10,
+          "fill": "#1E6EFF",
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 39,
+          "y": 822,
+          "content": "Now",
+          "size": 10,
+          "fill": "#4A8AFF",
+          "anchor": "middle",
+          "fw": 600
+        },
+        {
+          "type": "text",
+          "x": 117,
+          "y": 800,
+          "content": "○",
+          "size": 10,
+          "fill": "#3D5A8A",
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 117,
+          "y": 822,
+          "content": "Forecast",
+          "size": 10,
+          "fill": "#7A9ACC",
+          "anchor": "middle",
+          "fw": 400
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 800,
+          "content": "○",
+          "size": 10,
+          "fill": "#3D5A8A",
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 822,
+          "content": "Alerts",
+          "size": 10,
+          "fill": "#7A9ACC",
+          "anchor": "middle",
+          "fw": 400
+        },
+        {
+          "type": "text",
+          "x": 273,
+          "y": 800,
+          "content": "○",
+          "size": 10,
+          "fill": "#3D5A8A",
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 273,
+          "y": 822,
+          "content": "Locations",
+          "size": 10,
+          "fill": "#7A9ACC",
+          "anchor": "middle",
+          "fw": 400
+        },
+        {
+          "type": "text",
+          "x": 351,
+          "y": 800,
+          "content": "○",
+          "size": 10,
+          "fill": "#3D5A8A",
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 351,
+          "y": 822,
+          "content": "Radar",
+          "size": 10,
+          "fill": "#7A9ACC",
+          "anchor": "middle",
+          "fw": 400
+        }
+      ],
+      "svg": ""
+    },
+    {
+      "name": "Forecast",
+      "elements": [
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "w": 390,
+          "h": 844,
+          "fill": "#06091A"
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "w": 390,
+          "h": 44,
+          "fill": "#06091A"
+        },
+        {
+          "type": "text",
+          "x": 16,
+          "y": 28,
+          "content": "9:41",
+          "size": 15,
+          "fill": "#DCE8FF",
+          "fw": 500,
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "text",
+          "x": 374,
+          "y": 28,
+          "content": "●●●  88%",
+          "size": 12,
+          "fill": "#7A9ACC",
+          "anchor": "end",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 70,
+          "content": "Forecast",
+          "size": 28,
+          "fill": "#DCE8FF",
+          "fw": 600
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 96,
+          "content": "Stinson Beach — Next 7 days",
+          "size": 13,
+          "fill": "#7A9ACC"
+        },
+        {
+          "type": "line",
+          "x1": 20,
+          "y1": 112,
+          "x2": 370,
+          "y2": 112,
+          "stroke": "rgba(42,100,255,0.18)",
+          "sw": 0.4
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 136,
+          "content": "HOURLY",
+          "size": 10,
+          "fill": "#3D5A8A",
+          "fw": 700,
+          "ls": 2,
+          "font": "Inter Tight,Inter,sans-serif"
+        },
+        {
+          "type": "rect",
+          "x": 16,
+          "y": 148,
+          "w": 38,
+          "h": 92,
+          "fill": "#0A3A99",
+          "rx": 10,
+          "stroke": "#1E6EFF",
+          "sw": 1.5
+        },
+        {
+          "type": "text",
+          "x": 35,
+          "y": 164,
+          "content": "Now",
+          "size": 9,
+          "fill": "#D4E2FF",
+          "anchor": "middle",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "text",
+          "x": 35,
+          "y": 186,
+          "content": "⛅",
+          "size": 14,
+          "fill": "#DCE8FF",
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 35,
+          "y": 206,
+          "content": "14°",
+          "size": 13,
+          "fill": "#D4E2FF",
+          "anchor": "middle",
+          "font": "JetBrains Mono,Menlo,monospace",
+          "fw": 600
+        },
+        {
+          "type": "text",
+          "x": 35,
+          "y": 224,
+          "content": "18k",
+          "size": 9,
+          "fill": "#7A9ACC",
+          "anchor": "middle",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "rect",
+          "x": 59,
+          "y": 148,
+          "w": 38,
+          "h": 92,
+          "fill": "#101830",
+          "rx": 10,
+          "stroke": "rgba(42,100,255,0.18)",
+          "sw": 0.5
+        },
+        {
+          "type": "text",
+          "x": 78,
+          "y": 164,
+          "content": "14h",
+          "size": 9,
+          "fill": "#7A9ACC",
+          "anchor": "middle",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "text",
+          "x": 78,
+          "y": 186,
+          "content": "⛅",
+          "size": 14,
+          "fill": "#DCE8FF",
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 78,
+          "y": 206,
+          "content": "15°",
+          "size": 13,
+          "fill": "#DCE8FF",
+          "anchor": "middle",
+          "font": "JetBrains Mono,Menlo,monospace",
+          "fw": 400
+        },
+        {
+          "type": "text",
+          "x": 78,
+          "y": 224,
+          "content": "20k",
+          "size": 9,
+          "fill": "#7A9ACC",
+          "anchor": "middle",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "rect",
+          "x": 102,
+          "y": 148,
+          "w": 38,
+          "h": 92,
+          "fill": "#101830",
+          "rx": 10,
+          "stroke": "rgba(42,100,255,0.18)",
+          "sw": 0.5
+        },
+        {
+          "type": "text",
+          "x": 121,
+          "y": 164,
+          "content": "15h",
+          "size": 9,
+          "fill": "#7A9ACC",
+          "anchor": "middle",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "text",
+          "x": 121,
+          "y": 186,
+          "content": "☁",
+          "size": 14,
+          "fill": "#DCE8FF",
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 121,
+          "y": 206,
+          "content": "16°",
+          "size": 13,
+          "fill": "#DCE8FF",
+          "anchor": "middle",
+          "font": "JetBrains Mono,Menlo,monospace",
+          "fw": 400
+        },
+        {
+          "type": "text",
+          "x": 121,
+          "y": 224,
+          "content": "22k",
+          "size": 9,
+          "fill": "#7A9ACC",
+          "anchor": "middle",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "rect",
+          "x": 145,
+          "y": 148,
+          "w": 38,
+          "h": 92,
+          "fill": "#101830",
+          "rx": 10,
+          "stroke": "rgba(42,100,255,0.18)",
+          "sw": 0.5
+        },
+        {
+          "type": "text",
+          "x": 164,
+          "y": 164,
+          "content": "16h",
+          "size": 9,
+          "fill": "#7A9ACC",
+          "anchor": "middle",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "text",
+          "x": 164,
+          "y": 186,
+          "content": "☁",
+          "size": 14,
+          "fill": "#DCE8FF",
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 164,
+          "y": 206,
+          "content": "16°",
+          "size": 13,
+          "fill": "#DCE8FF",
+          "anchor": "middle",
+          "font": "JetBrains Mono,Menlo,monospace",
+          "fw": 400
+        },
+        {
+          "type": "text",
+          "x": 164,
+          "y": 224,
+          "content": "24k",
+          "size": 9,
+          "fill": "#7A9ACC",
+          "anchor": "middle",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "rect",
+          "x": 188,
+          "y": 148,
+          "w": 38,
+          "h": 92,
+          "fill": "#101830",
+          "rx": 10,
+          "stroke": "rgba(42,100,255,0.18)",
+          "sw": 0.5
+        },
+        {
+          "type": "text",
+          "x": 207,
+          "y": 164,
+          "content": "17h",
+          "size": 9,
+          "fill": "#7A9ACC",
+          "anchor": "middle",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "text",
+          "x": 207,
+          "y": 186,
+          "content": "🌤",
+          "size": 14,
+          "fill": "#DCE8FF",
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 207,
+          "y": 206,
+          "content": "15°",
+          "size": 13,
+          "fill": "#DCE8FF",
+          "anchor": "middle",
+          "font": "JetBrains Mono,Menlo,monospace",
+          "fw": 400
+        },
+        {
+          "type": "text",
+          "x": 207,
+          "y": 224,
+          "content": "22k",
+          "size": 9,
+          "fill": "#7A9ACC",
+          "anchor": "middle",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "rect",
+          "x": 231,
+          "y": 148,
+          "w": 38,
+          "h": 92,
+          "fill": "#101830",
+          "rx": 10,
+          "stroke": "rgba(42,100,255,0.18)",
+          "sw": 0.5
+        },
+        {
+          "type": "text",
+          "x": 250,
+          "y": 164,
+          "content": "18h",
+          "size": 9,
+          "fill": "#7A9ACC",
+          "anchor": "middle",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "text",
+          "x": 250,
+          "y": 186,
+          "content": "🌤",
+          "size": 14,
+          "fill": "#DCE8FF",
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 250,
+          "y": 206,
+          "content": "14°",
+          "size": 13,
+          "fill": "#DCE8FF",
+          "anchor": "middle",
+          "font": "JetBrains Mono,Menlo,monospace",
+          "fw": 400
+        },
+        {
+          "type": "text",
+          "x": 250,
+          "y": 224,
+          "content": "19k",
+          "size": 9,
+          "fill": "#7A9ACC",
+          "anchor": "middle",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "rect",
+          "x": 274,
+          "y": 148,
+          "w": 38,
+          "h": 92,
+          "fill": "#101830",
+          "rx": 10,
+          "stroke": "rgba(42,100,255,0.18)",
+          "sw": 0.5
+        },
+        {
+          "type": "text",
+          "x": 293,
+          "y": 164,
+          "content": "19h",
+          "size": 9,
+          "fill": "#7A9ACC",
+          "anchor": "middle",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "text",
+          "x": 293,
+          "y": 186,
+          "content": "🌙",
+          "size": 14,
+          "fill": "#DCE8FF",
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 293,
+          "y": 206,
+          "content": "13°",
+          "size": 13,
+          "fill": "#DCE8FF",
+          "anchor": "middle",
+          "font": "JetBrains Mono,Menlo,monospace",
+          "fw": 400
+        },
+        {
+          "type": "text",
+          "x": 293,
+          "y": 224,
+          "content": "17k",
+          "size": 9,
+          "fill": "#7A9ACC",
+          "anchor": "middle",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "rect",
+          "x": 317,
+          "y": 148,
+          "w": 38,
+          "h": 92,
+          "fill": "#101830",
+          "rx": 10,
+          "stroke": "rgba(42,100,255,0.18)",
+          "sw": 0.5
+        },
+        {
+          "type": "text",
+          "x": 336,
+          "y": 164,
+          "content": "20h",
+          "size": 9,
+          "fill": "#7A9ACC",
+          "anchor": "middle",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "text",
+          "x": 336,
+          "y": 186,
+          "content": "🌙",
+          "size": 14,
+          "fill": "#DCE8FF",
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 336,
+          "y": 206,
+          "content": "12°",
+          "size": 13,
+          "fill": "#DCE8FF",
+          "anchor": "middle",
+          "font": "JetBrains Mono,Menlo,monospace",
+          "fw": 400
+        },
+        {
+          "type": "text",
+          "x": 336,
+          "y": 224,
+          "content": "15k",
+          "size": 9,
+          "fill": "#7A9ACC",
+          "anchor": "middle",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "line",
+          "x1": 20,
+          "y1": 256,
+          "x2": 370,
+          "y2": 256,
+          "stroke": "rgba(42,100,255,0.18)",
+          "sw": 0.4
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 276,
+          "content": "WIND SPEED (km/h)",
+          "size": 10,
+          "fill": "#3D5A8A",
+          "fw": 700,
+          "ls": 2,
+          "font": "Inter Tight,Inter,sans-serif"
+        },
+        {
+          "type": "rect",
+          "x": 27,
+          "y": 306,
+          "w": 24,
+          "h": 36,
+          "fill": "#1E6EFF",
+          "rx": 4
+        },
+        {
+          "type": "text",
+          "x": 39,
+          "y": 356,
+          "content": "18",
+          "size": 9,
+          "fill": "#7A9ACC",
+          "anchor": "middle",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "rect",
+          "x": 70,
+          "y": 302,
+          "w": 24,
+          "h": 40,
+          "fill": "#1E6EFF",
+          "rx": 4
+        },
+        {
+          "type": "text",
+          "x": 82,
+          "y": 356,
+          "content": "20",
+          "size": 9,
+          "fill": "#7A9ACC",
+          "anchor": "middle",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "rect",
+          "x": 113,
+          "y": 298,
+          "w": 24,
+          "h": 44,
+          "fill": "#1E6EFF",
+          "rx": 4
+        },
+        {
+          "type": "text",
+          "x": 125,
+          "y": 356,
+          "content": "22",
+          "size": 9,
+          "fill": "#7A9ACC",
+          "anchor": "middle",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "rect",
+          "x": 156,
+          "y": 294,
+          "w": 24,
+          "h": 48,
+          "fill": "#1E6EFF",
+          "rx": 4
+        },
+        {
+          "type": "text",
+          "x": 168,
+          "y": 356,
+          "content": "24",
+          "size": 9,
+          "fill": "#7A9ACC",
+          "anchor": "middle",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "rect",
+          "x": 199,
+          "y": 298,
+          "w": 24,
+          "h": 44,
+          "fill": "#0A3A99",
+          "rx": 4
+        },
+        {
+          "type": "text",
+          "x": 211,
+          "y": 356,
+          "content": "22",
+          "size": 9,
+          "fill": "#7A9ACC",
+          "anchor": "middle",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "rect",
+          "x": 242,
+          "y": 304,
+          "w": 24,
+          "h": 38,
+          "fill": "#0A3A99",
+          "rx": 4
+        },
+        {
+          "type": "text",
+          "x": 254,
+          "y": 356,
+          "content": "19",
+          "size": 9,
+          "fill": "#7A9ACC",
+          "anchor": "middle",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "rect",
+          "x": 285,
+          "y": 308,
+          "w": 24,
+          "h": 34,
+          "fill": "#0A3A99",
+          "rx": 4
+        },
+        {
+          "type": "text",
+          "x": 297,
+          "y": 356,
+          "content": "17",
+          "size": 9,
+          "fill": "#7A9ACC",
+          "anchor": "middle",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "rect",
+          "x": 328,
+          "y": 312,
+          "w": 24,
+          "h": 30,
+          "fill": "#0A3A99",
+          "rx": 4
+        },
+        {
+          "type": "text",
+          "x": 340,
+          "y": 356,
+          "content": "15",
+          "size": 9,
+          "fill": "#7A9ACC",
+          "anchor": "middle",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "line",
+          "x1": 24,
+          "y1": 342,
+          "x2": 366,
+          "y2": 342,
+          "stroke": "rgba(42,100,255,0.18)",
+          "sw": 0.3
+        },
+        {
+          "type": "line",
+          "x1": 20,
+          "y1": 374,
+          "x2": 370,
+          "y2": 374,
+          "stroke": "rgba(42,100,255,0.18)",
+          "sw": 0.4
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 396,
+          "content": "7-DAY OUTLOOK",
+          "size": 10,
+          "fill": "#3D5A8A",
+          "fw": 700,
+          "ls": 2,
+          "font": "Inter Tight,Inter,sans-serif"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 412,
+          "w": 350,
+          "h": 44,
+          "fill": "rgba(30,110,255,0.08)",
+          "rx": 10,
+          "stroke": "rgba(30,110,255,0.3)",
+          "sw": 0.5
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 428,
+          "content": "⛅",
+          "size": 16,
+          "fill": "#DCE8FF"
+        },
+        {
+          "type": "text",
+          "x": 60,
+          "y": 428,
+          "content": "TODAY",
+          "size": 12,
+          "fill": "#4A8AFF",
+          "fw": 600,
+          "font": "Inter Tight,Inter,sans-serif"
+        },
+        {
+          "type": "text",
+          "x": 60,
+          "y": 444,
+          "content": "Partly Cloudy",
+          "size": 11,
+          "fill": "#7A9ACC"
+        },
+        {
+          "type": "text",
+          "x": 354,
+          "y": 428,
+          "content": "17°",
+          "size": 14,
+          "fill": "#DCE8FF",
+          "anchor": "end",
+          "font": "JetBrains Mono,Menlo,monospace",
+          "fw": 500
+        },
+        {
+          "type": "text",
+          "x": 354,
+          "y": 444,
+          "content": "9°",
+          "size": 11,
+          "fill": "#3D5A8A",
+          "anchor": "end",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "rect",
+          "x": 270,
+          "y": 432,
+          "w": 60,
+          "h": 6,
+          "fill": "#141E38",
+          "rx": 3
+        },
+        {
+          "type": "rect",
+          "x": 270,
+          "y": 432,
+          "w": 27,
+          "h": 6,
+          "fill": "#0A3A99",
+          "rx": 3
+        },
+        {
+          "type": "text",
+          "x": 265,
+          "y": 436,
+          "content": "18k",
+          "size": 9,
+          "fill": "#7A9ACC",
+          "anchor": "end",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 464,
+          "w": 350,
+          "h": 44,
+          "fill": "#101830",
+          "rx": 10,
+          "stroke": "rgba(42,100,255,0.18)",
+          "sw": 0.5
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 480,
+          "content": "☀️",
+          "size": 16,
+          "fill": "#DCE8FF"
+        },
+        {
+          "type": "text",
+          "x": 60,
+          "y": 480,
+          "content": "MON",
+          "size": 12,
+          "fill": "#7A9ACC",
+          "fw": 600,
+          "font": "Inter Tight,Inter,sans-serif"
+        },
+        {
+          "type": "text",
+          "x": 60,
+          "y": 496,
+          "content": "Sunny",
+          "size": 11,
+          "fill": "#7A9ACC"
+        },
+        {
+          "type": "text",
+          "x": 354,
+          "y": 480,
+          "content": "20°",
+          "size": 14,
+          "fill": "#DCE8FF",
+          "anchor": "end",
+          "font": "JetBrains Mono,Menlo,monospace",
+          "fw": 500
+        },
+        {
+          "type": "text",
+          "x": 354,
+          "y": 496,
+          "content": "11°",
+          "size": 11,
+          "fill": "#3D5A8A",
+          "anchor": "end",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "rect",
+          "x": 270,
+          "y": 484,
+          "w": 60,
+          "h": 6,
+          "fill": "#141E38",
+          "rx": 3
+        },
+        {
+          "type": "rect",
+          "x": 270,
+          "y": 484,
+          "w": 21,
+          "h": 6,
+          "fill": "#0A3A99",
+          "rx": 3
+        },
+        {
+          "type": "text",
+          "x": 265,
+          "y": 488,
+          "content": "14k",
+          "size": 9,
+          "fill": "#7A9ACC",
+          "anchor": "end",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 516,
+          "w": 350,
+          "h": 44,
+          "fill": "#101830",
+          "rx": 10,
+          "stroke": "rgba(42,100,255,0.18)",
+          "sw": 0.5
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 532,
+          "content": "☀️",
+          "size": 16,
+          "fill": "#DCE8FF"
+        },
+        {
+          "type": "text",
+          "x": 60,
+          "y": 532,
+          "content": "TUE",
+          "size": 12,
+          "fill": "#7A9ACC",
+          "fw": 600,
+          "font": "Inter Tight,Inter,sans-serif"
+        },
+        {
+          "type": "text",
+          "x": 60,
+          "y": 548,
+          "content": "Sunny",
+          "size": 11,
+          "fill": "#7A9ACC"
+        },
+        {
+          "type": "text",
+          "x": 354,
+          "y": 532,
+          "content": "22°",
+          "size": 14,
+          "fill": "#DCE8FF",
+          "anchor": "end",
+          "font": "JetBrains Mono,Menlo,monospace",
+          "fw": 500
+        },
+        {
+          "type": "text",
+          "x": 354,
+          "y": 548,
+          "content": "12°",
+          "size": 11,
+          "fill": "#3D5A8A",
+          "anchor": "end",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "rect",
+          "x": 270,
+          "y": 536,
+          "w": 60,
+          "h": 6,
+          "fill": "#141E38",
+          "rx": 3
+        },
+        {
+          "type": "rect",
+          "x": 270,
+          "y": 536,
+          "w": 18,
+          "h": 6,
+          "fill": "#0A3A99",
+          "rx": 3
+        },
+        {
+          "type": "text",
+          "x": 265,
+          "y": 540,
+          "content": "12k",
+          "size": 9,
+          "fill": "#7A9ACC",
+          "anchor": "end",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 568,
+          "w": 350,
+          "h": 44,
+          "fill": "#101830",
+          "rx": 10,
+          "stroke": "rgba(42,100,255,0.18)",
+          "sw": 0.5
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 584,
+          "content": "💨",
+          "size": 16,
+          "fill": "#DCE8FF"
+        },
+        {
+          "type": "text",
+          "x": 60,
+          "y": 584,
+          "content": "WED",
+          "size": 12,
+          "fill": "#7A9ACC",
+          "fw": 600,
+          "font": "Inter Tight,Inter,sans-serif"
+        },
+        {
+          "type": "text",
+          "x": 60,
+          "y": 600,
+          "content": "Windy",
+          "size": 11,
+          "fill": "#7A9ACC"
+        },
+        {
+          "type": "text",
+          "x": 354,
+          "y": 584,
+          "content": "18°",
+          "size": 14,
+          "fill": "#DCE8FF",
+          "anchor": "end",
+          "font": "JetBrains Mono,Menlo,monospace",
+          "fw": 500
+        },
+        {
+          "type": "text",
+          "x": 354,
+          "y": 600,
+          "content": "10°",
+          "size": 11,
+          "fill": "#3D5A8A",
+          "anchor": "end",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "rect",
+          "x": 270,
+          "y": 588,
+          "w": 60,
+          "h": 6,
+          "fill": "#141E38",
+          "rx": 3
+        },
+        {
+          "type": "rect",
+          "x": 270,
+          "y": 588,
+          "w": 48,
+          "h": 6,
+          "fill": "#F59E0B",
+          "rx": 3
+        },
+        {
+          "type": "text",
+          "x": 265,
+          "y": 592,
+          "content": "32k",
+          "size": 9,
+          "fill": "#7A9ACC",
+          "anchor": "end",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 620,
+          "w": 350,
+          "h": 44,
+          "fill": "#101830",
+          "rx": 10,
+          "stroke": "rgba(42,100,255,0.18)",
+          "sw": 0.5
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 636,
+          "content": "🌧",
+          "size": 16,
+          "fill": "#DCE8FF"
+        },
+        {
+          "type": "text",
+          "x": 60,
+          "y": 636,
+          "content": "THU",
+          "size": 12,
+          "fill": "#7A9ACC",
+          "fw": 600,
+          "font": "Inter Tight,Inter,sans-serif"
+        },
+        {
+          "type": "text",
+          "x": 60,
+          "y": 652,
+          "content": "Rain Likely",
+          "size": 11,
+          "fill": "#7A9ACC"
+        },
+        {
+          "type": "text",
+          "x": 354,
+          "y": 636,
+          "content": "14°",
+          "size": 14,
+          "fill": "#DCE8FF",
+          "anchor": "end",
+          "font": "JetBrains Mono,Menlo,monospace",
+          "fw": 500
+        },
+        {
+          "type": "text",
+          "x": 354,
+          "y": 652,
+          "content": "8°",
+          "size": 11,
+          "fill": "#3D5A8A",
+          "anchor": "end",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "rect",
+          "x": 270,
+          "y": 640,
+          "w": 60,
+          "h": 6,
+          "fill": "#141E38",
+          "rx": 3
+        },
+        {
+          "type": "rect",
+          "x": 270,
+          "y": 640,
+          "w": 36,
+          "h": 6,
+          "fill": "#0A3A99",
+          "rx": 3
+        },
+        {
+          "type": "text",
+          "x": 265,
+          "y": 644,
+          "content": "24k",
+          "size": 9,
+          "fill": "#7A9ACC",
+          "anchor": "end",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 672,
+          "w": 350,
+          "h": 44,
+          "fill": "#101830",
+          "rx": 10,
+          "stroke": "rgba(42,100,255,0.18)",
+          "sw": 0.5
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 688,
+          "content": "🌦",
+          "size": 16,
+          "fill": "#DCE8FF"
+        },
+        {
+          "type": "text",
+          "x": 60,
+          "y": 688,
+          "content": "FRI",
+          "size": 12,
+          "fill": "#7A9ACC",
+          "fw": 600,
+          "font": "Inter Tight,Inter,sans-serif"
+        },
+        {
+          "type": "text",
+          "x": 60,
+          "y": 704,
+          "content": "Showers",
+          "size": 11,
+          "fill": "#7A9ACC"
+        },
+        {
+          "type": "text",
+          "x": 354,
+          "y": 688,
+          "content": "12°",
+          "size": 14,
+          "fill": "#DCE8FF",
+          "anchor": "end",
+          "font": "JetBrains Mono,Menlo,monospace",
+          "fw": 500
+        },
+        {
+          "type": "text",
+          "x": 354,
+          "y": 704,
+          "content": "7°",
+          "size": 11,
+          "fill": "#3D5A8A",
+          "anchor": "end",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "rect",
+          "x": 270,
+          "y": 692,
+          "w": 60,
+          "h": 6,
+          "fill": "#141E38",
+          "rx": 3
+        },
+        {
+          "type": "rect",
+          "x": 270,
+          "y": 692,
+          "w": 42,
+          "h": 6,
+          "fill": "#0A3A99",
+          "rx": 3
+        },
+        {
+          "type": "text",
+          "x": 265,
+          "y": 696,
+          "content": "28k",
+          "size": 9,
+          "fill": "#7A9ACC",
+          "anchor": "end",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 724,
+          "w": 350,
+          "h": 44,
+          "fill": "#101830",
+          "rx": 10,
+          "stroke": "rgba(42,100,255,0.18)",
+          "sw": 0.5
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 740,
+          "content": "🌤",
+          "size": 16,
+          "fill": "#DCE8FF"
+        },
+        {
+          "type": "text",
+          "x": 60,
+          "y": 740,
+          "content": "SAT",
+          "size": 12,
+          "fill": "#7A9ACC",
+          "fw": 600,
+          "font": "Inter Tight,Inter,sans-serif"
+        },
+        {
+          "type": "text",
+          "x": 60,
+          "y": 756,
+          "content": "Clearing",
+          "size": 11,
+          "fill": "#7A9ACC"
+        },
+        {
+          "type": "text",
+          "x": 354,
+          "y": 740,
+          "content": "16°",
+          "size": 14,
+          "fill": "#DCE8FF",
+          "anchor": "end",
+          "font": "JetBrains Mono,Menlo,monospace",
+          "fw": 500
+        },
+        {
+          "type": "text",
+          "x": 354,
+          "y": 756,
+          "content": "9°",
+          "size": 11,
+          "fill": "#3D5A8A",
+          "anchor": "end",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "rect",
+          "x": 270,
+          "y": 744,
+          "w": 60,
+          "h": 6,
+          "fill": "#141E38",
+          "rx": 3
+        },
+        {
+          "type": "rect",
+          "x": 270,
+          "y": 744,
+          "w": 30,
+          "h": 6,
+          "fill": "#0A3A99",
+          "rx": 3
+        },
+        {
+          "type": "text",
+          "x": 265,
+          "y": 748,
+          "content": "20k",
+          "size": 9,
+          "fill": "#7A9ACC",
+          "anchor": "end",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 772,
+          "w": 390,
+          "h": 72,
+          "fill": "#0C1228"
+        },
+        {
+          "type": "line",
+          "x1": 0,
+          "y1": 772,
+          "x2": 390,
+          "y2": 772,
+          "stroke": "rgba(42,100,255,0.18)",
+          "sw": 0.5
+        },
+        {
+          "type": "text",
+          "x": 39,
+          "y": 800,
+          "content": "○",
+          "size": 10,
+          "fill": "#3D5A8A",
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 39,
+          "y": 822,
+          "content": "Now",
+          "size": 10,
+          "fill": "#7A9ACC",
+          "anchor": "middle",
+          "fw": 400
+        },
+        {
+          "type": "rect",
+          "x": 85,
+          "y": 776,
+          "w": 64,
+          "h": 4,
+          "fill": "#1E6EFF",
+          "rx": 2
+        },
+        {
+          "type": "text",
+          "x": 117,
+          "y": 800,
+          "content": "●",
+          "size": 10,
+          "fill": "#1E6EFF",
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 117,
+          "y": 822,
+          "content": "Forecast",
+          "size": 10,
+          "fill": "#4A8AFF",
+          "anchor": "middle",
+          "fw": 600
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 800,
+          "content": "○",
+          "size": 10,
+          "fill": "#3D5A8A",
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 822,
+          "content": "Alerts",
+          "size": 10,
+          "fill": "#7A9ACC",
+          "anchor": "middle",
+          "fw": 400
+        },
+        {
+          "type": "text",
+          "x": 273,
+          "y": 800,
+          "content": "○",
+          "size": 10,
+          "fill": "#3D5A8A",
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 273,
+          "y": 822,
+          "content": "Locations",
+          "size": 10,
+          "fill": "#7A9ACC",
+          "anchor": "middle",
+          "fw": 400
+        },
+        {
+          "type": "text",
+          "x": 351,
+          "y": 800,
+          "content": "○",
+          "size": 10,
+          "fill": "#3D5A8A",
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 351,
+          "y": 822,
+          "content": "Radar",
+          "size": 10,
+          "fill": "#7A9ACC",
+          "anchor": "middle",
+          "fw": 400
+        }
+      ],
+      "svg": ""
+    },
+    {
+      "name": "Alerts",
+      "elements": [
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "w": 390,
+          "h": 844,
+          "fill": "#06091A"
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "w": 390,
+          "h": 44,
+          "fill": "#06091A"
+        },
+        {
+          "type": "text",
+          "x": 16,
+          "y": 28,
+          "content": "9:41",
+          "size": 15,
+          "fill": "#DCE8FF",
+          "fw": 500,
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "text",
+          "x": 374,
+          "y": 28,
+          "content": "●●●  88%",
+          "size": 12,
+          "fill": "#7A9ACC",
+          "anchor": "end",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 70,
+          "content": "Alerts",
+          "size": 28,
+          "fill": "#DCE8FF",
+          "fw": 600
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 96,
+          "content": "2 active · 1 expired",
+          "size": 13,
+          "fill": "#7A9ACC",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "line",
+          "x1": 20,
+          "y1": 112,
+          "x2": 370,
+          "y2": 112,
+          "stroke": "rgba(42,100,255,0.18)",
+          "sw": 0.4
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 134,
+          "content": "ACTIVE",
+          "size": 10,
+          "fill": "#3D5A8A",
+          "fw": 700,
+          "ls": 2,
+          "font": "Inter Tight,Inter,sans-serif"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 148,
+          "w": 350,
+          "h": 120,
+          "fill": "rgba(239,68,68,0.06)",
+          "rx": 14,
+          "stroke": "rgba(239,68,68,0.3)",
+          "sw": 1
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 148,
+          "w": 4,
+          "h": 120,
+          "fill": "#EF4444",
+          "rx": 2
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 170,
+          "content": "⚠",
+          "size": 16,
+          "fill": "#EF4444"
+        },
+        {
+          "type": "text",
+          "x": 58,
+          "y": 170,
+          "content": "HIGH WIND WARNING",
+          "size": 13,
+          "fill": "#EF4444",
+          "fw": 700,
+          "font": "Inter Tight,Inter,sans-serif"
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 192,
+          "content": "Wed Apr 13, 14:00 – 22:00",
+          "size": 11,
+          "fill": "#7A9ACC",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "line",
+          "x1": 36,
+          "y1": 204,
+          "x2": 354,
+          "y2": 204,
+          "stroke": "rgba(239,68,68,0.15)",
+          "sw": 0.5
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 220,
+          "content": "Sustained winds 45–60 km/h. Gusts up to",
+          "size": 12,
+          "fill": "#DCE8FF",
+          "fw": 300
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 237,
+          "content": "85 km/h possible. Avoid coastal exposure.",
+          "size": 12,
+          "fill": "#DCE8FF",
+          "fw": 300
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 256,
+          "content": "Issued by NWS Bay Area · Tap for details",
+          "size": 11,
+          "fill": "#7A9ACC",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 282,
+          "w": 350,
+          "h": 110,
+          "fill": "rgba(245,158,11,0.06)",
+          "rx": 14,
+          "stroke": "rgba(245,158,11,0.28)",
+          "sw": 1
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 282,
+          "w": 4,
+          "h": 110,
+          "fill": "#F59E0B",
+          "rx": 2
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 304,
+          "content": "◈",
+          "size": 14,
+          "fill": "#F59E0B"
+        },
+        {
+          "type": "text",
+          "x": 58,
+          "y": 304,
+          "content": "COASTAL FLOOD ADVISORY",
+          "size": 12,
+          "fill": "#F59E0B",
+          "fw": 700,
+          "font": "Inter Tight,Inter,sans-serif"
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 326,
+          "content": "Wed Apr 13, 18:00 – 22:00",
+          "size": 11,
+          "fill": "#7A9ACC",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "line",
+          "x1": 36,
+          "y1": 338,
+          "x2": 354,
+          "y2": 338,
+          "stroke": "rgba(245,158,11,0.15)",
+          "sw": 0.5
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 354,
+          "content": "Minor coastal flooding in low-lying areas",
+          "size": 12,
+          "fill": "#DCE8FF",
+          "fw": 300
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 371,
+          "content": "near tide. High tide at 19:32 (1.8m).",
+          "size": 12,
+          "fill": "#DCE8FF",
+          "fw": 300
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 383,
+          "content": "Issued by NWS Bay Area",
+          "size": 11,
+          "fill": "#7A9ACC",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "line",
+          "x1": 20,
+          "y1": 410,
+          "x2": 370,
+          "y2": 410,
+          "stroke": "rgba(42,100,255,0.18)",
+          "sw": 0.4
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 430,
+          "content": "RECENT",
+          "size": 10,
+          "fill": "#3D5A8A",
+          "fw": 700,
+          "ls": 2,
+          "font": "Inter Tight,Inter,sans-serif"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 444,
+          "w": 350,
+          "h": 84,
+          "fill": "#101830",
+          "rx": 12,
+          "opacity": 0.5,
+          "stroke": "rgba(42,100,255,0.18)",
+          "sw": 0.5
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 466,
+          "content": "Dense Fog Advisory — Expired",
+          "size": 13,
+          "fill": "#7A9ACC",
+          "fw": 400
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 484,
+          "content": "Apr 11, 06:00 – 09:30",
+          "size": 11,
+          "fill": "#3D5A8A",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 502,
+          "content": "Morning marine layer. Visibility < 0.4 km.",
+          "size": 12,
+          "fill": "#3D5A8A",
+          "fw": 300
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 519,
+          "content": "EXPIRED",
+          "size": 10,
+          "fill": "#3D5A8A",
+          "ls": 2,
+          "font": "Inter Tight,Inter,sans-serif"
+        },
+        {
+          "type": "line",
+          "x1": 20,
+          "y1": 542,
+          "x2": 370,
+          "y2": 542,
+          "stroke": "rgba(42,100,255,0.18)",
+          "sw": 0.4
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 562,
+          "content": "YOUR ALERT PROFILE",
+          "size": 10,
+          "fill": "#3D5A8A",
+          "fw": 700,
+          "ls": 2,
+          "font": "Inter Tight,Inter,sans-serif"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 578,
+          "w": 350,
+          "h": 34,
+          "fill": "#101830",
+          "rx": 8
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 598,
+          "content": "High Wind (> 40 km/h)",
+          "size": 13,
+          "fill": "#DCE8FF"
+        },
+        {
+          "type": "rect",
+          "x": 334,
+          "y": 586,
+          "w": 36,
+          "h": 18,
+          "fill": "#1E6EFF",
+          "rx": 9
+        },
+        {
+          "type": "circle",
+          "cx": 363,
+          "cy": 595,
+          "r": 7,
+          "fill": "#D4E2FF"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 618,
+          "w": 350,
+          "h": 34,
+          "fill": "#101830",
+          "rx": 8
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 638,
+          "content": "Surf Alert (> 2m swell)",
+          "size": 13,
+          "fill": "#DCE8FF"
+        },
+        {
+          "type": "rect",
+          "x": 334,
+          "y": 626,
+          "w": 36,
+          "h": 18,
+          "fill": "#1E6EFF",
+          "rx": 9
+        },
+        {
+          "type": "circle",
+          "cx": 363,
+          "cy": 635,
+          "r": 7,
+          "fill": "#D4E2FF"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 658,
+          "w": 350,
+          "h": 34,
+          "fill": "#101830",
+          "rx": 8
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 678,
+          "content": "Air Quality (AQI > 100)",
+          "size": 13,
+          "fill": "#7A9ACC"
+        },
+        {
+          "type": "rect",
+          "x": 334,
+          "y": 666,
+          "w": 36,
+          "h": 18,
+          "fill": "#141E38",
+          "rx": 9
+        },
+        {
+          "type": "circle",
+          "cx": 345,
+          "cy": 675,
+          "r": 7,
+          "fill": "#3D5A8A"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 698,
+          "w": 350,
+          "h": 34,
+          "fill": "#101830",
+          "rx": 8
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 718,
+          "content": "Frost / Freeze Warning",
+          "size": 13,
+          "fill": "#7A9ACC"
+        },
+        {
+          "type": "rect",
+          "x": 334,
+          "y": 706,
+          "w": 36,
+          "h": 18,
+          "fill": "#141E38",
+          "rx": 9
+        },
+        {
+          "type": "circle",
+          "cx": 345,
+          "cy": 715,
+          "r": 7,
+          "fill": "#3D5A8A"
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 772,
+          "w": 390,
+          "h": 72,
+          "fill": "#0C1228"
+        },
+        {
+          "type": "line",
+          "x1": 0,
+          "y1": 772,
+          "x2": 390,
+          "y2": 772,
+          "stroke": "rgba(42,100,255,0.18)",
+          "sw": 0.5
+        },
+        {
+          "type": "text",
+          "x": 39,
+          "y": 800,
+          "content": "○",
+          "size": 10,
+          "fill": "#3D5A8A",
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 39,
+          "y": 822,
+          "content": "Now",
+          "size": 10,
+          "fill": "#7A9ACC",
+          "anchor": "middle",
+          "fw": 400
+        },
+        {
+          "type": "text",
+          "x": 117,
+          "y": 800,
+          "content": "○",
+          "size": 10,
+          "fill": "#3D5A8A",
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 117,
+          "y": 822,
+          "content": "Forecast",
+          "size": 10,
+          "fill": "#7A9ACC",
+          "anchor": "middle",
+          "fw": 400
+        },
+        {
+          "type": "rect",
+          "x": 163,
+          "y": 776,
+          "w": 64,
+          "h": 4,
+          "fill": "#1E6EFF",
+          "rx": 2
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 800,
+          "content": "●",
+          "size": 10,
+          "fill": "#1E6EFF",
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 822,
+          "content": "Alerts",
+          "size": 10,
+          "fill": "#4A8AFF",
+          "anchor": "middle",
+          "fw": 600
+        },
+        {
+          "type": "text",
+          "x": 273,
+          "y": 800,
+          "content": "○",
+          "size": 10,
+          "fill": "#3D5A8A",
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 273,
+          "y": 822,
+          "content": "Locations",
+          "size": 10,
+          "fill": "#7A9ACC",
+          "anchor": "middle",
+          "fw": 400
+        },
+        {
+          "type": "text",
+          "x": 351,
+          "y": 800,
+          "content": "○",
+          "size": 10,
+          "fill": "#3D5A8A",
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 351,
+          "y": 822,
+          "content": "Radar",
+          "size": 10,
+          "fill": "#7A9ACC",
+          "anchor": "middle",
+          "fw": 400
+        }
+      ],
+      "svg": ""
+    },
+    {
+      "name": "Locations",
+      "elements": [
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "w": 390,
+          "h": 844,
+          "fill": "#06091A"
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "w": 390,
+          "h": 44,
+          "fill": "#06091A"
+        },
+        {
+          "type": "text",
+          "x": 16,
+          "y": 28,
+          "content": "9:41",
+          "size": 15,
+          "fill": "#DCE8FF",
+          "fw": 500,
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "text",
+          "x": 374,
+          "y": 28,
+          "content": "●●●  88%",
+          "size": 12,
+          "fill": "#7A9ACC",
+          "anchor": "end",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 70,
+          "content": "Locations",
+          "size": 28,
+          "fill": "#DCE8FF",
+          "fw": 600
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 86,
+          "w": 350,
+          "h": 40,
+          "fill": "#101830",
+          "rx": 12,
+          "stroke": "rgba(42,100,255,0.18)",
+          "sw": 0.5
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 111,
+          "content": "⊕",
+          "size": 14,
+          "fill": "#3D5A8A"
+        },
+        {
+          "type": "text",
+          "x": 56,
+          "y": 111,
+          "content": "Search or add a location…",
+          "size": 14,
+          "fill": "#3D5A8A"
+        },
+        {
+          "type": "line",
+          "x1": 20,
+          "y1": 138,
+          "x2": 370,
+          "y2": 138,
+          "stroke": "rgba(42,100,255,0.18)",
+          "sw": 0.4
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 158,
+          "content": "SAVED LOCATIONS",
+          "size": 10,
+          "fill": "#3D5A8A",
+          "fw": 700,
+          "ls": 2,
+          "font": "Inter Tight,Inter,sans-serif"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 170,
+          "w": 350,
+          "h": 96,
+          "fill": "rgba(30,110,255,0.07)",
+          "rx": 14,
+          "stroke": "rgba(30,110,255,0.4)",
+          "sw": 1.5
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 170,
+          "w": 350,
+          "h": 24,
+          "fill": "rgba(30,110,255,0.12)",
+          "rx": 14
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 186,
+          "content": "CURRENT LOCATION",
+          "size": 8,
+          "fill": "#4A8AFF",
+          "anchor": "middle",
+          "ls": 2,
+          "font": "Inter Tight,Inter,sans-serif"
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 206,
+          "content": "Stinson Beach, CA",
+          "size": 15,
+          "fill": "#DCE8FF",
+          "fw": 500
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 224,
+          "content": "Partly Cloudy",
+          "size": 12,
+          "fill": "#7A9ACC"
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 244,
+          "content": "14°C",
+          "size": 14,
+          "fill": "#DCE8FF",
+          "font": "JetBrains Mono,Menlo,monospace",
+          "fw": 300
+        },
+        {
+          "type": "text",
+          "x": 84,
+          "y": 244,
+          "content": "↕",
+          "size": 12,
+          "fill": "#3D5A8A"
+        },
+        {
+          "type": "text",
+          "x": 98,
+          "y": 244,
+          "content": "18km/h",
+          "size": 12,
+          "fill": "#7A9ACC",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "text",
+          "x": 354,
+          "y": 244,
+          "content": "≈1.2m",
+          "size": 12,
+          "fill": "#4A8AFF",
+          "anchor": "end",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 276,
+          "w": 350,
+          "h": 96,
+          "fill": "#101830",
+          "rx": 14,
+          "stroke": "rgba(42,100,255,0.18)",
+          "sw": 0.5
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 298,
+          "content": "Ocean Beach, SF",
+          "size": 15,
+          "fill": "#DCE8FF",
+          "fw": 500
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 316,
+          "content": "Foggy",
+          "size": 12,
+          "fill": "#7A9ACC"
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 336,
+          "content": "12°C",
+          "size": 14,
+          "fill": "#DCE8FF",
+          "font": "JetBrains Mono,Menlo,monospace",
+          "fw": 300
+        },
+        {
+          "type": "text",
+          "x": 84,
+          "y": 336,
+          "content": "↕",
+          "size": 12,
+          "fill": "#3D5A8A"
+        },
+        {
+          "type": "text",
+          "x": 98,
+          "y": 336,
+          "content": "22km/h",
+          "size": 12,
+          "fill": "#7A9ACC",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "text",
+          "x": 354,
+          "y": 336,
+          "content": "≈1.8m",
+          "size": 12,
+          "fill": "#4A8AFF",
+          "anchor": "end",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 382,
+          "w": 350,
+          "h": 96,
+          "fill": "#101830",
+          "rx": 14,
+          "stroke": "rgba(42,100,255,0.18)",
+          "sw": 0.5
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 404,
+          "content": "Bolinas, CA",
+          "size": 15,
+          "fill": "#DCE8FF",
+          "fw": 500
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 422,
+          "content": "Partly Cloudy",
+          "size": 12,
+          "fill": "#7A9ACC"
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 442,
+          "content": "15°C",
+          "size": 14,
+          "fill": "#DCE8FF",
+          "font": "JetBrains Mono,Menlo,monospace",
+          "fw": 300
+        },
+        {
+          "type": "text",
+          "x": 84,
+          "y": 442,
+          "content": "↕",
+          "size": 12,
+          "fill": "#3D5A8A"
+        },
+        {
+          "type": "text",
+          "x": 98,
+          "y": 442,
+          "content": "16km/h",
+          "size": 12,
+          "fill": "#7A9ACC",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "text",
+          "x": 354,
+          "y": 442,
+          "content": "≈1.0m",
+          "size": 12,
+          "fill": "#4A8AFF",
+          "anchor": "end",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 488,
+          "w": 350,
+          "h": 96,
+          "fill": "#101830",
+          "rx": 14,
+          "stroke": "rgba(42,100,255,0.18)",
+          "sw": 0.5
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 510,
+          "content": "Half Moon Bay, CA",
+          "size": 15,
+          "fill": "#DCE8FF",
+          "fw": 500
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 528,
+          "content": "Sunny",
+          "size": 12,
+          "fill": "#7A9ACC"
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 548,
+          "content": "18°C",
+          "size": 14,
+          "fill": "#DCE8FF",
+          "font": "JetBrains Mono,Menlo,monospace",
+          "fw": 300
+        },
+        {
+          "type": "text",
+          "x": 84,
+          "y": 548,
+          "content": "↕",
+          "size": 12,
+          "fill": "#3D5A8A"
+        },
+        {
+          "type": "text",
+          "x": 98,
+          "y": 548,
+          "content": "12km/h",
+          "size": 12,
+          "fill": "#7A9ACC",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "text",
+          "x": 354,
+          "y": 548,
+          "content": "≈0.6m",
+          "size": 12,
+          "fill": "#4A8AFF",
+          "anchor": "end",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 594,
+          "w": 350,
+          "h": 96,
+          "fill": "#101830",
+          "rx": 14,
+          "stroke": "rgba(42,100,255,0.18)",
+          "sw": 0.5
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 616,
+          "content": "Santa Cruz, CA",
+          "size": 15,
+          "fill": "#DCE8FF",
+          "fw": 500
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 634,
+          "content": "Sunny",
+          "size": 12,
+          "fill": "#7A9ACC"
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 654,
+          "content": "20°C",
+          "size": 14,
+          "fill": "#DCE8FF",
+          "font": "JetBrains Mono,Menlo,monospace",
+          "fw": 300
+        },
+        {
+          "type": "text",
+          "x": 84,
+          "y": 654,
+          "content": "↕",
+          "size": 12,
+          "fill": "#3D5A8A"
+        },
+        {
+          "type": "text",
+          "x": 98,
+          "y": 654,
+          "content": "10km/h",
+          "size": 12,
+          "fill": "#7A9ACC",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "text",
+          "x": 354,
+          "y": 654,
+          "content": "≈0.8m",
+          "size": 12,
+          "fill": "#4A8AFF",
+          "anchor": "end",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 710,
+          "w": 350,
+          "h": 48,
+          "fill": "#1E6EFF",
+          "rx": 14
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 738,
+          "content": "+ Add Location",
+          "size": 15,
+          "fill": "#FFFFFF",
+          "anchor": "middle",
+          "fw": 600
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 772,
+          "w": 390,
+          "h": 72,
+          "fill": "#0C1228"
+        },
+        {
+          "type": "line",
+          "x1": 0,
+          "y1": 772,
+          "x2": 390,
+          "y2": 772,
+          "stroke": "rgba(42,100,255,0.18)",
+          "sw": 0.5
+        },
+        {
+          "type": "text",
+          "x": 39,
+          "y": 800,
+          "content": "○",
+          "size": 10,
+          "fill": "#3D5A8A",
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 39,
+          "y": 822,
+          "content": "Now",
+          "size": 10,
+          "fill": "#7A9ACC",
+          "anchor": "middle",
+          "fw": 400
+        },
+        {
+          "type": "text",
+          "x": 117,
+          "y": 800,
+          "content": "○",
+          "size": 10,
+          "fill": "#3D5A8A",
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 117,
+          "y": 822,
+          "content": "Forecast",
+          "size": 10,
+          "fill": "#7A9ACC",
+          "anchor": "middle",
+          "fw": 400
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 800,
+          "content": "○",
+          "size": 10,
+          "fill": "#3D5A8A",
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 822,
+          "content": "Alerts",
+          "size": 10,
+          "fill": "#7A9ACC",
+          "anchor": "middle",
+          "fw": 400
+        },
+        {
+          "type": "rect",
+          "x": 241,
+          "y": 776,
+          "w": 64,
+          "h": 4,
+          "fill": "#1E6EFF",
+          "rx": 2
+        },
+        {
+          "type": "text",
+          "x": 273,
+          "y": 800,
+          "content": "●",
+          "size": 10,
+          "fill": "#1E6EFF",
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 273,
+          "y": 822,
+          "content": "Locations",
+          "size": 10,
+          "fill": "#4A8AFF",
+          "anchor": "middle",
+          "fw": 600
+        },
+        {
+          "type": "text",
+          "x": 351,
+          "y": 800,
+          "content": "○",
+          "size": 10,
+          "fill": "#3D5A8A",
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 351,
+          "y": 822,
+          "content": "Radar",
+          "size": 10,
+          "fill": "#7A9ACC",
+          "anchor": "middle",
+          "fw": 400
+        }
+      ],
+      "svg": ""
+    },
+    {
+      "name": "Radar",
+      "elements": [
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "w": 390,
+          "h": 844,
+          "fill": "#06091A"
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "w": 390,
+          "h": 44,
+          "fill": "#06091A"
+        },
+        {
+          "type": "text",
+          "x": 16,
+          "y": 28,
+          "content": "9:41",
+          "size": 15,
+          "fill": "#DCE8FF",
+          "fw": 500,
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "text",
+          "x": 374,
+          "y": 28,
+          "content": "●●●  88%",
+          "size": 12,
+          "fill": "#7A9ACC",
+          "anchor": "end",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 70,
+          "content": "Radar",
+          "size": 28,
+          "fill": "#DCE8FF",
+          "fw": 600
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 96,
+          "content": "Live · Last updated 3m ago",
+          "size": 12,
+          "fill": "#7A9ACC",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 108,
+          "w": 350,
+          "h": 40,
+          "fill": "#101830",
+          "rx": 10
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 132,
+          "content": "▶",
+          "size": 12,
+          "fill": "#1E6EFF"
+        },
+        {
+          "type": "text",
+          "x": 64,
+          "y": 132,
+          "content": "-60m",
+          "size": 10,
+          "fill": "#7A9ACC",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "text",
+          "x": 120,
+          "y": 132,
+          "content": "-45m",
+          "size": 10,
+          "fill": "#7A9ACC",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "text",
+          "x": 176,
+          "y": 132,
+          "content": "-30m",
+          "size": 10,
+          "fill": "#7A9ACC",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "text",
+          "x": 232,
+          "y": 132,
+          "content": "-15m",
+          "size": 10,
+          "fill": "#7A9ACC",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "text",
+          "x": 288,
+          "y": 132,
+          "content": "Now",
+          "size": 10,
+          "fill": "#4A8AFF",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "rect",
+          "x": 307,
+          "y": 114,
+          "w": 3,
+          "h": 28,
+          "fill": "#1E6EFF",
+          "rx": 1
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 152,
+          "w": 390,
+          "h": 380,
+          "fill": "#101830",
+          "rx": 0
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 152,
+          "w": 390,
+          "h": 380,
+          "fill": "#060D24"
+        },
+        {
+          "type": "line",
+          "x1": 0,
+          "y1": 152,
+          "x2": 0,
+          "y2": 532,
+          "stroke": "rgba(30,110,255,0.08)",
+          "sw": 1
+        },
+        {
+          "type": "line",
+          "x1": 52,
+          "y1": 152,
+          "x2": 52,
+          "y2": 532,
+          "stroke": "rgba(30,110,255,0.08)",
+          "sw": 1
+        },
+        {
+          "type": "line",
+          "x1": 104,
+          "y1": 152,
+          "x2": 104,
+          "y2": 532,
+          "stroke": "rgba(30,110,255,0.08)",
+          "sw": 1
+        },
+        {
+          "type": "line",
+          "x1": 156,
+          "y1": 152,
+          "x2": 156,
+          "y2": 532,
+          "stroke": "rgba(30,110,255,0.08)",
+          "sw": 1
+        },
+        {
+          "type": "line",
+          "x1": 208,
+          "y1": 152,
+          "x2": 208,
+          "y2": 532,
+          "stroke": "rgba(30,110,255,0.08)",
+          "sw": 1
+        },
+        {
+          "type": "line",
+          "x1": 260,
+          "y1": 152,
+          "x2": 260,
+          "y2": 532,
+          "stroke": "rgba(30,110,255,0.08)",
+          "sw": 1
+        },
+        {
+          "type": "line",
+          "x1": 312,
+          "y1": 152,
+          "x2": 312,
+          "y2": 532,
+          "stroke": "rgba(30,110,255,0.08)",
+          "sw": 1
+        },
+        {
+          "type": "line",
+          "x1": 364,
+          "y1": 152,
+          "x2": 364,
+          "y2": 532,
+          "stroke": "rgba(30,110,255,0.08)",
+          "sw": 1
+        },
+        {
+          "type": "line",
+          "x1": 0,
+          "y1": 152,
+          "x2": 390,
+          "y2": 152,
+          "stroke": "rgba(30,110,255,0.08)",
+          "sw": 1
+        },
+        {
+          "type": "line",
+          "x1": 0,
+          "y1": 204,
+          "x2": 390,
+          "y2": 204,
+          "stroke": "rgba(30,110,255,0.08)",
+          "sw": 1
+        },
+        {
+          "type": "line",
+          "x1": 0,
+          "y1": 256,
+          "x2": 390,
+          "y2": 256,
+          "stroke": "rgba(30,110,255,0.08)",
+          "sw": 1
+        },
+        {
+          "type": "line",
+          "x1": 0,
+          "y1": 308,
+          "x2": 390,
+          "y2": 308,
+          "stroke": "rgba(30,110,255,0.08)",
+          "sw": 1
+        },
+        {
+          "type": "line",
+          "x1": 0,
+          "y1": 360,
+          "x2": 390,
+          "y2": 360,
+          "stroke": "rgba(30,110,255,0.08)",
+          "sw": 1
+        },
+        {
+          "type": "line",
+          "x1": 0,
+          "y1": 412,
+          "x2": 390,
+          "y2": 412,
+          "stroke": "rgba(30,110,255,0.08)",
+          "sw": 1
+        },
+        {
+          "type": "line",
+          "x1": 0,
+          "y1": 464,
+          "x2": 390,
+          "y2": 464,
+          "stroke": "rgba(30,110,255,0.08)",
+          "sw": 1
+        },
+        {
+          "type": "line",
+          "x1": 0,
+          "y1": 516,
+          "x2": 390,
+          "y2": 516,
+          "stroke": "rgba(30,110,255,0.08)",
+          "sw": 1
+        },
+        {
+          "type": "line",
+          "x1": 0,
+          "y1": 280,
+          "x2": 30,
+          "y2": 270,
+          "stroke": "rgba(100,140,220,0.35)",
+          "sw": 1.5
+        },
+        {
+          "type": "line",
+          "x1": 30,
+          "y1": 270,
+          "x2": 60,
+          "y2": 260,
+          "stroke": "rgba(100,140,220,0.35)",
+          "sw": 1.5
+        },
+        {
+          "type": "line",
+          "x1": 60,
+          "y1": 260,
+          "x2": 90,
+          "y2": 252,
+          "stroke": "rgba(100,140,220,0.35)",
+          "sw": 1.5
+        },
+        {
+          "type": "line",
+          "x1": 90,
+          "y1": 252,
+          "x2": 120,
+          "y2": 248,
+          "stroke": "rgba(100,140,220,0.35)",
+          "sw": 1.5
+        },
+        {
+          "type": "line",
+          "x1": 120,
+          "y1": 248,
+          "x2": 150,
+          "y2": 255,
+          "stroke": "rgba(100,140,220,0.35)",
+          "sw": 1.5
+        },
+        {
+          "type": "line",
+          "x1": 150,
+          "y1": 255,
+          "x2": 170,
+          "y2": 270,
+          "stroke": "rgba(100,140,220,0.35)",
+          "sw": 1.5
+        },
+        {
+          "type": "line",
+          "x1": 170,
+          "y1": 270,
+          "x2": 190,
+          "y2": 280,
+          "stroke": "rgba(100,140,220,0.35)",
+          "sw": 1.5
+        },
+        {
+          "type": "line",
+          "x1": 190,
+          "y1": 280,
+          "x2": 210,
+          "y2": 278,
+          "stroke": "rgba(100,140,220,0.35)",
+          "sw": 1.5
+        },
+        {
+          "type": "line",
+          "x1": 210,
+          "y1": 278,
+          "x2": 230,
+          "y2": 268,
+          "stroke": "rgba(100,140,220,0.35)",
+          "sw": 1.5
+        },
+        {
+          "type": "line",
+          "x1": 230,
+          "y1": 268,
+          "x2": 250,
+          "y2": 260,
+          "stroke": "rgba(100,140,220,0.35)",
+          "sw": 1.5
+        },
+        {
+          "type": "line",
+          "x1": 250,
+          "y1": 260,
+          "x2": 260,
+          "y2": 255,
+          "stroke": "rgba(100,140,220,0.35)",
+          "sw": 1.5
+        },
+        {
+          "type": "line",
+          "x1": 260,
+          "y1": 255,
+          "x2": 280,
+          "y2": 258,
+          "stroke": "rgba(100,140,220,0.35)",
+          "sw": 1.5
+        },
+        {
+          "type": "line",
+          "x1": 280,
+          "y1": 258,
+          "x2": 300,
+          "y2": 265,
+          "stroke": "rgba(100,140,220,0.35)",
+          "sw": 1.5
+        },
+        {
+          "type": "line",
+          "x1": 300,
+          "y1": 265,
+          "x2": 320,
+          "y2": 272,
+          "stroke": "rgba(100,140,220,0.35)",
+          "sw": 1.5
+        },
+        {
+          "type": "line",
+          "x1": 320,
+          "y1": 272,
+          "x2": 340,
+          "y2": 265,
+          "stroke": "rgba(100,140,220,0.35)",
+          "sw": 1.5
+        },
+        {
+          "type": "line",
+          "x1": 340,
+          "y1": 265,
+          "x2": 370,
+          "y2": 260,
+          "stroke": "rgba(100,140,220,0.35)",
+          "sw": 1.5
+        },
+        {
+          "type": "line",
+          "x1": 370,
+          "y1": 260,
+          "x2": 390,
+          "y2": 258,
+          "stroke": "rgba(100,140,220,0.35)",
+          "sw": 1.5
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 152,
+          "w": 90,
+          "h": 380,
+          "fill": "rgba(14,24,50,0.7)"
+        },
+        {
+          "type": "rect",
+          "x": 230,
+          "y": 152,
+          "w": 160,
+          "h": 140,
+          "fill": "rgba(14,24,50,0.7)"
+        },
+        {
+          "type": "circle",
+          "cx": 160,
+          "cy": 200,
+          "r": 40,
+          "fill": "rgba(30,110,255,0.15)"
+        },
+        {
+          "type": "circle",
+          "cx": 180,
+          "cy": 210,
+          "r": 28,
+          "fill": "rgba(30,110,255,0.25)"
+        },
+        {
+          "type": "circle",
+          "cx": 200,
+          "cy": 195,
+          "r": 18,
+          "fill": "rgba(30,110,255,0.40)"
+        },
+        {
+          "type": "circle",
+          "cx": 280,
+          "cy": 400,
+          "r": 55,
+          "fill": "rgba(30,110,255,0.10)"
+        },
+        {
+          "type": "circle",
+          "cx": 300,
+          "cy": 420,
+          "r": 35,
+          "fill": "rgba(30,110,255,0.20)"
+        },
+        {
+          "type": "circle",
+          "cx": 315,
+          "cy": 415,
+          "r": 20,
+          "fill": "rgba(60,133,255,0.35)"
+        },
+        {
+          "type": "circle",
+          "cx": 100,
+          "cy": 480,
+          "r": 30,
+          "fill": "rgba(30,110,255,0.08)"
+        },
+        {
+          "type": "circle",
+          "cx": 135,
+          "cy": 290,
+          "r": 8,
+          "fill": "#06091A"
+        },
+        {
+          "type": "circle",
+          "cx": 135,
+          "cy": 290,
+          "r": 6,
+          "fill": "#1E6EFF"
+        },
+        {
+          "type": "circle",
+          "cx": 135,
+          "cy": 290,
+          "r": 2,
+          "fill": "#D4E2FF"
+        },
+        {
+          "type": "circle",
+          "cx": 135,
+          "cy": 290,
+          "r": 20,
+          "fill": "rgba(30,110,255,0.12)"
+        },
+        {
+          "type": "text",
+          "x": 150,
+          "y": 286,
+          "content": "Stinson Beach",
+          "size": 10,
+          "fill": "#DCE8FF",
+          "font": "Inter Tight,Inter,sans-serif",
+          "fw": 500
+        },
+        {
+          "type": "line",
+          "x1": 0,
+          "y1": 536,
+          "x2": 390,
+          "y2": 536,
+          "stroke": "rgba(42,100,255,0.18)",
+          "sw": 0.5
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 536,
+          "w": 390,
+          "h": 48,
+          "fill": "#0C1228"
+        },
+        {
+          "type": "rect",
+          "x": 12,
+          "y": 546,
+          "w": 64,
+          "h": 28,
+          "fill": "#1E6EFF",
+          "rx": 8
+        },
+        {
+          "type": "text",
+          "x": 44,
+          "y": 565,
+          "content": "Precip",
+          "size": 11,
+          "fill": "#FFFFFF",
+          "anchor": "middle",
+          "fw": 600
+        },
+        {
+          "type": "rect",
+          "x": 84,
+          "y": 546,
+          "w": 64,
+          "h": 28,
+          "fill": "#141E38",
+          "rx": 8
+        },
+        {
+          "type": "text",
+          "x": 116,
+          "y": 565,
+          "content": "Wind",
+          "size": 11,
+          "fill": "#7A9ACC",
+          "anchor": "middle",
+          "fw": 400
+        },
+        {
+          "type": "rect",
+          "x": 156,
+          "y": 546,
+          "w": 64,
+          "h": 28,
+          "fill": "#141E38",
+          "rx": 8
+        },
+        {
+          "type": "text",
+          "x": 188,
+          "y": 565,
+          "content": "Temp",
+          "size": 11,
+          "fill": "#7A9ACC",
+          "anchor": "middle",
+          "fw": 400
+        },
+        {
+          "type": "rect",
+          "x": 228,
+          "y": 546,
+          "w": 64,
+          "h": 28,
+          "fill": "#141E38",
+          "rx": 8
+        },
+        {
+          "type": "text",
+          "x": 260,
+          "y": 565,
+          "content": "Clouds",
+          "size": 11,
+          "fill": "#7A9ACC",
+          "anchor": "middle",
+          "fw": 400
+        },
+        {
+          "type": "rect",
+          "x": 300,
+          "y": 546,
+          "w": 64,
+          "h": 28,
+          "fill": "#141E38",
+          "rx": 8
+        },
+        {
+          "type": "text",
+          "x": 332,
+          "y": 565,
+          "content": "Swell",
+          "size": 11,
+          "fill": "#7A9ACC",
+          "anchor": "middle",
+          "fw": 400
+        },
+        {
+          "type": "line",
+          "x1": 20,
+          "y1": 596,
+          "x2": 370,
+          "y2": 596,
+          "stroke": "rgba(42,100,255,0.18)",
+          "sw": 0.4
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 616,
+          "content": "INTENSITY SCALE",
+          "size": 10,
+          "fill": "#3D5A8A",
+          "fw": 700,
+          "ls": 2,
+          "font": "Inter Tight,Inter,sans-serif"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 624,
+          "w": 60,
+          "h": 18,
+          "fill": "rgba(30,110,255,0.15)",
+          "rx": 4
+        },
+        {
+          "type": "text",
+          "x": 50,
+          "y": 660,
+          "content": "Trace",
+          "size": 8,
+          "fill": "#7A9ACC",
+          "anchor": "middle",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "rect",
+          "x": 90,
+          "y": 624,
+          "w": 60,
+          "h": 18,
+          "fill": "rgba(30,110,255,0.30)",
+          "rx": 4
+        },
+        {
+          "type": "text",
+          "x": 120,
+          "y": 660,
+          "content": "Light",
+          "size": 8,
+          "fill": "#7A9ACC",
+          "anchor": "middle",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "rect",
+          "x": 160,
+          "y": 624,
+          "w": 60,
+          "h": 18,
+          "fill": "rgba(30,110,255,0.55)",
+          "rx": 4
+        },
+        {
+          "type": "text",
+          "x": 190,
+          "y": 660,
+          "content": "Moderate",
+          "size": 8,
+          "fill": "#7A9ACC",
+          "anchor": "middle",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "rect",
+          "x": 230,
+          "y": 624,
+          "w": 60,
+          "h": 18,
+          "fill": "rgba(80,140,255,0.75)",
+          "rx": 4
+        },
+        {
+          "type": "text",
+          "x": 260,
+          "y": 660,
+          "content": "Heavy",
+          "size": 8,
+          "fill": "#7A9ACC",
+          "anchor": "middle",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "rect",
+          "x": 300,
+          "y": 624,
+          "w": 60,
+          "h": 18,
+          "fill": "rgba(120,160,255,0.90)",
+          "rx": 4
+        },
+        {
+          "type": "text",
+          "x": 330,
+          "y": 660,
+          "content": "Intense",
+          "size": 8,
+          "fill": "#7A9ACC",
+          "anchor": "middle",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "line",
+          "x1": 20,
+          "y1": 672,
+          "x2": 370,
+          "y2": 672,
+          "stroke": "rgba(42,100,255,0.18)",
+          "sw": 0.4
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 692,
+          "content": "Storm cells moving SSW at 28 km/h",
+          "size": 13,
+          "fill": "#7A9ACC",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 710,
+          "content": "Rain arrives Stinson Beach ~WED 14:30",
+          "size": 12,
+          "fill": "#4A8AFF",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 772,
+          "w": 390,
+          "h": 72,
+          "fill": "#0C1228"
+        },
+        {
+          "type": "line",
+          "x1": 0,
+          "y1": 772,
+          "x2": 390,
+          "y2": 772,
+          "stroke": "rgba(42,100,255,0.18)",
+          "sw": 0.5
+        },
+        {
+          "type": "text",
+          "x": 39,
+          "y": 800,
+          "content": "○",
+          "size": 10,
+          "fill": "#3D5A8A",
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 39,
+          "y": 822,
+          "content": "Now",
+          "size": 10,
+          "fill": "#7A9ACC",
+          "anchor": "middle",
+          "fw": 400
+        },
+        {
+          "type": "text",
+          "x": 117,
+          "y": 800,
+          "content": "○",
+          "size": 10,
+          "fill": "#3D5A8A",
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 117,
+          "y": 822,
+          "content": "Forecast",
+          "size": 10,
+          "fill": "#7A9ACC",
+          "anchor": "middle",
+          "fw": 400
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 800,
+          "content": "○",
+          "size": 10,
+          "fill": "#3D5A8A",
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 822,
+          "content": "Alerts",
+          "size": 10,
+          "fill": "#7A9ACC",
+          "anchor": "middle",
+          "fw": 400
+        },
+        {
+          "type": "text",
+          "x": 273,
+          "y": 800,
+          "content": "○",
+          "size": 10,
+          "fill": "#3D5A8A",
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 273,
+          "y": 822,
+          "content": "Locations",
+          "size": 10,
+          "fill": "#7A9ACC",
+          "anchor": "middle",
+          "fw": 400
+        },
+        {
+          "type": "rect",
+          "x": 319,
+          "y": 776,
+          "w": 64,
+          "h": 4,
+          "fill": "#1E6EFF",
+          "rx": 2
+        },
+        {
+          "type": "text",
+          "x": 351,
+          "y": 800,
+          "content": "●",
+          "size": 10,
+          "fill": "#1E6EFF",
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 351,
+          "y": 822,
+          "content": "Radar",
+          "size": 10,
+          "fill": "#4A8AFF",
+          "anchor": "middle",
+          "fw": 600
+        }
+      ],
+      "svg": ""
+    },
+    {
+      "name": "Insights",
+      "elements": [
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "w": 390,
+          "h": 844,
+          "fill": "#06091A"
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "w": 390,
+          "h": 44,
+          "fill": "#06091A"
+        },
+        {
+          "type": "text",
+          "x": 16,
+          "y": 28,
+          "content": "9:41",
+          "size": 15,
+          "fill": "#DCE8FF",
+          "fw": 500,
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "text",
+          "x": 374,
+          "y": 28,
+          "content": "●●●  88%",
+          "size": 12,
+          "fill": "#7A9ACC",
+          "anchor": "end",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 70,
+          "content": "Insights",
+          "size": 28,
+          "fill": "#DCE8FF",
+          "fw": 600
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 96,
+          "content": "Outcome-driven · Stinson Beach",
+          "size": 13,
+          "fill": "#7A9ACC"
+        },
+        {
+          "type": "line",
+          "x1": 20,
+          "y1": 112,
+          "x2": 370,
+          "y2": 112,
+          "stroke": "rgba(42,100,255,0.18)",
+          "sw": 0.4
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 128,
+          "w": 350,
+          "h": 96,
+          "fill": "rgba(30,110,255,0.08)",
+          "rx": 16,
+          "stroke": "rgba(30,110,255,0.35)",
+          "sw": 1
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 152,
+          "content": "◈ BEST FOR SURFING THIS WEEK",
+          "size": 10,
+          "fill": "#4A8AFF",
+          "fw": 700,
+          "ls": 1.5,
+          "font": "Inter Tight,Inter,sans-serif"
+        },
+        {
+          "type": "line",
+          "x1": 36,
+          "y1": 162,
+          "x2": 354,
+          "y2": 162,
+          "stroke": "rgba(30,110,255,0.15)",
+          "sw": 0.4
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 180,
+          "content": "Monday, Apr 13",
+          "size": 18,
+          "fill": "#DCE8FF",
+          "fw": 600
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 200,
+          "content": "09:00 – 12:00 window",
+          "size": 13,
+          "fill": "#7A9ACC",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 218,
+          "content": "1.4m swell · 12s period · SW · Wind 10km/h",
+          "size": 11,
+          "fill": "#7A9ACC",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 240,
+          "w": 169,
+          "h": 96,
+          "fill": "#101830",
+          "rx": 14,
+          "stroke": "rgba(42,100,255,0.18)",
+          "sw": 0.5
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 266,
+          "content": "💨",
+          "size": 18,
+          "fill": "#DCE8FF"
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 286,
+          "content": "WINDIEST DAY",
+          "size": 9,
+          "fill": "#3D5A8A",
+          "fw": 700,
+          "ls": 1.5,
+          "font": "Inter Tight,Inter,sans-serif"
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 306,
+          "content": "Wednesday",
+          "size": 16,
+          "fill": "#DCE8FF",
+          "fw": 500
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 324,
+          "content": "45 km/h gusts expected",
+          "size": 10,
+          "fill": "#7A9ACC",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "rect",
+          "x": 201,
+          "y": 240,
+          "w": 169,
+          "h": 96,
+          "fill": "#101830",
+          "rx": 14,
+          "stroke": "rgba(42,100,255,0.18)",
+          "sw": 0.5
+        },
+        {
+          "type": "text",
+          "x": 217,
+          "y": 266,
+          "content": "☀️",
+          "size": 18,
+          "fill": "#DCE8FF"
+        },
+        {
+          "type": "text",
+          "x": 217,
+          "y": 286,
+          "content": "CLEAREST DAY",
+          "size": 9,
+          "fill": "#3D5A8A",
+          "fw": 700,
+          "ls": 1.5,
+          "font": "Inter Tight,Inter,sans-serif"
+        },
+        {
+          "type": "text",
+          "x": 217,
+          "y": 306,
+          "content": "Monday",
+          "size": 16,
+          "fill": "#DCE8FF",
+          "fw": 500
+        },
+        {
+          "type": "text",
+          "x": 217,
+          "y": 324,
+          "content": "Vis 28 km · AQI 18",
+          "size": 10,
+          "fill": "#7A9ACC",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 346,
+          "w": 169,
+          "h": 96,
+          "fill": "#101830",
+          "rx": 14,
+          "stroke": "rgba(42,100,255,0.18)",
+          "sw": 0.5
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 372,
+          "content": "🌊",
+          "size": 18,
+          "fill": "#DCE8FF"
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 392,
+          "content": "BIGGEST SWELL",
+          "size": 9,
+          "fill": "#3D5A8A",
+          "fw": 700,
+          "ls": 1.5,
+          "font": "Inter Tight,Inter,sans-serif"
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 412,
+          "content": "Thursday",
+          "size": 16,
+          "fill": "#DCE8FF",
+          "fw": 500
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 430,
+          "content": "2.2m · 14s period",
+          "size": 10,
+          "fill": "#7A9ACC",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "rect",
+          "x": 201,
+          "y": 346,
+          "w": 169,
+          "h": 96,
+          "fill": "#101830",
+          "rx": 14,
+          "stroke": "rgba(42,100,255,0.18)",
+          "sw": 0.5
+        },
+        {
+          "type": "text",
+          "x": 217,
+          "y": 372,
+          "content": "🌡",
+          "size": 18,
+          "fill": "#DCE8FF"
+        },
+        {
+          "type": "text",
+          "x": 217,
+          "y": 392,
+          "content": "WARMEST DAY",
+          "size": 9,
+          "fill": "#3D5A8A",
+          "fw": 700,
+          "ls": 1.5,
+          "font": "Inter Tight,Inter,sans-serif"
+        },
+        {
+          "type": "text",
+          "x": 217,
+          "y": 412,
+          "content": "Tuesday",
+          "size": 16,
+          "fill": "#DCE8FF",
+          "fw": 500
+        },
+        {
+          "type": "text",
+          "x": 217,
+          "y": 430,
+          "content": "22°C high at 14:00",
+          "size": 10,
+          "fill": "#7A9ACC",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "line",
+          "x1": 20,
+          "y1": 458,
+          "x2": 370,
+          "y2": 458,
+          "stroke": "rgba(42,100,255,0.18)",
+          "sw": 0.4
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 478,
+          "content": "WIND HISTORY · LAST 30 DAYS",
+          "size": 10,
+          "fill": "#3D5A8A",
+          "fw": 700,
+          "ls": 2,
+          "font": "Inter Tight,Inter,sans-serif"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 538,
+          "w": 8,
+          "h": 18,
+          "fill": "#0A3A99",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 31.5,
+          "y": 535,
+          "w": 8,
+          "h": 21,
+          "fill": "#0A3A99",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 43,
+          "y": 529,
+          "w": 8,
+          "h": 27,
+          "fill": "#0A3A99",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 54.5,
+          "y": 532,
+          "w": 8,
+          "h": 24,
+          "fill": "#0A3A99",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 66,
+          "y": 526,
+          "w": 8,
+          "h": 30,
+          "fill": "#0A3A99",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 77.5,
+          "y": 523,
+          "w": 8,
+          "h": 33,
+          "fill": "#0A3A99",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 89,
+          "y": 520,
+          "w": 8,
+          "h": 36,
+          "fill": "#0A3A99",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 100.5,
+          "y": 526,
+          "w": 8,
+          "h": 30,
+          "fill": "#0A3A99",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 112,
+          "y": 529,
+          "w": 8,
+          "h": 27,
+          "fill": "#0A3A99",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 123.5,
+          "y": 523,
+          "w": 8,
+          "h": 33,
+          "fill": "#0A3A99",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 135,
+          "y": 514,
+          "w": 8,
+          "h": 42,
+          "fill": "#0A3A99",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 146.5,
+          "y": 520,
+          "w": 8,
+          "h": 36,
+          "fill": "#0A3A99",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 158,
+          "y": 529,
+          "w": 8,
+          "h": 27,
+          "fill": "#0A3A99",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 169.5,
+          "y": 532,
+          "w": 8,
+          "h": 24,
+          "fill": "#0A3A99",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 181,
+          "y": 535,
+          "w": 8,
+          "h": 21,
+          "fill": "#0A3A99",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 192.5,
+          "y": 532,
+          "w": 8,
+          "h": 24,
+          "fill": "#0A3A99",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 204,
+          "y": 529,
+          "w": 8,
+          "h": 27,
+          "fill": "#0A3A99",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 215.5,
+          "y": 526,
+          "w": 8,
+          "h": 30,
+          "fill": "#0A3A99",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 227,
+          "y": 523,
+          "w": 8,
+          "h": 33,
+          "fill": "#0A3A99",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 238.5,
+          "y": 529,
+          "w": 8,
+          "h": 27,
+          "fill": "#0A3A99",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 250,
+          "y": 532,
+          "w": 8,
+          "h": 24,
+          "fill": "#0A3A99",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 261.5,
+          "y": 535,
+          "w": 8,
+          "h": 21,
+          "fill": "#0A3A99",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 273,
+          "y": 538,
+          "w": 8,
+          "h": 18,
+          "fill": "#0A3A99",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 284.5,
+          "y": 535,
+          "w": 8,
+          "h": 21,
+          "fill": "#0A3A99",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 296,
+          "y": 532,
+          "w": 8,
+          "h": 24,
+          "fill": "#0A3A99",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 307.5,
+          "y": 529,
+          "w": 8,
+          "h": 27,
+          "fill": "#0A3A99",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 319,
+          "y": 526,
+          "w": 8,
+          "h": 30,
+          "fill": "rgba(239,68,68,0.5)",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 330.5,
+          "y": 523,
+          "w": 8,
+          "h": 33,
+          "fill": "#0A3A99",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 342,
+          "y": 529,
+          "w": 8,
+          "h": 27,
+          "fill": "#0A3A99",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 353.5,
+          "y": 532,
+          "w": 8,
+          "h": 24,
+          "fill": "#0A3A99",
+          "rx": 2
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 570,
+          "content": "Avg: 18 km/h",
+          "size": 10,
+          "fill": "#7A9ACC",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "text",
+          "x": 370,
+          "y": 570,
+          "content": "Peak: 28 km/h",
+          "size": 10,
+          "fill": "#7A9ACC",
+          "anchor": "end",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "line",
+          "x1": 20,
+          "y1": 582,
+          "x2": 370,
+          "y2": 582,
+          "stroke": "rgba(42,100,255,0.18)",
+          "sw": 0.4
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 602,
+          "content": "THIS WEEK FOR YOUR ACTIVITIES",
+          "size": 10,
+          "fill": "#3D5A8A",
+          "fw": 700,
+          "ls": 2,
+          "font": "Inter Tight,Inter,sans-serif"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 634,
+          "content": "Surfing",
+          "size": 13,
+          "fill": "#DCE8FF",
+          "fw": 500
+        },
+        {
+          "type": "rect",
+          "x": 130,
+          "y": 617.04,
+          "w": 30,
+          "h": 22.959999999999997,
+          "fill": "#1E6EFF",
+          "rx": 3
+        },
+        {
+          "type": "rect",
+          "x": 170,
+          "y": 614.8,
+          "w": 30,
+          "h": 25.2,
+          "fill": "#1E6EFF",
+          "rx": 3
+        },
+        {
+          "type": "rect",
+          "x": 210,
+          "y": 623.76,
+          "w": 30,
+          "h": 16.24,
+          "fill": "rgba(30,110,255,0.3)",
+          "rx": 3
+        },
+        {
+          "type": "rect",
+          "x": 250,
+          "y": 630.48,
+          "w": 30,
+          "h": 9.520000000000001,
+          "fill": "rgba(30,110,255,0.3)",
+          "rx": 3
+        },
+        {
+          "type": "rect",
+          "x": 290,
+          "y": 627.4,
+          "w": 30,
+          "h": 12.6,
+          "fill": "rgba(30,110,255,0.3)",
+          "rx": 3
+        },
+        {
+          "type": "rect",
+          "x": 330,
+          "y": 620.4,
+          "w": 30,
+          "h": 19.599999999999998,
+          "fill": "rgba(30,110,255,0.3)",
+          "rx": 3
+        },
+        {
+          "type": "text",
+          "x": 370,
+          "y": 634,
+          "content": "82%",
+          "size": 12,
+          "fill": "#1E6EFF",
+          "anchor": "end",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 676,
+          "content": "Running",
+          "size": 13,
+          "fill": "#DCE8FF",
+          "fw": 500
+        },
+        {
+          "type": "rect",
+          "x": 130,
+          "y": 657.36,
+          "w": 30,
+          "h": 24.64,
+          "fill": "#4A8AFF",
+          "rx": 3
+        },
+        {
+          "type": "rect",
+          "x": 170,
+          "y": 656.24,
+          "w": 30,
+          "h": 25.76,
+          "fill": "#4A8AFF",
+          "rx": 3
+        },
+        {
+          "type": "rect",
+          "x": 210,
+          "y": 665.2,
+          "w": 30,
+          "h": 16.8,
+          "fill": "rgba(74,138,255,0.3)",
+          "rx": 3
+        },
+        {
+          "type": "rect",
+          "x": 250,
+          "y": 670.8,
+          "w": 30,
+          "h": 11.200000000000001,
+          "fill": "rgba(74,138,255,0.3)",
+          "rx": 3
+        },
+        {
+          "type": "rect",
+          "x": 290,
+          "y": 667.44,
+          "w": 30,
+          "h": 14.56,
+          "fill": "rgba(74,138,255,0.3)",
+          "rx": 3
+        },
+        {
+          "type": "rect",
+          "x": 330,
+          "y": 660.16,
+          "w": 30,
+          "h": 21.84,
+          "fill": "#4A8AFF",
+          "rx": 3
+        },
+        {
+          "type": "text",
+          "x": 370,
+          "y": 676,
+          "content": "88%",
+          "size": 12,
+          "fill": "#4A8AFF",
+          "anchor": "end",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 718,
+          "content": "Kitesurfing",
+          "size": 13,
+          "fill": "#DCE8FF",
+          "fw": 500
+        },
+        {
+          "type": "rect",
+          "x": 130,
+          "y": 712.8,
+          "w": 30,
+          "h": 11.200000000000001,
+          "fill": "rgba(245,158,11,0.3)",
+          "rx": 3
+        },
+        {
+          "type": "rect",
+          "x": 170,
+          "y": 715.04,
+          "w": 30,
+          "h": 8.96,
+          "fill": "rgba(245,158,11,0.3)",
+          "rx": 3
+        },
+        {
+          "type": "rect",
+          "x": 210,
+          "y": 699.36,
+          "w": 30,
+          "h": 24.64,
+          "fill": "#F59E0B",
+          "rx": 3
+        },
+        {
+          "type": "rect",
+          "x": 250,
+          "y": 706.64,
+          "w": 30,
+          "h": 17.36,
+          "fill": "rgba(245,158,11,0.3)",
+          "rx": 3
+        },
+        {
+          "type": "rect",
+          "x": 290,
+          "y": 708.88,
+          "w": 30,
+          "h": 15.120000000000001,
+          "fill": "rgba(245,158,11,0.3)",
+          "rx": 3
+        },
+        {
+          "type": "rect",
+          "x": 330,
+          "y": 705.52,
+          "w": 30,
+          "h": 18.48,
+          "fill": "rgba(245,158,11,0.3)",
+          "rx": 3
+        },
+        {
+          "type": "text",
+          "x": 370,
+          "y": 718,
+          "content": "40%",
+          "size": 12,
+          "fill": "#F59E0B",
+          "anchor": "end",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "text",
+          "x": 145,
+          "y": 752,
+          "content": "Su",
+          "size": 9,
+          "fill": "#3D5A8A",
+          "anchor": "middle",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "text",
+          "x": 185,
+          "y": 752,
+          "content": "Mo",
+          "size": 9,
+          "fill": "#3D5A8A",
+          "anchor": "middle",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "text",
+          "x": 225,
+          "y": 752,
+          "content": "Tu",
+          "size": 9,
+          "fill": "#3D5A8A",
+          "anchor": "middle",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "text",
+          "x": 265,
+          "y": 752,
+          "content": "We",
+          "size": 9,
+          "fill": "#3D5A8A",
+          "anchor": "middle",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "text",
+          "x": 305,
+          "y": 752,
+          "content": "Th",
+          "size": 9,
+          "fill": "#3D5A8A",
+          "anchor": "middle",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "text",
+          "x": 345,
+          "y": 752,
+          "content": "Fr",
+          "size": 9,
+          "fill": "#3D5A8A",
+          "anchor": "middle",
+          "font": "JetBrains Mono,Menlo,monospace"
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 772,
+          "w": 390,
+          "h": 72,
+          "fill": "#0C1228"
+        },
+        {
+          "type": "line",
+          "x1": 0,
+          "y1": 772,
+          "x2": 390,
+          "y2": 772,
+          "stroke": "rgba(42,100,255,0.18)",
+          "sw": 0.5
+        },
+        {
+          "type": "text",
+          "x": 39,
+          "y": 800,
+          "content": "○",
+          "size": 10,
+          "fill": "#3D5A8A",
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 39,
+          "y": 822,
+          "content": "Now",
+          "size": 10,
+          "fill": "#7A9ACC",
+          "anchor": "middle",
+          "fw": 400
+        },
+        {
+          "type": "text",
+          "x": 117,
+          "y": 800,
+          "content": "○",
+          "size": 10,
+          "fill": "#3D5A8A",
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 117,
+          "y": 822,
+          "content": "Forecast",
+          "size": 10,
+          "fill": "#7A9ACC",
+          "anchor": "middle",
+          "fw": 400
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 800,
+          "content": "○",
+          "size": 10,
+          "fill": "#3D5A8A",
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 822,
+          "content": "Alerts",
+          "size": 10,
+          "fill": "#7A9ACC",
+          "anchor": "middle",
+          "fw": 400
+        },
+        {
+          "type": "text",
+          "x": 273,
+          "y": 800,
+          "content": "○",
+          "size": 10,
+          "fill": "#3D5A8A",
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 273,
+          "y": 822,
+          "content": "Locations",
+          "size": 10,
+          "fill": "#7A9ACC",
+          "anchor": "middle",
+          "fw": 400
+        },
+        {
+          "type": "text",
+          "x": 351,
+          "y": 800,
+          "content": "○",
+          "size": 10,
+          "fill": "#3D5A8A",
+          "anchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 351,
+          "y": 822,
+          "content": "Radar",
+          "size": 10,
+          "fill": "#7A9ACC",
+          "anchor": "middle",
+          "fw": 400
+        }
+      ],
+      "svg": ""
+    }
+  ]
+}
