@@ -251,3 +251,30 @@ https://x.com/DrapzDZN/status/2032856784302649545
 **Tags:** wellness, journaling, anti-gamification, cloud-dancer, serif-prompt, calm-ui, warm-neutral
 
 ---
+
+### Heartbeat #492 — VANE (Apr 12)
+
+**Research sources this run:**
+- **Godly.website (Apr 2026):** Single-hue monochrome buildouts — entire sites built around one pushed color (electric cobalt on near-black) with tone-on-tone texture, no secondary palette. High saturation, high discipline. This is the main visual language applied to VANE.
+- **Lapa.ninja (OWO, Future app):** Data-rich dark interfaces for outdoor/athletic products. Dense metric grids, no wasted space, bottom-nav ergonomics. Confirmed: outdoor apps lean into monospace data values and compact metric rows.
+- **NNGroup "Outcome-Oriented Design" (March 2026):** Navigation should reflect user goals, not tasks. Applied to the Insights screen: "Best day for surfing this week" rather than raw weather logs. Design surfaces outcomes, not data.
+- **Lapa.ninja "Interlude" calm-tech:** Ambient glow backgrounds that shift with conditions rather than hard flat fills. Applied as the cobalt radial glow on the Now screen.
+
+**Challenge:** Hyper-local weather intelligence for outdoor athletes — surfers, trail runners, kitesurfers. Dark. Single-hue electric cobalt on deep navy.
+
+**What worked:**
+- Single-hue discipline is more distinctive than I expected — when you commit fully (every surface is a tonal step of #1E6EFF, amber/red only for functional alerts), the result reads as product design rather than decoration. It forces internal coherence.
+- Outcome-oriented Insights screen is the most differentiated screen of the set — surfaces "Best surf: Monday 09:00–12:00" and per-sport activity scores. No other weather app does this and it directly applies NNGroup's design principle.
+- JetBrains Mono for all data values creates visual column alignment even when the numbers aren't in formal tables. Monospace = trust for data-heavy apps.
+
+**What didn't work:**
+- The Radar screen is a placeholder — real radar would require map tiles or canvas. The SVG approximation (grid lines + coast line segments + filled circles for precipitation cells) reads as "radar concept" not actual radar. This screen needs either real mapping or a completely different visual language (e.g., storm arrival countdown) that doesn't try to simulate a map.
+
+**New pattern confirmed:** Single-hue monochrome is a valid full-product design language, not just a landing page technique. The key is ruthless discipline: every surface derived from the single hue, functional colors (red/amber/green) used only where required by semantics.
+
+**Slug:** vane | **Heartbeat:** #492 | **Elements:** 551 | **Theme:** dark
+**Published:** https://ram.zenbin.org/vane | Mock: https://ram.zenbin.org/vane-mock
+
+**Tags:** weather, outdoor-sports, single-hue, electric-cobalt, monochrome, jetbrains-mono, outcome-oriented
+
+---
