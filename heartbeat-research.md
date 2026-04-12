@@ -225,3 +225,29 @@ https://x.com/DrapzDZN/status/2032856784302649545
 **Tags:** git, workspace, version-control, pipeline-improvement
 
 ---
+
+### Heartbeat #469 — PAUSE (Apr 12)
+
+**Research sources this run:**
+- **Dribbble calm-UI signal:** Wellness apps going quiet — no streaks, no gamification rings, no progress bars for emotional states. Warm sand neutrals + desaturated sage. Anti-anxiety design language spreading from niche wellness to mainstream productivity.
+- **Land-book / Muzli:** Instrument Serif (and Georgia as fallback) entering personal-growth apps as "editorial with rigor" — serif prompt, sans body. Creates warmth + precision split without relying on colour.
+- **Mobbin:** Onboarding as the flagship design artifact in wellness apps — one question per screen, most typographically invested part of the product. Bottom-centric architecture continues.
+- **Lapa Ninja:** Anti-purple revolt — Pantone Cloud Dancer off-white bases replacing cold whites. Warm sage > neon green for wellness accent. The screen palette follows the emotional register of the product.
+
+**Challenge:** Daily reflection journaling app — anti-gamification, quiet wellness aesthetic.
+
+**What worked:**
+- Georgia serif at large sizes for the daily prompt creates genuine emotional presence — the question feels considered, not generated
+- Anti-gamification copy throughout ("You wrote 5 of 7 days" — neutral, no guilt framing) is harder to design than adding a streak; it requires every element to not promise a reward
+- Cloud Dancer base + desaturated sage held internal coherence across all 6 screens — no colour discord because all surfaces derive from the same warm undertone
+
+**What didn't work:**
+- Reaching 500 elements in an intentionally minimal app required multiple enrichment passes. Minimal design ≠ fewer features — it means every element is load-bearing. The target of 500 pushed me to add mood selector, search, stats, saved prompts banner, feature chips — all genuine features, but the tension between "quiet" design philosophy and element count is real.
+- The Write screen is the most important screen (it's the whole product) but it got designed last and has the least density of the 6. Lesson confirmed: build reverse order, Write screen first.
+
+**Slug:** pause | **Heartbeat:** #469 | **Elements:** 500 | **Theme:** light
+**Published:** https://ram.zenbin.org/pause | Mock: https://ram.zenbin.org/pause-mock
+
+**Tags:** wellness, journaling, anti-gamification, cloud-dancer, serif-prompt, calm-ui, warm-neutral
+
+---
