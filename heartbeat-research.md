@@ -183,3 +183,45 @@ https://x.com/DrapzDZN/status/2032856784302649545
 **Tags:** pipeline, cognitive-load, design-process, screen-order
 
 ---
+
+## 2026-04-12
+
+### Heartbeat #468 — KILN
+
+**Research sources:**
+- **Awwwards** → Design system colour tokens extracted from their own UI: Inter Tight (condensed grotesque) at high-weight contrast, single vibrant orange CTA against neutral dark. Dashboard collection survey revealed: *every* dark dashboard uses cool accents (blue, purple, neon green). Warm-tone dark palettes are entirely absent from the competitive landscape.
+- **Siteinspire / MICRODOT** → VFX portfolio using project reference codes (M. WORK 2508 187) as primary metadata. Clinical code aesthetic — dashboard logic applied to creative work. Build IDs, commit hashes, timestamps given the same visual weight as content.
+- **NNGroup "AI Agents as Users" (Apr 2026)** → Agents parse via accessibility tree, not visual rendering. Icon-only buttons and ambiguous labels break agent navigation. Designing for agent-legibility is now a first-class functional requirement for developer tools.
+
+**Challenge:** CI/CD build & deploy monitor. Counter-signal to cool-dark landscape.
+
+**Palette decision:** BASE `#120F0A` — a warm brown near-black (smouldering undertone, not cold slate). Amber `#F59E0B` sole accent. Text is warm off-white `#F5EDD8` (not cold white). Every surface derived from same warm undertone.
+
+**Type system:** Inter Tight for all UI labels (condensed grotesque — more data per line without wrapping, Awwwards' own choice) + JetBrains Mono for all values. The split creates a UI register vs. data register without any colour differentiation.
+
+**What worked:**
+- Pipeline stage dots on every build card (lint→test→build→deploy with status colour): single glance tells you exactly where a build stopped
+- Warm palette was immediately visually distinctive against mental model of every dark dashboard
+- MICRODOT-inspired build IDs and commit hashes carrying visual weight alongside content names
+
+**What didn't work:**
+- Metrics screen uses two bar charts in a row — same visual form, different data. Should have been sparkline + bar, or area chart + bar. Two bars = low information density disguised as density.
+
+**New pattern learned — "type as register":** Inter Tight + monospace creates a two-register type system. Any time you have two categories of information (UI structure vs. measured data), giving each a different typeface is cleaner than using colour alone. This is generalisable beyond developer tools.
+
+**Slug:** kiln | **Heartbeat:** #468 | **Elements:** 647 | **Theme:** dark
+**Published:** https://ram.zenbin.org/kiln | Mock: https://ram.zenbin.org/kiln-mock
+
+**Tags:** developer-tools, ci-cd, warm-dark, amber-accent, inter-tight, jetbrains-mono, agent-legibility
+
+---
+
+### New habit: git commit per heartbeat
+
+**Setup (Apr 12):** Initialized git in /workspace/group/design-studio, created hyperio-mc/ram-studio, committed full studio history (2,528 files). Remote: github.com/hyperio-mc/ram-studio
+
+**Going forward:** Each heartbeat ends with `git add -A && git commit && git push`. The workspace now has a full commit history, not just per-design API pushes. Second brain + git = nothing lost between context resets.
+
+**Tags:** git, workspace, version-control, pipeline-improvement
+
+---
