@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>BALM — Know what your body knows</title>
+  <meta name="description" content="BALM is a body intelligence app that surfaces biometric insights, tracks your wellness rhythms, and reflects back what your body is already telling you.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #F6F1EB;
+      --surface: #FFFFFF;
+      --surface-alt: #EDE8DF;
+      --surface-warm: #FAF7F3;
+      --text: #1A1410;
+      --muted: rgba(26,20,16,0.45);
+      --accent: #C04A12;
+      --accent2: #3D7A56;
+      --accent-soft: rgba(192,74,18,0.08);
+      --accent2-soft: rgba(61,122,86,0.08);
+      --accent-mid: rgba(192,74,18,0.18);
+      --border: rgba(26,20,16,0.08);
+      --border-strong: rgba(26,20,16,0.16);
+      --border-accent: rgba(192,74,18,0.22);
+      --green: #2D9E60;
+      --orange: #D97706;
+      --red: #DC2626;
+      --sand: #B8A898;
+      --sand-soft: rgba(184,168,152,0.25);
+      --serif: 'Libre Baskerville', Georgia, serif;
+      --sans: 'Inter', system-ui, sans-serif;
+    }
+    body { background: var(--bg); color: var(--text); font-family: var(--sans); line-height: 1.6; min-height: 100vh; overflow-x: hidden; }
+
+    /* Nav */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(246,241,235,0.90); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 0 48px; height: 58px; }
+    .nav-brand { font-family: var(--serif); font-size: 18px; font-weight: 700; letter-spacing: 0.06em; color: var(--text); }
+    .nav-tagline { font-size: 12px; color: var(--muted); font-style: italic; }
+    .nav-links { display: flex; gap: 32px; }
+    .nav-links a { color: var(--muted); font-size: 13px; font-weight: 500; text-decoration: none; }
+    .nav-links a:hover { color: var(--text); }
+    .nav-cta { background: var(--accent); color: #fff; font-size: 13px; font-weight: 600; padding: 9px 20px; border-radius: 6px; text-decoration: none; }
+    .nav-cta:hover { background: #A33D0E; }
+
+    /* Hero */
+    .hero { padding: 130px 80px 80px; max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .hero-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.18em; color: var(--accent); text-transform: uppercase; margin-bottom: 20px; }
+    .hero-headline { font-family: var(--serif); font-size: 58px; font-weight: 700; line-height: 1.10; letter-spacing: -0.01em; margin-bottom: 24px; }
+    .hero-headline em { color: var(--accent); font-style: italic; }
+    .hero-sub { font-size: 17px; color: var(--muted); line-height: 1.70; max-width: 440px; margin-bottom: 40px; }
+    .hero-ctas { display: flex; gap: 12px; align-items: center; }
+    .btn-primary { background: var(--accent); color: #fff; font-size: 14px; font-weight: 600; padding: 13px 26px; border-radius: 7px; text-decoration: none; display: inline-block; }
+    .btn-primary:hover { background: #A33D0E; }
+    .btn-ghost { background: transparent; color: var(--text); font-size: 14px; font-weight: 500; padding: 13px 26px; border-radius: 7px; border: 1px solid var(--border-strong); text-decoration: none; }
+    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+    .hero-stats { display: flex; gap: 40px; margin-top: 52px; padding-top: 40px; border-top: 1px solid var(--border); }
+    .hs-value { font-family: var(--serif); font-size: 32px; font-weight: 700; color: var(--text); }
+    .hs-value .up { color: var(--accent2); }
+    .hs-label { font-size: 12px; color: var(--muted); margin-top: 3px; letter-spacing: 0.04em; }
+
+    /* Phone mock */
+    .hero-mock { position: relative; }
+    .phone-frame { background: var(--surface); border: 1px solid var(--border-strong); border-radius: 36px; overflow: hidden; box-shadow: 0 40px 80px rgba(26,20,16,0.14), 0 8px 24px rgba(26,20,16,0.06); max-width: 340px; margin: 0 auto; }
+    .phone-notch { background: var(--bg); height: 32px; display: flex; align-items: center; justify-content: center; }
+    .notch-pill { background: var(--text); width: 80px; height: 8px; border-radius: 4px; opacity: 0.12; }
+    .phone-screen { padding: 0; }
+
+    /* Top bar */
+    .p-topbar { display: flex; align-items: center; justify-content: space-between; padding: 12px 20px 8px; border-bottom: 1px solid var(--border); }
+    .p-brand { font-family: var(--serif); font-size: 15px; font-weight: 700; letter-spacing: 0.08em; }
+    .p-date { font-size: 11px; color: var(--muted); }
+
+    /* Readiness hero */
+    .p-readiness { padding: 24px 20px 16px; text-align: center; }
+    .p-score-ring { width: 110px; height: 110px; margin: 0 auto 12px; position: relative; }
+    .p-score-ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+    .p-score-ring .ring-bg { fill: none; stroke: var(--border); stroke-width: 6; }
+    .p-score-ring .ring-fill { fill: none; stroke: var(--accent2); stroke-width: 6; stroke-dasharray: 283; stroke-dashoffset: 48; stroke-linecap: round; }
+    .p-score-num { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); font-family: var(--serif); font-size: 30px; font-weight: 700; line-height: 1; }
+    .p-score-label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 4px; }
+    .p-score-desc { font-family: var(--serif); font-size: 15px; font-weight: 700; color: var(--accent2); margin-bottom: 4px; }
+    .p-score-body { font-size: 11px; color: var(--muted); line-height: 1.5; max-width: 220px; margin: 0 auto; }
+
+    /* Biometric tiles */
+    .p-tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 0 12px 12px; }
+    .p-tile { background: var(--surface-warm); border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; }
+    .p-tile-label { font-size: 9px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.10em; margin-bottom: 4px; }
+    .p-tile-value { font-family: var(--serif); font-size: 18px; font-weight: 700; color: var(--text); margin-bottom: 2px; }
+    .p-tile-trend { font-size: 10px; color: var(--accent2); }
+    .p-tile-trend.neutral { color: var(--muted); }
+
+    /* Insight */
+    .p-insight { margin: 0 12px 12px; background: var(--accent2-soft); border: 1px solid rgba(61,122,86,0.16); border-radius: 10px; padding: 12px 14px; border-left: 3px solid var(--accent2); }
+    .p-insight-badge { font-size: 9px; font-weight: 600; letter-spacing: 0.14em; color: var(--accent2); text-transform: uppercase; margin-bottom: 5px; }
+    .p-insight-body { font-size: 11px; color: var(--text); line-height: 1.55; }
+
+    /* Nav bar */
+    .p-nav { display: flex; border-top: 1px solid var(--border); }
+    .p-nav-item { flex: 1; display: flex; flex-direction: column; align-items: center; padding: 8px 4px; font-size: 9px; color: var(--muted); gap: 3px; cursor: pointer; }
+    .p-nav-item.active { color: var(--accent); }
+    .p-nav-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--accent); opacity: 0; }
+    .p-nav-item.active .p-nav-dot { opacity: 1; }
+    .p-nav-icon { font-size: 14px; }
+
+    /* Ticker / divider */
+    .ticker-strip { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: var(--surface-alt); padding: 14px 0; overflow: hidden; position: relative; }
+    .ticker-inner { display: flex; gap: 56px; animation: scroll 28s linear infinite; white-space: nowrap; font-size: 13px; }
+    @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    .tk { display: flex; gap: 10px; align-items: center; }
+    .tk-sep { color: var(--sand); }
+    .tk-label { font-size: 10px; letter-spacing: 0.10em; text-transform: uppercase; color: var(--muted); }
+    .tk-val { font-family: var(--serif); font-weight: 700; color: var(--text); }
+    .tk-delta { font-size: 11px; color: var(--accent2); }
+    .tk-delta.neg { color: var(--accent); }
+
+    /* Feature sections */
+    .section { padding: 100px 80px; max-width: 1180px; margin: 0 auto; }
+    .section-label { font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; }
+    .section-title { font-family: var(--serif); font-size: 44px; line-height: 1.15; margin-bottom: 20px; }
+    .section-title em { color: var(--accent); font-style: italic; }
+    .section-sub { font-size: 16px; color: var(--muted); line-height: 1.70; max-width: 520px; margin-bottom: 52px; }
+
+    .feat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .feat-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 32px 28px; transition: box-shadow 0.2s, border-color 0.2s; }
+    .feat-card:hover { box-shadow: 0 12px 40px rgba(26,20,16,0.08); border-color: var(--border-strong); }
+    .feat-icon { width: 44px; height: 44px; border-radius: 12px; background: var(--accent-soft); display: flex; align-items: center; justify-content: center; font-size: 22px; margin-bottom: 20px; }
+    .feat-icon.sage { background: var(--accent2-soft); }
+    .feat-title { font-family: var(--serif); font-size: 18px; font-weight: 700; margin-bottom: 10px; }
+    .feat-desc { font-size: 14px; color: var(--muted); line-height: 1.65; }
+
+    /* Screens section */
+    .screens-section { background: var(--surface-alt); padding: 100px 0; }
+    .screens-inner { max-width: 1180px; margin: 0 auto; padding: 0 80px; }
+    .screens-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; margin-top: 52px; }
+    .screen-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+    .screen-card-top { background: var(--bg); padding: 16px 14px 12px; border-bottom: 1px solid var(--border); }
+    .sc-label { font-size: 9px; font-weight: 600; letter-spacing: 0.14em; color: var(--muted); text-transform: uppercase; margin-bottom: 4px; }
+    .sc-title { font-family: var(--serif); font-size: 14px; font-weight: 700; }
+    .screen-card-body { padding: 14px; }
+    .sc-comp { background: var(--surface-warm); border: 1px solid var(--border); border-radius: 5px; padding: 5px 8px; font-size: 10px; color: var(--muted); margin-bottom: 4px; }
+    .sc-comp:last-child { margin-bottom: 0; }
+
+    /* Palette block */
+    .palette-section { padding: 80px; max-width: 1180px; margin: 0 auto; }
+    .palette-strip { display: flex; gap: 0; border-radius: 16px; overflow: hidden; height: 80px; margin-top: 32px; border: 1px solid var(--border); }
+    .pal-swatch { flex: 1; display: flex; align-items: flex-end; padding: 10px 14px; }
+    .pal-label { font-size: 10px; font-weight: 600; color: rgba(255,255,255,0.7); mix-blend-mode: difference; letter-spacing: 0.06em; }
+
+    /* Insights preview */
+    .insights-section { padding: 100px 80px; max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .insight-list { display: flex; flex-direction: column; gap: 20px; }
+    .ic { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px 22px; border-left: 3px solid var(--accent2); }
+    .ic.orange { border-left-color: var(--orange); }
+    .ic.red { border-left-color: var(--accent); }
+    .ic-conf { font-size: 10px; font-weight: 600; letter-spacing: 0.12em; color: var(--accent2); text-transform: uppercase; margin-bottom: 6px; }
+    .ic.orange .ic-conf { color: var(--orange); }
+    .ic.red .ic-conf { color: var(--accent); }
+    .ic-finding { font-size: 14px; color: var(--text); line-height: 1.60; }
+
+    /* CTA footer */
+    .cta-section { background: var(--text); color: var(--bg); padding: 100px 80px; text-align: center; }
+    .cta-headline { font-family: var(--serif); font-size: 52px; font-weight: 700; line-height: 1.12; margin-bottom: 20px; }
+    .cta-headline em { color: #C47A54; font-style: italic; }
+    .cta-sub { font-size: 17px; color: rgba(246,241,235,0.60); line-height: 1.65; max-width: 480px; margin: 0 auto 40px; }
+    .cta-btns { display: flex; gap: 14px; justify-content: center; }
+    .btn-inverse { background: var(--bg); color: var(--text); font-size: 14px; font-weight: 600; padding: 13px 26px; border-radius: 7px; text-decoration: none; display: inline-block; }
+    .btn-inverse:hover { background: #EDE8DF; }
+    .btn-outline-inv { background: transparent; color: rgba(246,241,235,0.75); font-size: 14px; font-weight: 500; padding: 13px 26px; border-radius: 7px; border: 1px solid rgba(246,241,235,0.25); text-decoration: none; }
+    .btn-outline-inv:hover { border-color: rgba(246,241,235,0.60); color: var(--bg); }
+
+    footer { background: var(--surface-alt); border-top: 1px solid var(--border); padding: 28px 80px; display: flex; align-items: center; justify-content: space-between; }
+    .foot-brand { font-family: var(--serif); font-size: 15px; font-weight: 700; letter-spacing: 0.06em; }
+    .foot-copy { font-size: 12px; color: var(--muted); }
+    .foot-link { font-size: 12px; color: var(--accent); text-decoration: none; }
+    .foot-link:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div>
+    <div class="nav-brand">BALM</div>
+  </div>
+  <div class="nav-links">
+    <a href="#features">Features</a>
+    <a href="#screens">Screens</a>
+    <a href="#insights">Insights</a>
+  </div>
+  <div style="display:flex;gap:12px;align-items:center">
+    <a href="/balm-viewer" class="btn-ghost" style="padding:8px 16px;font-size:13px;border-radius:6px;border:1px solid var(--border-strong);color:var(--text);text-decoration:none">View Prototype</a>
+    <a href="/balm-mock" class="nav-cta">Interactive Mock ☀◑</a>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div>
+    <div class="hero-eyebrow">Wellness Intelligence · Light Theme · 5 Screens</div>
+    <h1 class="hero-headline">Know what<br>your body<br><em>already knows</em></h1>
+    <p class="hero-sub">BALM surfaces the patterns your biometrics have been whispering for months. Readiness, recovery, nourishment, reflection — one warm, editorial space for your whole body.</p>
+    <div class="hero-ctas">
+      <a href="/balm-mock" class="btn-primary">Interactive Mock ☀◑</a>
+      <a href="/balm-viewer" class="btn-ghost">View Prototype →</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="hs-value"><span class="up">84</span></div>
+        <div class="hs-label">Readiness score</div>
+      </div>
+      <div>
+        <div class="hs-value">7h 42m</div>
+        <div class="hs-label">Deep + REM sleep</div>
+      </div>
+      <div>
+        <div class="hs-value">+8%</div>
+        <div class="hs-label">HRV this week</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-mock">
+    <div class="phone-frame">
+      <div class="phone-notch"><div class="notch-pill"></div></div>
+      <div class="phone-screen">
+        <div class="p-topbar">
+          <div class="p-brand">BALM</div>
+          <div class="p-date">Fri, Apr 3 · Good morning</div>
+        </div>
+        <div class="p-readiness">
+          <div class="p-score-ring">
+            <svg viewBox="0 0 100 100">
+              <circle class="ring-bg" cx="50" cy="50" r="45"/>
+              <circle class="ring-fill" cx="50" cy="50" r="45"/>
+            </svg>
+            <div class="p-score-num">84</div>
+          </div>
+          <div class="p-score-label">Readiness</div>
+          <div class="p-score-desc">Well Primed</div>
+          <div class="p-score-body">Your nervous system is recovered and ready for a high-output day.</div>
+        </div>
+        <div class="p-tiles">
+          <div class="p-tile">
+            <div class="p-tile-label">HRV</div>
+            <div class="p-tile-value">62ms</div>
+            <div class="p-tile-trend">↑ +4ms</div>
+          </div>
+          <div class="p-tile">
+            <div class="p-tile-label">Resting HR</div>
+            <div class="p-tile-value">54bpm</div>
+            <div class="p-tile-trend neutral">— stable</div>
+          </div>
+          <div class="p-tile">
+            <div class="p-tile-label">Sleep</div>
+            <div class="p-tile-value">7h 42m</div>
+            <div class="p-tile-trend">↑ +28m</div>
+          </div>
+          <div class="p-tile">
+            <div class="p-tile-label">Body Temp</div>
+            <div class="p-tile-value">+0.1°</div>
+            <div class="p-tile-trend neutral">— baseline</div>
+          </div>
+        </div>
+        <div class="p-insight">
+          <div class="p-insight-badge">BALM INSIGHT</div>
+          <div class="p-insight-body">HRV trending up 3 days in a row — your nervous system is building resilience.</div>
+        </div>
+        <div class="p-nav">
+          <div class="p-nav-item active">
+            <div class="p-nav-icon">🌅</div>
+            <div>Morning</div>
+            <div class="p-nav-dot"></div>
+          </div>
+          <div class="p-nav-item">
+            <div class="p-nav-icon">⚡</div>
+            <div>Move</div>
+            <div class="p-nav-dot"></div>
+          </div>
+          <div class="p-nav-item">
+            <div class="p-nav-icon">🌿</div>
+            <div>Nourish</div>
+            <div class="p-nav-dot"></div>
+          </div>
+          <div class="p-nav-item">
+            <div class="p-nav-icon">🫀</div>
+            <div>Reflect</div>
+            <div class="p-nav-dot"></div>
+          </div>
+          <div class="p-nav-item">
+            <div class="p-nav-icon">📈</div>
+            <div>Trends</div>
+            <div class="p-nav-dot"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Ticker -->
+<div class="ticker-strip">
+  <div class="ticker-inner">
+    <div class="tk"><span class="tk-label">READINESS</span><span class="tk-val">84 / 100</span><span class="tk-delta">Well Primed</span><span class="tk-sep">·</span></div>
+    <div class="tk"><span class="tk-label">HRV</span><span class="tk-val">62ms</span><span class="tk-delta">↑ +4ms</span><span class="tk-sep">·</span></div>
+    <div class="tk"><span class="tk-label">SLEEP</span><span class="tk-val">7h 42m</span><span class="tk-delta">91 score</span><span class="tk-sep">·</span></div>
+    <div class="tk"><span class="tk-label">RESTING HR</span><span class="tk-val">54 bpm</span><span class="tk-delta neg">stable</span><span class="tk-sep">·</span></div>
+    <div class="tk"><span class="tk-label">STEPS</span><span class="tk-val">8,241</span><span class="tk-delta">↑ 82% goal</span><span class="tk-sep">·</span></div>
+    <div class="tk"><span class="tk-label">WEEK HRV TREND</span><span class="tk-val">+8%</span><span class="tk-delta">Best in 3 months</span><span class="tk-sep">·</span></div>
+    <div class="tk"><span class="tk-label">READINESS</span><span class="tk-val">84 / 100</span><span class="tk-delta">Well Primed</span><span class="tk-sep">·</span></div>
+    <div class="tk"><span class="tk-label">HRV</span><span class="tk-val">62ms</span><span class="tk-delta">↑ +4ms</span><span class="tk-sep">·</span></div>
+    <div class="tk"><span class="tk-label">SLEEP</span><span class="tk-val">7h 42m</span><span class="tk-delta">91 score</span><span class="tk-sep">·</span></div>
+    <div class="tk"><span class="tk-label">RESTING HR</span><span class="tk-val">54 bpm</span><span class="tk-delta neg">stable</span><span class="tk-sep">·</span></div>
+    <div class="tk"><span class="tk-label">STEPS</span><span class="tk-val">8,241</span><span class="tk-delta">↑ 82% goal</span><span class="tk-sep">·</span></div>
+    <div class="tk"><span class="tk-label">WEEK HRV TREND</span><span class="tk-val">+8%</span><span class="tk-delta">Best in 3 months</span><span class="tk-sep">·</span></div>
+  </div>
+</div>
+
+<!-- Features -->
+<section class="section" id="features">
+  <div class="section-label">What BALM does</div>
+  <h2 class="section-title">Five lenses on<br>one <em>living body</em></h2>
+  <p class="section-sub">Most trackers give you numbers. BALM gives you meaning — cross-referencing sleep, movement, nutrition, mood, and trends to surface what actually matters.</p>
+  <div class="feat-grid">
+    <div class="feat-card">
+      <div class="feat-icon">🌅</div>
+      <div class="feat-title">Morning Brief</div>
+      <div class="feat-desc">A readiness score and key biometrics surfaced before you've touched a screen. HRV, sleep quality, body temp, and resting HR — all in one glance.</div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">⚡</div>
+      <div class="feat-title">Movement</div>
+      <div class="feat-desc">Activity rings, heart rate zones, and a workout log that respects how your body actually moved — not just steps and calories.</div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon sage">🌿</div>
+      <div class="feat-title">Nourishment</div>
+      <div class="feat-desc">Intuitive food logging with macro tracking and hydration segmentation. Gentle nudges rather than rigid targets.</div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">🫀</div>
+      <div class="feat-title">Reflection</div>
+      <div class="feat-desc">Evening mood check-ins, a body scan, journal prompts, and gratitude practice — all connected to your biometric state.</div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon sage">📈</div>
+      <div class="feat-title">Trends & Correlations</div>
+      <div class="feat-desc">Sparkline grids for 7-day patterns, and BALM's AI-surfaced correlations — what's actually causing what in your data.</div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">✦</div>
+      <div class="feat-title">Editorial Warmth</div>
+      <div class="feat-desc">Designed in a warm parchment palette with Libre Baskerville serif type — because your wellness data shouldn't feel clinical.</div>
+    </div>
+  </div>
+</section>
+
+<!-- Screens -->
+<div class="screens-section" id="screens">
+  <div class="screens-inner">
+    <div class="section-label">Prototype Screens</div>
+    <h2 class="section-title">Five screens,<br>one <em>coherent rhythm</em></h2>
+    <div class="screens-grid">
+      <div class="screen-card">
+        <div class="screen-card-top">
+          <div class="sc-label">Screen 1</div>
+          <div class="sc-title">Morning</div>
+        </div>
+        <div class="screen-card-body">
+          <div class="sc-comp">readiness-score-hero</div>
+          <div class="sc-comp">biometric-tiles</div>
+          <div class="sc-comp">insight-card</div>
+          <div class="sc-comp">sleep-stage-bar</div>
+          <div class="sc-comp">action-chips</div>
+        </div>
+      </div>
+      <div class="screen-card">
+        <div class="screen-card-top">
+          <div class="sc-label">Screen 2</div>
+          <div class="sc-title">Move</div>
+        </div>
+        <div class="screen-card-body">
+          <div class="sc-comp">ring-trio</div>
+          <div class="sc-comp">stat-grid</div>
+          <div class="sc-comp">hr-zone-bars</div>
+          <div class="sc-comp">workout-list</div>
+        </div>
+      </div>
+      <div class="screen-card">
+        <div class="screen-card-top">
+          <div class="sc-label">Screen 3</div>
+          <div class="sc-title">Nourish</div>
+        </div>
+        <div class="screen-card-body">
+          <div class="sc-comp">caloric-arc-hero</div>
+          <div class="sc-comp">macro-progress-trio</div>
+          <div class="sc-comp">water-bar</div>
+          <div class="sc-comp">meal-log</div>
+          <div class="sc-comp">insight-card</div>
+        </div>
+      </div>
+      <div class="screen-card">
+        <div class="screen-card-top">
+          <div class="sc-label">Screen 4</div>
+          <div class="sc-title">Reflect</div>
+        </div>
+        <div class="screen-card-body">
+          <div class="sc-comp">mood-selector</div>
+          <div class="sc-comp">body-scan-list</div>
+          <div class="sc-comp">journal-card</div>
+          <div class="sc-comp">gratitude-list</div>
+          <div class="sc-comp">tomorrow-intent</div>
+        </div>
+      </div>
+      <div class="screen-card">
+        <div class="screen-card-top">
+          <div class="sc-label">Screen 5</div>
+          <div class="sc-title">Trends</div>
+        </div>
+        <div class="screen-card-body">
+          <div class="sc-comp">weekly-headline</div>
+          <div class="sc-comp">sparkline-grid</div>
+          <div class="sc-comp">correlation-cards</div>
+          <div class="sc-comp">week-calendar-dots</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Palette -->
+<div class="palette-section">
+  <div class="section-label">Palette</div>
+  <h3 style="font-family:var(--serif);font-size:28px;margin-bottom:8px;">Warm editorial tones</h3>
+  <p style="color:var(--muted);font-size:14px;">Parchment base · Terracotta accent · Sage accent · Sand neutral</p>
+  <div class="palette-strip">
+    <div class="pal-swatch" style="background:#F6F1EB;flex:2"><span class="pal-label" style="color:var(--muted)">F6F1EB · Parchment</span></div>
+    <div class="pal-swatch" style="background:#FFFFFF;border-left:1px solid var(--border)"><span class="pal-label" style="color:var(--muted)">FFF · Surface</span></div>
+    <div class="pal-swatch" style="background:#EDE8DF"><span class="pal-label" style="color:var(--muted)">EDE8DF · Alt</span></div>
+    <div class="pal-swatch" style="background:#C04A12"><span class="pal-label">C04A12 · Terracotta</span></div>
+    <div class="pal-swatch" style="background:#3D7A56"><span class="pal-label">3D7A56 · Sage</span></div>
+    <div class="pal-swatch" style="background:#B8A898"><span class="pal-label">B8A898 · Sand</span></div>
+    <div class="pal-swatch" style="background:#1A1410;flex:1.5"><span class="pal-label">1A1410 · Ink</span></div>
+  </div>
+</div>
+
+<!-- Insights -->
+<section class="insights-section" id="insights">
+  <div>
+    <div class="section-label">BALM Correlations</div>
+    <h2 class="section-title">The connections<br>you hadn't<br><em>noticed yet</em></h2>
+    <p class="section-sub" style="margin-bottom:0">BALM cross-references your biometrics, habits, and patterns to surface the correlations that explain why you feel the way you do.</p>
+  </div>
+  <div class="insight-list">
+    <div class="ic">
+      <div class="ic-conf">High confidence</div>
+      <div class="ic-finding">Days you ran before 7am had 12% higher HRV the next morning.</div>
+    </div>
+    <div class="ic">
+      <div class="ic-conf">High confidence</div>
+      <div class="ic-finding">Screens after 10pm reduced your sleep score by an average of 9 points.</div>
+    </div>
+    <div class="ic orange">
+      <div class="ic-conf">Medium confidence</div>
+      <div class="ic-finding">Thursday meals skew highest in processed carbs — and so do Thursday headaches.</div>
+    </div>
+    <div class="ic red">
+      <div class="ic-conf">Emerging pattern</div>
+      <div class="ic-finding">Your best mood scores follow nights with 25%+ deep sleep, regardless of total hours.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <h2 class="cta-headline">Start listening<br>to your <em>body</em></h2>
+  <p class="cta-sub">BALM isn't a tracker. It's a mirror — warm, editorial, and designed to help you hear what your body has been saying all along.</p>
+  <div class="cta-btns">
+    <a href="/balm-mock" class="btn-inverse">Explore the Mock ☀◑</a>
+    <a href="/balm-viewer" class="btn-outline-inv">View Prototype →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-brand">BALM</div>
+  <div class="foot-copy">RAM Design Heartbeat · Apr 3 2026</div>
+  <a href="/balm-mock" class="foot-link">Interactive Mock →</a>
+</footer>
+
+</body>
+</html>

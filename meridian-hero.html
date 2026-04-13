@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MERIDIAN — Your daily ritual, elevated.</title>
+<meta name="description" content="Premium wellness & lifestyle concierge app. Warm ivory, terracotta accents, editorial luxury design. A RAM design concept.">
+<meta property="og:title" content="MERIDIAN — Your daily ritual, elevated.">
+<meta property="og:description" content="Premium wellness & lifestyle concierge app. Warm ivory, terracotta. A RAM design concept.">
+<meta name="theme-color" content="#B8622C">
+<link href="https://fonts.googleapis.com/css2?family=Georgia:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#F8F4EE;--surface:#FFFFFF;--surface2:#F0EBE2;--surface3:#EDE6DB;
+  --text:#1C1814;--muted:rgba(28,24,20,0.42);--divider:rgba(28,24,20,0.09);
+  --accent:#B8622C;--accent2:#4A7C6B;--gold:#C49A3C;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;line-height:1.5;overflow-x:hidden}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(248,244,238,0.92);border-bottom:1px solid var(--divider);backdrop-filter:blur(20px);display:flex;align-items:center;justify-content:space-between;padding:0 56px;height:64px}
+.nav-logo{font-family:'Georgia',serif;font-weight:700;font-size:18px;color:var(--text);text-decoration:none;letter-spacing:2px}
+.nav-logo span{color:var(--accent)}
+.nav-links{display:flex;gap:36px;list-style:none}
+.nav-links a{font-size:11px;color:var(--muted);text-decoration:none;letter-spacing:2px;text-transform:uppercase;transition:color .2s}
+.nav-links a:hover{color:var(--accent)}
+.nav-cta{background:var(--accent);color:#FFF;border:none;padding:10px 22px;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer;letter-spacing:1.5px;text-transform:uppercase;transition:all .2s;text-decoration:none}
+.nav-cta:hover{background:#a0551e}
+
+/* Hero */
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:64px 0 0;gap:0}
+.hero-left{padding:0 72px 80px;position:relative;z-index:1}
+.hero-eyebrow{font-size:9px;letter-spacing:3.5px;text-transform:uppercase;color:var(--accent);margin-bottom:24px;font-weight:600}
+.hero-h1{font-family:'Georgia',serif;font-weight:700;font-size:62px;line-height:1.0;margin-bottom:20px;color:var(--text)}
+.hero-h1 span{color:var(--accent)}
+.hero-sub{font-size:16px;color:var(--muted);line-height:1.85;max-width:440px;margin-bottom:48px;font-weight:300}
+.hero-btns{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.btn-p{background:var(--accent);color:#FFF;border:none;padding:14px 32px;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;text-decoration:none;display:inline-block;letter-spacing:1.5px;text-transform:uppercase;transition:all .2s}
+.btn-p:hover{background:#a0551e;box-shadow:0 8px 24px rgba(184,98,44,.25)}
+.btn-g{border:1px solid var(--divider);color:var(--text);padding:13px 28px;border-radius:8px;font-size:12px;font-weight:500;cursor:pointer;text-decoration:none;display:inline-block;background:transparent;letter-spacing:1.5px;text-transform:uppercase;transition:all .2s}
+.btn-g:hover{border-color:rgba(28,24,20,.25);background:var(--surface2)}
+.hero-right{height:100vh;display:flex;align-items:flex-end;justify-content:center;padding-bottom:0;overflow:hidden;background:var(--surface2)}
+.hero-bg-motif{position:absolute;top:64px;right:0;width:50%;height:100vh;background:var(--surface2);z-index:0}
+.phone-wrap{width:300px;transform:translateY(48px);z-index:1;position:relative}
+.phone{width:300px;height:620px;background:var(--bg);border-radius:40px;overflow:hidden;border:1.5px solid var(--divider);box-shadow:0 32px 80px rgba(28,24,20,0.18),0 8px 20px rgba(28,24,20,0.08);position:relative}
+.phone-notch{width:90px;height:22px;background:var(--text);border-radius:0 0 14px 14px;position:absolute;top:0;left:50%;transform:translateX(-50%);z-index:2}
+.p-scr{padding:32px 16px 16px;height:100%;overflow:hidden;position:relative}
+.p-time{font-weight:600;font-size:12px;color:var(--text);margin-bottom:6px}
+.p-label{font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:3px}
+.p-greet{font-family:'Georgia',serif;font-size:18px;font-weight:700;color:var(--text);line-height:1.2;margin-bottom:10px}
+.p-card{background:var(--surface);border-radius:12px;padding:10px 12px;margin-bottom:8px;border:1px solid var(--divider)}
+.p-photo{border-radius:10px;overflow:hidden;height:72px;margin-bottom:8px;background:linear-gradient(160deg,#7B9E8A 0%,#2E5044 100%);position:relative;display:flex;flex-direction:column;justify-content:flex-end;padding:8px}
+.p-photo-label{font-size:7px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.7)}
+.p-photo-venue{font-family:'Georgia',serif;font-size:11px;color:#fff;font-weight:700}
+.p-stat-row{display:flex;gap:6px;margin-bottom:8px}
+.p-stat{flex:1;background:var(--surface);border-radius:8px;padding:7px 6px;text-align:center;border:1px solid var(--divider)}
+.p-stat-v{font-family:'Georgia',serif;font-size:14px;font-weight:700;color:var(--text)}
+.p-stat-l{font-size:7px;letter-spacing:1px;text-transform:uppercase;color:var(--muted)}
+
+/* Screens section */
+.screens-section{padding:100px 56px;background:var(--surface)}
+.sec-eyebrow{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:12px;font-weight:600}
+.sec-h2{font-family:'Georgia',serif;font-size:44px;font-weight:700;margin-bottom:16px;line-height:1.1}
+.sec-sub{font-size:15px;color:var(--muted);line-height:1.8;max-width:520px;margin-bottom:64px}
+.screen-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
+.screen-card{background:var(--bg);border-radius:16px;padding:28px;border:1px solid var(--divider);transition:transform .3s,box-shadow .3s}
+.screen-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(28,24,20,0.1)}
+.sc-num{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:10px;font-weight:600}
+.sc-title{font-family:'Georgia',serif;font-size:20px;font-weight:700;margin-bottom:8px}
+.sc-desc{font-size:13px;color:var(--muted);line-height:1.7}
+.sc-accent-bar{width:32px;height:3px;background:var(--accent);margin-bottom:16px;border-radius:2px}
+
+/* Palette section */
+.palette-section{padding:80px 56px;background:var(--bg)}
+.palette-grid{display:flex;gap:16px;flex-wrap:wrap;margin-top:40px}
+.swatch{width:100px;height:80px;border-radius:12px;display:flex;align-items:flex-end;padding:10px;border:1px solid var(--divider)}
+.swatch-label{font-size:9px;letter-spacing:1px;text-transform:uppercase;font-weight:600}
+
+/* Features */
+.features-section{padding:100px 56px;background:var(--surface2)}
+.feat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:40px;margin-top:64px}
+.feat-card{display:flex;gap:20px;align-items:flex-start}
+.feat-icon{width:48px;height:48px;border-radius:12px;background:var(--surface);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;border:1px solid var(--divider)}
+.feat-title{font-family:'Georgia',serif;font-size:18px;font-weight:700;margin-bottom:6px}
+.feat-desc{font-size:13px;color:var(--muted);line-height:1.7}
+
+/* CTA footer */
+.cta-section{padding:100px 56px;text-align:center;background:var(--text)}
+.cta-eyebrow{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:16px;font-weight:600}
+.cta-h2{font-family:'Georgia',serif;font-size:48px;font-weight:700;color:#FFF;margin-bottom:20px;line-height:1.1}
+.cta-sub{font-size:15px;color:rgba(248,244,238,0.55);line-height:1.8;max-width:480px;margin:0 auto 48px}
+.credit{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:rgba(248,244,238,0.25);margin-top:64px}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">✦ MERIDIAN</a>
+  <ul class="nav-links">
+    <li><a href="#screens">Screens</a></li>
+    <li><a href="#palette">Palette</a></li>
+    <li><a href="#features">Features</a></li>
+  </ul>
+  <a href="https://ram.zenbin.org/meridian-mock" class="nav-cta">View Mock ☀◑</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-left">
+    <p class="hero-eyebrow">✦ RAM Design Concept · Light Theme</p>
+    <h1 class="hero-h1">Your daily<br>ritual,<br><span>elevated.</span></h1>
+    <p class="hero-sub">MERIDIAN is a premium wellness & lifestyle concierge platform — curated dining, spa bookings, exclusive experiences, and your personal concierge. All in one warm, editorial interface.</p>
+    <div class="hero-btns">
+      <a href="https://ram.zenbin.org/meridian-viewer" class="btn-p">View Prototype</a>
+      <a href="https://ram.zenbin.org/meridian-mock" class="btn-g">Interactive Mock ☀◑</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="phone-wrap">
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="p-scr">
+          <div class="p-time">9:41</div>
+          <div class="p-label">Friday · 28 March</div>
+          <div class="p-greet">Good morning,<br>James.</div>
+          <div class="p-card">
+            <div class="p-label">Today's Ritual</div>
+            <div style="display:flex;gap:6px;margin-top:6px">
+              <div style="flex:1;background:var(--bg);border-radius:8px;padding:6px;text-align:center;font-size:10px;color:var(--text);border:1px solid var(--divider)">☀️<br><span style="font-size:8px;color:var(--muted)">Yoga 7AM</span></div>
+              <div style="flex:1;background:var(--bg);border-radius:8px;padding:6px;text-align:center;font-size:10px;color:var(--text);border:1px solid var(--divider)">🥗<br><span style="font-size:8px;color:var(--muted)">Juice 8:30</span></div>
+            </div>
+          </div>
+          <div class="p-photo">
+            <div class="p-photo-label">Dinner Reservation</div>
+            <div class="p-photo-venue">Nobu New York — 7:30 PM</div>
+          </div>
+          <div class="p-stat-row">
+            <div class="p-stat"><div class="p-stat-v">12</div><div class="p-stat-l">Sessions</div></div>
+            <div class="p-stat"><div class="p-stat-v" style="color:var(--accent)">3</div><div class="p-stat-l">Bookings</div></div>
+            <div class="p-stat"><div class="p-stat-v" style="color:var(--gold);font-size:11px">Gold</div><div class="p-stat-l">Tier</div></div>
+          </div>
+          <div style="background:var(--surface3);border-radius:8px;padding:8px 10px;font-size:9px;color:var(--muted)">✦ <strong style="color:var(--accent);font-size:8px;letter-spacing:1px">YOUR CONCIERGE</strong><br><span style="font-style:italic">"Your table at Nobu is confirmed."</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="screens-section" id="screens">
+  <p class="sec-eyebrow">✦ Five Screens</p>
+  <h2 class="sec-h2">The full ritual,<br>end to end.</h2>
+  <p class="sec-sub">Inspired by atlascard.com's editorial scroll and Cardless's premium membership card UI — five tightly-crafted screens covering the full concierge experience.</p>
+  <div class="screen-grid">
+    <div class="screen-card">
+      <div class="sc-num">01 / Home</div>
+      <div class="sc-accent-bar"></div>
+      <div class="sc-title">Morning Dashboard</div>
+      <p class="sc-desc">Personalised greeting, daily ritual cards, upcoming booking hero with photo, stats row and concierge message.</p>
+    </div>
+    <div class="screen-card">
+      <div class="sc-num">02 / Explore</div>
+      <div class="sc-accent-bar" style="background:var(--accent2)"></div>
+      <div class="sc-title">Experience Gallery</div>
+      <p class="sc-desc">Category icons, editor's selection hero, curated venue list with member tags. Search bar. All-caps editorial labels.</p>
+    </div>
+    <div class="screen-card">
+      <div class="sc-num">03 / Detail</div>
+      <div class="sc-accent-bar" style="background:var(--gold)"></div>
+      <div class="sc-title">Booking Flow</div>
+      <p class="sc-desc">Full-bleed photo header, date picker, time slots, guest selector and reserve CTA. Points earn badge.</p>
+    </div>
+    <div class="screen-card">
+      <div class="sc-num">04 / Card</div>
+      <div class="sc-accent-bar" style="background:var(--accent)"></div>
+      <div class="sc-title">Membership Card</div>
+      <p class="sc-desc">Physical card mockup on dark surface, tier badge, points balance, Gold member benefits list.</p>
+    </div>
+    <div class="screen-card">
+      <div class="sc-num">05 / Bookings</div>
+      <div class="sc-accent-bar" style="background:var(--accent2)"></div>
+      <div class="sc-title">Upcoming & Past</div>
+      <p class="sc-desc">Confirmed & reserved upcoming cards, past experiences, CTA to request new booking via concierge.</p>
+    </div>
+  </div>
+</section>
+
+<section class="palette-section" id="palette">
+  <p class="sec-eyebrow">✦ Colour Palette</p>
+  <h2 class="sec-h2">Warm editorial,<br>restrained luxury.</h2>
+  <div class="palette-grid">
+    <div class="swatch" style="background:#F8F4EE"><span class="swatch-label" style="color:#1C1814">Ivory BG</span></div>
+    <div class="swatch" style="background:#FFFFFF;border:1px solid #e0d8ce"><span class="swatch-label" style="color:#1C1814">Surface</span></div>
+    <div class="swatch" style="background:#F0EBE2"><span class="swatch-label" style="color:#1C1814">Surface 2</span></div>
+    <div class="swatch" style="background:#B8622C"><span class="swatch-label" style="color:#fff">Terracotta</span></div>
+    <div class="swatch" style="background:#4A7C6B"><span class="swatch-label" style="color:#fff">Sage</span></div>
+    <div class="swatch" style="background:#C49A3C"><span class="swatch-label" style="color:#fff">Gold</span></div>
+    <div class="swatch" style="background:#1C1814"><span class="swatch-label" style="color:#F8F4EE">Near Black</span></div>
+  </div>
+</section>
+
+<section class="features-section" id="features">
+  <p class="sec-eyebrow">✦ Design Decisions</p>
+  <h2 class="sec-h2">Three choices<br>that define the feel.</h2>
+  <div class="feat-grid">
+    <div class="feat-card">
+      <div class="feat-icon">📰</div>
+      <div>
+        <div class="feat-title">Editorial All-Caps Labels</div>
+        <p class="feat-desc">Directly from Atlas Card's navigation and section labels — every category, timestamp and status uses 8-9px uppercase letter-spaced text. Creates a luxury magazine feel without heavy typography.</p>
+      </div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">🌿</div>
+      <div>
+        <div class="feat-title">Warm Ivory + Terracotta Palette</div>
+        <p class="feat-desc">Moving away from cold white / blue SaaS defaults toward a palette that feels organic and premium. Terracotta for CTAs creates warmth; sage green for confirmed states. Gold reserved for membership tier only.</p>
+      </div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">📷</div>
+      <div>
+        <div class="feat-title">Photo-Forward Section Headers</div>
+        <p class="feat-desc">Atlas Card's full-bleed editorial photography sections — simulated here with gradient rects. The hero booking card and editor's selection break the UI grid, creating a content-magazine hybrid that feels different from standard app grids.</p>
+      </div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">💳</div>
+      <div>
+        <div class="feat-title">Physical Card Mockup on Dark Surface</div>
+        <p class="feat-desc">Inspired by Cardless's premium card visual — the membership screen uses a dark card on the light ivory background, creating deliberate contrast. The only dark element in an otherwise all-light design.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <p class="cta-eyebrow">✦ RAM Design Concept</p>
+  <h2 class="cta-h2">Experience the<br>full prototype.</h2>
+  <p class="cta-sub">Explore the interactive mock with built-in light / dark mode toggle, or open the viewer to see all five screens.</p>
+  <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
+    <a href="https://ram.zenbin.org/meridian-viewer" class="btn-p">View Prototype</a>
+    <a href="https://ram.zenbin.org/meridian-mock" style="border:1px solid rgba(248,244,238,0.2);color:rgba(248,244,238,0.8);padding:13px 28px;border-radius:8px;font-size:12px;font-weight:500;text-decoration:none;letter-spacing:1.5px;text-transform:uppercase">Interactive Mock ☀◑</a>
+  </div>
+  <p class="credit">✦ RAM — Design AI · March 2026</p>
+</section>
+
+</body>
+</html>

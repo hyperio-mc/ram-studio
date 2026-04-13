@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GATHER — Developer Conference Companion</title>
+<meta name="description" content="A developer conference companion app. Schedule-first, speaker-focused, editorial typography. Playfair Display + Inter. Warm paper cream + ember amber. A RAM design concept.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ram.zenbin.org/gather">
+<meta property="og:title" content="GATHER — Developer Conference Companion">
+<meta property="og:description" content="Schedule-first. Speaker-focused. Editorial. Warm cream + ember amber. Playfair Display + Inter. Inspired by Stripe Sessions 2026.">
+<meta property="og:site_name" content="RAM Design Studio">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="GATHER — Developer Conference Companion">
+<meta name="twitter:description" content="Conference companion with time-axis schedule, speaker grid, conflict detection agenda, and venue floor map. Light theme. Playfair Display + Inter.">
+<meta name="theme-color" content="#E8632A">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#F9F7F5;
+  --surface:#FFFFFF;
+  --raised:#F2F0EE;
+  --deep:#E8E5E0;
+  --border:#E0DDD8;
+  --text:#18140E;
+  --muted:#7A6B58;
+  --dim:#B5A898;
+  --faint:#EDE9E4;
+  --amber:#E8632A;
+  --amber2:#B54820;
+  --amberlt:#FDF1EB;
+  --teal:#2D7A5C;
+  --tealt:#EBF5F1;
+  --blue:#2B5FC9;
+  --bluelt:#EBF0FC;
+  --grape:#6B45A8;
+  --grapelt:#F2EEFA;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;line-height:1.5;overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(249,247,245,0.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;padding:0 56px;height:60px}
+.nav-logo{font-family:'Playfair Display',serif;font-weight:700;font-size:20px;letter-spacing:0.04em;
+  text-decoration:none;color:var(--text)}
+.nav-links{display:flex;gap:36px;list-style:none}
+.nav-links a{font-size:12px;color:var(--muted);text-decoration:none;letter-spacing:0.02em}
+.nav-links a:hover{color:var(--text)}
+.nav-badge{background:var(--amber);color:var(--bg);border:none;padding:8px 20px;border-radius:20px;
+  font-size:10px;font-weight:700;cursor:pointer;letter-spacing:0.06em;font-family:'JetBrains Mono',monospace;
+  text-decoration:none;transition:opacity .15s}
+.nav-badge:hover{opacity:.85}
+
+/* CONFERENCE TICKER */
+.conf-ticker{background:var(--amber);color:#fff;padding:0 56px;height:36px;
+  display:flex;align-items:center;gap:32px;font-size:11px;font-weight:600;
+  font-family:'JetBrains Mono',monospace;letter-spacing:0.04em}
+.ticker-item{display:flex;align-items:center;gap:8px;white-space:nowrap}
+.ticker-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.6)}
+.ticker-scroll{animation:ticker-move 22s linear infinite;display:flex;gap:40px;align-items:center}
+@keyframes ticker-move{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* HERO */
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;
+  max-width:1200px;margin:0 auto;gap:80px;padding:100px 56px 60px}
+.hero-eyebrow{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.14em;color:var(--amber);
+  margin-bottom:24px;font-weight:500;display:flex;align-items:center;gap:12px}
+.hero-eyebrow::before{content:'';display:block;width:28px;height:1px;background:var(--amber);opacity:0.6}
+.hero-title{font-family:'Playfair Display',serif;font-size:72px;line-height:0.95;
+  letter-spacing:-0.02em;margin-bottom:28px;color:var(--text);font-weight:700}
+.hero-title .accent{color:var(--amber)}
+.hero-desc{font-size:15px;color:var(--muted);line-height:1.75;margin-bottom:32px;max-width:480px;font-weight:300}
+.hero-tags{display:flex;gap:8px;margin-bottom:36px;flex-wrap:wrap}
+.hero-tag{font-family:'JetBrains Mono',monospace;font-size:9px;background:var(--raised);color:var(--muted);
+  padding:5px 12px;border-radius:20px;letter-spacing:0.04em;border:1px solid var(--border)}
+.hero-btns{display:flex;gap:16px;align-items:center}
+.btn-primary{background:var(--amber);color:#fff;padding:14px 32px;border-radius:8px;
+  font-size:11px;font-weight:700;text-decoration:none;letter-spacing:0.06em;font-family:'JetBrains Mono',monospace;
+  transition:opacity .15s}
+.btn-primary:hover{opacity:.85}
+.btn-ghost{border:1px solid var(--border);color:var(--muted);padding:14px 32px;border-radius:8px;
+  font-size:11px;text-decoration:none;letter-spacing:0.03em;
+  transition:border-color .15s,color .15s}
+.btn-ghost:hover{border-color:var(--dim);color:var(--text)}
+
+/* PHONE MOCKUP */
+.hero-right{display:flex;justify-content:center;align-items:center}
+.phone{width:256px;height:530px;background:var(--surface);border-radius:36px;
+  border:1px solid var(--border);position:relative;overflow:hidden;
+  box-shadow:0 2px 0 var(--border),0 40px 80px rgba(24,20,14,0.12),0 8px 32px rgba(232,99,42,0.06)}
+.phone-notch{position:absolute;top:10px;left:50%;transform:translateX(-50%);
+  width:52px;height:4px;background:var(--faint);border-radius:2px}
+.phone-hdr{padding:22px 14px 8px;border-bottom:1px solid var(--border)}
+.phone-wordmark{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:var(--text);letter-spacing:0.04em}
+.phone-date{font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--muted);letter-spacing:0.04em;margin-top:2px}
+.phone-daytab{display:flex;gap:4px;padding:6px 14px}
+.phone-daytab span{font-family:'JetBrains Mono',monospace;font-size:8px;padding:3px 8px;border-radius:3px}
+.phone-daytab span.active{background:var(--text);color:var(--bg);font-weight:700}
+.phone-daytab span:not(.active){color:var(--muted);border:1px solid var(--border)}
+.phone-slots{padding:0 14px;display:flex;flex-direction:column;gap:3px}
+.phone-slot{border-radius:5px;padding:5px 8px;position:relative;overflow:hidden}
+.phone-slot .slot-bar{position:absolute;left:0;top:0;bottom:0;width:3px}
+.phone-slot .slot-time{font-family:'JetBrains Mono',monospace;font-size:7px;color:var(--muted)}
+.phone-slot .slot-title{font-size:9px;font-weight:600;line-height:1.2}
+.phone-slot .slot-track{font-family:'JetBrains Mono',monospace;font-size:7px;margin-top:1px}
+.phone-slot.keynote{background:var(--amberlt)}
+.phone-slot.keynote .slot-bar{background:var(--amber)}
+.phone-slot.keynote .slot-title{color:var(--amber2)}
+.phone-slot.break{background:var(--faint)}
+.phone-slot.break .slot-title{color:var(--dim)}
+.phone-slot.design{background:var(--tealt)}
+.phone-slot.design .slot-bar{background:var(--teal)}
+.phone-slot.design .slot-title{color:var(--teal)}
+.phone-slot.eng{background:var(--bluelt)}
+.phone-slot.eng .slot-bar{background:var(--blue)}
+.phone-slot.eng .slot-title{color:var(--blue)}
+.phone-now{display:flex;align-items:center;gap:6px;padding:0 14px;margin:2px 0}
+.phone-now-line{flex:1;height:1.5px;background:#E8452A;opacity:0.7;border-radius:1px}
+.phone-now-dot{width:7px;height:7px;border-radius:50%;background:#E8452A;flex-shrink:0}
+.phone-now-label{font-family:'JetBrains Mono',monospace;font-size:7px;color:#E8452A;font-weight:700}
+.phone-nav{position:absolute;bottom:0;left:0;right:0;height:44px;background:var(--surface);
+  border-top:1px solid var(--border);display:flex}
+.pn-tab{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
+.pn-tab .pn-icon{font-size:10px}
+.pn-tab .pn-lbl{font-size:5px;letter-spacing:0.03em}
+.pn-tab.active .pn-icon,.pn-tab.active .pn-lbl{color:var(--amber)}
+.pn-tab:not(.active) .pn-icon,.pn-tab:not(.active) .pn-lbl{color:var(--dim)}
+
+/* SECTIONS */
+.section{padding:80px 56px;max-width:1200px;margin:0 auto}
+.section-eyebrow{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.14em;color:var(--amber);
+  margin-bottom:20px;font-weight:500;display:flex;align-items:center;gap:12px}
+.section-eyebrow::before{content:'';display:block;width:28px;height:1px;background:var(--amber);opacity:0.5}
+.section-title{font-family:'Playfair Display',serif;font-size:48px;line-height:1.08;
+  letter-spacing:-0.02em;margin-bottom:56px;max-width:600px;font-weight:700;color:var(--text)}
+.section-title em{font-style:normal;color:var(--amber)}
+.section-alt{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+
+/* FEATURES GRID */
+.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border)}
+.feat-card{background:var(--surface);padding:36px 28px}
+.feat-card:first-child{border-radius:8px 0 0 8px}
+.feat-card:last-child{border-radius:0 8px 8px 0}
+.feat-icon{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--amber);margin-bottom:18px;font-weight:700;
+  background:var(--amberlt);border-radius:6px;display:inline-block;padding:7px 12px;border:1px solid rgba(232,99,42,0.2)}
+.feat-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;margin-bottom:10px;
+  color:var(--text);letter-spacing:-0.01em}
+.feat-desc{font-size:13px;color:var(--muted);line-height:1.65;font-weight:300}
+
+/* SCREENS */
+.screens-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.screen-card{background:var(--raised);border:1px solid var(--border);border-radius:10px;overflow:hidden}
+.screen-top{height:3px}
+.screen-top.amber{background:var(--amber)}
+.screen-top.teal{background:var(--teal)}
+.screen-top.grape{background:var(--grape)}
+.screen-top.blue{background:var(--blue)}
+.screen-top.dim{background:var(--dim)}
+.screen-body{padding:16px}
+.sc-eyebrow{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:0.1em;color:var(--amber);margin-bottom:6px;font-weight:700}
+.sc-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:var(--text);margin-bottom:5px}
+.sc-desc{font-size:11px;color:var(--muted);line-height:1.5}
+.sc-tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:10px}
+.sc-tag{font-size:8px;background:var(--surface);color:var(--muted);
+  padding:2px 8px;border-radius:10px;letter-spacing:0.02em;border:1px solid var(--border)}
+
+/* INSPIRATION */
+.insp-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+.insp-sources{display:flex;flex-direction:column;gap:12px;margin-top:24px}
+.insp-source{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:14px 16px}
+.insp-source-name{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--amber);font-weight:700;letter-spacing:0.04em;margin-bottom:4px}
+.insp-source-note{font-size:12px;color:var(--muted);line-height:1.5}
+.insp-visual{background:var(--surface);border-radius:12px;padding:24px;border:1px solid var(--border)}
+.track-demo{margin-bottom:16px}
+.track-header{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.08em;color:var(--muted);margin-bottom:8px}
+.track-bar{border-radius:6px;padding:8px 12px;margin-bottom:5px;position:relative;overflow:hidden}
+.track-bar .tb-left{position:absolute;left:0;top:0;bottom:0;width:3px;border-radius:2px}
+.track-bar.teal-bar{background:var(--tealt)}
+.track-bar.teal-bar .tb-left{background:var(--teal)}
+.track-bar.teal-bar .tb-title{color:var(--teal);font-weight:600;font-size:11px}
+.track-bar.blue-bar{background:var(--bluelt)}
+.track-bar.blue-bar .tb-left{background:var(--blue)}
+.track-bar.blue-bar .tb-title{color:var(--blue);font-weight:600;font-size:11px}
+.track-bar.grape-bar{background:var(--grapelt)}
+.track-bar.grape-bar .tb-left{background:var(--grape)}
+.track-bar.grape-bar .tb-title{color:var(--grape);font-weight:600;font-size:11px}
+.tb-time{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--muted)}
+
+/* PALETTE */
+.palette-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+.palette-card{border-radius:8px;overflow:hidden;border:1px solid var(--border)}
+.palette-swatch{height:60px}
+.palette-info{background:var(--surface);padding:8px 10px}
+.palette-hex{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;color:var(--text)}
+.palette-name{font-size:9px;color:var(--muted);margin-top:2px}
+
+/* CTA */
+.cta-section{padding:100px 56px;text-align:center;max-width:680px;margin:0 auto}
+.cta-eyebrow{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.14em;color:var(--amber);
+  margin-bottom:20px;font-weight:500}
+.cta-title{font-family:'Playfair Display',serif;font-size:52px;font-weight:700;line-height:1.05;
+  letter-spacing:-0.02em;margin-bottom:20px;color:var(--text)}
+.cta-title .accent{color:var(--amber)}
+.cta-desc{color:var(--muted);font-size:15px;margin-bottom:40px;line-height:1.65;font-weight:300}
+.cta-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.cta-btn-primary{background:var(--amber);color:#fff;padding:16px 36px;border-radius:8px;
+  font-size:10px;font-weight:700;text-decoration:none;letter-spacing:0.08em;font-family:'JetBrains Mono',monospace}
+.cta-btn-ghost{border:1px solid var(--border);color:var(--muted);padding:16px 36px;border-radius:8px;
+  font-size:11px;text-decoration:none;letter-spacing:0.03em}
+
+/* FOOTER */
+footer{border-top:1px solid var(--border);padding:28px 56px;
+  display:flex;align-items:center;justify-content:space-between}
+.footer-logo{font-family:'Playfair Display',serif;font-weight:700;font-size:16px;color:var(--muted)}
+.footer-logo span{color:var(--amber)}
+.footer-note{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--dim);letter-spacing:0.04em}
+
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr;gap:40px;padding:80px 24px 48px}
+  .hero-right{display:none}
+  .features-grid,.screens-grid{grid-template-columns:1fr 1fr}
+  .palette-grid{grid-template-columns:repeat(3,1fr)}
+  .insp-grid{grid-template-columns:1fr}
+  nav{padding:0 24px}
+  .section{padding-left:24px;padding-right:24px}
+  footer{padding:24px;flex-direction:column;gap:8px;text-align:center}
+  .hero-title{font-size:52px}
+  .conf-ticker{padding:0 24px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="https://ram.zenbin.org/gather" class="nav-logo">GATHER</a>
+  <ul class="nav-links">
+    <li><a href="#features">Features</a></li>
+    <li><a href="#screens">Screens</a></li>
+    <li><a href="#inspiration">Inspiration</a></li>
+  </ul>
+  <a href="https://ram.zenbin.org/gather-mock" class="nav-badge">PROTOTYPE →</a>
+</nav>
+
+<div class="conf-ticker">
+  <div class="ticker-scroll">
+    <span class="ticker-item"><span class="ticker-dot"></span>GATHER CONF · MON 31 MAR</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>NOW: Design Systems in the AI Age · Hall A</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>48 speakers · 3 days · Edinburgh</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>RAM DESIGN STUDIO · LIGHT THEME · MAR 2026</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>GATHER CONF · MON 31 MAR</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>NOW: Design Systems in the AI Age · Hall A</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>48 speakers · 3 days · Edinburgh</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>RAM DESIGN STUDIO · LIGHT THEME · MAR 2026</span>
+  </div>
+</div>
+
+<section class="hero">
+  <div class="hero-left">
+    <p class="hero-eyebrow">RAM DESIGN STUDIO · HEARTBEAT · LIGHT THEME</p>
+    <h1 class="hero-title">Your<br>conference,<br><span class="accent">gathered.</span></h1>
+    <p class="hero-desc">GATHER is a developer conference companion app. Schedule-first with time-axis session blocks, speaker profiles, personal agenda with conflict detection, and an interactive venue floor map. Editorial typography meets conference precision.</p>
+    <div class="hero-tags">
+      <span class="hero-tag">CONF COMPANION</span>
+      <span class="hero-tag">TIME-AXIS SCHEDULE</span>
+      <span class="hero-tag">TRACK COLOR SYSTEM</span>
+      <span class="hero-tag">CONFLICT DETECT</span>
+    </div>
+    <div class="hero-btns">
+      <a href="https://ram.zenbin.org/gather-mock" class="btn-primary">INTERACTIVE MOCK →</a>
+      <a href="https://ram.zenbin.org/gather-viewer" class="btn-ghost">Pencil Viewer</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="phone">
+      <div class="phone-notch"></div>
+      <div class="phone-hdr">
+        <div class="phone-wordmark">GATHER</div>
+        <div class="phone-date">MON 31 MAR · 10:47 AM · Edinburgh</div>
+      </div>
+      <div class="phone-daytab">
+        <span class="active">MON 31</span>
+        <span>TUE 1</span>
+        <span>WED 2</span>
+      </div>
+      <div class="phone-slots">
+        <div class="phone-slot keynote">
+          <div class="slot-bar"></div>
+          <div class="slot-time">09:00</div>
+          <div class="slot-title">Keynote: Building for the AI Era</div>
+        </div>
+        <div class="phone-slot break">
+          <div class="slot-title">Coffee + Networking</div>
+        </div>
+      </div>
+      <div class="phone-now">
+        <div class="phone-now-dot"></div>
+        <div class="phone-now-label">NOW</div>
+        <div class="phone-now-line"></div>
+      </div>
+      <div class="phone-slots">
+        <div class="phone-slot design">
+          <div class="slot-bar"></div>
+          <div class="slot-time">10:30 · DESIGN</div>
+          <div class="slot-title">Design Systems in the AI Age</div>
+        </div>
+        <div class="phone-slot eng">
+          <div class="slot-bar"></div>
+          <div class="slot-time">10:30 · ENG</div>
+          <div class="slot-title">Rust at Scale</div>
+        </div>
+        <div class="phone-slot break">
+          <div class="slot-time">12:00</div>
+          <div class="slot-title">Lunch</div>
+        </div>
+      </div>
+      <div class="phone-nav">
+        <div class="pn-tab active"><span class="pn-icon">◉</span><span class="pn-lbl">Today</span></div>
+        <div class="pn-tab"><span class="pn-icon">◈</span><span class="pn-lbl">Speakers</span></div>
+        <div class="pn-tab"><span class="pn-icon">⊟</span><span class="pn-lbl">Agenda</span></div>
+        <div class="pn-tab"><span class="pn-icon">⬡</span><span class="pn-lbl">Venue</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="features">
+  <p class="section-eyebrow">THE APP</p>
+  <h2 class="section-title">Conference design, <em>gathered.</em></h2>
+  <div class="features-grid">
+    <div class="feat-card">
+      <div class="feat-icon">◉ SCHEDULE</div>
+      <h3 class="feat-title">Time-Axis Session Blocks</h3>
+      <p class="feat-desc">Vertical time-axis schedule with color-coded track columns. Design=teal, Engineering=blue, Product=grape. Split-track view shows parallel sessions side-by-side — the novel layout pattern in this design.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">◈ SPEAKERS</div>
+      <h3 class="feat-title">Editorial Speaker Grid</h3>
+      <p class="feat-desc">Two-column speaker card grid with track color badges, initials avatars, role + company. Playfair Display serif headings give speaker names an editorial weight that distinguishes them from body text.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">⊟ AGENDA</div>
+      <h3 class="feat-title">Conflict Detection</h3>
+      <p class="feat-desc">Personal agenda with saved sessions. Timeline with dot-and-line connector pattern. Automatic conflict detection when two saved sessions overlap — highlighted in amber-red with warning copy.</p>
+    </div>
+  </div>
+</section>
+
+<div class="section-alt">
+<section class="section" id="screens" style="padding-top:60px;padding-bottom:60px">
+  <p class="section-eyebrow">5 SCREENS</p>
+  <h2 class="section-title" style="margin-bottom:32px">From schedule<br>to <em>venue map.</em></h2>
+  <div class="screens-grid">
+    <div class="screen-card">
+      <div class="screen-top amber"></div>
+      <div class="screen-body">
+        <div class="sc-eyebrow">01 · TODAY</div>
+        <div class="sc-title">Schedule</div>
+        <p class="sc-desc">Time-axis session timeline with keynote blocks, break slots, and split-track parallel sessions. NOW indicator line marks the current moment.</p>
+        <div class="sc-tags">
+          <span class="sc-tag">Time axis</span>
+          <span class="sc-tag">Track colors</span>
+          <span class="sc-tag">NOW line</span>
+        </div>
+      </div>
+    </div>
+    <div class="screen-card">
+      <div class="screen-top teal"></div>
+      <div class="screen-body">
+        <div class="sc-eyebrow">02 · SESSION</div>
+        <div class="sc-title">Detail</div>
+        <p class="sc-desc">Editorial big-title treatment in Playfair Display. Speaker avatar, stats row with time/room/duration, synopsis paragraph, speaker bio, Save button.</p>
+        <div class="sc-tags">
+          <span class="sc-tag">Playfair serif</span>
+          <span class="sc-tag">Save to agenda</span>
+          <span class="sc-tag">Speaker bio</span>
+        </div>
+      </div>
+    </div>
+    <div class="screen-card">
+      <div class="screen-top grape"></div>
+      <div class="screen-body">
+        <div class="sc-eyebrow">03 · SPEAKERS</div>
+        <div class="sc-title">Grid</div>
+        <p class="sc-desc">2-column card grid. Initials avatars with track-color tint backgrounds. Day selector tabs. Track badge per speaker. 48 total across 3 days.</p>
+        <div class="sc-tags">
+          <span class="sc-tag">2-col grid</span>
+          <span class="sc-tag">Track badges</span>
+          <span class="sc-tag">Day filter</span>
+        </div>
+      </div>
+    </div>
+    <div class="screen-card">
+      <div class="screen-top amber"></div>
+      <div class="screen-body">
+        <div class="sc-eyebrow">04 · AGENDA</div>
+        <div class="sc-title">My Schedule</div>
+        <p class="sc-desc">Saved sessions with dot-line timeline connector. Conflict detection highlighted in amber-red. Empty slots shown with browse prompt. 5 saved, 1 conflict.</p>
+        <div class="sc-tags">
+          <span class="sc-tag">Conflict detect</span>
+          <span class="sc-tag">Timeline dots</span>
+          <span class="sc-tag">Empty states</span>
+        </div>
+      </div>
+    </div>
+    <div class="screen-card">
+      <div class="screen-top blue"></div>
+      <div class="screen-body">
+        <div class="sc-eyebrow">05 · VENUE</div>
+        <div class="sc-title">Floor Map</div>
+        <p class="sc-desc">Simplified floor plan of Edinburgh Convention Centre. Room state colors: teal=active, amber=next up, grey=empty. Floor selector tabs. "You are here" indicator.</p>
+        <div class="sc-tags">
+          <span class="sc-tag">Room states</span>
+          <span class="sc-tag">Floor selector</span>
+          <span class="sc-tag">ECC map</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<section class="section" id="inspiration">
+  <p class="section-eyebrow">WHAT INSPIRED THIS</p>
+  <div class="insp-grid">
+    <div>
+      <h2 class="section-title" style="margin-bottom:16px">Found on<br><em>godly.website</em></h2>
+      <p style="font-size:14px;color:var(--muted);line-height:1.7;font-weight:300;max-width:440px">
+        Stripe Sessions 2026 (stripesessions.com) appeared in the godly.website feed. Its warm off-white background (#F9F7F7), Söhne variable font hierarchy, and conference-section structure ("See what's next in payments and commerce") felt instantly right for a conference companion. The typography-first, editorial weight of those section headings became the DNA of GATHER.
+      </p>
+      <div class="insp-sources">
+        <div class="insp-source">
+          <div class="insp-source-name">GODLY.WEBSITE</div>
+          <div class="insp-source-note">Stripe Sessions 2026 — warm cream #F9F7F7, Söhne variable font, editorial conference section hierarchy</div>
+        </div>
+        <div class="insp-source">
+          <div class="insp-source-name">LAND-BOOK.COM</div>
+          <div class="insp-source-note">NOA, Topicals, Cardless — strong serif-meets-UI-sans editorial contrasts in light themes</div>
+        </div>
+        <div class="insp-source">
+          <div class="insp-source-name">NN/GROUP.COM</div>
+          <div class="insp-source-note">"GenUI vs. Vibe Coding: Who's Designing?" and "Outcome-Oriented Design: The Era of AI Design" — AI + conference context feels timely</div>
+        </div>
+      </div>
+    </div>
+    <div class="insp-visual">
+      <div class="track-header">TRACK COLOR SYSTEM</div>
+      <div class="track-demo">
+        <div class="track-bar teal-bar">
+          <div class="tb-left"></div>
+          <div class="tb-time">10:30</div>
+          <div class="tb-title">Design Systems in the AI Age</div>
+        </div>
+        <div class="track-bar blue-bar">
+          <div class="tb-left"></div>
+          <div class="tb-time">10:30</div>
+          <div class="tb-title">Rust at Scale: Zero-cost Abstractions</div>
+        </div>
+        <div class="track-bar grape-bar">
+          <div class="tb-left"></div>
+          <div class="tb-time">13:30</div>
+          <div class="tb-title">Product Design Metrics That Matter</div>
+        </div>
+      </div>
+      <div class="track-header" style="margin-top:16px">EDITORIAL TYPOGRAPHY PAIRING</div>
+      <p style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--text);line-height:1.2;margin-bottom:6px">Design Systems<br>in the AI Age</p>
+      <p style="font-size:12px;color:var(--muted);font-weight:400">Sarah Chen · Design Systems Lead, Vercel</p>
+      <p style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--amber);margin-top:8px;letter-spacing:0.06em">11:00 – 11:45 · HALL A · 45 MIN</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:40px;padding-bottom:60px">
+  <p class="section-eyebrow">PALETTE</p>
+  <h2 class="section-title" style="margin-bottom:32px;font-size:36px">Warm cream + <em>ember amber</em></h2>
+  <div class="palette-grid">
+    <div class="palette-card"><div class="palette-swatch" style="background:#F9F7F5"></div><div class="palette-info"><div class="palette-hex">#F9F7F5</div><div class="palette-name">Warm Paper</div></div></div>
+    <div class="palette-card"><div class="palette-swatch" style="background:#FFFFFF;border-bottom:1px solid var(--border)"></div><div class="palette-info"><div class="palette-hex">#FFFFFF</div><div class="palette-name">Surface</div></div></div>
+    <div class="palette-card"><div class="palette-swatch" style="background:#18140E"></div><div class="palette-info"><div class="palette-hex">#18140E</div><div class="palette-name">Deep Ink</div></div></div>
+    <div class="palette-card"><div class="palette-swatch" style="background:#E8632A"></div><div class="palette-info"><div class="palette-hex">#E8632A</div><div class="palette-name">Ember Amber</div></div></div>
+    <div class="palette-card"><div class="palette-swatch" style="background:#2D7A5C"></div><div class="palette-info"><div class="palette-hex">#2D7A5C</div><div class="palette-name">Design Teal</div></div></div>
+    <div class="palette-card"><div class="palette-swatch" style="background:#6B45A8"></div><div class="palette-info"><div class="palette-hex">#6B45A8</div><div class="palette-name">Product Grape</div></div></div>
+  </div>
+</section>
+
+<div class="cta-section">
+  <p class="cta-eyebrow">RAM DESIGN STUDIO</p>
+  <h2 class="cta-title">See it <span class="accent">live.</span></h2>
+  <p class="cta-desc">Explore the interactive Svelte prototype with working navigation and light/dark toggle, or step through the pencil viewer to inspect every design node.</p>
+  <div class="cta-btns">
+    <a href="https://ram.zenbin.org/gather-mock" class="cta-btn-primary">INTERACTIVE PROTOTYPE →</a>
+    <a href="https://ram.zenbin.org" class="cta-btn-ghost">RAM Design Studio</a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">GATHER<span>.</span></div>
+  <div class="footer-note">RAM DESIGN STUDIO · HEARTBEAT · MAR 2026 · LIGHT THEME</div>
+</footer>
+
+</body>
+</html>

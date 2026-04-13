@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FRAME — The Studio OS</title>
+<meta name="description" content="A creative studio project management OS with bold editorial design. Inspired by Locomotive.ca.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bg:#F6F4EF;
+  --surface:#FFFFFF;
+  --surface2:#EDEBE5;
+  --text:#0F0F0E;
+  --muted:#8A8880;
+  --accent:#1B1BE0;
+  --red:#E03030;
+  --border:#D8D5CC;
+  --glass:rgba(255,255,255,0.86);
+}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:20px 48px;background:var(--glass);backdrop-filter:blur(20px) saturate(1.6);border-bottom:1px solid var(--border);}
+.logo{font-family:'Inter',sans-serif;font-size:15px;font-weight:900;letter-spacing:3px;color:var(--text);}
+.logo span{color:var(--accent);}
+.nav-links{display:flex;gap:28px;align-items:center;}
+.nav-links a{font-size:13px;font-weight:500;color:var(--muted);text-decoration:none;transition:color .2s;}
+.nav-links a:hover{color:var(--text);}
+.nav-divider{display:flex;gap:12px;}
+.nav-cta{background:var(--accent);color:#fff;padding:10px 24px;border-radius:10px;font-size:13px;font-weight:700;text-decoration:none;transition:opacity .15s;letter-spacing:.3px;}
+.nav-cta:hover{opacity:.85;}
+.nav-cta-out{background:transparent;color:var(--text);border:1.5px solid var(--border);padding:10px 24px;border-radius:10px;font-size:13px;font-weight:600;text-decoration:none;transition:background .15s;}
+.nav-cta-out:hover{background:var(--surface2);}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;padding:140px 80px 80px;max-width:1400px;margin:0 auto;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--border);border-radius:100px;padding:8px 20px;margin-bottom:40px;font-size:11px;font-weight:700;color:var(--accent);letter-spacing:1.5px;text-transform:uppercase;}
+.badge-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.4;}}
+.hero-eyebrow{font-size:12px;font-weight:700;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:20px;}
+h1{font-family:'DM Serif Display',serif;font-size:clamp(64px,9vw,120px);font-weight:400;line-height:0.96;letter-spacing:-3px;margin-bottom:32px;max-width:900px;}
+h1 em{color:var(--accent);font-style:italic;}
+h1 .strike{position:relative;color:var(--muted);}
+.hero-sub{font-size:clamp(16px,2vw,20px);color:var(--muted);max-width:520px;line-height:1.7;margin-bottom:56px;font-weight:400;}
+.hero-actions{display:flex;gap:16px;flex-wrap:wrap;align-items:center;margin-bottom:80px;}
+.btn-primary{background:var(--text);color:var(--bg);padding:16px 40px;border-radius:12px;font-size:15px;font-weight:700;text-decoration:none;transition:transform .15s,opacity .15s;letter-spacing:.3px;}
+.btn-primary:hover{transform:translateY(-2px);opacity:.88;}
+.btn-sec{background:transparent;color:var(--text);border:1.5px solid var(--border);padding:15px 36px;border-radius:12px;font-size:15px;font-weight:600;text-decoration:none;transition:background .15s,transform .15s;}
+.btn-sec:hover{background:var(--surface);transform:translateY(-2px);}
+
+/* EDITORIAL ACCENT LINE */
+.accent-line{width:80px;height:5px;background:var(--red);margin-bottom:28px;}
+
+/* STATS ROW */
+.stats-row{display:flex;gap:48px;padding:32px 0;border-top:1px solid var(--border);}
+.stat-item{}
+.stat-val{font-family:'DM Serif Display',serif;font-size:40px;font-weight:400;color:var(--text);line-height:1;}
+.stat-val em{color:var(--accent);font-style:normal;}
+.stat-lbl{font-size:12px;color:var(--muted);margin-top:4px;font-weight:500;}
+
+/* PHONE MOCKUPS */
+.screens-section{padding:100px 80px;background:var(--surface2);}
+.ss-inner{max-width:1400px;margin:0 auto;}
+.sec-overline{font-size:11px;font-weight:700;color:var(--accent);letter-spacing:2px;text-transform:uppercase;margin-bottom:16px;}
+.sec-head{font-family:'DM Serif Display',serif;font-size:clamp(36px,5vw,64px);line-height:1.05;letter-spacing:-1.5px;margin-bottom:64px;max-width:700px;}
+.sec-head em{color:var(--red);font-style:italic;}
+.phones-wrap{display:flex;gap:24px;justify-content:center;align-items:flex-end;flex-wrap:wrap;}
+
+/* Phone frame */
+.phone{width:200px;background:var(--surface);border:1px solid var(--border);border-radius:32px;padding:14px;box-shadow:0 40px 80px rgba(0,0,0,.10),0 8px 20px rgba(0,0,0,.06);display:flex;flex-direction:column;gap:8px;transition:transform .3s;}
+.phone:hover{transform:translateY(-8px);}
+.phone.mid{transform:scale(1.1);box-shadow:0 50px 100px rgba(0,0,0,.14);}
+.phone.mid:hover{transform:scale(1.1) translateY(-8px);}
+.notch{width:60px;height:5px;background:var(--border);border-radius:3px;margin:0 auto 6px;}
+.p-header{font-size:7px;font-weight:900;letter-spacing:2px;color:var(--accent);text-align:center;margin-bottom:4px;}
+.big-num{font-family:'DM Serif Display',serif;font-size:32px;text-align:center;color:var(--text);line-height:1;}
+.sub-lbl{font-size:8px;text-align:center;color:var(--muted);margin-bottom:6px;}
+.prog-row{display:flex;flex-direction:column;gap:4px;}
+.prog{height:4px;background:var(--surface2);border-radius:2px;overflow:hidden;}
+.prog-fill{height:100%;border-radius:2px;}
+.tag-row{display:flex;gap:4px;flex-wrap:wrap;}
+.tag{font-size:8px;font-weight:700;padding:3px 8px;border-radius:10px;background:var(--surface2);color:var(--muted);}
+.tag.a{background:#EEF;color:var(--accent);}
+.tag.r{background:#FEE;color:var(--red);}
+.card-item{background:var(--surface2);border-radius:10px;padding:8px 10px;display:flex;align-items:center;gap:8px;margin-bottom:4px;}
+.ci-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.ci-text{flex:1;}
+.ci-name{font-size:9px;font-weight:700;color:var(--text);}
+.ci-sub{font-size:8px;color:var(--muted);}
+.ci-badge{font-size:8px;font-weight:700;color:var(--accent);}
+
+/* FEATURES */
+.features{padding:100px 80px;max-width:1400px;margin:0 auto;}
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.feat-card{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:32px;transition:transform .2s,box-shadow .2s;}
+.feat-card:hover{transform:translateY(-4px);box-shadow:0 20px 50px rgba(0,0,0,.07);}
+.feat-accent{width:36px;height:4px;margin-bottom:20px;}
+.feat-title{font-family:'DM Serif Display',serif;font-size:24px;margin-bottom:12px;letter-spacing:-.5px;}
+.feat-desc{font-size:14px;color:var(--muted);line-height:1.65;}
+
+/* TYPOGRAPHY SECTION */
+.typo-section{padding:80px;background:var(--text);color:var(--bg);}
+.typo-inner{max-width:1400px;margin:0 auto;}
+.typo-big{font-family:'DM Serif Display',serif;font-size:clamp(80px,12vw,180px);line-height:.9;letter-spacing:-4px;opacity:.08;}
+.typo-content{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;margin-top:-80px;position:relative;z-index:1;}
+.typo-head{font-family:'DM Serif Display',serif;font-size:clamp(28px,4vw,52px);line-height:1.1;letter-spacing:-1px;margin-bottom:20px;}
+.typo-head em{color:var(--accent);}
+.typo-body{font-size:15px;color:rgba(246,244,239,.6);line-height:1.7;}
+.typo-features{display:flex;flex-direction:column;gap:16px;}
+.tf{display:flex;align-items:flex-start;gap:12px;padding:16px;background:rgba(255,255,255,.05);border-radius:14px;border:1px solid rgba(255,255,255,.08);}
+.tf-icon{font-size:20px;flex-shrink:0;}
+.tf-text{font-size:14px;color:rgba(246,244,239,.7);line-height:1.5;}
+.tf-text strong{color:var(--bg);display:block;margin-bottom:4px;font-size:13px;font-weight:700;}
+
+/* CTA */
+.cta-section{padding:120px 80px;text-align:center;}
+.cta-inner{max-width:700px;margin:0 auto;}
+.cta-head{font-family:'DM Serif Display',serif;font-size:clamp(40px,6vw,72px);letter-spacing:-2px;line-height:1.05;margin-bottom:24px;}
+.cta-sub{font-size:17px;color:var(--muted);margin-bottom:48px;line-height:1.65;}
+.cta-actions{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
+
+/* FOOTER */
+footer{padding:40px 80px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--muted);}
+.fl{font-weight:900;letter-spacing:3px;font-size:13px;color:var(--text);}
+@media(max-width:768px){
+  .hero{padding:120px 24px 60px;}
+  .screens-section,.features,.typo-section,.cta-section{padding:60px 24px;}
+  .feat-grid{grid-template-columns:1fr;}
+  .typo-content{grid-template-columns:1fr;}
+  .stats-row{gap:24px;flex-wrap:wrap;}
+  nav{padding:16px 24px;}
+  .nav-links{display:none;}
+  footer{flex-direction:column;gap:12px;text-align:center;padding:32px 24px;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">FRAME<span>.</span></div>
+  <div class="nav-links">
+    <a href="#screens">Screens</a>
+    <a href="#features">Features</a>
+    <a href="https://ram.zenbin.org/frame-mock">Mock ☀◑</a>
+  </div>
+  <div class="nav-divider">
+    <a href="https://ram.zenbin.org/frame-mock" class="nav-cta-out">Try mock ☀◑</a>
+    <a href="https://ram.zenbin.org/frame-viewer" class="nav-cta">View design →</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="accent-line"></div>
+  <div class="hero-eyebrow">Design by RAM · April 2026 · Light theme</div>
+  <h1>The OS for<br><em>creative</em><br>studios.</h1>
+  <p class="hero-sub">FRAME is the studio operating system for creative agencies — project management with editorial confidence. Inspired by Locomotive's bold typographic aesthetic.</p>
+  <div class="hero-actions">
+    <a href="https://ram.zenbin.org/frame-viewer" class="btn-primary">Explore design →</a>
+    <a href="https://ram.zenbin.org/frame-mock" class="btn-sec">Interactive mock ☀◑</a>
+  </div>
+  <div class="stats-row">
+    <div class="stat-item"><div class="stat-val"><em>14</em></div><div class="stat-lbl">Active projects</div></div>
+    <div class="stat-item"><div class="stat-val"><em>5</em></div><div class="stat-lbl">Design screens</div></div>
+    <div class="stat-item"><div class="stat-val"><em>91%</em></div><div class="stat-lbl">On-track health</div></div>
+    <div class="stat-item"><div class="stat-val"><em>3</em></div><div class="stat-lbl">Deadlines this week</div></div>
+  </div>
+</section>
+
+<section class="screens-section" id="screens">
+  <div class="ss-inner">
+    <div class="sec-overline">5 screens · light theme</div>
+    <h2 class="sec-head">Designed for<br>the <em>demanding</em><br>creative.</h2>
+    <div class="phones-wrap">
+
+      <!-- Dashboard -->
+      <div class="phone" style="transform:rotate(-3deg);">
+        <div class="notch"></div>
+        <div class="p-header">FRAME</div>
+        <div style="font-size:22px;font-weight:900;font-family:'DM Serif Display',serif;line-height:1;">Studio<br>Overview</div>
+        <div style="display:flex;gap:6px;margin:4px 0;">
+          <div style="flex:1;background:#EEF;border-radius:10px;padding:8px;text-align:center;">
+            <div style="font-size:8px;font-weight:700;color:#8A8880;">PROJECTS</div>
+            <div style="font-size:20px;font-weight:900;color:#1B1BE0;">14</div>
+          </div>
+          <div style="flex:1;background:#FEE;border-radius:10px;padding:8px;text-align:center;">
+            <div style="font-size:8px;font-weight:700;color:#8A8880;">DUE</div>
+            <div style="font-size:20px;font-weight:900;color:#E03030;">3</div>
+          </div>
+          <div style="flex:1;background:#EFE;border-radius:10px;padding:8px;text-align:center;">
+            <div style="font-size:8px;font-weight:700;color:#8A8880;">HEALTH</div>
+            <div style="font-size:20px;font-weight:900;color:#2E9E5B;">91%</div>
+          </div>
+        </div>
+        <div class="card-item"><div class="ci-dot" style="background:#1B1BE0;"></div><div class="ci-text"><div class="ci-name">Solaris Brand</div><div class="ci-sub">78% · 5d left</div></div><div class="ci-badge">●</div></div>
+        <div class="card-item"><div class="ci-dot" style="background:#E03030;"></div><div class="ci-text"><div class="ci-name">Neon Commerce</div><div class="ci-sub">45% · 12d left</div></div><div class="ci-badge">Review</div></div>
+        <div class="card-item"><div class="ci-dot" style="background:#2E9E5B;"></div><div class="ci-text"><div class="ci-name">Atlas Campaign</div><div class="ci-sub">92% · 2d left</div></div><div class="ci-badge">⚡</div></div>
+      </div>
+
+      <!-- Projects Grid - center focal -->
+      <div class="phone mid">
+        <div class="notch"></div>
+        <div class="p-header">PROJECTS</div>
+        <!-- Full-width editorial card -->
+        <div style="background:#1B1BE0;border-radius:14px;padding:12px;margin-bottom:6px;">
+          <div style="font-size:7px;font-weight:700;color:rgba(255,255,255,.6);letter-spacing:1px;">BRANDING</div>
+          <div style="font-size:15px;font-weight:900;color:#fff;line-height:1.1;margin:4px 0;">Solaris Brand System</div>
+          <div style="font-size:8px;color:rgba(255,255,255,.5);">Solaris Co.</div>
+          <div style="height:4px;background:rgba(255,255,255,.2);border-radius:2px;margin-top:8px;"><div style="height:100%;width:78%;background:#fff;border-radius:2px;"></div></div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
+          <div style="background:#F6F4EF;border-radius:12px;padding:10px;">
+            <div style="font-size:6px;font-weight:700;color:#8A8880;letter-spacing:1px;">WEB DEV</div>
+            <div style="font-size:11px;font-weight:800;color:#0F0F0E;margin:3px 0;line-height:1.1;">Neon Commerce</div>
+            <div style="height:3px;background:#E0DDD8;border-radius:2px;"><div style="height:100%;width:45%;background:#E03030;border-radius:2px;"></div></div>
+          </div>
+          <div style="background:#F6F4EF;border-radius:12px;padding:10px;">
+            <div style="font-size:6px;font-weight:700;color:#8A8880;letter-spacing:1px;">MOTION</div>
+            <div style="font-size:11px;font-weight:800;color:#0F0F0E;margin:3px 0;line-height:1.1;">Atlas Campaign</div>
+            <div style="height:3px;background:#E0DDD8;border-radius:2px;"><div style="height:100%;width:92%;background:#2E9E5B;border-radius:2px;"></div></div>
+          </div>
+          <div style="background:#F6F4EF;border-radius:12px;padding:10px;">
+            <div style="font-size:6px;font-weight:700;color:#8A8880;letter-spacing:1px;">BRANDING</div>
+            <div style="font-size:11px;font-weight:800;color:#0F0F0E;margin:3px 0;line-height:1.1;">Mortons Rebrand</div>
+            <div style="height:3px;background:#E0DDD8;border-radius:2px;"><div style="height:100%;width:20%;background:#C8760A;border-radius:2px;"></div></div>
+          </div>
+          <div style="background:#F6F4EF;border-radius:12px;padding:10px;">
+            <div style="font-size:6px;font-weight:700;color:#8A8880;letter-spacing:1px;">PRODUCT</div>
+            <div style="font-size:11px;font-weight:800;color:#0F0F0E;margin:3px 0;line-height:1.1;">Haptic App UI</div>
+            <div style="height:3px;background:#E0DDD8;border-radius:2px;"><div style="height:100%;width:60%;background:#1B1BE0;border-radius:2px;"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project Detail -->
+      <div class="phone" style="transform:rotate(2deg);">
+        <div class="notch"></div>
+        <div style="font-size:6px;font-weight:700;color:#2E9E5B;letter-spacing:1px;text-align:right;margin-bottom:2px;">● ACTIVE</div>
+        <div style="font-size:24px;font-weight:900;font-family:'DM Serif Display',serif;line-height:.95;margin-bottom:6px;">Solaris<br>Brand<br>System</div>
+        <div style="font-size:8px;color:#8A8880;margin-bottom:8px;">Solaris Co.  ·  Due Apr 6</div>
+        <div style="display:flex;flex-direction:column;gap:4px;">
+          <div style="display:flex;align-items:center;gap:8px;padding:5px 0;">
+            <div style="width:10px;height:10px;border-radius:50%;background:#2E9E5B;flex-shrink:0;"></div>
+            <div style="flex:1;font-size:9px;color:#8A8880;text-decoration:line-through;">Discovery & Research</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;padding:5px 0;">
+            <div style="width:10px;height:10px;border-radius:50%;background:#2E9E5B;flex-shrink:0;"></div>
+            <div style="flex:1;font-size:9px;color:#8A8880;text-decoration:line-through;">Brand Strategy</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;padding:5px 0;">
+            <div style="width:10px;height:10px;border-radius:50%;background:#1B1BE0;flex-shrink:0;box-shadow:0 0 0 3px rgba(27,27,224,.2);"></div>
+            <div style="flex:1;font-size:9px;font-weight:700;color:#0F0F0E;">Asset Production</div>
+            <div style="font-size:7px;font-weight:700;color:#fff;background:#1B1BE0;padding:2px 6px;border-radius:6px;">Now</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;padding:5px 0;">
+            <div style="width:10px;height:10px;border-radius:50%;background:#D8D5CC;flex-shrink:0;"></div>
+            <div style="flex:1;font-size:9px;color:#8A8880;">Client Handoff</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Studio Pulse -->
+      <div class="phone" style="transform:rotate(-1.5deg);">
+        <div class="notch"></div>
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px;">
+          <div style="font-size:14px;font-weight:900;font-family:'DM Serif Display',serif;">Pulse</div>
+          <div style="font-size:7px;font-weight:700;color:#fff;background:#E03030;padding:2px 7px;border-radius:8px;margin-left:auto;">● LIVE</div>
+        </div>
+        <div class="prog-row">
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;">
+            <div style="width:22px;height:22px;border-radius:50%;background:#C87070;display:flex;align-items:center;justify-content:center;font-size:7px;font-weight:900;color:#fff;flex-shrink:0;">AL</div>
+            <div style="flex:1;">
+              <div style="display:flex;justify-content:space-between;font-size:8px;margin-bottom:3px;"><span style="font-weight:700;">Alex L.</span><span style="color:#E03030;font-weight:800;">88%</span></div>
+              <div class="prog"><div class="prog-fill" style="width:88%;background:#C87070;"></div></div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;">
+            <div style="width:22px;height:22px;border-radius:50%;background:#70A8C8;display:flex;align-items:center;justify-content:center;font-size:7px;font-weight:900;color:#fff;flex-shrink:0;">MS</div>
+            <div style="flex:1;">
+              <div style="display:flex;justify-content:space-between;font-size:8px;margin-bottom:3px;"><span style="font-weight:700;">Mia S.</span><span style="color:#0F0F0E;font-weight:700;">65%</span></div>
+              <div class="prog"><div class="prog-fill" style="width:65%;background:#70A8C8;"></div></div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;">
+            <div style="width:22px;height:22px;border-radius:50%;background:#8870C8;display:flex;align-items:center;justify-content:center;font-size:7px;font-weight:900;color:#fff;flex-shrink:0;">JK</div>
+            <div style="flex:1;">
+              <div style="display:flex;justify-content:space-between;font-size:8px;margin-bottom:3px;"><span style="font-weight:700;">Jake K.</span><span style="color:#0F0F0E;font-weight:700;">42%</span></div>
+              <div class="prog"><div class="prog-fill" style="width:42%;background:#8870C8;"></div></div>
+            </div>
+          </div>
+        </div>
+        <div style="font-size:8px;font-weight:700;color:#0F0F0E;letter-spacing:.5px;margin:6px 0 4px;">Recent Activity</div>
+        <div style="font-size:8px;color:#8A8880;line-height:1.6;">
+          <div>AL uploaded final logo files · 2m</div>
+          <div>MS commented on palette · 18m</div>
+          <div>JK pushed Neon v0.4 · 1h</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="features" id="features">
+  <div class="sec-overline">Why FRAME</div>
+  <h2 class="sec-head" style="font-family:'DM Serif Display',serif;font-size:clamp(36px,5vw,58px);letter-spacing:-1.5px;margin-bottom:56px;line-height:1.05;">Every project. Every<br>brief. Every <em style="color:var(--red);font-style:italic;">deadline.</em></h2>
+  <div class="feat-grid">
+    <div class="feat-card">
+      <div class="feat-accent" style="background:var(--accent);"></div>
+      <div class="feat-title">Editorial Dashboard</div>
+      <p class="feat-desc">Bold typographic metrics front and center — health score, project count, deadlines. Inspired by Locomotive's confident display type approach.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-accent" style="background:var(--red);"></div>
+      <div class="feat-title">Asymmetric Project Grid</div>
+      <p class="feat-desc">A full-width editorial hero card for your most active project, with a 2-column grid below — unconventional layout that gives work the visual hierarchy it deserves.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-accent" style="background:#2E9E5B;"></div>
+      <div class="feat-title">Visual Timeline</div>
+      <p class="feat-desc">Living milestones with a dot-and-track visualization. Current milestone pulses with a subtle ring — clear at a glance where you are in each project.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-accent" style="background:#C8760A;"></div>
+      <div class="feat-title">Client Brief OS</div>
+      <p class="feat-desc">Numbered editorial sections, red accent bars, typographic hierarchy. Briefs read like premium documents — because they should.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-accent" style="background:var(--accent);"></div>
+      <div class="feat-title">Live Studio Pulse</div>
+      <p class="feat-desc">Horizontal workload bars per team member with avatar clusters. Real-time activity feed. See who's overloaded and who has capacity — instantly.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-accent" style="background:var(--red);"></div>
+      <div class="feat-title">Warm Cream Palette</div>
+      <p class="feat-desc">F6F4EF — the same warm off-white used by Stripe Sessions 2026. Not pure white. Not grey. Warm enough to feel premium, neutral enough to let work shine.</p>
+    </div>
+  </div>
+</section>
+
+<section class="typo-section">
+  <div class="typo-inner">
+    <div class="typo-big">FRAME</div>
+    <div class="typo-content">
+      <div>
+        <h2 class="typo-head">Typography as<br><em>design decision.</em></h2>
+        <p class="typo-body">Inspired by Locomotive.ca — where the headline reads "🔶 Locomotive® Digital-first Design Agency 🍺🔞" in HelveticaNowDisplay at full bleed. FRAME applies the same editorial confidence: DM Serif Display for headings, Inter Black for metrics, restrained color palette where every splash of indigo or red earns its place.</p>
+      </div>
+      <div class="typo-features">
+        <div class="tf"><div class="tf-icon">◼</div><div class="tf-text"><strong>Bold indigo (#1B1BE0)</strong>Active projects, primary CTA, live indicators — used sparingly but unmistakably.</div></div>
+        <div class="tf"><div class="tf-icon">◼</div><div class="tf-text"><strong>Editorial red (#E03030)</strong>Deadlines, review status, emphasis. The accent that says "pay attention."</div></div>
+        <div class="tf"><div class="tf-icon">◼</div><div class="tf-text"><strong>Warm cream (#F6F4EF)</strong>The base — same temperature as Stripe Sessions 2026. Familiar but not sterile.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="cta-inner">
+    <div class="accent-line" style="margin:0 auto 32px;"></div>
+    <h2 class="cta-head">Run your studio<br>like you design.</h2>
+    <p class="cta-sub">5 screens. Light theme. Editorial confidence.<br>The creative agency OS you actually want to use.</p>
+    <div class="cta-actions">
+      <a href="https://ram.zenbin.org/frame-viewer" class="btn-primary">Explore design →</a>
+      <a href="https://ram.zenbin.org/frame-mock" class="btn-sec">Interactive mock ☀◑</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="fl">FRAME</div>
+  <div>Design by RAM · Inspired by Locomotive.ca (Godly.website) + Stripe Sessions 2026</div>
+  <div>ram.zenbin.org/frame</div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>ASSAY — precision biomedical research platform</title>
+<meta name="description" content="Clinical trial tracking and biomarker intelligence for research teams. Ice-blue precision aesthetic. A RAM design concept inspired by ZettaJoule and Mixpanel.">
+<meta property="og:title" content="ASSAY — precision biomedical research platform">
+<meta property="og:description" content="Clinical trial tracking and biomarker intelligence for research teams.">
+<meta property="og:url" content="https://zenbin.org/p/assay">
+<meta name="theme-color" content="#1155EE">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500;600&family=DM+Sans:wght@300;400;500;600;700&display=swap');
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#EBF3FF;--surface:#FFFFFF;--card:#F4F8FF;--card2:#E2EDFF;
+  --blue:#1155EE;--blue2:#4B82F6;--teal:#00B8A0;--navy:#0A1628;
+  --muted:rgba(10,22,40,0.48);--dim:rgba(10,22,40,0.22);--faint:rgba(10,22,40,0.09);
+  --green:#10B981;--warn:#F59E0B;--red:#EF4444;
+  --border:rgba(17,85,238,0.13);--ice:#D3E7FF;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--navy);font-family:'DM Sans',sans-serif;overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(235,243,255,0.88);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;padding:0 56px;height:64px}
+.nav-logo{font-weight:700;font-size:14px;letter-spacing:.14em;color:var(--blue);text-decoration:none}
+.nav-links{display:flex;gap:36px;list-style:none}
+.nav-links a{font-size:11px;color:var(--muted);text-decoration:none;font-family:'DM Mono',monospace;letter-spacing:.1em;text-transform:uppercase}
+.nav-cta{background:var(--blue);color:#fff;border:none;padding:10px 22px;border-radius:8px;
+  font-size:11px;font-weight:600;cursor:pointer;font-family:'DM Mono',monospace;letter-spacing:.08em}
+
+/* HERO */
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding-top:64px;overflow:hidden}
+.hero-left{padding:72px 72px 72px;max-width:600px}
+.eyebrow{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.18em;color:var(--blue);
+  margin-bottom:24px;text-transform:uppercase}
+.hero-title{font-family:'DM Serif Display',serif;font-size:78px;line-height:0.88;letter-spacing:-.02em;
+  margin-bottom:28px;color:var(--navy)}
+.hero-title em{color:var(--blue);font-style:normal}
+.hero-rule{height:1px;background:var(--border);margin:28px 0}
+.hero-deck{font-family:'DM Serif Display',serif;font-style:italic;font-size:20px;
+  line-height:1.55;color:var(--muted);margin-bottom:14px}
+.hero-sub{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);
+  line-height:1.9;max-width:440px;margin-bottom:44px;letter-spacing:.01em}
+.hero-btns{display:flex;gap:14px;align-items:center}
+.btn-blue{background:var(--blue);color:#fff;padding:14px 28px;border-radius:10px;
+  font-size:11px;font-weight:600;letter-spacing:.08em;text-decoration:none;
+  font-family:'DM Mono',monospace;display:inline-block}
+.btn-ghost{border:1px solid var(--border);color:var(--muted);padding:13px 26px;border-radius:10px;
+  font-size:11px;letter-spacing:.08em;text-decoration:none;
+  font-family:'DM Mono',monospace;display:inline-block}
+.hero-right{height:100vh;display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(135deg,var(--ice) 0%,var(--bg) 100%);
+  position:relative;overflow:hidden}
+
+/* Phone */
+.phone-wrap{position:relative;z-index:2}
+.phone{width:290px;height:590px;background:var(--surface);border-radius:38px;overflow:hidden;
+  border:1px solid var(--border);
+  box-shadow:0 4px 32px rgba(17,85,238,0.10),0 32px 80px rgba(10,22,40,0.12);position:relative}
+.p-screen{padding:24px 14px 14px;height:100%;background:var(--bg)}
+.p-brand{font-weight:700;font-size:11px;letter-spacing:.14em;color:var(--blue)}
+.p-title{font-family:'DM Serif Display',serif;font-size:26px;line-height:1.05;color:var(--navy);margin:10px 0 4px}
+.p-step{font-family:'DM Mono',monospace;font-size:8.5px;letter-spacing:.08em;color:var(--blue);margin-bottom:14px}
+.p-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:14px}
+.p-stat{background:var(--surface);border-radius:10px;padding:10px 8px;border:1px solid var(--border)}
+.p-stat-v{font-family:'DM Mono',monospace;font-size:18px;font-weight:700;line-height:1}
+.p-stat-l{font-family:'DM Mono',monospace;font-size:7.5px;color:var(--muted);margin-top:3px;letter-spacing:.04em}
+.p-card{background:var(--surface);border-radius:10px;padding:10px 12px;margin-bottom:10px;border:1px solid var(--border)}
+.p-card-hdr{font-size:10px;font-weight:600;color:var(--navy);margin-bottom:8px}
+.p-row{display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid var(--faint)}
+.p-row:last-child{border-bottom:none}
+.p-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.p-rname{font-size:10px;font-weight:600;color:var(--navy);flex:1}
+.p-det{font-family:'DM Mono',monospace;font-size:7.5px;color:var(--muted)}
+.p-chg{font-family:'DM Mono',monospace;font-size:9.5px;font-weight:700}
+.p-nav{display:flex;justify-content:space-around;padding:8px 0 0;border-top:1px solid var(--border);background:var(--surface);border-radius:0 0 30px 30px}
+.p-nav-item{display:flex;flex-direction:column;align-items:center;gap:2px}
+.p-nav-num{font-family:'DM Mono',monospace;font-size:7px;font-weight:600}
+.p-nav-lbl{font-family:'DM Mono',monospace;font-size:7.5px}
+
+/* Floating data cards */
+.float-card{position:absolute;background:rgba(255,255,255,0.95);border:1px solid var(--border);
+  border-radius:12px;padding:12px 16px;backdrop-filter:blur(12px);
+  box-shadow:0 4px 24px rgba(17,85,238,0.08)}
+.fc-val{font-family:'DM Mono',monospace;font-size:22px;font-weight:700;color:var(--blue);line-height:1}
+.fc-lbl{font-family:'DM Mono',monospace;font-size:8px;color:var(--muted);margin-top:3px;letter-spacing:.08em}
+.fc-trend{font-family:'DM Mono',monospace;font-size:10px;font-weight:600;color:var(--green)}
+
+/* Background geometry (ZettaJoule-inspired tech diagram feel) */
+.hero-bg-lines{position:absolute;top:0;left:0;right:0;bottom:0;overflow:hidden;opacity:0.35}
+.hero-bg-lines svg{width:100%;height:100%}
+
+/* FEATURES SECTION */
+.section{padding:96px 72px;border-top:1px solid var(--border)}
+.section-inner{max-width:1240px;margin:0 auto}
+.section-eyebrow{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.18em;color:var(--blue);
+  margin-bottom:20px;text-transform:uppercase}
+.section-title{font-family:'DM Serif Display',serif;font-size:54px;line-height:0.9;
+  letter-spacing:-.02em;margin-bottom:56px;max-width:600px;color:var(--navy)}
+
+/* Numbered feature grid — Mixpanel 01-05 inspired */
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+  background:var(--border);border:1px solid var(--border);border-radius:14px;overflow:hidden}
+.feat-card{background:var(--surface);padding:36px 28px}
+.feat-num{font-family:'DM Mono',monospace;font-size:10px;color:var(--blue);
+  letter-spacing:.14em;margin-bottom:20px;font-weight:600}
+.feat-card h3{font-family:'DM Serif Display',serif;font-size:22px;margin-bottom:12px;color:var(--navy)}
+.feat-card p{font-family:'DM Mono',monospace;font-size:11px;line-height:1.85;color:var(--muted);letter-spacing:.01em}
+
+/* ANALYTICS SECTION */
+.analytics-section{background:var(--navy);padding:96px 72px}
+.as-inner{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
+.as-left{color:#E8F3FF}
+.as-eyebrow{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.18em;color:var(--ice);margin-bottom:20px}
+.as-title{font-family:'DM Serif Display',serif;font-size:52px;line-height:0.9;letter-spacing:-.02em;margin-bottom:20px}
+.as-title em{color:var(--ice);font-style:normal}
+.as-body{font-family:'DM Mono',monospace;font-size:12px;color:rgba(232,243,255,0.6);line-height:1.9;letter-spacing:.02em;margin-bottom:32px}
+.as-link{font-family:'DM Mono',monospace;font-size:11px;color:var(--ice);letter-spacing:.08em;text-decoration:none;
+  border-bottom:1px solid rgba(211,231,255,0.3);padding-bottom:3px}
+.as-right{display:flex;flex-direction:column;gap:12px}
+.confidence-item{background:rgba(255,255,255,0.05);border:1px solid rgba(211,231,255,0.1);
+  border-radius:10px;padding:14px 18px}
+.ci-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.ci-label{font-size:11px;color:rgba(232,243,255,0.7);font-family:'DM Sans',sans-serif}
+.ci-val{font-family:'DM Mono',monospace;font-size:12px;font-weight:700;color:var(--ice)}
+.ci-bar-track{height:4px;background:rgba(255,255,255,0.1);border-radius:2px}
+.ci-bar-fill{height:4px;border-radius:2px}
+
+/* STATS SECTION */
+.stats-section{padding:80px 72px;background:var(--card)}
+.stats-inner{max-width:1240px;margin:0 auto}
+.stats-title{font-family:'DM Serif Display',serif;font-size:16px;font-style:italic;
+  color:var(--muted);margin-bottom:48px;letter-spacing:.02em}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);
+  border:1px solid var(--border);border-radius:12px;overflow:hidden}
+.stat-card{background:var(--surface);padding:28px}
+.stat-n{font-family:'DM Mono',monospace;font-size:36px;font-weight:700;color:var(--navy);line-height:1;margin-bottom:8px}
+.stat-t{font-size:12px;font-weight:600;color:var(--navy);margin-bottom:6px}
+.stat-d{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);line-height:1.7;letter-spacing:.01em}
+
+/* CTA */
+.cta{padding:120px 72px;text-align:center;background:var(--bg)}
+.cta-inner{max-width:640px;margin:0 auto}
+.cta h2{font-family:'DM Serif Display',serif;font-size:64px;line-height:0.88;letter-spacing:-.02em;
+  margin-bottom:24px;color:var(--navy)}
+.cta h2 em{color:var(--blue);font-style:normal}
+.cta p{font-family:'DM Mono',monospace;font-size:13px;color:var(--muted);line-height:1.9;
+  max-width:400px;margin:0 auto 44px;letter-spacing:.02em}
+
+/* FOOTER */
+footer{padding:40px 72px;border-top:1px solid var(--border);background:var(--bg);
+  display:flex;align-items:center;justify-content:space-between}
+.footer-logo{font-weight:700;font-size:13px;letter-spacing:.14em;color:var(--blue)}
+.footer-note{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:.06em}
+.footer-tag{font-family:'DM Mono',monospace;font-size:10px;color:var(--teal);letter-spacing:.1em}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#">ASSAY</a>
+  <ul class="nav-links">
+    <li><a href="#trials">Trials</a></li>
+    <li><a href="#markers">Markers</a></li>
+    <li><a href="#analysis">Analysis</a></li>
+    <li><a href="#team">Team</a></li>
+  </ul>
+  <button class="nav-cta">REQUEST DEMO →</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="eyebrow">Biomedical Research Platform · 2026</div>
+    <h1 class="hero-title">Clinical<br>precision<br><em>reimagined.</em></h1>
+    <div class="hero-rule"></div>
+    <p class="hero-deck">Track trials, biomarkers, and team activity — all in one clinical intelligence layer.</p>
+    <p class="hero-sub">ASSAY gives research teams a single source of truth: numbered dashboards, real-time biomarker tracking, and AI-generated insights modelled on actual trial data. Built for the rigour of Phase I–III.</p>
+    <div class="hero-btns">
+      <a class="btn-blue" href="#">VIEW PROTOTYPE →</a>
+      <a class="btn-ghost" href="#">EXPLORE SCREENS</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <!-- Background diagram lines (ZettaJoule-inspired) -->
+    <div class="hero-bg-lines">
+      <svg viewBox="0 0 600 800" preserveAspectRatio="xMidYMid slice">
+        <line x1="0" y1="200" x2="600" y2="200" stroke="#1155EE" stroke-width="0.5"/>
+        <line x1="0" y1="400" x2="600" y2="400" stroke="#1155EE" stroke-width="0.5"/>
+        <line x1="0" y1="600" x2="600" y2="600" stroke="#1155EE" stroke-width="0.5"/>
+        <line x1="150" y1="0" x2="150" y2="800" stroke="#1155EE" stroke-width="0.5"/>
+        <line x1="300" y1="0" x2="300" y2="800" stroke="#1155EE" stroke-width="0.5"/>
+        <line x1="450" y1="0" x2="450" y2="800" stroke="#1155EE" stroke-width="0.5"/>
+        <circle cx="150" cy="200" r="4" fill="none" stroke="#1155EE" stroke-width="1"/>
+        <circle cx="300" cy="400" r="4" fill="none" stroke="#1155EE" stroke-width="1"/>
+        <circle cx="450" cy="200" r="4" fill="none" stroke="#1155EE" stroke-width="1"/>
+        <circle cx="150" cy="600" r="4" fill="none" stroke="#1155EE" stroke-width="1"/>
+        <circle cx="450" cy="600" r="4" fill="none" stroke="#1155EE" stroke-width="1"/>
+        <path d="M150,200 L300,400 L450,200" fill="none" stroke="#1155EE" stroke-width="0.8"/>
+        <path d="M150,600 L300,400 L450,600" fill="none" stroke="#00B8A0" stroke-width="0.8"/>
+      </svg>
+    </div>
+
+    <!-- Phone mockup -->
+    <div class="phone-wrap">
+      <div class="phone">
+        <div class="p-screen">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+            <div class="p-brand">ASSAY</div>
+            <div style="font-family:'DM Mono',monospace;font-size:8px;color:var(--muted)">MAR 28, 2026</div>
+          </div>
+          <div class="p-title">Research<br>Overview</div>
+          <div class="p-step">01 / Dashboard</div>
+          <div class="p-stats">
+            <div class="p-stat">
+              <div class="p-stat-v" style="color:var(--blue)">12</div>
+              <div class="p-stat-l">TRIALS</div>
+            </div>
+            <div class="p-stat">
+              <div class="p-stat-v" style="color:#00B8A0">847</div>
+              <div class="p-stat-l">ENROLLED</div>
+            </div>
+            <div class="p-stat">
+              <div class="p-stat-v" style="color:#F59E0B">3</div>
+              <div class="p-stat-l">ALERTS</div>
+            </div>
+          </div>
+          <div class="p-card">
+            <div class="p-card-hdr">Active Studies</div>
+            <div class="p-row">
+              <div class="p-dot" style="background:var(--blue)"></div>
+              <div class="p-rname">PHOENIX-3</div>
+              <div class="p-det">234/300</div>
+              <div class="p-chg" style="color:var(--green)">+8.4%</div>
+            </div>
+            <div class="p-row">
+              <div class="p-dot" style="background:#00B8A0"></div>
+              <div class="p-rname">AURORA-1</div>
+              <div class="p-det">312/340</div>
+              <div class="p-chg" style="color:var(--green)">+12.1%</div>
+            </div>
+            <div class="p-row">
+              <div class="p-dot" style="background:#F59E0B"></div>
+              <div class="p-rname">DELTA-7</div>
+              <div class="p-det">48/80</div>
+              <div class="p-chg" style="color:var(--red)">−2.3%</div>
+            </div>
+          </div>
+          <div class="p-nav">
+            <div class="p-nav-item">
+              <div class="p-nav-num" style="color:var(--blue)">01</div>
+              <div class="p-nav-lbl" style="color:var(--blue);font-weight:600">Overview</div>
+            </div>
+            <div class="p-nav-item">
+              <div class="p-nav-num" style="color:var(--muted)">02</div>
+              <div class="p-nav-lbl" style="color:var(--muted)">Trials</div>
+            </div>
+            <div class="p-nav-item">
+              <div class="p-nav-num" style="color:var(--muted)">03</div>
+              <div class="p-nav-lbl" style="color:var(--muted)">Markers</div>
+            </div>
+            <div class="p-nav-item">
+              <div class="p-nav-num" style="color:var(--muted)">04</div>
+              <div class="p-nav-lbl" style="color:var(--muted)">Analysis</div>
+            </div>
+            <div class="p-nav-item">
+              <div class="p-nav-num" style="color:var(--muted)">05</div>
+              <div class="p-nav-lbl" style="color:var(--muted)">Team</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Floating data cards -->
+    <div class="float-card" style="top:20%;left:8%">
+      <div class="fc-val">78.4%</div>
+      <div class="fc-lbl">PHOENIX-3 EFFICACY</div>
+      <div class="fc-trend">↑ +8.4% vs baseline</div>
+    </div>
+    <div class="float-card" style="bottom:22%;right:6%">
+      <div class="fc-val">4.2</div>
+      <div class="fc-lbl">IL-6 · pg/mL</div>
+      <div class="fc-trend" style="color:var(--warn)">↑ +0.3 (7d)</div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="section" id="trials">
+  <div class="section-inner">
+    <div class="section-eyebrow">Core Capabilities</div>
+    <h2 class="section-title">Five precision<br>instruments.</h2>
+    <div class="feat-grid">
+      <div class="feat-card">
+        <div class="feat-num">01 / OVERVIEW</div>
+        <h3>Research Dashboard</h3>
+        <p>A unified view of all active studies, enrollment metrics, safety alerts, and weekly activity patterns — at a glance.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-num">02 / TRIALS</div>
+        <h3>Trial Tracker</h3>
+        <p>Track each study through Pre-clinical, Phase I, II, and III stages. Monitor enrollment against targets, days elapsed, and efficacy data.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-num">03 / MARKERS</div>
+        <h3>Biomarker Tracker</h3>
+        <p>Log and trend IL-6, CRP, TNF-α, CD4, and custom markers. Sparkline histories with 7-day trend arrows and normal range indicators.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-num">04 / ANALYSIS</div>
+        <h3>AI Insights</h3>
+        <p>Machine-learning pattern detection with confidence scoring. Signal, Anomaly, and Trend classifications updated in real time.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-num">05 / TEAM</div>
+        <h3>Team Hub</h3>
+        <p>See which investigators are online, which trials they're working on, and a real-time activity log of every data update.</p>
+      </div>
+      <div class="feat-card" style="background:var(--blue)">
+        <div class="feat-num" style="color:rgba(255,255,255,0.6)">DESIGN</div>
+        <h3 style="color:#fff">Clinical Precision<br>Aesthetic</h3>
+        <p style="color:rgba(255,255,255,0.7)">Ice-blue palette (#EBF3FF) + deep navy (#0A1628). Numbered navigation. DM Serif Display + DM Mono. ZettaJoule grid lines. Mixpanel step progression.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AI ANALYSIS SECTION -->
+<section class="analytics-section" id="analysis">
+  <div class="as-inner">
+    <div class="as-left">
+      <div class="as-eyebrow">AI Intelligence Layer</div>
+      <h2 class="as-title">Pattern<br>detection,<br><em>real-time.</em></h2>
+      <p class="as-body">ASSAY's AI engine continuously scans trial data for efficacy signals, anomalies, and trends — surfacing insights that would take hours to find manually. Confidence scoring on every finding so your team knows what to act on first.</p>
+      <a class="as-link" href="#">EXPLORE ANALYSIS SCREEN →</a>
+    </div>
+    <div class="as-right">
+      <div class="confidence-item">
+        <div class="ci-header">
+          <div class="ci-label">Efficacy signal</div>
+          <div class="ci-val" style="color:#60A5FA">94%</div>
+        </div>
+        <div class="ci-bar-track"><div class="ci-bar-fill" style="width:94%;background:#1155EE"></div></div>
+      </div>
+      <div class="confidence-item">
+        <div class="ci-header">
+          <div class="ci-label">Safety profile</div>
+          <div class="ci-val" style="color:#34D399">87%</div>
+        </div>
+        <div class="ci-bar-track"><div class="ci-bar-fill" style="width:87%;background:#10B981"></div></div>
+      </div>
+      <div class="confidence-item">
+        <div class="ci-header">
+          <div class="ci-label">Protocol adherence</div>
+          <div class="ci-val" style="color:#2DD4BF">91%</div>
+        </div>
+        <div class="ci-bar-track"><div class="ci-bar-fill" style="width:91%;background:#00B8A0"></div></div>
+      </div>
+      <div class="confidence-item">
+        <div class="ci-header">
+          <div class="ci-label">Data completeness</div>
+          <div class="ci-val" style="color:#FCD34D">78%</div>
+        </div>
+        <div class="ci-bar-track"><div class="ci-bar-fill" style="width:78%;background:#F59E0B"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats-section">
+  <div class="stats-inner">
+    <p class="stats-title">Trusted by research teams running 847 active subjects across 12 concurrent trials.</p>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-n" style="color:var(--blue)">12</div>
+        <div class="stat-t">Concurrent trials</div>
+        <div class="stat-d">Phase I through Phase III, tracked in a single numbered dashboard.</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-n" style="color:#00B8A0">847</div>
+        <div class="stat-t">Enrolled subjects</div>
+        <div class="stat-d">Across PHOENIX-3, AURORA-1, DELTA-7, and VEGA-2 — all in one view.</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-n" style="color:var(--green)">94%</div>
+        <div class="stat-t">AI confidence score</div>
+        <div class="stat-d">Average confidence on detected efficacy signals for top-priority trials.</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-n" style="color:var(--blue)">4</div>
+        <div class="stat-t">Biomarkers tracked</div>
+        <div class="stat-d">IL-6, CRP, TNF-α, CD4 with sparkline histories and reference ranges.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="cta-inner">
+    <h2>Precision<br>for every<br><em>assay.</em></h2>
+    <p>From Phase I to Phase III, ASSAY gives your research team the clarity to move faster and safer.</p>
+    <a class="btn-blue" style="font-size:13px;padding:16px 40px;border-radius:10px;display:inline-block;text-decoration:none" href="#">EXPLORE THE PROTOTYPE →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">ASSAY</div>
+  <div class="footer-note">A RAM DESIGN CONCEPT · MARCH 2026</div>
+  <div class="footer-tag">LIGHT THEME</div>
+</footer>
+
+</body>
+</html>

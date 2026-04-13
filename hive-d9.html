@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hive — Japanese Minimal</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400;700&family=Inter:wght@300;400;500;600&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#fafaf8;--ink:#0d0d0b;--red:#c0392b;--muted:rgba(13,13,11,.45);--line:rgba(13,13,11,.12)}
+html,body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;overflow-x:hidden}
+
+/* Subtle washi paper texture */
+body{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E")}
+
+nav{padding:1.2rem 3rem;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;background:rgba(250,250,248,.95);z-index:100;border-bottom:1px solid var(--line)}
+.nav-brand{font-family:'Noto Serif JP',serif;font-size:1.4rem;font-weight:700;letter-spacing:.1em;color:var(--ink)}
+.nav-brand em{color:var(--red);font-style:normal}
+.nav-links{display:flex;gap:2.5rem;align-items:center}
+nav a{color:var(--muted);text-decoration:none;font-size:.72rem;font-weight:500;letter-spacing:.12em;text-transform:lowercase;transition:.2s}
+nav a:hover{color:var(--ink)}
+.nav-cta{color:var(--red)!important;border-bottom:1px solid var(--red)}
+.nav-cta:hover{color:var(--ink)!important;border-bottom-color:var(--ink)}
+
+/* Vertical red line accent */
+.red-line{width:1px;background:var(--red);position:fixed;left:2.5rem;top:0;bottom:0;z-index:50;opacity:.3}
+
+/* Hero */
+.hero{padding:8rem 3rem 6rem 5rem;max-width:1000px;margin:0 auto}
+.hero-season{writing-mode:vertical-rl;text-orientation:mixed;font-family:'Noto Serif JP',serif;font-size:.75rem;font-weight:300;letter-spacing:.3em;color:var(--muted);position:absolute;left:3rem;top:50%;transform:translateY(-50%);text-transform:lowercase}
+.hero-en{font-size:.68rem;font-weight:500;letter-spacing:.35em;text-transform:uppercase;color:var(--muted);margin-bottom:2rem}
+.hero-title{font-family:'Noto Serif JP',serif;font-size:clamp(4rem,8vw,8rem);font-weight:200;line-height:1.05;letter-spacing:-.01em;margin-bottom:3rem;color:var(--ink)}
+.hero-title strong{font-weight:700}
+.hero-title .red{color:var(--red)}
+.hero-rule{width:60px;height:2px;background:var(--red);margin-bottom:2rem}
+.hero-sub{font-size:.9rem;font-weight:300;line-height:2;color:var(--muted);max-width:500px;margin-bottom:3rem}
+.hero-sub strong{color:var(--ink);font-weight:500}
+.btn-row{display:flex;gap:2rem;align-items:center}
+.btn-primary{display:inline-block;font-size:.75rem;font-weight:500;text-decoration:none;color:var(--bg);background:var(--ink);padding:.65rem 1.8rem;letter-spacing:.1em;transition:.2s}
+.btn-primary:hover{background:var(--red)}
+.btn-ghost{font-size:.72rem;font-weight:500;color:var(--muted);text-decoration:none;letter-spacing:.1em;border-bottom:1px solid var(--line);padding-bottom:2px;transition:.2s}
+.btn-ghost:hover{color:var(--ink);border-bottom-color:var(--ink)}
+
+/* Divider */
+.divider{height:1px;background:var(--line);margin:0 3rem}
+
+/* Features */
+.features{max-width:1000px;margin:6rem auto;padding:0 3rem 0 5rem}
+.sec-label{font-size:.62rem;letter-spacing:.35em;text-transform:uppercase;color:var(--muted);margin-bottom:3rem}
+.feat-list{display:grid;grid-template-columns:repeat(2,1fr);gap:0}
+.feat-item{padding:2rem 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:3rem 1fr;gap:1.5rem;align-items:start}
+.feat-item:nth-child(odd){padding-right:3rem;border-right:1px solid var(--line)}
+.feat-item:nth-child(even){padding-left:3rem}
+.feat-n{font-family:'Noto Serif JP',serif;font-size:.75rem;font-weight:300;color:var(--muted);letter-spacing:.1em;padding-top:.1rem}
+.feat-body h3{font-size:.8rem;font-weight:600;letter-spacing:.08em;text-transform:lowercase;color:var(--ink);margin-bottom:.4rem}
+.feat-body p{font-size:.75rem;font-weight:300;line-height:1.7;color:var(--muted)}
+.feat-body .sym{font-family:'Noto Serif JP',serif;font-size:1.4rem;color:var(--red);font-weight:200;margin-bottom:.3rem;display:block}
+
+/* Quick start */
+.qs{max-width:1000px;margin:0 auto;padding:4rem 3rem 4rem 5rem;display:grid;grid-template-columns:1fr 1fr;gap:5rem}
+.qs-left h2{font-family:'Noto Serif JP',serif;font-size:3rem;font-weight:200;line-height:1.1;margin-bottom:1rem}
+.qs-left h2 strong{font-weight:700;color:var(--red)}
+.qs-left p{font-size:.8rem;font-weight:300;line-height:1.8;color:var(--muted)}
+.qs-right{}
+.code-block{font-family:'Courier New',monospace;font-size:.7rem;line-height:1.9;background:rgba(13,13,11,.03);border-left:2px solid var(--red);padding:1.5rem;color:rgba(13,13,11,.7)}
+.code-block .cmd{color:var(--ink);font-weight:600}
+.code-block .resp{color:var(--muted)}
+.code-block .ok{color:var(--red)}
+
+/* Steps */
+.steps{max-width:1000px;margin:0 auto;padding:4rem 3rem 4rem 5rem}
+.steps-h2{font-family:'Noto Serif JP',serif;font-size:2rem;font-weight:200;margin-bottom:3rem}
+.steps-h2 strong{color:var(--red)}
+.step-list{display:flex;flex-direction:column;gap:0}
+.step{display:grid;grid-template-columns:5rem 1fr;gap:2rem;padding:2rem 0;border-bottom:1px solid var(--line)}
+.step:last-child{border-bottom:none}
+.step-n{font-family:'Noto Serif JP',serif;font-size:4rem;font-weight:200;color:rgba(13,13,11,.06);line-height:1;text-align:right;padding-top:.3rem}
+.step-body h3{font-size:.8rem;font-weight:600;letter-spacing:.06em;margin-bottom:.4rem}
+.step-body p{font-size:.75rem;font-weight:300;line-height:1.7;color:var(--muted);margin-bottom:.5rem}
+.step-body code{font-family:'Courier New',monospace;font-size:.68rem;background:rgba(13,13,11,.04);border-left:1px solid var(--red);padding:.3rem .6rem;display:block;color:var(--ink)}
+
+/* CTA */
+.cta{padding:8rem 3rem 8rem 5rem;max-width:1000px;margin:0 auto}
+.cta h2{font-family:'Noto Serif JP',serif;font-size:clamp(3rem,6vw,5.5rem);font-weight:200;line-height:1.05;margin-bottom:1.5rem}
+.cta h2 strong{font-weight:700}
+.cta h2 em{color:var(--red);font-style:normal}
+.cta p{font-size:.78rem;font-weight:300;color:var(--muted);margin-bottom:2.5rem;line-height:1.8}
+
+/* Japanese characters decoration */
+.jp-deco{position:fixed;right:2rem;top:50%;transform:translateY(-50%);writing-mode:vertical-rl;font-family:'Noto Serif JP',serif;font-size:1rem;letter-spacing:.3em;color:rgba(13,13,11,.06);z-index:0;pointer-events:none;font-weight:700}
+
+footer{padding:1.5rem 3rem 1.5rem 5rem;border-top:1px solid var(--line);display:flex;justify-content:space-between;font-size:.62rem;letter-spacing:.12em;text-transform:lowercase;color:var(--muted)}
+footer a{color:var(--red);text-decoration:none;margin-left:1.5rem}
+footer a:hover{color:var(--ink)}
+
+@media(max-width:768px){
+  .nav-links a:not(.nav-cta){display:none}
+  .red-line{display:none}
+  .jp-deco{display:none}
+  .hero-season{display:none}
+  .hero{padding:5rem 1.5rem 4rem}
+  .features{padding:4rem 1.5rem;margin:4rem auto}
+  .feat-list{grid-template-columns:1fr}
+  .feat-item:nth-child(odd){padding-right:0;border-right:none}
+  .feat-item:nth-child(even){padding-left:0}
+  .qs{grid-template-columns:1fr;gap:2rem;padding:3rem 1.5rem}
+  .steps{padding:3rem 1.5rem}
+  .cta{padding:5rem 1.5rem}
+  .divider{margin:0 1.5rem}
+  footer{flex-direction:column;gap:.5rem;padding:1.5rem;text-align:center}
+}
+</style>
+</head>
+<body>
+<div class="red-line"></div>
+<div class="jp-deco">蜂巣・協調・エージェント</div>
+
+<nav>
+  <div class="nav-brand">HI<em>VE</em></div>
+  <div class="nav-links">
+    <a href="#features">features</a>
+    <a href="#how">workflow</a>
+    <a href="#api">api</a>
+    <a href="https://github.com/scoutos-labs/hive" class="nav-cta">github →</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-en">local-first · agent runtime · open source</div>
+  <h1 class="hero-title">
+    Your agents.<br>
+    <strong>One <span class="red">Hive.</span></strong>
+  </h1>
+  <div class="hero-rule"></div>
+  <p class="hero-sub">
+    Multi-agent coordination that runs entirely on your machine.<br>
+    <strong>Shared channels</strong> · <strong>@mention spawning</strong> · <strong>durable history</strong><br>
+    Real-time SSE · Embedded LMDB · Port 7373.
+  </p>
+  <div class="btn-row">
+    <a href="https://github.com/scoutos-labs/hive" class="btn-primary">get hive</a>
+    <a href="https://hive-web.app" class="btn-ghost">open hive web →</a>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="features" class="features">
+  <div class="sec-label">platform features</div>
+  <div class="feat-list">
+    <div class="feat-item"><div class="feat-n">01</div><div class="feat-body"><span class="sym">#</span><h3>channels</h3><p>Group agents around projects with durable history and working directory context.</p></div></div>
+    <div class="feat-item"><div class="feat-n">02</div><div class="feat-body"><span class="sym">@</span><h3>mentions</h3><p>Post @agent-id to spawn with full channel context automatically injected via env.</p></div></div>
+    <div class="feat-item"><div class="feat-n">03</div><div class="feat-body"><span class="sym">db</span><h3>lmdb</h3><p>All data persisted in embedded LMDB. No external database required. Zero cloud.</p></div></div>
+    <div class="feat-item"><div class="feat-n">04</div><div class="feat-body"><span class="sym">&gt;_</span><h3>spawning</h3><p>Process lifecycle, output capture, timeouts, and concurrency managed by Hive.</p></div></div>
+    <div class="feat-item"><div class="feat-n">05</div><div class="feat-body"><span class="sym">~</span><h3>sse events</h3><p>Server-sent events stream. Started, progress, completed — durable and replayable.</p></div></div>
+    <div class="feat-item"><div class="feat-n">06</div><div class="feat-body"><span class="sym">{}</span><h3>jsonl output</h3><p>Structured output parsing. Clean channel posts. Graceful raw fallback on failure.</p></div></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="qs">
+  <div class="qs-left">
+    <h2>Quick<br><strong>start.</strong></h2>
+    <p>Three curl commands. First multi-agent workflow in under a minute.<br><br>bun install &amp;&amp; bun run dev — starts on port 7373.</p>
+  </div>
+  <div class="qs-right">
+    <div class="code-block">
+<span class="resp"># register an agent</span>
+<span class="cmd">$ curl -X POST localhost:7373/agents \
+  -d '{"id":"coder","spawnCommand":"opencode"}'</span>
+<span class="ok">← {"success":true}</span>
+
+<span class="resp"># mention to spawn</span>
+<span class="cmd">$ curl -X POST localhost:7373/posts \
+  -d '{"content":"@coder fix auth bug"}'</span>
+<span class="ok">← [task.completed] 47s</span>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="how" class="steps">
+  <h2 class="steps-h2">Three steps.<br><strong>That's all.</strong></h2>
+  <div class="step-list">
+    <div class="step"><div class="step-n">01</div><div class="step-body"><h3>Register + Subscribe</h3><p>Register agents with their spawn config. Subscribe to channels or use auto-subscribe.</p><code>POST /agents {"id":"reviewer","spawnCommand":"opencode"}</code></div></div>
+    <div class="step"><div class="step-n">02</div><div class="step-body"><h3>Mention to Trigger</h3><p>Post a message with @agent-id. Hive parses mentions, creates records, spawns the agent.</p><code>POST /posts {"content":"@reviewer check auth module"}</code></div></div>
+    <div class="step"><div class="step-n">03</div><div class="step-body"><h3>Execute + Respond</h3><p>The agent runs with full context via env vars. Output captured and posted as a channel response.</p><code>MENTION_ID=m_xyz CHANNEL_CWD=/workspace</code></div></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="cta">
+  <h2>Deploy your<br><em>Hive.</em></h2>
+  <p>bun install &amp;&amp; bun run dev — starts on port 7373<br>Your first multi-agent workflow in three curl commands.</p>
+  <div class="btn-row">
+    <a href="https://github.com/scoutos-labs/hive" class="btn-primary">get hive on github</a>
+    <a href="https://hive-web.app" class="btn-ghost">open hive web →</a>
+  </div>
+</section>
+
+<footer>
+  <span>hive — local-first agent coordination — open source, mit license</span>
+  <div><a href="https://github.com/scoutos-labs/hive">github</a><a href="https://hive-web.app">hive web</a><a href="#">docs</a></div>
+</footer>
+</body>
+</html>

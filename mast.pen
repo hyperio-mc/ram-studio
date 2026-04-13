@@ -1,0 +1,4536 @@
+{
+  "version": "2.8",
+  "metadata": {
+    "name": "MAST — Studio OS",
+    "author": "RAM",
+    "date": "2026-04-12",
+    "theme": "light",
+    "heartbeat": "mast",
+    "elements": 491,
+    "palette": {
+      "bg": "#F8F5F0",
+      "surface": "#FFFFFF",
+      "card": "#EDE9E2",
+      "text": "#16120C",
+      "accent": "#1C4ED8",
+      "accent2": "#B45309"
+    }
+  },
+  "screens": [
+    {
+      "name": "Today — Dashboard",
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 390 844\"/>",
+      "elements": [
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "fill": "#F8F5F0"
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 44,
+          "fill": "#F8F5F0"
+        },
+        {
+          "type": "text",
+          "x": 16,
+          "y": 16,
+          "content": "9:41",
+          "fontSize": 14,
+          "fill": "#16120C",
+          "fontWeight": 600
+        },
+        {
+          "type": "circle",
+          "cx": 346,
+          "cy": 22,
+          "r": 3,
+          "fill": "#16120C"
+        },
+        {
+          "type": "circle",
+          "cx": 354,
+          "cy": 22,
+          "r": 3,
+          "fill": "#16120C"
+        },
+        {
+          "type": "circle",
+          "cx": 362,
+          "cy": 22,
+          "r": 3,
+          "fill": "#16120C"
+        },
+        {
+          "type": "rect",
+          "x": 370,
+          "y": 16,
+          "width": 14,
+          "height": 8,
+          "fill": "none",
+          "rx": 2,
+          "stroke": "#16120C",
+          "strokeWidth": 1.5
+        },
+        {
+          "type": "rect",
+          "x": 372,
+          "y": 18,
+          "width": 8,
+          "height": 4,
+          "fill": "#16120C",
+          "rx": 1
+        },
+        {
+          "type": "rect",
+          "x": 384,
+          "y": 19,
+          "width": 2,
+          "height": 6,
+          "fill": "#16120C",
+          "rx": 1
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 68,
+          "content": "MAST",
+          "fontSize": 13,
+          "fill": "#1C4ED8",
+          "fontWeight": 700,
+          "letterSpacing": 3
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 96,
+          "content": "Sunday, April 12",
+          "fontSize": 22,
+          "fill": "#16120C",
+          "fontWeight": 300,
+          "fontFamily": "Georgia, serif"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 118,
+          "content": "Three projects active",
+          "fontSize": 13,
+          "fill": "#6B6258",
+          "fontWeight": 400
+        },
+        {
+          "type": "rect",
+          "x": 344,
+          "y": 62,
+          "width": 32,
+          "height": 32,
+          "fill": "#EDE9E2",
+          "rx": 16
+        },
+        {
+          "type": "circle",
+          "cx": 360,
+          "cy": 78,
+          "r": 7,
+          "fill": "none",
+          "stroke": "#6B6258",
+          "strokeWidth": 1.5
+        },
+        {
+          "type": "line",
+          "x1": 360,
+          "y1": 71,
+          "x2": 360,
+          "y2": 69,
+          "stroke": "#6B6258",
+          "strokeWidth": 1.5
+        },
+        {
+          "type": "circle",
+          "cx": 370,
+          "cy": 66,
+          "r": 5,
+          "fill": "#1C4ED8"
+        },
+        {
+          "type": "text",
+          "x": 370,
+          "y": 70,
+          "content": "3",
+          "fontSize": 7,
+          "fill": "#FFF",
+          "fontWeight": 700,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "line",
+          "x1": 20,
+          "y1": 132,
+          "x2": 370,
+          "y2": 132,
+          "stroke": "#D6CFBF",
+          "strokeWidth": 0.5
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 162,
+          "content": "$12,450",
+          "fontSize": 24,
+          "fill": "#16120C",
+          "fontWeight": 700,
+          "fontFamily": "Georgia, serif"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 178,
+          "content": "Active billing",
+          "fontSize": 10,
+          "fill": "#A09487",
+          "fontWeight": 400,
+          "letterSpacing": 0.2
+        },
+        {
+          "type": "line",
+          "x1": 139,
+          "y1": 142,
+          "x2": 139,
+          "y2": 192,
+          "stroke": "#E8E3D9",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 153,
+          "y": 162,
+          "content": "3",
+          "fontSize": 24,
+          "fill": "#16120C",
+          "fontWeight": 700,
+          "fontFamily": "Georgia, serif"
+        },
+        {
+          "type": "text",
+          "x": 153,
+          "y": 178,
+          "content": "In progress",
+          "fontSize": 10,
+          "fill": "#A09487",
+          "fontWeight": 400,
+          "letterSpacing": 0.2
+        },
+        {
+          "type": "line",
+          "x1": 256,
+          "y1": 142,
+          "x2": 256,
+          "y2": 192,
+          "stroke": "#E8E3D9",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 270,
+          "y": 162,
+          "content": "94%",
+          "fontSize": 24,
+          "fill": "#16120C",
+          "fontWeight": 700,
+          "fontFamily": "Georgia, serif"
+        },
+        {
+          "type": "text",
+          "x": 270,
+          "y": 178,
+          "content": "On-time rate",
+          "fontSize": 10,
+          "fill": "#A09487",
+          "fontWeight": 400,
+          "letterSpacing": 0.2
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 208,
+          "content": "ACTIVE PROJECTS",
+          "fontSize": 9,
+          "fill": "#A09487",
+          "fontWeight": 600,
+          "letterSpacing": 2
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 220,
+          "width": 170,
+          "height": 200,
+          "fill": "#FFFFFF",
+          "rx": 12,
+          "stroke": "#E8E3D9",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 220,
+          "width": 170,
+          "height": 90,
+          "fill": "#1C3880",
+          "rx": 12
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 278,
+          "width": 170,
+          "height": 32,
+          "fill": "#1C3880"
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 256,
+          "content": "Arken",
+          "fontSize": 18,
+          "fill": "#FFF",
+          "fontWeight": 600,
+          "fontFamily": "Georgia, serif"
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 274,
+          "content": "Brand identity",
+          "fontSize": 10,
+          "fill": "rgba(255,255,255,0.7)",
+          "fontWeight": 400,
+          "letterSpacing": 0.5
+        },
+        {
+          "type": "rect",
+          "x": 36,
+          "y": 326,
+          "width": 134,
+          "height": 3,
+          "fill": "#E8E3D9",
+          "rx": 1.5
+        },
+        {
+          "type": "rect",
+          "x": 36,
+          "y": 326,
+          "width": 90,
+          "height": 3,
+          "fill": "#1C4ED8",
+          "rx": 1.5
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 354,
+          "content": "Due Apr 24",
+          "fontSize": 10,
+          "fill": "#A09487"
+        },
+        {
+          "type": "text",
+          "x": 154,
+          "y": 354,
+          "content": "67%",
+          "fontSize": 10,
+          "fill": "#1C4ED8",
+          "fontWeight": 600,
+          "textAnchor": "end"
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 374,
+          "content": "$3,200",
+          "fontSize": 14,
+          "fill": "#16120C",
+          "fontWeight": 600
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 388,
+          "content": "remaining",
+          "fontSize": 9,
+          "fill": "#A09487"
+        },
+        {
+          "type": "circle",
+          "cx": 134,
+          "cy": 382,
+          "r": 8,
+          "fill": "#A78BFA"
+        },
+        {
+          "type": "circle",
+          "cx": 142,
+          "cy": 382,
+          "r": 8,
+          "fill": "#EDE9E2",
+          "stroke": "#FFFFFF",
+          "strokeWidth": 2
+        },
+        {
+          "type": "circle",
+          "cx": 150,
+          "cy": 382,
+          "r": 8,
+          "fill": "#34D399",
+          "stroke": "#FFFFFF",
+          "strokeWidth": 2
+        },
+        {
+          "type": "rect",
+          "x": 200,
+          "y": 220,
+          "width": 170,
+          "height": 200,
+          "fill": "#FFFFFF",
+          "rx": 12,
+          "stroke": "#E8E3D9",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rect",
+          "x": 200,
+          "y": 220,
+          "width": 170,
+          "height": 90,
+          "fill": "#5D3A1A",
+          "rx": 12
+        },
+        {
+          "type": "rect",
+          "x": 200,
+          "y": 278,
+          "width": 170,
+          "height": 32,
+          "fill": "#5D3A1A"
+        },
+        {
+          "type": "text",
+          "x": 216,
+          "y": 256,
+          "content": "Holt & Co",
+          "fontSize": 18,
+          "fill": "#FFF",
+          "fontWeight": 600,
+          "fontFamily": "Georgia, serif"
+        },
+        {
+          "type": "text",
+          "x": 216,
+          "y": 274,
+          "content": "Web design",
+          "fontSize": 10,
+          "fill": "rgba(255,255,255,0.7)",
+          "fontWeight": 400,
+          "letterSpacing": 0.5
+        },
+        {
+          "type": "rect",
+          "x": 216,
+          "y": 326,
+          "width": 134,
+          "height": 3,
+          "fill": "#E8E3D9",
+          "rx": 1.5
+        },
+        {
+          "type": "rect",
+          "x": 216,
+          "y": 326,
+          "width": 40,
+          "height": 3,
+          "fill": "#B45309",
+          "rx": 1.5
+        },
+        {
+          "type": "text",
+          "x": 216,
+          "y": 354,
+          "content": "Due May 10",
+          "fontSize": 10,
+          "fill": "#A09487"
+        },
+        {
+          "type": "text",
+          "x": 334,
+          "y": 354,
+          "content": "30%",
+          "fontSize": 10,
+          "fill": "#B45309",
+          "fontWeight": 600,
+          "textAnchor": "end"
+        },
+        {
+          "type": "text",
+          "x": 216,
+          "y": 374,
+          "content": "$5,800",
+          "fontSize": 14,
+          "fill": "#16120C",
+          "fontWeight": 600
+        },
+        {
+          "type": "text",
+          "x": 216,
+          "y": 388,
+          "content": "remaining",
+          "fontSize": 9,
+          "fill": "#A09487"
+        },
+        {
+          "type": "circle",
+          "cx": 314,
+          "cy": 382,
+          "r": 8,
+          "fill": "#F59E0B"
+        },
+        {
+          "type": "circle",
+          "cx": 322,
+          "cy": 382,
+          "r": 8,
+          "fill": "#EDE9E2",
+          "stroke": "#FFFFFF",
+          "strokeWidth": 2
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 430,
+          "width": 350,
+          "height": 90,
+          "fill": "#FFFFFF",
+          "rx": 12,
+          "stroke": "#E8E3D9",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 430,
+          "width": 6,
+          "height": 90,
+          "fill": "#16A34A",
+          "rx": 3
+        },
+        {
+          "type": "text",
+          "x": 40,
+          "y": 454,
+          "content": "Voss Editorial",
+          "fontSize": 15,
+          "fill": "#16120C",
+          "fontWeight": 600,
+          "fontFamily": "Georgia, serif"
+        },
+        {
+          "type": "text",
+          "x": 40,
+          "y": 472,
+          "content": "Photography direction · review phase",
+          "fontSize": 11,
+          "fill": "#6B6258"
+        },
+        {
+          "type": "rect",
+          "x": 40,
+          "y": 490,
+          "width": 48,
+          "height": 16,
+          "fill": "#DCFCE7",
+          "rx": 8
+        },
+        {
+          "type": "text",
+          "x": 64,
+          "y": 502,
+          "content": "Review",
+          "fontSize": 9,
+          "fill": "#16A34A",
+          "fontWeight": 600,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 354,
+          "y": 454,
+          "content": "$2,100",
+          "fontSize": 13,
+          "fill": "#16120C",
+          "fontWeight": 700,
+          "textAnchor": "end"
+        },
+        {
+          "type": "text",
+          "x": 354,
+          "y": 472,
+          "content": "due Apr 14",
+          "fontSize": 10,
+          "fill": "#A09487",
+          "textAnchor": "end"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 544,
+          "content": "TODAY'S TASKS",
+          "fontSize": 9,
+          "fill": "#A09487",
+          "fontWeight": 600,
+          "letterSpacing": 2
+        },
+        {
+          "type": "line",
+          "x1": 20,
+          "y1": 596,
+          "x2": 370,
+          "y2": 596,
+          "stroke": "#E8E3D9",
+          "strokeWidth": 0.5
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 570,
+          "width": 18,
+          "height": 18,
+          "fill": "#1C4ED8",
+          "rx": 4
+        },
+        {
+          "type": "text",
+          "x": 29,
+          "y": 582,
+          "content": "✓",
+          "fontSize": 10,
+          "fill": "#FFF",
+          "fontWeight": 700,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 48,
+          "y": 583,
+          "content": "Send Arken logo options",
+          "fontSize": 13,
+          "fill": "#A09487",
+          "fontWeight": 400,
+          "opacity": 0.6
+        },
+        {
+          "type": "text",
+          "x": 370,
+          "y": 583,
+          "content": "9:00 AM",
+          "fontSize": 11,
+          "fill": "#A09487",
+          "textAnchor": "end"
+        },
+        {
+          "type": "line",
+          "x1": 20,
+          "y1": 640,
+          "x2": 370,
+          "y2": 640,
+          "stroke": "#E8E3D9",
+          "strokeWidth": 0.5
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 614,
+          "width": 18,
+          "height": 18,
+          "fill": "none",
+          "rx": 4,
+          "stroke": "#D6CFBF",
+          "strokeWidth": 1.5
+        },
+        {
+          "type": "text",
+          "x": 48,
+          "y": 627,
+          "content": "Review Holt wireframes",
+          "fontSize": 13,
+          "fill": "#16120C",
+          "fontWeight": 500,
+          "opacity": 1
+        },
+        {
+          "type": "text",
+          "x": 370,
+          "y": 627,
+          "content": "2:00 PM",
+          "fontSize": 11,
+          "fill": "#A09487",
+          "textAnchor": "end"
+        },
+        {
+          "type": "line",
+          "x1": 20,
+          "y1": 684,
+          "x2": 370,
+          "y2": 684,
+          "stroke": "#E8E3D9",
+          "strokeWidth": 0.5
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 658,
+          "width": 18,
+          "height": 18,
+          "fill": "none",
+          "rx": 4,
+          "stroke": "#D6CFBF",
+          "strokeWidth": 1.5
+        },
+        {
+          "type": "text",
+          "x": 48,
+          "y": 671,
+          "content": "Invoice #047 — Voss Editorial",
+          "fontSize": 13,
+          "fill": "#16120C",
+          "fontWeight": 500,
+          "opacity": 1
+        },
+        {
+          "type": "text",
+          "x": 370,
+          "y": 671,
+          "content": "4:30 PM",
+          "fontSize": 11,
+          "fill": "#A09487",
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 764,
+          "width": 390,
+          "height": 80,
+          "fill": "#FFFFFF",
+          "stroke": "#D6CFBF",
+          "strokeWidth": 0.5
+        },
+        {
+          "type": "line",
+          "x1": 0,
+          "y1": 764,
+          "x2": 390,
+          "y2": 764,
+          "stroke": "#D6CFBF",
+          "strokeWidth": 0.5
+        },
+        {
+          "type": "rect",
+          "x": 27,
+          "y": 782,
+          "width": 24,
+          "height": 24,
+          "fill": "#EEF2FF",
+          "rx": 8
+        },
+        {
+          "type": "circle",
+          "cx": 39,
+          "cy": 794,
+          "r": 4,
+          "fill": "#1C4ED8"
+        },
+        {
+          "type": "text",
+          "x": 39,
+          "y": 822,
+          "content": "Today",
+          "fontSize": 9,
+          "fill": "#1C4ED8",
+          "fontWeight": 600,
+          "textAnchor": "middle",
+          "letterSpacing": 0.3
+        },
+        {
+          "type": "rect",
+          "x": 105,
+          "y": 782,
+          "width": 24,
+          "height": 24,
+          "fill": "none",
+          "rx": 8
+        },
+        {
+          "type": "circle",
+          "cx": 117,
+          "cy": 794,
+          "r": 4,
+          "fill": "#A09487"
+        },
+        {
+          "type": "text",
+          "x": 117,
+          "y": 822,
+          "content": "Projects",
+          "fontSize": 9,
+          "fill": "#A09487",
+          "fontWeight": 400,
+          "textAnchor": "middle",
+          "letterSpacing": 0.3
+        },
+        {
+          "type": "rect",
+          "x": 183,
+          "y": 782,
+          "width": 24,
+          "height": 24,
+          "fill": "none",
+          "rx": 8
+        },
+        {
+          "type": "circle",
+          "cx": 195,
+          "cy": 794,
+          "r": 4,
+          "fill": "#A09487"
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 822,
+          "content": "Clients",
+          "fontSize": 9,
+          "fill": "#A09487",
+          "fontWeight": 400,
+          "textAnchor": "middle",
+          "letterSpacing": 0.3
+        },
+        {
+          "type": "rect",
+          "x": 261,
+          "y": 782,
+          "width": 24,
+          "height": 24,
+          "fill": "none",
+          "rx": 8
+        },
+        {
+          "type": "circle",
+          "cx": 273,
+          "cy": 794,
+          "r": 4,
+          "fill": "#A09487"
+        },
+        {
+          "type": "text",
+          "x": 273,
+          "y": 822,
+          "content": "Invoices",
+          "fontSize": 9,
+          "fill": "#A09487",
+          "fontWeight": 400,
+          "textAnchor": "middle",
+          "letterSpacing": 0.3
+        },
+        {
+          "type": "rect",
+          "x": 339,
+          "y": 782,
+          "width": 24,
+          "height": 24,
+          "fill": "none",
+          "rx": 8
+        },
+        {
+          "type": "circle",
+          "cx": 351,
+          "cy": 794,
+          "r": 4,
+          "fill": "#A09487"
+        },
+        {
+          "type": "text",
+          "x": 351,
+          "y": 822,
+          "content": "Profile",
+          "fontSize": 9,
+          "fill": "#A09487",
+          "fontWeight": 400,
+          "textAnchor": "middle",
+          "letterSpacing": 0.3
+        }
+      ]
+    },
+    {
+      "name": "Projects — Bento",
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 390 844\"/>",
+      "elements": [
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "fill": "#F8F5F0"
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 44,
+          "fill": "#F8F5F0"
+        },
+        {
+          "type": "text",
+          "x": 16,
+          "y": 16,
+          "content": "9:41",
+          "fontSize": 14,
+          "fill": "#16120C",
+          "fontWeight": 600
+        },
+        {
+          "type": "circle",
+          "cx": 346,
+          "cy": 22,
+          "r": 3,
+          "fill": "#16120C"
+        },
+        {
+          "type": "circle",
+          "cx": 354,
+          "cy": 22,
+          "r": 3,
+          "fill": "#16120C"
+        },
+        {
+          "type": "circle",
+          "cx": 362,
+          "cy": 22,
+          "r": 3,
+          "fill": "#16120C"
+        },
+        {
+          "type": "rect",
+          "x": 370,
+          "y": 16,
+          "width": 14,
+          "height": 8,
+          "fill": "none",
+          "rx": 2,
+          "stroke": "#16120C",
+          "strokeWidth": 1.5
+        },
+        {
+          "type": "rect",
+          "x": 372,
+          "y": 18,
+          "width": 8,
+          "height": 4,
+          "fill": "#16120C",
+          "rx": 1
+        },
+        {
+          "type": "rect",
+          "x": 384,
+          "y": 19,
+          "width": 2,
+          "height": 6,
+          "fill": "#16120C",
+          "rx": 1
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 70,
+          "content": "Projects",
+          "fontSize": 28,
+          "fill": "#16120C",
+          "fontWeight": 300,
+          "fontFamily": "Georgia, serif"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 92,
+          "content": "7 total · 3 active",
+          "fontSize": 12,
+          "fill": "#6B6258"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 104,
+          "width": 42.5,
+          "height": 26,
+          "fill": "#16120C",
+          "rx": 13,
+          "stroke": "#D6CFBF",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 41.25,
+          "y": 122,
+          "content": "All",
+          "fontSize": 11,
+          "fill": "#F8F5F0",
+          "fontWeight": 600,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 92,
+          "y": 104,
+          "width": 65,
+          "height": 26,
+          "fill": "#FFFFFF",
+          "rx": 13,
+          "stroke": "#D6CFBF",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 124.5,
+          "y": 122,
+          "content": "Active",
+          "fontSize": 11,
+          "fill": "#6B6258",
+          "fontWeight": 400,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 164,
+          "y": 104,
+          "width": 65,
+          "height": 26,
+          "fill": "#FFFFFF",
+          "rx": 13,
+          "stroke": "#D6CFBF",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 196.5,
+          "y": 122,
+          "content": "Review",
+          "fontSize": 11,
+          "fill": "#6B6258",
+          "fontWeight": 400,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 236,
+          "y": 104,
+          "width": 65,
+          "height": 26,
+          "fill": "#FFFFFF",
+          "rx": 13,
+          "stroke": "#D6CFBF",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 268.5,
+          "y": 122,
+          "content": "Closed",
+          "fontSize": 11,
+          "fill": "#6B6258",
+          "fontWeight": 400,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 142,
+          "width": 350,
+          "height": 160,
+          "fill": "#0F1923",
+          "rx": 14
+        },
+        {
+          "type": "line",
+          "x1": 40,
+          "y1": 142,
+          "x2": 20,
+          "y2": 302,
+          "stroke": "rgba(255,255,255,0.04)",
+          "strokeWidth": 1
+        },
+        {
+          "type": "line",
+          "x1": 70,
+          "y1": 142,
+          "x2": 50,
+          "y2": 302,
+          "stroke": "rgba(255,255,255,0.04)",
+          "strokeWidth": 1
+        },
+        {
+          "type": "line",
+          "x1": 100,
+          "y1": 142,
+          "x2": 80,
+          "y2": 302,
+          "stroke": "rgba(255,255,255,0.04)",
+          "strokeWidth": 1
+        },
+        {
+          "type": "line",
+          "x1": 130,
+          "y1": 142,
+          "x2": 110,
+          "y2": 302,
+          "stroke": "rgba(255,255,255,0.04)",
+          "strokeWidth": 1
+        },
+        {
+          "type": "line",
+          "x1": 160,
+          "y1": 142,
+          "x2": 140,
+          "y2": 302,
+          "stroke": "rgba(255,255,255,0.04)",
+          "strokeWidth": 1
+        },
+        {
+          "type": "line",
+          "x1": 190,
+          "y1": 142,
+          "x2": 170,
+          "y2": 302,
+          "stroke": "rgba(255,255,255,0.04)",
+          "strokeWidth": 1
+        },
+        {
+          "type": "line",
+          "x1": 220,
+          "y1": 142,
+          "x2": 200,
+          "y2": 302,
+          "stroke": "rgba(255,255,255,0.04)",
+          "strokeWidth": 1
+        },
+        {
+          "type": "line",
+          "x1": 250,
+          "y1": 142,
+          "x2": 230,
+          "y2": 302,
+          "stroke": "rgba(255,255,255,0.04)",
+          "strokeWidth": 1
+        },
+        {
+          "type": "line",
+          "x1": 280,
+          "y1": 142,
+          "x2": 260,
+          "y2": 302,
+          "stroke": "rgba(255,255,255,0.04)",
+          "strokeWidth": 1
+        },
+        {
+          "type": "line",
+          "x1": 310,
+          "y1": 142,
+          "x2": 290,
+          "y2": 302,
+          "stroke": "rgba(255,255,255,0.04)",
+          "strokeWidth": 1
+        },
+        {
+          "type": "line",
+          "x1": 340,
+          "y1": 142,
+          "x2": 320,
+          "y2": 302,
+          "stroke": "rgba(255,255,255,0.04)",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 178,
+          "content": "FEATURED",
+          "fontSize": 9,
+          "fill": "rgba(255,255,255,0.5)",
+          "fontWeight": 600,
+          "letterSpacing": 2
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 206,
+          "content": "Arken Brand",
+          "fontSize": 26,
+          "fill": "#FFF",
+          "fontWeight": 600,
+          "fontFamily": "Georgia, serif"
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 224,
+          "content": "Identity",
+          "fontSize": 26,
+          "fill": "#FFF",
+          "fontWeight": 300,
+          "fontFamily": "Georgia, serif"
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 248,
+          "content": "Visual identity · Q2 2026",
+          "fontSize": 11,
+          "fill": "rgba(255,255,255,0.5)"
+        },
+        {
+          "type": "rect",
+          "x": 36,
+          "y": 268,
+          "width": 60,
+          "height": 20,
+          "fill": "rgba(28,78,216,0.4)",
+          "rx": 10
+        },
+        {
+          "type": "text",
+          "x": 66,
+          "y": 281,
+          "content": "Active",
+          "fontSize": 10,
+          "fill": "#93C5FD",
+          "fontWeight": 500,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "circle",
+          "cx": 330,
+          "cy": 222,
+          "r": 34,
+          "fill": "none",
+          "stroke": "rgba(255,255,255,0.1)",
+          "strokeWidth": 4
+        },
+        {
+          "type": "circle",
+          "cx": 330,
+          "cy": 222,
+          "r": 34,
+          "fill": "none",
+          "opacity": 0.9,
+          "stroke": "#1C4ED8",
+          "strokeWidth": 4
+        },
+        {
+          "type": "text",
+          "x": 330,
+          "y": 217,
+          "content": "67",
+          "fontSize": 16,
+          "fill": "#FFF",
+          "fontWeight": 700,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 330,
+          "y": 231,
+          "content": "%",
+          "fontSize": 9,
+          "fill": "rgba(255,255,255,0.5)",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 314,
+          "width": 167,
+          "height": 130,
+          "fill": "#FFFFFF",
+          "rx": 12,
+          "stroke": "#E8E3D9",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 314,
+          "width": 167,
+          "height": 52,
+          "fill": "#5D3A1A",
+          "rx": 12
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 346,
+          "width": 167,
+          "height": 20,
+          "fill": "#5D3A1A"
+        },
+        {
+          "type": "text",
+          "x": 34,
+          "y": 345,
+          "content": "Holt & Co",
+          "fontSize": 14,
+          "fill": "#FFF",
+          "fontWeight": 600,
+          "fontFamily": "Georgia, serif"
+        },
+        {
+          "type": "text",
+          "x": 34,
+          "y": 383,
+          "content": "Web design",
+          "fontSize": 10,
+          "fill": "#6B6258"
+        },
+        {
+          "type": "text",
+          "x": 34,
+          "y": 400,
+          "content": "$5,800",
+          "fontSize": 14,
+          "fill": "#16120C",
+          "fontWeight": 700
+        },
+        {
+          "type": "rect",
+          "x": 34,
+          "y": 412,
+          "width": 90,
+          "height": 3,
+          "fill": "#E8E3D9",
+          "rx": 1.5
+        },
+        {
+          "type": "rect",
+          "x": 34,
+          "y": 412,
+          "width": 28,
+          "height": 3,
+          "fill": "#B45309",
+          "rx": 1.5
+        },
+        {
+          "type": "text",
+          "x": 34,
+          "y": 432,
+          "content": "30%",
+          "fontSize": 10,
+          "fill": "#B45309",
+          "fontWeight": 600
+        },
+        {
+          "type": "rect",
+          "x": 203,
+          "y": 314,
+          "width": 167,
+          "height": 130,
+          "fill": "#FFFFFF",
+          "rx": 12,
+          "stroke": "#E8E3D9",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rect",
+          "x": 203,
+          "y": 314,
+          "width": 167,
+          "height": 52,
+          "fill": "#0A4A2E",
+          "rx": 12
+        },
+        {
+          "type": "rect",
+          "x": 203,
+          "y": 346,
+          "width": 167,
+          "height": 20,
+          "fill": "#0A4A2E"
+        },
+        {
+          "type": "text",
+          "x": 217,
+          "y": 345,
+          "content": "Voss",
+          "fontSize": 14,
+          "fill": "#FFF",
+          "fontWeight": 600,
+          "fontFamily": "Georgia, serif"
+        },
+        {
+          "type": "text",
+          "x": 217,
+          "y": 383,
+          "content": "Photo direction",
+          "fontSize": 10,
+          "fill": "#6B6258"
+        },
+        {
+          "type": "text",
+          "x": 217,
+          "y": 400,
+          "content": "$2,100",
+          "fontSize": 14,
+          "fill": "#16120C",
+          "fontWeight": 700
+        },
+        {
+          "type": "rect",
+          "x": 217,
+          "y": 412,
+          "width": 24,
+          "height": 16,
+          "fill": "#DCFCE7",
+          "rx": 8
+        },
+        {
+          "type": "rect",
+          "x": 217,
+          "y": 412,
+          "width": 50,
+          "height": 16,
+          "fill": "#DCFCE7",
+          "rx": 8,
+          "opacity": 0
+        },
+        {
+          "type": "text",
+          "x": 229,
+          "y": 424,
+          "content": "Review",
+          "fontSize": 9,
+          "fill": "#16A34A",
+          "fontWeight": 600,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 456,
+          "width": 165,
+          "height": 104,
+          "fill": "#FFFFFF",
+          "rx": 12,
+          "stroke": "#E8E3D9",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 456,
+          "width": 165,
+          "height": 40,
+          "fill": "#4A1942",
+          "rx": 10
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 480,
+          "width": 165,
+          "height": 16,
+          "fill": "#4A1942"
+        },
+        {
+          "type": "text",
+          "x": 34,
+          "y": 479,
+          "content": "Mercer",
+          "fontSize": 13,
+          "fill": "#FFF",
+          "fontWeight": 600,
+          "fontFamily": "Georgia, serif"
+        },
+        {
+          "type": "text",
+          "x": 34,
+          "y": 502,
+          "content": "Print",
+          "fontSize": 9,
+          "fill": "#A09487"
+        },
+        {
+          "type": "text",
+          "x": 34,
+          "y": 522,
+          "content": "$4,200",
+          "fontSize": 13,
+          "fill": "#16120C",
+          "fontWeight": 700
+        },
+        {
+          "type": "rect",
+          "x": 34,
+          "y": 536,
+          "width": 38,
+          "height": 14,
+          "fill": "#EDE9E2",
+          "rx": 7
+        },
+        {
+          "type": "text",
+          "x": 53,
+          "y": 547,
+          "content": "Closed",
+          "fontSize": 8,
+          "fill": "#A09487",
+          "fontWeight": 500,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 203,
+          "y": 456,
+          "width": 165,
+          "height": 104,
+          "fill": "#FFFFFF",
+          "rx": 12,
+          "stroke": "#E8E3D9",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rect",
+          "x": 203,
+          "y": 456,
+          "width": 165,
+          "height": 40,
+          "fill": "#1A1A2E",
+          "rx": 10
+        },
+        {
+          "type": "rect",
+          "x": 203,
+          "y": 480,
+          "width": 165,
+          "height": 16,
+          "fill": "#1A1A2E"
+        },
+        {
+          "type": "text",
+          "x": 217,
+          "y": 479,
+          "content": "Fold",
+          "fontSize": 13,
+          "fill": "#FFF",
+          "fontWeight": 600,
+          "fontFamily": "Georgia, serif"
+        },
+        {
+          "type": "text",
+          "x": 217,
+          "y": 502,
+          "content": "Motion",
+          "fontSize": 9,
+          "fill": "#A09487"
+        },
+        {
+          "type": "text",
+          "x": 217,
+          "y": 522,
+          "content": "$1,800",
+          "fontSize": 13,
+          "fill": "#16120C",
+          "fontWeight": 700
+        },
+        {
+          "type": "rect",
+          "x": 217,
+          "y": 536,
+          "width": 38,
+          "height": 14,
+          "fill": "#EDE9E2",
+          "rx": 7
+        },
+        {
+          "type": "text",
+          "x": 236,
+          "y": 547,
+          "content": "Closed",
+          "fontSize": 8,
+          "fill": "#A09487",
+          "fontWeight": 500,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 572,
+          "width": 350,
+          "height": 44,
+          "fill": "#1C4ED8",
+          "rx": 22
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 599,
+          "content": "+ New Project",
+          "fontSize": 14,
+          "fill": "#FFF",
+          "fontWeight": 600,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 764,
+          "width": 390,
+          "height": 80,
+          "fill": "#FFFFFF",
+          "stroke": "#D6CFBF",
+          "strokeWidth": 0.5
+        },
+        {
+          "type": "line",
+          "x1": 0,
+          "y1": 764,
+          "x2": 390,
+          "y2": 764,
+          "stroke": "#D6CFBF",
+          "strokeWidth": 0.5
+        },
+        {
+          "type": "rect",
+          "x": 27,
+          "y": 782,
+          "width": 24,
+          "height": 24,
+          "fill": "none",
+          "rx": 8
+        },
+        {
+          "type": "circle",
+          "cx": 39,
+          "cy": 794,
+          "r": 4,
+          "fill": "#A09487"
+        },
+        {
+          "type": "text",
+          "x": 39,
+          "y": 822,
+          "content": "Today",
+          "fontSize": 9,
+          "fill": "#A09487",
+          "fontWeight": 400,
+          "textAnchor": "middle",
+          "letterSpacing": 0.3
+        },
+        {
+          "type": "rect",
+          "x": 105,
+          "y": 782,
+          "width": 24,
+          "height": 24,
+          "fill": "#EEF2FF",
+          "rx": 8
+        },
+        {
+          "type": "circle",
+          "cx": 117,
+          "cy": 794,
+          "r": 4,
+          "fill": "#1C4ED8"
+        },
+        {
+          "type": "text",
+          "x": 117,
+          "y": 822,
+          "content": "Projects",
+          "fontSize": 9,
+          "fill": "#1C4ED8",
+          "fontWeight": 600,
+          "textAnchor": "middle",
+          "letterSpacing": 0.3
+        },
+        {
+          "type": "rect",
+          "x": 183,
+          "y": 782,
+          "width": 24,
+          "height": 24,
+          "fill": "none",
+          "rx": 8
+        },
+        {
+          "type": "circle",
+          "cx": 195,
+          "cy": 794,
+          "r": 4,
+          "fill": "#A09487"
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 822,
+          "content": "Clients",
+          "fontSize": 9,
+          "fill": "#A09487",
+          "fontWeight": 400,
+          "textAnchor": "middle",
+          "letterSpacing": 0.3
+        },
+        {
+          "type": "rect",
+          "x": 261,
+          "y": 782,
+          "width": 24,
+          "height": 24,
+          "fill": "none",
+          "rx": 8
+        },
+        {
+          "type": "circle",
+          "cx": 273,
+          "cy": 794,
+          "r": 4,
+          "fill": "#A09487"
+        },
+        {
+          "type": "text",
+          "x": 273,
+          "y": 822,
+          "content": "Invoices",
+          "fontSize": 9,
+          "fill": "#A09487",
+          "fontWeight": 400,
+          "textAnchor": "middle",
+          "letterSpacing": 0.3
+        },
+        {
+          "type": "rect",
+          "x": 339,
+          "y": 782,
+          "width": 24,
+          "height": 24,
+          "fill": "none",
+          "rx": 8
+        },
+        {
+          "type": "circle",
+          "cx": 351,
+          "cy": 794,
+          "r": 4,
+          "fill": "#A09487"
+        },
+        {
+          "type": "text",
+          "x": 351,
+          "y": 822,
+          "content": "Profile",
+          "fontSize": 9,
+          "fill": "#A09487",
+          "fontWeight": 400,
+          "textAnchor": "middle",
+          "letterSpacing": 0.3
+        }
+      ]
+    },
+    {
+      "name": "Project Detail",
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 390 844\"/>",
+      "elements": [
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "fill": "#F8F5F0"
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 44,
+          "fill": "#F8F5F0"
+        },
+        {
+          "type": "text",
+          "x": 16,
+          "y": 16,
+          "content": "9:41",
+          "fontSize": 14,
+          "fill": "#16120C",
+          "fontWeight": 600
+        },
+        {
+          "type": "circle",
+          "cx": 346,
+          "cy": 22,
+          "r": 3,
+          "fill": "#16120C"
+        },
+        {
+          "type": "circle",
+          "cx": 354,
+          "cy": 22,
+          "r": 3,
+          "fill": "#16120C"
+        },
+        {
+          "type": "circle",
+          "cx": 362,
+          "cy": 22,
+          "r": 3,
+          "fill": "#16120C"
+        },
+        {
+          "type": "rect",
+          "x": 370,
+          "y": 16,
+          "width": 14,
+          "height": 8,
+          "fill": "none",
+          "rx": 2,
+          "stroke": "#16120C",
+          "strokeWidth": 1.5
+        },
+        {
+          "type": "rect",
+          "x": 372,
+          "y": 18,
+          "width": 8,
+          "height": 4,
+          "fill": "#16120C",
+          "rx": 1
+        },
+        {
+          "type": "rect",
+          "x": 384,
+          "y": 19,
+          "width": 2,
+          "height": 6,
+          "fill": "#16120C",
+          "rx": 1
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 44,
+          "width": 390,
+          "height": 210,
+          "fill": "#0F1923"
+        },
+        {
+          "type": "rect",
+          "x": 30,
+          "y": 60,
+          "width": 60,
+          "height": 180,
+          "fill": "rgba(28,78,216,0.03)",
+          "rx": 30
+        },
+        {
+          "type": "rect",
+          "x": 110,
+          "y": 60,
+          "width": 60,
+          "height": 180,
+          "fill": "rgba(28,78,216,0.05)",
+          "rx": 30
+        },
+        {
+          "type": "rect",
+          "x": 190,
+          "y": 60,
+          "width": 60,
+          "height": 180,
+          "fill": "rgba(28,78,216,0.07)",
+          "rx": 30
+        },
+        {
+          "type": "rect",
+          "x": 270,
+          "y": 60,
+          "width": 60,
+          "height": 180,
+          "fill": "rgba(28,78,216,0.09)",
+          "rx": 30
+        },
+        {
+          "type": "rect",
+          "x": 60,
+          "y": 110,
+          "width": 200,
+          "height": 90,
+          "fill": "rgba(255,255,255,0.04)",
+          "rx": 8
+        },
+        {
+          "type": "text",
+          "x": 80,
+          "y": 152,
+          "content": "ARKEN",
+          "fontSize": 36,
+          "fill": "#FFF",
+          "fontWeight": 700,
+          "letterSpacing": 8
+        },
+        {
+          "type": "text",
+          "x": 80,
+          "y": 178,
+          "content": "STUDIO",
+          "fontSize": 18,
+          "fill": "rgba(255,255,255,0.4)",
+          "fontWeight": 300,
+          "letterSpacing": 12
+        },
+        {
+          "type": "circle",
+          "cx": 32,
+          "cy": 64,
+          "r": 14,
+          "fill": "rgba(255,255,255,0.15)"
+        },
+        {
+          "type": "text",
+          "x": 32,
+          "y": 69,
+          "content": "←",
+          "fontSize": 14,
+          "fill": "#FFF",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "circle",
+          "cx": 358,
+          "cy": 64,
+          "r": 14,
+          "fill": "rgba(255,255,255,0.15)"
+        },
+        {
+          "type": "text",
+          "x": 358,
+          "y": 69,
+          "content": "↗",
+          "fontSize": 13,
+          "fill": "#FFF",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 254,
+          "width": 390,
+          "height": 64,
+          "fill": "#FFFFFF",
+          "stroke": "#E8E3D9",
+          "strokeWidth": 0.5
+        },
+        {
+          "type": "text",
+          "x": 56,
+          "y": 278,
+          "content": "Apr 24",
+          "fontSize": 14,
+          "fill": "#16120C",
+          "fontWeight": 700,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 56,
+          "y": 294,
+          "content": "Deadline",
+          "fontSize": 9,
+          "fill": "#A09487",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "line",
+          "x1": 108,
+          "y1": 266,
+          "x2": 108,
+          "y2": 306,
+          "stroke": "#E8E3D9",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 144,
+          "y": 278,
+          "content": "67%",
+          "fontSize": 14,
+          "fill": "#16120C",
+          "fontWeight": 700,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 144,
+          "y": 294,
+          "content": "Complete",
+          "fontSize": 9,
+          "fill": "#A09487",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "line",
+          "x1": 196,
+          "y1": 266,
+          "x2": 196,
+          "y2": 306,
+          "stroke": "#E8E3D9",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 232,
+          "y": 278,
+          "content": "$3,200",
+          "fontSize": 14,
+          "fill": "#16120C",
+          "fontWeight": 700,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 232,
+          "y": 294,
+          "content": "Remaining",
+          "fontSize": 9,
+          "fill": "#A09487",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "line",
+          "x1": 284,
+          "y1": 266,
+          "x2": 284,
+          "y2": 306,
+          "stroke": "#E8E3D9",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 320,
+          "y": 278,
+          "content": "3",
+          "fontSize": 14,
+          "fill": "#16120C",
+          "fontWeight": 700,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 320,
+          "y": 294,
+          "content": "Deliverables",
+          "fontSize": 9,
+          "fill": "#A09487",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 338,
+          "content": "Arken Brand Identity",
+          "fontSize": 20,
+          "fill": "#16120C",
+          "fontWeight": 600,
+          "fontFamily": "Georgia, serif"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 356,
+          "content": "Brand identity for architecture studio, Arken. Scope",
+          "fontSize": 12,
+          "fill": "#6B6258"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 370,
+          "content": "includes logo, typography system, and brand guidelines.",
+          "fontSize": 12,
+          "fill": "#6B6258"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 396,
+          "content": "DELIVERABLES",
+          "fontSize": 9,
+          "fill": "#A09487",
+          "fontWeight": 600,
+          "letterSpacing": 2
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 410,
+          "width": 350,
+          "height": 44,
+          "fill": "#FFFFFF",
+          "rx": 8,
+          "stroke": "#E8E3D9",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rect",
+          "x": 32,
+          "y": 423,
+          "width": 18,
+          "height": 18,
+          "fill": "#1C4ED8",
+          "rx": 4
+        },
+        {
+          "type": "text",
+          "x": 41,
+          "y": 435,
+          "content": "✓",
+          "fontSize": 10,
+          "fill": "#FFF",
+          "fontWeight": 700,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 58,
+          "y": 436,
+          "content": "Logo concepts",
+          "fontSize": 13,
+          "fill": "#6B6258",
+          "fontWeight": 400
+        },
+        {
+          "type": "rect",
+          "x": 240,
+          "y": 429,
+          "width": 100,
+          "height": 4,
+          "fill": "#E8E3D9",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 240,
+          "y": 429,
+          "width": 100,
+          "height": 4,
+          "fill": "#16A34A",
+          "rx": 2
+        },
+        {
+          "type": "text",
+          "x": 348,
+          "y": 436,
+          "content": "100%",
+          "fontSize": 10,
+          "fill": "#16A34A",
+          "fontWeight": 600,
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 466,
+          "width": 350,
+          "height": 44,
+          "fill": "#FFFFFF",
+          "rx": 8,
+          "stroke": "#E8E3D9",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rect",
+          "x": 32,
+          "y": 479,
+          "width": 18,
+          "height": 18,
+          "fill": "#1C4ED8",
+          "rx": 4
+        },
+        {
+          "type": "text",
+          "x": 41,
+          "y": 491,
+          "content": "✓",
+          "fontSize": 10,
+          "fill": "#FFF",
+          "fontWeight": 700,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 58,
+          "y": 492,
+          "content": "Typography system",
+          "fontSize": 13,
+          "fill": "#6B6258",
+          "fontWeight": 400
+        },
+        {
+          "type": "rect",
+          "x": 240,
+          "y": 485,
+          "width": 100,
+          "height": 4,
+          "fill": "#E8E3D9",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 240,
+          "y": 485,
+          "width": 100,
+          "height": 4,
+          "fill": "#16A34A",
+          "rx": 2
+        },
+        {
+          "type": "text",
+          "x": 348,
+          "y": 492,
+          "content": "100%",
+          "fontSize": 10,
+          "fill": "#16A34A",
+          "fontWeight": 600,
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 522,
+          "width": 350,
+          "height": 44,
+          "fill": "#FFFFFF",
+          "rx": 8,
+          "stroke": "#E8E3D9",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rect",
+          "x": 32,
+          "y": 535,
+          "width": 18,
+          "height": 18,
+          "fill": "none",
+          "rx": 4,
+          "stroke": "#D6CFBF",
+          "strokeWidth": 1.5
+        },
+        {
+          "type": "text",
+          "x": 58,
+          "y": 548,
+          "content": "Brand guidelines",
+          "fontSize": 13,
+          "fill": "#16120C",
+          "fontWeight": 500
+        },
+        {
+          "type": "rect",
+          "x": 240,
+          "y": 541,
+          "width": 100,
+          "height": 4,
+          "fill": "#E8E3D9",
+          "rx": 2
+        },
+        {
+          "type": "rect",
+          "x": 240,
+          "y": 541,
+          "width": 45,
+          "height": 4,
+          "fill": "#1C4ED8",
+          "rx": 2
+        },
+        {
+          "type": "text",
+          "x": 348,
+          "y": 548,
+          "content": "45%",
+          "fontSize": 10,
+          "fill": "#1C4ED8",
+          "fontWeight": 600,
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 584,
+          "width": 350,
+          "height": 44,
+          "fill": "#16120C",
+          "rx": 22
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 611,
+          "content": "Create Invoice",
+          "fontSize": 14,
+          "fill": "#F8F5F0",
+          "fontWeight": 600,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 764,
+          "width": 390,
+          "height": 80,
+          "fill": "#FFFFFF",
+          "stroke": "#D6CFBF",
+          "strokeWidth": 0.5
+        },
+        {
+          "type": "line",
+          "x1": 0,
+          "y1": 764,
+          "x2": 390,
+          "y2": 764,
+          "stroke": "#D6CFBF",
+          "strokeWidth": 0.5
+        },
+        {
+          "type": "rect",
+          "x": 27,
+          "y": 782,
+          "width": 24,
+          "height": 24,
+          "fill": "none",
+          "rx": 8
+        },
+        {
+          "type": "circle",
+          "cx": 39,
+          "cy": 794,
+          "r": 4,
+          "fill": "#A09487"
+        },
+        {
+          "type": "text",
+          "x": 39,
+          "y": 822,
+          "content": "Today",
+          "fontSize": 9,
+          "fill": "#A09487",
+          "fontWeight": 400,
+          "textAnchor": "middle",
+          "letterSpacing": 0.3
+        },
+        {
+          "type": "rect",
+          "x": 105,
+          "y": 782,
+          "width": 24,
+          "height": 24,
+          "fill": "#EEF2FF",
+          "rx": 8
+        },
+        {
+          "type": "circle",
+          "cx": 117,
+          "cy": 794,
+          "r": 4,
+          "fill": "#1C4ED8"
+        },
+        {
+          "type": "text",
+          "x": 117,
+          "y": 822,
+          "content": "Projects",
+          "fontSize": 9,
+          "fill": "#1C4ED8",
+          "fontWeight": 600,
+          "textAnchor": "middle",
+          "letterSpacing": 0.3
+        },
+        {
+          "type": "rect",
+          "x": 183,
+          "y": 782,
+          "width": 24,
+          "height": 24,
+          "fill": "none",
+          "rx": 8
+        },
+        {
+          "type": "circle",
+          "cx": 195,
+          "cy": 794,
+          "r": 4,
+          "fill": "#A09487"
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 822,
+          "content": "Clients",
+          "fontSize": 9,
+          "fill": "#A09487",
+          "fontWeight": 400,
+          "textAnchor": "middle",
+          "letterSpacing": 0.3
+        },
+        {
+          "type": "rect",
+          "x": 261,
+          "y": 782,
+          "width": 24,
+          "height": 24,
+          "fill": "none",
+          "rx": 8
+        },
+        {
+          "type": "circle",
+          "cx": 273,
+          "cy": 794,
+          "r": 4,
+          "fill": "#A09487"
+        },
+        {
+          "type": "text",
+          "x": 273,
+          "y": 822,
+          "content": "Invoices",
+          "fontSize": 9,
+          "fill": "#A09487",
+          "fontWeight": 400,
+          "textAnchor": "middle",
+          "letterSpacing": 0.3
+        },
+        {
+          "type": "rect",
+          "x": 339,
+          "y": 782,
+          "width": 24,
+          "height": 24,
+          "fill": "none",
+          "rx": 8
+        },
+        {
+          "type": "circle",
+          "cx": 351,
+          "cy": 794,
+          "r": 4,
+          "fill": "#A09487"
+        },
+        {
+          "type": "text",
+          "x": 351,
+          "y": 822,
+          "content": "Profile",
+          "fontSize": 9,
+          "fill": "#A09487",
+          "fontWeight": 400,
+          "textAnchor": "middle",
+          "letterSpacing": 0.3
+        }
+      ]
+    },
+    {
+      "name": "Clients",
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 390 844\"/>",
+      "elements": [
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "fill": "#F8F5F0"
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 44,
+          "fill": "#F8F5F0"
+        },
+        {
+          "type": "text",
+          "x": 16,
+          "y": 16,
+          "content": "9:41",
+          "fontSize": 14,
+          "fill": "#16120C",
+          "fontWeight": 600
+        },
+        {
+          "type": "circle",
+          "cx": 346,
+          "cy": 22,
+          "r": 3,
+          "fill": "#16120C"
+        },
+        {
+          "type": "circle",
+          "cx": 354,
+          "cy": 22,
+          "r": 3,
+          "fill": "#16120C"
+        },
+        {
+          "type": "circle",
+          "cx": 362,
+          "cy": 22,
+          "r": 3,
+          "fill": "#16120C"
+        },
+        {
+          "type": "rect",
+          "x": 370,
+          "y": 16,
+          "width": 14,
+          "height": 8,
+          "fill": "none",
+          "rx": 2,
+          "stroke": "#16120C",
+          "strokeWidth": 1.5
+        },
+        {
+          "type": "rect",
+          "x": 372,
+          "y": 18,
+          "width": 8,
+          "height": 4,
+          "fill": "#16120C",
+          "rx": 1
+        },
+        {
+          "type": "rect",
+          "x": 384,
+          "y": 19,
+          "width": 2,
+          "height": 6,
+          "fill": "#16120C",
+          "rx": 1
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 70,
+          "content": "Clients",
+          "fontSize": 28,
+          "fill": "#16120C",
+          "fontWeight": 300,
+          "fontFamily": "Georgia, serif"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 92,
+          "content": "8 total · $24,650 lifetime",
+          "fontSize": 12,
+          "fill": "#6B6258"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 104,
+          "width": 350,
+          "height": 38,
+          "fill": "#FFFFFF",
+          "rx": 10,
+          "stroke": "#D6CFBF",
+          "strokeWidth": 1
+        },
+        {
+          "type": "circle",
+          "cx": 42,
+          "cy": 123,
+          "r": 7,
+          "fill": "none",
+          "stroke": "#A09487",
+          "strokeWidth": 1.5
+        },
+        {
+          "type": "line",
+          "x1": 47,
+          "y1": 128,
+          "x2": 52,
+          "y2": 133,
+          "stroke": "#A09487",
+          "strokeWidth": 1.5
+        },
+        {
+          "type": "text",
+          "x": 60,
+          "y": 128,
+          "content": "Search clients...",
+          "fontSize": 12,
+          "fill": "#A09487"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 162,
+          "content": "SORT BY",
+          "fontSize": 9,
+          "fill": "#A09487",
+          "fontWeight": 600,
+          "letterSpacing": 2
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 170,
+          "width": 64,
+          "height": 22,
+          "fill": "#16120C",
+          "rx": 11,
+          "stroke": "#D6CFBF",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 52,
+          "y": 185,
+          "content": "Recent",
+          "fontSize": 10,
+          "fill": "#F8F5F0",
+          "fontWeight": 500,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 96,
+          "y": 170,
+          "width": 64,
+          "height": 22,
+          "fill": "none",
+          "rx": 11,
+          "stroke": "#D6CFBF",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 128,
+          "y": 185,
+          "content": "Value",
+          "fontSize": 10,
+          "fill": "#6B6258",
+          "fontWeight": 500,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 172,
+          "y": 170,
+          "width": 64,
+          "height": 22,
+          "fill": "none",
+          "rx": 11,
+          "stroke": "#D6CFBF",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 204,
+          "y": 185,
+          "content": "A–Z",
+          "fontSize": 10,
+          "fill": "#6B6258",
+          "fontWeight": 500,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "circle",
+          "cx": 44,
+          "cy": 232,
+          "r": 20,
+          "fill": "#1C3880"
+        },
+        {
+          "type": "text",
+          "x": 44,
+          "y": 238,
+          "content": "AS",
+          "fontSize": 11,
+          "fill": "#FFF",
+          "fontWeight": 700,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 74,
+          "y": 224,
+          "content": "Arken Studio",
+          "fontSize": 14,
+          "fill": "#16120C",
+          "fontWeight": 600
+        },
+        {
+          "type": "text",
+          "x": 74,
+          "y": 240,
+          "content": "Architecture",
+          "fontSize": 11,
+          "fill": "#A09487"
+        },
+        {
+          "type": "circle",
+          "cx": 172.39999999999998,
+          "cy": 220,
+          "r": 4,
+          "fill": "#16A34A"
+        },
+        {
+          "type": "text",
+          "x": 354,
+          "y": 224,
+          "content": "$6,400",
+          "fontSize": 14,
+          "fill": "#16120C",
+          "fontWeight": 700,
+          "textAnchor": "end"
+        },
+        {
+          "type": "text",
+          "x": 366,
+          "y": 240,
+          "content": "›",
+          "fontSize": 16,
+          "fill": "#A09487",
+          "textAnchor": "end"
+        },
+        {
+          "type": "line",
+          "x1": 20,
+          "y1": 276,
+          "x2": 370,
+          "y2": 276,
+          "stroke": "#E8E3D9",
+          "strokeWidth": 0.5
+        },
+        {
+          "type": "circle",
+          "cx": 44,
+          "cy": 304,
+          "r": 20,
+          "fill": "#5D3A1A"
+        },
+        {
+          "type": "text",
+          "x": 44,
+          "y": 310,
+          "content": "HC",
+          "fontSize": 11,
+          "fill": "#FFF",
+          "fontWeight": 700,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 74,
+          "y": 296,
+          "content": "Holt & Co",
+          "fontSize": 14,
+          "fill": "#16120C",
+          "fontWeight": 600
+        },
+        {
+          "type": "text",
+          "x": 74,
+          "y": 312,
+          "content": "Retail brand",
+          "fontSize": 11,
+          "fill": "#A09487"
+        },
+        {
+          "type": "circle",
+          "cx": 147.8,
+          "cy": 292,
+          "r": 4,
+          "fill": "#16A34A"
+        },
+        {
+          "type": "text",
+          "x": 354,
+          "y": 296,
+          "content": "$5,800",
+          "fontSize": 14,
+          "fill": "#16120C",
+          "fontWeight": 700,
+          "textAnchor": "end"
+        },
+        {
+          "type": "text",
+          "x": 366,
+          "y": 312,
+          "content": "›",
+          "fontSize": 16,
+          "fill": "#A09487",
+          "textAnchor": "end"
+        },
+        {
+          "type": "line",
+          "x1": 20,
+          "y1": 348,
+          "x2": 370,
+          "y2": 348,
+          "stroke": "#E8E3D9",
+          "strokeWidth": 0.5
+        },
+        {
+          "type": "circle",
+          "cx": 44,
+          "cy": 376,
+          "r": 20,
+          "fill": "#0A4A2E"
+        },
+        {
+          "type": "text",
+          "x": 44,
+          "y": 382,
+          "content": "VE",
+          "fontSize": 11,
+          "fill": "#FFF",
+          "fontWeight": 700,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 74,
+          "y": 368,
+          "content": "Voss Editorial",
+          "fontSize": 14,
+          "fill": "#16120C",
+          "fontWeight": 600
+        },
+        {
+          "type": "text",
+          "x": 74,
+          "y": 384,
+          "content": "Publishing",
+          "fontSize": 11,
+          "fill": "#A09487"
+        },
+        {
+          "type": "circle",
+          "cx": 188.79999999999998,
+          "cy": 364,
+          "r": 4,
+          "fill": "#16A34A"
+        },
+        {
+          "type": "text",
+          "x": 354,
+          "y": 368,
+          "content": "$4,100",
+          "fontSize": 14,
+          "fill": "#16120C",
+          "fontWeight": 700,
+          "textAnchor": "end"
+        },
+        {
+          "type": "text",
+          "x": 366,
+          "y": 384,
+          "content": "›",
+          "fontSize": 16,
+          "fill": "#A09487",
+          "textAnchor": "end"
+        },
+        {
+          "type": "line",
+          "x1": 20,
+          "y1": 420,
+          "x2": 370,
+          "y2": 420,
+          "stroke": "#E8E3D9",
+          "strokeWidth": 0.5
+        },
+        {
+          "type": "circle",
+          "cx": 44,
+          "cy": 448,
+          "r": 20,
+          "fill": "#4A1942"
+        },
+        {
+          "type": "text",
+          "x": 44,
+          "y": 454,
+          "content": "MG",
+          "fontSize": 11,
+          "fill": "#FFF",
+          "fontWeight": 700,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 74,
+          "y": 440,
+          "content": "Mercer Group",
+          "fontSize": 14,
+          "fill": "#16120C",
+          "fontWeight": 600
+        },
+        {
+          "type": "text",
+          "x": 74,
+          "y": 456,
+          "content": "Consultancy",
+          "fontSize": 11,
+          "fill": "#A09487"
+        },
+        {
+          "type": "text",
+          "x": 354,
+          "y": 440,
+          "content": "$4,200",
+          "fontSize": 14,
+          "fill": "#16120C",
+          "fontWeight": 700,
+          "textAnchor": "end"
+        },
+        {
+          "type": "text",
+          "x": 366,
+          "y": 456,
+          "content": "›",
+          "fontSize": 16,
+          "fill": "#A09487",
+          "textAnchor": "end"
+        },
+        {
+          "type": "line",
+          "x1": 20,
+          "y1": 492,
+          "x2": 370,
+          "y2": 492,
+          "stroke": "#E8E3D9",
+          "strokeWidth": 0.5
+        },
+        {
+          "type": "circle",
+          "cx": 44,
+          "cy": 520,
+          "r": 20,
+          "fill": "#1A1A2E"
+        },
+        {
+          "type": "text",
+          "x": 44,
+          "y": 526,
+          "content": "FS",
+          "fontSize": 11,
+          "fill": "#FFF",
+          "fontWeight": 700,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 74,
+          "y": 512,
+          "content": "Fold Studio",
+          "fontSize": 14,
+          "fill": "#16120C",
+          "fontWeight": 600
+        },
+        {
+          "type": "text",
+          "x": 74,
+          "y": 528,
+          "content": "Film & motion",
+          "fontSize": 11,
+          "fill": "#A09487"
+        },
+        {
+          "type": "text",
+          "x": 354,
+          "y": 512,
+          "content": "$1,800",
+          "fontSize": 14,
+          "fill": "#16120C",
+          "fontWeight": 700,
+          "textAnchor": "end"
+        },
+        {
+          "type": "text",
+          "x": 366,
+          "y": 528,
+          "content": "›",
+          "fontSize": 16,
+          "fill": "#A09487",
+          "textAnchor": "end"
+        },
+        {
+          "type": "line",
+          "x1": 20,
+          "y1": 564,
+          "x2": 370,
+          "y2": 564,
+          "stroke": "#E8E3D9",
+          "strokeWidth": 0.5
+        },
+        {
+          "type": "circle",
+          "cx": 44,
+          "cy": 592,
+          "r": 20,
+          "fill": "#2A3A1A"
+        },
+        {
+          "type": "text",
+          "x": 44,
+          "y": 598,
+          "content": "PB",
+          "fontSize": 11,
+          "fill": "#FFF",
+          "fontWeight": 700,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 74,
+          "y": 584,
+          "content": "Pillar Books",
+          "fontSize": 14,
+          "fill": "#16120C",
+          "fontWeight": 600
+        },
+        {
+          "type": "text",
+          "x": 74,
+          "y": 600,
+          "content": "Publishing",
+          "fontSize": 11,
+          "fill": "#A09487"
+        },
+        {
+          "type": "text",
+          "x": 354,
+          "y": 584,
+          "content": "$2,350",
+          "fontSize": 14,
+          "fill": "#16120C",
+          "fontWeight": 700,
+          "textAnchor": "end"
+        },
+        {
+          "type": "text",
+          "x": 366,
+          "y": 600,
+          "content": "›",
+          "fontSize": 16,
+          "fill": "#A09487",
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 642,
+          "width": 350,
+          "height": 44,
+          "fill": "#FFFFFF",
+          "rx": 22,
+          "stroke": "#D6CFBF",
+          "strokeWidth": 1.5
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 669,
+          "content": "+ Add Client",
+          "fontSize": 14,
+          "fill": "#16120C",
+          "fontWeight": 500,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 764,
+          "width": 390,
+          "height": 80,
+          "fill": "#FFFFFF",
+          "stroke": "#D6CFBF",
+          "strokeWidth": 0.5
+        },
+        {
+          "type": "line",
+          "x1": 0,
+          "y1": 764,
+          "x2": 390,
+          "y2": 764,
+          "stroke": "#D6CFBF",
+          "strokeWidth": 0.5
+        },
+        {
+          "type": "rect",
+          "x": 27,
+          "y": 782,
+          "width": 24,
+          "height": 24,
+          "fill": "none",
+          "rx": 8
+        },
+        {
+          "type": "circle",
+          "cx": 39,
+          "cy": 794,
+          "r": 4,
+          "fill": "#A09487"
+        },
+        {
+          "type": "text",
+          "x": 39,
+          "y": 822,
+          "content": "Today",
+          "fontSize": 9,
+          "fill": "#A09487",
+          "fontWeight": 400,
+          "textAnchor": "middle",
+          "letterSpacing": 0.3
+        },
+        {
+          "type": "rect",
+          "x": 105,
+          "y": 782,
+          "width": 24,
+          "height": 24,
+          "fill": "none",
+          "rx": 8
+        },
+        {
+          "type": "circle",
+          "cx": 117,
+          "cy": 794,
+          "r": 4,
+          "fill": "#A09487"
+        },
+        {
+          "type": "text",
+          "x": 117,
+          "y": 822,
+          "content": "Projects",
+          "fontSize": 9,
+          "fill": "#A09487",
+          "fontWeight": 400,
+          "textAnchor": "middle",
+          "letterSpacing": 0.3
+        },
+        {
+          "type": "rect",
+          "x": 183,
+          "y": 782,
+          "width": 24,
+          "height": 24,
+          "fill": "#EEF2FF",
+          "rx": 8
+        },
+        {
+          "type": "circle",
+          "cx": 195,
+          "cy": 794,
+          "r": 4,
+          "fill": "#1C4ED8"
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 822,
+          "content": "Clients",
+          "fontSize": 9,
+          "fill": "#1C4ED8",
+          "fontWeight": 600,
+          "textAnchor": "middle",
+          "letterSpacing": 0.3
+        },
+        {
+          "type": "rect",
+          "x": 261,
+          "y": 782,
+          "width": 24,
+          "height": 24,
+          "fill": "none",
+          "rx": 8
+        },
+        {
+          "type": "circle",
+          "cx": 273,
+          "cy": 794,
+          "r": 4,
+          "fill": "#A09487"
+        },
+        {
+          "type": "text",
+          "x": 273,
+          "y": 822,
+          "content": "Invoices",
+          "fontSize": 9,
+          "fill": "#A09487",
+          "fontWeight": 400,
+          "textAnchor": "middle",
+          "letterSpacing": 0.3
+        },
+        {
+          "type": "rect",
+          "x": 339,
+          "y": 782,
+          "width": 24,
+          "height": 24,
+          "fill": "none",
+          "rx": 8
+        },
+        {
+          "type": "circle",
+          "cx": 351,
+          "cy": 794,
+          "r": 4,
+          "fill": "#A09487"
+        },
+        {
+          "type": "text",
+          "x": 351,
+          "y": 822,
+          "content": "Profile",
+          "fontSize": 9,
+          "fill": "#A09487",
+          "fontWeight": 400,
+          "textAnchor": "middle",
+          "letterSpacing": 0.3
+        }
+      ]
+    },
+    {
+      "name": "Invoice",
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 390 844\"/>",
+      "elements": [
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "fill": "#F8F5F0"
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 44,
+          "fill": "#F8F5F0"
+        },
+        {
+          "type": "text",
+          "x": 16,
+          "y": 16,
+          "content": "9:41",
+          "fontSize": 14,
+          "fill": "#16120C",
+          "fontWeight": 600
+        },
+        {
+          "type": "circle",
+          "cx": 346,
+          "cy": 22,
+          "r": 3,
+          "fill": "#16120C"
+        },
+        {
+          "type": "circle",
+          "cx": 354,
+          "cy": 22,
+          "r": 3,
+          "fill": "#16120C"
+        },
+        {
+          "type": "circle",
+          "cx": 362,
+          "cy": 22,
+          "r": 3,
+          "fill": "#16120C"
+        },
+        {
+          "type": "rect",
+          "x": 370,
+          "y": 16,
+          "width": 14,
+          "height": 8,
+          "fill": "none",
+          "rx": 2,
+          "stroke": "#16120C",
+          "strokeWidth": 1.5
+        },
+        {
+          "type": "rect",
+          "x": 372,
+          "y": 18,
+          "width": 8,
+          "height": 4,
+          "fill": "#16120C",
+          "rx": 1
+        },
+        {
+          "type": "rect",
+          "x": 384,
+          "y": 19,
+          "width": 2,
+          "height": 6,
+          "fill": "#16120C",
+          "rx": 1
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 68,
+          "content": "←",
+          "fontSize": 18,
+          "fill": "#16120C"
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 70,
+          "content": "New Invoice",
+          "fontSize": 16,
+          "fill": "#16120C",
+          "fontWeight": 600,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 354,
+          "y": 70,
+          "content": "Send",
+          "fontSize": 14,
+          "fill": "#1C4ED8",
+          "fontWeight": 600,
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 88,
+          "width": 350,
+          "height": 440,
+          "fill": "#FFFFFF",
+          "rx": 14,
+          "stroke": "#E8E3D9",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 88,
+          "width": 350,
+          "height": 72,
+          "fill": "#16120C",
+          "rx": 14
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 132,
+          "width": 350,
+          "height": 28,
+          "fill": "#16120C"
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 116,
+          "content": "MAST",
+          "fontSize": 11,
+          "fill": "rgba(255,255,255,0.5)",
+          "fontWeight": 700,
+          "letterSpacing": 3
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 136,
+          "content": "INVOICE",
+          "fontSize": 22,
+          "fill": "#FFF",
+          "fontWeight": 300,
+          "fontFamily": "Georgia, serif",
+          "letterSpacing": 4
+        },
+        {
+          "type": "text",
+          "x": 354,
+          "y": 116,
+          "content": "#047",
+          "fontSize": 20,
+          "fill": "#FFF",
+          "fontWeight": 700,
+          "textAnchor": "end"
+        },
+        {
+          "type": "text",
+          "x": 354,
+          "y": 136,
+          "content": "Apr 12, 2026",
+          "fontSize": 10,
+          "fill": "rgba(255,255,255,0.5)",
+          "textAnchor": "end"
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 186,
+          "content": "FROM",
+          "fontSize": 8,
+          "fill": "#A09487",
+          "fontWeight": 600,
+          "letterSpacing": 2
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 202,
+          "content": "Your Studio Name",
+          "fontSize": 13,
+          "fill": "#16120C",
+          "fontWeight": 600
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 218,
+          "content": "your@studio.co",
+          "fontSize": 11,
+          "fill": "#6B6258"
+        },
+        {
+          "type": "line",
+          "x1": 195,
+          "y1": 168,
+          "x2": 195,
+          "y2": 232,
+          "stroke": "#E8E3D9",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 210,
+          "y": 186,
+          "content": "TO",
+          "fontSize": 8,
+          "fill": "#A09487",
+          "fontWeight": 600,
+          "letterSpacing": 2
+        },
+        {
+          "type": "text",
+          "x": 210,
+          "y": 202,
+          "content": "Voss Editorial",
+          "fontSize": 13,
+          "fill": "#16120C",
+          "fontWeight": 600
+        },
+        {
+          "type": "text",
+          "x": 210,
+          "y": 218,
+          "content": "sarah@voss.com",
+          "fontSize": 11,
+          "fill": "#6B6258"
+        },
+        {
+          "type": "line",
+          "x1": 36,
+          "y1": 240,
+          "x2": 354,
+          "y2": 240,
+          "stroke": "#E8E3D9",
+          "strokeWidth": 0.5
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 260,
+          "content": "DESCRIPTION",
+          "fontSize": 8,
+          "fill": "#A09487",
+          "fontWeight": 600,
+          "letterSpacing": 2
+        },
+        {
+          "type": "text",
+          "x": 354,
+          "y": 260,
+          "content": "AMOUNT",
+          "fontSize": 8,
+          "fill": "#A09487",
+          "fontWeight": 600,
+          "textAnchor": "end",
+          "letterSpacing": 2
+        },
+        {
+          "type": "line",
+          "x1": 36,
+          "y1": 308,
+          "x2": 354,
+          "y2": 308,
+          "stroke": "#E8E3D9",
+          "strokeWidth": 0.5
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 294,
+          "content": "Photography direction · 3 days",
+          "fontSize": 12,
+          "fill": "#16120C"
+        },
+        {
+          "type": "text",
+          "x": 354,
+          "y": 294,
+          "content": "$1,500",
+          "fontSize": 12,
+          "fill": "#16120C",
+          "fontWeight": 600,
+          "textAnchor": "end"
+        },
+        {
+          "type": "line",
+          "x1": 36,
+          "y1": 346,
+          "x2": 354,
+          "y2": 346,
+          "stroke": "#E8E3D9",
+          "strokeWidth": 0.5
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 332,
+          "content": "Art direction & selects review",
+          "fontSize": 12,
+          "fill": "#16120C"
+        },
+        {
+          "type": "text",
+          "x": 354,
+          "y": 332,
+          "content": "$450",
+          "fontSize": 12,
+          "fill": "#16120C",
+          "fontWeight": 600,
+          "textAnchor": "end"
+        },
+        {
+          "type": "line",
+          "x1": 36,
+          "y1": 384,
+          "x2": 354,
+          "y2": 384,
+          "stroke": "#E8E3D9",
+          "strokeWidth": 0.5
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 370,
+          "content": "Final delivery & licensing prep",
+          "fontSize": 12,
+          "fill": "#16120C"
+        },
+        {
+          "type": "text",
+          "x": 354,
+          "y": 370,
+          "content": "$150",
+          "fontSize": 12,
+          "fill": "#16120C",
+          "fontWeight": 600,
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 36,
+          "y": 400,
+          "width": 318,
+          "height": 48,
+          "fill": "#EDE9E2",
+          "rx": 8
+        },
+        {
+          "type": "text",
+          "x": 52,
+          "y": 418,
+          "content": "Subtotal",
+          "fontSize": 11,
+          "fill": "#6B6258"
+        },
+        {
+          "type": "text",
+          "x": 338,
+          "y": 418,
+          "content": "$2,100",
+          "fontSize": 12,
+          "fill": "#16120C",
+          "fontWeight": 600,
+          "textAnchor": "end"
+        },
+        {
+          "type": "text",
+          "x": 52,
+          "y": 436,
+          "content": "Due Apr 26, 2026",
+          "fontSize": 10,
+          "fill": "#A09487"
+        },
+        {
+          "type": "text",
+          "x": 338,
+          "y": 436,
+          "content": "Net 14",
+          "fontSize": 10,
+          "fill": "#A09487",
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 480,
+          "width": 350,
+          "height": 48,
+          "fill": "#16120C",
+          "rx": 10
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 509,
+          "content": "TOTAL DUE",
+          "fontSize": 11,
+          "fill": "rgba(255,255,255,0.5)",
+          "fontWeight": 600,
+          "letterSpacing": 1
+        },
+        {
+          "type": "text",
+          "x": 354,
+          "y": 509,
+          "content": "$2,100",
+          "fontSize": 18,
+          "fill": "#FFF",
+          "fontWeight": 700,
+          "textAnchor": "end"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 556,
+          "content": "PAYMENT METHOD",
+          "fontSize": 9,
+          "fill": "#A09487",
+          "fontWeight": 600,
+          "letterSpacing": 2
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 566,
+          "width": 108,
+          "height": 36,
+          "fill": "#16120C",
+          "rx": 8,
+          "stroke": "#D6CFBF",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 74,
+          "y": 589,
+          "content": "Bank transfer",
+          "fontSize": 11,
+          "fill": "#F8F5F0",
+          "fontWeight": 600,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 135,
+          "y": 566,
+          "width": 108,
+          "height": 36,
+          "fill": "#FFFFFF",
+          "rx": 8,
+          "stroke": "#D6CFBF",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 189,
+          "y": 589,
+          "content": "Stripe",
+          "fontSize": 11,
+          "fill": "#6B6258",
+          "fontWeight": 400,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 250,
+          "y": 566,
+          "width": 108,
+          "height": 36,
+          "fill": "#FFFFFF",
+          "rx": 8,
+          "stroke": "#D6CFBF",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 304,
+          "y": 589,
+          "content": "PayPal",
+          "fontSize": 11,
+          "fill": "#6B6258",
+          "fontWeight": 400,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 616,
+          "width": 350,
+          "height": 44,
+          "fill": "#FFFFFF",
+          "rx": 10,
+          "stroke": "#D6CFBF",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 644,
+          "content": "Add a note to client...",
+          "fontSize": 12,
+          "fill": "#A09487"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 674,
+          "width": 350,
+          "height": 48,
+          "fill": "#1C4ED8",
+          "rx": 24
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 703,
+          "content": "Send Invoice",
+          "fontSize": 15,
+          "fill": "#FFF",
+          "fontWeight": 600,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 764,
+          "width": 390,
+          "height": 80,
+          "fill": "#FFFFFF",
+          "stroke": "#D6CFBF",
+          "strokeWidth": 0.5
+        },
+        {
+          "type": "line",
+          "x1": 0,
+          "y1": 764,
+          "x2": 390,
+          "y2": 764,
+          "stroke": "#D6CFBF",
+          "strokeWidth": 0.5
+        },
+        {
+          "type": "rect",
+          "x": 27,
+          "y": 782,
+          "width": 24,
+          "height": 24,
+          "fill": "none",
+          "rx": 8
+        },
+        {
+          "type": "circle",
+          "cx": 39,
+          "cy": 794,
+          "r": 4,
+          "fill": "#A09487"
+        },
+        {
+          "type": "text",
+          "x": 39,
+          "y": 822,
+          "content": "Today",
+          "fontSize": 9,
+          "fill": "#A09487",
+          "fontWeight": 400,
+          "textAnchor": "middle",
+          "letterSpacing": 0.3
+        },
+        {
+          "type": "rect",
+          "x": 105,
+          "y": 782,
+          "width": 24,
+          "height": 24,
+          "fill": "none",
+          "rx": 8
+        },
+        {
+          "type": "circle",
+          "cx": 117,
+          "cy": 794,
+          "r": 4,
+          "fill": "#A09487"
+        },
+        {
+          "type": "text",
+          "x": 117,
+          "y": 822,
+          "content": "Projects",
+          "fontSize": 9,
+          "fill": "#A09487",
+          "fontWeight": 400,
+          "textAnchor": "middle",
+          "letterSpacing": 0.3
+        },
+        {
+          "type": "rect",
+          "x": 183,
+          "y": 782,
+          "width": 24,
+          "height": 24,
+          "fill": "none",
+          "rx": 8
+        },
+        {
+          "type": "circle",
+          "cx": 195,
+          "cy": 794,
+          "r": 4,
+          "fill": "#A09487"
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 822,
+          "content": "Clients",
+          "fontSize": 9,
+          "fill": "#A09487",
+          "fontWeight": 400,
+          "textAnchor": "middle",
+          "letterSpacing": 0.3
+        },
+        {
+          "type": "rect",
+          "x": 261,
+          "y": 782,
+          "width": 24,
+          "height": 24,
+          "fill": "#EEF2FF",
+          "rx": 8
+        },
+        {
+          "type": "circle",
+          "cx": 273,
+          "cy": 794,
+          "r": 4,
+          "fill": "#1C4ED8"
+        },
+        {
+          "type": "text",
+          "x": 273,
+          "y": 822,
+          "content": "Invoices",
+          "fontSize": 9,
+          "fill": "#1C4ED8",
+          "fontWeight": 600,
+          "textAnchor": "middle",
+          "letterSpacing": 0.3
+        },
+        {
+          "type": "rect",
+          "x": 339,
+          "y": 782,
+          "width": 24,
+          "height": 24,
+          "fill": "none",
+          "rx": 8
+        },
+        {
+          "type": "circle",
+          "cx": 351,
+          "cy": 794,
+          "r": 4,
+          "fill": "#A09487"
+        },
+        {
+          "type": "text",
+          "x": 351,
+          "y": 822,
+          "content": "Profile",
+          "fontSize": 9,
+          "fill": "#A09487",
+          "fontWeight": 400,
+          "textAnchor": "middle",
+          "letterSpacing": 0.3
+        }
+      ]
+    },
+    {
+      "name": "Profile",
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 390 844\"/>",
+      "elements": [
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844,
+          "fill": "#F8F5F0"
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 44,
+          "fill": "#F8F5F0"
+        },
+        {
+          "type": "text",
+          "x": 16,
+          "y": 16,
+          "content": "9:41",
+          "fontSize": 14,
+          "fill": "#16120C",
+          "fontWeight": 600
+        },
+        {
+          "type": "circle",
+          "cx": 346,
+          "cy": 22,
+          "r": 3,
+          "fill": "#16120C"
+        },
+        {
+          "type": "circle",
+          "cx": 354,
+          "cy": 22,
+          "r": 3,
+          "fill": "#16120C"
+        },
+        {
+          "type": "circle",
+          "cx": 362,
+          "cy": 22,
+          "r": 3,
+          "fill": "#16120C"
+        },
+        {
+          "type": "rect",
+          "x": 370,
+          "y": 16,
+          "width": 14,
+          "height": 8,
+          "fill": "none",
+          "rx": 2,
+          "stroke": "#16120C",
+          "strokeWidth": 1.5
+        },
+        {
+          "type": "rect",
+          "x": 372,
+          "y": 18,
+          "width": 8,
+          "height": 4,
+          "fill": "#16120C",
+          "rx": 1
+        },
+        {
+          "type": "rect",
+          "x": 384,
+          "y": 19,
+          "width": 2,
+          "height": 6,
+          "fill": "#16120C",
+          "rx": 1
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 70,
+          "content": "Profile",
+          "fontSize": 28,
+          "fill": "#16120C",
+          "fontWeight": 300,
+          "fontFamily": "Georgia, serif"
+        },
+        {
+          "type": "rect",
+          "x": 344,
+          "y": 58,
+          "width": 36,
+          "height": 24,
+          "fill": "#EDE9E2",
+          "rx": 12,
+          "stroke": "#E8E3D9",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 362,
+          "y": 75,
+          "content": "Edit",
+          "fontSize": 11,
+          "fill": "#6B6258",
+          "textAnchor": "middle"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 92,
+          "width": 350,
+          "height": 140,
+          "fill": "#FFFFFF",
+          "rx": 14,
+          "stroke": "#E8E3D9",
+          "strokeWidth": 1
+        },
+        {
+          "type": "rect",
+          "x": 36,
+          "y": 112,
+          "width": 64,
+          "height": 64,
+          "fill": "#16120C",
+          "rx": 32
+        },
+        {
+          "type": "text",
+          "x": 68,
+          "y": 150,
+          "content": "YS",
+          "fontSize": 18,
+          "fill": "#F8F5F0",
+          "fontWeight": 700,
+          "textAnchor": "middle"
+        },
+        {
+          "type": "text",
+          "x": 116,
+          "y": 130,
+          "content": "Your Studio",
+          "fontSize": 16,
+          "fill": "#16120C",
+          "fontWeight": 600
+        },
+        {
+          "type": "text",
+          "x": 116,
+          "y": 148,
+          "content": "Creative director & designer",
+          "fontSize": 11,
+          "fill": "#6B6258"
+        },
+        {
+          "type": "text",
+          "x": 116,
+          "y": 164,
+          "content": "London, UK",
+          "fontSize": 11,
+          "fill": "#A09487"
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 196,
+          "content": "7",
+          "fontSize": 18,
+          "fill": "#16120C",
+          "fontWeight": 700
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 212,
+          "content": "Projects",
+          "fontSize": 9,
+          "fill": "#A09487"
+        },
+        {
+          "type": "text",
+          "x": 144,
+          "y": 196,
+          "content": "8",
+          "fontSize": 18,
+          "fill": "#16120C",
+          "fontWeight": 700
+        },
+        {
+          "type": "text",
+          "x": 144,
+          "y": 212,
+          "content": "Clients",
+          "fontSize": 9,
+          "fill": "#A09487"
+        },
+        {
+          "type": "text",
+          "x": 252,
+          "y": 196,
+          "content": "4.9",
+          "fontSize": 18,
+          "fill": "#16120C",
+          "fontWeight": 700
+        },
+        {
+          "type": "text",
+          "x": 252,
+          "y": 212,
+          "content": "Rating",
+          "fontSize": 9,
+          "fill": "#A09487"
+        },
+        {
+          "type": "rect",
+          "x": 20,
+          "y": 244,
+          "width": 350,
+          "height": 48,
+          "fill": "#EDE9E2",
+          "rx": 12,
+          "stroke": "#E8E3D9",
+          "strokeWidth": 1
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 263,
+          "content": "PUBLIC PORTFOLIO",
+          "fontSize": 8,
+          "fill": "#A09487",
+          "fontWeight": 600,
+          "letterSpacing": 2
+        },
+        {
+          "type": "text",
+          "x": 36,
+          "y": 280,
+          "content": "mast.studio/yourstudio",
+          "fontSize": 13,
+          "fill": "#1C4ED8",
+          "fontWeight": 500
+        },
+        {
+          "type": "text",
+          "x": 354,
+          "y": 272,
+          "content": "↗",
+          "fontSize": 16,
+          "fill": "#1C4ED8",
+          "textAnchor": "end"
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 314,
+          "content": "SERVICES",
+          "fontSize": 9,
+          "fill": "#A09487",
+          "fontWeight": 600,
+          "letterSpacing": 2
+        },
+        {
+          "type": "line",
+          "x1": 20,
+          "y1": 328,
+          "x2": 370,
+          "y2": 328,
+          "stroke": "#E8E3D9",
+          "strokeWidth": 0.5
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 356,
+          "content": "Brand identity",
+          "fontSize": 13,
+          "fill": "#16120C",
+          "fontWeight": 500
+        },
+        {
+          "type": "text",
+          "x": 354,
+          "y": 356,
+          "content": "$1,200/day",
+          "fontSize": 12,
+          "fill": "#6B6258",
+          "textAnchor": "end"
+        },
+        {
+          "type": "line",
+          "x1": 20,
+          "y1": 374,
+          "x2": 370,
+          "y2": 374,
+          "stroke": "#E8E3D9",
+          "strokeWidth": 0.5
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 402,
+          "content": "Web design",
+          "fontSize": 13,
+          "fill": "#16120C",
+          "fontWeight": 500
+        },
+        {
+          "type": "text",
+          "x": 354,
+          "y": 402,
+          "content": "$950/day",
+          "fontSize": 12,
+          "fill": "#6B6258",
+          "textAnchor": "end"
+        },
+        {
+          "type": "line",
+          "x1": 20,
+          "y1": 420,
+          "x2": 370,
+          "y2": 420,
+          "stroke": "#E8E3D9",
+          "strokeWidth": 0.5
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 448,
+          "content": "Art direction",
+          "fontSize": 13,
+          "fill": "#16120C",
+          "fontWeight": 500
+        },
+        {
+          "type": "text",
+          "x": 354,
+          "y": 448,
+          "content": "$800/day",
+          "fontSize": 12,
+          "fill": "#6B6258",
+          "textAnchor": "end"
+        },
+        {
+          "type": "line",
+          "x1": 20,
+          "y1": 466,
+          "x2": 370,
+          "y2": 466,
+          "stroke": "#E8E3D9",
+          "strokeWidth": 0.5
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 494,
+          "content": "Photography",
+          "fontSize": 13,
+          "fill": "#16120C",
+          "fontWeight": 500
+        },
+        {
+          "type": "text",
+          "x": 354,
+          "y": 494,
+          "content": "$600/day",
+          "fontSize": 12,
+          "fill": "#6B6258",
+          "textAnchor": "end"
+        },
+        {
+          "type": "line",
+          "x1": 20,
+          "y1": 512,
+          "x2": 370,
+          "y2": 512,
+          "stroke": "#E8E3D9",
+          "strokeWidth": 0.5
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 526,
+          "content": "SETTINGS",
+          "fontSize": 9,
+          "fill": "#A09487",
+          "fontWeight": 600,
+          "letterSpacing": 2
+        },
+        {
+          "type": "line",
+          "x1": 20,
+          "y1": 540,
+          "x2": 370,
+          "y2": 540,
+          "stroke": "#E8E3D9",
+          "strokeWidth": 0.5
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 568,
+          "content": "Billing preferences",
+          "fontSize": 13,
+          "fill": "#16120C"
+        },
+        {
+          "type": "text",
+          "x": 366,
+          "y": 568,
+          "content": "›",
+          "fontSize": 16,
+          "fill": "#A09487",
+          "textAnchor": "end"
+        },
+        {
+          "type": "line",
+          "x1": 20,
+          "y1": 584,
+          "x2": 370,
+          "y2": 584,
+          "stroke": "#E8E3D9",
+          "strokeWidth": 0.5
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 612,
+          "content": "Notification settings",
+          "fontSize": 13,
+          "fill": "#16120C"
+        },
+        {
+          "type": "text",
+          "x": 366,
+          "y": 612,
+          "content": "›",
+          "fontSize": 16,
+          "fill": "#A09487",
+          "textAnchor": "end"
+        },
+        {
+          "type": "line",
+          "x1": 20,
+          "y1": 628,
+          "x2": 370,
+          "y2": 628,
+          "stroke": "#E8E3D9",
+          "strokeWidth": 0.5
+        },
+        {
+          "type": "text",
+          "x": 20,
+          "y": 656,
+          "content": "Export all data",
+          "fontSize": 13,
+          "fill": "#16120C"
+        },
+        {
+          "type": "text",
+          "x": 366,
+          "y": 656,
+          "content": "›",
+          "fontSize": 16,
+          "fill": "#A09487",
+          "textAnchor": "end"
+        },
+        {
+          "type": "rect",
+          "x": 0,
+          "y": 764,
+          "width": 390,
+          "height": 80,
+          "fill": "#FFFFFF",
+          "stroke": "#D6CFBF",
+          "strokeWidth": 0.5
+        },
+        {
+          "type": "line",
+          "x1": 0,
+          "y1": 764,
+          "x2": 390,
+          "y2": 764,
+          "stroke": "#D6CFBF",
+          "strokeWidth": 0.5
+        },
+        {
+          "type": "rect",
+          "x": 27,
+          "y": 782,
+          "width": 24,
+          "height": 24,
+          "fill": "none",
+          "rx": 8
+        },
+        {
+          "type": "circle",
+          "cx": 39,
+          "cy": 794,
+          "r": 4,
+          "fill": "#A09487"
+        },
+        {
+          "type": "text",
+          "x": 39,
+          "y": 822,
+          "content": "Today",
+          "fontSize": 9,
+          "fill": "#A09487",
+          "fontWeight": 400,
+          "textAnchor": "middle",
+          "letterSpacing": 0.3
+        },
+        {
+          "type": "rect",
+          "x": 105,
+          "y": 782,
+          "width": 24,
+          "height": 24,
+          "fill": "none",
+          "rx": 8
+        },
+        {
+          "type": "circle",
+          "cx": 117,
+          "cy": 794,
+          "r": 4,
+          "fill": "#A09487"
+        },
+        {
+          "type": "text",
+          "x": 117,
+          "y": 822,
+          "content": "Projects",
+          "fontSize": 9,
+          "fill": "#A09487",
+          "fontWeight": 400,
+          "textAnchor": "middle",
+          "letterSpacing": 0.3
+        },
+        {
+          "type": "rect",
+          "x": 183,
+          "y": 782,
+          "width": 24,
+          "height": 24,
+          "fill": "none",
+          "rx": 8
+        },
+        {
+          "type": "circle",
+          "cx": 195,
+          "cy": 794,
+          "r": 4,
+          "fill": "#A09487"
+        },
+        {
+          "type": "text",
+          "x": 195,
+          "y": 822,
+          "content": "Clients",
+          "fontSize": 9,
+          "fill": "#A09487",
+          "fontWeight": 400,
+          "textAnchor": "middle",
+          "letterSpacing": 0.3
+        },
+        {
+          "type": "rect",
+          "x": 261,
+          "y": 782,
+          "width": 24,
+          "height": 24,
+          "fill": "none",
+          "rx": 8
+        },
+        {
+          "type": "circle",
+          "cx": 273,
+          "cy": 794,
+          "r": 4,
+          "fill": "#A09487"
+        },
+        {
+          "type": "text",
+          "x": 273,
+          "y": 822,
+          "content": "Invoices",
+          "fontSize": 9,
+          "fill": "#A09487",
+          "fontWeight": 400,
+          "textAnchor": "middle",
+          "letterSpacing": 0.3
+        },
+        {
+          "type": "rect",
+          "x": 339,
+          "y": 782,
+          "width": 24,
+          "height": 24,
+          "fill": "#EEF2FF",
+          "rx": 8
+        },
+        {
+          "type": "circle",
+          "cx": 351,
+          "cy": 794,
+          "r": 4,
+          "fill": "#1C4ED8"
+        },
+        {
+          "type": "text",
+          "x": 351,
+          "y": 822,
+          "content": "Profile",
+          "fontSize": 9,
+          "fill": "#1C4ED8",
+          "fontWeight": 600,
+          "textAnchor": "middle",
+          "letterSpacing": 0.3
+        }
+      ]
+    }
+  ]
+}

@@ -1,20 +1,18 @@
-import { openDB, upsertDesign, rebuildEmbeddings } from './design-db.mjs';
+import { openDB, upsertDesign } from './design-db.mjs';
 
-const db = openDB();
-upsertDesign(db, {
-  id:           'heartbeat-grove-' + Date.now(),
-  status:       'done',
-  app_name:     'Grove',
-  tagline:      'Deep work, by design.',
-  archetype:    'focus-tracker',
-  design_url:   'https://ram.zenbin.org/grove',
-  mock_url:     'https://ram.zenbin.org/grove-mock',
+const db = await openDB();
+await upsertDesign(db, {
+  id: `heartbeat-grove-${Date.now()}`,
+  app_name: 'GROVE',
+  tagline: 'grow with intention',
+  archetype: 'wellness-productivity',
+  design_url: 'https://ram.zenbin.org/grove',
+  mock_url: 'https://ram.zenbin.org/grove-mock',
+  credit: 'RAM Design Heartbeat',
+  prompt: 'Light-mode habit & personal growth tracker. Inspired by Lapa Ninja editorial serif trend (Instrument Serif rising) + Landbook warm off-white background pattern + DarkModeDesign single-accent strategy adapted for light mode. Warm cream palette with sage green and terracotta.',
+  screens: 6,
+  source: 'heartbeat',
   submitted_at: new Date().toISOString(),
   published_at: new Date().toISOString(),
-  credit:       'RAM Design Heartbeat',
-  prompt:       'Warm-cream editorial deep work session tracker. Sandbar minimal.gallery inspired. Focus blocks, session timer, log, weekly review, morning intention.',
-  screens:      6,
-  source:       'heartbeat',
 });
-rebuildEmbeddings(db);
-console.log('Indexed in design DB');
+console.log('DB: GROVE indexed ✓');

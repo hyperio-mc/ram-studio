@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hive — Memphis 80s</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Righteous&family=Space+Grotesk:wght@400;500;700&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--hot:#ff2d78;--yel:#ffde00;--cyn:#00c8ff;--pur:#7b2fff;--grn:#00e676;--blk:#1a0a2e;--wh:#fffde7}
+html{background:var(--wh);color:var(--blk);overflow-x:hidden}
+body{font-family:'Space Grotesk',sans-serif;background:var(--wh)}
+
+/* Memphis shapes BG */
+body::before{
+  content:'';position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;
+  background-image:
+    radial-gradient(circle 6px at 8% 15%, var(--hot) 100%, transparent),
+    radial-gradient(circle 4px at 92% 8%, var(--cyn) 100%, transparent),
+    radial-gradient(circle 8px at 18% 72%, var(--yel) 100%, transparent),
+    radial-gradient(circle 5px at 78% 65%, var(--pur) 100%, transparent),
+    radial-gradient(circle 6px at 45% 90%, var(--grn) 100%, transparent),
+    radial-gradient(circle 3px at 65% 30%, var(--hot) 100%, transparent),
+    linear-gradient(45deg,transparent 48%,var(--blk) 48%,var(--blk) 52%,transparent 52%) 0 0 / 40px 40px,
+    linear-gradient(-45deg,transparent 48%,var(--blk) 48%,var(--blk) 52%,transparent 52%) 0 0 / 40px 40px;
+  opacity:.07;
+}
+
+.content{position:relative;z-index:1}
+
+/* Zigzag top strip */
+.zigzag{height:16px;background:repeating-linear-gradient(90deg,var(--hot) 0,var(--hot) 20px,var(--yel) 20px,var(--yel) 40px,var(--cyn) 40px,var(--cyn) 60px,var(--pur) 60px,var(--pur) 80px)}
+
+nav{padding:.7rem 2rem;display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid var(--blk);background:var(--wh)}
+.nav-brand{font-family:'Righteous',cursive;font-size:2rem;color:var(--blk);letter-spacing:.05em;transform:skewX(-5deg);display:inline-block}
+.nav-brand em{color:var(--hot);font-style:normal}
+.nav-links{display:flex;gap:1.2rem;align-items:center}
+nav a{color:var(--blk);text-decoration:none;font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.2rem .5rem;transition:.15s}
+nav a:hover{background:var(--yel)}
+.nav-cta{background:var(--hot);color:var(--wh)!important;padding:.35rem .9rem;border:2px solid var(--blk)}
+.nav-cta:hover{background:var(--pur)!important}
+
+/* Hero */
+.hero{padding:4rem 2rem 3rem;max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr auto;gap:3rem;align-items:center}
+.hero-left{}
+.hero-badge{display:inline-block;background:var(--yel);border:2px solid var(--blk);font-size:.65rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;padding:.25rem .6rem;margin-bottom:1rem;transform:rotate(-2deg)}
+.hero-title{font-family:'Righteous',cursive;font-size:clamp(4rem,9vw,8rem);line-height:.92;letter-spacing:.02em;color:var(--blk);margin-bottom:1.5rem}
+.hero-title .line1{-webkit-text-stroke:3px var(--blk);color:transparent}
+.hero-title .line2{color:var(--hot)}
+.hero-title .line3{color:var(--pur)}
+.hero-sub{font-size:.9rem;font-weight:500;line-height:1.6;max-width:500px;margin-bottom:2rem;color:rgba(26,10,46,.7)}
+.btn-row{display:flex;gap:.8rem;flex-wrap:wrap}
+.btn{display:inline-block;font-family:'Righteous',cursive;font-size:1rem;text-decoration:none;padding:.6rem 1.8rem;letter-spacing:.05em;border:2px solid var(--blk);transition:.15s;box-shadow:3px 3px 0 var(--blk)}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 var(--blk)}
+.btn-primary{background:var(--hot);color:var(--wh)}
+.btn-secondary{background:var(--yel);color:var(--blk)}
+
+/* Memphis geometric art */
+.geo-art{width:280px;height:280px;position:relative;flex-shrink:0}
+.geo-art svg{width:100%;height:100%;animation:spin-slow 30s linear infinite}
+@keyframes spin-slow{to{transform:rotate(360deg)}}
+
+/* Feature strip */
+.feat-strip{background:var(--blk);padding:2rem;display:grid;grid-template-columns:repeat(6,1fr);gap:0;max-width:100%}
+.feat-col{padding:1.2rem;border-right:1px solid rgba(255,255,255,.1);text-align:center;transition:.2s}
+.feat-col:last-child{border-right:none}
+.feat-col:hover{background:var(--hot);transform:scaleY(1.02)}
+.feat-sym{font-family:'Righteous',cursive;font-size:2.5rem;color:var(--yel);display:block;margin-bottom:.4rem}
+.feat-col h3{font-size:.7rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--wh);margin-bottom:.3rem}
+.feat-col p{font-size:.62rem;color:rgba(255,253,231,.6);line-height:1.5}
+
+/* Code box */
+.quickstart{max-width:1100px;margin:3rem auto;padding:0 2rem}
+.qs-title{font-family:'Righteous',cursive;font-size:2.5rem;color:var(--blk);margin-bottom:1rem}
+.qs-title em{color:var(--pur);font-style:normal}
+.code-box{background:var(--blk);color:var(--wh);padding:1.5rem;font-family:monospace;font-size:.78rem;line-height:1.8;border:3px solid var(--blk);box-shadow:6px 6px 0 var(--pur);position:relative}
+.code-box::before{content:'';position:absolute;top:-8px;right:-8px;width:100%;height:100%;border:3px solid var(--hot);z-index:-1}
+.cm{color:rgba(255,255,255,.35)}.cmd{color:var(--cyn)}.str{color:var(--yel)}.ok{color:var(--grn)}
+
+/* Steps */
+.steps{max-width:1100px;margin:3rem auto;padding:0 2rem;display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.step-card{background:var(--wh);border:3px solid var(--blk);padding:1.5rem;position:relative;box-shadow:5px 5px 0 var(--blk);transition:.2s}
+.step-card:hover{transform:translate(-3px,-3px);box-shadow:8px 8px 0 var(--blk)}
+.step-card:nth-child(1) .step-accent{background:var(--hot)}
+.step-card:nth-child(2) .step-accent{background:var(--cyn)}
+.step-card:nth-child(3) .step-accent{background:var(--grn)}
+.step-accent{position:absolute;top:-3px;left:-3px;width:40px;height:6px}
+.step-n{font-family:'Righteous',cursive;font-size:3rem;color:rgba(26,10,46,.08);margin-bottom:.3rem;line-height:1}
+.step-card h3{font-weight:700;font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.5rem;color:var(--blk)}
+.step-card p{font-size:.78rem;line-height:1.6;color:rgba(26,10,46,.7);margin-bottom:.5rem}
+.step-card code{font-size:.68rem;background:var(--blk);color:var(--yel);padding:.4rem .6rem;display:block;border-left:3px solid var(--hot)}
+
+/* CTA */
+.cta{background:var(--blk);padding:4rem 2rem;text-align:center;position:relative;overflow:hidden}
+.cta::before{content:'';position:absolute;top:0;left:0;right:0;height:8px;background:repeating-linear-gradient(90deg,var(--hot) 0 20px,var(--yel) 20px 40px,var(--cyn) 40px 60px,var(--pur) 60px 80px)}
+.cta-title{font-family:'Righteous',cursive;font-size:clamp(3rem,8vw,7rem);color:var(--yel);line-height:.92;margin-bottom:1rem;text-shadow:4px 4px 0 var(--hot)}
+.cta-sub{font-size:.8rem;color:rgba(255,253,231,.6);margin-bottom:2rem;letter-spacing:.05em}
+
+/* Zigzag bottom */
+.zigzag-btm{height:16px;background:repeating-linear-gradient(90deg,var(--pur) 0,var(--pur) 20px,var(--grn) 20px,var(--grn) 40px,var(--yel) 40px,var(--yel) 60px,var(--hot) 60px,var(--hot) 80px)}
+
+footer{padding:.8rem 2rem;display:flex;justify-content:space-between;font-size:.65rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:var(--wh);border-top:3px solid var(--blk)}
+footer a{color:var(--hot);text-decoration:none;margin-left:1rem}
+
+@media(max-width:768px){
+  .nav-links a:not(.nav-cta){display:none}
+  .hero{grid-template-columns:1fr;gap:2rem;padding:3rem 1.5rem}
+  .geo-art{width:200px;height:200px;margin:0 auto}
+  .feat-strip{grid-template-columns:repeat(3,1fr)}
+  .feat-col{padding:.8rem .6rem}
+  .steps{grid-template-columns:1fr}
+  .quickstart{padding:0 1.5rem}
+  .cta{padding:3rem 1.5rem}
+  .btn-row{flex-wrap:wrap}
+  footer{flex-direction:column;gap:.5rem;text-align:center}
+}
+@media(max-width:480px){
+  .feat-strip{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+</head>
+<body>
+<div class="content">
+<div class="zigzag"></div>
+
+<nav>
+  <div class="nav-brand">HI<em>VE</em></div>
+  <div class="nav-links">
+    <a href="#features">features</a>
+    <a href="#how">workflow</a>
+    <a href="#api">api</a>
+    <a href="https://github.com/scoutos-labs/hive" class="nav-cta">github ↗</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-badge">★ new — agent runtime ships</div>
+    <h1 class="hero-title">
+      <span class="line1">YOUR</span><br>
+      <span class="line2">AGENTS.</span><br>
+      <span class="line3">ONE HIVE.</span>
+    </h1>
+    <p class="hero-sub">Local-first multi-agent coordination. Shared channels · @mention spawning · LMDB · SSE streams. Runs entirely on your machine. No cloud. No latency.</p>
+    <div class="btn-row">
+      <a href="https://github.com/scoutos-labs/hive" class="btn btn-primary">$ git clone hive</a>
+      <a href="https://hive-web.app" class="btn btn-secondary">open hive web →</a>
+    </div>
+  </div>
+  <div class="geo-art">
+    <svg viewBox="0 0 280 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Memphis geometric shapes -->
+      <circle cx="140" cy="140" r="110" stroke="#1a0a2e" stroke-width="3" fill="none"/>
+      <circle cx="140" cy="140" r="80" fill="#ffde00" opacity=".9"/>
+      <rect x="80" y="80" width="120" height="120" fill="#ff2d78" opacity=".7" transform="rotate(30 140 140)"/>
+      <polygon points="140,40 200,160 80,160" fill="#00c8ff" opacity=".8"/>
+      <circle cx="140" cy="140" r="35" fill="#7b2fff"/>
+      <text x="140" y="148" font-family="Righteous,cursive" font-size="22" fill="#fffde7" text-anchor="middle" font-weight="700">HIVE</text>
+      <!-- Dots -->
+      <circle cx="60" cy="60" r="8" fill="#ff2d78"/>
+      <circle cx="220" cy="80" r="5" fill="#00e676"/>
+      <circle cx="230" cy="210" r="10" fill="#ffde00" stroke="#1a0a2e" stroke-width="2"/>
+      <circle cx="50" cy="200" r="6" fill="#00c8ff"/>
+      <!-- Lines -->
+      <line x1="0" y1="140" x2="50" y2="140" stroke="#1a0a2e" stroke-width="2"/>
+      <line x1="230" y1="140" x2="280" y2="140" stroke="#1a0a2e" stroke-width="2"/>
+      <line x1="140" y1="0" x2="140" y2="50" stroke="#1a0a2e" stroke-width="2"/>
+      <line x1="140" y1="230" x2="140" y2="280" stroke="#1a0a2e" stroke-width="2"/>
+    </svg>
+  </div>
+</section>
+
+<div class="feat-strip">
+  <div class="feat-col"><span class="feat-sym">#</span><h3>Channels</h3><p>Group agents around projects with durable history and context.</p></div>
+  <div class="feat-col"><span class="feat-sym">@</span><h3>Mentions</h3><p>Post @agent-id to spawn with full channel context injected.</p></div>
+  <div class="feat-col"><span class="feat-sym">db</span><h3>LMDB</h3><p>All data persisted in embedded LMDB. Zero external database.</p></div>
+  <div class="feat-col"><span class="feat-sym">&gt;_</span><h3>Spawning</h3><p>Process lifecycle, output capture, timeouts, concurrency control.</p></div>
+  <div class="feat-col"><span class="feat-sym">sse</span><h3>Events</h3><p>Server-sent events. Started, progress, done — replayable.</p></div>
+  <div class="feat-col"><span class="feat-sym">{}</span><h3>JSONL</h3><p>Structured output parsing with graceful raw fallback.</p></div>
+</div>
+
+<div class="quickstart">
+  <div class="qs-title">Quick <em>Start</em></div>
+  <div class="code-box">
+<span class="cm">// 1. register an agent</span>
+<span class="cmd">$ curl -X POST localhost:7373/agents \
+-d '{"id":"coder","spawnCommand":"opencode"}'</span>
+<span class="ok">← {"success":true}</span>
+
+<span class="cm">// 2. create a channel</span>
+<span class="cmd">$ curl -X POST localhost:7373/channels \
+-d '{"name":"webapp","cwd":"/workspace/webapp"}'</span>
+
+<span class="cm">// 3. mention to trigger</span>
+<span class="cmd">$ curl -X POST localhost:7373/posts \
+-d '{"channelId":"webapp","content":"@coder fix auth bug"}'</span>
+<span class="str">[task.started] agent=coder</span>
+<span class="ok">[task.completed] 47s → "Fixed null ref in auth middleware"</span>
+  </div>
+</div>
+
+<div class="steps">
+  <div class="step-card"><div class="step-accent"></div><div class="step-n">01</div><h3>Register + Subscribe</h3><p>Register agents with their spawn config. Subscribe to channels or use auto-subscribe.</p><code>POST /agents {"id":"reviewer","spawnCommand":"opencode"}</code></div>
+  <div class="step-card"><div class="step-accent"></div><div class="step-n">02</div><h3>Mention to Trigger</h3><p>Post @agent-id. Hive parses mentions, creates tracking records, spawns the agent.</p><code>POST /posts {"content":"@reviewer check auth"}</code></div>
+  <div class="step-card"><div class="step-accent"></div><div class="step-n">03</div><h3>Execute + Respond</h3><p>Agent runs with full context via env vars. Output posted as channel response.</p><code>MENTION_ID=m_xyz CHANNEL_CWD=/workspace</code></div>
+</div>
+
+<div class="cta">
+  <h2 class="cta-title">DEPLOY<br>YOUR HIVE.</h2>
+  <p class="cta-sub">bun install &amp;&amp; bun run dev — port 7373 — first multi-agent workflow in three curl commands</p>
+  <div class="btn-row" style="justify-content:center">
+    <a href="https://github.com/scoutos-labs/hive" class="btn btn-primary" style="font-size:1.1rem">get hive on github</a>
+    <a href="https://hive-web.app" class="btn btn-secondary" style="font-size:1.1rem">open hive web →</a>
+  </div>
+</div>
+<div class="zigzag-btm"></div>
+
+<footer>
+  <span>hive — local-first agent coordination — open source, mit</span>
+  <div><a href="https://github.com/scoutos-labs/hive">github</a><a href="https://hive-web.app">hive web</a><a href="#">docs</a></div>
+</footer>
+</div>
+</body>
+</html>

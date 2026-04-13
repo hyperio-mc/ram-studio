@@ -1,0 +1,1312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RAM Design Studio — Full Design Discovery.</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:      #F8F6F1;
+    --ink:     #1A1714;
+    --muted:   #7A7570;
+    --rule:    #DDD9D3;
+    --accent:  #C0392B;
+    --surface: #EFECE6;
+    --mono: 'SF Mono', 'Fira Code', ui-monospace, monospace;
+    --serif: 'Georgia', 'Times New Roman', serif;
+  }
+
+  html { font-size: 16px; scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--serif);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ─────────────────────────────────────────────────────────────── */
+  .nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    padding: 18px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 200;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    background: rgba(248,246,241,0.9);
+    border-bottom: 1px solid var(--rule);
+  }
+  .nav-logo {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-logo:hover { color: var(--ink); }
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 2px;
+  }
+  .nav-links a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-links a.nav-feedback { color: var(--accent); }
+
+  /* ── CENTERED SUBMIT STAGE (ChatGPT-style) ───────────────────────────── */
+  .submit-stage {
+    min-height: 100vh;
+    background: #111210;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 24px 60px;   /* top accounts for nav */
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Ambient orbs */
+  .s-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+    pointer-events: none;
+    opacity: 0.5;
+  }
+  .s-orb-1 {
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(192,57,43,0.18) 0%, transparent 65%);
+    top: -200px; left: -200px;
+  }
+  .s-orb-2 {
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(46,44,100,0.22) 0%, transparent 65%);
+    bottom: -180px; right: -180px;
+  }
+
+  /* Content wrapper */
+  .stage-inner {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 720px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+
+  /* Eyebrow + headline */
+  .stage-eyebrow {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: rgba(248,246,241,0.3);
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  .stage-h1 {
+    font-size: clamp(2rem, 5vw, 3.6rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    color: #F8F6F1;
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  .stage-h1 em { font-style: normal; color: var(--accent); }
+
+  /* Textarea wrapper — full width */
+  .prompt-wrap {
+    width: 100%;
+    position: relative;
+    margin-bottom: 6px;
+  }
+  .prompt-ta {
+    width: 100%;
+    background: rgba(255,255,255,0.05);
+    border: 1.5px solid rgba(255,255,255,0.12);
+    border-radius: 12px;
+    color: #F8F6F1;
+    font-family: var(--mono);
+    font-size: 14px;
+    line-height: 1.7;
+    padding: 22px 24px;
+    resize: none;
+    min-height: 130px;
+    max-height: 220px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+  }
+  .prompt-ta::placeholder { color: rgba(248,246,241,0.18); }
+  .prompt-ta:focus {
+    border-color: rgba(192,57,43,0.55);
+    box-shadow: 0 0 0 3px rgba(192,57,43,0.08);
+  }
+  .char-count {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: rgba(248,246,241,0.18);
+    text-align: right;
+    width: 100%;
+    margin-bottom: 24px;
+  }
+  .char-count.over { color: #E74C3C; }
+
+  /* ── Category picker — 8-card single scrollable row ─────────────────── */
+  .cat-label {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: rgba(248,246,241,0.3);
+    margin-bottom: 10px;
+    align-self: flex-start;
+  }
+  .cat-row {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 7px;
+    width: 100%;
+    margin-bottom: 22px;
+  }
+  .cat-card {
+    position: relative;
+    cursor: pointer;
+    border: 1.5px solid rgba(255,255,255,0.07);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: border-color 0.18s, transform 0.15s, box-shadow 0.18s;
+    background: rgba(255,255,255,0.03);
+    min-width: 0;
+  }
+  .cat-card:hover {
+    border-color: rgba(255,255,255,0.22);
+    transform: translateY(-2px);
+  }
+  .cat-card.selected {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+  }
+  .cat-card input[type="radio"] {
+    position: absolute; opacity: 0; pointer-events: none;
+  }
+  .cat-vibe {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4/3;
+  }
+  .cat-name {
+    font-family: var(--mono);
+    font-size: 8px;
+    letter-spacing: 1px;
+    font-weight: 700;
+    text-align: center;
+    padding: 6px 2px;
+    color: rgba(248,246,241,0.4);
+    transition: color 0.18s;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .cat-card.selected .cat-name { color: #F8F6F1; }
+
+  /* Bottom row: credit + submit */
+  .form-bottom {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    align-items: stretch;
+  }
+  .credit-input {
+    flex: 1;
+    background: rgba(255,255,255,0.04);
+    border: 1.5px solid rgba(255,255,255,0.09);
+    border-radius: 8px;
+    color: #F8F6F1;
+    font-family: var(--mono);
+    font-size: 12px;
+    padding: 12px 16px;
+    outline: none;
+    transition: border-color 0.2s;
+    min-width: 0;
+  }
+  .credit-input::placeholder { color: rgba(248,246,241,0.2); }
+  .credit-input:focus { border-color: rgba(192,57,43,0.45); }
+  .btn-submit {
+    background: var(--accent);
+    color: #F8F6F1;
+    border: none;
+    border-radius: 8px;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    padding: 12px 32px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: opacity 0.2s, transform 0.15s;
+    flex-shrink: 0;
+  }
+  .btn-submit:hover:not(:disabled) { opacity: 0.88; transform: translateY(-1px); }
+  .btn-submit:disabled { opacity: 0.35; cursor: not-allowed; }
+
+  /* Status message */
+  .form-status {
+    margin-top: 16px;
+    padding: 14px 18px;
+    border-radius: 8px;
+    font-family: var(--mono);
+    font-size: 12px;
+    line-height: 1.7;
+    width: 100%;
+    display: none;
+  }
+  .form-status.success { display: block; background: rgba(46,204,113,0.08); border: 1px solid rgba(46,204,113,0.25); color: #2ECC71; }
+  .form-status.error   { display: block; background: rgba(192,57,43,0.08);  border: 1px solid rgba(192,57,43,0.35);  color: #E74C3C; }
+  .tracking-id { font-size: 17px; font-weight: 700; letter-spacing: 4px; margin: 8px 0 4px; }
+  .form-status a { color: inherit; opacity: 0.8; }
+
+  /* Scroll hint below stage */
+  .scroll-hint {
+    position: absolute;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: rgba(248,246,241,0.18);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    animation: hintBob 2.5s ease-in-out infinite;
+  }
+  @keyframes hintBob {
+    0%,100% { transform: translateX(-50%) translateY(0);   opacity: 0.4; }
+    50%     { transform: translateX(-50%) translateY(4px); opacity: 0.6; }
+  }
+  .hint-arrow { font-size: 14px; }
+
+  /* ── TICKER ──────────────────────────────────────────────────────────── */
+  .ticker {
+    overflow: hidden;
+    background: var(--ink);
+    padding: 13px 0;
+    user-select: none;
+    border-top: 1px solid rgba(255,255,255,0.05);
+  }
+  .ticker-track {
+    display: flex;
+    white-space: nowrap;
+    animation: ticker 32s linear infinite;
+  }
+  .ticker-track:hover { animation-play-state: paused; }
+  @keyframes ticker {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+  .ticker-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 28px;
+    padding: 0 28px;
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: rgba(255,255,255,0.55);
+  }
+  .ticker-dot {
+    width: 4px; height: 4px;
+    background: var(--accent);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* ── SCROLL REVEAL ENGINE ─────────────────────────────────────────────── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(36px);
+    transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1),
+                transform 0.7s cubic-bezier(0.16,1,0.3,1);
+  }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+
+  .stagger > * {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.65s cubic-bezier(0.16,1,0.3,1),
+                transform 0.65s cubic-bezier(0.16,1,0.3,1);
+  }
+  .stagger.in > *:nth-child(1) { opacity:1; transform:none; transition-delay:0s;    }
+  .stagger.in > *:nth-child(2) { opacity:1; transform:none; transition-delay:0.09s; }
+  .stagger.in > *:nth-child(3) { opacity:1; transform:none; transition-delay:0.18s; }
+  .stagger.in > *:nth-child(4) { opacity:1; transform:none; transition-delay:0.27s; }
+  .stagger.in > *:nth-child(5) { opacity:1; transform:none; transition-delay:0.36s; }
+  .stagger.in > *:nth-child(6) { opacity:1; transform:none; transition-delay:0.45s; }
+  .stagger.in > *:nth-child(7) { opacity:1; transform:none; transition-delay:0.54s; }
+  .stagger.in > *:nth-child(8) { opacity:1; transform:none; transition-delay:0.63s; }
+
+  /* ── SECTION BASE ────────────────────────────────────────────────────── */
+  .sec { padding: 120px 60px; }
+  .sec-inner { max-width: 1200px; margin: 0 auto; }
+  .sec-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 3px;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 14px;
+  }
+  .sec-heading {
+    font-size: clamp(1.8rem, 3.5vw, 3rem);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    line-height: 1.15;
+    max-width: 640px;
+    margin-bottom: 64px;
+  }
+
+  /* ── GALLERY GRID ────────────────────────────────────────────────────── */
+  .gallery-sec { background: var(--surface); }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+  }
+
+  .g-card {
+    background: var(--bg);
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 4/3;
+    cursor: pointer;
+    transition: transform 0.35s cubic-bezier(0.16,1,0.3,1);
+  }
+  .g-card:hover { z-index: 2; transform: scale(1.025); }
+
+  .g-inner {
+    position: absolute;
+    inset: 0;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    transition: background 0.45s ease;
+  }
+  .g-card:nth-child(1):hover .g-inner { background: linear-gradient(145deg,#FDF8F0,#F5ECD8); }
+  .g-card:nth-child(2):hover .g-inner { background: linear-gradient(145deg,#1A1714,#2A1A17); }
+  .g-card:nth-child(3):hover .g-inner { background: linear-gradient(145deg,#0D1117,#0D1A2F); }
+  .g-card:nth-child(4):hover .g-inner { background: linear-gradient(145deg,#0F1923,#192535); }
+  .g-card:nth-child(5):hover .g-inner { background: linear-gradient(145deg,#FAFAF0,#FBF7E0); }
+  .g-card:nth-child(6):hover .g-inner { background: linear-gradient(145deg,#F7F8FC,#EEF0FA); }
+
+  .g-preview {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 90px; height: 68px;
+  }
+
+  .g-chip {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--muted);
+    margin-bottom: 5px;
+  }
+  .g-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--ink);
+  }
+  .g-link { position: absolute; inset: 0; }
+
+  /* ── PROCESS ─────────────────────────────────────────────────────────── */
+  .process-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 2px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+  }
+  .p-step {
+    background: var(--bg);
+    padding: 40px 28px;
+    transition: background 0.3s;
+  }
+  .p-step:hover { background: var(--surface); }
+  .p-num {
+    font-family: var(--mono);
+    font-size: 52px;
+    font-weight: 900;
+    color: var(--rule);
+    line-height: 1;
+    margin-bottom: 22px;
+    transition: color 0.3s;
+  }
+  .p-step:hover .p-num { color: var(--accent); }
+  .p-title { font-size: 1.05rem; font-weight: 700; margin-bottom: 10px; }
+  .p-desc  { font-size: 0.9rem; line-height: 1.7; color: var(--muted); }
+
+  /* ── STATS ────────────────────────────────────────────────────────────── */
+  .stats-bar {
+    background: var(--ink);
+    padding: 80px 60px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+    text-align: center;
+  }
+  .s-num {
+    font-family: var(--mono);
+    font-size: clamp(2.8rem, 5vw, 4.5rem);
+    font-weight: 900;
+    color: var(--bg);
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+  .s-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: rgba(248,246,241,0.35);
+  }
+  .stats-bar .s-item + .s-item { border-left: 1px solid rgba(255,255,255,0.08); }
+
+  /* ── JOURNAL ─────────────────────────────────────────────────────────── */
+  .journal-sec { border-top: 1px solid var(--rule); }
+
+  .j-card {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 40px;
+    align-items: center;
+    padding: 48px;
+    border: 1px solid var(--rule);
+    text-decoration: none;
+    color: var(--ink);
+    transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
+  }
+  .j-card:hover {
+    border-color: var(--ink);
+    box-shadow: 4px 4px 0 var(--ink);
+    transform: translate(-2px,-2px);
+  }
+  .j-issue {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--accent);
+    font-weight: 700;
+    margin-bottom: 14px;
+  }
+  .j-title {
+    font-size: 1.55rem;
+    font-weight: 700;
+    line-height: 1.3;
+    letter-spacing: -0.015em;
+    margin-bottom: 14px;
+  }
+  .j-excerpt {
+    font-size: 0.98rem;
+    line-height: 1.75;
+    color: var(--muted);
+    max-width: 580px;
+  }
+  .j-meta {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 1px;
+    color: var(--muted);
+    margin-top: 20px;
+    display: flex;
+    gap: 24px;
+  }
+  .j-arrow {
+    font-size: 2.2rem;
+    color: var(--rule);
+    transition: color 0.25s, transform 0.25s;
+    font-family: var(--mono);
+  }
+  .j-card:hover .j-arrow { color: var(--ink); transform: translate(3px,-3px); }
+
+  /* ── FOOTER ──────────────────────────────────────────────────────────── */
+  footer {
+    padding: 28px 60px;
+    border-top: 1px solid var(--rule);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 14px;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 1px;
+    color: var(--muted);
+  }
+  footer a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  footer a:hover { color: var(--ink); }
+  .footer-links { display: flex; gap: 28px; }
+
+  /* ── RESPONSIVE ──────────────────────────────────────────────────────── */
+  @media (max-width: 900px) {
+    .nav { padding: 16px 32px; }
+    .nav-links { display: none; }
+    .submit-stage { padding: 80px 20px 60px; }
+    .cat-row { grid-template-columns: repeat(4, 1fr); }
+    .sec { padding: 80px 32px; }
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    .process-grid { grid-template-columns: repeat(2, 1fr); }
+    .stats-bar { grid-template-columns: repeat(2,1fr); padding: 64px 32px; }
+    .stats-bar .s-item + .s-item { border-left: none; }
+    .stats-bar .s-item:nth-child(3) { border-top: 1px solid rgba(255,255,255,0.08); }
+    .j-card { grid-template-columns: 1fr; }
+    footer { padding: 24px 32px; flex-direction: column; align-items: flex-start; }
+  }
+  @media (max-width: 560px) {
+    .cat-row { grid-template-columns: repeat(4, 1fr); gap: 5px; }
+    .cat-name { font-size: 7px; padding: 4px 2px; }
+    .gallery-grid { grid-template-columns: 1fr; }
+    .process-grid { grid-template-columns: 1fr; }
+    .stats-bar { grid-template-columns: repeat(2,1fr); }
+    .form-bottom { flex-direction: column; }
+    .btn-submit { width: 100%; }
+    .stage-h1 { font-size: 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── Navigation ──────────────────────────────────────────────────────────── -->
+<nav class="nav">
+  <a class="nav-logo" href="https://ram.zenbin.org/">RAM DESIGN STUDIO</a>
+  <div class="nav-links">
+    <a href="#gallery">GALLERY</a>
+    <a href="#process">PROCESS</a>
+    <a href="#journal">JOURNAL</a>
+    <a href="https://ram.zenbin.org/feedback" class="nav-feedback">REFACTOR ↺</a>
+  </div>
+</nav>
+
+<!-- ── Centered Submit Stage ───────────────────────────────────────────────── -->
+<section class="submit-stage" id="submit">
+  <div class="s-orb s-orb-1"></div>
+  <div class="s-orb s-orb-2"></div>
+
+  <div class="stage-inner">
+    <div class="stage-eyebrow">RAM DESIGN STUDIO · FULL DESIGN DISCOVERY</div>
+    <h1 class="stage-h1">Describe it.<br>We'll <em>design</em> it.</h1>
+
+    <form id="submit-form" style="width:100%;display:flex;flex-direction:column;align-items:center;gap:0">
+      <!-- Prompt -->
+      <div class="prompt-wrap">
+        <textarea
+          id="prompt"
+          name="prompt"
+          class="prompt-ta"
+          required
+          maxlength="500"
+          rows="5"
+          autofocus
+          placeholder="e.g. A fitness tracker for cyclists — clean, data-focused, daily rides, weekly goals, elevation stats..."
+        ></textarea>
+      </div>
+      <div class="char-count" id="char-count">0 / 500</div>
+
+      <!-- Category picker -->
+      <label class="cat-label">PICK A VIBE</label>
+      <div class="cat-row" id="cat-grid">
+
+        <!-- FINANCE -->
+        <label class="cat-card" id="cat-finance">
+          <input type="radio" name="app_type" value="finance">
+          <svg class="cat-vibe" viewBox="0 0 100 75" xmlns="http://www.w3.org/2000/svg">
+            <rect width="100" height="75" fill="#0B0F18"/>
+            <!-- grid lines -->
+            <line x1="10" y1="60" x2="90" y2="60" stroke="#1A2030" stroke-width="0.5"/>
+            <line x1="10" y1="45" x2="90" y2="45" stroke="#1A2030" stroke-width="0.5"/>
+            <line x1="10" y1="30" x2="90" y2="30" stroke="#1A2030" stroke-width="0.5"/>
+            <!-- bars -->
+            <rect x="14" y="42" width="10" height="18" fill="#1C3A28" rx="1"/>
+            <rect x="28" y="35" width="10" height="25" fill="#1C3A28" rx="1"/>
+            <rect x="42" y="48" width="10" height="12" fill="#1C3A28" rx="1"/>
+            <rect x="56" y="28" width="10" height="32" fill="#2ECC71" rx="1"/>
+            <rect x="70" y="38" width="10" height="22" fill="#1C3A28" rx="1"/>
+            <!-- top stat -->
+            <rect x="10" y="8" width="28" height="4" fill="#2ECC71" rx="1" opacity="0.9"/>
+            <rect x="10" y="16" width="18" height="2.5" fill="#2A3A4A" rx="1"/>
+            <rect x="50" y="8" width="20" height="4" fill="#2A3A4A" rx="1"/>
+            <rect x="50" y="16" width="14" height="2.5" fill="#2A3A4A" rx="1"/>
+          </svg>
+          <div class="cat-name">FINANCE</div>
+        </label>
+
+        <!-- HEALTH -->
+        <label class="cat-card" id="cat-health">
+          <input type="radio" name="app_type" value="health">
+          <svg class="cat-vibe" viewBox="0 0 100 75" xmlns="http://www.w3.org/2000/svg">
+            <rect width="100" height="75" fill="#F0FAF5"/>
+            <!-- progress ring -->
+            <circle cx="38" cy="35" r="22" fill="none" stroke="#D5EDE4" stroke-width="7"/>
+            <circle cx="38" cy="35" r="22" fill="none" stroke="#16A085" stroke-width="7"
+              stroke-dasharray="110 138" stroke-dashoffset="35" stroke-linecap="round"/>
+            <!-- center number -->
+            <text x="38" y="40" text-anchor="middle" font-size="14" font-weight="700"
+              fill="#16A085" font-family="monospace">7</text>
+            <!-- day dots -->
+            <circle cx="62" cy="18" r="4" fill="#16A085"/>
+            <circle cx="72" cy="18" r="4" fill="#16A085"/>
+            <circle cx="82" cy="18" r="4" fill="#D5EDE4"/>
+            <circle cx="62" cy="30" r="4" fill="#16A085"/>
+            <circle cx="72" cy="30" r="4" fill="#D5EDE4"/>
+            <!-- labels -->
+            <rect x="58" y="46" width="34" height="3" fill="#B8D8CC" rx="1.5"/>
+            <rect x="58" y="53" width="24" height="3" fill="#D5EDE4" rx="1.5"/>
+            <rect x="58" y="60" width="30" height="3" fill="#D5EDE4" rx="1.5"/>
+          </svg>
+          <div class="cat-name">HEALTH</div>
+        </label>
+
+        <!-- PRODUCTIVITY -->
+        <label class="cat-card" id="cat-productivity">
+          <input type="radio" name="app_type" value="productivity">
+          <svg class="cat-vibe" viewBox="0 0 100 75" xmlns="http://www.w3.org/2000/svg">
+            <rect width="100" height="75" fill="#F7F9FC"/>
+            <!-- header -->
+            <rect x="10" y="10" width="32" height="4" fill="#4A6CF7" rx="1.5"/>
+            <rect x="48" y="11" width="16" height="3" fill="#C8D0EA" rx="1.5"/>
+            <!-- task rows -->
+            <!-- row 1 — checked -->
+            <rect x="10" y="26" width="12" height="12" fill="#4A6CF7" rx="2"/>
+            <line x1="13" y1="32" x2="16" y2="35" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="16" y1="35" x2="21" y2="29" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>
+            <rect x="28" y="29" width="48" height="3" fill="#D0D5E8" rx="1.5"/>
+            <rect x="28" y="34" width="32" height="2.5" fill="#E4E7F2" rx="1.5"/>
+            <!-- row 2 — checked -->
+            <rect x="10" y="44" width="12" height="12" fill="#4A6CF7" rx="2"/>
+            <line x1="13" y1="50" x2="16" y2="53" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="16" y1="53" x2="21" y2="47" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>
+            <rect x="28" y="47" width="40" height="3" fill="#D0D5E8" rx="1.5"/>
+            <rect x="28" y="52" width="26" height="2.5" fill="#E4E7F2" rx="1.5"/>
+            <!-- row 3 — empty -->
+            <rect x="10" y="62" width="12" height="10" fill="none" stroke="#C8D0EA" stroke-width="1.5" rx="2"/>
+            <rect x="28" y="64" width="52" height="3" fill="#E4E7F2" rx="1.5"/>
+          </svg>
+          <div class="cat-name">PRODUCTIVITY</div>
+        </label>
+
+        <!-- SOCIAL -->
+        <label class="cat-card" id="cat-social">
+          <input type="radio" name="app_type" value="social">
+          <svg class="cat-vibe" viewBox="0 0 100 75" xmlns="http://www.w3.org/2000/svg">
+            <rect width="100" height="75" fill="#140D20"/>
+            <!-- profile header -->
+            <circle cx="20" cy="20" r="10" fill="#2A1A40"/>
+            <circle cx="20" cy="20" r="6" fill="#9B59B6"/>
+            <rect x="36" y="13" width="28" height="4" fill="#2A1A40" rx="1.5"/>
+            <rect x="36" y="21" width="20" height="3" fill="#1E1030" rx="1.5"/>
+            <!-- post card 1 -->
+            <rect x="10" y="36" width="80" height="14" fill="#1E1030" rx="3"/>
+            <rect x="16" y="40" width="48" height="2.5" fill="#2A1A40" rx="1.5"/>
+            <rect x="16" y="45" width="34" height="2.5" fill="#241540" rx="1.5"/>
+            <!-- post card 2 -->
+            <rect x="10" y="55" width="80" height="14" fill="#1E1030" rx="3"/>
+            <rect x="16" y="59" width="52" height="2.5" fill="#2A1A40" rx="1.5"/>
+            <rect x="16" y="64" width="38" height="2.5" fill="#241540" rx="1.5"/>
+            <!-- follower avatars -->
+            <circle cx="72" cy="17" r="5" fill="#6C3483"/>
+            <circle cx="80" cy="17" r="5" fill="#4A235A"/>
+            <circle cx="88" cy="17" r="5" fill="#2A1A40"/>
+          </svg>
+          <div class="cat-name">SOCIAL</div>
+        </label>
+
+        <!-- MUSIC -->
+        <label class="cat-card" id="cat-music">
+          <input type="radio" name="app_type" value="music">
+          <svg class="cat-vibe" viewBox="0 0 100 75" xmlns="http://www.w3.org/2000/svg">
+            <rect width="100" height="75" fill="#080808"/>
+            <!-- album art -->
+            <rect x="10" y="10" width="30" height="30" fill="#1A1A14" stroke="#2A2A1A" stroke-width="1"/>
+            <circle cx="25" cy="25" r="10" fill="#0D0D08"/>
+            <circle cx="25" cy="25" r="5" fill="#F5F500" opacity="0.7"/>
+            <circle cx="25" cy="25" r="2" fill="#0D0D08"/>
+            <!-- track info -->
+            <rect x="46" y="13" width="42" height="4" fill="#F5F500" rx="1.5" opacity="0.9"/>
+            <rect x="46" y="21" width="28" height="3" fill="#2A2A1A" rx="1.5"/>
+            <rect x="46" y="28" width="20" height="3" fill="#1A1A14" rx="1.5"/>
+            <!-- waveform -->
+            <rect x="10" y="50" width="3" height="12" fill="#3A3A20" rx="1"/>
+            <rect x="15" y="46" width="3" height="20" fill="#F5F500" rx="1" opacity="0.8"/>
+            <rect x="20" y="44" width="3" height="24" fill="#F5F500" rx="1"/>
+            <rect x="25" y="48" width="3" height="16" fill="#F5F500" rx="1" opacity="0.6"/>
+            <rect x="30" y="52" width="3" height="8"  fill="#3A3A20" rx="1"/>
+            <rect x="35" y="45" width="3" height="22" fill="#F5F500" rx="1" opacity="0.9"/>
+            <rect x="40" y="49" width="3" height="14" fill="#F5F500" rx="1" opacity="0.5"/>
+            <rect x="45" y="53" width="3" height="6"  fill="#3A3A20" rx="1"/>
+            <rect x="50" y="47" width="3" height="18" fill="#F5F500" rx="1" opacity="0.7"/>
+            <rect x="55" y="50" width="3" height="12" fill="#3A3A20" rx="1"/>
+            <rect x="60" y="43" width="3" height="26" fill="#F5F500" rx="1" opacity="0.8"/>
+            <rect x="65" y="48" width="3" height="16" fill="#F5F500" rx="1" opacity="0.6"/>
+            <rect x="70" y="52" width="3" height="8"  fill="#3A3A20" rx="1"/>
+            <rect x="75" y="46" width="3" height="20" fill="#F5F500" rx="1" opacity="0.9"/>
+            <rect x="80" y="50" width="3" height="12" fill="#3A3A20" rx="1"/>
+            <rect x="85" y="44" width="3" height="24" fill="#F5F500" rx="1" opacity="0.7"/>
+            <!-- progress bar -->
+            <rect x="10" y="67" width="80" height="2" fill="#1A1A14" rx="1"/>
+            <rect x="10" y="67" width="38" height="2" fill="#F5F500" rx="1"/>
+          </svg>
+          <div class="cat-name">MUSIC</div>
+        </label>
+
+        <!-- FOOD -->
+        <label class="cat-card" id="cat-food">
+          <input type="radio" name="app_type" value="food">
+          <svg class="cat-vibe" viewBox="0 0 100 75" xmlns="http://www.w3.org/2000/svg">
+            <rect width="100" height="75" fill="#F5ECD8"/>
+            <!-- image placeholder top half -->
+            <rect x="0" y="0" width="100" height="38" fill="#C4A882"/>
+            <!-- warm texture blocks -->
+            <rect x="0" y="0" width="50" height="38" fill="#B8946E" opacity="0.4"/>
+            <rect x="60" y="8" width="28" height="20" fill="#D4B896" opacity="0.5"/>
+            <!-- editorial divider line -->
+            <rect x="10" y="41" width="4" height="28" fill="#8B6914" rx="2"/>
+            <!-- text content -->
+            <rect x="20" y="42" width="52" height="5" fill="#2D2A26" rx="1.5"/>
+            <rect x="20" y="51" width="62" height="3" fill="#BDB9B3" rx="1.5"/>
+            <rect x="20" y="58" width="48" height="3" fill="#BDB9B3" rx="1.5"/>
+            <rect x="20" y="65" width="38" height="3" fill="#CFC9BF" rx="1.5"/>
+          </svg>
+          <div class="cat-name">FOOD</div>
+        </label>
+
+        <!-- TRAVEL -->
+        <label class="cat-card" id="cat-travel">
+          <input type="radio" name="app_type" value="travel">
+          <svg class="cat-vibe" viewBox="0 0 100 75" xmlns="http://www.w3.org/2000/svg">
+            <rect width="100" height="75" fill="#0A1628"/>
+            <!-- map grid lines -->
+            <line x1="0" y1="15" x2="100" y2="15" stroke="#0D1E36" stroke-width="1"/>
+            <line x1="0" y1="30" x2="100" y2="30" stroke="#0D1E36" stroke-width="1"/>
+            <line x1="0" y1="45" x2="100" y2="45" stroke="#0D1E36" stroke-width="1"/>
+            <line x1="0" y1="60" x2="100" y2="60" stroke="#0D1E36" stroke-width="1"/>
+            <line x1="20" y1="0" x2="20" y2="75" stroke="#0D1E36" stroke-width="1"/>
+            <line x1="40" y1="0" x2="40" y2="75" stroke="#0D1E36" stroke-width="1"/>
+            <line x1="60" y1="0" x2="60" y2="75" stroke="#0D1E36" stroke-width="1"/>
+            <line x1="80" y1="0" x2="80" y2="75" stroke="#0D1E36" stroke-width="1"/>
+            <!-- route path -->
+            <path d="M15 62 C20 50 30 45 40 38 C50 31 55 25 70 18" stroke="#00B4D8"
+              stroke-width="2" fill="none" stroke-dasharray="3 2" stroke-linecap="round"/>
+            <!-- start pin -->
+            <circle cx="15" cy="62" r="4" fill="#00B4D8" opacity="0.5"/>
+            <circle cx="15" cy="62" r="2" fill="#00B4D8"/>
+            <!-- end pin -->
+            <circle cx="70" cy="18" r="6" fill="#00B4D8" opacity="0.3"/>
+            <circle cx="70" cy="18" r="4" fill="#00B4D8" opacity="0.6"/>
+            <circle cx="70" cy="18" r="2" fill="#00B4D8"/>
+            <!-- destination label -->
+            <rect x="57" y="7" width="26" height="5" fill="#0D1E36" rx="2.5"/>
+            <rect x="59" y="8.5" width="18" height="2" fill="#00B4D8" rx="1" opacity="0.6"/>
+          </svg>
+          <div class="cat-name">TRAVEL</div>
+        </label>
+
+        <!-- CREATIVE -->
+        <label class="cat-card" id="cat-creative">
+          <input type="radio" name="app_type" value="creative">
+          <svg class="cat-vibe" viewBox="0 0 100 75" xmlns="http://www.w3.org/2000/svg">
+            <rect width="100" height="75" fill="#111111"/>
+            <!-- portfolio grid -->
+            <rect x="10" y="10" width="24" height="22" fill="#1E1E1E" rx="2"/>
+            <rect x="38" y="10" width="24" height="22" fill="#222222" rx="2"/>
+            <rect x="66" y="10" width="24" height="22" fill="#1A1A1A" rx="2"/>
+            <!-- bold type A -->
+            <text x="50" y="66" text-anchor="middle" font-size="28" font-weight="900"
+              fill="#F8F6F1" font-family="Georgia, serif" letter-spacing="-2">A</text>
+            <!-- accent underline -->
+            <rect x="34" y="69" width="32" height="2" fill="#C0392B" rx="1"/>
+            <!-- small highlight on first card -->
+            <rect x="10" y="10" width="24" height="2" fill="#C0392B" rx="1"/>
+          </svg>
+          <div class="cat-name">CREATIVE</div>
+        </label>
+
+      </div><!-- /cat-row -->
+
+      <!-- Credit + Submit -->
+      <div class="form-bottom">
+        <input type="text" id="credit" name="credit" class="credit-input"
+          placeholder="Your name or handle (optional)" maxlength="60">
+        <button type="submit" class="btn-submit" id="submit-btn">SUBMIT →</button>
+      </div>
+
+      <div id="form-status" class="form-status"></div>
+    </form>
+  </div>
+
+  <div class="scroll-hint">
+    <span>SCROLL TO GALLERY</span>
+    <span class="hint-arrow">↓</span>
+  </div>
+
+</section>
+
+<!-- ── Ticker ───────────────────────────────────────────────────────────────── -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span class="ticker-item">TERROIR<span class="ticker-dot"></span>MUSEUM MONEY<span class="ticker-dot"></span>PRISM<span class="ticker-dot"></span>MANIFEST<span class="ticker-dot"></span>VANTAGE<span class="ticker-dot"></span>FORTIS<span class="ticker-dot"></span>BEACON<span class="ticker-dot"></span>CRATE<span class="ticker-dot"></span>GROVE<span class="ticker-dot"></span>MIST<span class="ticker-dot"></span>GRID<span class="ticker-dot"></span></span>
+    <span class="ticker-item">TERROIR<span class="ticker-dot"></span>MUSEUM MONEY<span class="ticker-dot"></span>PRISM<span class="ticker-dot"></span>MANIFEST<span class="ticker-dot"></span>VANTAGE<span class="ticker-dot"></span>FORTIS<span class="ticker-dot"></span>BEACON<span class="ticker-dot"></span>CRATE<span class="ticker-dot"></span>GROVE<span class="ticker-dot"></span>MIST<span class="ticker-dot"></span>GRID<span class="ticker-dot"></span></span>
+  </div>
+</div>
+
+<!-- ── Gallery ──────────────────────────────────────────────────────────────── -->
+<section class="sec gallery-sec" id="gallery">
+  <div class="sec-inner">
+    <div class="reveal">
+      <div class="sec-label">GALLERY</div>
+      <h2 class="sec-heading">Each one a full Design Discovery.</h2>
+    </div>
+
+    <div class="gallery-grid stagger">
+
+      <!-- TERROIR -->
+      <div class="g-card">
+        <div class="g-inner">
+          <div class="g-preview">
+            <svg viewBox="0 0 90 68" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="90" height="68" fill="#F5F0E8"/>
+              <rect x="5" y="7"  width="32" height="3"  rx="1" fill="#2D2A26"/>
+              <rect x="5" y="13" width="22" height="2"  rx="1" fill="#BDB9B3"/>
+              <rect x="5" y="20" width="37" height="18" rx="2" fill="#8B7355"/>
+              <rect x="47" y="20" width="38" height="18" rx="2" fill="#C4A882"/>
+              <rect x="5" y="43" width="22" height="2"  rx="1" fill="#2D2A26"/>
+              <rect x="5" y="48" width="37" height="2"  rx="1" fill="#BDB9B3"/>
+              <rect x="5" y="53" width="29" height="2"  rx="1" fill="#BDB9B3"/>
+            </svg>
+          </div>
+          <div class="g-chip">TERROIR</div>
+          <div class="g-title">Wine Discovery</div>
+        </div>
+        <a class="g-link" href="https://zenbin.org/p/terroir-01" target="_blank" rel="noopener" aria-label="TERROIR — Wine Discovery"></a>
+      </div>
+
+      <!-- MUSEUM MONEY -->
+      <div class="g-card">
+        <div class="g-inner" style="background:#1A1714;">
+          <div class="g-preview">
+            <svg viewBox="0 0 90 68" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="90" height="68" fill="#1A1714"/>
+              <rect x="5"  y="7"  width="16" height="16" rx="1" fill="#4A4540"/>
+              <rect x="25" y="7"  width="16" height="16" rx="1" fill="#C0392B"/>
+              <rect x="45" y="7"  width="16" height="16" rx="1" fill="#4A4540"/>
+              <rect x="5"  y="28" width="56" height="2"  rx="1" fill="#3A3530"/>
+              <rect x="5"  y="34" width="40" height="2"  rx="1" fill="#3A3530"/>
+              <rect x="5"  y="44" width="22" height="10" rx="1" fill="#C0392B"/>
+            </svg>
+          </div>
+          <div class="g-chip" style="color:#7A7570;">MUSEUM MONEY</div>
+          <div class="g-title" style="color:#F8F6F1;">Art Finance</div>
+        </div>
+        <a class="g-link" href="https://zenbin.org/p/museum-money-01" target="_blank" rel="noopener" aria-label="Museum Money — Art Finance"></a>
+      </div>
+
+      <!-- BEACON -->
+      <div class="g-card">
+        <div class="g-inner" style="background:#0D1117;">
+          <div class="g-preview">
+            <svg viewBox="0 0 90 68" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="90" height="68" fill="#0D1117"/>
+              <ellipse cx="68" cy="34" rx="16" ry="16" fill="#1E3A5F" opacity="0.5"/>
+              <ellipse cx="68" cy="34" rx="10" ry="10" fill="#2E5E9F" opacity="0.7"/>
+              <ellipse cx="68" cy="34" rx="5"  ry="5"  fill="#4A9FEF"/>
+              <rect x="5"  y="9"  width="44" height="3"  rx="1" fill="#1C2B38"/>
+              <rect x="5"  y="16" width="30" height="2"  rx="1" fill="#131D27"/>
+              <rect x="5"  y="24" width="40" height="14" rx="2" fill="#131D27"/>
+              <rect x="5"  y="42" width="18" height="14" rx="2" fill="#131D27"/>
+              <rect x="27" y="42" width="18" height="14" rx="2" fill="#131D27"/>
+            </svg>
+          </div>
+          <div class="g-chip" style="color:#3A4A58;">BEACON</div>
+          <div class="g-title" style="color:#F8F6F1;">Talent Intelligence</div>
+        </div>
+        <a class="g-link" href="https://zenbin.org/p/beacon-v2" target="_blank" rel="noopener" aria-label="BEACON — Talent Intelligence"></a>
+      </div>
+
+      <!-- FORTIS -->
+      <div class="g-card">
+        <div class="g-inner" style="background:#0F1923;">
+          <div class="g-preview">
+            <svg viewBox="0 0 90 68" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="90" height="68" fill="#0F1923"/>
+              <path d="M18 52 A24 24 0 0 1 66 52" stroke="#1C2B38" stroke-width="9" fill="none" stroke-linecap="round"/>
+              <path d="M18 52 A24 24 0 0 1 42 28" stroke="#E8271E" stroke-width="9" fill="none" stroke-linecap="round"/>
+              <circle cx="42" cy="52" r="4" fill="#F8F6F1"/>
+              <rect x="5"  y="8"  width="28" height="3"  rx="1" fill="#1C2B38"/>
+              <rect x="5"  y="14" width="18" height="2"  rx="1" fill="#0F1923"/>
+            </svg>
+          </div>
+          <div class="g-chip" style="color:#3A4A58;">FORTIS</div>
+          <div class="g-title" style="color:#F8F6F1;">Risk Analytics</div>
+        </div>
+        <a class="g-link" href="https://zenbin.org/p/fortis-01" target="_blank" rel="noopener" aria-label="FORTIS — Risk Analytics"></a>
+      </div>
+
+      <!-- CRATE -->
+      <div class="g-card">
+        <div class="g-inner">
+          <div class="g-preview">
+            <svg viewBox="0 0 90 68" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="90" height="68" fill="#FAFAF0"/>
+              <rect x="5" y="5" width="30" height="30" fill="#F5F500" stroke="#0D0D0D" stroke-width="1.5"/>
+              <ellipse cx="20" cy="20" rx="10" ry="10" fill="#0D0D0D"/>
+              <ellipse cx="20" cy="20" rx="6"  ry="6"  fill="#E8271E"/>
+              <ellipse cx="20" cy="20" rx="2"  ry="2"  fill="#0D0D0D"/>
+              <rect x="40" y="9"  width="44" height="2" rx="1" fill="#0D0D0D"/>
+              <rect x="40" y="15" width="30" height="2" rx="1" fill="#5A5A5A"/>
+              <rect x="40" y="21" width="36" height="2" rx="1" fill="#5A5A5A"/>
+              <rect x="5"  y="42" width="80" height="1"  fill="#E5E5DC"/>
+              <rect x="5"  y="49" width="58" height="2"  rx="1" fill="#0D0D0D"/>
+              <rect x="5"  y="55" width="44" height="2"  rx="1" fill="#5A5A5A"/>
+            </svg>
+          </div>
+          <div class="g-chip">CRATE</div>
+          <div class="g-title">Vinyl Collection</div>
+        </div>
+        <a class="g-link" href="https://zenbin.org/p/crate-rec" target="_blank" rel="noopener" aria-label="CRATE — Vinyl Collection"></a>
+      </div>
+
+      <!-- VANTAGE -->
+      <div class="g-card">
+        <div class="g-inner">
+          <div class="g-preview">
+            <svg viewBox="0 0 90 68" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="90" height="68" fill="#F7F8FC"/>
+              <rect x="5"  y="5"  width="28" height="58" rx="2" fill="#ECEEF5"/>
+              <rect x="9"  y="10" width="20" height="2"  rx="1" fill="#C0C4D8"/>
+              <rect x="9"  y="16" width="14" height="14" rx="2" fill="#D0D4E8"/>
+              <rect x="9"  y="35" width="14" height="2"  rx="1" fill="#C0C4D8"/>
+              <rect x="9"  y="40" width="18" height="2"  rx="1" fill="#C0C4D8"/>
+              <rect x="38" y="5"  width="47" height="3"  rx="1" fill="#2C3560"/>
+              <rect x="38" y="12" width="32" height="2"  rx="1" fill="#C0C4D8"/>
+              <rect x="38" y="20" width="47" height="20" rx="2" fill="#ECEEF5"/>
+              <rect x="38" y="45" width="20" height="18" rx="2" fill="#ECEEF5"/>
+              <rect x="63" y="45" width="22" height="18" rx="2" fill="#3D52A0"/>
+            </svg>
+          </div>
+          <div class="g-chip">VANTAGE</div>
+          <div class="g-title">Investment Dashboard</div>
+        </div>
+        <a class="g-link" href="https://zenbin.org/p/vantage-01" target="_blank" rel="noopener" aria-label="VANTAGE — Investment Dashboard"></a>
+      </div>
+
+    </div><!-- /gallery-grid -->
+
+    <div class="reveal" style="margin-top:32px; text-align:center;">
+      <a href="https://ram.zenbin.org/gallery" class="btn btn-outline" style="font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:2px;padding:14px 36px;text-decoration:none;color:var(--ink);border:1.5px solid rgba(26,23,20,0.25);display:inline-block;transition:border-color 0.2s;">VIEW FULL GALLERY →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── Process ──────────────────────────────────────────────────────────────── -->
+<section class="sec" id="process">
+  <div class="sec-inner">
+    <div class="reveal">
+      <div class="sec-label">HOW IT WORKS</div>
+      <h2 class="sec-heading">Five steps. One full Design Discovery.</h2>
+    </div>
+    <div class="process-grid stagger">
+      <div class="p-step">
+        <div class="p-num">01</div>
+        <div class="p-title">Research</div>
+        <p class="p-desc">Scan Awwwards, Siteinspire, Mobbin, Refero. Identify patterns, find the counter-trend before it peaks — so the output is ahead, not behind.</p>
+      </div>
+      <div class="p-step">
+        <div class="p-num">02</div>
+        <div class="p-title">Prototype</div>
+        <p class="p-desc">Build in the .pen format. Color system, type scale, spacing rules, 4–6 screens across mobile and desktop. No shortcuts on the craft layer.</p>
+      </div>
+      <div class="p-step">
+        <div class="p-num">03</div>
+        <div class="p-title">Discover</div>
+        <p class="p-desc">Hero page with brand spec, CSS tokens, product brief, and screen thumbnails. Not just screens — a full system someone can build directly from.</p>
+      </div>
+      <div class="p-step">
+        <div class="p-num">04</div>
+        <div class="p-title">Ship</div>
+        <p class="p-desc">Published to the gallery. Downloadable .pen file. CSS tokens copy-ready. Open to the community for exploration and use.</p>
+      </div>
+      <div class="p-step">
+        <div class="p-num">05</div>
+        <div class="p-title">Refactor</div>
+        <p class="p-desc">Submit structured feedback on any published design. Color, layout, typography, density — one aspect at a time. The design comes back refined.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Stats ────────────────────────────────────────────────────────────────── -->
+<div class="stats-bar stagger">
+  <div class="s-item" style="text-align:center;">
+    <div class="s-num" data-target="24">24</div>
+    <div class="s-label">DESIGNS PUBLISHED</div>
+  </div>
+  <div class="s-item" style="text-align:center;">
+    <div class="s-num" data-target="8">8</div>
+    <div class="s-label">DESIGN VIBES</div>
+  </div>
+  <div class="s-item" style="text-align:center;">
+    <div class="s-num">∞</div>
+    <div class="s-label">SUBMISSIONS OPEN</div>
+  </div>
+  <div class="s-item" style="text-align:center;">
+    <div class="s-num" data-target="1">01</div>
+    <div class="s-label">JOURNAL ISSUES</div>
+  </div>
+</div>
+
+<!-- ── Journal ──────────────────────────────────────────────────────────────── -->
+<section class="sec journal-sec" id="journal">
+  <div class="sec-inner" style="max-width:900px;">
+    <div class="reveal">
+      <div class="sec-label">JOURNAL</div>
+      <h2 class="sec-heading">Writing about what the building teaches.</h2>
+    </div>
+
+    <a href="https://zenbin.org/p/ram-journal-01" class="j-card reveal" target="_blank" rel="noopener">
+      <div>
+        <div class="j-issue">JOURNAL NO. 01 · MARCH 17, 2026</div>
+        <div class="j-title">What I've Learned About Design From Building 8 Systems in 3 Days</div>
+        <p class="j-excerpt">Constraints force invention more than freedom does. Brand spec is not documentation — it's the actual deliverable. Research is most useful when it tells you what to avoid.</p>
+        <div class="j-meta">
+          <span>8 MIN READ</span>
+          <span>DESIGN · PROCESS · REFLECTION</span>
+        </div>
+      </div>
+      <div class="j-arrow">→</div>
+    </a>
+
+    <p class="reveal" style="margin-top:20px; font-family:var(--mono); font-size:10px; letter-spacing:1px; color:var(--muted);">
+      New issue every Tuesday. Building in public.
+    </p>
+  </div>
+</section>
+
+<!-- ── Footer ───────────────────────────────────────────────────────────────── -->
+<footer>
+  <span>© 2026 RAM DESIGN STUDIO</span>
+  <div class="footer-links">
+    <a href="https://ram.zenbin.org/gallery">GALLERY</a>
+    <a href="https://zenbin.org/p/ram-journal-01">JOURNAL</a>
+    <a href="https://ram.zenbin.org/feedback">REFACTOR ↺</a>
+  </div>
+</footer>
+
+<script>
+// ── Autofocus prompt on load ──────────────────────────────────────────────────
+window.addEventListener('load', () => {
+  const ta = document.getElementById('prompt');
+  if (ta) ta.focus();
+});
+
+// ── Category card selection ────────────────────────────────────────────────────
+const CATEGORY_ACCENTS = {
+  finance:      '#2ECC71',
+  health:       '#16A085',
+  productivity: '#4A6CF7',
+  social:       '#9B59B6',
+  music:        '#F5F500',
+  food:         '#B7852A',
+  travel:       '#00B4D8',
+  creative:     '#C0392B',
+};
+
+document.querySelectorAll('.cat-card').forEach(card => {
+  const radio = card.querySelector('input[type="radio"]');
+  card.addEventListener('click', () => {
+    // Deselect all
+    document.querySelectorAll('.cat-card').forEach(c => {
+      c.classList.remove('selected');
+      c.style.borderColor = '';
+      c.style.boxShadow = '';
+    });
+    // Select this
+    card.classList.add('selected');
+    const accent = CATEGORY_ACCENTS[radio.value] || '#C0392B';
+    card.style.borderColor = accent;
+    card.style.boxShadow = `0 0 12px ${accent}44`;
+    card.querySelector('.cat-name').style.color = accent;
+    radio.checked = true;
+  });
+});
+
+// ── Char counter ──────────────────────────────────────────────────────────────
+const promptEl    = document.getElementById('prompt');
+const charCountEl = document.getElementById('char-count');
+promptEl.addEventListener('input', () => {
+  const n = promptEl.value.length;
+  charCountEl.textContent = `${n} / 500`;
+  charCountEl.className = 'char-count' + (n > 480 ? ' over' : '');
+});
+
+// ── Submission slug ────────────────────────────────────────────────────────────
+function genSlug() {
+  return 'ds-req-' + Math.floor(Date.now() / 60000).toString(36);
+}
+
+// ── Form submit ────────────────────────────────────────────────────────────────
+document.getElementById('submit-form').addEventListener('submit', async e => {
+  e.preventDefault();
+
+  const prompt   = promptEl.value.trim();
+  const app_type = (document.querySelector('input[name="app_type"]:checked') || {}).value || 'auto';
+  const credit   = document.getElementById('credit').value.trim();
+
+  if (!prompt || prompt.length < 10) {
+    showStatus('error', '⚠ Too short — please describe your idea in at least a sentence.');
+    return;
+  }
+
+  const btn = document.getElementById('submit-btn');
+  btn.disabled = true;
+  btn.textContent = 'SUBMITTING...';
+  clearStatus();
+
+  const slug = genSlug();
+  const sub  = {
+    id:           slug,
+    prompt,
+    app_type:     app_type || 'auto',
+    credit:       credit || 'Anonymous',
+    submitted_at: new Date().toISOString(),
+    status:       'pending',
+  };
+
+  const submissionHtml = `<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><title>Design Request ${slug}</title></head>
+<body>
+<p style="font-family:monospace;padding:24px;color:#888">
+  Design request <strong style="color:#c8a84b">${slug}</strong> is in the queue.<br>
+  Check the gallery at <a href="https://ram.zenbin.org/gallery">ram.zenbin.org/gallery</a>.
+</p>
+<script type="application/json" id="submission">
+${JSON.stringify(sub, null, 2)}
+<\/script>
+</body></html>`;
+
+  try {
+    const res = await fetch(`https://zenbin.org/v1/pages/${slug}`, {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify({ title: `Design Request ${slug}`, html: submissionHtml }),
+    });
+
+    if (res.status === 201) {
+      showStatus('success',
+        `✓ Idea submitted! <div class="tracking-id">${slug}</div>
+        Your design will be published to the <a href="https://ram.zenbin.org/gallery">gallery</a> within 24 hours.`
+      );
+      e.target.reset();
+      charCountEl.textContent = '0 / 500';
+      document.querySelectorAll('.cat-card').forEach(c => {
+        c.classList.remove('selected');
+        c.style.borderColor = '';
+        c.style.boxShadow = '';
+        c.querySelector('.cat-name').style.color = '';
+      });
+      document.getElementById('prompt').focus();
+    } else if (res.status === 409) {
+      showStatus('error', '⚠ Slot taken — please click Submit once more.');
+    } else {
+      throw new Error(`HTTP ${res.status}`);
+    }
+  } catch (err) {
+    showStatus('error', `⚠ Submission failed: ${err.message} — please try again.`);
+  }
+
+  btn.disabled = false;
+  btn.textContent = 'SUBMIT →';
+});
+
+function showStatus(type, html) {
+  const el = document.getElementById('form-status');
+  el.className = 'form-status ' + type;
+  el.innerHTML = html;
+}
+function clearStatus() {
+  const el = document.getElementById('form-status');
+  el.className = 'form-status';
+  el.innerHTML = '';
+}
+
+// ── Scroll reveal ──────────────────────────────────────────────────────────────
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('in');
+      io.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll('.reveal, .stagger').forEach(el => io.observe(el));
+
+// ── Animated stat counters ─────────────────────────────────────────────────────
+function countUp(el, target, duration = 1400) {
+  const t0 = performance.now();
+  const tick = t => {
+    const p = Math.min((t - t0) / duration, 1);
+    const e = 1 - Math.pow(1 - p, 3);
+    el.textContent = String(Math.round(e * target)).padStart(target < 10 ? 2 : 1, '0');
+    if (p < 1) requestAnimationFrame(tick);
+  };
+  requestAnimationFrame(tick);
+}
+
+const statsIo = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.querySelectorAll('[data-target]').forEach(el => {
+        countUp(el, parseInt(el.dataset.target, 10));
+      });
+      statsIo.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.4 });
+
+document.querySelectorAll('.stats-bar').forEach(el => statsIo.observe(el));
+
+// ── Nav scroll ────────────────────────────────────────────────────────────────
+const nav = document.querySelector('.nav');
+let ticking = false;
+window.addEventListener('scroll', () => {
+  if (!ticking) {
+    requestAnimationFrame(() => {
+      nav.style.background = window.scrollY > 50
+        ? 'rgba(248,246,241,0.97)'
+        : 'rgba(248,246,241,0.9)';
+      ticking = false;
+    });
+    ticking = true;
+  }
+}, { passive: true });
+</script>
+
+</body>
+</html>

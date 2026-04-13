@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gallery — RAM Design Studio</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:      #F8F6F1;
+    --surface: #EFECE6;
+    --ink:     #1A1714;
+    --muted:   #7A7570;
+    --rule:    #DDD9D3;
+    --accent:  #C0392B;
+    --green:   #2D6A4F;
+    --red:     #C0392B;
+    --mono:    'SF Mono', 'Fira Code', ui-monospace, monospace;
+    --serif:   'Georgia', 'Times New Roman', serif;
+  }
+
+  html { font-size: 16px; scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--mono);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── Ambient orbs ── */
+  .orb { position: fixed; border-radius: 50%; filter: blur(90px); opacity: 0.25; pointer-events: none; z-index: 0; }
+  @keyframes float1 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(30px,-40px)} }
+  @keyframes float2 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-40px,30px)} }
+  .orb-1 { width:500px;height:500px;background:radial-gradient(circle,#e8c5a0,transparent);top:-120px;right:-100px;animation:float1 18s ease-in-out infinite; }
+  .orb-2 { width:360px;height:360px;background:radial-gradient(circle,#b8cce0,transparent);bottom:20%;left:-80px;animation:float2 22s ease-in-out infinite; }
+
+  /* ── Nav ── */
+  nav {
+    padding: 18px 60px;
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    background: rgba(248,246,241,0.92);
+    z-index: 100;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+  .nav-logo { font-family: var(--mono); font-size: 11px; font-weight: 700; letter-spacing: 4px; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .nav-logo:hover { color: var(--ink); }
+  .nav-links { display: flex; gap: 32px; align-items: center; }
+  .nav-links a { font-family: var(--mono); font-size: 10px; letter-spacing: 2px; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-submit-btn {
+    background: var(--ink);
+    color: var(--bg) !important;
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    padding: 9px 18px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    text-transform: uppercase;
+    transition: background 0.15s;
+  }
+  .nav-submit-btn:hover { background: var(--accent) !important; color: var(--bg) !important; }
+
+  /* ── Hero ── */
+  .hero {
+    padding: 60px 60px 48px;
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 40px;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 1;
+  }
+  .hero-left {}
+  .hero-tag { font-family: var(--mono); font-size: 9px; letter-spacing: 4px; color: var(--muted); margin-bottom: 20px; text-transform: uppercase; }
+  .hero-title { font-family: var(--serif); font-size: clamp(36px, 5vw, 68px); font-weight: 400; letter-spacing: -1px; line-height: 1.05; margin-bottom: 20px; color: var(--ink); }
+  .hero-sub { font-family: var(--mono); font-size: 12px; color: var(--muted); max-width: 440px; line-height: 1.8; }
+  .hero-stats { display: flex; gap: 48px; flex-shrink: 0; }
+  .stat-item { text-align: right; }
+  .stat-value { font-family: var(--serif); font-size: 40px; font-weight: 400; color: var(--accent); display: block; letter-spacing: -1px; }
+  .stat-label { font-family: var(--mono); font-size: 9px; letter-spacing: 3px; color: var(--muted); display: block; margin-top: 4px; text-transform: uppercase; }
+
+  /* ── Filters ── */
+  .filters {
+    padding: 16px 60px;
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 1;
+  }
+  .filter-label { font-family: var(--mono); font-size: 9px; letter-spacing: 3px; color: var(--muted); margin-right: 8px; text-transform: uppercase; }
+  .filter-btn {
+    background: transparent;
+    border: 1px solid var(--rule);
+    color: var(--muted);
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 1px;
+    padding: 6px 14px;
+    border-radius: 0;
+    cursor: pointer;
+    transition: all 0.12s;
+    text-transform: uppercase;
+  }
+  .filter-btn:hover { border-color: var(--muted); color: var(--ink); }
+  .filter-btn.active { background: var(--ink); border-color: var(--ink); color: var(--bg); font-weight: 700; }
+
+  /* ── Grid ── */
+  .gallery-section { padding: 40px 60px; position: relative; z-index: 1; }
+  .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 0; border: 1px solid var(--rule); }
+
+  /* Design card */
+  .design-card {
+    background: var(--bg);
+    border-right: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    overflow: hidden;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    transition: background 0.15s;
+  }
+  .design-card:hover { background: var(--surface); }
+  .card-thumb {
+    height: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .card-thumb-inner { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
+  .card-app-name { font-family: var(--serif); font-size: 32px; font-weight: 400; letter-spacing: 2px; color: rgba(255,255,255,0.18); text-align: center; user-select: none; }
+  .card-arch-badge {
+    position: absolute; top: 12px; right: 12px;
+    font-family: var(--mono); font-size: 8px; font-weight: 700; letter-spacing: 2px;
+    padding: 4px 8px; background: rgba(0,0,0,0.35); backdrop-filter: blur(4px);
+  }
+  .card-screens-badge {
+    position: absolute; bottom: 12px; left: 12px;
+    font-family: var(--mono); font-size: 8px; color: rgba(255,255,255,0.35); letter-spacing: 1px;
+  }
+  .card-body { padding: 20px; flex: 1; display: flex; flex-direction: column; gap: 8px; border-top: 1px solid var(--rule); }
+  .card-name { font-family: var(--serif); font-size: 20px; font-weight: 400; color: var(--ink); }
+  .card-tagline { font-family: var(--mono); font-size: 11px; color: var(--muted); line-height: 1.6; flex: 1; }
+  .card-footer {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 12px 20px; border-top: 1px solid var(--rule); gap: 8px;
+  }
+  .card-date { font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: 0.5px; }
+  .card-arrow { font-size: 14px; color: var(--muted); }
+  .card-share-x {
+    background: transparent;
+    border: 1px solid var(--rule);
+    color: var(--muted);
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 1px;
+    padding: 5px 10px;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: all 0.12s;
+    text-transform: uppercase;
+  }
+  .card-share-x:hover { border-color: var(--ink); color: var(--ink); }
+  .card-mock-btn {
+    background: transparent;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 5px 10px;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: all 0.12s;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+  .card-mock-btn:hover { background: var(--accent); color: var(--bg); }
+  .studio-badge {
+    position: absolute; top: 12px; left: 12px;
+    font-family: var(--mono); font-size: 8px; font-weight: 700; letter-spacing: 1.5px;
+    padding: 4px 8px; background: rgba(192,57,43,0.15); color: var(--accent);
+    backdrop-filter: blur(4px);
+  }
+
+  /* ── Empty / Loading states ── */
+  .state-box { grid-column: 1 / -1; padding: 80px 40px; text-align: center; }
+  .state-icon { font-size: 40px; margin-bottom: 20px; opacity: 0.2; }
+  .state-title { font-family: var(--serif); font-size: 24px; font-weight: 400; margin-bottom: 10px; color: var(--ink); }
+  .state-sub { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .spinner {
+    width: 28px; height: 28px;
+    border: 1px solid var(--rule);
+    border-top-color: var(--accent);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin: 0 auto 20px;
+  }
+
+  /* ── Pending section ── */
+  .pending-section { padding: 0 60px 60px; position: relative; z-index: 1; }
+  .pending-title { font-family: var(--mono); font-size: 9px; letter-spacing: 4px; color: var(--muted); margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid var(--rule); text-transform: uppercase; }
+  .pending-list { display: flex; flex-direction: column; gap: 0; border: 1px solid var(--rule); }
+  .pending-item { background: var(--bg); border-bottom: 1px solid var(--rule); padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+  .pending-prompt { font-family: var(--mono); font-size: 12px; color: var(--muted); flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .pending-id { font-family: var(--mono); font-size: 10px; letter-spacing: 1px; color: var(--muted); flex-shrink: 0; }
+  .status-badge { font-family: var(--mono); font-size: 9px; font-weight: 700; letter-spacing: 2px; padding: 4px 10px; flex-shrink: 0; text-transform: uppercase; }
+  .status-pending    { background: rgba(192,57,43,.08);  color: var(--accent); }
+  .status-processing { background: rgba(45,106,79,.08);  color: var(--green); }
+  .status-error      { background: rgba(192,57,43,.08);  color: var(--red); }
+
+  /* ── Footer ── */
+  .page-footer {
+    padding: 28px 60px;
+    border-top: 1px solid var(--rule);
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--muted);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    letter-spacing: 1px;
+    position: relative;
+    z-index: 1;
+  }
+  .refresh-btn {
+    background: transparent;
+    border: 1px solid var(--rule);
+    color: var(--muted);
+    font-family: var(--mono);
+    font-size: 10px;
+    padding: 6px 14px;
+    cursor: pointer;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: all 0.12s;
+  }
+  .refresh-btn:hover { color: var(--ink); border-color: var(--muted); }
+  #last-updated { font-family: var(--mono); font-size: 10px; color: var(--muted); }
+</style>
+</head>
+<body>
+
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+
+<nav>
+  <a class="nav-logo" href="https://ram.zenbin.org/">RAM DESIGN STUDIO</a>
+  <div class="nav-links">
+    <a href="https://ram.zenbin.org/pen-viewer">Pen Viewer</a>
+    <a href="https://ram.zenbin.org/submit" class="nav-submit-btn">Submit Idea →</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-tag">COMMUNITY GALLERY  ·  BY THE PEOPLE</div>
+    <h1 class="hero-title">Production<br>Designs</h1>
+    <p class="hero-sub">One prompt → complete design system. 10 screens, brand spec, CSS tokens — production-ready in minutes.</p>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-item">
+      <span class="stat-value" id="stat-total">—</span>
+      <span class="stat-label">TOTAL DESIGNS</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-value" id="stat-pending">—</span>
+      <span class="stat-label">IN QUEUE</span>
+    </div>
+  </div>
+</section>
+
+<div class="filters">
+  <span class="filter-label">FILTER:</span>
+  <button class="filter-btn active" data-arch="all">All</button>
+  <button class="filter-btn" data-arch="productivity">Productivity</button>
+  <button class="filter-btn" data-arch="social">Social</button>
+  <button class="filter-btn" data-arch="finance">Finance</button>
+  <button class="filter-btn" data-arch="health">Health</button>
+  <button class="filter-btn" data-arch="music">Music</button>
+  <button class="filter-btn" data-arch="food">Food</button>
+  <button class="filter-btn" data-arch="travel">Travel</button>
+  <button class="filter-btn" data-arch="education">Education</button>
+  <button class="filter-btn" data-arch="studio" style="border-color:var(--accent)44;color:var(--accent)">★ Studio Originals</button>
+</div>
+
+<section class="gallery-section">
+  <div class="gallery-grid" id="gallery-grid">
+    <div class="state-box">
+      <div class="spinner"></div>
+      <div class="state-title">Loading gallery...</div>
+    </div>
+  </div>
+</section>
+
+<section class="pending-section" id="pending-section" style="display:none">
+  <div class="pending-title">IN QUEUE</div>
+  <div class="pending-list" id="pending-list"></div>
+</section>
+
+<footer class="page-footer">
+  <span>RAM Design Studio  ·  Community Gallery</span>
+  <span id="last-updated">Checking for updates...</span>
+  <button class="refresh-btn" onclick="loadGallery(true)">↻ Refresh</button>
+</footer>
+
+<script>
+// ── Config ────────────────────────────────────────────────────────────────────
+// Public raw URL — no auth needed. Queue is updated by the agent server-side.
+const QUEUE_URL = 'https://raw.githubusercontent.com/hyperio-mc/design-studio-queue/main/queue.json';
+
+// Archetype palettes for card thumbnails
+const ARCH = {
+  music:       { bg:'#0a0a12', accent:'#c8953a', label:'MUSIC' },
+  food:        { bg:'#0d0b09', accent:'#d4863a', label:'FOOD' },
+  finance:     { bg:'#060c14', accent:'#3a8fff', label:'FINANCE' },
+  health:      { bg:'#060f08', accent:'#3acd7a', label:'HEALTH' },
+  travel:      { bg:'#060a14', accent:'#4a9fff', label:'TRAVEL' },
+  social:      { bg:'#0d0610', accent:'#c840ff', label:'SOCIAL' },
+  education:   { bg:'#07080f', accent:'#6060ff', label:'EDU' },
+  commerce:    { bg:'#0f0808', accent:'#e06030', label:'COMMERCE' },
+  creative:    { bg:'#080808', accent:'#ff6060', label:'CREATIVE' },
+  studio:      { bg:'#09080a', accent:'#c8a84b', label:'STUDIO' },
+  productivity:{ bg:'#05050a', accent:'#c8a84b', label:'PRODUCTIVITY' },
+};
+
+// ── State ─────────────────────────────────────────────────────────────────────
+let allDesigns = [];
+let activeFilter = 'all';
+
+// ── Load gallery ──────────────────────────────────────────────────────────────
+async function loadGallery(silent = false) {
+  if (!silent) {
+    document.getElementById('gallery-grid').innerHTML =
+      '<div class="state-box"><div class="spinner"></div><div class="state-title">Loading gallery...</div></div>';
+  }
+
+  try {
+    // Fetch from public raw GitHub URL — no auth, no rate-limit concerns
+    const res = await fetch(QUEUE_URL + '?t=' + Date.now()); // cache-bust
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const queue = await res.json();
+    // Handle both flat array format and wrapped { submissions: [...] } format
+    const subs = Array.isArray(queue) ? queue : (queue.submissions || []);
+
+    const done    = subs.filter(s => s.status === 'done' || (!s.status && s.design_url)).reverse();
+    const pending = subs.filter(s => s.status === 'pending' || s.status === 'processing');
+    const errors  = subs.filter(s => s.status === 'error');
+
+    allDesigns = done;
+
+    document.getElementById('stat-total').textContent = done.length;
+    document.getElementById('stat-pending').textContent = pending.length;
+    document.getElementById('last-updated').textContent =
+      `Updated ${new Date().toLocaleTimeString()}`;
+
+    renderGrid();
+    renderPending([...pending, ...errors]);
+
+  } catch (err) {
+    if (!silent) {
+      showEmpty('Could not load gallery', `Error: ${err.message}`);
+    }
+    document.getElementById('last-updated').textContent = `Error: ${err.message}`;
+  }
+}
+
+// ── Render grid ───────────────────────────────────────────────────────────────
+function renderGrid() {
+  const grid = document.getElementById('gallery-grid');
+  const filtered = activeFilter === 'all'
+    ? allDesigns
+    : allDesigns.filter(d => d.archetype === activeFilter);
+
+  if (!filtered.length) {
+    if (activeFilter !== 'all') {
+      showEmpty('No designs yet', `No ${activeFilter} designs in the gallery yet. Be the first to submit one!`);
+    } else {
+      showEmpty('Gallery is empty', 'No community designs yet. Submit the first idea!');
+    }
+    return;
+  }
+
+  grid.innerHTML = filtered.map(s => {
+    const arch = ARCH[s.archetype] || ARCH.productivity;
+    const dateStr = s.published_at || s.submitted_at || s.date;
+    const date = dateStr
+      ? new Date(dateStr).toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric' })
+      : 'Recent';
+    const name = s.app_name || s.appName || s.name || s.id || s.slug || '?';
+    const url = s.design_url || s.viewer_url || '#';
+    const mockUrl = s.mock_url || '';
+    const isStudio = s.source === 'studio' || s.credit === 'RAM Design Heartbeat' || s.credit === 'RAM Heartbeat' || s.credit === 'RAM Design Studio (Heartbeat)';
+    const shareText = encodeURIComponent(`${name} — UI design by RAM Design Studio`);
+    const shareUrl = encodeURIComponent(url);
+
+    return `
+      <a class="design-card" href="${url}" target="_blank" rel="noopener">
+        <div class="card-thumb" style="background:${arch.bg}">
+          <div class="card-thumb-inner">
+            <div class="card-app-name">${name}</div>
+          </div>
+          ${isStudio ? '<div class="studio-badge">★ STUDIO</div>' : ''}
+          <div class="card-arch-badge" style="color:${arch.accent}">${arch.label}</div>
+          ${mockUrl ? '<div class="card-screens-badge">✦ INTERACTIVE MOCK</div>' : '<div class="card-screens-badge">5 MOBILE  ·  5 DESKTOP</div>'}
+        </div>
+        <div class="card-body">
+          <div class="card-name">${name}</div>
+          <div class="card-tagline">${truncate(s.prompt, 100)}</div>
+        </div>
+        <div class="card-footer">
+          <div class="card-date">${date}</div>
+          ${mockUrl ? `<a class="card-mock-btn" href="${mockUrl}" target="_blank" rel="noopener" onclick="event.stopPropagation()">Try Mock ✦</a>` : ''}
+          <button class="card-share-x" onclick="event.stopPropagation();event.preventDefault();window.open('https://twitter.com/intent/tweet?text=${shareText}&url=${shareUrl}','_blank')">Share 𝕏</button>
+          <div class="card-arrow">→</div>
+        </div>
+      </a>
+    `;
+  }).join('');
+}
+
+// ── Render pending queue ──────────────────────────────────────────────────────
+function renderPending(items) {
+  const section = document.getElementById('pending-section');
+  const list = document.getElementById('pending-list');
+
+  if (!items.length) {
+    section.style.display = 'none';
+    return;
+  }
+
+  section.style.display = 'block';
+  list.innerHTML = items.map(s => {
+    const statusClass = s.status === 'error' ? 'status-error'
+      : s.status === 'processing' ? 'status-processing' : 'status-pending';
+    const statusLabel = s.status === 'error' ? 'ERROR'
+      : s.status === 'processing' ? 'PROCESSING' : 'PENDING';
+    return `
+      <div class="pending-item">
+        <div class="pending-prompt">"${s.prompt}"</div>
+        <div class="pending-id">${s.id}</div>
+        <div class="status-badge ${statusClass}">${statusLabel}</div>
+      </div>
+    `;
+  }).join('');
+}
+
+// ── Filters ───────────────────────────────────────────────────────────────────
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    activeFilter = btn.dataset.arch;
+    renderGrid();
+  });
+});
+
+// ── Helpers ───────────────────────────────────────────────────────────────────
+function truncate(str, n) {
+  if (!str) return '';
+  return str.length > n ? str.slice(0, n-1) + '…' : str;
+}
+
+function showEmpty(title, sub) {
+  document.getElementById('gallery-grid').innerHTML = `
+    <div class="state-box">
+      <div class="state-icon">◎</div>
+      <div class="state-title">${title}</div>
+      <div class="state-sub">${sub}</div>
+    </div>
+  `;
+}
+
+// ── Auto-refresh every 5 minutes ──────────────────────────────────────────────
+loadGallery();
+setInterval(() => loadGallery(true), 5 * 60 * 1000);
+</script>
+
+</body>
+</html>

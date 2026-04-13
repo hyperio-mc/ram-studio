@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LARDER -- Know every ingredient, from soil to plate</title>
+<meta name="description" content="LARDER is a provenance intelligence platform for premium kitchens. Track every ingredient from farm to pass, build direct supplier relationships, and cook with complete confidence.">
+<style>
+  :root {
+    --cream:   #F4EFE6;
+    --cream2:  #EDE7DA;
+    --terra:   #C84831;
+    --clay:    #8B4A3A;
+    --amber:   #D97706;
+    --sage:    #5B7B5E;
+    --text:    #1A1410;
+    --textMid: rgba(26,20,16,0.60);
+    --muted:   rgba(26,20,16,0.38);
+    --border:  rgba(26,20,16,0.10);
+    --surface: #FAFAF7;
+    --white:   #FDFCFA;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--text);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── TYPOGRAPHY ── */
+  .display {
+    font-size: clamp(52px, 8vw, 96px);
+    font-weight: 700;
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    color: var(--text);
+  }
+  .display.terra { color: var(--terra); }
+
+  h2 {
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+  h3 {
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  p { color: var(--textMid); line-height: 1.65; }
+
+  .label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* ── LAYOUT ── */
+  .container {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+  section { padding: 96px 0; }
+  section:nth-child(even) { background: var(--cream2); }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(244,239,230,0.92);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    height: 60px;
+    display: flex;
+    align-items: center;
+  }
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+  .wordmark {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    color: var(--text);
+    text-decoration: none;
+  }
+  .wordmark span { color: var(--terra); }
+  .nav-links { display: flex; gap: 32px; align-items: center; }
+  .nav-links a {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--textMid);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+  .nav-links a:hover { color: var(--text); }
+  .nav-cta {
+    font-size: 13px;
+    font-weight: 600;
+    padding: 9px 20px;
+    background: var(--terra);
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: opacity 0.15s;
+  }
+  .nav-cta:hover { opacity: 0.88; }
+
+  /* ── TICKER ── */
+  .ticker {
+    background: var(--terra);
+    height: 36px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+  }
+  .ticker-track {
+    display: flex;
+    gap: 0;
+    white-space: nowrap;
+    animation: ticker 28s linear infinite;
+  }
+  .ticker-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 18px;
+    padding: 0 20px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: rgba(253,252,250,0.90);
+  }
+  .ticker-item::after {
+    content: '·';
+    color: rgba(253,252,250,0.40);
+    font-size: 14px;
+  }
+  @keyframes ticker {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  /* ── HERO ── */
+  .hero {
+    padding: 80px 0 72px;
+    background: var(--cream);
+  }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    padding: 7px 16px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--textMid);
+    margin-bottom: 28px;
+  }
+  .hero-badge .dot {
+    width: 6px; height: 6px;
+    background: var(--sage);
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(0.85); }
+  }
+  .hero-title { margin-bottom: 24px; }
+  .hero-sub {
+    font-size: 18px;
+    color: var(--textMid);
+    max-width: 540px;
+    line-height: 1.6;
+    margin-bottom: 40px;
+  }
+  .hero-actions { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+  .btn-primary {
+    display: inline-block;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 14px 28px;
+    background: var(--terra);
+    color: white;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: opacity 0.15s;
+  }
+  .btn-primary:hover { opacity: 0.88; }
+  .btn-secondary {
+    display: inline-block;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 14px 28px;
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    text-decoration: none;
+    transition: background 0.15s;
+  }
+  .btn-secondary:hover { background: var(--surface); }
+
+  /* ── STATS STRIP ── */
+  .stats-strip {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    margin-top: 64px;
+  }
+  .stat-cell {
+    background: var(--surface);
+    padding: 28px 32px;
+  }
+  .stat-num {
+    font-size: 40px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: var(--terra);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .stat-label { font-size: 13px; color: var(--textMid); }
+
+  /* ── SCREENS PREVIEW ── */
+  .screens-section { background: var(--cream); }
+  .screens-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 48px;
+  }
+  .screen-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .screen-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 24px 64px rgba(26,20,16,0.10);
+  }
+  .screen-thumb {
+    height: 220px;
+    display: flex;
+    align-items: flex-start;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .screen-thumb.harvest { background: linear-gradient(145deg, #C84831 0%, #8B4A3A 100%); }
+  .screen-thumb.suppliers { background: linear-gradient(145deg, #5B7B5E 0%, #3A5C3D 100%); }
+  .screen-thumb.ingredient { background: linear-gradient(145deg, #D97706 0%, #92400E 100%); }
+  .screen-thumb.calendar { background: linear-gradient(145deg, #F4EFE6 0%, #EDE7DA 100%); border-bottom: 1px solid var(--border); }
+  .screen-thumb.orders { background: linear-gradient(145deg, #1A1410 0%, #3D2B22 100%); }
+  .mock-phone {
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    background: rgba(253,252,250,0.12);
+    border: 1px solid rgba(253,252,250,0.20);
+    display: flex;
+    flex-direction: column;
+    padding: 12px;
+    gap: 8px;
+    position: relative;
+  }
+  .mock-line {
+    height: 8px;
+    border-radius: 4px;
+    background: rgba(253,252,250,0.25);
+  }
+  .mock-line.accent { background: rgba(253,252,250,0.55); width: 60%; }
+  .mock-line.short { width: 40%; }
+  .mock-block {
+    height: 40px;
+    border-radius: 8px;
+    background: rgba(253,252,250,0.18);
+    margin-top: 4px;
+  }
+  .mock-row {
+    display: flex;
+    gap: 6px;
+    margin-top: 4px;
+  }
+  .mock-row .mock-block { flex: 1; height: 32px; }
+  .screen-info { padding: 20px 22px 22px; }
+  .screen-name { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+  .screen-desc { font-size: 13px; color: var(--textMid); }
+
+  /* ── FEATURES ── */
+  .features-section { background: var(--cream2); }
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-top: 48px;
+  }
+  .feature-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 32px;
+    transition: box-shadow 0.2s;
+  }
+  .feature-card:hover { box-shadow: 0 12px 40px rgba(26,20,16,0.08); }
+  .feature-card.accent-terra { border-top: 3px solid var(--terra); }
+  .feature-card.accent-sage  { border-top: 3px solid var(--sage);  }
+  .feature-card.accent-amber { border-top: 3px solid var(--amber); }
+  .feature-card.accent-clay  { border-top: 3px solid var(--clay);  }
+  .feature-icon {
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+  .bg-terra-soft { background: rgba(200,72,49,0.10); }
+  .bg-sage-soft  { background: rgba(91,123,94,0.12); }
+  .bg-amber-soft { background: rgba(217,119,6,0.12); }
+  .bg-clay-soft  { background: rgba(139,74,58,0.12); }
+  .feature-card h3 { margin-bottom: 10px; }
+  .feature-card p { font-size: 14px; }
+
+  /* ── SUPPLIER LOGOS ── */
+  .logos-section {
+    padding: 48px 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    background: var(--cream);
+  }
+  .logos-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 48px;
+    flex-wrap: wrap;
+  }
+  .logo-pill {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    padding: 10px 22px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--textMid);
+    white-space: nowrap;
+  }
+
+  /* ── TESTIMONIAL ── */
+  .testimonial-section { background: var(--terra); }
+  .testimonial-section .label { color: rgba(253,252,250,0.55); }
+  .testimonial-section h2 { color: var(--white); }
+  .quote-large {
+    font-size: clamp(24px, 3.5vw, 40px);
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+    color: rgba(253,252,250,0.92);
+    max-width: 800px;
+    margin: 32px 0 28px;
+  }
+  .quote-attribution { font-size: 14px; color: rgba(253,252,250,0.60); font-weight: 500; }
+
+  /* ── HOW IT WORKS ── */
+  .steps-section { background: var(--cream2); }
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-top: 48px;
+  }
+  .step-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 28px 22px;
+  }
+  .step-num {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--terra);
+    margin-bottom: 16px;
+  }
+  .step-card h3 { font-size: 16px; margin-bottom: 8px; }
+  .step-card p { font-size: 13px; }
+
+  /* ── CTA FOOTER ── */
+  .cta-section { background: var(--text); }
+  .cta-section .display { color: var(--white); }
+  .cta-section p { color: rgba(253,252,250,0.55); }
+  .cta-section .label { color: rgba(253,252,250,0.35); }
+  .cta-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 40px;
+  }
+  .cta-right { display: flex; flex-direction: column; gap: 14px; align-items: flex-end; }
+  .cta-note { font-size: 12px; color: rgba(253,252,250,0.35); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--text);
+    border-top: 1px solid rgba(253,252,250,0.06);
+    padding: 40px 0;
+  }
+  .footer-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .footer-wordmark {
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: rgba(253,252,250,0.85);
+  }
+  .footer-copy { font-size: 12px; color: rgba(253,252,250,0.35); }
+  .footer-links { display: flex; gap: 24px; }
+  .footer-links a { font-size: 12px; color: rgba(253,252,250,0.40); text-decoration: none; }
+  .footer-links a:hover { color: rgba(253,252,250,0.7); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .screens-grid { grid-template-columns: 1fr; }
+    .features-grid { grid-template-columns: 1fr; }
+    .steps-grid { grid-template-columns: repeat(2, 1fr); }
+    .stats-strip { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .hero-sub { font-size: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#" class="wordmark">LARD<span>E</span>R</a>
+      <div class="nav-links">
+        <a href="#screens">Screens</a>
+        <a href="#features">Features</a>
+        <a href="#how">How it works</a>
+        <a href="https://ram.zenbin.org/axon-viewer" class="nav-cta">View Prototype</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track">
+    <!-- doubled for seamless loop -->
+    <span class="ticker-item">Hawkstone Farm</span>
+    <span class="ticker-item">Cob & Co</span>
+    <span class="ticker-item">Sole Grains</span>
+    <span class="ticker-item">Fernhill Dairy</span>
+    <span class="ticker-item">The Salt House</span>
+    <span class="ticker-item">Moorland Herbs</span>
+    <span class="ticker-item">Brook End Veg</span>
+    <span class="ticker-item">Highfield Meats</span>
+    <span class="ticker-item">Hawkstone Farm</span>
+    <span class="ticker-item">Cob & Co</span>
+    <span class="ticker-item">Sole Grains</span>
+    <span class="ticker-item">Fernhill Dairy</span>
+    <span class="ticker-item">The Salt House</span>
+    <span class="ticker-item">Moorland Herbs</span>
+    <span class="ticker-item">Brook End Veg</span>
+    <span class="ticker-item">Highfield Meats</span>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-badge">
+      <span class="dot"></span>
+      Now in open access for premium kitchens
+    </div>
+    <h1 class="display hero-title">
+      Know every<br>
+      <span class="terra">ingredient.</span>
+    </h1>
+    <p class="hero-sub">
+      LARDER connects your kitchen directly to the farms, dairies, and
+      fisheries you trust. Full provenance, seasonal intelligence,
+      and procurement in one place.
+    </p>
+    <div class="hero-actions">
+      <a href="https://ram.zenbin.org/axon-viewer" class="btn-primary">View Prototype</a>
+      <a href="https://ram.zenbin.org/axon-mock" class="btn-secondary">Try Interactive Mock</a>
+    </div>
+
+    <!-- Stats strip -->
+    <div class="stats-strip">
+      <div class="stat-cell">
+        <div class="stat-num">340+</div>
+        <div class="stat-label">Verified UK & EU farm suppliers</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">98%</div>
+        <div class="stat-label">On-time delivery accuracy</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">4.2d</div>
+        <div class="stat-label">Average freshness on arrival</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOGOS (trusted farms) -->
+<div class="logos-section">
+  <div class="container">
+    <div class="logos-inner">
+      <span class="label" style="margin-right:8px">Trusted farms include</span>
+      <span class="logo-pill">Hawkstone Farm</span>
+      <span class="logo-pill">Sole Grains</span>
+      <span class="logo-pill">Fernhill Dairy</span>
+      <span class="logo-pill">Cob & Co</span>
+      <span class="logo-pill">The Salt House</span>
+      <span class="logo-pill">+ 335 more</span>
+    </div>
+  </div>
+</div>
+
+<!-- SCREENS -->
+<section class="screens-section" id="screens">
+  <div class="container">
+    <div class="label">Prototype</div>
+    <h2 style="margin-top:12px">Five screens. Complete kitchen intelligence.</h2>
+    <p style="margin-top:12px; max-width:500px">From morning delivery briefs to full ingredient provenance reports, LARDER keeps your kitchen in complete control.</p>
+
+    <div class="screens-grid">
+      <div class="screen-card">
+        <div class="screen-thumb harvest">
+          <div class="mock-phone">
+            <div class="mock-line accent"></div>
+            <div class="mock-line short"></div>
+            <div class="mock-block" style="height:52px;background:rgba(253,252,250,0.30)"></div>
+            <div class="mock-row">
+              <div class="mock-block"></div>
+              <div class="mock-block"></div>
+            </div>
+            <div class="mock-block"></div>
+            <div class="mock-block"></div>
+          </div>
+        </div>
+        <div class="screen-info">
+          <div class="screen-name">Today's Harvest</div>
+          <div class="screen-desc">Morning delivery brief with supplier ticker and arrival timeline</div>
+        </div>
+      </div>
+
+      <div class="screen-card">
+        <div class="screen-thumb suppliers">
+          <div class="mock-phone">
+            <div class="mock-line accent"></div>
+            <div class="mock-line" style="width:70%"></div>
+            <div class="mock-block"></div>
+            <div class="mock-block"></div>
+            <div class="mock-block"></div>
+          </div>
+        </div>
+        <div class="screen-info">
+          <div class="screen-name">Suppliers</div>
+          <div class="screen-desc">Directory of farm partnerships with quality scores and certifications</div>
+        </div>
+      </div>
+
+      <div class="screen-card">
+        <div class="screen-thumb ingredient">
+          <div class="mock-phone">
+            <div class="mock-line accent"></div>
+            <div class="mock-block" style="height:64px;background:rgba(253,252,250,0.28)"></div>
+            <div class="mock-block" style="height:28px"></div>
+            <div class="mock-row">
+              <div class="mock-block"></div>
+              <div class="mock-block"></div>
+              <div class="mock-block"></div>
+            </div>
+          </div>
+        </div>
+        <div class="screen-info">
+          <div class="screen-name">Ingredient Detail</div>
+          <div class="screen-desc">Full provenance chain, quality report, and chef's notes per ingredient</div>
+        </div>
+      </div>
+
+      <div class="screen-card" style="grid-column: span 1;">
+        <div class="screen-thumb calendar">
+          <div class="mock-phone" style="border-color:var(--border)">
+            <div class="mock-line accent" style="background:var(--terra);opacity:0.8"></div>
+            <div class="mock-block" style="background:rgba(26,20,16,0.08);height:28px"></div>
+            <div class="mock-block" style="background:rgba(26,20,16,0.06)"></div>
+            <div class="mock-block" style="background:rgba(26,20,16,0.06)"></div>
+            <div class="mock-block" style="background:rgba(26,20,16,0.06)"></div>
+            <div class="mock-block" style="background:rgba(26,20,16,0.06)"></div>
+          </div>
+        </div>
+        <div class="screen-info">
+          <div class="screen-name">Seasonal Calendar</div>
+          <div class="screen-desc">Monthly peak-season bar chart with upcoming arrival alerts</div>
+        </div>
+      </div>
+
+      <div class="screen-card">
+        <div class="screen-thumb orders">
+          <div class="mock-phone">
+            <div class="mock-line accent"></div>
+            <div class="mock-block" style="height:52px;background:rgba(200,72,49,0.35)"></div>
+            <div class="mock-block"></div>
+            <div class="mock-block"></div>
+            <div class="mock-block" style="height:36px;background:rgba(253,252,250,0.22)"></div>
+          </div>
+        </div>
+        <div class="screen-info">
+          <div class="screen-name">Orders</div>
+          <div class="screen-desc">Procurement tracker with weekly spend, order status, and one-tap reorder</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features-section" id="features">
+  <div class="container">
+    <div class="label">Why LARDER</div>
+    <h2 style="margin-top:12px">Built for kitchens that<br>don't compromise.</h2>
+
+    <div class="features-grid">
+      <div class="feature-card accent-terra">
+        <div class="feature-icon bg-terra-soft">&#9670;</div>
+        <h3>Full Provenance Chain</h3>
+        <p>From seed sowing to cold-chain transport. Every ingredient carries a complete journey record — farm, harvest date, lot number, and handling notes.</p>
+      </div>
+
+      <div class="feature-card accent-sage">
+        <div class="feature-icon bg-sage-soft">&#10022;</div>
+        <h3>Seasonal Intelligence</h3>
+        <p>Monthly peak-season charts based on UK and EU growing calendars. Know what's extraordinary today and plan menus weeks in advance.</p>
+      </div>
+
+      <div class="feature-card accent-amber">
+        <div class="feature-icon bg-amber-soft">&#9702;</div>
+        <h3>Live Quality Reports</h3>
+        <p>Freshness scores, moisture, Brix readings, and taste-profile data delivered with every consignment. Catch quality issues before they reach the pass.</p>
+      </div>
+
+      <div class="feature-card accent-clay">
+        <div class="feature-icon bg-clay-soft">&#9633;</div>
+        <h3>Direct Supplier Relations</h3>
+        <p>Build your own network of verified farms. Message suppliers, negotiate standing orders, and track relationships over seasons — not just transactions.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIAL -->
+<section class="testimonial-section">
+  <div class="container">
+    <div class="label">From the kitchen</div>
+    <p class="quote-large">
+      "LARDER has changed how we think about sourcing. We now design menus around what's genuinely at its peak — not what the wholesaler has in stock."
+    </p>
+    <div class="quote-attribution">
+      Head Chef, 2-Michelin-star restaurant, London
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="steps-section" id="how">
+  <div class="container">
+    <div class="label">How it works</div>
+    <h2 style="margin-top:12px">From sign-up to first<br>harvest brief in 48 hours.</h2>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-num">01</div>
+        <h3>Connect your kitchen</h3>
+        <p style="font-size:13px">Create your LARDER kitchen profile. Tell us your cuisine focus, price tier, and key ingredients.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">02</div>
+        <h3>Match with farms</h3>
+        <p style="font-size:13px">Our curation team introduces you to verified suppliers within your region and quality tier.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">03</div>
+        <h3>Set your calendar</h3>
+        <p style="font-size:13px">Define delivery windows, seasonal priorities, and quality minimums. LARDER handles the rest.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">04</div>
+        <h3>Cook with confidence</h3>
+        <p style="font-size:13px">Every morning, your harvest brief is ready. Know exactly what's arriving, when, and why it's exceptional.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-inner">
+      <div>
+        <div class="label">Get started</div>
+        <h2 class="display" style="margin-top:12px">Taste the<br>difference.</h2>
+        <p style="margin-top:20px;max-width:400px">Join 280+ kitchens building direct farm relationships through LARDER. Applications reviewed weekly.</p>
+      </div>
+      <div class="cta-right">
+        <a href="https://ram.zenbin.org/axon-viewer" class="btn-primary">View Prototype</a>
+        <a href="https://ram.zenbin.org/axon-mock" class="btn-secondary" style="border-color:rgba(253,252,250,0.15);color:rgba(253,252,250,0.70)">Interactive Mock</a>
+        <span class="cta-note">No obligation. Design exploration by RAM.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-wordmark">LARDER</div>
+      <div class="footer-links">
+        <a href="https://ram.zenbin.org/axon-viewer">Prototype</a>
+        <a href="https://ram.zenbin.org/axon-mock">Mock</a>
+      </div>
+      <div class="footer-copy">RAM Design Heartbeat &mdash; March 2026</div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

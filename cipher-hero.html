@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CIPHER — see every threat before it sees you</title>
+<meta name="description" content="Real-time security threat intelligence platform. Binary-code aesthetic, terminal-green on pure black. A RAM design concept.">
+<meta property="og:title" content="CIPHER — see every threat before it sees you">
+<meta property="og:description" content="Real-time security threat intelligence. Binary-code aesthetic. A RAM design concept.">
+<meta name="theme-color" content="#00FF88">
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#040608;--surface:#0C0F14;--surface2:#131820;--neon:#00FF88;--danger:#FF3D5A;--warn:#FFAA00;--ice:#A8C8FF;--white:#E4EEF8;--muted:rgba(168,200,255,0.38);--border:rgba(0,255,136,0.08);--border2:rgba(168,200,255,0.10)}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--white);font-family:'Inter',sans-serif;line-height:1.5;overflow-x:hidden}
+.bin{font-family:'Roboto Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--neon);opacity:0.05;white-space:nowrap;overflow:hidden;pointer-events:none;user-select:none;line-height:1.6}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
+.live-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--danger);margin-right:6px;animation:blink 1.4s ease-in-out infinite}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(4,6,8,0.94);border-bottom:1px solid var(--border);backdrop-filter:blur(20px);display:flex;align-items:center;justify-content:space-between;padding:0 56px;height:60px}
+.nav-logo{font-family:'Roboto Mono',monospace;font-weight:700;font-size:18px;color:var(--neon);text-decoration:none;letter-spacing:4px}
+.nav-tag{font-family:'Roboto Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:2px}
+.nav-links{display:flex;gap:32px;list-style:none}
+.nav-links a{font-family:'Roboto Mono',monospace;font-size:10px;color:var(--muted);text-decoration:none;letter-spacing:2px;transition:color .2s}
+.nav-links a:hover{color:var(--neon)}
+.nav-cta{background:transparent;color:var(--neon);border:1px solid rgba(0,255,136,0.35);padding:8px 18px;border-radius:4px;font-family:'Roboto Mono',monospace;font-size:11px;font-weight:600;cursor:pointer;letter-spacing:1.5px;transition:all .2s;display:flex;align-items:center;gap:6px}
+.nav-cta:hover{background:rgba(0,255,136,0.07)}
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:60px 0 0;position:relative;overflow:hidden}
+.hero-bin-bg{position:absolute;top:64px;left:0;right:0;pointer-events:none}
+.hero-left{padding:0 72px 80px;position:relative;z-index:1}
+.hero-eyebrow{font-family:'Roboto Mono',monospace;font-size:9px;letter-spacing:3.5px;color:var(--neon);margin-bottom:24px;font-weight:600}
+.hero-h1{font-weight:800;font-size:64px;line-height:.95;margin-bottom:8px}
+.hero-h1 span{color:var(--neon)}
+.hero-h1-sub{font-family:'Roboto Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:3px;margin-bottom:32px}
+.hero-sub{font-size:17px;color:var(--muted);line-height:1.9;max-width:450px;margin-bottom:48px;font-weight:300}
+.hero-btns{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.btn-p{background:var(--neon);color:#040608;border:none;padding:14px 32px;border-radius:4px;font-family:'Roboto Mono',monospace;font-size:12px;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block;letter-spacing:1.5px;transition:all .2s}
+.btn-p:hover{background:#00e67a;box-shadow:0 0 28px rgba(0,255,136,.3)}
+.btn-g{border:1px solid var(--border2);color:var(--white);padding:13px 28px;border-radius:4px;font-family:'Roboto Mono',monospace;font-size:12px;font-weight:500;cursor:pointer;text-decoration:none;display:inline-block;background:transparent;letter-spacing:1.5px;transition:all .2s}
+.btn-g:hover{border-color:rgba(168,200,255,.3);background:rgba(168,200,255,.04)}
+.hero-right{height:100vh;display:flex;align-items:flex-end;justify-content:center;padding-bottom:0;overflow:hidden;position:relative}
+.hero-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:500px;height:500px;background:radial-gradient(circle,rgba(0,255,136,.06) 0%,transparent 68%);pointer-events:none}
+.phone-wrap{width:290px;transform:translateY(40px)}
+.phone{width:290px;height:590px;background:var(--surface);border-radius:36px;overflow:hidden;border:1.5px solid rgba(0,255,136,.14);box-shadow:0 0 80px rgba(0,255,136,.07),0 60px 120px rgba(0,0,0,.85);position:relative}
+.phone-notch{width:80px;height:20px;background:#040608;border-radius:0 0 12px 12px;position:absolute;top:0;left:50%;transform:translateX(-50%);z-index:2}
+.p-scr{padding:28px 14px 14px;height:100%;background:#040608;overflow:hidden;position:relative}
+.p-bin{font-family:'Roboto Mono',monospace;font-size:7px;color:var(--neon);opacity:.04;letter-spacing:2px;white-space:nowrap;margin-bottom:2px}
+.p-lbl{font-family:'Roboto Mono',monospace;font-size:8px;letter-spacing:2.5px;color:var(--neon);font-weight:600;margin-bottom:1px}
+.p-live{font-family:'Roboto Mono',monospace;font-size:7px;color:var(--danger);letter-spacing:1.5px;margin-bottom:10px;display:flex;align-items:center;gap:3px}
+.p-card{background:var(--surface);border-radius:10px;padding:9px 10px;margin-bottom:8px;border:1px solid rgba(0,255,136,.07)}
+.p-cnt{font-weight:800;font-size:34px;color:var(--danger);line-height:1;font-family:'Inter',sans-serif}
+.p-clbl{font-family:'Roboto Mono',monospace;font-size:7px;color:var(--muted);letter-spacing:2px;margin-bottom:3px}
+.p-csub{font-family:'Roboto Mono',monospace;font-size:7px;color:var(--danger);opacity:.8;margin-top:3px;letter-spacing:.8px}
+.p-slbl{font-family:'Roboto Mono',monospace;font-size:7px;color:var(--muted);letter-spacing:2px;margin:8px 0 5px}
+.p-item{background:var(--surface);border-radius:7px;padding:6px 8px;margin-bottom:4px;border-left:2px solid var(--danger)}
+.p-item.w{border-left-color:var(--warn)}.p-item.m{border-left-color:var(--ice)}
+.p-sv{font-family:'Roboto Mono',monospace;font-size:6px;color:var(--danger);font-weight:700;letter-spacing:1.5px}
+.p-sv.w{color:var(--warn)}.p-sv.m{color:var(--ice)}
+.p-ip{font-family:'Roboto Mono',monospace;font-size:9px;color:var(--white);font-weight:500;margin-top:2px}
+.p-tp{font-family:'Roboto Mono',monospace;font-size:7px;color:var(--muted);margin-top:1px}
+.metrics{padding:80px 72px;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;border-top:1px solid var(--border2);border-bottom:1px solid var(--border2);background:var(--border2)}
+.metric{padding:40px 32px;background:var(--bg)}
+.m-lbl{font-family:'Roboto Mono',monospace;font-size:9px;letter-spacing:2.5px;color:var(--muted);margin-bottom:14px;font-weight:600}
+.m-val{font-weight:800;font-size:50px;line-height:1;margin-bottom:8px;font-family:'Inter',sans-serif}
+.m-val.n{color:var(--neon)}.m-val.d{color:var(--danger)}.m-val.i{color:var(--ice)}.m-val.w{color:var(--warn)}
+.m-sub{font-family:'Roboto Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:.8px}
+.features{padding:100px 72px}
+.f-eye{font-family:'Roboto Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--neon);margin-bottom:20px;font-weight:600}
+.f-h2{font-weight:800;font-size:48px;line-height:1;margin-bottom:16px}
+.f-h2 span{color:var(--neon)}
+.f-sub{font-size:17px;color:var(--muted);line-height:1.9;max-width:560px;margin-bottom:64px;font-weight:300}
+.f-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--border2)}
+.f-card{background:var(--surface);padding:40px 32px;transition:background .2s}
+.f-card:hover{background:var(--surface2)}
+.f-ico{font-family:'Roboto Mono',monospace;font-size:26px;color:var(--neon);margin-bottom:20px}
+.f-t{font-weight:700;font-size:18px;margin-bottom:12px}
+.f-d{font-size:14px;color:var(--muted);line-height:1.85}
+.f-tag{font-family:'Roboto Mono',monospace;font-size:8px;color:var(--neon);margin-top:16px;letter-spacing:2px;opacity:.55}
+.threat-sec{padding:80px 72px;background:var(--surface)}
+.ts-eye{font-family:'Roboto Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--neon);margin-bottom:16px;font-weight:600}
+.ts-h2{font-weight:700;font-size:36px;margin-bottom:48px}
+table{width:100%;border-collapse:collapse}
+th{font-family:'Roboto Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--muted);padding:10px 14px;border-bottom:1px solid var(--border2);text-align:left;font-weight:600}
+td{font-family:'Roboto Mono',monospace;font-size:11px;color:var(--white);padding:13px 14px;border-bottom:1px solid rgba(168,200,255,.05)}
+.sp{display:inline-block;padding:3px 9px;border-radius:3px;font-size:8px;font-weight:700;letter-spacing:1px}
+.sp-c{background:rgba(255,61,90,.12);color:#FF3D5A}
+.sp-h{background:rgba(255,170,0,.12);color:#FFAA00}
+.sp-m{background:rgba(168,200,255,.10);color:#A8C8FF}
+.ss{display:inline-block;padding:2px 8px;border-radius:3px;font-size:8px;font-weight:600;letter-spacing:.8px}
+.ss-b{background:rgba(0,255,136,.08);color:#00FF88}
+.ss-m{background:rgba(255,170,0,.08);color:#FFAA00}
+.ss-mi{background:rgba(255,61,90,.08);color:#FF3D5A}
+.ss-l{background:rgba(168,200,255,.06);color:#A8C8FF}
+.cta-sec{padding:100px 72px;position:relative;overflow:hidden}
+.cta-sec::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(0,255,136,.05) 0%,transparent 70%)}
+.cta-bin{position:absolute;bottom:20px;left:72px;right:72px;font-family:'Roboto Mono',monospace;font-size:10px;color:var(--neon);opacity:.04;letter-spacing:3px;overflow:hidden;white-space:nowrap;user-select:none;pointer-events:none}
+.cta-lbl{font-family:'Roboto Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--neon);margin-bottom:20px;font-weight:600;position:relative;z-index:1}
+.cta-h2{font-weight:800;font-size:52px;line-height:.95;margin-bottom:24px;position:relative;z-index:1}
+.cta-sub{font-size:17px;color:var(--muted);max-width:500px;line-height:1.9;margin-bottom:44px;position:relative;z-index:1;font-weight:300}
+footer{padding:40px 72px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.f-logo{font-family:'Roboto Mono',monospace;font-weight:700;font-size:16px;color:var(--neon);letter-spacing:4px}
+.f-note{font-family:'Roboto Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:1.5px}
+.f-theme{font-family:'Roboto Mono',monospace;font-size:9px;color:rgba(0,255,136,.3);border:1px solid rgba(0,255,136,.1);padding:4px 10px;border-radius:3px;letter-spacing:1.5px}
+.design-links{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}
+.dl{background:var(--surface);border:1px solid var(--border2);color:var(--ice);padding:10px 20px;border-radius:4px;font-family:'Roboto Mono',monospace;font-size:10px;font-weight:600;text-decoration:none;letter-spacing:1.5px;transition:all .2s}
+.dl:hover{border-color:rgba(0,255,136,.3);color:var(--neon)}
+@media(max-width:900px){.hero{grid-template-columns:1fr}.hero-right{height:60vh}.hero-left{padding:60px 28px 40px}.hero-h1{font-size:42px}.metrics{grid-template-columns:repeat(2,1fr);padding:60px 28px}.features{padding:80px 28px}.f-grid{grid-template-columns:1fr}.threat-sec,.cta-sec{padding:60px 28px}nav{padding:0 24px}.nav-links,.nav-tag{display:none}footer{flex-direction:column;gap:16px;text-align:center;padding:40px 28px}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="#">CIPHER</a>
+  <span class="nav-tag">// THREAT INTELLIGENCE PLATFORM</span>
+  <ul class="nav-links">
+    <li><a href="#features">FEATURES</a></li>
+    <li><a href="#threats">THREATS</a></li>
+    <li><a href="#cta">DEPLOY</a></li>
+  </ul>
+  <button class="nav-cta"><span class="live-dot"></span>LIVE DEMO</button>
+</nav>
+
+<section class="hero">
+  <div class="hero-bin-bg" aria-hidden="true">
+    <div class="bin">110100110010101100011010010011010110110010110010101110001100100110101001110</div>
+    <div class="bin" style="opacity:.03">010011010001010010101110010100110010101100011010010011010110110010110</div>
+  </div>
+  <div class="hero-left">
+    <div class="hero-eyebrow">// SECURITY INTELLIGENCE &middot; REAL-TIME</div>
+    <h1 class="hero-h1">See every<br><span>threat.</span></h1>
+    <div class="hero-h1-sub">BEFORE IT SEES YOU</div>
+    <p class="hero-sub">CIPHER monitors your entire infrastructure in real time — aggregating threat intelligence from 40+ feeds, scoring CVEs against your stack, and alerting you before attackers reach production.</p>
+    <div class="hero-btns">
+      <a class="btn-p" href="/cipher-viewer">VIEW PROTOTYPE &rarr;</a>
+      <a class="btn-g" href="/cipher-mock">INTERACTIVE MOCK</a>
+    </div>
+    <div class="design-links">
+      <a class="dl" href="/cipher-viewer">PEN VIEWER</a>
+      <a class="dl" href="/cipher-mock">☀◑ MOCK</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-glow"></div>
+    <div class="phone-wrap">
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="p-scr">
+          <div class="p-bin">11010011001010110001101001001101</div>
+          <div class="p-lbl">CIPHER // THREAT INTEL</div>
+          <div class="p-live"><span style="display:inline-block;width:5px;height:5px;border-radius:50%;background:#FF3D5A"></span>LIVE</div>
+          <div class="p-card">
+            <div class="p-clbl">ACTIVE THREATS</div>
+            <div class="p-cnt">23</div>
+            <div class="p-csub">↑ 4 NEW IN LAST HOUR</div>
+          </div>
+          <div class="p-slbl">RECENT EVENTS</div>
+          <div class="p-item"><div class="p-sv">CRIT</div><div class="p-ip">194.165.16.71</div><div class="p-tp">SQL Injection Attempt</div></div>
+          <div class="p-item w"><div class="p-sv w">HIGH</div><div class="p-ip">45.92.131.210</div><div class="p-tp">Brute Force SSH</div></div>
+          <div class="p-item m"><div class="p-sv m">MED</div><div class="p-ip">103.21.244.0</div><div class="p-tp">Port Scan / Recon</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="metrics">
+  <div class="metric"><div class="m-lbl">THREATS BLOCKED / DAY</div><div class="m-val d">1.2K</div><div class="m-sub">&uarr; 18% vs last week</div></div>
+  <div class="metric"><div class="m-lbl">DETECTION LATENCY</div><div class="m-val n">2.4s</div><div class="m-sub">avg response time</div></div>
+  <div class="metric"><div class="m-lbl">INTEL SOURCES</div><div class="m-val i">40+</div><div class="m-sub">NVD, MITRE, SHODAN, CISA+</div></div>
+  <div class="metric"><div class="m-lbl">ASSETS MONITORED</div><div class="m-val w">127</div><div class="m-sub">services protected</div></div>
+</div>
+
+<section class="features" id="features">
+  <div class="f-eye">// CORE CAPABILITIES</div>
+  <h2 class="f-h2">Intelligence that <span>acts</span>,<br>not just alerts.</h2>
+  <p class="f-sub">CIPHER correlates, prioritizes, and maps threats to your actual infrastructure so you always know what to do next — not just what happened.</p>
+  <div class="f-grid">
+    <div class="f-card"><div class="f-ico">⬡</div><div class="f-t">Live Threat Stream</div><div class="f-d">Real-time ingestion from 40+ feeds, normalized and de-duped. Zero config. Works in minutes.</div><div class="f-tag">// STREAM PROCESSING</div></div>
+    <div class="f-card"><div class="f-ico">◈</div><div class="f-t">Asset Correlation</div><div class="f-d">Threats are automatically mapped to your registered services, endpoints, and databases. CVSS scores become your scores.</div><div class="f-tag">// CVSS MAPPING</div></div>
+    <div class="f-card"><div class="f-ico">⊕</div><div class="f-t">Intel Feed Aggregator</div><div class="f-d">NVD, MITRE ATT&amp;CK, SHODAN, CISA KEV, AlienVault OTX — filtered to your stack, enriched with PoC data.</div><div class="f-tag">// FEED AGGREGATION</div></div>
+    <div class="f-card"><div class="f-ico">⚠</div><div class="f-t">Incident Management</div><div class="f-d">Auto-generated tickets with severity scoring, asset impact, containment guidance, and team assignment workflows.</div><div class="f-tag">// INCIDENT RESPONSE</div></div>
+    <div class="f-card"><div class="f-ico">◉</div><div class="f-t">Smart Alerting</div><div class="f-d">ML-based deduplication, escalation thresholds, on-call routing. Only real emergencies wake you up.</div><div class="f-tag">// ML DEDUP</div></div>
+    <div class="f-card"><div class="f-ico">⊙</div><div class="f-t">Geo Attack Map</div><div class="f-d">Visual origin mapping — identify botnet clusters, regional hotspots, and targeted campaign patterns at a glance.</div><div class="f-tag">// GEO ANALYTICS</div></div>
+  </div>
+</section>
+
+<section class="threat-sec" id="threats">
+  <div class="ts-eye">// LIVE THREAT SAMPLE</div>
+  <h2 class="ts-h2">What CIPHER is blocking right now</h2>
+  <table>
+    <thead><tr><th>SEVERITY</th><th>ATTACK TYPE</th><th>SOURCE IP</th><th>TARGET</th><th>CVSS</th><th>STATUS</th></tr></thead>
+    <tbody>
+      <tr><td><span class="sp sp-c">CRITICAL</span></td><td>SQL Injection Attempt</td><td>194.165.16.71</td><td>api.prod:443</td><td>9.4</td><td><span class="ss ss-b">BLOCKED</span></td></tr>
+      <tr><td><span class="sp sp-c">CRITICAL</span></td><td>SSH Brute Force</td><td>45.92.131.210</td><td>auth.svc:22</td><td>9.1</td><td><span class="ss ss-b">BLOCKED</span></td></tr>
+      <tr><td><span class="sp sp-h">HIGH</span></td><td>Unauthorized DB Probe</td><td>103.21.244.0</td><td>internal-db:5432</td><td>7.8</td><td><span class="ss ss-m">MONITORING</span></td></tr>
+      <tr><td><span class="sp sp-h">HIGH</span></td><td>DDoS Layer 7 (HTTP)</td><td>185.220.101.1</td><td>cdn.asset.net:80</td><td>7.2</td><td><span class="ss ss-mi">MITIGATING</span></td></tr>
+      <tr><td><span class="sp sp-m">MEDIUM</span></td><td>SMTP Relay Attempt</td><td>172.104.0.219</td><td>mail.svc:25</td><td>5.5</td><td><span class="ss ss-l">LOGGED</span></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="cta-sec" id="cta">
+  <div class="cta-bin" aria-hidden="true">01000011 01001001 01010000 01001000 01000101 01010010 00100000 00101111 00101111 01010011 01000101 01000011 01010101 01010010 01000101</div>
+  <div class="cta-lbl">// DEPLOY IN 5 MINUTES</div>
+  <h2 class="cta-h2">Zero blind spots.<br>Zero noise.</h2>
+  <p class="cta-sub">Connect your infrastructure, register your assets, and CIPHER starts building your threat profile immediately. No agents. No complexity. Just security.</p>
+  <a class="btn-p" href="/cipher-mock" style="position:relative;z-index:1">START FREE TRIAL &rarr;</a>
+</section>
+
+<footer>
+  <div class="f-logo">CIPHER</div>
+  <div class="f-note">A RAM design concept &middot; March 2026</div>
+  <div class="f-theme">DARK THEME</div>
+</footer>
+</body>
+</html>

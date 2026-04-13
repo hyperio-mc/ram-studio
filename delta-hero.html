@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DELTA -- Ship winning experiments, not hunches.</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap');
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --bg:#08090F;--surface:#0E1018;--surface2:#14172A;--surface3:#1A1E30;
+    --border:#1E2235;--violet:#7C5CF4;--violetSoft:rgba(124,92,244,0.14);
+    --cyan:#22D3EE;--cyanSoft:rgba(34,211,238,0.12);--amber:#F59E0B;--green:#34D399;
+    --text:#E6E8F6;--textMid:rgba(230,232,246,0.6);--muted:rgba(230,232,246,0.32);
+  }
+  html{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased}
+  body{min-height:100vh;overflow-x:hidden}
+
+  /* Grain overlay */
+  body::before{
+    content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    opacity:0.4;
+  }
+
+  /* Glow blob */
+  .glow{
+    position:fixed;top:-200px;left:50%;transform:translateX(-50%);
+    width:900px;height:600px;border-radius:50%;
+    background:radial-gradient(ellipse at center, rgba(124,92,244,0.12) 0%, rgba(34,211,238,0.06) 50%, transparent 70%);
+    pointer-events:none;z-index:0;
+  }
+
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:0 48px;height:64px;
+    background:rgba(8,9,15,0.85);backdrop-filter:blur(20px);
+    border-bottom:1px solid var(--border);
+  }
+  .nav-logo{
+    font-family:'JetBrains Mono',monospace;font-size:17px;font-weight:700;
+    letter-spacing:0.14em;color:var(--violet);text-decoration:none;
+  }
+  .nav-links{display:flex;gap:32px;list-style:none}
+  .nav-links a{font-size:13px;color:var(--muted);text-decoration:none;letter-spacing:0.02em;transition:color .2s}
+  .nav-links a:hover{color:var(--text)}
+  .nav-cta{
+    font-size:13px;font-weight:600;padding:9px 22px;border-radius:8px;
+    background:var(--violet);color:#fff;text-decoration:none;
+    letter-spacing:0.02em;transition:opacity .2s,transform .2s;
+  }
+  .nav-cta:hover{opacity:.88;transform:translateY(-1px)}
+
+  .hero{
+    padding:160px 48px 96px;max-width:1200px;margin:0 auto;
+    position:relative;z-index:1;
+  }
+  .hero-eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;
+    letter-spacing:0.12em;text-transform:uppercase;
+    color:var(--violet);border:1px solid var(--violetSoft);
+    padding:6px 14px;border-radius:6px;margin-bottom:32px;
+    background:rgba(124,92,244,0.06);
+  }
+  .hero-title{
+    font-size:72px;font-weight:800;line-height:1.05;margin-bottom:28px;
+    letter-spacing:-0.04em;max-width:780px;
+  }
+  .hero-title .accent{color:var(--violet)}
+  .hero-title .accent2{color:var(--cyan)}
+  .hero-sub{
+    font-size:20px;line-height:1.75;color:var(--textMid);
+    max-width:520px;margin-bottom:48px;font-weight:400;
+  }
+  .hero-actions{display:flex;gap:16px;align-items:center;margin-bottom:80px}
+  .btn-primary{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:15px;font-weight:600;padding:14px 32px;border-radius:10px;
+    background:var(--violet);color:#fff;text-decoration:none;
+    transition:transform .2s,opacity .2s;letter-spacing:0.01em;
+  }
+  .btn-primary:hover{transform:translateY(-2px);opacity:.9}
+  .btn-secondary{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:15px;font-weight:500;padding:14px 24px;border-radius:10px;
+    border:1px solid var(--border);color:var(--textMid);
+    text-decoration:none;transition:border-color .2s,color .2s;
+  }
+  .btn-secondary:hover{border-color:var(--violet);color:var(--text)}
+
+  /* Stats strip */
+  .stats{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
+    background:var(--border);border:1px solid var(--border);
+    border-radius:14px;overflow:hidden;margin-bottom:80px;
+  }
+  .stat{background:var(--surface);padding:28px 32px}
+  .stat-val{
+    font-family:'JetBrains Mono',monospace;font-size:36px;font-weight:700;
+    color:var(--text);letter-spacing:-0.04em;margin-bottom:6px;
+  }
+  .stat-val span{color:var(--violet)}
+  .stat-label{font-size:13px;color:var(--muted);letter-spacing:0.02em}
+
+  /* Bento section */
+  .bento-heading{font-size:42px;font-weight:700;letter-spacing:-0.03em;margin-bottom:12px}
+  .bento-sub{font-size:16px;color:var(--muted);margin-bottom:48px}
+  .bento{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto auto auto;gap:16px;margin-bottom:80px}
+  .bento-card{
+    background:var(--surface);border:1px solid var(--border);border-radius:18px;
+    padding:28px 32px;position:relative;overflow:hidden;
+  }
+  .bento-card.tall{grid-row:span 2}
+  .bento-card.full{grid-column:span 2}
+  .bento-card.violet{border-color:var(--violetSoft);background:rgba(124,92,244,0.04)}
+  .bento-card.cyan{border-color:rgba(34,211,238,0.2);background:rgba(34,211,238,0.03)}
+  .bc-label{
+    font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:500;
+    letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:16px;
+  }
+  .bc-metric{font-size:52px;font-weight:700;letter-spacing:-0.05em;line-height:1;margin-bottom:8px}
+  .bc-sub{font-size:13px;color:var(--muted)}
+  .bc-insight{font-size:15px;line-height:1.65;color:var(--textMid)}
+  .chip{
+    display:inline-flex;align-items:center;
+    font-size:11px;font-weight:600;padding:4px 10px;border-radius:6px;
+    letter-spacing:0.04em;margin-bottom:12px;
+  }
+  .chip.violet{background:var(--violetSoft);color:var(--violet)}
+  .chip.cyan{background:var(--cyanSoft);color:var(--cyan)}
+  .chip.amber{background:rgba(245,158,11,0.12);color:var(--amber)}
+  .progress-track{height:6px;background:rgba(255,255,255,0.06);border-radius:3px;margin:8px 0}
+  .progress-fill{height:6px;border-radius:3px}
+
+  /* Phone mock */
+  .phone-section{
+    padding:0 48px 120px;max-width:1200px;margin:0 auto;
+    display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;
+    position:relative;z-index:1;
+  }
+  .phone-copy h2{font-size:42px;font-weight:700;letter-spacing:-0.03em;margin-bottom:16px;line-height:1.1}
+  .phone-copy p{font-size:16px;line-height:1.75;color:var(--muted);margin-bottom:32px}
+  .phone-copy ul{list-style:none;display:flex;flex-direction:column;gap:14px}
+  .phone-copy li{display:flex;gap:12px;font-size:14px;color:var(--textMid)}
+  .phone-copy li::before{content:'[+]';color:var(--violet);font-size:12px;margin-top:2px;flex-shrink:0}
+
+  .phone-wrap{position:relative;width:340px;margin:0 auto}
+  .phone-device{
+    width:300px;border-radius:48px;background:var(--surface);
+    border:1px solid var(--border);
+    box-shadow:0 48px 120px rgba(0,0,0,0.5),0 8px 32px rgba(124,92,244,0.12);
+    overflow:hidden;margin:0 auto;
+  }
+  .phone-screen{background:var(--bg);padding:0}
+  /* Phone glow */
+  .phone-wrap::after{
+    content:'';position:absolute;bottom:-60px;left:50%;transform:translateX(-50%);
+    width:200px;height:80px;border-radius:50%;
+    background:radial-gradient(ellipse, rgba(124,92,244,0.4), transparent 70%);
+    filter:blur(24px);z-index:-1;
+  }
+
+  /* Phone screen content */
+  .ps-header{padding:28px 24px 14px;display:flex;justify-content:space-between;align-items:center}
+  .ps-logo{font-family:'JetBrains Mono',monospace;font-size:15px;font-weight:700;color:var(--violet);letter-spacing:0.12em}
+  .ps-cta{font-size:11px;font-weight:600;padding:6px 12px;background:var(--violetSoft);color:var(--violet);border-radius:6px}
+  .ps-summary{margin:0 16px;background:rgba(124,92,244,0.06);border:1px solid var(--border);border-radius:12px;padding:12px 16px;display:flex;gap:0}
+  .ps-sum-item{flex:1;border-right:1px solid var(--border);padding:0 8px}
+  .ps-sum-item:last-child{border:none}
+  .ps-sum-item:first-child{padding-left:0}
+  .ps-sum-lbl{font-size:9px;color:var(--muted);letter-spacing:0.06em;margin-bottom:3px;font-family:'JetBrains Mono',monospace}
+  .ps-sum-val{font-size:14px;font-weight:700;color:var(--text)}
+  .ps-sum-val.cyan{color:var(--cyan)}
+  .ps-sum-val.amber{color:var(--amber)}
+  .ps-section{margin:16px 16px 0;font-size:12px;font-weight:600;color:var(--textMid);letter-spacing:0.04em}
+  .ps-card{margin:8px 16px 0;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px}
+  .ps-card-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px}
+  .ps-card-title{font-size:13px;font-weight:600;color:var(--text);margin-bottom:3px}
+  .ps-card-sub{font-size:10px;color:var(--muted)}
+  .ps-card-delta{font-size:15px;font-weight:700;color:var(--cyan)}
+  .ps-chip{display:inline-block;font-size:9px;font-weight:600;padding:3px 7px;border-radius:4px;letter-spacing:0.04em}
+  .ps-chip.win{background:var(--cyanSoft);color:var(--cyan)}
+  .ps-chip.run{background:rgba(245,158,11,0.12);color:var(--amber)}
+  .ps-progress{height:4px;background:rgba(255,255,255,0.06);border-radius:2px;margin-top:10px}
+  .ps-progress-fill{height:4px;border-radius:2px;background:var(--violet)}
+  .ps-card2{margin:8px 16px 0;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px}
+  .ps-ai{margin:8px 16px 0;background:rgba(124,92,244,0.06);border:1px solid var(--violetSoft);border-radius:12px;padding:14px}
+  .ps-ai-label{font-size:9px;font-weight:600;color:var(--violet);letter-spacing:0.08em;margin-bottom:6px;font-family:'JetBrains Mono',monospace}
+  .ps-ai-text{font-size:10px;line-height:1.6;color:var(--textMid)}
+  .ps-nav{
+    margin-top:16px;height:54px;background:var(--surface);border-top:1px solid var(--border);
+    display:flex;align-items:center;
+  }
+  .ps-nav-item{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:8px 0}
+  .ps-nav-icon{font-size:14px}
+  .ps-nav-label{font-size:8px;letter-spacing:0.04em}
+
+  /* Features section */
+  .features{padding:0 48px 120px;max-width:1200px;margin:0 auto;position:relative;z-index:1}
+  .features h2{font-size:42px;font-weight:700;letter-spacing:-0.03em;margin-bottom:12px}
+  .features-sub{font-size:16px;color:var(--muted);margin-bottom:56px}
+  .features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .feature{
+    background:var(--surface);border:1px solid var(--border);border-radius:16px;
+    padding:28px;transition:border-color .3s;
+  }
+  .feature:hover{border-color:var(--violet)}
+  .feature-icon{
+    width:44px;height:44px;border-radius:10px;background:var(--violetSoft);
+    display:flex;align-items:center;justify-content:center;
+    font-size:20px;margin-bottom:20px;
+  }
+  .feature h3{font-size:16px;font-weight:600;margin-bottom:10px;color:var(--text)}
+  .feature p{font-size:14px;line-height:1.65;color:var(--muted)}
+
+  /* CTA section */
+  .cta-section{
+    padding:80px 48px 120px;max-width:1200px;margin:0 auto;text-align:center;
+    position:relative;z-index:1;
+  }
+  .cta-inner{
+    background:var(--surface);border:1px solid var(--border);border-radius:24px;
+    padding:80px 48px;
+    background:linear-gradient(135deg, rgba(124,92,244,0.08) 0%, rgba(34,211,238,0.04) 100%);
+  }
+  .cta-inner h2{font-size:48px;font-weight:700;letter-spacing:-0.04em;margin-bottom:16px}
+  .cta-inner p{font-size:18px;color:var(--muted);margin-bottom:40px}
+  .cta-inner .btn-primary{margin:0 auto;display:inline-flex}
+
+  footer{
+    border-top:1px solid var(--border);padding:32px 48px;
+    display:flex;justify-content:space-between;align-items:center;
+    position:relative;z-index:1;
+  }
+  footer p{font-size:12px;color:var(--muted)}
+  footer a{font-size:12px;color:var(--muted);text-decoration:none}
+  footer a:hover{color:var(--text)}
+</style>
+</head>
+<body>
+<div class="glow"></div>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">DELTA</a>
+  <ul class="nav-links">
+    <li><a href="#">Features</a></li>
+    <li><a href="#">Pricing</a></li>
+    <li><a href="#">Docs</a></li>
+    <li><a href="#">Blog</a></li>
+  </ul>
+  <a class="nav-cta" href="#">Start for free</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">[+] A/B Testing Intelligence . v2.0</div>
+  <h1 class="hero-title">
+    Ship <span class="accent">winning</span> experiments,<br>
+    not <span class="accent2">hunches.</span>
+  </h1>
+  <p class="hero-sub">DELTA turns your A/B tests into a learning engine. Statistical significance meets AI-powered pattern recognition -- so you always know what to ship next.</p>
+  <div class="hero-actions">
+    <a class="btn-primary" href="https://ram.zenbin.org/delta-mock">View Interactive Mock -></a>
+    <a class="btn-secondary" href="#">See how it works</a>
+  </div>
+
+  <!-- Stats strip -->
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-val"><span>71</span>%</div>
+      <div class="stat-label">Average win rate</div>
+    </div>
+    <div class="stat">
+      <div class="stat-val"><span>8.4</span>d</div>
+      <div class="stat-label">To significance</div>
+    </div>
+    <div class="stat">
+      <div class="stat-val">2.4<span>x</span></div>
+      <div class="stat-label">Pattern learning boost</div>
+    </div>
+    <div class="stat">
+      <div class="stat-val">94<span>%</span></div>
+      <div class="stat-label">Confidence threshold</div>
+    </div>
+  </div>
+
+  <!-- Bento grid -->
+  <h2 class="bento-heading">Designed around <span style="color:var(--violet)">signal</span>, not noise.</h2>
+  <p class="bento-sub">Every view in DELTA is built to surface what matters -- so your team ships decisions, not debates.</p>
+  <div class="bento">
+    <div class="bento-card violet">
+      <div class="bc-label">Win Rate</div>
+      <div class="bc-metric" style="color:var(--violet)">71<span style="font-size:28px">%</span></div>
+      <div class="bc-sub">^ +6pp vs last month . last 30 days</div>
+    </div>
+    <div class="bento-card cyan tall">
+      <div class="chip cyan">[*] Top Experiment</div>
+      <div class="bc-label">Checkout CTA Copy</div>
+      <div class="bc-metric" style="color:var(--cyan)">+14.2<span style="font-size:28px">%</span></div>
+      <div class="bc-sub" style="margin-bottom:20px">CVR uplift -- Variant B</div>
+      <div class="progress-track"><div class="progress-fill" style="width:94%;background:var(--violet)"></div></div>
+      <div class="bc-sub">94% confidence . 12 days running</div>
+    </div>
+    <div class="bento-card">
+      <div class="bc-label">Avg Time to Significance</div>
+      <div class="bc-metric">8.4<span style="font-size:24px;color:var(--muted)">d</span></div>
+      <div class="bc-sub">14 experiments running</div>
+    </div>
+    <div class="bento-card full">
+      <div class="chip violet">[+] AI INSIGHT</div>
+      <div class="bc-insight">
+        3 experiments share the same audience segment -- consider batching to reduce runtime and avoid sample contamination.
+        Headlines outperform button CTAs by <strong style="color:var(--violet)">2.4x</strong> in your account history.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PHONE SECTION -->
+<div class="phone-section">
+  <div class="phone-copy">
+    <h2>Your experiments,<br><span style="color:var(--violet)">intelligently</span> organized.</h2>
+    <p>DELTA replaces spreadsheets and fragmented tools with a single command center that thinks ahead of you.</p>
+    <ul>
+      <li>Bento dashboard surfaces the most important signals first</li>
+      <li>AI automatically flags SRM issues and audience contamination</li>
+      <li>Pattern intelligence learns from 23 concluded experiments this month</li>
+      <li>One-tap to declare a winner and deploy at 100% traffic</li>
+    </ul>
+  </div>
+  <div class="phone-wrap">
+    <div class="phone-device">
+      <div class="phone-screen">
+        <div class="ps-header">
+          <span class="ps-logo">DELTA</span>
+          <span class="ps-cta">+ New</span>
+        </div>
+        <div class="ps-summary">
+          <div class="ps-sum-item">
+            <div class="ps-sum-lbl">Running</div>
+            <div class="ps-sum-val">14</div>
+          </div>
+          <div class="ps-sum-item">
+            <div class="ps-sum-lbl">Concluding</div>
+            <div class="ps-sum-val amber">6</div>
+          </div>
+          <div class="ps-sum-item">
+            <div class="ps-sum-lbl">This month</div>
+            <div class="ps-sum-val cyan">23</div>
+          </div>
+        </div>
+        <div class="ps-section">Top Experiment</div>
+        <div class="ps-card">
+          <div class="ps-card-top">
+            <div>
+              <div class="ps-card-title">Checkout CTA Copy</div>
+              <div class="ps-card-sub">Variant B . 3 variants . 12d</div>
+            </div>
+            <div class="ps-card-delta">+14.2%</div>
+          </div>
+          <span class="ps-chip win">WINNING</span>
+          <div class="ps-progress"><div class="ps-progress-fill" style="width:94%"></div></div>
+        </div>
+        <div class="ps-section">Also Running</div>
+        <div class="ps-card2" style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px;margin:8px 16px 0">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div>
+              <div class="ps-card-title">Homepage Hero Layout</div>
+              <div class="ps-card-sub">2 variants . 7d running</div>
+            </div>
+            <div style="font-size:13px;font-weight:700;color:var(--green)">+6.4%</div>
+          </div>
+          <div style="margin-top:6px"><span class="ps-chip run">RUNNING</span></div>
+        </div>
+        <div class="ps-ai">
+          <div class="ps-ai-label">AI INSIGHT</div>
+          <div class="ps-ai-text">3 experiments share the same audience -- consider batching to reduce runtime.</div>
+        </div>
+        <div class="ps-nav">
+          <div class="ps-nav-item" style="color:var(--violet)">
+            <span class="ps-nav-icon"> </span>
+            <span class="ps-nav-label" style="color:var(--violet)">Home</span>
+          </div>
+          <div class="ps-nav-item" style="color:var(--muted)">
+            <span class="ps-nav-icon"> </span>
+            <span class="ps-nav-label">Tests</span>
+          </div>
+          <div class="ps-nav-item" style="color:var(--muted)">
+            <span class="ps-nav-icon"> </span>
+            <span class="ps-nav-label">New</span>
+          </div>
+          <div class="ps-nav-item" style="color:var(--muted)">
+            <span class="ps-nav-icon">[+]</span>
+            <span class="ps-nav-label">Insights</span>
+          </div>
+          <div class="ps-nav-item" style="color:var(--muted)">
+            <span class="ps-nav-icon"> </span>
+            <span class="ps-nav-label">Settings</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<div class="features">
+  <h2>Everything your experiment stack needs.</h2>
+  <p class="features-sub">Built for growth teams running 10-200 experiments a month.</p>
+  <div class="features-grid">
+    <div class="feature">
+      <div class="feature-icon">[+]</div>
+      <h3>Bento Dashboard</h3>
+      <p>Asymmetric grid layout surfaces the signals that matter -- win rates, top experiments, and AI insights -- without the noise.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon"> </div>
+      <h3>Statistical Engine</h3>
+      <p>Bayesian and frequentist testing. Automatic SRM detection. Confidence intervals updated in real time as data flows in.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon"> </div>
+      <h3>Pattern Intelligence</h3>
+      <p>After 10+ experiments, DELTA learns what works for your audience -- and suggests hypotheses based on your win history.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">[#]</div>
+      <h3>One-tap Deployment</h3>
+      <p>Declare a winner and push to 100% of traffic in one click. Integrates with your feature flag layer automatically.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">[o]</div>
+      <h3>Audience Intelligence</h3>
+      <p>Detect audience overlap between concurrent experiments. Prevent sample contamination before it skews your results.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon"> </div>
+      <h3>Experiment Templates</h3>
+      <p>Start from your highest-performing historical patterns. Hero CTA Split Test: 83% win rate across 12 uses in your account.</p>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-section">
+  <div class="cta-inner">
+    <h2>Stop guessing. <span style="color:var(--violet)">Start shipping.</span></h2>
+    <p>Join 2,400+ growth teams using DELTA to turn experiments into compounding advantages.</p>
+    <a class="btn-primary" href="https://ram.zenbin.org/delta-mock">Try the mock -></a>
+  </div>
+</div>
+
+<footer>
+  <p>DELTA -- A/B Experimentation Intelligence . RAM Design Studio . 2026</p>
+  <div style="display:flex;gap:24px">
+    <a href="#">Privacy</a>
+    <a href="#">Terms</a>
+    <a href="https://ram.zenbin.org/delta-mock">Interactive Mock</a>
+  </div>
+</footer>
+</body>
+</html>

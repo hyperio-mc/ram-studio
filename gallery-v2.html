@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gallery — RAM Design Studio</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:      #F9F7F2;
+    --surface: #F0EDE6;
+    --ink:     #18160F;
+    --muted:   #7A7570;
+    --rule:    #E0DDD6;
+    --accent:  #C0392B;
+    --green:   #2D6A4F;
+    --mono:    'SF Mono', 'Fira Code', ui-monospace, monospace;
+    --serif:   'Georgia', 'Times New Roman', serif;
+  }
+
+  html { font-size: 16px; scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--ink); font-family: var(--mono); min-height: 100vh; overflow-x: hidden; }
+
+  /* ── Nav ── */
+  nav {
+    padding: 16px 48px;
+    border-bottom: 1px solid var(--rule);
+    display: flex; justify-content: space-between; align-items: center;
+    position: sticky; top: 0;
+    background: rgba(249,247,242,0.94);
+    z-index: 200; backdrop-filter: blur(16px);
+  }
+  .nav-logo { font-size: 10px; font-weight: 700; letter-spacing: 4px; color: var(--muted); text-decoration: none; transition: color 0.2s; text-transform: uppercase; }
+  .nav-logo:hover { color: var(--ink); }
+  .nav-right { display: flex; gap: 24px; align-items: center; }
+  .nav-link { font-size: 10px; letter-spacing: 2px; color: var(--muted); text-decoration: none; transition: color 0.2s; text-transform: uppercase; }
+  .nav-link:hover { color: var(--ink); }
+  .nav-btn { background: var(--ink); color: var(--bg); font-family: var(--mono); font-size: 10px; font-weight: 700; letter-spacing: 2px; padding: 8px 16px; text-decoration: none; text-transform: uppercase; transition: background 0.15s; display: inline-block; }
+  .nav-btn:hover { background: var(--accent); color: var(--bg); }
+
+  /* ── Hero ── */
+  .hero {
+    padding: 72px 48px 56px;
+    border-bottom: 1px solid var(--rule);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 48px;
+  }
+  .hero-eyebrow { font-size: 9px; letter-spacing: 4px; color: var(--muted); margin-bottom: 16px; text-transform: uppercase; }
+  .hero-title {
+    font-family: var(--serif);
+    font-size: clamp(40px, 6vw, 80px);
+    font-weight: 400;
+    line-height: 1.0;
+    letter-spacing: -2px;
+    margin-bottom: 20px;
+    color: var(--ink);
+  }
+  .hero-title em { font-style: italic; color: var(--muted); }
+  .hero-sub { font-size: 12px; color: var(--muted); line-height: 1.9; max-width: 400px; }
+  .hero-stats { display: flex; gap: 40px; flex-shrink: 0; }
+  .stat { text-align: right; }
+  .stat-val { font-family: var(--serif); font-size: 48px; font-weight: 400; color: var(--accent); display: block; letter-spacing: -2px; line-height: 1; }
+  .stat-lbl { font-size: 9px; letter-spacing: 3px; color: var(--muted); display: block; margin-top: 6px; text-transform: uppercase; }
+
+  /* ── Controls bar ── */
+  .controls {
+    padding: 14px 48px;
+    border-bottom: 1px solid var(--rule);
+    display: flex; gap: 12px; align-items: center;
+    flex-wrap: wrap;
+    position: sticky; top: 53px; z-index: 100;
+    background: rgba(249,247,242,0.97); backdrop-filter: blur(8px);
+  }
+  .search-wrap { position: relative; flex: 0 0 auto; }
+  .search-input {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 1px;
+    background: transparent; border: 1px solid var(--rule); color: var(--ink);
+    padding: 7px 32px 7px 12px; outline: none; width: 180px;
+    transition: border-color 0.15s;
+  }
+  .search-input::placeholder { color: var(--muted); }
+  .search-input:focus { border-color: var(--muted); }
+  .search-clear { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); background: none; border: none; color: var(--muted); cursor: pointer; font-size: 12px; display: none; }
+  .divider { width: 1px; height: 24px; background: var(--rule); flex-shrink: 0; }
+  .filter-group { display: flex; gap: 4px; flex-wrap: wrap; }
+  .filter-btn {
+    background: transparent; border: 1px solid var(--rule); color: var(--muted);
+    font-family: var(--mono); font-size: 9px; letter-spacing: 1px;
+    padding: 5px 12px; cursor: pointer; transition: all 0.12s; text-transform: uppercase;
+  }
+  .filter-btn:hover { border-color: var(--muted); color: var(--ink); }
+  .filter-btn.active { background: var(--ink); border-color: var(--ink); color: var(--bg); font-weight: 700; }
+  .filter-btn.studio-btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+  .sort-select {
+    font-family: var(--mono); font-size: 9px; letter-spacing: 1px;
+    background: transparent; border: 1px solid var(--rule); color: var(--muted);
+    padding: 5px 10px; cursor: pointer; outline: none; text-transform: uppercase;
+    margin-left: auto;
+  }
+  .result-count { font-size: 9px; letter-spacing: 2px; color: var(--muted); white-space: nowrap; }
+
+  /* ── Featured row ── */
+  .featured-section { padding: 40px 48px 0; }
+  .section-eyebrow { font-size: 9px; letter-spacing: 4px; color: var(--muted); margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid var(--rule); text-transform: uppercase; display: flex; justify-content: space-between; align-items: center; }
+
+  .featured-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; border: 1px solid var(--rule); margin-bottom: 1px; }
+  .featured-card {
+    background: var(--bg); text-decoration: none; display: flex; flex-direction: column;
+    transition: background 0.15s; overflow: hidden; position: relative;
+  }
+  .featured-card:hover { background: var(--surface); }
+  .featured-thumb { height: 220px; position: relative; overflow: hidden; flex-shrink: 0; }
+
+  /* ── Main grid ── */
+  .gallery-section { padding: 0 48px 60px; }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1px;
+    border: 1px solid var(--rule);
+    border-top: none;
+  }
+  .design-card {
+    background: var(--bg); text-decoration: none; display: flex; flex-direction: column;
+    overflow: hidden; transition: background 0.15s; position: relative;
+  }
+  .design-card:hover { background: var(--surface); }
+  .design-card:hover .card-thumb-shimmer { opacity: 0.06; }
+
+  /* ── Card thumbnail (CSS) ── */
+  .card-thumb {
+    height: 160px; position: relative; overflow: hidden; flex-shrink: 0;
+    display: flex; flex-direction: column;
+  }
+  .featured-thumb { height: 220px; }
+  .thumb-topbar { height: 18%; flex-shrink: 0; display: flex; align-items: center; padding: 0 10px; gap: 4px; }
+  .thumb-dot { width: 4px; height: 4px; border-radius: 50%; opacity: 0.5; }
+  .thumb-title-stub { height: 3px; border-radius: 2px; opacity: 0.3; flex: 1; max-width: 40%; }
+  .thumb-main { flex: 1; display: flex; flex-direction: column; padding: 6px 8px; gap: 4px; }
+  .thumb-row { display: flex; gap: 4px; }
+  .thumb-block { border-radius: 2px; }
+  .thumb-bottombar { height: 14%; flex-shrink: 0; display: flex; align-items: center; justify-content: space-around; padding: 0 12px; }
+  .thumb-nav-dot { width: 10px; height: 10px; border-radius: 50%; opacity: 0.25; }
+  .thumb-nav-dot.active { opacity: 0.8; }
+
+  .card-thumb-shimmer {
+    position: absolute; inset: 0; opacity: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, transparent 60%);
+    transition: opacity 0.2s; pointer-events: none;
+  }
+
+  /* ── Badges ── */
+  .badge-tray { position: absolute; top: 10px; left: 10px; display: flex; flex-direction: column; gap: 4px; }
+  .badge {
+    font-size: 7px; font-weight: 700; letter-spacing: 1.5px; padding: 3px 7px;
+    text-transform: uppercase; backdrop-filter: blur(6px);
+  }
+  .badge-studio { background: rgba(192,57,43,0.15); color: #C0392B; }
+  .badge-dark   { background: rgba(0,0,0,0.3); color: rgba(255,255,255,0.7); }
+  .badge-light  { background: rgba(255,255,255,0.3); color: rgba(0,0,0,0.55); }
+  .badge-new    { background: rgba(45,106,79,0.2); color: #2D6A4F; }
+  .arch-badge { position: absolute; top: 10px; right: 10px; font-size: 7px; font-weight: 700; letter-spacing: 1.5px; padding: 3px 7px; backdrop-filter: blur(6px); text-transform: uppercase; background: rgba(0,0,0,0.25); }
+
+  /* ── Card body ── */
+  .card-body { padding: 16px 18px 12px; flex: 1; display: flex; flex-direction: column; gap: 6px; border-top: 1px solid var(--rule); }
+  .card-name { font-family: var(--serif); font-size: 18px; font-weight: 400; color: var(--ink); line-height: 1.2; }
+  .featured-card .card-name { font-size: 22px; }
+  .card-tagline { font-size: 10px; color: var(--muted); line-height: 1.7; flex: 1; }
+  .card-meta { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-top: 4px; }
+  .meta-pill { font-size: 8px; letter-spacing: 1px; color: var(--muted); text-transform: uppercase; border: 1px solid var(--rule); padding: 2px 7px; }
+  .meta-pill.accent { border-color: var(--accent); color: var(--accent); }
+  .card-footer { padding: 10px 18px; border-top: 1px solid var(--rule); display: flex; align-items: center; gap: 8px; }
+  .card-date { font-size: 9px; color: var(--muted); flex: 1; letter-spacing: 0.5px; }
+  .mock-btn { font-family: var(--mono); font-size: 8px; font-weight: 700; letter-spacing: 1px; padding: 4px 10px; background: transparent; border: 1px solid var(--accent); color: var(--accent); cursor: pointer; text-decoration: none; text-transform: uppercase; transition: all 0.12s; flex-shrink: 0; }
+  .mock-btn:hover { background: var(--accent); color: var(--bg); }
+  .card-go { font-size: 12px; color: var(--muted); }
+
+  /* ── Pagination ── */
+  .pagination { padding: 32px 48px; border-top: 1px solid var(--rule); display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  .page-info { font-size: 10px; color: var(--muted); letter-spacing: 1px; }
+  .page-btns { display: flex; gap: 4px; }
+  .page-btn {
+    font-family: var(--mono); font-size: 9px; letter-spacing: 1px; padding: 6px 12px;
+    background: transparent; border: 1px solid var(--rule); color: var(--muted); cursor: pointer; transition: all 0.12s; text-transform: uppercase;
+  }
+  .page-btn:hover { border-color: var(--muted); color: var(--ink); }
+  .page-btn.active { background: var(--ink); border-color: var(--ink); color: var(--bg); font-weight: 700; }
+  .page-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+
+  /* ── Empty / Loading ── */
+  .state-box { padding: 80px 40px; text-align: center; grid-column: 1 / -1; }
+  .state-icon { font-size: 36px; opacity: 0.15; margin-bottom: 20px; }
+  .state-title { font-family: var(--serif); font-size: 22px; font-weight: 400; margin-bottom: 8px; }
+  .state-sub { font-size: 11px; color: var(--muted); }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .spinner { width: 24px; height: 24px; border: 1px solid var(--rule); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 20px; }
+
+  /* ── Footer ── */
+  footer { padding: 24px 48px; border-top: 1px solid var(--rule); display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+  .footer-text { font-size: 9px; letter-spacing: 2px; color: var(--muted); text-transform: uppercase; }
+  .footer-right { display: flex; gap: 16px; align-items: center; }
+  .refresh-btn { font-family: var(--mono); font-size: 9px; letter-spacing: 1px; padding: 5px 12px; background: transparent; border: 1px solid var(--rule); color: var(--muted); cursor: pointer; text-transform: uppercase; transition: all 0.12s; }
+  .refresh-btn:hover { color: var(--ink); border-color: var(--muted); }
+  #last-updated { font-size: 9px; letter-spacing: 1px; color: var(--muted); }
+
+  @media (max-width: 768px) {
+    .hero { grid-template-columns: 1fr; gap: 32px; padding: 48px 24px 40px; }
+    .hero-stats { flex-direction: row; }
+    .stat { text-align: left; }
+    .controls { padding: 12px 24px; top: 49px; }
+    .featured-section, .gallery-section { padding-left: 24px; padding-right: 24px; }
+    .featured-grid { grid-template-columns: 1fr; }
+    .gallery-grid { grid-template-columns: 1fr 1fr; }
+    nav, footer, .pagination { padding-left: 24px; padding-right: 24px; }
+    .hero-title { letter-spacing: -1px; }
+  }
+  @media (max-width: 480px) {
+    .gallery-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="https://ram.zenbin.org/">RAM Design Studio</a>
+  <div class="nav-right">
+    <a class="nav-link" href="https://ram.zenbin.org/pen-viewer">Pen Viewer</a>
+    <a class="nav-btn" href="https://ram.zenbin.org/submit">Submit Idea →</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Community Gallery · By the People</div>
+    <h1 class="hero-title">Every design<br>starts with<br><em>a single prompt.</em></h1>
+    <p class="hero-sub">371 prototypes and counting. Each one built in a single session — prompt in, complete design system out. Browse, steal ideas, submit yours.</p>
+  </div>
+  <div class="hero-stats">
+    <div class="stat">
+      <span class="stat-val" id="stat-total">—</span>
+      <span class="stat-lbl">Total Designs</span>
+    </div>
+    <div class="stat">
+      <span class="stat-val" id="stat-heartbeats">—</span>
+      <span class="stat-lbl">Studio Beats</span>
+    </div>
+  </div>
+</section>
+
+<div class="controls">
+  <div class="search-wrap">
+    <input class="search-input" id="search" type="text" placeholder="Search designs..." autocomplete="off">
+    <button class="search-clear" id="search-clear" onclick="clearSearch()">✕</button>
+  </div>
+  <div class="divider"></div>
+  <div class="filter-group" id="theme-filters">
+    <button class="filter-btn active" data-theme="all">All</button>
+    <button class="filter-btn" data-theme="dark">⬛ Dark</button>
+    <button class="filter-btn" data-theme="light">⬜ Light</button>
+  </div>
+  <div class="divider"></div>
+  <div class="filter-group" id="arch-filters">
+    <button class="filter-btn active" data-arch="all">All</button>
+    <button class="filter-btn" data-arch="productivity">Productivity</button>
+    <button class="filter-btn" data-arch="social">Social</button>
+    <button class="filter-btn" data-arch="finance">Finance</button>
+    <button class="filter-btn" data-arch="health">Health</button>
+    <button class="filter-btn" data-arch="music">Music</button>
+    <button class="filter-btn" data-arch="food">Food</button>
+    <button class="filter-btn" data-arch="travel">Travel</button>
+    <button class="filter-btn studio-btn" data-arch="studio">★ Studio</button>
+  </div>
+  <select class="sort-select" id="sort-select">
+    <option value="newest">Newest First</option>
+    <option value="oldest">Oldest First</option>
+    <option value="name">Name A–Z</option>
+  </select>
+  <span class="result-count" id="result-count"></span>
+</div>
+
+<section class="featured-section" id="featured-section" style="display:none">
+  <div class="section-eyebrow">
+    <span>Latest Drops</span>
+    <span id="featured-date"></span>
+  </div>
+  <div class="featured-grid" id="featured-grid"></div>
+</section>
+
+<section class="gallery-section">
+  <div class="gallery-grid" id="gallery-grid">
+    <div class="state-box"><div class="spinner"></div><div class="state-title">Loading gallery...</div></div>
+  </div>
+</section>
+
+<div class="pagination" id="pagination" style="display:none">
+  <span class="page-info" id="page-info"></span>
+  <div class="page-btns" id="page-btns"></div>
+</div>
+
+<footer>
+  <span class="footer-text">RAM Design Studio · Community Gallery</span>
+  <div class="footer-right">
+    <span id="last-updated"></span>
+    <button class="refresh-btn" onclick="loadGallery(true)">↻ Refresh</button>
+  </div>
+</footer>
+
+<script>
+const QUEUE_URL = 'https://raw.githubusercontent.com/hyperio-mc/design-studio-queue/main/queue.json';
+const PAGE_SIZE = 30;
+
+// ── Palette data for CSS thumbnail generation ──
+const PALETTES = {
+  // By archetype
+  productivity:   { bg:'#05050a', surf:'#0d0c1a', acc:'#c8a84b', acc2:'#8b6fd4', dots:['#c8a84b','#8b6fd4','#ffffff'] },
+  social:         { bg:'#0d0610', surf:'#160920', acc:'#c840ff', acc2:'#ff60c0', dots:['#c840ff','#ff60c0','#ffffff'] },
+  finance:        { bg:'#060c14', surf:'#0a1428', acc:'#3a8fff', acc2:'#20d4a0', dots:['#3a8fff','#20d4a0','#f5b13d'] },
+  health:         { bg:'#060f08', surf:'#0a1e0d', acc:'#3acd7a', acc2:'#60b0e8', dots:['#3acd7a','#60b0e8','#f0e0a0'] },
+  travel:         { bg:'#060a14', surf:'#0d1428', acc:'#4a9fff', acc2:'#f5d060', dots:['#4a9fff','#f5d060','#ff8060'] },
+  music:          { bg:'#0a0a12', surf:'#141420', acc:'#c8953a', acc2:'#e040fb', dots:['#c8953a','#e040fb','#40cfff'] },
+  food:           { bg:'#0d0b09', surf:'#1e1612', acc:'#d4863a', acc2:'#4acd8a', dots:['#d4863a','#4acd8a','#ffcf60'] },
+  education:      { bg:'#07080f', surf:'#10121e', acc:'#6060ff', acc2:'#40d0f0', dots:['#6060ff','#40d0f0','#f0d060'] },
+  commerce:       { bg:'#0f0808', surf:'#1e1010', acc:'#e06030', acc2:'#f0c040', dots:['#e06030','#f0c040','#ffffff'] },
+  creative:       { bg:'#080808', surf:'#141414', acc:'#ff6060', acc2:'#ff40c0', dots:['#ff6060','#ff40c0','#f0d060'] },
+  studio:         { bg:'#09080a', surf:'#141218', acc:'#c8a84b', acc2:'#9060d4', dots:['#c8a84b','#9060d4','#ffffff'] },
+
+  // For light themes: cream/editorial
+  light_default:  { bg:'#faf7f2', surf:'#f0ece4', acc:'#2d6a4f', acc2:'#c0392b', dots:['#2d6a4f','#c0392b','#c8953a'] },
+  light_finance:  { bg:'#f5f8ff', surf:'#eaeff8', acc:'#1a56d0', acc2:'#10b981', dots:['#1a56d0','#10b981','#f59e0b'] },
+  light_health:   { bg:'#f5fbf7', surf:'#e8f5ec', acc:'#1a8040', acc2:'#2060c0', dots:['#1a8040','#2060c0','#f59e0b'] },
+  light_creative: { bg:'#fff9f5', surf:'#f5ede4', acc:'#c0392b', acc2:'#7b52c0', dots:['#c0392b','#7b52c0','#c8953a'] },
+};
+
+function getPalette(d) {
+  const isLight = d.theme === 'light';
+  if (isLight) {
+    const arch = (d.archetype || '').toLowerCase();
+    if (arch.includes('financ') || arch.includes('banking')) return PALETTES.light_finance;
+    if (arch.includes('health') || arch.includes('wellness')) return PALETTES.light_health;
+    if (arch.includes('creativ') || arch.includes('design')) return PALETTES.light_creative;
+    return PALETTES.light_default;
+  }
+  const arch = (d.archetype || '').toLowerCase();
+  for (const [key, pal] of Object.entries(PALETTES)) {
+    if (arch.includes(key)) return pal;
+  }
+  if (arch.includes('ai') || arch.includes('machine')) return PALETTES.productivity;
+  if (arch.includes('work') || arch.includes('task') || arch.includes('project')) return PALETTES.productivity;
+  if (arch.includes('media') || arch.includes('video') || arch.includes('stream')) return PALETTES.creative;
+  if (arch.includes('shop') || arch.includes('store') || arch.includes('market')) return PALETTES.commerce;
+  return PALETTES.productivity;
+}
+
+// ── CSS thumbnail generator ──
+function makeThumbnail(d, tall = false) {
+  const p = getPalette(d);
+  const [d1, d2, d3] = p.dots;
+  const h = tall ? 220 : 160;
+
+  return `
+    <div class="card-thumb${tall?' featured-thumb':''}" style="background:${p.bg};height:${h}px">
+      <div class="thumb-topbar" style="background:${p.surf}">
+        <div class="thumb-dot" style="background:${p.acc}"></div>
+        <div class="thumb-dot" style="background:${p.acc2}"></div>
+        <div class="thumb-dot" style="background:rgba(255,255,255,0.15)"></div>
+        <div class="thumb-title-stub" style="background:rgba(255,255,255,0.12)"></div>
+      </div>
+      <div class="thumb-main">
+        <div class="thumb-row" style="height:36%;gap:4px">
+          <div class="thumb-block" style="flex:0.55;background:${p.acc};opacity:0.18;border-radius:3px"></div>
+          <div class="thumb-block" style="flex:0.45;background:rgba(255,255,255,0.06);border-radius:3px"></div>
+        </div>
+        <div class="thumb-row" style="height:20%;gap:4px">
+          <div class="thumb-block" style="flex:1;background:rgba(255,255,255,0.06);border-radius:2px"></div>
+          <div class="thumb-block" style="flex:0.4;background:${p.acc};opacity:0.7;border-radius:2px"></div>
+        </div>
+        <div class="thumb-row" style="height:20%;gap:4px">
+          <div class="thumb-block" style="flex:0.3;background:rgba(255,255,255,0.06);border-radius:2px"></div>
+          <div class="thumb-block" style="flex:0.7;background:${p.acc2};opacity:0.14;border-radius:2px"></div>
+        </div>
+        ${tall ? `
+        <div class="thumb-row" style="height:14%;gap:4px;margin-top:2px">
+          <div class="thumb-block" style="flex:1;background:${p.acc};opacity:0.8;border-radius:2px"></div>
+        </div>` : ''}
+      </div>
+      <div class="thumb-bottombar" style="background:${p.surf}">
+        <div class="thumb-nav-dot active" style="background:${p.acc}"></div>
+        <div class="thumb-nav-dot" style="background:rgba(255,255,255,0.2)"></div>
+        <div class="thumb-nav-dot" style="background:rgba(255,255,255,0.2)"></div>
+        <div class="thumb-nav-dot" style="background:rgba(255,255,255,0.2)"></div>
+        <div class="thumb-nav-dot" style="background:rgba(255,255,255,0.2)"></div>
+      </div>
+      <div class="card-thumb-shimmer"></div>
+      <div class="badge-tray">
+        ${d.source === 'heartbeat' || d.credit === 'RAM Design Heartbeat' ? '<div class="badge badge-studio">★ Studio</div>' : ''}
+        ${d.theme === 'dark' ? '<div class="badge badge-dark">Dark</div>' : d.theme === 'light' ? '<div class="badge badge-light">Light</div>' : ''}
+      </div>
+      <div class="arch-badge" style="color:${p.acc}">${archLabel(d.archetype)}</div>
+    </div>
+  `;
+}
+
+function archLabel(arch) {
+  if (!arch) return 'DESIGN';
+  const a = arch.toLowerCase();
+  if (a.includes('productivity') || a.includes('task')) return 'PROD';
+  if (a.includes('social')) return 'SOCIAL';
+  if (a.includes('finance') || a.includes('fintech') || a.includes('banking')) return 'FINANCE';
+  if (a.includes('health') || a.includes('wellness') || a.includes('fitness')) return 'HEALTH';
+  if (a.includes('music') || a.includes('audio') || a.includes('podcast')) return 'AUDIO';
+  if (a.includes('food') || a.includes('dining') || a.includes('restaurant')) return 'FOOD';
+  if (a.includes('travel') || a.includes('booking') || a.includes('hotel')) return 'TRAVEL';
+  if (a.includes('edu') || a.includes('learn')) return 'EDU';
+  if (a.includes('creative') || a.includes('design') || a.includes('studio')) return 'CREATIVE';
+  if (a.includes('commerce') || a.includes('shop') || a.includes('market')) return 'COMMERCE';
+  if (a.includes('ai') || a.includes('machine') || a.includes('ml')) return 'AI';
+  if (a.includes('video') || a.includes('media') || a.includes('stream')) return 'MEDIA';
+  if (a.includes('security') || a.includes('privacy')) return 'SECURITY';
+  if (a.includes('work') || a.includes('collab') || a.includes('team')) return 'WORK';
+  return arch.split('-')[0].toUpperCase().slice(0, 8);
+}
+
+function fmtDate(d) {
+  const ds = d.published_at || d.submitted_at || d.date;
+  if (!ds) return 'Recent';
+  return new Date(ds).toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric' });
+}
+
+function truncate(str, n) {
+  if (!str) return '';
+  return str.length > n ? str.slice(0, n-1) + '…' : str;
+}
+
+function makeFeaturedCard(d) {
+  const url = d.design_url || '#';
+  const mock = d.mock_url || '';
+  const name = d.app_name || d.name || '?';
+  return `
+    <a class="featured-card design-card" href="${url}" target="_blank" rel="noopener">
+      ${makeThumbnail(d, true)}
+      <div class="card-body">
+        <div class="card-name">${name}</div>
+        <div class="card-tagline">${truncate(d.tagline || d.prompt, 90)}</div>
+        <div class="card-meta">
+          ${d.screens ? `<span class="meta-pill">${d.screens} screens</span>` : ''}
+          ${d.elements ? `<span class="meta-pill">${d.elements} elements</span>` : ''}
+          ${d.heartbeat ? `<span class="meta-pill accent">#${d.heartbeat}</span>` : ''}
+        </div>
+      </div>
+      <div class="card-footer">
+        <span class="card-date">${fmtDate(d)}</span>
+        ${mock ? `<a class="mock-btn" href="${mock}" target="_blank" rel="noopener" onclick="event.stopPropagation()">Try Mock ✦</a>` : ''}
+        <span class="card-go">→</span>
+      </div>
+    </a>
+  `;
+}
+
+function makeCard(d) {
+  const url = d.design_url || '#';
+  const mock = d.mock_url || '';
+  const name = d.app_name || d.name || '?';
+  return `
+    <a class="design-card" href="${url}" target="_blank" rel="noopener">
+      ${makeThumbnail(d, false)}
+      <div class="card-body">
+        <div class="card-name">${name}</div>
+        <div class="card-tagline">${truncate(d.tagline || d.prompt, 75)}</div>
+        <div class="card-meta">
+          ${d.screens ? `<span class="meta-pill">${d.screens}s</span>` : ''}
+          ${d.elements ? `<span class="meta-pill">${d.elements}el</span>` : ''}
+        </div>
+      </div>
+      <div class="card-footer">
+        <span class="card-date">${fmtDate(d)}</span>
+        ${mock ? `<a class="mock-btn" href="${mock}" target="_blank" rel="noopener" onclick="event.stopPropagation()">Mock ✦</a>` : ''}
+        <span class="card-go">→</span>
+      </div>
+    </a>
+  `;
+}
+
+// ── State ──
+let allDesigns = [];
+let filtered = [];
+let currentPage = 1;
+let activeTheme = 'all';
+let activeArch = 'all';
+let searchQuery = '';
+let sortMode = 'newest';
+
+// ── Filters + search ──
+function applyFilters() {
+  const q = searchQuery.toLowerCase();
+  filtered = allDesigns.filter(d => {
+    const name = (d.app_name || d.name || '').toLowerCase();
+    const prompt = (d.prompt || '').toLowerCase();
+    const arch = (d.archetype || '').toLowerCase();
+    const theme = (d.theme || '').toLowerCase();
+
+    if (q && !name.includes(q) && !prompt.includes(q) && !arch.includes(q)) return false;
+    if (activeTheme !== 'all' && theme !== activeTheme) return false;
+    if (activeArch === 'studio') {
+      if (!(d.source === 'heartbeat' || d.credit === 'RAM Design Heartbeat')) return false;
+    } else if (activeArch !== 'all') {
+      if (!arch.includes(activeArch.toLowerCase())) return false;
+    }
+    return true;
+  });
+
+  // Sort
+  if (sortMode === 'newest') {
+    filtered.sort((a, b) => new Date(b.published_at || b.submitted_at || 0) - new Date(a.published_at || a.submitted_at || 0));
+  } else if (sortMode === 'oldest') {
+    filtered.sort((a, b) => new Date(a.published_at || a.submitted_at || 0) - new Date(b.published_at || b.submitted_at || 0));
+  } else if (sortMode === 'name') {
+    filtered.sort((a, b) => (a.app_name || '').localeCompare(b.app_name || ''));
+  }
+
+  currentPage = 1;
+  renderPage();
+}
+
+function renderPage() {
+  const start = (currentPage - 1) * PAGE_SIZE;
+  const end = start + PAGE_SIZE;
+  const page = filtered.slice(start, end);
+  const totalPages = Math.ceil(filtered.length / PAGE_SIZE);
+
+  document.getElementById('result-count').textContent =
+    filtered.length === allDesigns.length
+      ? `${allDesigns.length} designs`
+      : `${filtered.length} of ${allDesigns.length}`;
+
+  const grid = document.getElementById('gallery-grid');
+  if (!filtered.length) {
+    grid.innerHTML = `<div class="state-box"><div class="state-icon">◎</div><div class="state-title">No designs found</div><div class="state-sub">Try adjusting your filters or search query.</div></div>`;
+    document.getElementById('pagination').style.display = 'none';
+    return;
+  }
+
+  grid.innerHTML = page.map(makeCard).join('');
+
+  // Pagination
+  const pag = document.getElementById('pagination');
+  const pageInfo = document.getElementById('page-info');
+  const pageBtns = document.getElementById('page-btns');
+
+  if (totalPages <= 1) {
+    pag.style.display = 'none';
+    return;
+  }
+  pag.style.display = 'flex';
+  pageInfo.textContent = `Page ${currentPage} of ${totalPages}  ·  ${filtered.length} designs`;
+
+  const btns = [];
+  btns.push(`<button class="page-btn" onclick="goPage(${currentPage - 1})" ${currentPage===1?'disabled':''}>← Prev</button>`);
+  for (let p = 1; p <= totalPages; p++) {
+    if (p === 1 || p === totalPages || Math.abs(p - currentPage) <= 2) {
+      btns.push(`<button class="page-btn${p===currentPage?' active':''}" onclick="goPage(${p})">${p}</button>`);
+    } else if (Math.abs(p - currentPage) === 3) {
+      btns.push(`<span class="page-btn" style="border:none;cursor:default">…</span>`);
+    }
+  }
+  btns.push(`<button class="page-btn" onclick="goPage(${currentPage + 1})" ${currentPage===totalPages?'disabled':''}>Next →</button>`);
+  pageBtns.innerHTML = btns.join('');
+}
+
+function goPage(p) {
+  const totalPages = Math.ceil(filtered.length / PAGE_SIZE);
+  if (p < 1 || p > totalPages) return;
+  currentPage = p;
+  renderPage();
+  document.querySelector('.gallery-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// ── Featured section ──
+function renderFeatured(designs) {
+  const studio = designs.filter(d => d.source === 'heartbeat' || d.credit === 'RAM Design Heartbeat').slice(0, 3);
+  if (!studio.length) return;
+
+  const section = document.getElementById('featured-section');
+  const grid = document.getElementById('featured-grid');
+  const dateEl = document.getElementById('featured-date');
+
+  section.style.display = 'block';
+  grid.innerHTML = studio.map(makeFeaturedCard).join('');
+  if (studio[0]) {
+    dateEl.textContent = fmtDate(studio[0]);
+  }
+}
+
+// ── Event listeners ──
+document.getElementById('search').addEventListener('input', e => {
+  searchQuery = e.target.value.trim();
+  document.getElementById('search-clear').style.display = searchQuery ? 'block' : 'none';
+  applyFilters();
+});
+
+function clearSearch() {
+  document.getElementById('search').value = '';
+  searchQuery = '';
+  document.getElementById('search-clear').style.display = 'none';
+  applyFilters();
+}
+
+document.getElementById('sort-select').addEventListener('change', e => {
+  sortMode = e.target.value;
+  applyFilters();
+});
+
+document.getElementById('theme-filters').addEventListener('click', e => {
+  const btn = e.target.closest('[data-theme]');
+  if (!btn) return;
+  document.querySelectorAll('[data-theme]').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  activeTheme = btn.dataset.theme;
+  applyFilters();
+});
+
+document.getElementById('arch-filters').addEventListener('click', e => {
+  const btn = e.target.closest('[data-arch]');
+  if (!btn) return;
+  document.querySelectorAll('[data-arch]').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  activeArch = btn.dataset.arch;
+  applyFilters();
+});
+
+// ── Load ──
+async function loadGallery(silent = false) {
+  if (!silent) {
+    document.getElementById('gallery-grid').innerHTML =
+      '<div class="state-box"><div class="spinner"></div><div class="state-title">Loading gallery...</div></div>';
+  }
+  try {
+    const res = await fetch(QUEUE_URL + '?t=' + Date.now());
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const queue = await res.json();
+    const subs = Array.isArray(queue) ? queue : (queue.submissions || []);
+    const done = subs.filter(s => s.status === 'done' || (!s.status && s.design_url)).reverse();
+
+    allDesigns = done;
+
+    const studioCount = done.filter(d => d.source === 'heartbeat' || d.credit === 'RAM Design Heartbeat').length;
+    document.getElementById('stat-total').textContent = done.length;
+    document.getElementById('stat-heartbeats').textContent = studioCount;
+    document.getElementById('last-updated').textContent = 'Updated ' + new Date().toLocaleTimeString();
+
+    renderFeatured(done);
+    applyFilters();
+  } catch (err) {
+    if (!silent) {
+      document.getElementById('gallery-grid').innerHTML =
+        `<div class="state-box"><div class="state-icon">⚠</div><div class="state-title">Could not load</div><div class="state-sub">${err.message}</div></div>`;
+    }
+    document.getElementById('last-updated').textContent = 'Error: ' + err.message;
+  }
+}
+
+loadGallery();
+setInterval(() => loadGallery(true), 5 * 60 * 1000);
+</script>
+</body>
+</html>

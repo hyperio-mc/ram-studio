@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Solvent — Know your runway. Own your numbers.</title>
+  <meta name="description" content="Solvent is a freelance financial health tracker. Plain-English insights, cash runway, project billing — your entire business picture in one place.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #F5F0E8; --surface: #FFFDF8; --surface-alt: #ECE9E0;
+      --text: #1C1814; --muted: rgba(28,24,20,0.50);
+      --accent: #C85A2A; --accent2: #2E7D52;
+      --accent-soft: rgba(200,90,42,0.10); --accent2-soft: rgba(46,125,82,0.10);
+      --border: rgba(28,24,20,0.09); --border-strong: rgba(28,24,20,0.18);
+      --green: #1F7A45; --orange: #B45309; --red: #B91C1C;
+      --green-soft: rgba(31,122,69,0.10); --orange-soft: rgba(180,83,9,0.10);
+    }
+    body { background: var(--bg); color: var(--text); font-family: 'Inter', system-ui, sans-serif; line-height: 1.65; min-height: 100vh; overflow-x: hidden; }
+    a { color: var(--accent); text-decoration: none; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(245,240,232,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 0 48px; height: 58px; }
+    .nav-brand { display: flex; align-items: center; gap: 10px; }
+    .nav-dot { width: 28px; height: 28px; background: var(--accent); border-radius: 7px; display: flex; align-items: center; justify-content: center; font-size: 14px; color: #fff; font-weight: 700; }
+    .nav-name { font-weight: 700; font-size: 16px; letter-spacing: -0.01em; }
+    .nav-serif { font-family: 'Lora', serif; font-size: 12px; color: var(--muted); font-style: italic; margin-left: 2px; }
+    .nav-links { display: flex; gap: 28px; }
+    .nav-links a { color: var(--muted); font-size: 13px; font-weight: 500; }
+    .nav-links a:hover { color: var(--text); }
+    .nav-cta { background: var(--accent); color: #fff; font-size: 13px; font-weight: 600; padding: 8px 20px; border-radius: 8px; }
+    .nav-cta:hover { background: #b04d21; }
+
+    .hero { padding: 128px 48px 80px; max-width: 1160px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+    @media(max-width:900px){ .hero { grid-template-columns:1fr; padding: 110px 28px 60px; gap:40px; } }
+    .hero-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; color: var(--accent); text-transform: uppercase; margin-bottom: 18px; display: flex; align-items: center; gap: 8px; }
+    .eyebrow-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); }
+    .hero-headline { font-family: 'Lora', serif; font-size: 50px; font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 22px; }
+    .hero-headline em { color: var(--accent); font-style: italic; }
+    .hero-sub { font-size: 16px; color: var(--muted); line-height: 1.72; max-width: 440px; margin-bottom: 36px; }
+    .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn-primary { background: var(--accent); color: #fff; font-size: 14px; font-weight: 600; padding: 13px 26px; border-radius: 9px; display: inline-block; }
+    .btn-primary:hover { background: #b04d21; }
+    .btn-ghost { background: transparent; color: var(--text); font-size: 14px; font-weight: 500; padding: 13px 26px; border-radius: 9px; border: 1.5px solid var(--border-strong); }
+    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+    .hero-stats { display: flex; gap: 32px; margin-top: 44px; padding-top: 32px; border-top: 1px solid var(--border); }
+    .sn { font-family: 'Lora', serif; font-size: 26px; font-weight: 700; letter-spacing: -0.02em; }
+    .sn.up { color: var(--green); }
+    .sn.ac { color: var(--accent); }
+    .sl { font-size: 11px; color: var(--muted); margin-top: 3px; text-transform: uppercase; letter-spacing: 0.06em; }
+
+    .phone-frame { background: var(--surface); border: 1.5px solid var(--border-strong); border-radius: 28px; overflow: hidden; box-shadow: 0 28px 60px rgba(28,24,20,0.14), 0 6px 16px rgba(28,24,20,0.07); max-width: 330px; margin: 0 auto; }
+    .phone-notch { height: 30px; background: var(--bg); display: flex; align-items: center; justify-content: center; border-bottom: 1px solid var(--border); }
+    .notch-pill { width: 72px; height: 7px; background: var(--text); border-radius: 10px; opacity: 0.12; }
+    .phone-body { padding: 18px 16px 0; }
+    .pb-eye { font-size: 9px; letter-spacing: 0.1em; color: var(--muted); text-transform: uppercase; margin-bottom: 12px; }
+    .pb-score-row { display: flex; align-items: flex-end; gap: 10px; margin-bottom: 4px; }
+    .pb-score { font-family: 'Lora', serif; font-size: 52px; font-weight: 700; line-height: 1; color: var(--accent); }
+    .pb-meta { padding-bottom: 6px; }
+    .pb-grade { font-size: 13px; font-weight: 600; }
+    .pb-trend { font-size: 10px; color: var(--green); }
+    .pb-label { font-size: 10px; color: var(--muted); margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.06em; }
+    .pb-metrics { display: grid; grid-template-columns: repeat(3,1fr); gap: 7px; margin-bottom: 14px; }
+    .pbm { background: var(--surface-alt); border-radius: 9px; padding: 9px 7px; }
+    .pbm-v { font-size: 14px; font-weight: 700; letter-spacing: -0.02em; }
+    .pbm-l { font-size: 9px; color: var(--muted); margin-top: 2px; text-transform: uppercase; letter-spacing: 0.04em; }
+    .pb-bars { display: flex; flex-direction: column; gap: 9px; margin-bottom: 14px; }
+    .pb-bar { display: flex; flex-direction: column; gap: 4px; }
+    .pb-bar-top { display: flex; justify-content: space-between; font-size: 10px; }
+    .pb-bar-lbl { color: var(--muted); }
+    .pb-bar-track { height: 5px; background: var(--surface-alt); border-radius: 3px; overflow: hidden; }
+    .pb-bar-fill { height: 100%; border-radius: 3px; }
+    .pb-txns { display: flex; flex-direction: column; gap: 8px; padding-bottom: 16px; }
+    .pb-txn { display: flex; justify-content: space-between; align-items: center; }
+    .pb-txn-n { font-size: 11px; font-weight: 500; }
+    .pb-txn-c { font-size: 9px; color: var(--muted); }
+    .pb-txn-a { font-size: 11px; font-weight: 600; }
+    .pb-txn-a.p { color: var(--green); }
+    .pb-txn-a.n { color: var(--muted); }
+    .phone-nav { display: flex; justify-content: space-around; border-top: 1px solid var(--border); padding: 9px 0 5px; }
+    .pn-item { display: flex; flex-direction: column; align-items: center; gap: 2px; font-size: 8px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
+    .pn-item.active { color: var(--accent); }
+    .pn-icon { font-size: 14px; }
+
+    .features { max-width: 1160px; margin: 0 auto 80px; padding: 0 48px; }
+    @media(max-width:700px){ .features{padding:0 24px;} }
+    .sec-lbl { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; color: var(--accent); text-transform: uppercase; margin-bottom: 12px; }
+    .sec-head { font-family: 'Lora', serif; font-size: 34px; font-weight: 600; line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 44px; max-width: 500px; }
+    .feat-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 22px; }
+    @media(max-width:800px){ .feat-grid{grid-template-columns:1fr;} }
+    .feat-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 26px 22px; }
+    .feat-card:hover { box-shadow: 0 6px 20px rgba(28,24,20,0.08); }
+    .feat-icon { font-size: 22px; margin-bottom: 14px; }
+    .feat-title { font-weight: 600; font-size: 14px; margin-bottom: 7px; }
+    .feat-body { font-size: 13px; color: var(--muted); line-height: 1.65; }
+
+    .insight-section { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 80px 48px; margin-bottom: 80px; }
+    .insight-inner { max-width: 1160px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+    @media(max-width:900px){ .insight-inner{grid-template-columns:1fr;gap:36px;} }
+    .in-card { background: var(--bg); border: 1px solid var(--border); border-radius: 14px; padding: 26px 24px; }
+    .in-lbl { font-size: 10px; font-weight: 600; letter-spacing: 0.12em; color: var(--accent); text-transform: uppercase; margin-bottom: 10px; }
+    .in-head { font-family: 'Lora', serif; font-size: 19px; font-weight: 600; line-height: 1.35; margin-bottom: 12px; }
+    .in-body { font-size: 13px; color: var(--muted); line-height: 1.75; }
+    .in-tags { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 14px; }
+    .in-tag { font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 20px; }
+    .in-tag.r { background: var(--accent-soft); color: var(--accent); }
+    .in-tag.g { background: var(--accent2-soft); color: var(--accent2); }
+
+    .integrations { max-width: 1160px; margin: 0 auto 80px; padding: 0 48px; text-align: center; }
+    .int-grid { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; margin-top: 28px; }
+    .int-chip { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 9px 18px; font-size: 13px; font-weight: 600; color: var(--muted); }
+
+    .cta-section { background: var(--accent); color: #fff; padding: 72px 48px; text-align: center; }
+    .cta-head { font-family: 'Lora', serif; font-size: 38px; font-weight: 700; line-height: 1.15; margin-bottom: 14px; max-width: 540px; margin-left: auto; margin-right: auto; }
+    .cta-sub { font-size: 15px; opacity: 0.85; margin-bottom: 30px; max-width: 420px; margin-left: auto; margin-right: auto; }
+    .cta-btn { background: #fff; color: var(--accent); font-size: 14px; font-weight: 700; padding: 13px 30px; border-radius: 9px; display: inline-block; }
+
+    footer { background: var(--surface-alt); border-top: 1px solid var(--border); padding: 36px 48px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+    .footer-brand { font-family: 'Lora', serif; font-size: 17px; font-weight: 700; }
+    .footer-links { display: flex; gap: 22px; }
+    .footer-links a { font-size: 13px; color: var(--muted); }
+    .footer-note { font-size: 12px; color: var(--muted); font-style: italic; }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-brand">
+      <div class="nav-dot">S</div>
+      <span class="nav-name">Solvent</span>
+      <span class="nav-serif">· know your runway</span>
+    </div>
+    <div class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#insights">Insights</a>
+      <a href="https://ram.zenbin.org/solvent-finance-viewer">Prototype →</a>
+    </div>
+    <a href="#" class="nav-cta">Start free trial</a>
+  </nav>
+
+  <section class="hero">
+    <div>
+      <div class="hero-eyebrow"><span class="eyebrow-dot"></span>Financial clarity for freelancers & founders</div>
+      <h1 class="hero-headline">Know your <em>runway.</em><br>Own your numbers.</h1>
+      <p class="hero-sub">Solvent turns your bank accounts, invoices, and projects into a plain-English financial picture. No accountant needed. No spreadsheet required.</p>
+      <div class="hero-ctas">
+        <a href="#" class="btn-primary">Start free — 14 days</a>
+        <a href="https://ram.zenbin.org/solvent-finance-mock" class="btn-ghost">See prototype ☀◑</a>
+      </div>
+      <div class="hero-stats">
+        <div><div class="sn up">4.2<span style="font-size:16px">mo</span></div><div class="sl">Avg runway tracked</div></div>
+        <div><div class="sn ac">78</div><div class="sl">Health score</div></div>
+        <div><div class="sn">$0</div><div class="sl">Setup cost</div></div>
+      </div>
+    </div>
+    <div>
+      <div class="phone-frame">
+        <div class="phone-notch"><div class="notch-pill"></div></div>
+        <div class="phone-body">
+          <div class="pb-eye">Friday, Apr 3 · Q2 Week 1</div>
+          <div class="pb-score-row">
+            <div class="pb-score">78</div>
+            <div class="pb-meta"><div class="pb-grade">Solid</div><div class="pb-trend">↑ +4 pts this month</div></div>
+          </div>
+          <div class="pb-label">Financial Health Score</div>
+          <div class="pb-metrics">
+            <div class="pbm"><div class="pbm-v">4.2mo</div><div class="pbm-l">Runway</div></div>
+            <div class="pbm"><div class="pbm-v">$8.4k</div><div class="pbm-l">MTD Inc.</div></div>
+            <div class="pbm"><div class="pbm-v">$5.2k</div><div class="pbm-l">Owed</div></div>
+          </div>
+          <div class="pb-bars">
+            <div class="pb-bar">
+              <div class="pb-bar-top"><span class="pb-bar-lbl">Money in</span><span style="font-size:10px;font-weight:600;color:#1F7A45">+$8,400</span></div>
+              <div class="pb-bar-track"><div class="pb-bar-fill" style="width:84%;background:#1F7A45"></div></div>
+            </div>
+            <div class="pb-bar">
+              <div class="pb-bar-top"><span class="pb-bar-lbl">Money out</span><span style="font-size:10px;font-weight:600;color:#B45309">-$4,210</span></div>
+              <div class="pb-bar-track"><div class="pb-bar-fill" style="width:42%;background:#B45309"></div></div>
+            </div>
+          </div>
+          <div class="pb-txns">
+            <div class="pb-txn"><div><div class="pb-txn-n">Stripe — Acme Corp</div><div class="pb-txn-c">Invoice · Apr 2</div></div><div class="pb-txn-a p">+$3,200</div></div>
+            <div class="pb-txn"><div><div class="pb-txn-n">Figma subscription</div><div class="pb-txn-c">Tools · Apr 1</div></div><div class="pb-txn-a n">-$45</div></div>
+            <div class="pb-txn"><div><div class="pb-txn-n">Freelance — Dev work</div><div class="pb-txn-c">Invoice · Mar 31</div></div><div class="pb-txn-a p">+$2,400</div></div>
+          </div>
+        </div>
+        <div class="phone-nav">
+          <div class="pn-item active"><span class="pn-icon">◉</span>Overview</div>
+          <div class="pn-item"><span class="pn-icon">〜</span>Flow</div>
+          <div class="pn-item"><span class="pn-icon">≡</span>Projects</div>
+          <div class="pn-item"><span class="pn-icon">★</span>Insights</div>
+          <div class="pn-item"><span class="pn-icon">⊕</span>Accounts</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="features" id="features">
+    <div class="sec-lbl">What Solvent does</div>
+    <h2 class="sec-head">Your business, in plain English — not a spreadsheet.</h2>
+    <div class="feat-grid">
+      <div class="feat-card"><div class="feat-icon">📊</div><div class="feat-title">Financial Health Score</div><div class="feat-body">A single number — 0 to 100 — capturing runway, invoice health, and expense control. Updated every morning.</div></div>
+      <div class="feat-card"><div class="feat-icon">✍️</div><div class="feat-title">Weekly Narrative Brief</div><div class="feat-body">Every Friday at 6am, a short paragraph explaining what changed, why, and what to watch. No numbers jargon.</div></div>
+      <div class="feat-card"><div class="feat-icon">🗂️</div><div class="feat-title">Project Billing Tracker</div><div class="feat-body">Link invoices to projects. See earned vs remaining, overdue alerts, and per-project margin in one card.</div></div>
+      <div class="feat-card"><div class="feat-icon">⏱️</div><div class="feat-title">Cash Runway Counter</div><div class="feat-body">How many months can you run on current reserves? Calculated live, accounting for invoices and recurring costs.</div></div>
+      <div class="feat-card"><div class="feat-icon">🏦</div><div class="feat-title">Multi-Account View</div><div class="feat-body">Mercury, Wise, Stripe, QuickBooks — connect once and see total cash position across all accounts in real time.</div></div>
+      <div class="feat-card"><div class="feat-icon">📥</div><div class="feat-title">Tax Reserve Tracker</div><div class="feat-body">Set a quarterly target, sync your savings account, and watch your buffer fill up automatically.</div></div>
+    </div>
+  </section>
+
+  <section class="insight-section" id="insights">
+    <div class="insight-inner">
+      <div>
+        <div class="sec-lbl">The weekly brief</div>
+        <h2 class="sec-head">Stop reading numbers. Start reading your business.</h2>
+        <p style="font-size:15px;color:var(--muted);line-height:1.7;margin-bottom:22px;">Most finance tools show you rows and columns. Solvent explains what they mean — in plain English.</p>
+        <div class="in-tags">
+          <span class="in-tag r">Income up 22%</span>
+          <span class="in-tag g">Runway extended</span>
+          <span class="in-tag r">Contractor cost watch</span>
+          <span class="in-tag g">Tax reserve 90%</span>
+        </div>
+      </div>
+      <div class="in-card">
+        <div class="in-lbl">Weekly Brief · Apr 3, 2026</div>
+        <div class="in-head">You're tracking well, with one thing to watch.</div>
+        <div class="in-body">Your net income for March came in at $12,840 — up 22% from February. Most of that came from two large project closes. However, contractor spend increased $800 month-over-month. If that holds in April, your margin on Project Fenway drops from 58% to 51%.</div>
+        <div class="in-tags">
+          <span class="in-tag r">⚠ Lumen invoice overdue</span>
+          <span class="in-tag g">✓ Tax reserve on track</span>
+          <span class="in-tag r">→ Retainer renewal open</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="integrations">
+    <div class="sec-lbl">Connects to your stack</div>
+    <h2 class="sec-head" style="max-width:100%;text-align:center">No manual entry. Sync in 2 minutes.</h2>
+    <div class="int-grid">
+      <div class="int-chip">Mercury</div><div class="int-chip">Stripe</div>
+      <div class="int-chip">QuickBooks</div><div class="int-chip">Wise</div>
+      <div class="int-chip">Notion</div><div class="int-chip">Gusto</div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <h2 class="cta-head">Start knowing your numbers in 5 minutes.</h2>
+    <p class="cta-sub">Free 14-day trial. No credit card. Connect your first account and get your health score instantly.</p>
+    <a href="#" class="cta-btn">Get started — it's free</a>
+  </section>
+
+  <footer>
+    <div class="footer-brand">Solvent</div>
+    <div class="footer-links">
+      <a href="https://ram.zenbin.org/solvent-finance-viewer">Prototype →</a>
+      <a href="https://ram.zenbin.org/solvent-finance-mock">Interactive Mock →</a>
+      <a href="#">Privacy</a>
+    </div>
+    <div class="footer-note">Designed by RAM · ram.zenbin.org</div>
+  </footer>
+</body>
+</html>

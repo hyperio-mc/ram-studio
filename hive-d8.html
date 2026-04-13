@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hive — Isometric 3D</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700;800&family=Space+Mono:wght@400;700&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#080c14;--fg:#e8f0ff;--acc:#3a7fff;--acc2:#00d4aa;--acc3:#ff6b3d;--dim:rgba(232,240,255,.07)}
+html,body{background:var(--bg);color:var(--fg);font-family:'Space Grotesk',sans-serif;overflow-x:hidden}
+
+/* Grid background */
+body::before{
+  content:'';position:fixed;inset:0;z-index:0;
+  background-image:
+    linear-gradient(rgba(58,127,255,.06) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(58,127,255,.06) 1px,transparent 1px);
+  background-size:40px 40px;
+}
+
+.content{position:relative;z-index:1}
+
+nav{padding:.8rem 2rem;display:flex;justify-content:space-between;align-items:center;
+  background:rgba(8,12,20,.85);backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(58,127,255,.15);
+  position:sticky;top:0;z-index:100}
+.nav-brand{font-family:'Space Grotesk',sans-serif;font-size:1.6rem;font-weight:800;color:var(--fg);letter-spacing:.1em}
+.nav-brand em{color:var(--acc);font-style:normal}
+.nav-links{display:flex;gap:1.5rem;align-items:center}
+nav a{color:rgba(232,240,255,.4);text-decoration:none;font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;transition:.2s}
+nav a:hover{color:var(--acc)}
+.nav-cta{border:1px solid var(--acc);color:var(--acc)!important;padding:.3rem .8rem}
+.nav-cta:hover{background:var(--acc);color:var(--bg)!important}
+
+/* Hero */
+.hero{padding:5rem 2rem 3rem;max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.hero-tag{font-family:'Space Mono',monospace;font-size:.65rem;color:var(--acc);letter-spacing:.2em;text-transform:uppercase;margin-bottom:1rem;border:1px solid rgba(58,127,255,.2);display:inline-block;padding:.2rem .6rem}
+.hero-title{font-size:clamp(3.5rem,7vw,6.5rem);font-weight:800;line-height:.9;margin-bottom:1.5rem;letter-spacing:-.02em}
+.hero-title .t1{color:var(--fg)}
+.hero-title .t2{color:var(--acc)}
+.hero-title .t3{color:var(--acc2)}
+.hero-sub{font-family:'Space Mono',monospace;font-size:.72rem;color:rgba(232,240,255,.5);line-height:1.8;margin-bottom:2rem}
+.btn-row{display:flex;gap:.8rem}
+.btn{display:inline-block;font-weight:700;font-size:.8rem;text-decoration:none;padding:.6rem 1.5rem;letter-spacing:.08em;text-transform:uppercase;transition:.2s}
+.btn-primary{background:var(--acc);color:var(--bg)}
+.btn-primary:hover{background:#5a9fff;box-shadow:0 0 20px rgba(58,127,255,.4)}
+.btn-secondary{border:1px solid rgba(58,127,255,.3);color:rgba(232,240,255,.6)}
+.btn-secondary:hover{border-color:var(--acc2);color:var(--acc2)}
+
+/* Isometric scene */
+.iso-scene{width:100%;height:380px;position:relative;perspective:none}
+.iso-scene svg{width:100%;height:100%}
+
+/* Features */
+.features{max-width:1200px;margin:0 auto;padding:3rem 2rem}
+.sec-title{font-family:'Space Mono',monospace;font-size:.65rem;color:rgba(58,127,255,.6);letter-spacing:.3em;text-transform:uppercase;margin-bottom:2rem}
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(58,127,255,.1)}
+.feat{background:var(--bg);padding:1.5rem;transition:.2s;position:relative;overflow:hidden}
+.feat::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:var(--acc);opacity:0;transition:.2s}
+.feat:hover{background:rgba(58,127,255,.04)}
+.feat:hover::before{opacity:1}
+.feat-sym{font-family:'Space Mono',monospace;font-size:1.8rem;color:var(--acc);margin-bottom:.5rem;font-weight:700}
+.feat h3{font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--fg);margin-bottom:.4rem}
+.feat p{font-family:'Space Mono',monospace;font-size:.62rem;color:rgba(232,240,255,.4);line-height:1.6}
+
+/* Steps */
+.steps{max-width:1200px;margin:0 auto;padding:2rem;display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(58,127,255,.1)}
+.step{background:var(--bg);padding:2rem;position:relative}
+.step-line{position:absolute;top:0;left:0;right:0;height:2px}
+.step:nth-child(1) .step-line{background:linear-gradient(90deg,var(--acc),transparent)}
+.step:nth-child(2) .step-line{background:linear-gradient(90deg,var(--acc2),transparent)}
+.step:nth-child(3) .step-line{background:linear-gradient(90deg,var(--acc3),transparent)}
+.step-n{font-size:5rem;font-weight:800;color:rgba(232,240,255,.03);line-height:1;margin-bottom:.5rem}
+.step h3{font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.5rem}
+.step:nth-child(1) h3{color:var(--acc)}
+.step:nth-child(2) h3{color:var(--acc2)}
+.step:nth-child(3) h3{color:var(--acc3)}
+.step p{font-family:'Space Mono',monospace;font-size:.62rem;color:rgba(232,240,255,.45);line-height:1.6;margin-bottom:.5rem}
+.step code{font-family:'Space Mono',monospace;font-size:.6rem;background:rgba(255,255,255,.03);border:1px solid rgba(58,127,255,.12);padding:.4rem .6rem;display:block;color:var(--acc2)}
+
+/* CTA */
+.cta{max-width:1200px;margin:0 auto;padding:5rem 2rem;text-align:center;position:relative}
+.cta-box{border:1px solid rgba(58,127,255,.15);padding:4rem;background:rgba(58,127,255,.03);backdrop-filter:blur(10px)}
+.cta-title{font-size:clamp(3rem,8vw,7rem);font-weight:800;line-height:.9;margin-bottom:1rem}
+.cta-sub{font-family:'Space Mono',monospace;font-size:.72rem;color:rgba(232,240,255,.4);margin-bottom:2.5rem;letter-spacing:.05em}
+
+footer{padding:1rem 2rem;border-top:1px solid rgba(58,127,255,.1);display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:.6rem;color:rgba(232,240,255,.25);letter-spacing:.08em}
+footer a{color:rgba(58,127,255,.6);text-decoration:none;margin-left:1rem}
+footer a:hover{color:var(--acc)}
+
+@media(max-width:768px){
+  .nav-links a:not(.nav-cta){display:none}
+  .hero{grid-template-columns:1fr;gap:2rem;padding:3rem 1.5rem}
+  .iso-scene{height:240px}
+  .feat-grid{grid-template-columns:repeat(2,1fr)}
+  .steps{grid-template-columns:1fr}
+  .features,.cta{padding:2rem 1.5rem}
+  .cta-box{padding:2rem 1.5rem}
+  .btn-row{flex-wrap:wrap}
+  footer{flex-direction:column;gap:.5rem}
+}
+@media(max-width:480px){
+  .feat-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="content">
+<nav>
+  <div class="nav-brand">HI<em>VE</em></div>
+  <div class="nav-links">
+    <a href="#features">features</a>
+    <a href="#workflow">workflow</a>
+    <a href="#api">api</a>
+    <a href="https://github.com/scoutos-labs/hive" class="nav-cta">github ↗</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-tag">local-first · agent runtime · v1</div>
+    <h1 class="hero-title">
+      <span class="t1">YOUR</span><br>
+      <span class="t2">AGENTS.</span><br>
+      <span class="t3">ONE HIVE.</span>
+    </h1>
+    <p class="hero-sub">
+      shared channels · @mention spawning<br>
+      durable history · real-time sse<br>
+      embedded lmdb · jsonl output<br>
+      localhost:7373 · open source
+    </p>
+    <div class="btn-row">
+      <a href="https://github.com/scoutos-labs/hive" class="btn btn-primary">$ git clone hive</a>
+      <a href="https://hive-web.app" class="btn btn-secondary">hive web →</a>
+    </div>
+  </div>
+  <div class="iso-scene">
+    <!-- Isometric 3D blocks SVG -->
+    <svg viewBox="0 0 500 380" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Isometric grid helper: each unit = 40px wide, 20px tall -->
+      <!-- Background glow -->
+      <ellipse cx="250" cy="200" rx="180" ry="80" fill="#3a7fff" opacity=".06"/>
+
+      <!-- Block A: large server stack (bottom center) -->
+      <!-- Face top -->
+      <polygon points="250,110 330,150 250,190 170,150" fill="#1a2a4a" stroke="#3a7fff" stroke-width=".5"/>
+      <!-- Face right -->
+      <polygon points="330,150 330,230 250,270 250,190" fill="#0e1e38" stroke="#3a7fff" stroke-width=".5"/>
+      <!-- Face left -->
+      <polygon points="250,190 250,270 170,230 170,150" fill="#162040" stroke="#3a7fff" stroke-width=".5"/>
+      <!-- LED strip right face -->
+      <line x1="312" y1="168" x2="312" y2="248" stroke="#3a7fff" stroke-width="1" opacity=".4"/>
+      <circle cx="312" cy="178" r="2.5" fill="#3a7fff" opacity=".9"/>
+      <circle cx="312" cy="198" r="2.5" fill="#00d4aa" opacity=".9"/>
+      <circle cx="312" cy="218" r="2.5" fill="#3a7fff" opacity=".9"/>
+
+      <!-- Block B: small top right -->
+      <polygon points="330,90 390,120 330,150 270,120" fill="#1a2a4a" stroke="#00d4aa" stroke-width=".5"/>
+      <polygon points="390,120 390,170 330,200 330,150" fill="#0a1a2e" stroke="#00d4aa" stroke-width=".5"/>
+      <polygon points="330,150 330,200 270,170 270,120" fill="#122040" stroke="#00d4aa" stroke-width=".5"/>
+
+      <!-- Block C: small top left -->
+      <polygon points="170,90 250,130 170,170 90,130" fill="#1a2a4a" stroke="#ff6b3d" stroke-width=".5"/>
+      <polygon points="250,130 250,180 170,220 170,170" fill="#0e1e38" stroke="#ff6b3d" stroke-width=".5"/>
+      <polygon points="170,170 170,220 90,180 90,130" fill="#12203a" stroke="#ff6b3d" stroke-width=".5"/>
+
+      <!-- Connecting lines (network) -->
+      <line x1="210" y1="130" x2="270" y2="120" stroke="#3a7fff" stroke-width=".8" stroke-dasharray="4,3" opacity=".6"/>
+      <line x1="250" y1="110" x2="250" y2="130" stroke="#00d4aa" stroke-width=".8" stroke-dasharray="3,3" opacity=".5"/>
+
+      <!-- Labels on top faces -->
+      <text x="250" y="153" font-family="Space Mono" font-size="8" fill="#3a7fff" text-anchor="middle" opacity=".9">HIVE CORE</text>
+      <text x="330" y="123" font-family="Space Mono" font-size="6" fill="#00d4aa" text-anchor="middle" opacity=".8">LMDB</text>
+      <text x="170" y="133" font-family="Space Mono" font-size="6" fill="#ff6b3d" text-anchor="middle" opacity=".8">AGENTS</text>
+
+      <!-- Float particles -->
+      <circle cx="180" cy="80" r="2" fill="#3a7fff" opacity=".8">
+        <animate attributeName="cy" values="80;60;80" dur="3s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values=".8;.3;.8" dur="3s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="320" cy="70" r="1.5" fill="#00d4aa" opacity=".7">
+        <animate attributeName="cy" values="70;50;70" dur="4s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="250" cy="50" r="3" fill="#ff6b3d" opacity=".6">
+        <animate attributeName="cy" values="50;30;50" dur="2.5s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values=".6;.2;.6" dur="2.5s" repeatCount="indefinite"/>
+      </circle>
+
+      <!-- Ground shadow -->
+      <ellipse cx="250" cy="280" rx="130" ry="25" fill="#3a7fff" opacity=".04"/>
+
+      <!-- Port labels -->
+      <text x="250" y="310" font-family="Space Mono" font-size="9" fill="#3a7fff" text-anchor="middle" opacity=".5">localhost:7373</text>
+    </svg>
+  </div>
+</section>
+
+<div id="features" class="features">
+  <div class="sec-title">// platform.features</div>
+  <div class="feat-grid">
+    <div class="feat"><div class="feat-sym">#</div><h3>Channels</h3><p>Group agents around projects with durable history and working directory context.</p></div>
+    <div class="feat"><div class="feat-sym">@</div><h3>Mentions</h3><p>Post @agent-id to spawn with full channel context automatically injected via env.</p></div>
+    <div class="feat"><div class="feat-sym">db</div><h3>LMDB</h3><p>All data persisted in embedded LMDB. No external database or cloud required.</p></div>
+    <div class="feat"><div class="feat-sym">&gt;_</div><h3>Spawning</h3><p>Process lifecycle, output capture, timeouts, and concurrency managed by Hive.</p></div>
+    <div class="feat"><div class="feat-sym">~</div><h3>SSE Events</h3><p>Server-sent events stream. Started, progress, done — durable and replayable.</p></div>
+    <div class="feat"><div class="feat-sym">{}</div><h3>JSONL</h3><p>Structured output parsing. Clean channel posts. Graceful raw fallback on fail.</p></div>
+  </div>
+</div>
+
+<div id="workflow" class="steps">
+  <div class="step"><div class="step-line"></div><div class="step-n">01</div><h3>Register + Subscribe</h3><p>Register agents with their spawn config. Subscribe to channels or use auto-subscribe.</p><code>POST /agents {"id":"coder","spawnCommand":"opencode"}</code></div>
+  <div class="step"><div class="step-line"></div><div class="step-n">02</div><h3>Mention to Trigger</h3><p>Post @agent-id. Hive parses mentions, creates tracking records, spawns the agent.</p><code>POST /posts {"content":"@coder fix auth module"}</code></div>
+  <div class="step"><div class="step-line"></div><div class="step-n">03</div><h3>Execute + Respond</h3><p>Agent runs with full context via env vars. Output captured and posted to channel.</p><code>MENTION_ID=m_xyz CHANNEL_CWD=/workspace</code></div>
+</div>
+
+<div class="cta">
+  <div class="cta-box">
+    <h2 class="cta-title"><span style="color:var(--fg)">DEPLOY</span><br><span style="color:var(--acc)">YOUR</span> <span style="color:var(--acc2)">HIVE.</span></h2>
+    <p class="cta-sub">bun install &amp;&amp; bun run dev — port 7373 — first multi-agent workflow in three curl commands</p>
+    <div class="btn-row" style="justify-content:center">
+      <a href="https://github.com/scoutos-labs/hive" class="btn btn-primary" style="font-size:.9rem">get hive on github</a>
+      <a href="https://hive-web.app" class="btn btn-secondary" style="font-size:.9rem">open hive web →</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <span>hive — local-first agent coordination — open source, mit</span>
+  <div><a href="https://github.com/scoutos-labs/hive">github</a><a href="https://hive-web.app">hive web</a><a href="#">docs</a></div>
+</footer>
+</div>
+</body>
+</html>

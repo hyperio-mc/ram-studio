@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TEMPO — Time & Billing Intelligence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#F7F4EF;--surface:#FFFFFF;--surface2:#F0EDE7;
+  --text:#1A1824;--text2:#4A4658;--muted:#9B96A8;
+  --accent:#E8593A;--accentLt:#F5D5CC;
+  --amber:#F5A623;--green:#2DBB7F;--purple:#8B6CDB;
+  --border:#E2DDD5;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;overflow-x:hidden}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(247,244,239,0.85);backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);padding:0 40px;height:64px;
+  display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-size:18px;font-weight:900;letter-spacing:2px;color:var(--accent)}
+.nav-links{display:flex;gap:32px;list-style:none}
+.nav-links a{text-decoration:none;color:var(--text2);font-size:14px;font-weight:500}
+.nav-cta{background:var(--accent);color:#FFF;padding:10px 24px;border-radius:100px;
+  font-size:14px;font-weight:600;text-decoration:none;transition:opacity .2s}
+.nav-cta:hover{opacity:.85}
+
+/* ── HERO ── */
+.hero{padding:140px 40px 80px;max-width:1200px;margin:0 auto;display:grid;
+  grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;
+  background:var(--accentLt);color:var(--accent);
+  padding:6px 16px;border-radius:100px;font-size:12px;font-weight:700;
+  letter-spacing:.6px;margin-bottom:24px}
+.hero-badge::before{content:'●';font-size:8px}
+h1{font-size:clamp(42px,5vw,64px);font-weight:900;line-height:1.05;
+  letter-spacing:-2px;color:var(--text);margin-bottom:24px}
+h1 em{font-style:normal;color:var(--accent)}
+.hero-sub{font-size:18px;color:var(--text2);line-height:1.6;margin-bottom:36px;max-width:480px}
+.hero-btns{display:flex;gap:16px;flex-wrap:wrap}
+.btn-primary{background:var(--accent);color:#FFF;padding:16px 32px;border-radius:14px;
+  font-size:16px;font-weight:700;text-decoration:none;transition:transform .2s,opacity .2s}
+.btn-primary:hover{transform:translateY(-2px);opacity:.92}
+.btn-secondary{background:var(--surface);color:var(--text);padding:16px 32px;
+  border-radius:14px;font-size:16px;font-weight:600;text-decoration:none;
+  border:2px solid var(--border);transition:border-color .2s}
+.btn-secondary:hover{border-color:var(--accent)}
+.hero-meta{display:flex;gap:24px;margin-top:32px;flex-wrap:wrap}
+.meta-item{font-size:13px;color:var(--muted);display:flex;align-items:center;gap:6px}
+.meta-item::before{content:'✓';color:var(--green);font-weight:700}
+
+/* ── PHONE MOCKUP ── */
+.phone-wrap{position:relative;display:flex;justify-content:center}
+.phone{background:var(--surface);border-radius:44px;width:280px;height:560px;
+  box-shadow:0 40px 80px rgba(26,24,36,.15),0 8px 24px rgba(26,24,36,.08),
+    inset 0 0 0 2px var(--border);overflow:hidden;position:relative}
+.phone::before{content:'';position:absolute;top:16px;left:50%;transform:translateX(-50%);
+  width:80px;height:6px;background:var(--border);border-radius:3px;z-index:2}
+.phone-screen{width:100%;height:100%;background:var(--bg);padding-top:32px;overflow:hidden}
+.phone-inner{padding:0 18px}
+.ph-date{font-size:10px;color:var(--muted);font-weight:500;letter-spacing:.3px}
+.ph-greet{font-size:18px;font-weight:800;color:var(--text);margin-top:4px;line-height:1.2}
+.ph-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:16px}
+.ph-stat{background:var(--surface);border-radius:12px;padding:10px;
+  border:1px solid var(--border);box-shadow:0 2px 8px rgba(26,24,36,.05)}
+.ph-stat-val{font-size:16px;font-weight:800;color:var(--text)}
+.ph-stat-val.coral{color:var(--accent)}
+.ph-stat-val.purple{color:var(--purple)}
+.ph-stat-sub{font-size:9px;color:var(--muted);margin-top:2px;line-height:1.3}
+.ph-active{background:var(--accent);border-radius:14px;padding:14px;margin-top:10px}
+.ph-active-label{font-size:8px;font-weight:700;color:rgba(255,255,255,.7);letter-spacing:.8px}
+.ph-active-proj{font-size:12px;font-weight:700;color:#FFF;margin-top:2px}
+.ph-active-time{font-size:22px;font-weight:300;color:#FFF;letter-spacing:-0.5px;margin-top:2px}
+.ph-log-head{font-size:12px;font-weight:700;color:var(--text);margin-top:14px}
+.ph-log-item{display:flex;align-items:center;justify-content:space-between;
+  padding:8px 0;border-bottom:1px solid var(--border)}
+.ph-log-proj{font-size:10px;font-weight:600;color:var(--text)}
+.ph-log-dur{font-size:10px;color:var(--muted)}
+.ph-log-tag{font-size:8px;padding:2px 8px;border-radius:100px;font-weight:600}
+.ph-log-tag.design{background:#E8E0F8;color:var(--purple)}
+.ph-log-tag.admin{background:#FDE8C0;color:var(--amber)}
+.ph-nav{position:absolute;bottom:0;left:0;right:0;height:48px;
+  background:var(--surface);border-top:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-around;padding:0 8px}
+.ph-nav-item{font-size:7.5px;color:var(--muted);font-weight:500;text-align:center}
+.ph-nav-item.active{color:var(--accent);font-weight:700}
+
+/* ── FEATURES ── */
+.features{padding:100px 40px;max-width:1200px;margin:0 auto}
+.section-tag{font-size:11px;font-weight:700;color:var(--accent);letter-spacing:1.2px;
+  text-transform:uppercase;margin-bottom:16px}
+.section-h{font-size:clamp(28px,4vw,44px);font-weight:800;color:var(--text);
+  letter-spacing:-1px;margin-bottom:16px;line-height:1.1}
+.section-sub{font-size:17px;color:var(--text2);max-width:560px;line-height:1.6;margin-bottom:60px}
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.feat-card{background:var(--surface);border:1px solid var(--border);border-radius:20px;
+  padding:32px;transition:transform .2s,box-shadow .2s}
+.feat-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(26,24,36,.09)}
+.feat-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;
+  justify-content:center;font-size:20px;margin-bottom:20px}
+.feat-icon.coral{background:var(--accentLt)}
+.feat-icon.purple{background:#E8E0F8}
+.feat-icon.amber{background:#FDE8C0}
+.feat-icon.green{background:#C5F0DD}
+.feat-h{font-size:17px;font-weight:700;color:var(--text);margin-bottom:10px}
+.feat-p{font-size:14px;color:var(--text2);line-height:1.6}
+
+/* ── SCREENS ── */
+.screens-sec{background:var(--surface);padding:100px 40px;border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border)}
+.screens-inner{max-width:1200px;margin:0 auto}
+.screens-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-top:60px;overflow-x:auto}
+.screen-card{background:var(--bg);border-radius:20px;padding:20px;
+  border:1px solid var(--border);text-align:center}
+.screen-num{font-size:10px;font-weight:700;color:var(--accent);letter-spacing:.6px;margin-bottom:8px}
+.screen-name{font-size:13px;font-weight:700;color:var(--text);margin-bottom:4px}
+.screen-desc{font-size:11px;color:var(--muted);line-height:1.4}
+.screen-preview{height:120px;border-radius:12px;margin:12px 0;overflow:hidden;
+  border:1px solid var(--border);position:relative;background:var(--surface)}
+
+/* ── STATS ── */
+.stats{padding:80px 40px;max-width:1200px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(4,1fr);gap:32px}
+.stat-item{text-align:center}
+.stat-val{font-size:42px;font-weight:900;color:var(--accent);letter-spacing:-1px}
+.stat-label{font-size:14px;color:var(--muted);margin-top:4px}
+
+/* ── CTA ── */
+.cta-sec{background:var(--text);padding:100px 40px;text-align:center}
+.cta-sec h2{font-size:clamp(32px,4vw,52px);font-weight:900;color:#FFF;
+  letter-spacing:-1.5px;margin-bottom:16px}
+.cta-sec p{font-size:17px;color:rgba(255,255,255,.6);margin-bottom:40px}
+.cta-btn{background:var(--accent);color:#FFF;padding:18px 48px;border-radius:14px;
+  font-size:16px;font-weight:700;text-decoration:none;display:inline-block;
+  transition:opacity .2s}
+.cta-btn:hover{opacity:.88}
+
+/* ── FOOTER ── */
+footer{padding:48px 40px;border-top:1px solid var(--border);
+  max-width:1200px;margin:0 auto;display:flex;
+  justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+.footer-logo{font-size:16px;font-weight:900;letter-spacing:2px;color:var(--accent)}
+.footer-note{font-size:13px;color:var(--muted)}
+.footer-links{display:flex;gap:24px;list-style:none}
+.footer-links a{font-size:13px;color:var(--muted);text-decoration:none}
+
+/* ── MOBILE ── */
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr;gap:40px;padding:100px 24px 60px}
+  .feat-grid{grid-template-columns:1fr 1fr}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .screens-grid{grid-template-columns:repeat(3,1fr)}
+  .phone-wrap{display:none}
+  nav{padding:0 24px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo">TEMPO</span>
+  <ul class="nav-links">
+    <li><a href="#features">Features</a></li>
+    <li><a href="#screens">Screens</a></li>
+    <li><a href="#insights">Insights</a></li>
+  </ul>
+  <a href="#cta" class="nav-cta">Start Free Trial</a>
+</nav>
+
+<section class="hero">
+  <div>
+    <div class="hero-badge">LIGHT THEME DESIGN</div>
+    <h1>Know exactly<br>where your <em>time</em><br>goes.</h1>
+    <p class="hero-sub">TEMPO combines smart time tracking, project billing, AI-powered insights, and one-tap invoice generation — built for the solo creative.</p>
+    <div class="hero-btns">
+      <a href="/tempo-viewer" class="btn-primary">Open Design Viewer ↗</a>
+      <a href="/tempo-mock" class="btn-secondary">Interactive Mock ☀◑</a>
+    </div>
+    <div class="hero-meta">
+      <span class="meta-item">AI pattern detection</span>
+      <span class="meta-item">Auto-fill invoices</span>
+      <span class="meta-item">14-day free trial</span>
+    </div>
+  </div>
+  <div class="phone-wrap">
+    <div class="phone">
+      <div class="phone-screen">
+        <div class="phone-inner">
+          <div class="ph-date">Monday, Mar 30</div>
+          <div class="ph-greet">Good morning,<br>Sophia.</div>
+          <div class="ph-stats">
+            <div class="ph-stat">
+              <div class="ph-stat-val">6.5h</div>
+              <div class="ph-stat-sub">logged today</div>
+            </div>
+            <div class="ph-stat">
+              <div class="ph-stat-val coral">$812</div>
+              <div class="ph-stat-sub">billable today</div>
+            </div>
+            <div class="ph-stat">
+              <div class="ph-stat-val purple">3/5</div>
+              <div class="ph-stat-sub">tasks done</div>
+            </div>
+          </div>
+          <div class="ph-active">
+            <div class="ph-active-label">● TRACKING NOW</div>
+            <div class="ph-active-proj">Brand Identity — Novu</div>
+            <div class="ph-active-time">01:24:37</div>
+          </div>
+          <div class="ph-log-head">Today's Log</div>
+          <div class="ph-log-item">
+            <div>
+              <div class="ph-log-proj">Strategy Deck — Fold</div>
+              <div class="ph-log-dur">08:00 – 09:15</div>
+            </div>
+            <span class="ph-log-tag design">Design</span>
+          </div>
+          <div class="ph-log-item">
+            <div>
+              <div class="ph-log-proj">Dev Handoff Notes</div>
+              <div class="ph-log-dur">11:15 – 12:45</div>
+            </div>
+            <span class="ph-log-tag admin">Admin</span>
+          </div>
+        </div>
+      </div>
+      <div class="ph-nav">
+        <div class="ph-nav-item active">Home</div>
+        <div class="ph-nav-item">Timer</div>
+        <div class="ph-nav-item">Projects</div>
+        <div class="ph-nav-item">Insights</div>
+        <div class="ph-nav-item">Invoice</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="features" id="features">
+  <div class="section-tag">What TEMPO Does</div>
+  <h2 class="section-h">Everything a creative<br>freelancer needs</h2>
+  <p class="section-sub">Built from the ground up for solo operators — not enterprise teams. Simple, fast, and honest about your time.</p>
+  <div class="feat-grid">
+    <div class="feat-card">
+      <div class="feat-icon coral">⏱</div>
+      <div class="feat-h">One-tap Timer</div>
+      <p class="feat-p">Start tracking in one tap. Tag projects, add notes, and split sessions with lap markers. Every second counted.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon purple">✦</div>
+      <div class="feat-h">AI Focus Insights</div>
+      <p class="feat-p">TEMPO learns when you focus best, which clients take the most energy, and surfaces weekly patterns automatically.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon green">⊟</div>
+      <div class="feat-h">Auto-fill Invoices</div>
+      <p class="feat-p">Turn a month of tracked time into a professional invoice in seconds. Send via Stripe, Wire, or Wise.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon amber">◫</div>
+      <div class="feat-h">Project Pulse</div>
+      <p class="feat-p">See each project's health at a glance — hours logged vs. estimated, billable vs. earned, and progress to budget.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon purple">◈</div>
+      <div class="feat-h">Focus Heatmap</div>
+      <p class="feat-p">A visual 7-day × 10-hour heatmap shows exactly when you worked and at what intensity, revealing your true patterns.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon coral">↗</div>
+      <div class="feat-h">Revenue Trends</div>
+      <p class="feat-p">Weekly revenue bars and month-over-month comparisons help you spot growth, seasonality, and slow periods fast.</p>
+    </div>
+  </div>
+</section>
+
+<section class="screens-sec" id="screens">
+  <div class="screens-inner">
+    <div class="section-tag">5 Core Screens</div>
+    <h2 class="section-h">Designed for flow,<br>not friction</h2>
+    <p class="section-sub">Every screen focuses on one job. Navigate with a clean bottom tab bar — warm cream palette, deep slate text, coral accent.</p>
+    <div class="screens-grid">
+      <div class="screen-card">
+        <div class="screen-num">01</div>
+        <div class="screen-name">Dashboard</div>
+        <div class="screen-preview" style="background:linear-gradient(135deg,#F7F4EF,#F0EDE7)">
+          <div style="padding:12px">
+            <div style="font-size:9px;color:#9B96A8;font-family:Inter,sans-serif">Good morning, Sophia.</div>
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin-top:6px">
+              <div style="background:#FFF;border-radius:6px;padding:4px;font-size:8px;font-weight:700;color:#1A1824;font-family:Inter,sans-serif">6.5h</div>
+              <div style="background:#FFF;border-radius:6px;padding:4px;font-size:8px;font-weight:700;color:#E8593A;font-family:Inter,sans-serif">$812</div>
+              <div style="background:#FFF;border-radius:6px;padding:4px;font-size:8px;font-weight:700;color:#8B6CDB;font-family:Inter,sans-serif">3/5</div>
+            </div>
+            <div style="background:#E8593A;border-radius:8px;padding:6px;margin-top:6px">
+              <div style="font-size:7px;color:rgba(255,255,255,.7);font-family:Inter,sans-serif">● TRACKING</div>
+              <div style="font-size:10px;font-weight:700;color:#FFF;font-family:Inter,sans-serif">01:24:37</div>
+            </div>
+          </div>
+        </div>
+        <div class="screen-desc">Today's time audit, active session, quick stats</div>
+      </div>
+      <div class="screen-card">
+        <div class="screen-num">02</div>
+        <div class="screen-name">Timer</div>
+        <div class="screen-preview" style="background:linear-gradient(135deg,#F7F4EF,#F0EDE7);display:flex;align-items:center;justify-content:center">
+          <div style="text-align:center">
+            <div style="width:64px;height:64px;border-radius:50%;border:6px solid #E8593A;
+              display:flex;align-items:center;justify-content:center;margin:0 auto;
+              background:#FFF;font-size:11px;font-weight:300;color:#1A1824;font-family:Inter,sans-serif">01:24</div>
+            <div style="font-size:9px;color:#9B96A8;margin-top:8px;font-family:Inter,sans-serif">62% done</div>
+          </div>
+        </div>
+        <div class="screen-desc">Visual ring timer with pause/stop controls</div>
+      </div>
+      <div class="screen-card">
+        <div class="screen-num">03</div>
+        <div class="screen-name">Projects</div>
+        <div class="screen-preview" style="background:linear-gradient(135deg,#F7F4EF,#F0EDE7)">
+          <div style="padding:12px">
+            <div style="background:#1A1824;border-radius:8px;padding:6px;margin-bottom:6px">
+              <div style="font-size:7px;color:rgba(255,255,255,.5);font-family:Inter,sans-serif">MTD Earned</div>
+              <div style="font-size:14px;font-weight:800;color:#FFF;font-family:Inter,sans-serif">$6,840</div>
+            </div>
+            <div style="background:#FFF;border-radius:6px;padding:5px;border-left:3px solid #E8593A">
+              <div style="font-size:8px;font-weight:700;color:#1A1824;font-family:Inter,sans-serif">Brand Identity</div>
+              <div style="height:3px;background:#E8593A;border-radius:2px;margin-top:4px;width:60%"></div>
+            </div>
+          </div>
+        </div>
+        <div class="screen-desc">Progress bars, budget tracking, earnings</div>
+      </div>
+      <div class="screen-card">
+        <div class="screen-num">04</div>
+        <div class="screen-name">Insights</div>
+        <div class="screen-preview" style="background:linear-gradient(135deg,#F7F4EF,#F0EDE7)">
+          <div style="padding:10px">
+            <div style="background:#E8E0F8;border-radius:6px;padding:5px;margin-bottom:6px">
+              <div style="font-size:7px;color:#8B6CDB;font-weight:700;font-family:Inter,sans-serif">✦ AI INSIGHT</div>
+              <div style="font-size:8px;color:#1A1824;font-family:Inter,sans-serif">Peak hours: 9–11am</div>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:2px">
+              ${[3,4,2,4,3,1,0].map(v => `<div style="background:${['#F0EDE7','#F5D5CC','#F0A898','#E8734F','#E8593A'][v]};height:8px;border-radius:2px"></div>`).join('')}
+            </div>
+          </div>
+        </div>
+        <div class="screen-desc">Heatmap, breakdowns, AI pattern cards</div>
+      </div>
+      <div class="screen-card">
+        <div class="screen-num">05</div>
+        <div class="screen-name">Invoice</div>
+        <div class="screen-preview" style="background:linear-gradient(135deg,#F7F4EF,#F0EDE7)">
+          <div style="padding:10px">
+            <div style="background:#E8593A;border-radius:8px;padding:6px">
+              <div style="font-size:9px;font-weight:900;color:#FFF;letter-spacing:1.5px;font-family:Inter,sans-serif">TEMPO</div>
+              <div style="font-size:7px;color:rgba(255,255,255,.7);font-family:Inter,sans-serif">#INV-2026-031</div>
+            </div>
+            <div style="margin-top:6px;font-size:8px;color:#4A4658;font-family:Inter,sans-serif">Novu Technologies</div>
+            <div style="font-size:13px;font-weight:800;color:#E8593A;margin-top:2px;font-family:Inter,sans-serif">$4,000.00</div>
+          </div>
+        </div>
+        <div class="screen-desc">Auto-filled from logs, one-tap send</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="stats" id="insights">
+  <div class="stat-item">
+    <div class="stat-val">34%</div>
+    <div class="stat-label">More output in peak hours</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-val">8s</div>
+    <div class="stat-label">Average invoice generation</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-val">$812</div>
+    <div class="stat-label">Average daily billable</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-val">5</div>
+    <div class="stat-label">Focused screens, zero bloat</div>
+  </div>
+</section>
+
+<section class="cta-sec" id="cta">
+  <h2>Start knowing your time.</h2>
+  <p>14-day free trial · No credit card · Cancel anytime</p>
+  <a href="/tempo-mock" class="cta-btn">Try the Interactive Mock</a>
+</section>
+
+<div style="max-width:1200px;margin:0 auto">
+  <footer>
+    <span class="footer-logo">TEMPO</span>
+    <ul class="footer-links">
+      <li><a href="/tempo-viewer">Design Viewer</a></li>
+      <li><a href="/tempo-mock">Interactive Mock</a></li>
+    </ul>
+    <span class="footer-note">RAM Design Heartbeat · Mar 30 2026</span>
+  </footer>
+</div>
+
+</body>
+</html>

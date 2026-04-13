@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WELT — global signal feed</title>
+<meta name="description" content="Global perspectives app. See what 112 countries are reading and thinking about the same events. Warm near-black + copper amber + warm ivory. Cormorant Garamond + IBM Plex Mono. A RAM design concept.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://zenbin.org/p/welt">
+<meta property="og:title" content="WELT — global signal feed">
+<meta property="og:description" content="Global perspectives app. See what 112 countries are reading and thinking about the same events. Warm near-black + copper amber. A RAM design concept.">
+<meta property="og:site_name" content="RAM Design Studio">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="WELT — global signal feed">
+<meta name="twitter:description" content="Global perspectives app. See what 112 countries are reading and thinking about the same events.">
+<meta name="twitter:site" content="@ram_design">
+<meta name="theme-color" content="#C4862E">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=IBM+Plex+Mono:wght@400;500;700&family=Inter:wght@300;400;500&display=swap');
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0B0807;--surface:#161210;--card:#1F1A16;--card2:#262018;
+  --copper:#C4862E;--copper2:#D9A055;--ivory:#E8DFD0;--ivory2:#C8BCA8;
+  --rose:#A06070;--teal:#3D8C85;
+  --muted:rgba(232,223,208,0.42);--dim:rgba(232,223,208,0.12);
+  --eu:#5B7EC4;--as:#C45B5B;--am:#5BC48C;--af:#C4A45B;--me:#C47A5B;
+  --border:rgba(232,223,208,0.08);
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ivory);font-family:'Inter',sans-serif;line-height:1.5;overflow-x:hidden}
+
+/* ─── NAV ─── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(11,8,7,0.88);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;padding:0 56px;height:64px}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:24px;letter-spacing:.06em;text-decoration:none;color:var(--copper);font-style:italic}
+.nav-links{display:flex;gap:40px;list-style:none}
+.nav-links a{font-size:10px;color:var(--muted);text-decoration:none;font-family:'IBM Plex Mono',monospace;letter-spacing:.12em;text-transform:uppercase}
+.nav-cta{background:var(--copper);color:var(--bg);border:none;padding:10px 22px;border-radius:8px;font-size:10px;font-weight:700;cursor:pointer;font-family:'IBM Plex Mono',monospace;letter-spacing:.08em}
+
+/* ─── HERO ─── */
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:80px 0 0;overflow:hidden}
+.hero-left{padding:0 72px 72px}
+.hero-eyebrow{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.16em;color:var(--copper2);margin-bottom:24px;text-transform:uppercase}
+.hero-title{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:96px;line-height:0.88;letter-spacing:-.01em;margin-bottom:32px;color:var(--ivory)}
+.hero-title span{color:var(--copper)}
+.hero-rule{height:1px;background:var(--border);margin:28px 0}
+.hero-deck{font-family:'Cormorant Garamond',serif;font-size:22px;line-height:1.5;color:var(--muted);margin-bottom:14px;font-style:italic;max-width:440px}
+.hero-sub{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);line-height:1.9;max-width:420px;margin-bottom:44px;letter-spacing:.01em}
+.hero-btns{display:flex;gap:14px;align-items:center}
+.btn-copper{background:var(--copper);color:var(--bg);padding:14px 30px;border-radius:10px;font-size:10px;font-weight:700;letter-spacing:.1em;text-decoration:none;display:inline-block;font-family:'IBM Plex Mono',monospace}
+.btn-ghost{border:1px solid var(--border);color:var(--muted);padding:13px 28px;border-radius:10px;font-size:10px;letter-spacing:.1em;text-decoration:none;display:inline-block;font-family:'IBM Plex Mono',monospace}
+.hero-right{height:100vh;position:relative;overflow:hidden;display:flex;align-items:flex-end;justify-content:center;padding-bottom:0}
+
+/* Floating signal cards */
+.float-signal{position:absolute;background:rgba(31,26,22,0.92);border:1px solid var(--border);border-radius:12px;padding:14px 18px;backdrop-filter:blur(12px)}
+.fs-tag{font-family:'IBM Plex Mono',monospace;font-size:7px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px}
+.fs-headline{font-family:'Cormorant Garamond',serif;font-size:13px;font-weight:600;color:var(--ivory);line-height:1.3}
+.fs-meta{font-family:'IBM Plex Mono',monospace;font-size:8px;color:var(--muted);margin-top:5px}
+
+/* Diversity badge */
+.float-diversity{position:absolute;background:var(--copper);color:var(--bg);border-radius:14px;padding:12px 20px;text-align:center}
+.fd-num{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:700;line-height:1}
+.fd-label{font-family:'IBM Plex Mono',monospace;font-size:7px;letter-spacing:.1em;margin-top:4px}
+
+/* Phone */
+.phone-wrap{width:300px;transform:translateY(32px)}
+.phone{width:300px;height:620px;background:var(--surface);border-radius:40px;overflow:hidden;
+  border:1px solid rgba(196,134,46,0.15);
+  box-shadow:0 0 60px rgba(196,134,46,0.08),0 0 120px rgba(196,134,46,0.04),0 40px 80px rgba(0,0,0,0.7);
+  position:relative}
+.phone-notch{width:88px;height:20px;background:var(--bg);border-radius:0 0 14px 14px;position:absolute;top:0;left:50%;transform:translateX(-50%);z-index:2}
+.p-screen{padding:28px 14px 14px;height:100%;overflow:hidden;background:var(--bg)}
+
+.p-date-chip{font-family:'IBM Plex Mono',monospace;font-size:7px;letter-spacing:.1em;color:var(--copper2);font-weight:700;text-transform:uppercase;margin-bottom:2px}
+.p-wordmark{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:700;color:var(--ivory);font-style:italic;line-height:1}
+.p-signal-strip{background:var(--card);border-radius:6px;padding:5px 10px;margin:8px 0;display:flex;align-items:center;justify-content:space-between}
+.p-signal-txt{font-family:'IBM Plex Mono',monospace;font-size:7px;color:var(--copper);font-weight:700;letter-spacing:.06em}
+.p-story-card{background:var(--card);border-radius:6px;padding:8px 10px;margin-bottom:4px;border-left:2px solid var(--copper)}
+.p-story-tag{font-family:'IBM Plex Mono',monospace;font-size:7px;color:var(--copper);font-weight:700;letter-spacing:.06em;margin-bottom:3px}
+.p-story-hed{font-family:'Cormorant Garamond',serif;font-size:12px;font-weight:600;color:var(--ivory);line-height:1.3}
+.p-story-meta{font-family:'IBM Plex Mono',monospace;font-size:7px;color:var(--muted);margin-top:4px}
+.p-region-dots{display:flex;gap:3px;margin-top:5px}
+.p-dot{width:7px;height:7px;border-radius:50%}
+.p-nav{position:absolute;bottom:0;left:0;right:0;height:56px;background:var(--surface);
+  border-top:1px solid var(--border);display:flex;align-items:center}
+.p-nav-tab{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px}
+.p-nav-icon{font-size:11px;line-height:1}
+.p-nav-lbl{font-family:'IBM Plex Mono',monospace;font-size:5px;letter-spacing:.06em;text-transform:uppercase}
+
+/* ─── SECTION: HOW IT WORKS ─── */
+.section-how{padding:120px 80px;background:var(--surface)}
+.section-how .eyebrow{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.16em;color:var(--copper2);text-transform:uppercase;margin-bottom:16px}
+.section-how h2{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:52px;line-height:1.1;margin-bottom:56px;color:var(--ivory)}
+.how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:40px}
+.how-card{background:var(--bg);border-radius:16px;padding:36px 32px}
+.how-num{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--copper);letter-spacing:.12em;margin-bottom:20px;font-weight:700}
+.how-title{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:700;color:var(--ivory);margin-bottom:12px}
+.how-desc{font-family:'Inter',sans-serif;font-size:14px;color:var(--muted);line-height:1.7}
+
+/* ─── SECTION: REGIONS ─── */
+.section-regions{padding:120px 80px;background:var(--bg)}
+.regions-intro{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;margin-bottom:60px}
+.regions-intro h2{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:52px;line-height:1.1;color:var(--ivory)}
+.regions-intro p{font-family:'Inter',sans-serif;font-size:15px;color:var(--muted);line-height:1.8;padding-top:16px}
+.region-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.region-card{background:var(--card);border-radius:14px;padding:28px;border-left:3px solid}
+.region-card h3{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:var(--ivory);margin-bottom:8px}
+.region-card p{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);margin-bottom:10px;letter-spacing:.03em}
+.region-card .signal{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.08em;font-weight:700}
+
+/* ─── SECTION: DIVERSITY SCORE ─── */
+.section-diversity{padding:120px 80px;background:var(--card);text-align:center}
+.div-score{font-family:'Cormorant Garamond',serif;font-size:120px;font-weight:700;color:var(--copper);line-height:1}
+.div-label{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.16em;color:var(--muted);text-transform:uppercase;margin:16px 0}
+.div-desc{font-family:'Inter',sans-serif;font-size:17px;color:var(--ivory2);max-width:600px;margin:0 auto 40px;line-height:1.7}
+.div-chips{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.chip{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:10px 20px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:.08em}
+.chip.active{border-color:var(--copper);color:var(--copper)}
+
+/* ─── CTA ─── */
+.cta{padding:120px 80px;background:var(--surface);text-align:center}
+.cta .eyebrow{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.16em;color:var(--copper2);text-transform:uppercase;margin-bottom:20px}
+.cta h2{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:68px;line-height:0.95;color:var(--ivory);margin-bottom:20px}
+.cta p{font-family:'Inter',sans-serif;font-size:16px;color:var(--muted);max-width:520px;margin:0 auto 44px;line-height:1.7}
+.cta-btns{display:flex;gap:16px;justify-content:center}
+.cta-btn-copper{background:var(--copper);color:var(--bg);padding:16px 36px;border-radius:12px;font-size:10px;font-weight:700;letter-spacing:.1em;text-decoration:none;font-family:'IBM Plex Mono',monospace}
+.cta-btn-ghost{border:1px solid var(--border);color:var(--muted);padding:15px 34px;border-radius:12px;font-size:10px;letter-spacing:.1em;text-decoration:none;font-family:'IBM Plex Mono',monospace}
+
+/* ─── FOOTER ─── */
+footer{background:var(--bg);padding:40px 80px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border)}
+.footer-logo{font-family:'Cormorant Garamond',serif;font-size:20px;font-style:italic;color:var(--copper);font-weight:700}
+.footer-note{font-family:'IBM Plex Mono',monospace;font-size:9px;color:rgba(232,223,208,0.25);letter-spacing:.08em;text-transform:uppercase}
+
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr;padding-bottom:60px}
+  .hero-right{height:500px}
+  .hero-left{padding:0 28px 40px}
+  .hero-title{font-size:72px}
+  .section-how,.section-regions,.section-diversity,.cta{padding:72px 28px}
+  .how-grid,.region-grid,.regions-intro{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">WELT</a>
+  <ul class="nav-links">
+    <li><a href="#regions">Regions</a></li>
+    <li><a href="#diversity">Diversity</a></li>
+    <li><a href="https://ram.zenbin.org" target="_blank">Studio</a></li>
+  </ul>
+  <button class="nav-cta">PROTOTYPE →</button>
+</nav>
+
+<section class="hero">
+  <div class="hero-left">
+    <p class="hero-eyebrow">◎ RAM DESIGN HEARTBEAT · DARK THEME · 397 NODES</p>
+    <h1 class="hero-title">One<br>world.<br><span>Many</span><br>signals.</h1>
+    <hr class="hero-rule">
+    <p class="hero-deck">The same event, read differently in 83 countries. WELT shows you the gap.</p>
+    <p class="hero-sub">A global perspectives feed that tracks how 112 countries read the same stories. Measure your own perspective diversity. See where narratives diverge — and why that matters.</p>
+    <div class="hero-btns">
+      <a href="https://zenbin.org/p/welt-mock" class="btn-copper">VIEW PROTOTYPE →</a>
+      <a href="https://raw.githubusercontent.com/hyperio-mc/design-studio-queue/main/queue.json" class="btn-ghost">GALLERY</a>
+    </div>
+  </div>
+  <div class="hero-right">
+
+    <!-- Floating signal cards -->
+    <div class="float-signal" style="top:16%;left:2%">
+      <div class="fs-tag" style="color:#C4862E">🔥 TOP STORY · 83 COUNTRIES</div>
+      <div class="fs-headline">AI governance summit<br>fractures on enforcement</div>
+      <div class="fs-meta">4,812 articles · 3h ago</div>
+    </div>
+
+    <div class="float-signal" style="top:38%;right:2%">
+      <div class="fs-tag" style="color:#5B7EC4">EUROPE VIEW</div>
+      <div class="fs-headline">Favours binding enforcement<br>with sanctions mechanism</div>
+      <div class="fs-meta" style="color:#C45B5B">ASIA: Resists external oversight</div>
+    </div>
+
+    <div class="float-diversity" style="top:12%;right:8%">
+      <div class="fd-num">7.8</div>
+      <div class="fd-label">DIVERSITY SCORE</div>
+    </div>
+
+    <!-- Phone mockup -->
+    <div class="phone-wrap">
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="p-screen">
+          <div class="p-date-chip">MON 30 MAR 2026 · LIVE</div>
+          <div class="p-wordmark">WELT</div>
+          <div class="p-signal-strip">
+            <span class="p-signal-txt">◎ 847 STORIES · 112 COUNTRIES</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:8px;color:#C4862E;font-weight:700">SIGNAL 94%</span>
+          </div>
+          <div class="p-story-card">
+            <div class="p-story-tag">🔥 TOP STORY · 83 COUNTRIES</div>
+            <div class="p-story-hed">The AI governance summit fractures on enforcement</div>
+            <div class="p-region-dots">
+              <div class="p-dot" style="background:#5B7EC4"></div>
+              <div class="p-dot" style="background:#C45B5B"></div>
+              <div class="p-dot" style="background:#5BC48C"></div>
+              <div class="p-dot" style="background:#C47A5B"></div>
+              <div class="p-dot" style="background:#C4A45B"></div>
+            </div>
+            <div class="p-story-meta">4,812 articles · 3h ago · live</div>
+          </div>
+          <div class="p-story-card" style="border-left-color:#5B7EC4;margin-top:6px">
+            <div class="p-story-tag" style="color:#5B7EC4">ECONOMY · 64 COUNTRIES</div>
+            <div class="p-story-hed">Central banks diverge on rate path</div>
+            <div class="p-story-meta">5h ago · 2,104 articles</div>
+          </div>
+          <div class="p-story-card" style="border-left-color:#5BC48C;margin-top:4px">
+            <div class="p-story-tag" style="color:#5BC48C">TECH · 72 COUNTRIES</div>
+            <div class="p-story-hed">Open-source model surpasses proprietary benchmarks</div>
+            <div class="p-story-meta">14h ago · 1,847 articles</div>
+          </div>
+        </div>
+        <div class="p-nav">
+          <div class="p-nav-tab"><span class="p-nav-icon" style="color:#C4862E">◎</span><span class="p-nav-lbl" style="color:#C4862E">SIGNAL</span></div>
+          <div class="p-nav-tab"><span class="p-nav-icon" style="color:rgba(232,223,208,0.3)">◈</span><span class="p-nav-lbl" style="color:rgba(232,223,208,0.3)">STORY</span></div>
+          <div class="p-nav-tab"><span class="p-nav-icon" style="color:rgba(232,223,208,0.3)">○</span><span class="p-nav-lbl" style="color:rgba(232,223,208,0.3)">GLOBE</span></div>
+          <div class="p-nav-tab"><span class="p-nav-icon" style="color:rgba(232,223,208,0.3)">◇</span><span class="p-nav-lbl" style="color:rgba(232,223,208,0.3)">REGIONS</span></div>
+          <div class="p-nav-tab"><span class="p-nav-icon" style="color:rgba(232,223,208,0.3)">∘</span><span class="p-nav-lbl" style="color:rgba(232,223,208,0.3)">PROFILE</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section-how" id="features">
+  <p class="eyebrow">◎ HOW IT WORKS</p>
+  <h2>The world reads<br>the same story differently.</h2>
+  <div class="how-grid">
+    <div class="how-card">
+      <div class="how-num">01 — SIGNAL</div>
+      <h3 class="how-title">Live global feed</h3>
+      <p class="how-desc">847 stories from 112 countries, updated continuously. Each story shows how many nations are covering it and where signal strength is highest right now.</p>
+    </div>
+    <div class="how-card">
+      <div class="how-num">02 — PERSPECTIVE</div>
+      <h3 class="how-title">Regional viewpoints</h3>
+      <p class="how-desc">Tap any story to see how Europe, East Asia, the Americas, and Africa are each framing it differently. Same event, different emphases, different implications.</p>
+    </div>
+    <div class="how-card">
+      <div class="how-num">03 — DIVERSITY</div>
+      <h3 class="how-title">Your perspective score</h3>
+      <p class="how-desc">WELT measures how broadly you read across regions and perspectives. Your diversity score reflects genuine intellectual range — not just volume.</p>
+    </div>
+  </div>
+</section>
+
+<!-- REGIONS -->
+<section class="section-regions" id="regions">
+  <div class="regions-intro">
+    <h2>Five regions.<br>Five ways of seeing.</h2>
+    <p>Every major story in WELT is tagged with regional signal strength — showing not just where it's being covered, but how the framing differs across geopolitical perspectives.</p>
+  </div>
+  <div class="region-grid">
+    <div class="region-card" style="border-left-color:#5B7EC4">
+      <h3>Europe</h3>
+      <p>312 STORIES · 47 COUNTRIES · SIGNAL 94%</p>
+      <div class="signal" style="color:#5B7EC4">AI governance · energy transition · democratic resilience</div>
+    </div>
+    <div class="region-card" style="border-left-color:#C45B5B">
+      <h3>East Asia</h3>
+      <p>218 STORIES · 18 COUNTRIES · SIGNAL 88%</p>
+      <div class="signal" style="color:#C45B5B">Technology sovereignty · trade strategy · maritime tensions</div>
+    </div>
+    <div class="region-card" style="border-left-color:#5BC48C">
+      <h3>Americas</h3>
+      <p>186 STORIES · 35 COUNTRIES · SIGNAL 72%</p>
+      <div class="signal" style="color:#5BC48C">Economic indicators · climate policy · domestic politics</div>
+    </div>
+    <div class="region-card" style="border-left-color:#C4A45B">
+      <h3>Africa</h3>
+      <p>57 STORIES · 54 COUNTRIES · SIGNAL 61%</p>
+      <div class="signal" style="color:#C4A45B">Development finance · elections · climate displacement</div>
+    </div>
+  </div>
+</section>
+
+<!-- DIVERSITY SCORE -->
+<section class="section-diversity" id="diversity">
+  <p style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.16em;color:var(--copper2);text-transform:uppercase;margin-bottom:20px">◎ PERSPECTIVE DIVERSITY SCORE</p>
+  <div class="div-score">7.8</div>
+  <div class="div-label">your reading range · top 12% of readers</div>
+  <p class="div-desc">WELT scores your reading breadth across regions, perspectives, and topics. 10.0 means you actively seek out viewpoints that contradict your own. Most readers score between 4 and 6.</p>
+  <div class="div-chips">
+    <div class="chip active">EUROPE ✓</div>
+    <div class="chip active">EAST ASIA ✓</div>
+    <div class="chip active">AMERICAS ✓</div>
+    <div class="chip">MIDDLE EAST</div>
+    <div class="chip active">AFRICA ✓</div>
+    <div class="chip">SOUTH ASIA</div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <p class="eyebrow">◎ RAM DESIGN STUDIO</p>
+  <h2>Read the<br>world whole.</h2>
+  <p>WELT is a design concept from RAM's daily heartbeat practice — exploring how better information design can create genuine perspective diversity.</p>
+  <div class="cta-btns">
+    <a href="https://zenbin.org/p/welt-mock" class="cta-btn-copper">VIEW PROTOTYPE →</a>
+    <a href="https://ram.zenbin.org" class="cta-btn-ghost">DESIGN STUDIO</a>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-logo">WELT</span>
+  <span class="footer-note">RAM Design Heartbeat · Dark Theme · Cormorant Garamond + IBM Plex Mono · © 2026</span>
+</footer>
+
+</body>
+</html>

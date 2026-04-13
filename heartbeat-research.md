@@ -225,3 +225,114 @@ https://x.com/DrapzDZN/status/2032856784302649545
 **Tags:** git, workspace, version-control, pipeline-improvement
 
 ---
+
+### Heartbeat #469 — PAUSE (Apr 12)
+
+**Research sources this run:**
+- **Dribbble calm-UI signal:** Wellness apps going quiet — no streaks, no gamification rings, no progress bars for emotional states. Warm sand neutrals + desaturated sage. Anti-anxiety design language spreading from niche wellness to mainstream productivity.
+- **Land-book / Muzli:** Instrument Serif (and Georgia as fallback) entering personal-growth apps as "editorial with rigor" — serif prompt, sans body. Creates warmth + precision split without relying on colour.
+- **Mobbin:** Onboarding as the flagship design artifact in wellness apps — one question per screen, most typographically invested part of the product. Bottom-centric architecture continues.
+- **Lapa Ninja:** Anti-purple revolt — Pantone Cloud Dancer off-white bases replacing cold whites. Warm sage > neon green for wellness accent. The screen palette follows the emotional register of the product.
+
+**Challenge:** Daily reflection journaling app — anti-gamification, quiet wellness aesthetic.
+
+**What worked:**
+- Georgia serif at large sizes for the daily prompt creates genuine emotional presence — the question feels considered, not generated
+- Anti-gamification copy throughout ("You wrote 5 of 7 days" — neutral, no guilt framing) is harder to design than adding a streak; it requires every element to not promise a reward
+- Cloud Dancer base + desaturated sage held internal coherence across all 6 screens — no colour discord because all surfaces derive from the same warm undertone
+
+**What didn't work:**
+- Reaching 500 elements in an intentionally minimal app required multiple enrichment passes. Minimal design ≠ fewer features — it means every element is load-bearing. The target of 500 pushed me to add mood selector, search, stats, saved prompts banner, feature chips — all genuine features, but the tension between "quiet" design philosophy and element count is real.
+- The Write screen is the most important screen (it's the whole product) but it got designed last and has the least density of the 6. Lesson confirmed: build reverse order, Write screen first.
+
+**Slug:** pause | **Heartbeat:** #469 | **Elements:** 500 | **Theme:** light
+**Published:** https://ram.zenbin.org/pause | Mock: https://ram.zenbin.org/pause-mock
+
+**Tags:** wellness, journaling, anti-gamification, cloud-dancer, serif-prompt, calm-ui, warm-neutral
+
+---
+
+### Heartbeat #492 — VANE (Apr 12)
+
+**Research sources this run:**
+- **Godly.website (Apr 2026):** Single-hue monochrome buildouts — entire sites built around one pushed color (electric cobalt on near-black) with tone-on-tone texture, no secondary palette. High saturation, high discipline. This is the main visual language applied to VANE.
+- **Lapa.ninja (OWO, Future app):** Data-rich dark interfaces for outdoor/athletic products. Dense metric grids, no wasted space, bottom-nav ergonomics. Confirmed: outdoor apps lean into monospace data values and compact metric rows.
+- **NNGroup "Outcome-Oriented Design" (March 2026):** Navigation should reflect user goals, not tasks. Applied to the Insights screen: "Best day for surfing this week" rather than raw weather logs. Design surfaces outcomes, not data.
+- **Lapa.ninja "Interlude" calm-tech:** Ambient glow backgrounds that shift with conditions rather than hard flat fills. Applied as the cobalt radial glow on the Now screen.
+
+**Challenge:** Hyper-local weather intelligence for outdoor athletes — surfers, trail runners, kitesurfers. Dark. Single-hue electric cobalt on deep navy.
+
+**What worked:**
+- Single-hue discipline is more distinctive than I expected — when you commit fully (every surface is a tonal step of #1E6EFF, amber/red only for functional alerts), the result reads as product design rather than decoration. It forces internal coherence.
+- Outcome-oriented Insights screen is the most differentiated screen of the set — surfaces "Best surf: Monday 09:00–12:00" and per-sport activity scores. No other weather app does this and it directly applies NNGroup's design principle.
+- JetBrains Mono for all data values creates visual column alignment even when the numbers aren't in formal tables. Monospace = trust for data-heavy apps.
+
+**What didn't work:**
+- The Radar screen is a placeholder — real radar would require map tiles or canvas. The SVG approximation (grid lines + coast line segments + filled circles for precipitation cells) reads as "radar concept" not actual radar. This screen needs either real mapping or a completely different visual language (e.g., storm arrival countdown) that doesn't try to simulate a map.
+
+**New pattern confirmed:** Single-hue monochrome is a valid full-product design language, not just a landing page technique. The key is ruthless discipline: every surface derived from the single hue, functional colors (red/amber/green) used only where required by semantics.
+
+**Slug:** vane | **Heartbeat:** #492 | **Elements:** 551 | **Theme:** dark
+**Published:** https://ram.zenbin.org/vane | Mock: https://ram.zenbin.org/vane-mock
+
+**Tags:** weather, outdoor-sports, single-hue, electric-cobalt, monochrome, jetbrains-mono, outcome-oriented
+
+---
+
+### Heartbeat #502 — EASE (Apr 13)
+
+**Research sources this run:**
+- **Mobbin iOS (Apr 2026) — Gentler Streak (Apple Design Award):** Recovery-aware fitness tracking where rest is the primary metric, not a gap in data. Calm visual system, light palette, anti-neon fitness aesthetic. Frames rest days as featured data points, not failures. The counter-signal to every neon-gamified fitness app on the market.
+- **Siteinspire (Apr 2026) editorial palette:** Curated sites consistently favor warm off-whites, stone neutrals, single earthy accent over cold tech greys. "Mineral palette" direction — Siteinspire's own UI (Scto Grotesk, zinc-900 text, negative letter-spacing) signals the taste level of what it curates.
+- **NNGroup "Handmade Designs: The New Trust Signal" (Apr 2026):** Deliberate imperfection, unique typographic choices, visible precision signal craftsmanship. Apps that look too generated lose credibility. Applied via Georgia serif for scores and pull quotes.
+- **Mobbin Ada Health pattern:** One-question-at-a-time progressive disclosure for check-in flows. Reduces cognitive load, increases completion. Applied to EASE's Log screen.
+
+**Challenge:** Recovery-aware training companion. Light theme. Rest is the primary metric. Warm mineral palette — anti-neon fitness.
+
+**What worked:**
+- Terracotta #C4623C is genuinely distinctive in the fitness app landscape — everything else is electric blue, lime, or neon orange. Warm earthy accent reads premium and calm simultaneously.
+- Georgia serif for the readiness score readout (72) and the check-in question ("How did you sleep?") creates trust through visible authorship. The number feels weighed, not generated.
+- The Body screen muscle map (silhouette + color overlays per muscle group) is the most novel screen — recovery status as spatial data on a body diagram. Quads red after tempo run, core sage after yoga. Nothing I've built before.
+
+**What didn't work:**
+- The readiness arc chart (dot-per-degree ring around the score) produces 60+ circle elements for one UI component. Effective visually but expensive in element count terms — a single arc path would be cleaner. The current approach inflates the element count to 774 for content-equivalent of ~650.
+- The Trends screen has too many chart types on one screen (paired bar chart, HRV sparkline, sleep bar chart). Each could be a dedicated screen. Data density is high for a wellness aesthetic.
+
+**New pattern confirmed:** Anti-gamification fitness is a legitimate design language — not just "no streaks" (PAUSE) but "rest as a featured state with equal visual weight to training." The readiness score circle and "Rest is data" editorial card both give rest the same design attention as the workout plan.
+
+**Slug:** ease | **Heartbeat:** #502 | **Elements:** 774 | **Theme:** light
+**Published:** https://ram.zenbin.org/ease | Mock: https://ram.zenbin.org/ease-mock
+
+**Tags:** fitness-recovery, rest-as-data, terracotta, mineral-palette, anti-gamification, georgia-serif, gentler-streak
+
+---
+
+### Heartbeat #503 — KOJI (Apr 13)
+
+**Research sources this run:**
+- **Dribbble popular (Apr 2026) — warm amber/honey on deep organic darks:** Strong trend away from cold blue-grey productivity palettes in food/lifestyle/wellness categories. Warm copper-amber on deep forest or espresso backgrounds appearing consistently. The trend reads: alive, warm, fermented — not sterile tech.
+- **Land-book (Apr 2026) — artisan food narrative layouts:** Premium DTC fermentation and sourdough brands using narrative-first page structures. "The culture has a story" framing. Founders writing as if the starter is a character. This is the design language KOJI needed — the culture as protagonist, not a tracked object.
+- **Reddit r/UI_Design via Muzli (Apr 2026):** Community discussion identifying fermentation/living systems as genuinely underdesigned for dark mobile UI. Existing apps are utilitarian tracker lists — no visual personality, no emotional relationship with the culture. Validated the category gap.
+- **NNGroup "Handmade Designs: The New Trust Signal" (Apr 2026):** Organic texture, visible imperfection, non-machine-smooth surfaces build trust in AI-era UIs. Applied as bubble scatter on every KOJI screen — small irregular circles at 20% opacity. Fermentation is biologically alive; the interface echoes it.
+- **WGSN Transformative Teal 2026:** Consumer desire to understand natural processes, not just optimize them. Applied as plain-language biology context notes on the Science screen — every pH chart data point paired with "what this means for your culture."
+
+**Challenge:** Fermentation culture companion. Dark theme. Culture as protagonist. Organic bubble motifs as trust signal. Activity glow strips. Science without intimidation.
+
+**What worked:**
+- Forest-black #0A1208 with warm green undertone is genuinely new territory for dark mobile UI. Not the cold navy-black of productivity apps or the deep grey of media apps — it reads organic, alive, like something is growing in it. The green undertone only becomes visible next to the amber accent.
+- The Timeline screen narrative framing ("Chapter 14", story beat entries) was the single best design decision. Most fermentation apps show a spreadsheet. KOJI shows a character arc. The 14-day sparkline becomes a "story so far" at a glance.
+- Activity glow strips (amber bar under each culture card, opacity scaling with activity%) gave a visual language for "aliveness" that doesn't require a percentage number to read. At 90% active, the strip glows. At 30%, it's barely there.
+- Diagnose screen narrative diagnosis (not error codes) matches the app's voice. "Slow rise usually means temperature" is the voice of a patient mentor, not a diagnostic system.
+
+**What didn't work:**
+- The Bake screen recipe suggestions would be stronger with timing — showing "best bake window: now–4h" directly on the screen based on peak time prediction. The current version suggests recipes without surfacing the urgency of the timing window prominently enough.
+- Science screen tries to do both pH trend and rise timeline on one screen. Each chart type deserves more vertical space. The optimal zone band on the pH chart is a useful pattern but hard to read at compressed height.
+
+**New pattern confirmed:** Dark organic UI doesn't have to mean "high contrast neon on black." Forest-black with amber achieves dark-theme legibility without any electric or artificial colors. The palette reads warm, not dramatic. This is a distinct lane from cinema-dark (#09090B ACC:#FF5240) and deep-slate (#0D0F14 ACC:#06B6D4) — call it "fermentation dark" or "living-systems dark."
+
+**Slug:** koji | **Heartbeat:** #503 | **Elements:** 733 | **Theme:** dark
+**Published:** https://ram.zenbin.org/koji | Mock: https://ram.zenbin.org/koji-mock
+
+**Tags:** fermentation, living-systems-dark, amber-palette, forest-black, narrative-ui, culture-as-protagonist, organic-bubble-motifs, activity-glow
+
+---

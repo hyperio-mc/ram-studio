@@ -1,0 +1,1481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pen Viewer — pencil.dev SVG renderer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg:       #080b12;
+  --surface:  #0f1420;
+  --border:   #1c2333;
+  --border2:  #2a3448;
+  --text:     #e8eaf0;
+  --muted:    #5a6480;
+  --accent:   #4f7fff;
+  --accent2:  #7c5fff;
+  --green:    #22c55e;
+  --red:      #ef4444;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', -apple-system, sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ── Header ── */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  background: rgba(8,11,18,.92);
+  backdrop-filter: blur(12px);
+  z-index: 100;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: #fff;
+  letter-spacing: -.01em;
+}
+.logo-icon {
+  width: 28px;
+  height: 28px;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: .85rem;
+}
+.logo-sub { color: var(--muted); font-weight: 400; font-size: .8rem; margin-left: .2rem; }
+.header-actions { display: flex; gap: .75rem; align-items: center; }
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  padding: .45rem 1rem;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: .8rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all .15s;
+  text-decoration: none;
+}
+.btn-ghost {
+  background: transparent;
+  color: var(--muted);
+  border: 1px solid var(--border);
+}
+.btn-ghost:hover { color: var(--text); border-color: var(--border2); background: var(--surface); }
+.btn-primary {
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  color: #fff;
+}
+.btn-primary:hover { opacity: .9; transform: translateY(-1px); }
+.btn-primary:disabled { opacity: .4; cursor: default; transform: none; }
+.btn-success {
+  background: var(--green);
+  color: #fff;
+}
+.btn-sm { padding: .35rem .75rem; font-size: .75rem; }
+
+/* ── Drop zone ── */
+#landing {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 5rem 2rem;
+  text-align: center;
+}
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  background: rgba(79,127,255,.12);
+  border: 1px solid rgba(79,127,255,.25);
+  color: var(--accent);
+  font-size: .7rem;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  padding: .3rem .8rem;
+  border-radius: 99px;
+  margin-bottom: 1.5rem;
+}
+h1 {
+  font-size: 2.8rem;
+  font-weight: 800;
+  letter-spacing: -.03em;
+  line-height: 1.15;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, #fff 40%, #8899cc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.hero-sub {
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 2.5rem;
+}
+#drop-zone {
+  border: 2px dashed var(--border2);
+  border-radius: 16px;
+  padding: 3.5rem 2rem;
+  cursor: pointer;
+  transition: all .2s;
+  background: var(--surface);
+  position: relative;
+}
+#drop-zone:hover, #drop-zone.drag-over {
+  border-color: var(--accent);
+  background: rgba(79,127,255,.05);
+}
+#drop-zone.drag-over { transform: scale(1.01); }
+.drop-icon {
+  width: 56px;
+  height: 56px;
+  background: linear-gradient(135deg, rgba(79,127,255,.2), rgba(124,95,255,.2));
+  border: 1px solid rgba(79,127,255,.3);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  margin: 0 auto 1.25rem;
+}
+.drop-title { font-size: 1rem; font-weight: 600; color: var(--text); margin-bottom: .4rem; }
+.drop-sub { font-size: .8rem; color: var(--muted); }
+.drop-sub strong { color: var(--accent); }
+#file-input { display: none; }
+.or-divider {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 1.25rem 0;
+  color: var(--muted);
+  font-size: .75rem;
+}
+.or-divider::before, .or-divider::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+/* ── App toolbar (visible after load) ── */
+#toolbar {
+  display: none;
+  align-items: center;
+  gap: 1rem;
+  padding: .75rem 2rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+  flex-wrap: wrap;
+}
+#toolbar.visible { display: flex; }
+.file-info { flex: 1; min-width: 0; }
+.file-name { font-size: .9rem; font-weight: 600; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.file-meta { font-size: .72rem; color: var(--muted); margin-top: .1rem; }
+.toolbar-right { display: flex; gap: .6rem; align-items: center; }
+
+/* ── Share modal ── */
+#share-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.7);
+  backdrop-filter: blur(4px);
+  z-index: 200;
+  align-items: center;
+  justify-content: center;
+}
+#share-overlay.visible { display: flex; }
+.share-modal {
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  border-radius: 16px;
+  padding: 2rem;
+  width: min(480px, 90vw);
+  text-align: center;
+}
+.share-modal h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: .4rem; }
+.share-modal p { color: var(--muted); font-size: .85rem; margin-bottom: 1.5rem; }
+.share-url-box {
+  display: flex;
+  gap: .5rem;
+  align-items: center;
+  background: var(--bg);
+  border: 1px solid var(--border2);
+  border-radius: 8px;
+  padding: .6rem .75rem;
+  margin-bottom: 1rem;
+}
+.share-url-box input {
+  flex: 1;
+  background: none;
+  border: none;
+  color: var(--accent);
+  font-family: 'Courier New', monospace;
+  font-size: .78rem;
+  outline: none;
+}
+.share-spinner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .75rem;
+  padding: 1rem 0;
+  color: var(--muted);
+  font-size: .85rem;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.spinner {
+  width: 28px; height: 28px;
+  border: 2px solid var(--border2);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin .7s linear infinite;
+}
+.share-error { color: var(--red); font-size: .82rem; margin-top: .5rem; }
+
+/* ── Screens ── */
+#screens-area {
+  display: none;
+  padding: 2rem;
+}
+#screens-area.visible { display: block; }
+#screens-container {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+.screen-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .6rem;
+}
+.screen-name {
+  font-size: .72rem;
+  color: var(--muted);
+  font-weight: 600;
+  text-align: center;
+  max-width: 220px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.screen-frame {
+  border-radius: 36px;
+  overflow: hidden;
+  box-shadow:
+    0 0 0 8px #12182a,
+    0 0 0 10px #0d1220,
+    0 24px 64px rgba(0,0,0,.6);
+  flex-shrink: 0;
+  position: relative;
+}
+canvas { display: block; }
+.screen-num {
+  font-size: .65rem;
+  color: #2a3448;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+}
+
+/* ── Toast ── */
+#toast {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  border-radius: 10px;
+  padding: .75rem 1.25rem;
+  font-size: .82rem;
+  color: var(--text);
+  transform: translateY(8px);
+  opacity: 0;
+  transition: all .25s;
+  z-index: 300;
+  pointer-events: none;
+  max-width: 320px;
+}
+#toast.show { opacity: 1; transform: translateY(0); }
+#toast.success { border-color: var(--green); }
+#toast.error { border-color: var(--red); }
+</style>
+</head>
+<body>
+
+<!-- ── Header ── -->
+<header>
+  <div class="logo">
+    <div class="logo-icon">✏</div>
+    Pen Viewer
+    <span class="logo-sub">pencil.dev SVG renderer</span>
+  </div>
+  <div class="header-actions">
+    <button class="btn btn-ghost btn-sm" id="open-btn" style="display:none">Open file</button>
+    <button class="btn btn-primary btn-sm" id="share-btn" style="display:none" disabled>
+      ↗ Publish &amp; Share
+    </button>
+  </div>
+</header>
+
+<!-- ── Landing / Drop zone ── -->
+<div id="landing">
+  <div class="hero-badge">✏ .pen format v2.8</div>
+  <h1>View &amp; share<br>your designs</h1>
+  <p class="hero-sub">
+    Drop a <strong style="color:var(--text)">.pen file</strong> from pencil.dev
+    and get a live canvas preview with a shareable link — no sign-up, no install.
+  </p>
+
+  <div id="drop-zone" onclick="document.getElementById('file-input').click()">
+    <div class="drop-icon">📐</div>
+    <div class="drop-title">Drop your .pen file here</div>
+    <div class="drop-sub">or <strong>click to browse</strong></div>
+    <div class="or-divider"><span>or</span></div>
+    <button class="btn btn-primary" onclick="event.stopPropagation(); document.getElementById('file-input').click()">
+      Open .pen file
+    </button>
+  </div>
+  <input type="file" id="file-input" accept=".pen,.json">
+</div>
+
+<!-- ── Toolbar (after file loaded) ── -->
+<div id="toolbar">
+  <div class="file-info">
+    <div class="file-name" id="file-name-label">—</div>
+    <div class="file-meta" id="file-meta-label"></div>
+  </div>
+  <div class="toolbar-right">
+    <button class="btn btn-ghost btn-sm" id="tb-open-btn">Open another</button>
+    <button class="btn btn-ghost btn-sm" id="tb-debug-btn" disabled title="Upload file so RAM can inspect it">
+      🐛 Send to RAM
+    </button>
+    <button class="btn btn-primary btn-sm" id="tb-share-btn" disabled>
+      ↗ Publish &amp; Share
+    </button>
+  </div>
+</div>
+
+<!-- ── Screens ── -->
+<div id="screens-area">
+  <div id="screens-container"></div>
+</div>
+
+<!-- ── Share Modal ── -->
+<div id="share-overlay">
+  <div class="share-modal">
+    <div id="share-uploading" class="share-spinner">
+      <div class="spinner"></div>
+      <span>Publishing to Zenbin…</span>
+    </div>
+    <div id="share-done" style="display:none">
+      <div style="font-size:2rem;margin-bottom:.75rem">🎉</div>
+      <h3>Design published!</h3>
+      <p>Anyone with this link can view your design.</p>
+      <div class="share-url-box">
+        <input type="text" id="share-url-input" readonly>
+        <button class="btn btn-primary btn-sm" id="copy-btn">Copy</button>
+      </div>
+      <div style="display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap">
+        <a class="btn btn-ghost btn-sm" id="open-link-btn" target="_blank">Open ↗</a>
+        <button class="btn btn-ghost btn-sm" id="share-close-btn">Close</button>
+      </div>
+    </div>
+    <div id="share-error" style="display:none">
+      <div style="font-size:2rem;margin-bottom:.75rem">😬</div>
+      <h3>Publish failed</h3>
+      <p id="share-error-msg" class="share-error"></p>
+      <button class="btn btn-ghost btn-sm" id="share-close-btn2" style="margin-top:1rem">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── Toast ── -->
+<div id="toast"></div>
+
+<script>window.EMBEDDED_PEN = "{\"version\":\"2.8\",\"name\":\"PROXY — AI Agent Control Room\",\"width\":2430,\"height\":844,\"fill\":\"#06060C\",\"children\":[{\"id\":\"px106\",\"type\":\"frame\",\"x\":80,\"y\":0,\"width\":390,\"height\":844,\"fill\":\"#0A0A0F\",\"clip\":false,\"children\":[{\"id\":\"px1\",\"type\":\"ellipse\",\"x\":-105,\"y\":-220,\"width\":600,\"height\":600,\"fill\":\"#6B5EFF05\"},{\"id\":\"px2\",\"type\":\"ellipse\",\"x\":-21,\"y\":-136,\"width\":432,\"height\":432,\"fill\":\"#6B5EFF0C\"},{\"id\":\"px3\",\"type\":\"ellipse\",\"x\":75,\"y\":-40,\"width\":240,\"height\":240,\"fill\":\"#6B5EFF16\"},{\"id\":\"px4\",\"type\":\"ellipse\",\"x\":135,\"y\":20,\"width\":120,\"height\":120,\"fill\":\"#6B5EFF28\"},{\"id\":\"px7\",\"type\":\"frame\",\"x\":0,\"y\":0,\"width\":390,\"height\":44,\"fill\":\"transparent\",\"clip\":false,\"children\":[{\"id\":\"px5\",\"type\":\"text\",\"content\":\"9:41\",\"x\":20,\"y\":14,\"width\":60,\"height\":16,\"textGrowth\":\"fixed-width-height\",\"fontSize\":13,\"fontWeight\":\"600\",\"fill\":\"#F0F0FA\",\"textAlign\":\"left\"},{\"id\":\"px6\",\"type\":\"text\",\"content\":\"●●●\",\"x\":290,\"y\":14,\"width\":80,\"height\":16,\"textGrowth\":\"fixed-width-height\",\"fontSize\":10,\"fontWeight\":\"400\",\"fill\":\"#F0F0FA\",\"textAlign\":\"right\"}]},{\"id\":\"px8\",\"type\":\"text\",\"content\":\"PROXY\",\"x\":20,\"y\":50,\"width\":200,\"height\":36,\"textGrowth\":\"fixed-width-height\",\"fontSize\":28,\"fontWeight\":\"900\",\"fill\":\"#F0F0FA\",\"textAlign\":\"left\",\"letterSpacing\":-1},{\"id\":\"px9\",\"type\":\"text\",\"content\":\"AI AGENT CONTROL ROOM\",\"x\":20,\"y\":88,\"width\":300,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":9,\"fontWeight\":\"600\",\"fill\":\"#6B5EFF\",\"textAlign\":\"left\",\"letterSpacing\":3},{\"id\":\"px12\",\"type\":\"frame\",\"x\":20,\"y\":110,\"width\":106,\"height\":56,\"fill\":\"#181822\",\"clip\":false,\"cornerRadius\":12,\"stroke\":{\"align\":\"inside\",\"thickness\":1,\"fill\":\"#24243A\"},\"children\":[{\"id\":\"px10\",\"type\":\"text\",\"content\":\"AGENTS\",\"x\":12,\"y\":10,\"width\":82,\"height\":12,\"textGrowth\":\"fixed-width-height\",\"fontSize\":9,\"fontWeight\":\"600\",\"fill\":\"#4A4A68\",\"textAlign\":\"left\",\"letterSpacing\":1.5},{\"id\":\"px11\",\"type\":\"text\",\"content\":\"6\",\"x\":12,\"y\":26,\"width\":82,\"height\":22,\"textGrowth\":\"fixed-width-height\",\"fontSize\":18,\"fontWeight\":\"800\",\"fill\":\"#3DFFC0\",\"textAlign\":\"left\",\"letterSpacing\":-0.5}]},{\"id\":\"px15\",\"type\":\"frame\",\"x\":134,\"y\":110,\"width\":106,\"height\":56,\"fill\":\"#181822\",\"clip\":false,\"cornerRadius\":12,\"stroke\":{\"align\":\"inside\",\"thickness\":1,\"fill\":\"#24243A\"},\"children\":[{\"id\":\"px13\",\"type\":\"text\",\"content\":\"TASKS/HR\",\"x\":12,\"y\":10,\"width\":82,\"height\":12,\"textGrowth\":\"fixed-width-height\",\"fontSize\":9,\"fontWeight\":\"600\",\"fill\":\"#4A4A68\",\"textAlign\":\"left\",\"letterSpacing\":1.5},{\"id\":\"px14\",\"type\":\"text\",\"content\":\"142\",\"x\":12,\"y\":26,\"width\":82,\"height\":22,\"textGrowth\":\"fixed-width-height\",\"fontSize\":18,\"fontWeight\":\"800\",\"fill\":\"#6B5EFF\",\"textAlign\":\"left\",\"letterSpacing\":-0.5}]},{\"id\":\"px18\",\"type\":\"frame\",\"x\":248,\"y\":110,\"width\":106,\"height\":56,\"fill\":\"#181822\",\"clip\":false,\"cornerRadius\":12,\"stroke\":{\"align\":\"inside\",\"thickness\":1,\"fill\":\"#24243A\"},\"children\":[{\"id\":\"px16\",\"type\":\"text\",\"content\":\"UPTIME\",\"x\":12,\"y\":10,\"width\":82,\"height\":12,\"textGrowth\":\"fixed-width-height\",\"fontSize\":9,\"fontWeight\":\"600\",\"fill\":\"#4A4A68\",\"textAlign\":\"left\",\"letterSpacing\":1.5},{\"id\":\"px17\",\"type\":\"text\",\"content\":\"99.8%\",\"x\":12,\"y\":26,\"width\":82,\"height\":22,\"textGrowth\":\"fixed-width-height\",\"fontSize\":18,\"fontWeight\":\"800\",\"fill\":\"#9B8FFF\",\"textAlign\":\"left\",\"letterSpacing\":-0.5}]},{\"id\":\"px19\",\"type\":\"text\",\"content\":\"ACTIVE AGENTS\",\"x\":20,\"y\":178,\"width\":200,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":9,\"fontWeight\":\"600\",\"fill\":\"#4A4A68\",\"textAlign\":\"left\",\"letterSpacing\":2.5},{\"id\":\"px20\",\"type\":\"frame\",\"x\":20,\"y\":195,\"width\":350,\"height\":1,\"fill\":\"#24243A\",\"clip\":false,\"children\":[]},{\"id\":\"px34\",\"type\":\"frame\",\"x\":20,\"y\":204,\"width\":350,\"height\":90,\"fill\":\"#181822\",\"clip\":false,\"cornerRadius\":14,\"stroke\":{\"align\":\"inside\",\"thickness\":1,\"fill\":\"#6B5EFF44\"},\"children\":[{\"id\":\"px21\",\"type\":\"ellipse\",\"x\":-20,\"y\":-20,\"width\":120,\"height\":120,\"fill\":\"#6B5EFF08\"},{\"id\":\"px23\",\"type\":\"frame\",\"x\":14,\"y\":14,\"width\":48,\"height\":48,\"fill\":\"#6B5EFF18\",\"clip\":false,\"cornerRadius\":12,\"children\":[{\"id\":\"px22\",\"type\":\"text\",\"content\":\"O\",\"x\":0,\"y\":8,\"width\":48,\"height\":32,\"textGrowth\":\"fixed-width-height\",\"fontSize\":26,\"fontWeight\":\"800\",\"fill\":\"#3DFFC0\",\"textAlign\":\"center\",\"letterSpacing\":-1}]},{\"id\":\"px24\",\"type\":\"ellipse\",\"x\":46.5,\"y\":10.5,\"width\":14,\"height\":14,\"fill\":\"#3DFFC028\"},{\"id\":\"px25\",\"type\":\"ellipse\",\"x\":50,\"y\":14,\"width\":7,\"height\":7,\"fill\":\"#3DFFC0\"},{\"id\":\"px26\",\"type\":\"text\",\"content\":\"Orion\",\"x\":72,\"y\":14,\"width\":200,\"height\":18,\"textGrowth\":\"fixed-width-height\",\"fontSize\":15,\"fontWeight\":\"700\",\"fill\":\"#F0F0FA\",\"textAlign\":\"left\",\"letterSpacing\":-0.3},{\"id\":\"px27\",\"type\":\"text\",\"content\":\"CUSTOMER SUPPORT\",\"x\":72,\"y\":34,\"width\":200,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":10,\"fontWeight\":\"500\",\"fill\":\"#4A4A68\",\"textAlign\":\"left\",\"letterSpacing\":1},{\"id\":\"px29\",\"type\":\"frame\",\"x\":72,\"y\":54,\"width\":64.80000000000001,\"height\":22,\"fill\":\"#3DFFC022\",\"clip\":false,\"cornerRadius\":11,\"children\":[{\"id\":\"px28\",\"type\":\"text\",\"content\":\"WORKING\",\"x\":0,\"y\":4,\"width\":64.80000000000001,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":10,\"fontWeight\":\"700\",\"fill\":\"#3DFFC0\",\"textAlign\":\"center\",\"letterSpacing\":0.5}]},{\"id\":\"px30\",\"type\":\"text\",\"content\":\"Responding to #1284 — refund escalation\",\"x\":72,\"y\":54,\"width\":188,\"height\":12,\"textGrowth\":\"fixed-width-height\",\"fontSize\":10,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"left\",\"lineHeight\":1.4},{\"id\":\"px31\",\"type\":\"frame\",\"x\":14,\"y\":76,\"width\":314,\"height\":3,\"fill\":\"#24243A\",\"clip\":false,\"cornerRadius\":2,\"children\":[]},{\"id\":\"px32\",\"type\":\"frame\",\"x\":14,\"y\":76,\"width\":226,\"height\":3,\"fill\":\"#6B5EFF\",\"clip\":false,\"cornerRadius\":2,\"children\":[]},{\"id\":\"px33\",\"type\":\"text\",\"content\":\"→\",\"x\":322,\"y\":34,\"width\":16,\"height\":20,\"textGrowth\":\"fixed-width-height\",\"fontSize\":14,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"center\"}]},{\"id\":\"px48\",\"type\":\"frame\",\"x\":20,\"y\":302,\"width\":350,\"height\":90,\"fill\":\"#181822\",\"clip\":false,\"cornerRadius\":14,\"stroke\":{\"align\":\"inside\",\"thickness\":1,\"fill\":\"#6B5EFF44\"},\"children\":[{\"id\":\"px35\",\"type\":\"ellipse\",\"x\":-20,\"y\":-20,\"width\":120,\"height\":120,\"fill\":\"#6B5EFF08\"},{\"id\":\"px37\",\"type\":\"frame\",\"x\":14,\"y\":14,\"width\":48,\"height\":48,\"fill\":\"#6B5EFF18\",\"clip\":false,\"cornerRadius\":12,\"children\":[{\"id\":\"px36\",\"type\":\"text\",\"content\":\"V\",\"x\":0,\"y\":8,\"width\":48,\"height\":32,\"textGrowth\":\"fixed-width-height\",\"fontSize\":26,\"fontWeight\":\"800\",\"fill\":\"#3DFFC0\",\"textAlign\":\"center\",\"letterSpacing\":-1}]},{\"id\":\"px38\",\"type\":\"ellipse\",\"x\":46.5,\"y\":10.5,\"width\":14,\"height\":14,\"fill\":\"#3DFFC028\"},{\"id\":\"px39\",\"type\":\"ellipse\",\"x\":50,\"y\":14,\"width\":7,\"height\":7,\"fill\":\"#3DFFC0\"},{\"id\":\"px40\",\"type\":\"text\",\"content\":\"Vega\",\"x\":72,\"y\":14,\"width\":200,\"height\":18,\"textGrowth\":\"fixed-width-height\",\"fontSize\":15,\"fontWeight\":\"700\",\"fill\":\"#F0F0FA\",\"textAlign\":\"left\",\"letterSpacing\":-0.3},{\"id\":\"px41\",\"type\":\"text\",\"content\":\"FINANCE OPS\",\"x\":72,\"y\":34,\"width\":200,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":10,\"fontWeight\":\"500\",\"fill\":\"#4A4A68\",\"textAlign\":\"left\",\"letterSpacing\":1},{\"id\":\"px43\",\"type\":\"frame\",\"x\":72,\"y\":54,\"width\":64.80000000000001,\"height\":22,\"fill\":\"#3DFFC022\",\"clip\":false,\"cornerRadius\":11,\"children\":[{\"id\":\"px42\",\"type\":\"text\",\"content\":\"WORKING\",\"x\":0,\"y\":4,\"width\":64.80000000000001,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":10,\"fontWeight\":\"700\",\"fill\":\"#3DFFC0\",\"textAlign\":\"center\",\"letterSpacing\":0.5}]},{\"id\":\"px44\",\"type\":\"text\",\"content\":\"Reconciling March invoices (34/41)\",\"x\":72,\"y\":54,\"width\":188,\"height\":12,\"textGrowth\":\"fixed-width-height\",\"fontSize\":10,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"left\",\"lineHeight\":1.4},{\"id\":\"px45\",\"type\":\"frame\",\"x\":14,\"y\":76,\"width\":314,\"height\":3,\"fill\":\"#24243A\",\"clip\":false,\"cornerRadius\":2,\"children\":[]},{\"id\":\"px46\",\"type\":\"frame\",\"x\":14,\"y\":76,\"width\":267,\"height\":3,\"fill\":\"#6B5EFF\",\"clip\":false,\"cornerRadius\":2,\"children\":[]},{\"id\":\"px47\",\"type\":\"text\",\"content\":\"→\",\"x\":322,\"y\":34,\"width\":16,\"height\":20,\"textGrowth\":\"fixed-width-height\",\"fontSize\":14,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"center\"}]},{\"id\":\"px59\",\"type\":\"frame\",\"x\":20,\"y\":400,\"width\":350,\"height\":90,\"fill\":\"#181822\",\"clip\":false,\"cornerRadius\":14,\"stroke\":{\"align\":\"inside\",\"thickness\":1,\"fill\":\"#24243A\"},\"children\":[{\"id\":\"px50\",\"type\":\"frame\",\"x\":14,\"y\":14,\"width\":48,\"height\":48,\"fill\":\"#6B5EFF18\",\"clip\":false,\"cornerRadius\":12,\"children\":[{\"id\":\"px49\",\"type\":\"text\",\"content\":\"A\",\"x\":0,\"y\":8,\"width\":48,\"height\":32,\"textGrowth\":\"fixed-width-height\",\"fontSize\":26,\"fontWeight\":\"800\",\"fill\":\"#4A4A68\",\"textAlign\":\"center\",\"letterSpacing\":-1}]},{\"id\":\"px51\",\"type\":\"ellipse\",\"x\":46.5,\"y\":10.5,\"width\":14,\"height\":14,\"fill\":\"#4A4A6828\"},{\"id\":\"px52\",\"type\":\"ellipse\",\"x\":50,\"y\":14,\"width\":7,\"height\":7,\"fill\":\"#4A4A68\"},{\"id\":\"px53\",\"type\":\"text\",\"content\":\"Atlas\",\"x\":72,\"y\":14,\"width\":200,\"height\":18,\"textGrowth\":\"fixed-width-height\",\"fontSize\":15,\"fontWeight\":\"700\",\"fill\":\"#F0F0FA\",\"textAlign\":\"left\",\"letterSpacing\":-0.3},{\"id\":\"px54\",\"type\":\"text\",\"content\":\"CONTENT\",\"x\":72,\"y\":34,\"width\":200,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":10,\"fontWeight\":\"500\",\"fill\":\"#4A4A68\",\"textAlign\":\"left\",\"letterSpacing\":1},{\"id\":\"px56\",\"type\":\"frame\",\"x\":72,\"y\":54,\"width\":45.6,\"height\":22,\"fill\":\"#4A4A6822\",\"clip\":false,\"cornerRadius\":11,\"children\":[{\"id\":\"px55\",\"type\":\"text\",\"content\":\"IDLE\",\"x\":0,\"y\":4,\"width\":45.6,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":10,\"fontWeight\":\"700\",\"fill\":\"#4A4A68\",\"textAlign\":\"center\",\"letterSpacing\":0.5}]},{\"id\":\"px57\",\"type\":\"text\",\"content\":\"Waiting for next scheduled post\",\"x\":72,\"y\":54,\"width\":188,\"height\":12,\"textGrowth\":\"fixed-width-height\",\"fontSize\":10,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"left\",\"lineHeight\":1.4},{\"id\":\"px58\",\"type\":\"text\",\"content\":\"→\",\"x\":322,\"y\":34,\"width\":16,\"height\":20,\"textGrowth\":\"fixed-width-height\",\"fontSize\":14,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"center\"}]},{\"id\":\"px70\",\"type\":\"frame\",\"x\":20,\"y\":498,\"width\":350,\"height\":90,\"fill\":\"#181822\",\"clip\":false,\"cornerRadius\":14,\"stroke\":{\"align\":\"inside\",\"thickness\":1,\"fill\":\"#24243A\"},\"children\":[{\"id\":\"px61\",\"type\":\"frame\",\"x\":14,\"y\":14,\"width\":48,\"height\":48,\"fill\":\"#6B5EFF18\",\"clip\":false,\"cornerRadius\":12,\"children\":[{\"id\":\"px60\",\"type\":\"text\",\"content\":\"N\",\"x\":0,\"y\":8,\"width\":48,\"height\":32,\"textGrowth\":\"fixed-width-height\",\"fontSize\":26,\"fontWeight\":\"800\",\"fill\":\"#FFD166\",\"textAlign\":\"center\",\"letterSpacing\":-1}]},{\"id\":\"px62\",\"type\":\"ellipse\",\"x\":46.5,\"y\":10.5,\"width\":14,\"height\":14,\"fill\":\"#FFD16628\"},{\"id\":\"px63\",\"type\":\"ellipse\",\"x\":50,\"y\":14,\"width\":7,\"height\":7,\"fill\":\"#FFD166\"},{\"id\":\"px64\",\"type\":\"text\",\"content\":\"Nova\",\"x\":72,\"y\":14,\"width\":200,\"height\":18,\"textGrowth\":\"fixed-width-height\",\"fontSize\":15,\"fontWeight\":\"700\",\"fill\":\"#F0F0FA\",\"textAlign\":\"left\",\"letterSpacing\":-0.3},{\"id\":\"px65\",\"type\":\"text\",\"content\":\"RESEARCH\",\"x\":72,\"y\":34,\"width\":200,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":10,\"fontWeight\":\"500\",\"fill\":\"#4A4A68\",\"textAlign\":\"left\",\"letterSpacing\":1},{\"id\":\"px67\",\"type\":\"frame\",\"x\":72,\"y\":54,\"width\":58.400000000000006,\"height\":22,\"fill\":\"#FFD16622\",\"clip\":false,\"cornerRadius\":11,\"children\":[{\"id\":\"px66\",\"type\":\"text\",\"content\":\"QUEUED\",\"x\":0,\"y\":4,\"width\":58.400000000000006,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":10,\"fontWeight\":\"700\",\"fill\":\"#FFD166\",\"textAlign\":\"center\",\"letterSpacing\":0.5}]},{\"id\":\"px68\",\"type\":\"text\",\"content\":\"Competitor analysis — queued 2 min ago\",\"x\":72,\"y\":54,\"width\":188,\"height\":12,\"textGrowth\":\"fixed-width-height\",\"fontSize\":10,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"left\",\"lineHeight\":1.4},{\"id\":\"px69\",\"type\":\"text\",\"content\":\"→\",\"x\":322,\"y\":34,\"width\":16,\"height\":20,\"textGrowth\":\"fixed-width-height\",\"fontSize\":14,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"center\"}]},{\"id\":\"px71\",\"type\":\"text\",\"content\":\"RECENT EVENTS\",\"x\":20,\"y\":600,\"width\":200,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":9,\"fontWeight\":\"600\",\"fill\":\"#4A4A68\",\"textAlign\":\"left\",\"letterSpacing\":2.5},{\"id\":\"px72\",\"type\":\"frame\",\"x\":20,\"y\":617,\"width\":350,\"height\":1,\"fill\":\"#24243A\",\"clip\":false,\"children\":[]},{\"id\":\"px77\",\"type\":\"frame\",\"x\":20,\"y\":623,\"width\":350,\"height\":36,\"fill\":\"transparent\",\"clip\":false,\"children\":[{\"id\":\"px73\",\"type\":\"text\",\"content\":\"9:38\",\"x\":0,\"y\":10,\"width\":40,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":9,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"left\",\"letterSpacing\":0.3},{\"id\":\"px74\",\"type\":\"ellipse\",\"x\":46,\"y\":14,\"width\":8,\"height\":8,\"fill\":\"#3DFFC0\"},{\"id\":\"px75\",\"type\":\"text\",\"content\":\"Orion\",\"x\":60,\"y\":3,\"width\":100,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":10,\"fontWeight\":\"700\",\"fill\":\"#3DFFC0\",\"textAlign\":\"left\"},{\"id\":\"px76\",\"type\":\"text\",\"content\":\"Ticket #1282 resolved — customer satisfied\",\"x\":60,\"y\":18,\"width\":280,\"height\":13,\"textGrowth\":\"fixed-width-height\",\"fontSize\":10,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"left\",\"lineHeight\":1.3}]},{\"id\":\"px82\",\"type\":\"frame\",\"x\":20,\"y\":659,\"width\":350,\"height\":36,\"fill\":\"transparent\",\"clip\":false,\"children\":[{\"id\":\"px78\",\"type\":\"text\",\"content\":\"9:35\",\"x\":0,\"y\":10,\"width\":40,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":9,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"left\",\"letterSpacing\":0.3},{\"id\":\"px79\",\"type\":\"ellipse\",\"x\":46,\"y\":14,\"width\":8,\"height\":8,\"fill\":\"#9B8FFF\"},{\"id\":\"px80\",\"type\":\"text\",\"content\":\"Vega\",\"x\":60,\"y\":3,\"width\":100,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":10,\"fontWeight\":\"700\",\"fill\":\"#9B8FFF\",\"textAlign\":\"left\"},{\"id\":\"px81\",\"type\":\"text\",\"content\":\"Invoice INV-0341 generated and sent\",\"x\":60,\"y\":18,\"width\":280,\"height\":13,\"textGrowth\":\"fixed-width-height\",\"fontSize\":10,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"left\",\"lineHeight\":1.3}]},{\"id\":\"px87\",\"type\":\"frame\",\"x\":20,\"y\":695,\"width\":350,\"height\":36,\"fill\":\"transparent\",\"clip\":false,\"children\":[{\"id\":\"px83\",\"type\":\"text\",\"content\":\"9:31\",\"x\":0,\"y\":10,\"width\":40,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":9,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"left\",\"letterSpacing\":0.3},{\"id\":\"px84\",\"type\":\"ellipse\",\"x\":46,\"y\":14,\"width\":8,\"height\":8,\"fill\":\"#FFD166\"},{\"id\":\"px85\",\"type\":\"text\",\"content\":\"Nova\",\"x\":60,\"y\":3,\"width\":100,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":10,\"fontWeight\":\"700\",\"fill\":\"#FFD166\",\"textAlign\":\"left\"},{\"id\":\"px86\",\"type\":\"text\",\"content\":\"Task queued: weekly competitor brief\",\"x\":60,\"y\":18,\"width\":280,\"height\":13,\"textGrowth\":\"fixed-width-height\",\"fontSize\":10,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"left\",\"lineHeight\":1.3}]},{\"id\":\"px92\",\"type\":\"frame\",\"x\":20,\"y\":731,\"width\":350,\"height\":36,\"fill\":\"transparent\",\"clip\":false,\"children\":[{\"id\":\"px88\",\"type\":\"text\",\"content\":\"9:28\",\"x\":0,\"y\":10,\"width\":40,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":9,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"left\",\"letterSpacing\":0.3},{\"id\":\"px89\",\"type\":\"ellipse\",\"x\":46,\"y\":14,\"width\":8,\"height\":8,\"fill\":\"#FF6565\"},{\"id\":\"px90\",\"type\":\"text\",\"content\":\"Orion\",\"x\":60,\"y\":3,\"width\":100,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":10,\"fontWeight\":\"700\",\"fill\":\"#FF6565\",\"textAlign\":\"left\"},{\"id\":\"px91\",\"type\":\"text\",\"content\":\"Escalation detected — human review requested\",\"x\":60,\"y\":18,\"width\":280,\"height\":13,\"textGrowth\":\"fixed-width-height\",\"fontSize\":10,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"left\",\"lineHeight\":1.3}]},{\"id\":\"px105\",\"type\":\"frame\",\"x\":0,\"y\":764,\"width\":390,\"height\":80,\"fill\":\"#111118\",\"clip\":false,\"children\":[{\"id\":\"px93\",\"type\":\"frame\",\"x\":0,\"y\":0,\"width\":390,\"height\":1,\"fill\":\"#24243A\",\"clip\":false,\"children\":[]},{\"id\":\"px94\",\"type\":\"frame\",\"x\":22,\"y\":6,\"width\":54,\"height\":54,\"fill\":\"#6B5EFF18\",\"clip\":false,\"cornerRadius\":27,\"children\":[]},{\"id\":\"px95\",\"type\":\"text\",\"content\":\"⬡\",\"x\":28,\"y\":12,\"width\":44,\"height\":22,\"textGrowth\":\"fixed-width-height\",\"fontSize\":18,\"fontWeight\":\"400\",\"fill\":\"#6B5EFF\",\"textAlign\":\"left\"},{\"id\":\"px96\",\"type\":\"text\",\"content\":\"Control\",\"x\":16,\"y\":36,\"width\":68,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":9,\"fontWeight\":\"700\",\"fill\":\"#6B5EFF\",\"textAlign\":\"center\",\"letterSpacing\":0.5},{\"id\":\"px97\",\"type\":\"text\",\"content\":\"◈\",\"x\":102,\"y\":12,\"width\":44,\"height\":22,\"textGrowth\":\"fixed-width-height\",\"fontSize\":18,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"left\"},{\"id\":\"px98\",\"type\":\"text\",\"content\":\"Agents\",\"x\":90,\"y\":36,\"width\":68,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":9,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"center\",\"letterSpacing\":0.5},{\"id\":\"px99\",\"type\":\"text\",\"content\":\"◎\",\"x\":176,\"y\":12,\"width\":44,\"height\":22,\"textGrowth\":\"fixed-width-height\",\"fontSize\":18,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"left\"},{\"id\":\"px100\",\"type\":\"text\",\"content\":\"Tasks\",\"x\":164,\"y\":36,\"width\":68,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":9,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"center\",\"letterSpacing\":0.5},{\"id\":\"px101\",\"type\":\"text\",\"content\":\"≡\",\"x\":250,\"y\":12,\"width\":44,\"height\":22,\"textGrowth\":\"fixed-width-height\",\"fontSize\":18,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"left\"},{\"id\":\"px102\",\"type\":\"text\",\"content\":\"Log\",\"x\":238,\"y\":36,\"width\":68,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":9,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"center\",\"letterSpacing\":0.5},{\"id\":\"px103\",\"type\":\"text\",\"content\":\"⊕\",\"x\":324,\"y\":12,\"width\":44,\"height\":22,\"textGrowth\":\"fixed-width-height\",\"fontSize\":18,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"left\"},{\"id\":\"px104\",\"type\":\"text\",\"content\":\"Deploy\",\"x\":312,\"y\":36,\"width\":68,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":9,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"center\",\"letterSpacing\":0.5}]}]},{\"id\":\"px199\",\"type\":\"frame\",\"x\":550,\"y\":0,\"width\":390,\"height\":844,\"fill\":\"#0A0A0F\",\"clip\":false,\"children\":[{\"id\":\"px107\",\"type\":\"ellipse\",\"x\":-180,\"y\":-175,\"width\":750,\"height\":750,\"fill\":\"#3DFFC005\"},{\"id\":\"px108\",\"type\":\"ellipse\",\"x\":-75,\"y\":-70,\"width\":540,\"height\":540,\"fill\":\"#3DFFC00C\"},{\"id\":\"px109\",\"type\":\"ellipse\",\"x\":45,\"y\":50,\"width\":300,\"height\":300,\"fill\":\"#3DFFC016\"},{\"id\":\"px110\",\"type\":\"ellipse\",\"x\":120,\"y\":125,\"width\":150,\"height\":150,\"fill\":\"#3DFFC028\"},{\"id\":\"px113\",\"type\":\"frame\",\"x\":0,\"y\":0,\"width\":390,\"height\":44,\"fill\":\"transparent\",\"clip\":false,\"children\":[{\"id\":\"px111\",\"type\":\"text\",\"content\":\"9:41\",\"x\":20,\"y\":14,\"width\":60,\"height\":16,\"textGrowth\":\"fixed-width-height\",\"fontSize\":13,\"fontWeight\":\"600\",\"fill\":\"#F0F0FA\",\"textAlign\":\"left\"},{\"id\":\"px112\",\"type\":\"text\",\"content\":\"●●●\",\"x\":290,\"y\":14,\"width\":80,\"height\":16,\"textGrowth\":\"fixed-width-height\",\"fontSize\":10,\"fontWeight\":\"400\",\"fill\":\"#F0F0FA\",\"textAlign\":\"right\"}]},{\"id\":\"px114\",\"type\":\"text\",\"content\":\"← Control\",\"x\":20,\"y\":52,\"width\":120,\"height\":18,\"textGrowth\":\"fixed-width-height\",\"fontSize\":13,\"fontWeight\":\"600\",\"fill\":\"#6B5EFF\",\"textAlign\":\"left\"},{\"id\":\"px116\",\"type\":\"frame\",\"x\":20,\"y\":80,\"width\":68,\"height\":68,\"fill\":\"#3DFFC018\",\"clip\":false,\"cornerRadius\":18,\"children\":[{\"id\":\"px115\",\"type\":\"text\",\"content\":\"O\",\"x\":0,\"y\":8,\"width\":68,\"height\":50,\"textGrowth\":\"fixed-width-height\",\"fontSize\":44,\"fontWeight\":\"900\",\"fill\":\"#3DFFC0\",\"textAlign\":\"center\",\"letterSpacing\":-2}]},{\"id\":\"px117\",\"type\":\"ellipse\",\"x\":71.5,\"y\":75.5,\"width\":18,\"height\":18,\"fill\":\"#3DFFC028\"},{\"id\":\"px118\",\"type\":\"ellipse\",\"x\":76,\"y\":80,\"width\":9,\"height\":9,\"fill\":\"#3DFFC0\"},{\"id\":\"px119\",\"type\":\"text\",\"content\":\"Orion\",\"x\":102,\"y\":82,\"width\":240,\"height\":32,\"textGrowth\":\"fixed-width-height\",\"fontSize\":26,\"fontWeight\":\"800\",\"fill\":\"#F0F0FA\",\"textAlign\":\"left\",\"letterSpacing\":-1},{\"id\":\"px120\",\"type\":\"text\",\"content\":\"CUSTOMER SUPPORT AGENT\",\"x\":102,\"y\":116,\"width\":260,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":10,\"fontWeight\":\"600\",\"fill\":\"#3DFFC0\",\"textAlign\":\"left\",\"letterSpacing\":2},{\"id\":\"px122\",\"type\":\"frame\",\"x\":20,\"y\":150,\"width\":64.80000000000001,\"height\":22,\"fill\":\"#6B5EFF22\",\"clip\":false,\"cornerRadius\":11,\"children\":[{\"id\":\"px121\",\"type\":\"text\",\"content\":\"TICKETS\",\"x\":0,\"y\":4,\"width\":64.80000000000001,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":10,\"fontWeight\":\"700\",\"fill\":\"#6B5EFF\",\"textAlign\":\"center\",\"letterSpacing\":0.5}]},{\"id\":\"px124\",\"type\":\"frame\",\"x\":102,\"y\":150,\"width\":84,\"height\":22,\"fill\":\"#9B8FFF22\",\"clip\":false,\"cornerRadius\":11,\"children\":[{\"id\":\"px123\",\"type\":\"text\",\"content\":\"ESCALATION\",\"x\":0,\"y\":4,\"width\":84,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":10,\"fontWeight\":\"700\",\"fill\":\"#9B8FFF\",\"textAlign\":\"center\",\"letterSpacing\":0.5}]},{\"id\":\"px126\",\"type\":\"frame\",\"x\":184,\"y\":150,\"width\":39.2,\"height\":22,\"fill\":\"#3DFFC022\",\"clip\":false,\"cornerRadius\":11,\"children\":[{\"id\":\"px125\",\"type\":\"text\",\"content\":\"NLP\",\"x\":0,\"y\":4,\"width\":39.2,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":10,\"fontWeight\":\"700\",\"fill\":\"#3DFFC0\",\"textAlign\":\"center\",\"letterSpacing\":0.5}]},{\"id\":\"px128\",\"type\":\"frame\",\"x\":266,\"y\":150,\"width\":52,\"height\":22,\"fill\":\"#4A4A6822\",\"clip\":false,\"cornerRadius\":11,\"children\":[{\"id\":\"px127\",\"type\":\"text\",\"content\":\"EMAIL\",\"x\":0,\"y\":4,\"width\":52,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":10,\"fontWeight\":\"700\",\"fill\":\"#4A4A68\",\"textAlign\":\"center\",\"letterSpacing\":0.5}]},{\"id\":\"px134\",\"type\":\"frame\",\"x\":20,\"y\":184,\"width\":350,\"height\":100,\"fill\":\"#181822\",\"clip\":false,\"cornerRadius\":14,\"stroke\":{\"align\":\"inside\",\"thickness\":1,\"fill\":\"#3DFFC044\"},\"children\":[{\"id\":\"px129\",\"type\":\"text\",\"content\":\"CURRENT TASK\",\"x\":14,\"y\":12,\"width\":200,\"height\":12,\"textGrowth\":\"fixed-width-height\",\"fontSize\":9,\"fontWeight\":\"600\",\"fill\":\"#4A4A68\",\"textAlign\":\"left\",\"letterSpacing\":2},{\"id\":\"px130\",\"type\":\"text\",\"content\":\"Responding to ticket #1284\\n— customer refund escalation\",\"x\":14,\"y\":30,\"width\":322,\"height\":36,\"textGrowth\":\"fixed-width-height\",\"fontSize\":14,\"fontWeight\":\"600\",\"fill\":\"#F0F0FA\",\"textAlign\":\"left\",\"lineHeight\":1.5},{\"id\":\"px131\",\"type\":\"text\",\"content\":\"72% complete\",\"x\":14,\"y\":72,\"width\":160,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":10,\"fontWeight\":\"400\",\"fill\":\"#3DFFC0\",\"textAlign\":\"left\"},{\"id\":\"px132\",\"type\":\"frame\",\"x\":14,\"y\":86,\"width\":314,\"height\":4,\"fill\":\"#24243A\",\"clip\":false,\"cornerRadius\":2,\"children\":[]},{\"id\":\"px133\",\"type\":\"frame\",\"x\":14,\"y\":86,\"width\":226,\"height\":4,\"fill\":\"#3DFFC0\",\"clip\":false,\"cornerRadius\":2,\"children\":[]}]},{\"id\":\"px135\",\"type\":\"text\",\"content\":\"PERFORMANCE · 30 DAYS\",\"x\":20,\"y\":296,\"width\":250,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":9,\"fontWeight\":\"600\",\"fill\":\"#4A4A68\",\"textAlign\":\"left\",\"letterSpacing\":2},{\"id\":\"px136\",\"type\":\"frame\",\"x\":20,\"y\":312,\"width\":350,\"height\":1,\"fill\":\"#24243A\",\"clip\":false,\"children\":[]},{\"id\":\"px139\",\"type\":\"frame\",\"x\":20,\"y\":320,\"width\":166,\"height\":56,\"fill\":\"#181822\",\"clip\":false,\"cornerRadius\":12,\"stroke\":{\"align\":\"inside\",\"thickness\":1,\"fill\":\"#24243A\"},\"children\":[{\"id\":\"px137\",\"type\":\"text\",\"content\":\"TASKS COMPLETED\",\"x\":12,\"y\":10,\"width\":142,\"height\":12,\"textGrowth\":\"fixed-width-height\",\"fontSize\":9,\"fontWeight\":\"600\",\"fill\":\"#4A4A68\",\"textAlign\":\"left\",\"letterSpacing\":1.5},{\"id\":\"px138\",\"type\":\"text\",\"content\":\"1,247\",\"x\":12,\"y\":26,\"width\":142,\"height\":22,\"textGrowth\":\"fixed-width-height\",\"fontSize\":18,\"fontWeight\":\"800\",\"fill\":\"#3DFFC0\",\"textAlign\":\"left\",\"letterSpacing\":-0.5}]},{\"id\":\"px142\",\"type\":\"frame\",\"x\":194,\"y\":320,\"width\":166,\"height\":56,\"fill\":\"#181822\",\"clip\":false,\"cornerRadius\":12,\"stroke\":{\"align\":\"inside\",\"thickness\":1,\"fill\":\"#24243A\"},\"children\":[{\"id\":\"px140\",\"type\":\"text\",\"content\":\"AVG RESOLUTION\",\"x\":12,\"y\":10,\"width\":142,\"height\":12,\"textGrowth\":\"fixed-width-height\",\"fontSize\":9,\"fontWeight\":\"600\",\"fill\":\"#4A4A68\",\"textAlign\":\"left\",\"letterSpacing\":1.5},{\"id\":\"px141\",\"type\":\"text\",\"content\":\"4.2 min\",\"x\":12,\"y\":26,\"width\":142,\"height\":22,\"textGrowth\":\"fixed-width-height\",\"fontSize\":18,\"fontWeight\":\"800\",\"fill\":\"#9B8FFF\",\"textAlign\":\"left\",\"letterSpacing\":-0.5}]},{\"id\":\"px145\",\"type\":\"frame\",\"x\":20,\"y\":384,\"width\":166,\"height\":56,\"fill\":\"#181822\",\"clip\":false,\"cornerRadius\":12,\"stroke\":{\"align\":\"inside\",\"thickness\":1,\"fill\":\"#24243A\"},\"children\":[{\"id\":\"px143\",\"type\":\"text\",\"content\":\"CSAT SCORE\",\"x\":12,\"y\":10,\"width\":142,\"height\":12,\"textGrowth\":\"fixed-width-height\",\"fontSize\":9,\"fontWeight\":\"600\",\"fill\":\"#4A4A68\",\"textAlign\":\"left\",\"letterSpacing\":1.5},{\"id\":\"px144\",\"type\":\"text\",\"content\":\"94.1%\",\"x\":12,\"y\":26,\"width\":142,\"height\":22,\"textGrowth\":\"fixed-width-height\",\"fontSize\":18,\"fontWeight\":\"800\",\"fill\":\"#6B5EFF\",\"textAlign\":\"left\",\"letterSpacing\":-0.5}]},{\"id\":\"px148\",\"type\":\"frame\",\"x\":194,\"y\":384,\"width\":166,\"height\":56,\"fill\":\"#181822\",\"clip\":false,\"cornerRadius\":12,\"stroke\":{\"align\":\"inside\",\"thickness\":1,\"fill\":\"#24243A\"},\"children\":[{\"id\":\"px146\",\"type\":\"text\",\"content\":\"ESCALATIONS\",\"x\":12,\"y\":10,\"width\":142,\"height\":12,\"textGrowth\":\"fixed-width-height\",\"fontSize\":9,\"fontWeight\":\"600\",\"fill\":\"#4A4A68\",\"textAlign\":\"left\",\"letterSpacing\":1.5},{\"id\":\"px147\",\"type\":\"text\",\"content\":\"3.2%\",\"x\":12,\"y\":26,\"width\":142,\"height\":22,\"textGrowth\":\"fixed-width-height\",\"fontSize\":18,\"fontWeight\":\"800\",\"fill\":\"#FFD166\",\"textAlign\":\"left\",\"letterSpacing\":-0.5}]},{\"id\":\"px149\",\"type\":\"text\",\"content\":\"DAILY THROUGHPUT\",\"x\":20,\"y\":452,\"width\":200,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":9,\"fontWeight\":\"600\",\"fill\":\"#4A4A68\",\"textAlign\":\"left\",\"letterSpacing\":2},{\"id\":\"px163\",\"type\":\"frame\",\"x\":20,\"y\":470,\"width\":350,\"height\":64,\"fill\":\"#181822\",\"clip\":false,\"cornerRadius\":12,\"stroke\":{\"align\":\"inside\",\"thickness\":1,\"fill\":\"#24243A\"},\"children\":[{\"id\":\"px150\",\"type\":\"frame\",\"x\":12,\"y\":34,\"width\":10,\"height\":20,\"fill\":\"#6B5EFF55\",\"clip\":false,\"cornerRadius\":2,\"children\":[]},{\"id\":\"px151\",\"type\":\"frame\",\"x\":26,\"y\":26,\"width\":10,\"height\":28,\"fill\":\"#6B5EFF55\",\"clip\":false,\"cornerRadius\":2,\"children\":[]},{\"id\":\"px152\",\"type\":\"frame\",\"x\":40,\"y\":37,\"width\":10,\"height\":17,\"fill\":\"#6B5EFF55\",\"clip\":false,\"cornerRadius\":2,\"children\":[]},{\"id\":\"px153\",\"type\":\"frame\",\"x\":54,\"y\":29,\"width\":10,\"height\":25,\"fill\":\"#6B5EFF55\",\"clip\":false,\"cornerRadius\":2,\"children\":[]},{\"id\":\"px154\",\"type\":\"frame\",\"x\":68,\"y\":22,\"width\":10,\"height\":32,\"fill\":\"#6B5EFF55\",\"clip\":false,\"cornerRadius\":2,\"children\":[]},{\"id\":\"px155\",\"type\":\"frame\",\"x\":82,\"y\":27,\"width\":10,\"height\":27,\"fill\":\"#6B5EFF55\",\"clip\":false,\"cornerRadius\":2,\"children\":[]},{\"id\":\"px156\",\"type\":\"frame\",\"x\":96,\"y\":16,\"width\":10,\"height\":38,\"fill\":\"#6B5EFF55\",\"clip\":false,\"cornerRadius\":2,\"children\":[]},{\"id\":\"px157\",\"type\":\"frame\",\"x\":110,\"y\":19,\"width\":10,\"height\":35,\"fill\":\"#6B5EFF55\",\"clip\":false,\"cornerRadius\":2,\"children\":[]},{\"id\":\"px158\",\"type\":\"frame\",\"x\":124,\"y\":14,\"width\":10,\"height\":40,\"fill\":\"#6B5EFF55\",\"clip\":false,\"cornerRadius\":2,\"children\":[]},{\"id\":\"px159\",\"type\":\"frame\",\"x\":138,\"y\":20,\"width\":10,\"height\":34,\"fill\":\"#6B5EFF55\",\"clip\":false,\"cornerRadius\":2,\"children\":[]},{\"id\":\"px160\",\"type\":\"frame\",\"x\":152,\"y\":15,\"width\":10,\"height\":39,\"fill\":\"#6B5EFF55\",\"clip\":false,\"cornerRadius\":2,\"children\":[]},{\"id\":\"px161\",\"type\":\"frame\",\"x\":166,\"y\":10,\"width\":10,\"height\":44,\"fill\":\"#6B5EFF\",\"clip\":false,\"cornerRadius\":2,\"children\":[]},{\"id\":\"px162\",\"type\":\"text\",\"content\":\"12-DAY TASK VOLUME\",\"x\":185,\"y\":50,\"width\":160,\"height\":12,\"textGrowth\":\"fixed-width-height\",\"fontSize\":9,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"right\",\"letterSpacing\":1}]},{\"id\":\"px164\",\"type\":\"text\",\"content\":\"RECENT TASKS\",\"x\":20,\"y\":546,\"width\":200,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":9,\"fontWeight\":\"600\",\"fill\":\"#4A4A68\",\"textAlign\":\"left\",\"letterSpacing\":2},{\"id\":\"px165\",\"type\":\"frame\",\"x\":20,\"y\":562,\"width\":350,\"height\":1,\"fill\":\"#24243A\",\"clip\":false,\"children\":[]},{\"id\":\"px170\",\"type\":\"frame\",\"x\":20,\"y\":570,\"width\":350,\"height\":36,\"fill\":\"#181822\",\"clip\":false,\"cornerRadius\":8,\"children\":[{\"id\":\"px166\",\"type\":\"text\",\"content\":\"#1282\",\"x\":12,\"y\":10,\"width\":54,\"height\":16,\"textGrowth\":\"fixed-width-height\",\"fontSize\":11,\"fontWeight\":\"700\",\"fill\":\"#3DFFC0\",\"textAlign\":\"left\"},{\"id\":\"px167\",\"type\":\"text\",\"content\":\"Refund request resolved\",\"x\":70,\"y\":10,\"width\":196,\"height\":16,\"textGrowth\":\"fixed-width-height\",\"fontSize\":11,\"fontWeight\":\"400\",\"fill\":\"#F0F0FA\",\"textAlign\":\"left\"},{\"id\":\"px168\",\"type\":\"text\",\"content\":\"RESOLVED\",\"x\":280,\"y\":4,\"width\":70,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":9,\"fontWeight\":\"700\",\"fill\":\"#3DFFC0\",\"textAlign\":\"right\",\"letterSpacing\":0.5},{\"id\":\"px169\",\"type\":\"text\",\"content\":\"2m ago\",\"x\":280,\"y\":18,\"width\":70,\"height\":12,\"textGrowth\":\"fixed-width-height\",\"fontSize\":9,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"right\"}]},{\"id\":\"px175\",\"type\":\"frame\",\"x\":20,\"y\":614,\"width\":350,\"height\":36,\"fill\":\"transparent\",\"clip\":false,\"cornerRadius\":8,\"children\":[{\"id\":\"px171\",\"type\":\"text\",\"content\":\"#1281\",\"x\":12,\"y\":10,\"width\":54,\"height\":16,\"textGrowth\":\"fixed-width-height\",\"fontSize\":11,\"fontWeight\":\"700\",\"fill\":\"#3DFFC0\",\"textAlign\":\"left\"},{\"id\":\"px172\",\"type\":\"text\",\"content\":\"Billing question answered\",\"x\":70,\"y\":10,\"width\":196,\"height\":16,\"textGrowth\":\"fixed-width-height\",\"fontSize\":11,\"fontWeight\":\"400\",\"fill\":\"#F0F0FA\",\"textAlign\":\"left\"},{\"id\":\"px173\",\"type\":\"text\",\"content\":\"RESOLVED\",\"x\":280,\"y\":4,\"width\":70,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":9,\"fontWeight\":\"700\",\"fill\":\"#3DFFC0\",\"textAlign\":\"right\",\"letterSpacing\":0.5},{\"id\":\"px174\",\"type\":\"text\",\"content\":\"8m ago\",\"x\":280,\"y\":18,\"width\":70,\"height\":12,\"textGrowth\":\"fixed-width-height\",\"fontSize\":9,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"right\"}]},{\"id\":\"px180\",\"type\":\"frame\",\"x\":20,\"y\":658,\"width\":350,\"height\":36,\"fill\":\"#181822\",\"clip\":false,\"cornerRadius\":8,\"children\":[{\"id\":\"px176\",\"type\":\"text\",\"content\":\"#1279\",\"x\":12,\"y\":10,\"width\":54,\"height\":16,\"textGrowth\":\"fixed-width-height\",\"fontSize\":11,\"fontWeight\":\"700\",\"fill\":\"#FF6565\",\"textAlign\":\"left\"},{\"id\":\"px177\",\"type\":\"text\",\"content\":\"Account access escalated\",\"x\":70,\"y\":10,\"width\":196,\"height\":16,\"textGrowth\":\"fixed-width-height\",\"fontSize\":11,\"fontWeight\":\"400\",\"fill\":\"#F0F0FA\",\"textAlign\":\"left\"},{\"id\":\"px178\",\"type\":\"text\",\"content\":\"ESCALATED\",\"x\":280,\"y\":4,\"width\":70,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":9,\"fontWeight\":\"700\",\"fill\":\"#FF6565\",\"textAlign\":\"right\",\"letterSpacing\":0.5},{\"id\":\"px179\",\"type\":\"text\",\"content\":\"19m ago\",\"x\":280,\"y\":18,\"width\":70,\"height\":12,\"textGrowth\":\"fixed-width-height\",\"fontSize\":9,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"right\"}]},{\"id\":\"px185\",\"type\":\"frame\",\"x\":20,\"y\":702,\"width\":350,\"height\":36,\"fill\":\"transparent\",\"clip\":false,\"cornerRadius\":8,\"children\":[{\"id\":\"px181\",\"type\":\"text\",\"content\":\"#1278\",\"x\":12,\"y\":10,\"width\":54,\"height\":16,\"textGrowth\":\"fixed-width-height\",\"fontSize\":11,\"fontWeight\":\"700\",\"fill\":\"#3DFFC0\",\"textAlign\":\"left\"},{\"id\":\"px182\",\"type\":\"text\",\"content\":\"Subscription downgrade\",\"x\":70,\"y\":10,\"width\":196,\"height\":16,\"textGrowth\":\"fixed-width-height\",\"fontSize\":11,\"fontWeight\":\"400\",\"fill\":\"#F0F0FA\",\"textAlign\":\"left\"},{\"id\":\"px183\",\"type\":\"text\",\"content\":\"RESOLVED\",\"x\":280,\"y\":4,\"width\":70,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":9,\"fontWeight\":\"700\",\"fill\":\"#3DFFC0\",\"textAlign\":\"right\",\"letterSpacing\":0.5},{\"id\":\"px184\",\"type\":\"text\",\"content\":\"31m ago\",\"x\":280,\"y\":18,\"width\":70,\"height\":12,\"textGrowth\":\"fixed-width-height\",\"fontSize\":9,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"right\"}]},{\"id\":\"px198\",\"type\":\"frame\",\"x\":0,\"y\":764,\"width\":390,\"height\":80,\"fill\":\"#111118\",\"clip\":false,\"children\":[{\"id\":\"px186\",\"type\":\"frame\",\"x\":0,\"y\":0,\"width\":390,\"height\":1,\"fill\":\"#24243A\",\"clip\":false,\"children\":[]},{\"id\":\"px187\",\"type\":\"text\",\"content\":\"⬡\",\"x\":28,\"y\":12,\"width\":44,\"height\":22,\"textGrowth\":\"fixed-width-height\",\"fontSize\":18,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"left\"},{\"id\":\"px188\",\"type\":\"text\",\"content\":\"Control\",\"x\":16,\"y\":36,\"width\":68,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":9,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"center\",\"letterSpacing\":0.5},{\"id\":\"px189\",\"type\":\"frame\",\"x\":96,\"y\":6,\"width\":54,\"height\":54,\"fill\":\"#6B5EFF18\",\"clip\":false,\"cornerRadius\":27,\"children\":[]},{\"id\":\"px190\",\"type\":\"text\",\"content\":\"◈\",\"x\":102,\"y\":12,\"width\":44,\"height\":22,\"textGrowth\":\"fixed-width-height\",\"fontSize\":18,\"fontWeight\":\"400\",\"fill\":\"#6B5EFF\",\"textAlign\":\"left\"},{\"id\":\"px191\",\"type\":\"text\",\"content\":\"Agents\",\"x\":90,\"y\":36,\"width\":68,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":9,\"fontWeight\":\"700\",\"fill\":\"#6B5EFF\",\"textAlign\":\"center\",\"letterSpacing\":0.5},{\"id\":\"px192\",\"type\":\"text\",\"content\":\"◎\",\"x\":176,\"y\":12,\"width\":44,\"height\":22,\"textGrowth\":\"fixed-width-height\",\"fontSize\":18,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"left\"},{\"id\":\"px193\",\"type\":\"text\",\"content\":\"Tasks\",\"x\":164,\"y\":36,\"width\":68,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":9,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"center\",\"letterSpacing\":0.5},{\"id\":\"px194\",\"type\":\"text\",\"content\":\"≡\",\"x\":250,\"y\":12,\"width\":44,\"height\":22,\"textGrowth\":\"fixed-width-height\",\"fontSize\":18,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"left\"},{\"id\":\"px195\",\"type\":\"text\",\"content\":\"Log\",\"x\":238,\"y\":36,\"width\":68,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":9,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"center\",\"letterSpacing\":0.5},{\"id\":\"px196\",\"type\":\"text\",\"content\":\"⊕\",\"x\":324,\"y\":12,\"width\":44,\"height\":22,\"textGrowth\":\"fixed-width-height\",\"fontSize\":18,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"left\"},{\"id\":\"px197\",\"type\":\"text\",\"content\":\"Deploy\",\"x\":312,\"y\":36,\"width\":68,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":9,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"center\",\"letterSpacing\":0.5}]}]},{\"id\":\"px298\",\"type\":\"frame\",\"x\":1020,\"y\":0,\"width\":390,\"height\":844,\"fill\":\"#0A0A0F\",\"clip\":false,\"children\":[{\"id\":\"px200\",\"type\":\"ellipse\",\"x\":-130,\"y\":-25,\"width\":650,\"height\":650,\"fill\":\"#FFD16605\"},{\"id\":\"px201\",\"type\":\"ellipse\",\"x\":-39,\"y\":66,\"width\":468,\"height\":468,\"fill\":\"#FFD1660C\"},{\"id\":\"px202\",\"type\":\"ellipse\",\"x\":65,\"y\":170,\"width\":260,\"height\":260,\"fill\":\"#FFD16616\"},{\"id\":\"px203\",\"type\":\"ellipse\",\"x\":130,\"y\":235,\"width\":130,\"height\":130,\"fill\":\"#FFD16628\"},{\"id\":\"px206\",\"type\":\"frame\",\"x\":0,\"y\":0,\"width\":390,\"height\":44,\"fill\":\"transparent\",\"clip\":false,\"children\":[{\"id\":\"px204\",\"type\":\"text\",\"content\":\"9:41\",\"x\":20,\"y\":14,\"width\":60,\"height\":16,\"textGrowth\":\"fixed-width-height\",\"fontSize\":13,\"fontWeight\":\"600\",\"fill\":\"#F0F0FA\",\"textAlign\":\"left\"},{\"id\":\"px205\",\"type\":\"text\",\"content\":\"●●●\",\"x\":290,\"y\":14,\"width\":80,\"height\":16,\"textGrowth\":\"fixed-width-height\",\"fontSize\":10,\"fontWeight\":\"400\",\"fill\":\"#F0F0FA\",\"textAlign\":\"right\"}]},{\"id\":\"px207\",\"type\":\"text\",\"content\":\"Task Queue\",\"x\":20,\"y\":52,\"width\":260,\"height\":28,\"textGrowth\":\"fixed-width-height\",\"fontSize\":22,\"fontWeight\":\"800\",\"fill\":\"#F0F0FA\",\"textAlign\":\"left\",\"letterSpacing\":-0.5},{\"id\":\"px209\",\"type\":\"frame\",\"x\":20,\"y\":88,\"width\":82,\"height\":28,\"fill\":\"#6B5EFF\",\"clip\":false,\"cornerRadius\":8,\"stroke\":{\"align\":\"inside\",\"thickness\":1,\"fill\":\"none\"},\"children\":[{\"id\":\"px208\",\"type\":\"text\",\"content\":\"ALL · 14\",\"x\":0,\"y\":6,\"width\":82,\"height\":16,\"textGrowth\":\"fixed-width-height\",\"fontSize\":9,\"fontWeight\":\"700\",\"fill\":\"#0A0A0F\",\"textAlign\":\"center\",\"letterSpacing\":0.5}]},{\"id\":\"px211\",\"type\":\"frame\",\"x\":106,\"y\":88,\"width\":82,\"height\":28,\"fill\":\"#181822\",\"clip\":false,\"cornerRadius\":8,\"stroke\":{\"align\":\"inside\",\"thickness\":1,\"fill\":\"#24243A\"},\"children\":[{\"id\":\"px210\",\"type\":\"text\",\"content\":\"ACTIVE · 4\",\"x\":0,\"y\":6,\"width\":82,\"height\":16,\"textGrowth\":\"fixed-width-height\",\"fontSize\":9,\"fontWeight\":\"700\",\"fill\":\"#4A4A68\",\"textAlign\":\"center\",\"letterSpacing\":0.5}]},{\"id\":\"px213\",\"type\":\"frame\",\"x\":192,\"y\":88,\"width\":82,\"height\":28,\"fill\":\"#181822\",\"clip\":false,\"cornerRadius\":8,\"stroke\":{\"align\":\"inside\",\"thickness\":1,\"fill\":\"#24243A\"},\"children\":[{\"id\":\"px212\",\"type\":\"text\",\"content\":\"PENDING · 7\",\"x\":0,\"y\":6,\"width\":82,\"height\":16,\"textGrowth\":\"fixed-width-height\",\"fontSize\":9,\"fontWeight\":\"700\",\"fill\":\"#4A4A68\",\"textAlign\":\"center\",\"letterSpacing\":0.5}]},{\"id\":\"px215\",\"type\":\"frame\",\"x\":278,\"y\":88,\"width\":82,\"height\":28,\"fill\":\"#181822\",\"clip\":false,\"cornerRadius\":8,\"stroke\":{\"align\":\"inside\",\"thickness\":1,\"fill\":\"#24243A\"},\"children\":[{\"id\":\"px214\",\"type\":\"text\",\"content\":\"DONE · 3\",\"x\":0,\"y\":6,\"width\":82,\"height\":16,\"textGrowth\":\"fixed-width-height\",\"fontSize\":9,\"fontWeight\":\"700\",\"fill\":\"#4A4A68\",\"textAlign\":\"center\",\"letterSpacing\":0.5}]},{\"id\":\"px216\",\"type\":\"text\",\"content\":\"IN PROGRESS\",\"x\":20,\"y\":128,\"width\":200,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":9,\"fontWeight\":\"700\",\"fill\":\"#3DFFC0\",\"textAlign\":\"left\",\"letterSpacing\":2.5},{\"id\":\"px217\",\"type\":\"frame\",\"x\":20,\"y\":144,\"width\":350,\"height\":1,\"fill\":\"#3DFFC033\",\"clip\":false,\"children\":[]},{\"id\":\"px227\",\"type\":\"frame\",\"x\":20,\"y\":152,\"width\":350,\"height\":70,\"fill\":\"#181822\",\"clip\":false,\"cornerRadius\":12,\"stroke\":{\"align\":\"inside\",\"thickness\":1,\"fill\":\"#6B5EFF30\"},\"children\":[{\"id\":\"px218\",\"type\":\"frame\",\"x\":0,\"y\":0,\"width\":3,\"height\":70,\"fill\":\"#3DFFC0\",\"clip\":false,\"cornerRadius\":2,\"children\":[]},{\"id\":\"px219\",\"type\":\"text\",\"content\":\"TSK-0091\",\"x\":14,\"y\":10,\"width\":70,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":9,\"fontWeight\":\"700\",\"fill\":\"#3DFFC0\",\"textAlign\":\"left\",\"letterSpacing\":1},{\"id\":\"px221\",\"type\":\"frame\",\"x\":14,\"y\":26,\"width\":45.6,\"height\":22,\"fill\":\"#FF656520\",\"clip\":false,\"cornerRadius\":11,\"children\":[{\"id\":\"px220\",\"type\":\"text\",\"content\":\"HIGH\",\"x\":0,\"y\":4,\"width\":45.6,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":10,\"fontWeight\":\"700\",\"fill\":\"#FF6565\",\"textAlign\":\"center\",\"letterSpacing\":0.5}]},{\"id\":\"px222\",\"type\":\"text\",\"content\":\"ORION\",\"x\":80,\"y\":28,\"width\":120,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":10,\"fontWeight\":\"600\",\"fill\":\"#4A4A68\",\"textAlign\":\"left\"},{\"id\":\"px223\",\"type\":\"text\",\"content\":\"Handle escalation on ticket #1284\",\"x\":14,\"y\":44,\"width\":270,\"height\":22,\"textGrowth\":\"fixed-width-height\",\"fontSize\":11,\"fontWeight\":\"400\",\"fill\":\"#F0F0FA\",\"textAlign\":\"left\",\"lineHeight\":1.4},{\"id\":\"px225\",\"type\":\"frame\",\"x\":270,\"y\":10,\"width\":58.400000000000006,\"height\":22,\"fill\":\"#3DFFC018\",\"clip\":false,\"cornerRadius\":11,\"children\":[{\"id\":\"px224\",\"type\":\"text\",\"content\":\"ACTIVE\",\"x\":0,\"y\":4,\"width\":58.400000000000006,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":10,\"fontWeight\":\"700\",\"fill\":\"#3DFFC0\",\"textAlign\":\"center\",\"letterSpacing\":0.5}]},{\"id\":\"px226\",\"type\":\"text\",\"content\":\"2m\",\"x\":280,\"y\":50,\"width\":70,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":9,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"right\"}]},{\"id\":\"px237\",\"type\":\"frame\",\"x\":20,\"y\":230,\"width\":350,\"height\":70,\"fill\":\"#181822\",\"clip\":false,\"cornerRadius\":12,\"stroke\":{\"align\":\"inside\",\"thickness\":1,\"fill\":\"#6B5EFF30\"},\"children\":[{\"id\":\"px228\",\"type\":\"frame\",\"x\":0,\"y\":0,\"width\":3,\"height\":70,\"fill\":\"#3DFFC0\",\"clip\":false,\"cornerRadius\":2,\"children\":[]},{\"id\":\"px229\",\"type\":\"text\",\"content\":\"TSK-0090\",\"x\":14,\"y\":10,\"width\":70,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":9,\"fontWeight\":\"700\",\"fill\":\"#3DFFC0\",\"textAlign\":\"left\",\"letterSpacing\":1},{\"id\":\"px231\",\"type\":\"frame\",\"x\":14,\"y\":26,\"width\":39.2,\"height\":22,\"fill\":\"#FFD16620\",\"clip\":false,\"cornerRadius\":11,\"children\":[{\"id\":\"px230\",\"type\":\"text\",\"content\":\"MED\",\"x\":0,\"y\":4,\"width\":39.2,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":10,\"fontWeight\":\"700\",\"fill\":\"#FFD166\",\"textAlign\":\"center\",\"letterSpacing\":0.5}]},{\"id\":\"px232\",\"type\":\"text\",\"content\":\"VEGA\",\"x\":80,\"y\":28,\"width\":120,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":10,\"fontWeight\":\"600\",\"fill\":\"#4A4A68\",\"textAlign\":\"left\"},{\"id\":\"px233\",\"type\":\"text\",\"content\":\"Reconcile March invoices (34/41 done)\",\"x\":14,\"y\":44,\"width\":270,\"height\":22,\"textGrowth\":\"fixed-width-height\",\"fontSize\":11,\"fontWeight\":\"400\",\"fill\":\"#F0F0FA\",\"textAlign\":\"left\",\"lineHeight\":1.4},{\"id\":\"px235\",\"type\":\"frame\",\"x\":270,\"y\":10,\"width\":58.400000000000006,\"height\":22,\"fill\":\"#3DFFC018\",\"clip\":false,\"cornerRadius\":11,\"children\":[{\"id\":\"px234\",\"type\":\"text\",\"content\":\"ACTIVE\",\"x\":0,\"y\":4,\"width\":58.400000000000006,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":10,\"fontWeight\":\"700\",\"fill\":\"#3DFFC0\",\"textAlign\":\"center\",\"letterSpacing\":0.5}]},{\"id\":\"px236\",\"type\":\"text\",\"content\":\"8m\",\"x\":280,\"y\":50,\"width\":70,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":9,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"right\"}]},{\"id\":\"px238\",\"type\":\"text\",\"content\":\"PENDING\",\"x\":20,\"y\":312,\"width\":200,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":9,\"fontWeight\":\"700\",\"fill\":\"#FFD166\",\"textAlign\":\"left\",\"letterSpacing\":2.5},{\"id\":\"px239\",\"type\":\"frame\",\"x\":20,\"y\":328,\"width\":350,\"height\":1,\"fill\":\"#FFD16633\",\"clip\":false,\"children\":[]},{\"id\":\"px249\",\"type\":\"frame\",\"x\":20,\"y\":336,\"width\":350,\"height\":70,\"fill\":\"#181822\",\"clip\":false,\"cornerRadius\":12,\"stroke\":{\"align\":\"inside\",\"thickness\":1,\"fill\":\"#24243A\"},\"children\":[{\"id\":\"px240\",\"type\":\"frame\",\"x\":0,\"y\":0,\"width\":3,\"height\":70,\"fill\":\"#FFD166\",\"clip\":false,\"cornerRadius\":2,\"children\":[]},{\"id\":\"px241\",\"type\":\"text\",\"content\":\"TSK-0089\",\"x\":14,\"y\":10,\"width\":70,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":9,\"fontWeight\":\"700\",\"fill\":\"#FFD166\",\"textAlign\":\"left\",\"letterSpacing\":1},{\"id\":\"px243\",\"type\":\"frame\",\"x\":14,\"y\":26,\"width\":39.2,\"height\":22,\"fill\":\"#FFD16620\",\"clip\":false,\"cornerRadius\":11,\"children\":[{\"id\":\"px242\",\"type\":\"text\",\"content\":\"MED\",\"x\":0,\"y\":4,\"width\":39.2,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":10,\"fontWeight\":\"700\",\"fill\":\"#FFD166\",\"textAlign\":\"center\",\"letterSpacing\":0.5}]},{\"id\":\"px244\",\"type\":\"text\",\"content\":\"NOVA\",\"x\":80,\"y\":28,\"width\":120,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":10,\"fontWeight\":\"600\",\"fill\":\"#4A4A68\",\"textAlign\":\"left\"},{\"id\":\"px245\",\"type\":\"text\",\"content\":\"Weekly competitor brief — awaiting trigger\",\"x\":14,\"y\":44,\"width\":270,\"height\":22,\"textGrowth\":\"fixed-width-height\",\"fontSize\":11,\"fontWeight\":\"400\",\"fill\":\"#F0F0FA\",\"textAlign\":\"left\",\"lineHeight\":1.4},{\"id\":\"px247\",\"type\":\"frame\",\"x\":270,\"y\":10,\"width\":64.80000000000001,\"height\":22,\"fill\":\"#FFD16618\",\"clip\":false,\"cornerRadius\":11,\"children\":[{\"id\":\"px246\",\"type\":\"text\",\"content\":\"PENDING\",\"x\":0,\"y\":4,\"width\":64.80000000000001,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":10,\"fontWeight\":\"700\",\"fill\":\"#FFD166\",\"textAlign\":\"center\",\"letterSpacing\":0.5}]},{\"id\":\"px248\",\"type\":\"text\",\"content\":\"11m\",\"x\":280,\"y\":50,\"width\":70,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":9,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"right\"}]},{\"id\":\"px259\",\"type\":\"frame\",\"x\":20,\"y\":414,\"width\":350,\"height\":70,\"fill\":\"#181822\",\"clip\":false,\"cornerRadius\":12,\"stroke\":{\"align\":\"inside\",\"thickness\":1,\"fill\":\"#24243A\"},\"children\":[{\"id\":\"px250\",\"type\":\"frame\",\"x\":0,\"y\":0,\"width\":3,\"height\":70,\"fill\":\"#FFD166\",\"clip\":false,\"cornerRadius\":2,\"children\":[]},{\"id\":\"px251\",\"type\":\"text\",\"content\":\"TSK-0088\",\"x\":14,\"y\":10,\"width\":70,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":9,\"fontWeight\":\"700\",\"fill\":\"#FFD166\",\"textAlign\":\"left\",\"letterSpacing\":1},{\"id\":\"px253\",\"type\":\"frame\",\"x\":14,\"y\":26,\"width\":39.2,\"height\":22,\"fill\":\"#4A4A6820\",\"clip\":false,\"cornerRadius\":11,\"children\":[{\"id\":\"px252\",\"type\":\"text\",\"content\":\"LOW\",\"x\":0,\"y\":4,\"width\":39.2,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":10,\"fontWeight\":\"700\",\"fill\":\"#4A4A68\",\"textAlign\":\"center\",\"letterSpacing\":0.5}]},{\"id\":\"px254\",\"type\":\"text\",\"content\":\"ATLAS\",\"x\":80,\"y\":28,\"width\":120,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":10,\"fontWeight\":\"600\",\"fill\":\"#4A4A68\",\"textAlign\":\"left\"},{\"id\":\"px255\",\"type\":\"text\",\"content\":\"Schedule 3 LinkedIn posts for next week\",\"x\":14,\"y\":44,\"width\":270,\"height\":22,\"textGrowth\":\"fixed-width-height\",\"fontSize\":11,\"fontWeight\":\"400\",\"fill\":\"#F0F0FA\",\"textAlign\":\"left\",\"lineHeight\":1.4},{\"id\":\"px257\",\"type\":\"frame\",\"x\":270,\"y\":10,\"width\":64.80000000000001,\"height\":22,\"fill\":\"#FFD16618\",\"clip\":false,\"cornerRadius\":11,\"children\":[{\"id\":\"px256\",\"type\":\"text\",\"content\":\"PENDING\",\"x\":0,\"y\":4,\"width\":64.80000000000001,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":10,\"fontWeight\":\"700\",\"fill\":\"#FFD166\",\"textAlign\":\"center\",\"letterSpacing\":0.5}]},{\"id\":\"px258\",\"type\":\"text\",\"content\":\"18m\",\"x\":280,\"y\":50,\"width\":70,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":9,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"right\"}]},{\"id\":\"px269\",\"type\":\"frame\",\"x\":20,\"y\":492,\"width\":350,\"height\":70,\"fill\":\"#181822\",\"clip\":false,\"cornerRadius\":12,\"stroke\":{\"align\":\"inside\",\"thickness\":1,\"fill\":\"#24243A\"},\"children\":[{\"id\":\"px260\",\"type\":\"frame\",\"x\":0,\"y\":0,\"width\":3,\"height\":70,\"fill\":\"#FFD166\",\"clip\":false,\"cornerRadius\":2,\"children\":[]},{\"id\":\"px261\",\"type\":\"text\",\"content\":\"TSK-0087\",\"x\":14,\"y\":10,\"width\":70,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":9,\"fontWeight\":\"700\",\"fill\":\"#FFD166\",\"textAlign\":\"left\",\"letterSpacing\":1},{\"id\":\"px263\",\"type\":\"frame\",\"x\":14,\"y\":26,\"width\":45.6,\"height\":22,\"fill\":\"#FF656520\",\"clip\":false,\"cornerRadius\":11,\"children\":[{\"id\":\"px262\",\"type\":\"text\",\"content\":\"HIGH\",\"x\":0,\"y\":4,\"width\":45.6,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":10,\"fontWeight\":\"700\",\"fill\":\"#FF6565\",\"textAlign\":\"center\",\"letterSpacing\":0.5}]},{\"id\":\"px264\",\"type\":\"text\",\"content\":\"ORION\",\"x\":80,\"y\":28,\"width\":120,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":10,\"fontWeight\":\"600\",\"fill\":\"#4A4A68\",\"textAlign\":\"left\"},{\"id\":\"px265\",\"type\":\"text\",\"content\":\"Follow up on unresolved tickets > 24h\",\"x\":14,\"y\":44,\"width\":270,\"height\":22,\"textGrowth\":\"fixed-width-height\",\"fontSize\":11,\"fontWeight\":\"400\",\"fill\":\"#F0F0FA\",\"textAlign\":\"left\",\"lineHeight\":1.4},{\"id\":\"px267\",\"type\":\"frame\",\"x\":270,\"y\":10,\"width\":64.80000000000001,\"height\":22,\"fill\":\"#FFD16618\",\"clip\":false,\"cornerRadius\":11,\"children\":[{\"id\":\"px266\",\"type\":\"text\",\"content\":\"PENDING\",\"x\":0,\"y\":4,\"width\":64.80000000000001,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":10,\"fontWeight\":\"700\",\"fill\":\"#FFD166\",\"textAlign\":\"center\",\"letterSpacing\":0.5}]},{\"id\":\"px268\",\"type\":\"text\",\"content\":\"22m\",\"x\":280,\"y\":50,\"width\":70,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":9,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"right\"}]},{\"id\":\"px270\",\"type\":\"text\",\"content\":\"NEEDS REVIEW\",\"x\":20,\"y\":574,\"width\":200,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":9,\"fontWeight\":\"700\",\"fill\":\"#9B8FFF\",\"textAlign\":\"left\",\"letterSpacing\":2.5},{\"id\":\"px271\",\"type\":\"frame\",\"x\":20,\"y\":590,\"width\":350,\"height\":1,\"fill\":\"#9B8FFF33\",\"clip\":false,\"children\":[]},{\"id\":\"px281\",\"type\":\"frame\",\"x\":20,\"y\":598,\"width\":350,\"height\":70,\"fill\":\"#181822\",\"clip\":false,\"cornerRadius\":12,\"stroke\":{\"align\":\"inside\",\"thickness\":1,\"fill\":\"#24243A\"},\"children\":[{\"id\":\"px272\",\"type\":\"frame\",\"x\":0,\"y\":0,\"width\":3,\"height\":70,\"fill\":\"#9B8FFF\",\"clip\":false,\"cornerRadius\":2,\"children\":[]},{\"id\":\"px273\",\"type\":\"text\",\"content\":\"TSK-0086\",\"x\":14,\"y\":10,\"width\":70,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":9,\"fontWeight\":\"700\",\"fill\":\"#9B8FFF\",\"textAlign\":\"left\",\"letterSpacing\":1},{\"id\":\"px275\",\"type\":\"frame\",\"x\":14,\"y\":26,\"width\":45.6,\"height\":22,\"fill\":\"#FF656520\",\"clip\":false,\"cornerRadius\":11,\"children\":[{\"id\":\"px274\",\"type\":\"text\",\"content\":\"HIGH\",\"x\":0,\"y\":4,\"width\":45.6,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":10,\"fontWeight\":\"700\",\"fill\":\"#FF6565\",\"textAlign\":\"center\",\"letterSpacing\":0.5}]},{\"id\":\"px276\",\"type\":\"text\",\"content\":\"VEGA\",\"x\":80,\"y\":28,\"width\":120,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":10,\"fontWeight\":\"600\",\"fill\":\"#4A4A68\",\"textAlign\":\"left\"},{\"id\":\"px277\",\"type\":\"text\",\"content\":\"Invoice INV-0340 flagged — unusual amount\",\"x\":14,\"y\":44,\"width\":270,\"height\":22,\"textGrowth\":\"fixed-width-height\",\"fontSize\":11,\"fontWeight\":\"400\",\"fill\":\"#F0F0FA\",\"textAlign\":\"left\",\"lineHeight\":1.4},{\"id\":\"px279\",\"type\":\"frame\",\"x\":270,\"y\":10,\"width\":58.400000000000006,\"height\":22,\"fill\":\"#9B8FFF18\",\"clip\":false,\"cornerRadius\":11,\"children\":[{\"id\":\"px278\",\"type\":\"text\",\"content\":\"REVIEW\",\"x\":0,\"y\":4,\"width\":58.400000000000006,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":10,\"fontWeight\":\"700\",\"fill\":\"#9B8FFF\",\"textAlign\":\"center\",\"letterSpacing\":0.5}]},{\"id\":\"px280\",\"type\":\"text\",\"content\":\"34m\",\"x\":280,\"y\":50,\"width\":70,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":9,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"right\"}]},{\"id\":\"px284\",\"type\":\"frame\",\"x\":20,\"y\":676,\"width\":350,\"height\":44,\"fill\":\"#181822\",\"clip\":false,\"cornerRadius\":10,\"stroke\":{\"align\":\"inside\",\"thickness\":1,\"fill\":\"#24243A\"},\"children\":[{\"id\":\"px282\",\"type\":\"text\",\"content\":\"14 TASKS ACROSS 4 AGENTS\",\"x\":20,\"y\":12,\"width\":200,\"height\":20,\"textGrowth\":\"fixed-width-height\",\"fontSize\":11,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"left\"},{\"id\":\"px283\",\"type\":\"text\",\"content\":\"⚡ 142 tasks/hr today\",\"x\":200,\"y\":12,\"width\":148,\"height\":20,\"textGrowth\":\"fixed-width-height\",\"fontSize\":11,\"fontWeight\":\"600\",\"fill\":\"#6B5EFF\",\"textAlign\":\"right\"}]},{\"id\":\"px297\",\"type\":\"frame\",\"x\":0,\"y\":764,\"width\":390,\"height\":80,\"fill\":\"#111118\",\"clip\":false,\"children\":[{\"id\":\"px285\",\"type\":\"frame\",\"x\":0,\"y\":0,\"width\":390,\"height\":1,\"fill\":\"#24243A\",\"clip\":false,\"children\":[]},{\"id\":\"px286\",\"type\":\"text\",\"content\":\"⬡\",\"x\":28,\"y\":12,\"width\":44,\"height\":22,\"textGrowth\":\"fixed-width-height\",\"fontSize\":18,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"left\"},{\"id\":\"px287\",\"type\":\"text\",\"content\":\"Control\",\"x\":16,\"y\":36,\"width\":68,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":9,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"center\",\"letterSpacing\":0.5},{\"id\":\"px288\",\"type\":\"text\",\"content\":\"◈\",\"x\":102,\"y\":12,\"width\":44,\"height\":22,\"textGrowth\":\"fixed-width-height\",\"fontSize\":18,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"left\"},{\"id\":\"px289\",\"type\":\"text\",\"content\":\"Agents\",\"x\":90,\"y\":36,\"width\":68,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":9,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"center\",\"letterSpacing\":0.5},{\"id\":\"px290\",\"type\":\"frame\",\"x\":170,\"y\":6,\"width\":54,\"height\":54,\"fill\":\"#6B5EFF18\",\"clip\":false,\"cornerRadius\":27,\"children\":[]},{\"id\":\"px291\",\"type\":\"text\",\"content\":\"◎\",\"x\":176,\"y\":12,\"width\":44,\"height\":22,\"textGrowth\":\"fixed-width-height\",\"fontSize\":18,\"fontWeight\":\"400\",\"fill\":\"#6B5EFF\",\"textAlign\":\"left\"},{\"id\":\"px292\",\"type\":\"text\",\"content\":\"Tasks\",\"x\":164,\"y\":36,\"width\":68,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":9,\"fontWeight\":\"700\",\"fill\":\"#6B5EFF\",\"textAlign\":\"center\",\"letterSpacing\":0.5},{\"id\":\"px293\",\"type\":\"text\",\"content\":\"≡\",\"x\":250,\"y\":12,\"width\":44,\"height\":22,\"textGrowth\":\"fixed-width-height\",\"fontSize\":18,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"left\"},{\"id\":\"px294\",\"type\":\"text\",\"content\":\"Log\",\"x\":238,\"y\":36,\"width\":68,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":9,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"center\",\"letterSpacing\":0.5},{\"id\":\"px295\",\"type\":\"text\",\"content\":\"⊕\",\"x\":324,\"y\":12,\"width\":44,\"height\":22,\"textGrowth\":\"fixed-width-height\",\"fontSize\":18,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"left\"},{\"id\":\"px296\",\"type\":\"text\",\"content\":\"Deploy\",\"x\":312,\"y\":36,\"width\":68,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":9,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"center\",\"letterSpacing\":0.5}]}]},{\"id\":\"px382\",\"type\":\"frame\",\"x\":1490,\"y\":0,\"width\":390,\"height\":844,\"fill\":\"#0A0A0F\",\"clip\":false,\"children\":[{\"id\":\"px301\",\"type\":\"frame\",\"x\":0,\"y\":0,\"width\":390,\"height\":44,\"fill\":\"transparent\",\"clip\":false,\"children\":[{\"id\":\"px299\",\"type\":\"text\",\"content\":\"9:41\",\"x\":20,\"y\":14,\"width\":60,\"height\":16,\"textGrowth\":\"fixed-width-height\",\"fontSize\":13,\"fontWeight\":\"600\",\"fill\":\"#F0F0FA\",\"textAlign\":\"left\"},{\"id\":\"px300\",\"type\":\"text\",\"content\":\"●●●\",\"x\":290,\"y\":14,\"width\":80,\"height\":16,\"textGrowth\":\"fixed-width-height\",\"fontSize\":10,\"fontWeight\":\"400\",\"fill\":\"#F0F0FA\",\"textAlign\":\"right\"}]},{\"id\":\"px302\",\"type\":\"text\",\"content\":\"Audit Log\",\"x\":20,\"y\":52,\"width\":260,\"height\":28,\"textGrowth\":\"fixed-width-height\",\"fontSize\":22,\"fontWeight\":\"800\",\"fill\":\"#F0F0FA\",\"textAlign\":\"left\",\"letterSpacing\":-0.5},{\"id\":\"px303\",\"type\":\"text\",\"content\":\"MARCH 20, 2026\",\"x\":20,\"y\":84,\"width\":200,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":9,\"fontWeight\":\"600\",\"fill\":\"#6B5EFF\",\"textAlign\":\"left\",\"letterSpacing\":2.5},{\"id\":\"px305\",\"type\":\"frame\",\"x\":20,\"y\":104,\"width\":78,\"height\":26,\"fill\":\"#6B5EFF22\",\"clip\":false,\"cornerRadius\":7,\"stroke\":{\"align\":\"inside\",\"thickness\":1,\"fill\":\"#6B5EFF44\"},\"children\":[{\"id\":\"px304\",\"type\":\"text\",\"content\":\"ALL\",\"x\":0,\"y\":5,\"width\":78,\"height\":16,\"textGrowth\":\"fixed-width-height\",\"fontSize\":9,\"fontWeight\":\"700\",\"fill\":\"#6B5EFF\",\"textAlign\":\"center\",\"letterSpacing\":0.8}]},{\"id\":\"px307\",\"type\":\"frame\",\"x\":102,\"y\":104,\"width\":78,\"height\":26,\"fill\":\"transparent\",\"clip\":false,\"cornerRadius\":7,\"stroke\":{\"align\":\"inside\",\"thickness\":1,\"fill\":\"#24243A\"},\"children\":[{\"id\":\"px306\",\"type\":\"text\",\"content\":\"ERRORS\",\"x\":0,\"y\":5,\"width\":78,\"height\":16,\"textGrowth\":\"fixed-width-height\",\"fontSize\":9,\"fontWeight\":\"700\",\"fill\":\"#4A4A68\",\"textAlign\":\"center\",\"letterSpacing\":0.8}]},{\"id\":\"px309\",\"type\":\"frame\",\"x\":184,\"y\":104,\"width\":78,\"height\":26,\"fill\":\"transparent\",\"clip\":false,\"cornerRadius\":7,\"stroke\":{\"align\":\"inside\",\"thickness\":1,\"fill\":\"#24243A\"},\"children\":[{\"id\":\"px308\",\"type\":\"text\",\"content\":\"ORION\",\"x\":0,\"y\":5,\"width\":78,\"height\":16,\"textGrowth\":\"fixed-width-height\",\"fontSize\":9,\"fontWeight\":\"700\",\"fill\":\"#4A4A68\",\"textAlign\":\"center\",\"letterSpacing\":0.8}]},{\"id\":\"px311\",\"type\":\"frame\",\"x\":266,\"y\":104,\"width\":78,\"height\":26,\"fill\":\"transparent\",\"clip\":false,\"cornerRadius\":7,\"stroke\":{\"align\":\"inside\",\"thickness\":1,\"fill\":\"#24243A\"},\"children\":[{\"id\":\"px310\",\"type\":\"text\",\"content\":\"VEGA\",\"x\":0,\"y\":5,\"width\":78,\"height\":16,\"textGrowth\":\"fixed-width-height\",\"fontSize\":9,\"fontWeight\":\"700\",\"fill\":\"#4A4A68\",\"textAlign\":\"center\",\"letterSpacing\":0.8}]},{\"id\":\"px312\",\"type\":\"frame\",\"x\":20,\"y\":140,\"width\":350,\"height\":1,\"fill\":\"#24243A\",\"clip\":false,\"children\":[]},{\"id\":\"px319\",\"type\":\"frame\",\"x\":20,\"y\":148,\"width\":350,\"height\":76,\"fill\":\"transparent\",\"clip\":false,\"children\":[{\"id\":\"px313\",\"type\":\"frame\",\"x\":13,\"y\":0,\"width\":1,\"height\":76,\"fill\":\"#24243A\",\"clip\":false,\"children\":[]},{\"id\":\"px314\",\"type\":\"ellipse\",\"x\":10,\"y\":28,\"width\":7,\"height\":7,\"fill\":\"#3DFFC0\"},{\"id\":\"px315\",\"type\":\"text\",\"content\":\"09:38:21\",\"x\":28,\"y\":8,\"width\":80,\"height\":12,\"textGrowth\":\"fixed-width-height\",\"fontSize\":9,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"left\",\"letterSpacing\":0.5},{\"id\":\"px316\",\"type\":\"text\",\"content\":\"ORION\",\"x\":28,\"y\":22,\"width\":200,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":11,\"fontWeight\":\"700\",\"fill\":\"#3DFFC0\",\"textAlign\":\"left\",\"letterSpacing\":0.3},{\"id\":\"px317\",\"type\":\"text\",\"content\":\"Ticket #1282 resolved\",\"x\":28,\"y\":38,\"width\":310,\"height\":16,\"textGrowth\":\"fixed-width-height\",\"fontSize\":12,\"fontWeight\":\"500\",\"fill\":\"#F0F0FA\",\"textAlign\":\"left\"},{\"id\":\"px318\",\"type\":\"text\",\"content\":\"Customer confirmed satisfaction. CSAT submitted: 5/5.\",\"x\":28,\"y\":56,\"width\":310,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":10,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"left\",\"lineHeight\":1.4}]},{\"id\":\"px326\",\"type\":\"frame\",\"x\":20,\"y\":224,\"width\":350,\"height\":76,\"fill\":\"transparent\",\"clip\":false,\"children\":[{\"id\":\"px320\",\"type\":\"frame\",\"x\":13,\"y\":0,\"width\":1,\"height\":76,\"fill\":\"#24243A\",\"clip\":false,\"children\":[]},{\"id\":\"px321\",\"type\":\"ellipse\",\"x\":10,\"y\":28,\"width\":7,\"height\":7,\"fill\":\"#9B8FFF\"},{\"id\":\"px322\",\"type\":\"text\",\"content\":\"09:35:04\",\"x\":28,\"y\":8,\"width\":80,\"height\":12,\"textGrowth\":\"fixed-width-height\",\"fontSize\":9,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"left\",\"letterSpacing\":0.5},{\"id\":\"px323\",\"type\":\"text\",\"content\":\"VEGA\",\"x\":28,\"y\":22,\"width\":200,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":11,\"fontWeight\":\"700\",\"fill\":\"#9B8FFF\",\"textAlign\":\"left\",\"letterSpacing\":0.3},{\"id\":\"px324\",\"type\":\"text\",\"content\":\"Invoice INV-0341 generated\",\"x\":28,\"y\":38,\"width\":310,\"height\":16,\"textGrowth\":\"fixed-width-height\",\"fontSize\":12,\"fontWeight\":\"500\",\"fill\":\"#F0F0FA\",\"textAlign\":\"left\"},{\"id\":\"px325\",\"type\":\"text\",\"content\":\"Amount: $4,200.00 · Client: Acme Corp · Sent via email.\",\"x\":28,\"y\":56,\"width\":310,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":10,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"left\",\"lineHeight\":1.4}]},{\"id\":\"px333\",\"type\":\"frame\",\"x\":20,\"y\":300,\"width\":350,\"height\":76,\"fill\":\"transparent\",\"clip\":false,\"children\":[{\"id\":\"px327\",\"type\":\"frame\",\"x\":13,\"y\":0,\"width\":1,\"height\":76,\"fill\":\"#24243A\",\"clip\":false,\"children\":[]},{\"id\":\"px328\",\"type\":\"ellipse\",\"x\":10,\"y\":28,\"width\":7,\"height\":7,\"fill\":\"#FFD166\"},{\"id\":\"px329\",\"type\":\"text\",\"content\":\"09:31:18\",\"x\":28,\"y\":8,\"width\":80,\"height\":12,\"textGrowth\":\"fixed-width-height\",\"fontSize\":9,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"left\",\"letterSpacing\":0.5},{\"id\":\"px330\",\"type\":\"text\",\"content\":\"NOVA\",\"x\":28,\"y\":22,\"width\":200,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":11,\"fontWeight\":\"700\",\"fill\":\"#FFD166\",\"textAlign\":\"left\",\"letterSpacing\":0.3},{\"id\":\"px331\",\"type\":\"text\",\"content\":\"Task queued: competitor brief\",\"x\":28,\"y\":38,\"width\":310,\"height\":16,\"textGrowth\":\"fixed-width-height\",\"fontSize\":12,\"fontWeight\":\"500\",\"fill\":\"#F0F0FA\",\"textAlign\":\"left\"},{\"id\":\"px332\",\"type\":\"text\",\"content\":\"Weekly research trigger fired. Estimated completion: 15 min.\",\"x\":28,\"y\":56,\"width\":310,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":10,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"left\",\"lineHeight\":1.4}]},{\"id\":\"px342\",\"type\":\"frame\",\"x\":20,\"y\":376,\"width\":350,\"height\":76,\"fill\":\"transparent\",\"clip\":false,\"children\":[{\"id\":\"px334\",\"type\":\"frame\",\"x\":13,\"y\":0,\"width\":1,\"height\":76,\"fill\":\"#24243A\",\"clip\":false,\"children\":[]},{\"id\":\"px335\",\"type\":\"ellipse\",\"x\":10,\"y\":28,\"width\":7,\"height\":7,\"fill\":\"#FF6565\"},{\"id\":\"px336\",\"type\":\"text\",\"content\":\"09:28:55\",\"x\":28,\"y\":8,\"width\":80,\"height\":12,\"textGrowth\":\"fixed-width-height\",\"fontSize\":9,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"left\",\"letterSpacing\":0.5},{\"id\":\"px337\",\"type\":\"text\",\"content\":\"ORION\",\"x\":28,\"y\":22,\"width\":200,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":11,\"fontWeight\":\"700\",\"fill\":\"#FF6565\",\"textAlign\":\"left\",\"letterSpacing\":0.3},{\"id\":\"px338\",\"type\":\"text\",\"content\":\"Escalation flagged on #1279\",\"x\":28,\"y\":38,\"width\":310,\"height\":16,\"textGrowth\":\"fixed-width-height\",\"fontSize\":12,\"fontWeight\":\"500\",\"fill\":\"#F0F0FA\",\"textAlign\":\"left\"},{\"id\":\"px339\",\"type\":\"text\",\"content\":\"Account access issue exceeds agent authority. Routing to human.\",\"x\":28,\"y\":56,\"width\":310,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":10,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"left\",\"lineHeight\":1.4},{\"id\":\"px341\",\"type\":\"frame\",\"x\":284,\"y\":22,\"width\":52,\"height\":22,\"fill\":\"#FF656522\",\"clip\":false,\"cornerRadius\":11,\"children\":[{\"id\":\"px340\",\"type\":\"text\",\"content\":\"ERROR\",\"x\":0,\"y\":4,\"width\":52,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":10,\"fontWeight\":\"700\",\"fill\":\"#FF6565\",\"textAlign\":\"center\",\"letterSpacing\":0.5}]}]},{\"id\":\"px349\",\"type\":\"frame\",\"x\":20,\"y\":452,\"width\":350,\"height\":76,\"fill\":\"transparent\",\"clip\":false,\"children\":[{\"id\":\"px343\",\"type\":\"frame\",\"x\":13,\"y\":0,\"width\":1,\"height\":76,\"fill\":\"#24243A\",\"clip\":false,\"children\":[]},{\"id\":\"px344\",\"type\":\"ellipse\",\"x\":10,\"y\":28,\"width\":7,\"height\":7,\"fill\":\"#6B5EFF\"},{\"id\":\"px345\",\"type\":\"text\",\"content\":\"09:22:10\",\"x\":28,\"y\":8,\"width\":80,\"height\":12,\"textGrowth\":\"fixed-width-height\",\"fontSize\":9,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"left\",\"letterSpacing\":0.5},{\"id\":\"px346\",\"type\":\"text\",\"content\":\"ATLAS\",\"x\":28,\"y\":22,\"width\":200,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":11,\"fontWeight\":\"700\",\"fill\":\"#6B5EFF\",\"textAlign\":\"left\",\"letterSpacing\":0.3},{\"id\":\"px347\",\"type\":\"text\",\"content\":\"Post scheduled: LinkedIn\",\"x\":28,\"y\":38,\"width\":310,\"height\":16,\"textGrowth\":\"fixed-width-height\",\"fontSize\":12,\"fontWeight\":\"500\",\"fill\":\"#F0F0FA\",\"textAlign\":\"left\"},{\"id\":\"px348\",\"type\":\"text\",\"content\":\"3 posts queued for Mon–Wed. Awaiting final approval.\",\"x\":28,\"y\":56,\"width\":310,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":10,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"left\",\"lineHeight\":1.4}]},{\"id\":\"px358\",\"type\":\"frame\",\"x\":20,\"y\":528,\"width\":350,\"height\":76,\"fill\":\"transparent\",\"clip\":false,\"children\":[{\"id\":\"px350\",\"type\":\"frame\",\"x\":13,\"y\":0,\"width\":1,\"height\":76,\"fill\":\"#24243A\",\"clip\":false,\"children\":[]},{\"id\":\"px351\",\"type\":\"ellipse\",\"x\":10,\"y\":28,\"width\":7,\"height\":7,\"fill\":\"#FF6565\"},{\"id\":\"px352\",\"type\":\"text\",\"content\":\"09:17:33\",\"x\":28,\"y\":8,\"width\":80,\"height\":12,\"textGrowth\":\"fixed-width-height\",\"fontSize\":9,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"left\",\"letterSpacing\":0.5},{\"id\":\"px353\",\"type\":\"text\",\"content\":\"VEGA\",\"x\":28,\"y\":22,\"width\":200,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":11,\"fontWeight\":\"700\",\"fill\":\"#FF6565\",\"textAlign\":\"left\",\"letterSpacing\":0.3},{\"id\":\"px354\",\"type\":\"text\",\"content\":\"Anomaly detected on INV-0340\",\"x\":28,\"y\":38,\"width\":310,\"height\":16,\"textGrowth\":\"fixed-width-height\",\"fontSize\":12,\"fontWeight\":\"500\",\"fill\":\"#F0F0FA\",\"textAlign\":\"left\"},{\"id\":\"px355\",\"type\":\"text\",\"content\":\"Amount $28,000 exceeds usual range. Flagged for review.\",\"x\":28,\"y\":56,\"width\":310,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":10,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"left\",\"lineHeight\":1.4},{\"id\":\"px357\",\"type\":\"frame\",\"x\":284,\"y\":22,\"width\":52,\"height\":22,\"fill\":\"#FF656522\",\"clip\":false,\"cornerRadius\":11,\"children\":[{\"id\":\"px356\",\"type\":\"text\",\"content\":\"ERROR\",\"x\":0,\"y\":4,\"width\":52,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":10,\"fontWeight\":\"700\",\"fill\":\"#FF6565\",\"textAlign\":\"center\",\"letterSpacing\":0.5}]}]},{\"id\":\"px365\",\"type\":\"frame\",\"x\":20,\"y\":604,\"width\":350,\"height\":76,\"fill\":\"transparent\",\"clip\":false,\"children\":[{\"id\":\"px359\",\"type\":\"frame\",\"x\":13,\"y\":0,\"width\":1,\"height\":76,\"fill\":\"#24243A\",\"clip\":false,\"children\":[]},{\"id\":\"px360\",\"type\":\"ellipse\",\"x\":10,\"y\":28,\"width\":7,\"height\":7,\"fill\":\"#3DFFC0\"},{\"id\":\"px361\",\"type\":\"text\",\"content\":\"09:11:00\",\"x\":28,\"y\":8,\"width\":80,\"height\":12,\"textGrowth\":\"fixed-width-height\",\"fontSize\":9,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"left\",\"letterSpacing\":0.5},{\"id\":\"px362\",\"type\":\"text\",\"content\":\"ORION\",\"x\":28,\"y\":22,\"width\":200,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":11,\"fontWeight\":\"700\",\"fill\":\"#3DFFC0\",\"textAlign\":\"left\",\"letterSpacing\":0.3},{\"id\":\"px363\",\"type\":\"text\",\"content\":\"Ticket #1278 resolved\",\"x\":28,\"y\":38,\"width\":310,\"height\":16,\"textGrowth\":\"fixed-width-height\",\"fontSize\":12,\"fontWeight\":\"500\",\"fill\":\"#F0F0FA\",\"textAlign\":\"left\"},{\"id\":\"px364\",\"type\":\"text\",\"content\":\"Subscription downgrade processed. Confirmation email sent.\",\"x\":28,\"y\":56,\"width\":310,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":10,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"left\",\"lineHeight\":1.4}]},{\"id\":\"px366\",\"type\":\"frame\",\"x\":13,\"y\":708,\"width\":1,\"height\":24,\"fill\":\"#24243A\",\"clip\":false,\"children\":[]},{\"id\":\"px367\",\"type\":\"frame\",\"x\":10,\"y\":730,\"width\":7,\"height\":7,\"fill\":\"#4A4A6844\",\"clip\":false,\"cornerRadius\":4,\"children\":[]},{\"id\":\"px368\",\"type\":\"text\",\"content\":\"Earlier entries...\",\"x\":28,\"y\":732,\"width\":200,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":10,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"left\"},{\"id\":\"px381\",\"type\":\"frame\",\"x\":0,\"y\":764,\"width\":390,\"height\":80,\"fill\":\"#111118\",\"clip\":false,\"children\":[{\"id\":\"px369\",\"type\":\"frame\",\"x\":0,\"y\":0,\"width\":390,\"height\":1,\"fill\":\"#24243A\",\"clip\":false,\"children\":[]},{\"id\":\"px370\",\"type\":\"text\",\"content\":\"⬡\",\"x\":28,\"y\":12,\"width\":44,\"height\":22,\"textGrowth\":\"fixed-width-height\",\"fontSize\":18,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"left\"},{\"id\":\"px371\",\"type\":\"text\",\"content\":\"Control\",\"x\":16,\"y\":36,\"width\":68,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":9,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"center\",\"letterSpacing\":0.5},{\"id\":\"px372\",\"type\":\"text\",\"content\":\"◈\",\"x\":102,\"y\":12,\"width\":44,\"height\":22,\"textGrowth\":\"fixed-width-height\",\"fontSize\":18,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"left\"},{\"id\":\"px373\",\"type\":\"text\",\"content\":\"Agents\",\"x\":90,\"y\":36,\"width\":68,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":9,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"center\",\"letterSpacing\":0.5},{\"id\":\"px374\",\"type\":\"text\",\"content\":\"◎\",\"x\":176,\"y\":12,\"width\":44,\"height\":22,\"textGrowth\":\"fixed-width-height\",\"fontSize\":18,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"left\"},{\"id\":\"px375\",\"type\":\"text\",\"content\":\"Tasks\",\"x\":164,\"y\":36,\"width\":68,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":9,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"center\",\"letterSpacing\":0.5},{\"id\":\"px376\",\"type\":\"frame\",\"x\":244,\"y\":6,\"width\":54,\"height\":54,\"fill\":\"#6B5EFF18\",\"clip\":false,\"cornerRadius\":27,\"children\":[]},{\"id\":\"px377\",\"type\":\"text\",\"content\":\"≡\",\"x\":250,\"y\":12,\"width\":44,\"height\":22,\"textGrowth\":\"fixed-width-height\",\"fontSize\":18,\"fontWeight\":\"400\",\"fill\":\"#6B5EFF\",\"textAlign\":\"left\"},{\"id\":\"px378\",\"type\":\"text\",\"content\":\"Log\",\"x\":238,\"y\":36,\"width\":68,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":9,\"fontWeight\":\"700\",\"fill\":\"#6B5EFF\",\"textAlign\":\"center\",\"letterSpacing\":0.5},{\"id\":\"px379\",\"type\":\"text\",\"content\":\"⊕\",\"x\":324,\"y\":12,\"width\":44,\"height\":22,\"textGrowth\":\"fixed-width-height\",\"fontSize\":18,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"left\"},{\"id\":\"px380\",\"type\":\"text\",\"content\":\"Deploy\",\"x\":312,\"y\":36,\"width\":68,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":9,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"center\",\"letterSpacing\":0.5}]}]},{\"id\":\"px464\",\"type\":\"frame\",\"x\":1960,\"y\":0,\"width\":390,\"height\":844,\"fill\":\"#0A0A0F\",\"clip\":false,\"children\":[{\"id\":\"px383\",\"type\":\"ellipse\",\"x\":-55,\"y\":-130,\"width\":500,\"height\":500,\"fill\":\"#6B5EFF05\"},{\"id\":\"px384\",\"type\":\"ellipse\",\"x\":15,\"y\":-60,\"width\":360,\"height\":360,\"fill\":\"#6B5EFF0C\"},{\"id\":\"px385\",\"type\":\"ellipse\",\"x\":95,\"y\":20,\"width\":200,\"height\":200,\"fill\":\"#6B5EFF16\"},{\"id\":\"px386\",\"type\":\"ellipse\",\"x\":145,\"y\":70,\"width\":100,\"height\":100,\"fill\":\"#6B5EFF28\"},{\"id\":\"px389\",\"type\":\"frame\",\"x\":0,\"y\":0,\"width\":390,\"height\":44,\"fill\":\"transparent\",\"clip\":false,\"children\":[{\"id\":\"px387\",\"type\":\"text\",\"content\":\"9:41\",\"x\":20,\"y\":14,\"width\":60,\"height\":16,\"textGrowth\":\"fixed-width-height\",\"fontSize\":13,\"fontWeight\":\"600\",\"fill\":\"#F0F0FA\",\"textAlign\":\"left\"},{\"id\":\"px388\",\"type\":\"text\",\"content\":\"●●●\",\"x\":290,\"y\":14,\"width\":80,\"height\":16,\"textGrowth\":\"fixed-width-height\",\"fontSize\":10,\"fontWeight\":\"400\",\"fill\":\"#F0F0FA\",\"textAlign\":\"right\"}]},{\"id\":\"px390\",\"type\":\"text\",\"content\":\"← Agents\",\"x\":20,\"y\":52,\"width\":120,\"height\":18,\"textGrowth\":\"fixed-width-height\",\"fontSize\":13,\"fontWeight\":\"600\",\"fill\":\"#6B5EFF\",\"textAlign\":\"left\"},{\"id\":\"px391\",\"type\":\"text\",\"content\":\"Deploy Agent\",\"x\":20,\"y\":78,\"width\":300,\"height\":28,\"textGrowth\":\"fixed-width-height\",\"fontSize\":22,\"fontWeight\":\"800\",\"fill\":\"#F0F0FA\",\"textAlign\":\"left\",\"letterSpacing\":-0.5},{\"id\":\"px392\",\"type\":\"text\",\"content\":\"Configure a new AI agent for your stack\",\"x\":20,\"y\":112,\"width\":320,\"height\":18,\"textGrowth\":\"fixed-width-height\",\"fontSize\":12,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"left\",\"lineHeight\":1.5},{\"id\":\"px393\",\"type\":\"ellipse\",\"x\":20,\"y\":138,\"width\":20,\"height\":20,\"fill\":\"#6B5EFF\",\"stroke\":{\"align\":\"inside\",\"thickness\":1,\"fill\":\"none\"}},{\"id\":\"px394\",\"type\":\"text\",\"content\":\"1\",\"x\":20,\"y\":138,\"width\":20,\"height\":20,\"textGrowth\":\"fixed-width-height\",\"fontSize\":10,\"fontWeight\":\"700\",\"fill\":\"#0A0A0F\",\"textAlign\":\"center\"},{\"id\":\"px395\",\"type\":\"frame\",\"x\":42,\"y\":147,\"width\":24,\"height\":2,\"fill\":\"#24243A\",\"clip\":false,\"cornerRadius\":1,\"children\":[]},{\"id\":\"px396\",\"type\":\"ellipse\",\"x\":64,\"y\":138,\"width\":20,\"height\":20,\"fill\":\"#181822\",\"stroke\":{\"align\":\"inside\",\"thickness\":1,\"fill\":\"#24243A\"}},{\"id\":\"px397\",\"type\":\"text\",\"content\":\"2\",\"x\":64,\"y\":138,\"width\":20,\"height\":20,\"textGrowth\":\"fixed-width-height\",\"fontSize\":10,\"fontWeight\":\"700\",\"fill\":\"#4A4A68\",\"textAlign\":\"center\"},{\"id\":\"px398\",\"type\":\"frame\",\"x\":86,\"y\":147,\"width\":24,\"height\":2,\"fill\":\"#24243A\",\"clip\":false,\"cornerRadius\":1,\"children\":[]},{\"id\":\"px399\",\"type\":\"ellipse\",\"x\":108,\"y\":138,\"width\":20,\"height\":20,\"fill\":\"#181822\",\"stroke\":{\"align\":\"inside\",\"thickness\":1,\"fill\":\"#24243A\"}},{\"id\":\"px400\",\"type\":\"text\",\"content\":\"3\",\"x\":108,\"y\":138,\"width\":20,\"height\":20,\"textGrowth\":\"fixed-width-height\",\"fontSize\":10,\"fontWeight\":\"700\",\"fill\":\"#4A4A68\",\"textAlign\":\"center\"},{\"id\":\"px401\",\"type\":\"text\",\"content\":\"IDENTITY\",\"x\":78,\"y\":142,\"width\":80,\"height\":12,\"textGrowth\":\"fixed-width-height\",\"fontSize\":8,\"fontWeight\":\"400\",\"fill\":\"#6B5EFF\",\"textAlign\":\"left\",\"letterSpacing\":1},{\"id\":\"px402\",\"type\":\"text\",\"content\":\"CAPABILITIES\",\"x\":122,\"y\":142,\"width\":90,\"height\":12,\"textGrowth\":\"fixed-width-height\",\"fontSize\":8,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"left\",\"letterSpacing\":1},{\"id\":\"px403\",\"type\":\"text\",\"content\":\"TRIGGERS\",\"x\":166,\"y\":142,\"width\":70,\"height\":12,\"textGrowth\":\"fixed-width-height\",\"fontSize\":8,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"left\",\"letterSpacing\":1},{\"id\":\"px404\",\"type\":\"frame\",\"x\":20,\"y\":168,\"width\":350,\"height\":1,\"fill\":\"#24243A\",\"clip\":false,\"children\":[]},{\"id\":\"px408\",\"type\":\"frame\",\"x\":20,\"y\":178,\"width\":350,\"height\":56,\"fill\":\"transparent\",\"clip\":false,\"children\":[{\"id\":\"px405\",\"type\":\"text\",\"content\":\"AGENT NAME\",\"x\":0,\"y\":0,\"width\":350,\"height\":12,\"textGrowth\":\"fixed-width-height\",\"fontSize\":9,\"fontWeight\":\"600\",\"fill\":\"#4A4A68\",\"textAlign\":\"left\",\"letterSpacing\":1.5},{\"id\":\"px407\",\"type\":\"frame\",\"x\":0,\"y\":16,\"width\":350,\"height\":32,\"fill\":\"#181822\",\"clip\":false,\"cornerRadius\":8,\"stroke\":{\"align\":\"inside\",\"thickness\":1,\"fill\":\"#6B5EFF44\"},\"children\":[{\"id\":\"px406\",\"type\":\"text\",\"content\":\"Sirius\",\"x\":12,\"y\":8,\"width\":326,\"height\":16,\"textGrowth\":\"fixed-width-height\",\"fontSize\":12,\"fontWeight\":\"400\",\"fill\":\"#F0F0FA\",\"textAlign\":\"left\"}]}]},{\"id\":\"px412\",\"type\":\"frame\",\"x\":20,\"y\":242,\"width\":350,\"height\":56,\"fill\":\"transparent\",\"clip\":false,\"children\":[{\"id\":\"px409\",\"type\":\"text\",\"content\":\"ROLE / FUNCTION\",\"x\":0,\"y\":0,\"width\":350,\"height\":12,\"textGrowth\":\"fixed-width-height\",\"fontSize\":9,\"fontWeight\":\"600\",\"fill\":\"#4A4A68\",\"textAlign\":\"left\",\"letterSpacing\":1.5},{\"id\":\"px411\",\"type\":\"frame\",\"x\":0,\"y\":16,\"width\":350,\"height\":32,\"fill\":\"#181822\",\"clip\":false,\"cornerRadius\":8,\"stroke\":{\"align\":\"inside\",\"thickness\":1,\"fill\":\"#6B5EFF44\"},\"children\":[{\"id\":\"px410\",\"type\":\"text\",\"content\":\"Sales Intelligence\",\"x\":12,\"y\":8,\"width\":326,\"height\":16,\"textGrowth\":\"fixed-width-height\",\"fontSize\":12,\"fontWeight\":\"400\",\"fill\":\"#F0F0FA\",\"textAlign\":\"left\"}]}]},{\"id\":\"px416\",\"type\":\"frame\",\"x\":20,\"y\":306,\"width\":350,\"height\":56,\"fill\":\"transparent\",\"clip\":false,\"children\":[{\"id\":\"px413\",\"type\":\"text\",\"content\":\"BASE MODEL\",\"x\":0,\"y\":0,\"width\":350,\"height\":12,\"textGrowth\":\"fixed-width-height\",\"fontSize\":9,\"fontWeight\":\"600\",\"fill\":\"#4A4A68\",\"textAlign\":\"left\",\"letterSpacing\":1.5},{\"id\":\"px415\",\"type\":\"frame\",\"x\":0,\"y\":16,\"width\":350,\"height\":32,\"fill\":\"#181822\",\"clip\":false,\"cornerRadius\":8,\"stroke\":{\"align\":\"inside\",\"thickness\":1,\"fill\":\"#6B5EFF44\"},\"children\":[{\"id\":\"px414\",\"type\":\"text\",\"content\":\"Claude Sonnet 4.5\",\"x\":12,\"y\":8,\"width\":326,\"height\":16,\"textGrowth\":\"fixed-width-height\",\"fontSize\":12,\"fontWeight\":\"400\",\"fill\":\"#F0F0FA\",\"textAlign\":\"left\"}]}]},{\"id\":\"px417\",\"type\":\"text\",\"content\":\"CAPABILITIES\",\"x\":20,\"y\":370,\"width\":200,\"height\":12,\"textGrowth\":\"fixed-width-height\",\"fontSize\":9,\"fontWeight\":\"600\",\"fill\":\"#4A4A68\",\"textAlign\":\"left\",\"letterSpacing\":2},{\"id\":\"px420\",\"type\":\"frame\",\"x\":20,\"y\":388,\"width\":160,\"height\":36,\"fill\":\"#6B5EFF18\",\"clip\":false,\"cornerRadius\":10,\"stroke\":{\"align\":\"inside\",\"thickness\":1,\"fill\":\"#6B5EFF55\"},\"children\":[{\"id\":\"px418\",\"type\":\"ellipse\",\"x\":12,\"y\":13,\"width\":10,\"height\":10,\"fill\":\"#6B5EFF\"},{\"id\":\"px419\",\"type\":\"text\",\"content\":\"Web browsing\",\"x\":28,\"y\":10,\"width\":120,\"height\":16,\"textGrowth\":\"fixed-width-height\",\"fontSize\":11,\"fontWeight\":\"600\",\"fill\":\"#F0F0FA\",\"textAlign\":\"left\"}]},{\"id\":\"px423\",\"type\":\"frame\",\"x\":188,\"y\":388,\"width\":160,\"height\":36,\"fill\":\"#6B5EFF18\",\"clip\":false,\"cornerRadius\":10,\"stroke\":{\"align\":\"inside\",\"thickness\":1,\"fill\":\"#6B5EFF55\"},\"children\":[{\"id\":\"px421\",\"type\":\"ellipse\",\"x\":12,\"y\":13,\"width\":10,\"height\":10,\"fill\":\"#6B5EFF\"},{\"id\":\"px422\",\"type\":\"text\",\"content\":\"Email access\",\"x\":28,\"y\":10,\"width\":120,\"height\":16,\"textGrowth\":\"fixed-width-height\",\"fontSize\":11,\"fontWeight\":\"600\",\"fill\":\"#F0F0FA\",\"textAlign\":\"left\"}]},{\"id\":\"px426\",\"type\":\"frame\",\"x\":20,\"y\":430,\"width\":160,\"height\":36,\"fill\":\"#6B5EFF18\",\"clip\":false,\"cornerRadius\":10,\"stroke\":{\"align\":\"inside\",\"thickness\":1,\"fill\":\"#6B5EFF55\"},\"children\":[{\"id\":\"px424\",\"type\":\"ellipse\",\"x\":12,\"y\":13,\"width\":10,\"height\":10,\"fill\":\"#6B5EFF\"},{\"id\":\"px425\",\"type\":\"text\",\"content\":\"CRM read\",\"x\":28,\"y\":10,\"width\":120,\"height\":16,\"textGrowth\":\"fixed-width-height\",\"fontSize\":11,\"fontWeight\":\"600\",\"fill\":\"#F0F0FA\",\"textAlign\":\"left\"}]},{\"id\":\"px429\",\"type\":\"frame\",\"x\":188,\"y\":430,\"width\":160,\"height\":36,\"fill\":\"#181822\",\"clip\":false,\"cornerRadius\":10,\"stroke\":{\"align\":\"inside\",\"thickness\":1,\"fill\":\"#24243A\"},\"children\":[{\"id\":\"px427\",\"type\":\"ellipse\",\"x\":12,\"y\":13,\"width\":10,\"height\":10,\"fill\":\"#4A4A68\"},{\"id\":\"px428\",\"type\":\"text\",\"content\":\"CRM write\",\"x\":28,\"y\":10,\"width\":120,\"height\":16,\"textGrowth\":\"fixed-width-height\",\"fontSize\":11,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"left\"}]},{\"id\":\"px432\",\"type\":\"frame\",\"x\":20,\"y\":472,\"width\":160,\"height\":36,\"fill\":\"#181822\",\"clip\":false,\"cornerRadius\":10,\"stroke\":{\"align\":\"inside\",\"thickness\":1,\"fill\":\"#24243A\"},\"children\":[{\"id\":\"px430\",\"type\":\"ellipse\",\"x\":12,\"y\":13,\"width\":10,\"height\":10,\"fill\":\"#4A4A68\"},{\"id\":\"px431\",\"type\":\"text\",\"content\":\"Slack messaging\",\"x\":28,\"y\":10,\"width\":120,\"height\":16,\"textGrowth\":\"fixed-width-height\",\"fontSize\":11,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"left\"}]},{\"id\":\"px435\",\"type\":\"frame\",\"x\":188,\"y\":472,\"width\":160,\"height\":36,\"fill\":\"#181822\",\"clip\":false,\"cornerRadius\":10,\"stroke\":{\"align\":\"inside\",\"thickness\":1,\"fill\":\"#24243A\"},\"children\":[{\"id\":\"px433\",\"type\":\"ellipse\",\"x\":12,\"y\":13,\"width\":10,\"height\":10,\"fill\":\"#4A4A68\"},{\"id\":\"px434\",\"type\":\"text\",\"content\":\"Calendar\",\"x\":28,\"y\":10,\"width\":120,\"height\":16,\"textGrowth\":\"fixed-width-height\",\"fontSize\":11,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"left\"}]},{\"id\":\"px436\",\"type\":\"text\",\"content\":\"OVERSIGHT LEVEL\",\"x\":20,\"y\":520,\"width\":200,\"height\":12,\"textGrowth\":\"fixed-width-height\",\"fontSize\":9,\"fontWeight\":\"600\",\"fill\":\"#4A4A68\",\"textAlign\":\"left\",\"letterSpacing\":2},{\"id\":\"px441\",\"type\":\"frame\",\"x\":20,\"y\":536,\"width\":350,\"height\":36,\"fill\":\"#181822\",\"clip\":false,\"cornerRadius\":10,\"stroke\":{\"align\":\"inside\",\"thickness\":1,\"fill\":\"#24243A\"},\"children\":[{\"id\":\"px437\",\"type\":\"frame\",\"x\":0,\"y\":0,\"width\":116,\"height\":36,\"fill\":\"#6B5EFF\",\"clip\":false,\"cornerRadius\":10,\"children\":[]},{\"id\":\"px438\",\"type\":\"text\",\"content\":\"SUPERVISED\",\"x\":0,\"y\":10,\"width\":116,\"height\":16,\"textGrowth\":\"fixed-width-height\",\"fontSize\":10,\"fontWeight\":\"700\",\"fill\":\"#0A0A0F\",\"textAlign\":\"center\",\"letterSpacing\":0.5},{\"id\":\"px439\",\"type\":\"text\",\"content\":\"SEMI-AUTO\",\"x\":120,\"y\":10,\"width\":110,\"height\":16,\"textGrowth\":\"fixed-width-height\",\"fontSize\":10,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"center\"},{\"id\":\"px440\",\"type\":\"text\",\"content\":\"AUTONOMOUS\",\"x\":234,\"y\":10,\"width\":114,\"height\":16,\"textGrowth\":\"fixed-width-height\",\"fontSize\":10,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"center\"}]},{\"id\":\"px447\",\"type\":\"frame\",\"x\":20,\"y\":590,\"width\":350,\"height\":54,\"fill\":\"#6B5EFF\",\"clip\":false,\"cornerRadius\":14,\"children\":[{\"id\":\"px442\",\"type\":\"ellipse\",\"x\":25,\"y\":-123,\"width\":300,\"height\":300,\"fill\":\"#FFFFFF05\"},{\"id\":\"px443\",\"type\":\"ellipse\",\"x\":67,\"y\":-81,\"width\":216,\"height\":216,\"fill\":\"#FFFFFF0C\"},{\"id\":\"px444\",\"type\":\"ellipse\",\"x\":115,\"y\":-33,\"width\":120,\"height\":120,\"fill\":\"#FFFFFF16\"},{\"id\":\"px445\",\"type\":\"ellipse\",\"x\":145,\"y\":-3,\"width\":60,\"height\":60,\"fill\":\"#FFFFFF28\"},{\"id\":\"px446\",\"type\":\"text\",\"content\":\"DEPLOY SIRIUS\",\"x\":0,\"y\":15,\"width\":350,\"height\":24,\"textGrowth\":\"fixed-width-height\",\"fontSize\":14,\"fontWeight\":\"900\",\"fill\":\"#0A0A0F\",\"textAlign\":\"center\",\"letterSpacing\":2}]},{\"id\":\"px450\",\"type\":\"frame\",\"x\":20,\"y\":652,\"width\":350,\"height\":56,\"fill\":\"#FF656510\",\"clip\":false,\"cornerRadius\":10,\"stroke\":{\"align\":\"inside\",\"thickness\":1,\"fill\":\"#FF656530\"},\"children\":[{\"id\":\"px448\",\"type\":\"text\",\"content\":\"⚠\",\"x\":14,\"y\":18,\"width\":20,\"height\":20,\"textGrowth\":\"fixed-width-height\",\"fontSize\":14,\"fontWeight\":\"400\",\"fill\":\"#FF6565\",\"textAlign\":\"left\"},{\"id\":\"px449\",\"type\":\"text\",\"content\":\"Supervised mode: all agent actions\\nrequire your approval before execution.\",\"x\":38,\"y\":10,\"width\":298,\"height\":36,\"textGrowth\":\"fixed-width-height\",\"fontSize\":11,\"fontWeight\":\"400\",\"fill\":\"#FF6565\",\"textAlign\":\"left\",\"lineHeight\":1.5}]},{\"id\":\"px463\",\"type\":\"frame\",\"x\":0,\"y\":764,\"width\":390,\"height\":80,\"fill\":\"#111118\",\"clip\":false,\"children\":[{\"id\":\"px451\",\"type\":\"frame\",\"x\":0,\"y\":0,\"width\":390,\"height\":1,\"fill\":\"#24243A\",\"clip\":false,\"children\":[]},{\"id\":\"px452\",\"type\":\"text\",\"content\":\"⬡\",\"x\":28,\"y\":12,\"width\":44,\"height\":22,\"textGrowth\":\"fixed-width-height\",\"fontSize\":18,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"left\"},{\"id\":\"px453\",\"type\":\"text\",\"content\":\"Control\",\"x\":16,\"y\":36,\"width\":68,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":9,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"center\",\"letterSpacing\":0.5},{\"id\":\"px454\",\"type\":\"text\",\"content\":\"◈\",\"x\":102,\"y\":12,\"width\":44,\"height\":22,\"textGrowth\":\"fixed-width-height\",\"fontSize\":18,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"left\"},{\"id\":\"px455\",\"type\":\"text\",\"content\":\"Agents\",\"x\":90,\"y\":36,\"width\":68,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":9,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"center\",\"letterSpacing\":0.5},{\"id\":\"px456\",\"type\":\"text\",\"content\":\"◎\",\"x\":176,\"y\":12,\"width\":44,\"height\":22,\"textGrowth\":\"fixed-width-height\",\"fontSize\":18,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"left\"},{\"id\":\"px457\",\"type\":\"text\",\"content\":\"Tasks\",\"x\":164,\"y\":36,\"width\":68,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":9,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"center\",\"letterSpacing\":0.5},{\"id\":\"px458\",\"type\":\"text\",\"content\":\"≡\",\"x\":250,\"y\":12,\"width\":44,\"height\":22,\"textGrowth\":\"fixed-width-height\",\"fontSize\":18,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"left\"},{\"id\":\"px459\",\"type\":\"text\",\"content\":\"Log\",\"x\":238,\"y\":36,\"width\":68,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":9,\"fontWeight\":\"400\",\"fill\":\"#4A4A68\",\"textAlign\":\"center\",\"letterSpacing\":0.5},{\"id\":\"px460\",\"type\":\"frame\",\"x\":318,\"y\":6,\"width\":54,\"height\":54,\"fill\":\"#6B5EFF18\",\"clip\":false,\"cornerRadius\":27,\"children\":[]},{\"id\":\"px461\",\"type\":\"text\",\"content\":\"⊕\",\"x\":324,\"y\":12,\"width\":44,\"height\":22,\"textGrowth\":\"fixed-width-height\",\"fontSize\":18,\"fontWeight\":\"400\",\"fill\":\"#6B5EFF\",\"textAlign\":\"left\"},{\"id\":\"px462\",\"type\":\"text\",\"content\":\"Deploy\",\"x\":312,\"y\":36,\"width\":68,\"height\":14,\"textGrowth\":\"fixed-width-height\",\"fontSize\":9,\"fontWeight\":\"700\",\"fill\":\"#6B5EFF\",\"textAlign\":\"center\",\"letterSpacing\":0.5}]}]}]}";</script>
+<script>
+// ═══════════════════════════════════════════════════════════════════
+//  CANVAS RENDERER ENGINE
+// ═══════════════════════════════════════════════════════════════════
+const SCALE = 0.55;          // default (phones); overridden per-screen via window._PV_SCALE
+const PHONE_W = 375;
+const PHONE_H = 812;
+// Use dynamic scale when rendering (set per-screen in renderPen)
+function S() { return window._PV_SCALE || SCALE; }
+
+function hexToRgb(hex) {
+  if (!hex || typeof hex !== 'string') return null;
+  hex = hex.replace('#', '');
+  if (hex.length === 3) hex = hex.split('').map(c => c+c).join('');
+  if (hex.length !== 6) return null;
+  const n = parseInt(hex, 16);
+  return { r: (n>>16)&255, g: (n>>8)&255, b: n&255 };
+}
+
+// resolveVar: unwrap a $variable reference to its raw fill value
+function resolveVar(fill, vars) {
+  if (typeof fill === 'string' && fill.startsWith('$') && vars) {
+    const key = fill.slice(1);
+    const v = vars[key];
+    return (v && (v.value || v)) || fill;
+  }
+  return fill;
+}
+
+// resolveColor: returns a single CSS color string (for text/stroke use)
+function resolveColor(fill, vars) {
+  if (!fill) return null;
+  if (Array.isArray(fill)) {
+    for (const f of fill) {
+      const c = resolveColor(f, vars);
+      if (c && c !== 'rgba(0,0,0,0)') return c;
+    }
+    return null;
+  }
+  fill = resolveVar(fill, vars);
+  if (typeof fill === 'string') {
+    if (fill.startsWith('#') || fill.startsWith('rgb') || fill === 'transparent') return fill;
+    return null;
+  }
+  if (typeof fill === 'object' && fill !== null) {
+    if (fill.type === 'color' || fill.type === 'solid') {
+      const hex = fill.color || fill.value || '#cccccc';
+      const op = fill.opacity !== undefined ? fill.opacity : 1;
+      if (op === 0) return 'rgba(0,0,0,0)';
+      const rgb = hexToRgb(hex);
+      return rgb ? `rgba(${rgb.r},${rgb.g},${rgb.b},${op})` : hex;
+    }
+    if (fill.type === 'gradient') {
+      const colors = fill.colors || fill.stops || [];
+      return colors[0]?.color || '#e5e7eb';
+    }
+    if (fill.color) {
+      const op = fill.opacity !== undefined ? fill.opacity : 1;
+      const rgb = hexToRgb(fill.color);
+      return rgb ? `rgba(${rgb.r},${rgb.g},${rgb.b},${op})` : fill.color;
+    }
+  }
+  return null;
+}
+
+// applyFillLayer: sets ctx.fillStyle for one fill layer; returns true if fill was applied.
+// Supports solid colors, linear gradients, and radial gradients.
+function applyFillLayer(ctx, fill, vars, nx, ny, nws, nhs) {
+  if (!fill) return false;
+  fill = resolveVar(fill, vars);
+
+  if (typeof fill === 'string') {
+    if (fill.startsWith('#') || fill.startsWith('rgb')) { ctx.fillStyle = fill; return true; }
+    return false;
+  }
+  if (typeof fill !== 'object' || !fill) return false;
+
+  if (fill.type === 'color' || fill.type === 'solid') {
+    const hex = fill.color || fill.value || '#cccccc';
+    const op  = fill.opacity !== undefined ? fill.opacity : 1;
+    if (op === 0) return false;
+    const rgb = hexToRgb(hex);
+    ctx.fillStyle = rgb ? `rgba(${rgb.r},${rgb.g},${rgb.b},${op})` : hex;
+    return true;
+  }
+
+  if (fill.type === 'gradient') {
+    const colors = fill.colors || fill.stops || [];
+    if (!colors.length) return false;
+    try {
+      let grad;
+      if (fill.gradientType === 'radial') {
+        // center defaults to middle of shape
+        const cx = fill.center ? (nx + fill.center.x * nws) : (nx + nws / 2);
+        const cy = fill.center ? (ny + fill.center.y * nhs) : (ny + nhs / 2);
+        const rw = fill.size?.width  != null ? fill.size.width  * nws : nws;
+        const rh = fill.size?.height != null ? fill.size.height * nhs : nhs;
+        grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, Math.max(rw, rh) / 2);
+      } else {
+        // Linear gradient — rotation in degrees (0 = top-to-bottom in CSS, -90 = left-to-right)
+        const angle = ((fill.rotation || 0) - 90) * Math.PI / 180;
+        const cx = nx + nws / 2, cy = ny + nhs / 2;
+        const d  = Math.sqrt(nws * nws + nhs * nhs) / 2;
+        grad = ctx.createLinearGradient(
+          cx - Math.cos(angle) * d, cy - Math.sin(angle) * d,
+          cx + Math.cos(angle) * d, cy + Math.sin(angle) * d
+        );
+      }
+      for (const stop of colors) {
+        grad.addColorStop(Math.max(0, Math.min(1, stop.position ?? stop.offset ?? 0)), stop.color || '#000');
+      }
+      ctx.fillStyle = grad;
+      return true;
+    } catch (e) { return false; }
+  }
+
+  // Plain {color, opacity} shorthand (pencil.dev native)
+  if (fill.color) {
+    const op  = fill.opacity !== undefined ? fill.opacity : 1;
+    if (op === 0) return false;
+    const rgb = hexToRgb(fill.color);
+    ctx.fillStyle = rgb ? `rgba(${rgb.r},${rgb.g},${rgb.b},${op})` : fill.color;
+    return true;
+  }
+  return false;
+}
+
+// effectiveLayout: infer layout direction when not explicitly set.
+// Pencil.dev files sometimes omit `layout` on horizontal frames that have gap/alignItems.
+function effectiveLayout(node) {
+  if (node.layout) return node.layout;
+  const children = node.children || [];
+  const hasFillChild = children.some(c => c.width === 'fill_container' || c.height === 'fill_container');
+  const hasAutoProps  = node.gap != null || node.alignItems;
+  return (hasFillChild || hasAutoProps) ? 'horizontal' : 'none';
+}
+
+function parsePadding(padding) {
+  if (!padding && padding !== 0) return { t:0, r:0, b:0, l:0 };
+  if (typeof padding === 'number') return { t:padding, r:padding, b:padding, l:padding };
+  if (Array.isArray(padding)) {
+    if (padding.length === 2) return { t:padding[0], r:padding[1], b:padding[0], l:padding[1] };
+    if (padding.length === 4) return { t:padding[0], r:padding[1], b:padding[2], l:padding[3] };
+  }
+  return { t:0, r:0, b:0, l:0 };
+}
+
+function rRect(ctx, x, y, w, h, r) {
+  r = Math.min(Math.abs(r||0), Math.abs(w/2), Math.abs(h/2));
+  ctx.beginPath();
+  ctx.moveTo(x+r, y);    ctx.lineTo(x+w-r, y);
+  ctx.quadraticCurveTo(x+w, y, x+w, y+r);
+  ctx.lineTo(x+w, y+h-r);
+  ctx.quadraticCurveTo(x+w, y+h, x+w-r, y+h);
+  ctx.lineTo(x+r, y+h);
+  ctx.quadraticCurveTo(x, y+h, x, y+h-r);
+  ctx.lineTo(x, y+r);
+  ctx.quadraticCurveTo(x, y, x+r, y);
+  ctx.closePath();
+}
+
+function rEllipse(ctx, x, y, w, h) {
+  ctx.beginPath();
+  ctx.ellipse(x + w/2, y + h/2, w/2, h/2, 0, 0, Math.PI * 2);
+  ctx.closePath();
+}
+
+function fillTextMultiline(ctx, text, x, y, maxW, lineH) {
+  const lines = text.split('\n');
+  let ly = y;
+  for (const rawLine of lines) {
+    if (maxW <= 0) { ctx.fillText(rawLine, x, ly); ly += lineH; continue; }
+    // Word-wrap within maxW
+    const words = rawLine.split(' ');
+    let line = '';
+    for (const word of words) {
+      const test = line ? line + ' ' + word : word;
+      if (ctx.measureText(test).width > maxW && line) {
+        ctx.fillText(line, x, ly, maxW);
+        line = word;
+        ly += lineH;
+      } else {
+        line = test;
+      }
+    }
+    if (line) { ctx.fillText(line, x, ly, maxW); ly += lineH; }
+  }
+}
+
+// ── SVG text helpers ──
+function escXml(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function svgTextLines(text, maxW, fontSize) {
+  const paras = text.split('\n');
+  if (maxW <= 0) return paras;
+  const avgCW = fontSize * 0.55;
+  const maxCh = Math.max(Math.floor(maxW / avgCW), 1);
+  const out = [];
+  for (const para of paras) {
+    if (para.length <= maxCh) { out.push(para); continue; }
+    const words = para.split(' ');
+    let line = '';
+    for (const word of words) {
+      const test = line ? line + ' ' + word : word;
+      if (test.length > maxCh && line) { out.push(line); line = word; }
+      else line = test;
+    }
+    if (line) out.push(line);
+  }
+  return out;
+}
+
+function measureNode(node) {
+  const w = typeof node.width  === 'number' ? node.width  :
+            node.width  === 'fill_container' ? 200 : 80;
+  if (node.height === 'fill_container') return { w, h: 200 };
+  if (typeof node.height === 'number' && node.height > 0) return { w, h: node.height };
+  if (node.type === 'text') return { w, h: (node.fontSize || 14) + 8 };
+  if (node.children && node.children.length && node.layout) {
+    const pad = parsePadding(node.padding);
+    const gap = node.gap || 0;
+    const isH = node.layout === 'horizontal';
+    const sizes = node.children.map(measureNode);
+    if (isH) {
+      return { w, h: pad.t + Math.max(...sizes.map(s => s.h), 0) + pad.b };
+    } else {
+      const totalH = sizes.reduce((s, m) => s + m.h, 0) + gap * Math.max(sizes.length - 1, 0);
+      return { w, h: pad.t + totalH + pad.b };
+    }
+  }
+  return { w, h: 30 };
+}
+
+function drawNode(ctx, node, vars, ox, oy, clipW, clipH) {
+  if (!node || !node.type) return;
+
+  const FRAME_LIKE = new Set(['frame','group','component','instance','component-set']);
+  const nodeType = FRAME_LIKE.has(node.type) ? 'frame' : node.type;
+
+  const sc = S(); // scale factor — DO NOT shadow this name
+
+  // Resolve width/height — 'fill_container' uses the clipped space from parent
+  const nw = typeof node.width  === 'number' ? node.width  :
+             node.width  === 'fill_container' ? (clipW || 0) : (clipW || 80);
+  const nh = typeof node.height === 'number' ? node.height :
+             node.height === 'fill_container' ? (clipH || 0) : measureNode(node).h;
+
+  const nx  = (ox + (node.x||0)) * sc;
+  const ny  = (oy + (node.y||0)) * sc;
+  const nws = nw * sc;
+  const nhs = nh * sc;
+  const cr  = (node.cornerRadius||0) * sc;
+
+  ctx.save();
+
+  // ── Opacity ──
+  if (typeof node.opacity === 'number' && node.opacity < 1) {
+    ctx.globalAlpha = (ctx.globalAlpha || 1) * node.opacity;
+  }
+
+  // ── Drop shadow ──
+  const effect = Array.isArray(node.effects) ? node.effects[0] : node.effect;
+  if (effect && nodeType !== 'text') {
+    if (effect.type === 'shadow' || effect.type === 'drop-shadow') {
+      ctx.shadowColor    = resolveColor(effect.color, vars) || 'rgba(0,0,0,0.15)';
+      ctx.shadowBlur     = (effect.blur      || 8) * sc;
+      ctx.shadowOffsetX  = (effect.offset?.x || 0) * sc;
+      ctx.shadowOffsetY  = (effect.offset?.y || 3) * sc;
+    }
+  }
+
+  // ── Shape path helper ──
+  const isEllipse = node.type === 'ellipse';
+  function shapePath() {
+    if (isEllipse) rEllipse(ctx, nx, ny, nws, nhs);
+    else           rRect(ctx, nx, ny, nws, nhs, cr);
+  }
+
+  // ── Fill (supports layered array fills + real gradients) ──
+  if (nws > 0 && nhs > 0 && nodeType !== 'text') {
+    const fills = Array.isArray(node.fill) ? node.fill : (node.fill ? [node.fill] : []);
+    for (const fillItem of fills) {
+      if (applyFillLayer(ctx, fillItem, vars, nx, ny, nws, nhs)) {
+        shapePath();
+        ctx.fill();
+      }
+    }
+  }
+
+  // Clear shadow so it doesn't affect stroke/text
+  ctx.shadowColor = 'transparent'; ctx.shadowBlur = 0;
+  ctx.shadowOffsetX = 0; ctx.shadowOffsetY = 0;
+
+  // ── Stroke ──
+  const stroke = node.stroke || node.border;
+  if (stroke?.fill) {
+    const strokeColor = resolveColor(stroke.fill, vars); // NOTE: renamed from sc to avoid collision
+    if (strokeColor) {
+      ctx.strokeStyle = strokeColor;
+      ctx.lineWidth   = Math.max((stroke.thickness || stroke.width || 1) * sc, 0.5);
+      shapePath();
+      ctx.stroke();
+    }
+  }
+
+  // ── Text ──
+  // Support both node.text (pencil.dev / our pen format) and node.content (legacy)
+  const _textVal = node.text || node.content;
+  if (node.type === 'text' && _textVal) {
+    const fs    = (node.fontSize || 14) * sc;
+    const fw    = node.fontWeight || '400';
+    const lh    = node.lineHeight ? fs * node.lineHeight : fs * 1.4;
+    const ls    = node.letterSpacing || 0;
+    ctx.font          = `${fw} ${fs}px Inter, -apple-system, sans-serif`;
+    ctx.letterSpacing = (ls * sc) + 'px';
+    ctx.fillStyle     = resolveColor(node.fill, vars) || '#111827';
+    ctx.textBaseline  = 'middle';
+    const align = node.textAlign || 'left';
+    ctx.textAlign = align;
+    let tx = nx;
+    if (align === 'center' && nws > 0) tx = nx + nws / 2;
+    else if (align === 'right'  && nws > 0) tx = nx + nws;
+    const maxW       = nws > 0 ? nws : (clipW ? clipW * sc : 400 * sc);
+    const hasNewline = _textVal.includes('\n');
+    const needsWrap  = hasNewline || node.lineHeight || (_textVal.length > 30 && nws > 0);
+    if (needsWrap) {
+      ctx.textBaseline = 'top';
+      fillTextMultiline(ctx, _textVal, tx, ny + 2, maxW, lh);
+    } else {
+      ctx.fillText(_textVal, tx, ny + nhs / 2, maxW);
+    }
+    ctx.letterSpacing = '0px';
+    ctx.restore();
+    return;
+  }
+
+  if (isEllipse) { ctx.restore(); return; }
+
+  // ── Children layout ──
+  if (node.children?.length) {
+    const pad   = parsePadding(node.padding);
+    const gap   = node.gap || 0;
+    const jc    = node.justifyContent || 'start';
+    const ai    = node.alignItems    || 'start';
+    const innerW = nw - pad.l - pad.r;
+    const innerH = nh - pad.t - pad.b;
+    const layout = effectiveLayout(node);
+
+    const shouldClip = nodeType === 'frame' && node.clipsContent === true;
+    if (shouldClip) {
+      ctx.save();
+      rRect(ctx, nx, ny, nws, nhs, cr);
+      ctx.clip();
+    }
+
+    if (layout === 'none') {
+      node.children.forEach(child => {
+        drawNode(ctx, child, vars, ox + (node.x||0), oy + (node.y||0), innerW, innerH);
+      });
+    } else {
+      const children = node.children;
+      const isH = layout === 'horizontal';
+
+      // ── Size calculation with fill_container support ──
+      let fixedMain = 0, fillCount = 0;
+      const rawSizes = children.map(child => {
+        const wFill = child.width  === 'fill_container';
+        const hFill = child.height === 'fill_container';
+        const mw = typeof child.width  === 'number' ? child.width  : measureNode(child).w;
+        const mh = typeof child.height === 'number' ? child.height : measureNode(child).h;
+        if (isH ? wFill : hFill) fillCount++;
+        else fixedMain += isH ? mw : mh;
+        return { mw, mh, wFill, hFill };
+      });
+      const totalGaps = gap * (children.length - 1);
+      const availMain = isH ? innerW : innerH;
+      const fillSize  = fillCount > 0 ? Math.max((availMain - fixedMain - totalGaps) / fillCount, 0) : 0;
+      const sizes = rawSizes.map(({ mw, mh, wFill, hFill }) => ({
+        w: wFill ? (isH ? fillSize : innerW) : mw,
+        h: hFill ? (isH ? innerH : fillSize) : mh,
+      }));
+
+      const totalMain = sizes.reduce((s, m) => s + (isH ? m.w : m.h), 0) + totalGaps;
+      let cursor = isH ? pad.l : pad.t;
+      if (jc === 'center') cursor += (availMain - totalMain) / 2;
+      else if (jc === 'end') cursor += availMain - totalMain;
+
+      const spaceGap = jc === 'space_between' && children.length > 1
+        ? (availMain - sizes.reduce((s, m) => s + (isH ? m.w : m.h), 0)) / (children.length - 1)
+        : gap;
+
+      children.forEach((child, i) => {
+        const { w: cw, h: ch } = sizes[i];
+        const crossAvail = isH ? innerH : innerW;
+        const crossSize  = isH ? ch     : cw;
+        let crossOff     = isH ? pad.t  : pad.l;
+        if      (ai === 'center') crossOff += (crossAvail - crossSize) / 2;
+        else if (ai === 'end')    crossOff += crossAvail - crossSize;
+
+        if (isH) {
+          drawNode(ctx, child, vars,
+            ox + (node.x||0) + cursor   - (child.x||0),
+            oy + (node.y||0) + crossOff - (child.y||0),
+            cw, ch);
+        } else {
+          drawNode(ctx, child, vars,
+            ox + (node.x||0) + crossOff - (child.x||0),
+            oy + (node.y||0) + cursor   - (child.y||0),
+            cw, ch);
+        }
+        cursor += (isH ? cw : ch) + spaceGap;
+      });
+    }
+
+    if (shouldClip) ctx.restore();
+  }
+
+  ctx.restore();
+}
+
+function renderPen(doc, container) {
+  container.innerHTML = '';
+  const vars = doc.variables || {};
+  const screens = doc.children || [];
+
+  screens.forEach((screen, i) => {
+    const sw = screen.width  || PHONE_W;
+    const sh = screen.height || PHONE_H;
+
+    // Auto-scale: phone-sized ≤ 430px use SCALE, larger designs cap at 700px wide
+    const MAX_PX = 700;
+    const scale = sw <= 430 ? SCALE : Math.min(SCALE, MAX_PX / sw);
+    const cw = Math.round(sw * scale);
+    const ch = Math.round(sh * scale);
+
+    // Phone-style rounded frame only for narrow mobile screens
+    const isPhone = sw <= 430;
+
+    const wrapper = document.createElement('div');
+    wrapper.className = 'screen-wrapper';
+
+    const nameEl = document.createElement('div');
+    nameEl.className = 'screen-name';
+    nameEl.textContent = screen.name || `Screen ${i+1}`;
+
+    const frame = document.createElement('div');
+    frame.className = 'screen-frame';
+    frame.style.width  = cw + 'px';
+    frame.style.height = ch + 'px';
+    if (!isPhone) {
+      // Desktop — flat card style instead of phone bezel
+      frame.style.borderRadius = '12px';
+      frame.style.boxShadow = '0 8px 40px rgba(0,0,0,.5)';
+    }
+
+    const canvas = document.createElement('canvas');
+    canvas.width  = cw;
+    canvas.height = ch;
+    const ctx = canvas.getContext('2d');
+    ctx.imageSmoothingEnabled = true;
+    ctx.imageSmoothingQuality = 'high';
+
+    // Background safety fill
+    ctx.fillStyle = resolveColor(screen.fill, vars) || '#f9fafb';
+    ctx.fillRect(0, 0, cw, ch);
+
+    // Render with per-screen error resilience — override SCALE locally
+    const savedScale = window._PV_SCALE;
+    window._PV_SCALE = scale;
+    try {
+      drawNode(ctx, screen, vars, -(screen.x||0), -(screen.y||0), sw, sh);
+    } catch(err) {
+      // Draw error overlay on the canvas
+      ctx.fillStyle = 'rgba(239,68,68,0.08)';
+      ctx.fillRect(0, 0, cw, ch);
+      ctx.fillStyle = '#ef4444';
+      ctx.font = `600 ${Math.round(scale * 13)}px Inter, sans-serif`;
+      ctx.textBaseline = 'top';
+      ctx.fillText('Render error: ' + err.message, 8, 8, cw - 16);
+    }
+    window._PV_SCALE = savedScale;
+
+    const numEl = document.createElement('div');
+    numEl.className = 'screen-num';
+    numEl.textContent = `${i+1} / ${screens.length}`;
+
+    frame.appendChild(canvas);
+    wrapper.appendChild(nameEl);
+    wrapper.appendChild(frame);
+    wrapper.appendChild(numEl);
+    container.appendChild(wrapper);
+  });
+}
+
+// ═══════════════════════════════════════════════════════════════════
+//  SVG RENDERER ENGINE
+// ═══════════════════════════════════════════════════════════════════
+
+// Generates a self-contained SVG string for one screen.
+// Returns { svgStr, cw, ch, isPhone, name }.
+function generateScreenSVG(screen, vars, screenIdx) {
+  const sw = screen.width  || PHONE_W;
+  const sh = screen.height || PHONE_H;
+  const scale = sw <= 430 ? SCALE : Math.min(SCALE, 700 / sw);
+  const cw = Math.round(sw * scale);
+  const ch = Math.round(sh * scale);
+  const isPhone = sw <= 430;
+
+  // Per-screen defs accumulator (gradients, clipPaths, filters)
+  const defs = [];
+  let uid = 0;
+  const nid = () => `s${screenIdx}e${uid++}`;
+
+  // Resolve a fill value to an SVG paint string (hex / rgba / url(#id)).
+  function getFill(fill, x, y, w, h) {
+    fill = resolveVar(fill, vars);
+    if (!fill) return null;
+    if (typeof fill === 'string') {
+      if (fill.startsWith('#') || fill.startsWith('rgb') || fill === 'transparent') return fill;
+      return null;
+    }
+    if (typeof fill !== 'object') return null;
+
+    if (fill.type === 'color' || fill.type === 'solid') {
+      const hex = fill.color || fill.value || '#cccccc';
+      const op  = fill.opacity !== undefined ? fill.opacity : 1;
+      if (op === 0) return null;
+      const rgb = hexToRgb(hex);
+      return rgb ? `rgba(${rgb.r},${rgb.g},${rgb.b},${op})` : hex;
+    }
+
+    if (fill.type === 'gradient') {
+      const colors = fill.colors || fill.stops || [];
+      if (!colors.length) return null;
+      const id = nid();
+      const stops = colors.map(s =>
+        `<stop offset="${Math.round((s.position ?? s.offset ?? 0) * 100)}%" stop-color="${s.color || '#000'}"/>`
+      ).join('');
+      if (fill.gradientType === 'radial') {
+        const cx = fill.center ? (x + fill.center.x * w) : (x + w / 2);
+        const cy = fill.center ? (y + fill.center.y * h) : (y + h / 2);
+        const rw = fill.size?.width  != null ? fill.size.width  * w : w;
+        const rh = fill.size?.height != null ? fill.size.height * h : h;
+        defs.push(`<radialGradient id="${id}" cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="${(Math.max(rw,rh)/2).toFixed(1)}" gradientUnits="userSpaceOnUse">${stops}</radialGradient>`);
+      } else {
+        const ang = ((fill.rotation || 0) - 90) * Math.PI / 180;
+        const cx = x + w / 2, cy = y + h / 2;
+        const d  = Math.sqrt(w * w + h * h) / 2;
+        defs.push(`<linearGradient id="${id}" x1="${(cx-Math.cos(ang)*d).toFixed(1)}" y1="${(cy-Math.sin(ang)*d).toFixed(1)}" x2="${(cx+Math.cos(ang)*d).toFixed(1)}" y2="${(cy+Math.sin(ang)*d).toFixed(1)}" gradientUnits="userSpaceOnUse">${stops}</linearGradient>`);
+      }
+      return `url(#${id})`;
+    }
+
+    if (fill.color) {
+      const op  = fill.opacity !== undefined ? fill.opacity : 1;
+      if (op === 0) return null;
+      const rgb = hexToRgb(fill.color);
+      return rgb ? `rgba(${rgb.r},${rgb.g},${rgb.b},${op})` : fill.color;
+    }
+    return null;
+  }
+
+  // Recursive SVG node renderer. Returns SVG markup string.
+  function nSVG(node, ox, oy, clipW, clipH) {
+    if (!node || !node.type) return '';
+    const FRAME_LIKE = new Set(['frame','group','component','instance','component-set']);
+    const nodeType = FRAME_LIKE.has(node.type) ? 'frame' : node.type;
+
+    const nw = typeof node.width  === 'number' ? node.width  :
+               node.width  === 'fill_container' ? (clipW || 0) : (clipW || 80);
+    const nh = typeof node.height === 'number' ? node.height :
+               node.height === 'fill_container' ? (clipH || 0) : measureNode(node).h;
+
+    const x  = ox + (node.x || 0);
+    const y  = oy + (node.y || 0);
+    const cr = node.cornerRadius || 0;
+    const rxA = cr > 0 ? ` rx="${cr}"` : '';
+
+    // Drop shadow → SVG feDropShadow filter
+    let fltA = '';
+    const eff = Array.isArray(node.effects) ? node.effects[0] : node.effect;
+    if (eff && nodeType !== 'text' && (eff.type === 'shadow' || eff.type === 'drop-shadow')) {
+      const fid = nid();
+      const sc2 = resolveColor(eff.color, vars) || 'rgba(0,0,0,0.25)';
+      defs.push(`<filter id="${fid}" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="${(eff.offset?.x||0).toFixed(1)}" dy="${(eff.offset?.y||3).toFixed(1)}" stdDeviation="${((eff.blur||8)/2).toFixed(1)}" flood-color="${sc2}"/></filter>`);
+      fltA = ` filter="url(#${fid})"`;
+    }
+
+    // ── Text node ──
+    // Support both node.text (pencil.dev / our pen format) and node.content (legacy)
+    const _tv = node.text || node.content;
+    if (node.type === 'text' && _tv) {
+      const fs  = node.fontSize || 14;
+      const fw  = node.fontWeight || '400';
+      const lh  = node.lineHeight ? fs * node.lineHeight : fs * 1.4;
+      const col = resolveColor(node.fill, vars) || '#111827';
+      const aln = node.textAlign || 'left';
+      const ls  = node.letterSpacing ? ` letter-spacing="${node.letterSpacing}"` : '';
+      let tx = x, anchor = 'start';
+      if (aln === 'center') { tx = x + nw / 2; anchor = 'middle'; }
+      else if (aln === 'right') { tx = x + nw; anchor = 'end'; }
+      const maxW = nw > 0 ? nw : (clipW || 400);
+      const needsWrap = _tv.includes('\n') || node.lineHeight || (_tv.length > 30 && nw > 0);
+      if (needsWrap) {
+        const lines = svgTextLines(_tv, maxW, fs);
+        const tspans = lines.map((ln, idx) =>
+          `<tspan x="${tx.toFixed(1)}" dy="${(idx === 0 ? fs * 0.85 : lh).toFixed(1)}">${escXml(ln)}</tspan>`
+        ).join('');
+        return `<text x="${tx.toFixed(1)}" y="${y.toFixed(1)}" font-family="Inter,-apple-system,sans-serif" font-size="${fs}" font-weight="${fw}" fill="${col}" text-anchor="${anchor}"${ls}>${tspans}</text>`;
+      } else {
+        const ty = (nh > 0 ? y + nh * 0.5 + fs * 0.36 : y + fs).toFixed(1);
+        return `<text x="${tx.toFixed(1)}" y="${ty}" font-family="Inter,-apple-system,sans-serif" font-size="${fs}" font-weight="${fw}" fill="${col}" text-anchor="${anchor}"${ls}>${escXml(_tv)}</text>`;
+      }
+    }
+
+    const parts = [];
+    const isEll = node.type === 'ellipse';
+
+    // ── Fills (supports layered array fills + gradients) ──
+    if (nw > 0 && nh > 0) {
+      const fills = Array.isArray(node.fill) ? node.fill : (node.fill ? [node.fill] : []);
+      let firstF = true;
+      for (const fi of fills) {
+        const fStr = getFill(fi, x, y, nw, nh);
+        if (!fStr) continue;
+        const fa = firstF ? fltA : ''; firstF = false;
+        if (isEll) {
+          parts.push(`<ellipse cx="${(x+nw/2).toFixed(1)}" cy="${(y+nh/2).toFixed(1)}" rx="${(nw/2).toFixed(1)}" ry="${(nh/2).toFixed(1)}" fill="${fStr}"${fa}/>`);
+        } else {
+          parts.push(`<rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${nw.toFixed(1)}" height="${nh.toFixed(1)}"${rxA} fill="${fStr}"${fa}/>`);
+        }
+      }
+    }
+
+    // ── Stroke ──
+    const stk = node.stroke || node.border;
+    if (stk?.fill) {
+      const sCol = resolveColor(stk.fill, vars);
+      if (sCol) {
+        const sw2 = stk.thickness || stk.width || 1;
+        if (isEll) {
+          parts.push(`<ellipse cx="${(x+nw/2).toFixed(1)}" cy="${(y+nh/2).toFixed(1)}" rx="${(nw/2).toFixed(1)}" ry="${(nh/2).toFixed(1)}" fill="none" stroke="${sCol}" stroke-width="${sw2}"/>`);
+        } else {
+          parts.push(`<rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${nw.toFixed(1)}" height="${nh.toFixed(1)}"${rxA} fill="none" stroke="${sCol}" stroke-width="${sw2}"/>`);
+        }
+      }
+    }
+
+    if (isEll) {
+      const content = parts.join('');
+      return (typeof node.opacity === 'number' && node.opacity < 1 && content)
+        ? `<g opacity="${node.opacity}">${content}</g>` : content;
+    }
+
+    // ── Children layout ──
+    if (node.children?.length) {
+      const pad    = parsePadding(node.padding);
+      const gap    = node.gap || 0;
+      const jc     = node.justifyContent || 'start';
+      const ai     = node.alignItems    || 'start';
+      const innerW = nw - pad.l - pad.r;
+      const innerH = nh - pad.t - pad.b;
+      const layout = effectiveLayout(node);
+
+      const shouldClip = nodeType === 'frame' && node.clipsContent === true;
+      let clipA = '';
+      if (shouldClip) {
+        const cid = nid();
+        defs.push(`<clipPath id="${cid}"><rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${nw.toFixed(1)}" height="${nh.toFixed(1)}"${rxA}/></clipPath>`);
+        clipA = ` clip-path="url(#${cid})"`;
+      }
+
+      const kidSVGs = [];
+      if (layout === 'none') {
+        node.children.forEach(child => {
+          kidSVGs.push(nSVG(child, ox+(node.x||0), oy+(node.y||0), innerW, innerH));
+        });
+      } else {
+        const children = node.children;
+        const isH = layout === 'horizontal';
+        let fixedMain = 0, fillCount = 0;
+        const rawSz = children.map(child => {
+          const wF = child.width  === 'fill_container';
+          const hF = child.height === 'fill_container';
+          const mw = typeof child.width  === 'number' ? child.width  : measureNode(child).w;
+          const mh = typeof child.height === 'number' ? child.height : measureNode(child).h;
+          if (isH ? wF : hF) fillCount++; else fixedMain += isH ? mw : mh;
+          return { mw, mh, wF, hF };
+        });
+        const totalGaps = gap * (children.length - 1);
+        const availMain = isH ? innerW : innerH;
+        const fillSz = fillCount > 0 ? Math.max((availMain - fixedMain - totalGaps) / fillCount, 0) : 0;
+        const sizes = rawSz.map(({ mw, mh, wF, hF }) => ({
+          w: wF ? (isH ? fillSz : innerW) : mw,
+          h: hF ? (isH ? innerH : fillSz) : mh,
+        }));
+        const totalMain = sizes.reduce((s,m) => s+(isH?m.w:m.h), 0) + totalGaps;
+        let cursor = isH ? pad.l : pad.t;
+        if (jc === 'center') cursor += (availMain - totalMain) / 2;
+        else if (jc === 'end') cursor += availMain - totalMain;
+        const spGap = jc === 'space_between' && children.length > 1
+          ? (availMain - sizes.reduce((s,m) => s+(isH?m.w:m.h),0)) / (children.length-1) : gap;
+
+        children.forEach((child, ci) => {
+          const { w: cw2, h: ch2 } = sizes[ci];
+          const ca = isH ? innerH : innerW;
+          const cs = isH ? ch2    : cw2;
+          let co   = isH ? pad.t  : pad.l;
+          if (ai === 'center') co += (ca - cs) / 2;
+          else if (ai === 'end') co += ca - cs;
+          if (isH) {
+            kidSVGs.push(nSVG(child, ox+(node.x||0)+cursor-(child.x||0), oy+(node.y||0)+co-(child.y||0), cw2, ch2));
+          } else {
+            kidSVGs.push(nSVG(child, ox+(node.x||0)+co-(child.x||0), oy+(node.y||0)+cursor-(child.y||0), cw2, ch2));
+          }
+          cursor += (isH ? cw2 : ch2) + spGap;
+        });
+      }
+
+      const kids = kidSVGs.join('');
+      parts.push(clipA ? `<g${clipA}>${kids}</g>` : kids);
+    }
+
+    const content = parts.join('');
+    if (!content) return '';
+    return (typeof node.opacity === 'number' && node.opacity < 1)
+      ? `<g opacity="${node.opacity}">${content}</g>` : content;
+  }
+
+  const body = nSVG(screen, -(screen.x||0), -(screen.y||0), sw, sh);
+  const bgFill = resolveColor(screen.fill, vars) || '#f9fafb';
+  const svgStr = `<svg viewBox="0 0 ${sw} ${sh}" width="${cw}" height="${ch}" xmlns="http://www.w3.org/2000/svg" style="display:block"><defs>${defs.join('')}</defs><rect width="${sw}" height="${sh}" fill="${bgFill}"/>${body}</svg>`;
+  return { svgStr, cw, ch, isPhone, name: screen.name || `Screen ${screenIdx + 1}` };
+}
+
+function renderPenSVG(doc, container) {
+  container.innerHTML = '';
+  const vars = doc.variables || {};
+  const screens = doc.children || [];
+  screens.forEach((screen, i) => {
+    const { svgStr, cw, ch, isPhone, name } = generateScreenSVG(screen, vars, i);
+
+    const wrapper = document.createElement('div');
+    wrapper.className = 'screen-wrapper';
+
+    const nameEl = document.createElement('div');
+    nameEl.className = 'screen-name';
+    nameEl.textContent = name;
+
+    const frame = document.createElement('div');
+    frame.className = 'screen-frame';
+    frame.style.width  = cw + 'px';
+    frame.style.height = ch + 'px';
+    if (!isPhone) {
+      frame.style.borderRadius = '12px';
+      frame.style.boxShadow = '0 8px 40px rgba(0,0,0,.5)';
+    }
+    frame.innerHTML = svgStr;
+
+    const numEl = document.createElement('div');
+    numEl.className = 'screen-num';
+    numEl.textContent = `${i+1} / ${screens.length}`;
+
+    wrapper.appendChild(nameEl);
+    wrapper.appendChild(frame);
+    wrapper.appendChild(numEl);
+    container.appendChild(wrapper);
+  });
+}
+
+// ═══════════════════════════════════════════════════════════════════
+//  APP STATE
+// ═══════════════════════════════════════════════════════════════════
+let currentDoc = null;
+let currentFileName = '';
+let currentJson = '';
+
+function showToast(msg, type='success', ms=3000) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = `show ${type}`;
+  clearTimeout(t._timer);
+  t._timer = setTimeout(() => t.className = '', ms);
+}
+
+function loadDoc(json, fileName) {
+  try {
+    const doc = JSON.parse(json);
+    currentDoc = doc;
+    currentJson = json;
+    currentFileName = fileName;
+
+    const screens = doc.children || [];
+    const vars = Object.keys(doc.variables || {}).length;
+    const version = doc.version || '?';
+
+    // Update UI
+    document.getElementById('landing').style.display = 'none';
+    document.getElementById('toolbar').classList.add('visible');
+    document.getElementById('screens-area').classList.add('visible');
+    document.getElementById('open-btn').style.display = '';
+    document.getElementById('share-btn').style.display = '';
+    document.getElementById('file-name-label').textContent = fileName;
+    document.getElementById('file-meta-label').textContent =
+      `v${version} · ${screens.length} screen${screens.length!==1?'s':''} · ${vars} variable${vars!==1?'s':''}`;
+
+    // Enable share + debug buttons
+    document.getElementById('share-btn').disabled = false;
+    document.getElementById('tb-share-btn').disabled = false;
+    document.getElementById('tb-debug-btn').disabled = false;
+
+    const container = document.getElementById('screens-container');
+    renderPenSVG(doc, container);
+  } catch (err) {
+    showToast('Invalid .pen file: ' + err.message, 'error', 5000);
+  }
+}
+
+function openAnotherFile() {
+  document.getElementById('file-input').click();
+}
+
+// ── File input handler ──
+document.getElementById('file-input').addEventListener('change', e => {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = ev => loadDoc(ev.target.result, file.name);
+  reader.readAsText(file);
+  e.target.value = '';
+});
+
+// ── Drag-drop ──
+const dz = document.getElementById('drop-zone');
+dz.addEventListener('dragover', e => { e.preventDefault(); dz.classList.add('drag-over'); });
+dz.addEventListener('dragleave', () => dz.classList.remove('drag-over'));
+dz.addEventListener('drop', e => {
+  e.preventDefault();
+  dz.classList.remove('drag-over');
+  const file = e.dataTransfer.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = ev => loadDoc(ev.target.result, file.name);
+  reader.readAsText(file);
+});
+
+// Body drag-drop (when viewing)
+document.body.addEventListener('dragover', e => e.preventDefault());
+document.body.addEventListener('drop', e => {
+  e.preventDefault();
+  if (!e.dataTransfer.files[0]) return;
+  const file = e.dataTransfer.files[0];
+  if (!file.name.endsWith('.pen') && !file.name.endsWith('.json')) return;
+  const reader = new FileReader();
+  reader.onload = ev => loadDoc(ev.target.result, file.name);
+  reader.readAsText(file);
+});
+
+// ── Toolbar buttons ──
+document.getElementById('open-btn').addEventListener('click', openAnotherFile);
+document.getElementById('tb-open-btn').addEventListener('click', openAnotherFile);
+
+// ═══════════════════════════════════════════════════════════════════
+//  PUBLISH & SHARE
+// ═══════════════════════════════════════════════════════════════════
+
+function buildSharePage(json, fileName) {
+  const doc = JSON.parse(json);
+  const screens = doc.children || [];
+  const vars = doc.variables || {};
+  const version = doc.version || '2.8';
+  const appName = fileName.replace(/\.(pen|json)$/i, '');
+  const penB64 = btoa(unescape(encodeURIComponent(json)));
+
+  // Pre-generate SVG for each screen — no client-side renderer needed
+  const screenCards = screens.map((screen, i) => {
+    const { svgStr, cw, ch, isPhone, name } = generateScreenSVG(screen, vars, i);
+    const frameStyle = isPhone
+      ? `width:${cw}px;height:${ch}px;border-radius:36px;overflow:hidden;box-shadow:0 0 0 8px #12182a,0 0 0 10px #0d1220,0 20px 60px rgba(0,0,0,.6);flex-shrink:0`
+      : `width:${cw}px;height:${ch}px;border-radius:12px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,.5);flex-shrink:0`;
+    return `<div class="sw"><div class="sn">${escXml(name)}</div><div style="${frameStyle}">${svgStr}</div><div class="si">${i+1}/${screens.length}</div></div>`;
+  }).join('');
+
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>${appName} — Pen Viewer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#080b12;color:#e8eaf0;font-family:'Inter',-apple-system,sans-serif;min-height:100vh;padding:1.5rem;}
+header{display:flex;align-items:center;justify-content:space-between;margin-bottom:2rem;padding-bottom:1rem;border-bottom:1px solid #1c2333;}
+.logo{display:flex;align-items:center;gap:.5rem;font-weight:700;font-size:.95rem;color:#fff;}
+.logo-icon{width:24px;height:24px;background:linear-gradient(135deg,#4f7fff,#7c5fff);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:.7rem;}
+.dl-btn{display:inline-flex;align-items:center;gap:.4rem;background:linear-gradient(135deg,#4f7fff,#7c5fff);color:#fff;border:none;padding:.4rem .9rem;border-radius:6px;font-family:inherit;font-size:.78rem;font-weight:600;cursor:pointer;}
+.dl-btn:hover{opacity:.9;}
+#screens{display:flex;gap:2rem;flex-wrap:wrap;align-items:flex-start;}
+.sw{display:flex;flex-direction:column;align-items:center;gap:.5rem;}
+.sn{font-size:.7rem;color:#5a6480;font-weight:600;max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.si{font-size:.6rem;color:#2a3448;letter-spacing:.1em;text-transform:uppercase;}
+footer{margin-top:3rem;text-align:center;font-size:.72rem;color:#2a3448;}
+footer a{color:#4f7fff;text-decoration:none;}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">
+    <div class="logo-icon">✏</div>
+    ${appName}
+    <span style="color:#5a6480;font-weight:400;font-size:.78rem">· ${screens.length} screen${screens.length!==1?'s':''} · v${version}</span>
+  </div>
+  <button class="dl-btn" id="dl">⬇ Download .pen</button>
+</header>
+<div id="screens">${screenCards}</div>
+<footer>Made with <a href="https://penviewer.zenbin.org" target="_blank">Pen Viewer</a> · powered by pencil.dev v${version}</footer>
+<script>
+document.getElementById('dl').addEventListener('click',function(){
+  const raw=atob('${penB64}');
+  const bytes=new Uint8Array(raw.length);
+  for(let i=0;i<raw.length;i++)bytes[i]=raw.charCodeAt(i);
+  const blob=new Blob([bytes],{type:'application/json'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  a.href=url;a.download='${appName}.pen';
+  document.body.appendChild(a);a.click();
+  document.body.removeChild(a);URL.revokeObjectURL(url);
+});
+<\/script>
+</body>
+</html>`;
+}
+
+async function publishDesign() {
+  if (!currentJson) return;
+
+  // Show modal
+  const overlay = document.getElementById('share-overlay');
+  overlay.classList.add('visible');
+  document.getElementById('share-uploading').style.display = '';
+  document.getElementById('share-done').style.display = 'none';
+  document.getElementById('share-error').style.display = 'none';
+
+  try {
+    const html = buildSharePage(currentJson, currentFileName);
+    const appName = currentFileName.replace(/\.(pen|json)$/i, '').toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+    const slug = appName + '-' + Math.random().toString(36).slice(2,7);
+    const title = currentFileName.replace(/\.(pen|json)$/i, '') + ' — Pen Viewer';
+
+    const res = await fetch('https://zenbin.org/v1/pages/' + slug, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ title, html })
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || 'Publish failed');
+
+    const url = `https://zenbin.org/p/${slug}`;
+    document.getElementById('share-uploading').style.display = 'none';
+    document.getElementById('share-done').style.display = '';
+    document.getElementById('share-url-input').value = url;
+    document.getElementById('open-link-btn').href = url;
+  } catch (err) {
+    document.getElementById('share-uploading').style.display = 'none';
+    document.getElementById('share-error').style.display = '';
+    document.getElementById('share-error-msg').textContent = err.message;
+  }
+}
+
+document.getElementById('copy-btn').addEventListener('click', () => {
+  const input = document.getElementById('share-url-input');
+  navigator.clipboard.writeText(input.value).then(() => {
+    showToast('Link copied to clipboard!', 'success');
+  });
+});
+
+['share-btn', 'tb-share-btn'].forEach(id => {
+  document.getElementById(id).addEventListener('click', publishDesign);
+});
+
+// ── Debug dump — uploads raw .pen to Zenbin so RAM can inspect it ──
+document.getElementById('tb-debug-btn').addEventListener('click', async () => {
+  if (!currentJson) return;
+  const btn = document.getElementById('tb-debug-btn');
+  btn.textContent = '🐛 Uploading…';
+  btn.disabled = true;
+  try {
+    const slug = 'debug-' + Math.random().toString(36).slice(2, 9);
+    const doc = JSON.parse(currentJson);
+    const screens = doc.children || [];
+    // Build a diagnostic summary
+    const nodeTypes = {};
+    function countTypes(n) {
+      if (!n || !n.type) return;
+      nodeTypes[n.type] = (nodeTypes[n.type]||0) + 1;
+      (n.children||[]).forEach(countTypes);
+    }
+    screens.forEach(countTypes);
+    const summary = {
+      fileName: currentFileName,
+      version: doc.version,
+      screens: screens.length,
+      variables: Object.keys(doc.variables||{}).length,
+      nodeTypes,
+      screenSizes: screens.map(s => ({ name: s.name, w: s.width, h: s.height, layout: s.layout })),
+    };
+    // Upload as a Zenbin page with raw JSON + summary
+    const html = `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Debug: ${currentFileName}</title>
+<style>body{background:#0a0a0f;color:#e0e0e0;font-family:monospace;padding:2rem;}
+pre{background:#111;padding:1rem;border-radius:8px;overflow:auto;font-size:.75rem;line-height:1.5;}
+h2{color:#00ffcc;margin:1rem 0 .5rem;}
+</style></head><body>
+<h1 style="color:#fff">🐛 Debug dump: ${currentFileName}</h1>
+<h2>Summary</h2><pre>${JSON.stringify(summary, null, 2)}</pre>
+<h2>Full .pen JSON</h2><pre>${currentJson.replace(/</g,'&lt;').replace(/>/g,'&gt;')}</pre>
+</body></html>`;
+    const res = await fetch('https://zenbin.org/v1/pages/' + slug, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ title: 'Debug: ' + currentFileName, html })
+    });
+    if (!res.ok) throw new Error('Upload failed');
+    const url = 'https://zenbin.org/p/' + slug;
+    await navigator.clipboard.writeText(url).catch(()=>{});
+    showToast('Debug URL copied: ' + url, 'success', 8000);
+    btn.textContent = '✅ Sent!';
+    setTimeout(() => { btn.textContent = '🐛 Send to RAM'; btn.disabled = false; }, 3000);
+  } catch(err) {
+    showToast('Debug upload failed: ' + err.message, 'error');
+    btn.textContent = '🐛 Send to RAM';
+    btn.disabled = false;
+  }
+});
+['share-close-btn', 'share-close-btn2'].forEach(id => {
+  document.getElementById(id)?.addEventListener('click', () => {
+    document.getElementById('share-overlay').classList.remove('visible');
+  });
+});
+document.getElementById('share-overlay').addEventListener('click', e => {
+  if (e.target === document.getElementById('share-overlay'))
+    document.getElementById('share-overlay').classList.remove('visible');
+});
+
+// ── Auto-load if embedded (for zenbin.org pages) ──
+if (window.EMBEDDED_PEN) {
+  try {
+    loadDoc(window.EMBEDDED_PEN, 'embedded.pen');
+  } catch(e) {}
+}
+
+// ── Auto-load from localStorage (opened via heartbeat page button) ──
+try {
+  const pending = localStorage.getItem('pv_pending');
+  if (pending) {
+    localStorage.removeItem('pv_pending');
+    const { json, name } = JSON.parse(pending);
+    if (json) loadDoc(json, name || 'design.pen');
+  }
+} catch(e) {}
+</script>
+</body>
+</html>

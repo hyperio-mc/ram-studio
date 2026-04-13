@@ -1,141 +1,121 @@
 import { buildMock, generateSvelteComponent, publishMock } from './svelte-mock-builder.mjs';
 
 const design = {
-  appName:   'Grove',
-  tagline:   'Deep work, by design.',
-  archetype: 'focus-tracker',
-  palette: {
-    bg:      '#1A1C16',
-    surface: '#242820',
-    text:    '#E8E4D8',
+  appName:   'GROVE',
+  tagline:   'grow with intention',
+  archetype: 'wellness-productivity',
+  palette: {           // dark theme (required)
+    bg:      '#0D1A10',
+    surface: '#122016',
+    text:    '#E8F2EC',
     accent:  '#4A7C59',
-    accent2: '#C4874A',
-    muted:   'rgba(232,228,216,0.4)',
+    accent2: '#D4856A',
+    muted:   'rgba(232,242,236,0.45)',
   },
-  lightPalette: {
-    bg:      '#F9F7EF',
+  lightPalette: {      // light theme (the primary for this design)
+    bg:      '#FAF8F4',
     surface: '#FFFFFF',
-    text:    '#111008',
+    text:    '#1C1A16',
     accent:  '#4A7C59',
-    accent2: '#C4874A',
-    muted:   'rgba(17,16,8,0.4)',
+    accent2: '#D4856A',
+    muted:   'rgba(28,26,22,0.45)',
   },
   screens: [
     {
       id: 'today', label: 'Today',
       content: [
-        { type: 'metric', label: 'Good morning', value: 'Tuesday', sub: 'April 8, 2026' },
-        { type: 'metric-row', items: [
-          { label: 'FOCUSED', value: '2h 45m' },
-          { label: 'REMAINING', value: '3h 45m' },
-          { label: 'STREAK', value: '12 days' },
-        ]},
-        { type: 'text', label: 'Today\'s Intention', value: 'Finish the API spec and get it reviewed by the team before 3pm.' },
+        { type: 'metric', label: '🔥 Day Streak', value: '47', sub: 'Your longest run yet' },
+        { type: 'metric-row', items: [{ label: 'Done', value: '8' }, { label: 'Total', value: '12' }, { label: 'Rate', value: '67%' }] },
         { type: 'list', items: [
-          { icon: 'check', title: 'Deep work — Product spec', sub: '7:00–8:30 · 1h 28m', badge: '✓' },
-          { icon: 'check', title: 'Research — Competitor UX', sub: '9:00–10:30 · 1h 32m', badge: '✓' },
-          { icon: 'activity', title: 'Writing — Quarterly OKRs', sub: '11:00–12:00 · in progress', badge: '40%' },
-          { icon: 'play', title: 'Code review — API layer', sub: '2:00–3:30 · upcoming', badge: '→' },
-          { icon: 'calendar', title: '1:1 with team', sub: '4:00–4:30 · meeting', badge: '○' },
+          { icon: 'check', title: 'Morning Meditation', sub: '10 min · done', badge: '✓' },
+          { icon: 'check', title: 'Read 20 Pages', sub: 'done', badge: '✓' },
+          { icon: 'eye', title: 'Journal 5 min', sub: 'pending', badge: '○' },
+          { icon: 'activity', title: 'Exercise 30 min', sub: 'pending', badge: '○' },
+          { icon: 'heart', title: 'Evening Walk', sub: '15 min · pending', badge: '○' },
         ]},
+        { type: 'text', label: 'Daily Quote', value: '"Small habits compound into extraordinary results."' },
+      ],
+    },
+    {
+      id: 'session', label: 'Session',
+      content: [
+        { type: 'metric', label: 'Morning Meditation', value: '08:32', sub: 'Breathe out slowly · Round 2/3' },
+        { type: 'progress', items: [{ label: 'Session Progress', pct: 42 }] },
+        { type: 'metric-row', items: [{ label: 'Elapsed', value: '1:28' }, { label: 'Remaining', value: '8:32' }] },
+        { type: 'tags', label: 'Session Type', items: ['Mindfulness', 'Day 47', '10 min'] },
+        { type: 'text', label: 'Guidance', value: 'Focus on the natural rhythm of your breath. Let thoughts pass like clouds.' },
+      ],
+    },
+    {
+      id: 'insights', label: 'Insights',
+      content: [
+        { type: 'metric-row', items: [{ label: 'Completion', value: '87%' }, { label: 'Active', value: '23' }, { label: 'Streak', value: '47d' }] },
         { type: 'progress', items: [
-          { label: 'Day energy', pct: 63 },
+          { label: 'Mindfulness', pct: 92 },
+          { label: 'Physical', pct: 78 },
+          { label: 'Learning', pct: 65 },
+          { label: 'Creative', pct: 54 },
+        ]},
+        { type: 'list', items: [
+          { icon: 'star', title: 'Best Day: Thursday', sub: '100% completion · 12/12 habits', badge: '🏆' },
+          { icon: 'zap', title: 'Biggest Win', sub: 'Meditation — 47 consecutive days', badge: '🔥' },
+          { icon: 'chart', title: 'Trend', sub: 'Improving 14% vs last week', badge: '↑' },
         ]},
       ],
     },
     {
-      id: 'active', label: 'Focus',
+      id: 'journal', label: 'Journal',
       content: [
-        { type: 'metric', label: 'Active Session', value: '37:22', sub: 'remaining · Writing OKRs' },
-        { type: 'metric-row', items: [
-          { label: 'PHASE', value: '2 of 3' },
-          { label: 'SESSION', value: '40 min' },
-          { label: 'GOAL', value: 'OKR Draft' },
-        ]},
-        { type: 'progress', items: [
-          { label: 'Session progress', pct: 61 },
-          { label: 'Today\'s pace', pct: 62 },
-        ]},
-        { type: 'tags', label: 'Controls', items: ['⏸ Pause', '+5 min', 'Skip →'] },
+        { type: 'metric', label: 'Entry #128', value: 'Apr 12', sub: 'Sunday · 142 words' },
+        { type: 'text', label: 'What are you grateful for today?', value: 'I\'m grateful for the quiet morning light, the smell of coffee, and the way a good book can transport you completely out of your own head...' },
+        { type: 'tags', label: 'Mood', items: ['😌 Calm', '🌱 Growing', '☀️ Optimistic'] },
         { type: 'list', items: [
-          { icon: 'zap', title: 'Session Goal', sub: 'Draft Eng OKRs for Q2 — delivery velocity metrics', badge: '✎' },
-          { icon: 'heart', title: 'Ambient Sound', sub: 'Lo-fi Rain · playing', badge: '♪' },
-          { icon: 'lock', title: 'Do Not Disturb', sub: 'Active · notifications blocked', badge: '⊘' },
+          { icon: 'star', title: 'One thing I learned', sub: 'Tap to add', badge: '+' },
+          { icon: 'heart', title: "Tomorrow's intention", sub: 'Tap to add', badge: '+' },
+          { icon: 'zap', title: 'A moment of joy', sub: 'Tap to add', badge: '+' },
         ]},
       ],
     },
     {
-      id: 'log', label: 'Log',
+      id: 'goals', label: 'Goals',
       content: [
-        { type: 'metric', label: 'Session Log', value: '15h', sub: 'this week · 5 sessions today' },
-        { type: 'progress', items: [
-          { label: 'Mon', pct: 64 },
-          { label: 'Tue', pct: 73 },
-          { label: 'Wed', pct: 51 },
-          { label: 'Thu', pct: 95 },
-          { label: 'Fri', pct: 0 },
-        ]},
         { type: 'list', items: [
-          { icon: 'star', title: 'Writing — Quarterly OKRs', sub: '23 min · ●●●●○', badge: '11:02' },
-          { icon: 'star', title: 'Research — Competitor UX', sub: '1h 32m · ●●●●●', badge: '9:00' },
-          { icon: 'star', title: 'Deep work — Product spec', sub: '1h 28m · ●●●●●', badge: '7:04' },
-          { icon: 'check', title: 'Code review — API layer', sub: '2h 01m · ●●●●○', badge: 'Yest' },
-          { icon: 'check', title: 'Writing — Blog draft', sub: '1h 15m · ●●●○○', badge: 'Yest' },
+          { icon: 'star', title: 'Read 24 Books', sub: '4 of 24 · 320 days left', badge: '17%' },
+          { icon: 'activity', title: 'Daily Meditation', sub: '47/90 days · streak goal', badge: '52%' },
+          { icon: 'zap', title: '5K Under 25 Min', sub: 'Current best: 27:14', badge: '65%' },
         ]},
+        { type: 'progress', items: [
+          { label: 'Read 24 Books', pct: 17 },
+          { label: 'Daily Meditation', pct: 52 },
+          { label: '5K Under 25 Min', pct: 65 },
+        ]},
+        { type: 'tags', label: 'Completed Goals', items: ['30-Day Journaling ✓', 'Cold Shower Week ✓', 'Digital Detox ✓'] },
       ],
     },
     {
-      id: 'review', label: 'Review',
+      id: 'explore', label: 'Explore',
       content: [
-        { type: 'metric', label: 'Weekly Review — Week 14', value: '15h 42m', sub: 'deep work · ↑18% vs last week' },
-        { type: 'metric-row', items: [
-          { label: 'FOCUS SCORE', value: '87' },
-          { label: 'BEST STREAK', value: '12 days' },
-          { label: 'SESSIONS', value: '23' },
-        ]},
-        { type: 'progress', items: [
-          { label: 'Work (7.2h)', pct: 100 },
-          { label: 'Research (4.5h)', pct: 62 },
-          { label: 'Writing (2.8h)', pct: 39 },
-          { label: 'Dev (1.2h)', pct: 17 },
-        ]},
+        { type: 'metric', label: 'Habit Library', value: '10K+', sub: 'growers building better habits' },
+        { type: 'tags', label: 'Browse by', items: ['All', 'Mindfulness', 'Physical', 'Creative', 'Learning', 'Sleep'] },
         { type: 'list', items: [
-          { icon: 'eye', title: 'Best focus: Tue mornings', sub: 'avg 2h 10m per session', badge: '◎' },
-          { icon: 'alert', title: 'Writing lowest completion', sub: '58% session completion rate', badge: '◑' },
-          { icon: 'chart', title: '40% more morning focus', sub: 'vs afternoon sessions', badge: '◐' },
-        ]},
-      ],
-    },
-    {
-      id: 'settings', label: 'You',
-      content: [
-        { type: 'metric', label: 'Your Grove', value: 'Rakis', sub: 'Level 3 · Deep Worker' },
-        { type: 'metric-row', items: [
-          { label: 'TOTAL TIME', value: '234h' },
-          { label: 'SESSIONS', value: '187' },
-          { label: 'SINCE', value: 'Jan 2026' },
-        ]},
-        { type: 'tags', label: 'Priority Blocks', items: ['▣ Deep Work', '✎ Writing', '◈ Research', '⊡ Planning'] },
-        { type: 'list', items: [
-          { icon: 'settings', title: 'Session Defaults', sub: '40 min blocks · 10 min breaks', badge: '→' },
-          { icon: 'heart', title: 'Ambient Sounds', sub: 'Lo-fi Rain (default)', badge: '→' },
-          { icon: 'bell', title: 'Notifications', sub: 'Session start/end only', badge: '→' },
-          { icon: 'calendar', title: 'Calendar Sync', sub: 'Google Calendar · connected', badge: '✓' },
-          { icon: 'share', title: 'Export Data', sub: 'Download session history as CSV', badge: '→' },
+          { icon: 'star', title: 'Morning Pages', sub: '15 min · 89% stick rate', badge: 'Creative' },
+          { icon: 'heart', title: 'Box Breathing', sub: '5 min · 94% stick rate', badge: 'Mind' },
+          { icon: 'activity', title: 'Cold Shower', sub: '5 min · 71% stick rate', badge: 'Physical' },
+          { icon: 'eye', title: 'Digital Sunset', sub: '60 min before bed · 82%', badge: 'Sleep' },
         ]},
       ],
     },
   ],
   nav: [
-    { id: 'today',   label: 'Today',  icon: 'home' },
-    { id: 'active',  label: 'Focus',  icon: 'play' },
-    { id: 'log',     label: 'Log',    icon: 'list' },
-    { id: 'review',  label: 'Review', icon: 'chart' },
-    { id: 'settings',label: 'You',    icon: 'user' },
+    { id: 'today',    label: 'Today',    icon: 'home' },
+    { id: 'session',  label: 'Session',  icon: 'play' },
+    { id: 'insights', label: 'Insights', icon: 'chart' },
+    { id: 'journal',  label: 'Journal',  icon: 'star' },
+    { id: 'goals',    label: 'Goals',    icon: 'check' },
   ],
 };
 
 const svelteSource = generateSvelteComponent(design);
 const html = await buildMock(svelteSource, { appName: design.appName, tagline: design.tagline });
-const result = await publishMock(html, 'grove-mock', 'Grove — Interactive Mock');
-console.log('Mock live at:', result.url);
+const result = await publishMock(html, 'grove-mock', 'GROVE — Interactive Mock');
+console.log('Mock result:', result.status, '→ https://ram.zenbin.org/grove-mock');

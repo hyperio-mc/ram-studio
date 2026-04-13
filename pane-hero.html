@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>PANE — Your retro-windowed AI workspace</title>
+  <meta name="description" content="PANE is a retro OS-inspired AI knowledge workspace. Windows, terminals, and typewriter AI — the future built on nostalgic chrome.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #F5F1EB;
+      --surface: #FFFFFF;
+      --surface-alt: #EDE9E2;
+      --text: #1A1714;
+      --muted: rgba(26,23,20,0.45);
+      --accent: #C04B2C;
+      --accent2: #4A6FE3;
+      --accent-soft: rgba(192,75,44,0.1);
+      --accent2-soft: rgba(74,111,227,0.1);
+      --border: rgba(26,23,20,0.12);
+      --border-strong: rgba(26,23,20,0.22);
+      --window-bar: #E8E3DB;
+      --dot1: #FF6059;
+      --dot2: #FFBD30;
+      --dot3: #29C940;
+      --mono: #4A3F35;
+      --mono-soft: rgba(74,63,53,0.55);
+      --font: 'Inter', system-ui, sans-serif;
+      --mono-font: 'JetBrains Mono', 'Courier New', monospace;
+      --radius: 10px;
+      --radius-lg: 14px;
+    }
+
+    html { background: var(--bg); color: var(--text); font-family: var(--font); scroll-behavior: smooth; }
+    body { min-height: 100vh; }
+
+    /* ── MENUBAR ── */
+    .menubar {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(245,241,235,0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 24px; height: 28px;
+    }
+    .menubar-left { display: flex; align-items: center; gap: 20px; }
+    .menubar-brand { font-size: 13px; font-weight: 600; letter-spacing: 0.04em; }
+    .menubar-item { font-size: 13px; color: var(--text); opacity: 0.7; cursor: default; }
+    .menubar-right { display: flex; align-items: center; gap: 16px; }
+    .menubar-time { font-size: 12px; font-family: var(--mono-font); }
+
+    /* ── WINDOW CHROME ── */
+    .window {
+      background: var(--surface);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(26,23,20,0.08), 0 0 0 0.5px rgba(26,23,20,0.06);
+    }
+    .window-bar {
+      background: var(--window-bar);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center;
+      padding: 0 12px; height: 32px; gap: 8px;
+    }
+    .window-dots { display: flex; gap: 6px; align-items: center; }
+    .dot { width: 12px; height: 12px; border-radius: 50%; }
+    .dot-close { background: var(--dot1); }
+    .dot-min   { background: var(--dot2); }
+    .dot-max   { background: var(--dot3); }
+    .window-title {
+      flex: 1; text-align: center;
+      font-size: 12px; color: var(--muted); font-weight: 500;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      max-width: 1100px; margin: 0 auto;
+      padding: 80px 40px 60px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--accent-soft);
+      border: 1px solid rgba(192,75,44,0.2);
+      border-radius: 99px; padding: 5px 12px;
+      font-size: 11px; font-weight: 600; color: var(--accent);
+      text-transform: uppercase; letter-spacing: 0.08em;
+      margin-bottom: 24px;
+    }
+    .badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+    h1 {
+      font-size: clamp(38px, 5vw, 56px);
+      font-weight: 700; line-height: 1.1; letter-spacing: -0.03em;
+      margin-bottom: 20px;
+    }
+    h1 span { color: var(--accent); }
+    .hero-sub {
+      font-size: 17px; line-height: 1.65; color: var(--muted);
+      max-width: 480px; margin-bottom: 36px;
+    }
+    .hero-ctas { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--accent); color: #fff;
+      border: none; border-radius: 8px;
+      padding: 12px 24px; font-size: 14px; font-weight: 600;
+      cursor: pointer; text-decoration: none;
+      transition: opacity 0.15s;
+    }
+    .btn-primary:hover { opacity: 0.88; }
+    .btn-ghost {
+      background: transparent; color: var(--text);
+      border: 1px solid var(--border-strong);
+      border-radius: 8px; padding: 12px 24px;
+      font-size: 14px; font-weight: 500; cursor: pointer;
+      text-decoration: none; transition: background 0.15s;
+    }
+    .btn-ghost:hover { background: var(--surface-alt); }
+    .hero-meta { display: flex; gap: 20px; margin-top: 40px; flex-wrap: wrap; }
+    .hero-stat { }
+    .hero-stat-val { font-size: 22px; font-weight: 700; color: var(--text); }
+    .hero-stat-label { font-size: 12px; color: var(--muted); }
+
+    /* ── HERO WINDOW PREVIEW ── */
+    .hero-preview { position: relative; }
+    .hero-window {
+      width: 100%;
+      animation: float 4s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-6px); }
+    }
+    .preview-body { padding: 20px; }
+    .preview-greeting { font-size: 16px; font-weight: 600; margin-bottom: 4px; }
+    .preview-sub { font-size: 12px; color: var(--muted); margin-bottom: 16px; }
+    .preview-windows { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+    .mini-window {
+      border: 1px solid var(--border-strong);
+      border-radius: 8px; overflow: hidden;
+    }
+    .mini-bar {
+      background: var(--window-bar);
+      display: flex; align-items: center; gap: 4px;
+      padding: 5px 8px;
+    }
+    .mini-dot { width: 7px; height: 7px; border-radius: 50%; }
+    .mini-body { padding: 8px; min-height: 48px; }
+    .mini-title { font-size: 9px; font-weight: 600; margin-bottom: 3px; color: var(--text); }
+    .mini-text { font-size: 8px; color: var(--muted); line-height: 1.5; }
+    .mini-badge {
+      display: inline-block; font-size: 7px;
+      background: var(--accent2-soft); color: var(--accent2);
+      border-radius: 4px; padding: 1px 5px; margin-top: 4px; font-weight: 600;
+    }
+    .mini-mono { font-family: var(--mono-font); font-size: 8px; color: var(--mono); line-height: 1.6; }
+    .preview-actions { display: flex; gap: 6px; margin-top: 12px; }
+    .preview-btn {
+      flex: 1; background: var(--surface-alt); border: 1px solid var(--border);
+      border-radius: 6px; padding: 6px 4px;
+      font-size: 9px; text-align: center; color: var(--text); font-weight: 500;
+    }
+    .preview-btn.accent { background: var(--accent-soft); color: var(--accent); border-color: rgba(192,75,44,0.2); }
+
+    /* ── SECTION ── */
+    section { max-width: 1100px; margin: 0 auto; padding: 80px 40px; }
+    .section-label {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--accent);
+      margin-bottom: 12px;
+    }
+    .section-title { font-size: clamp(26px, 3.5vw, 38px); font-weight: 700; letter-spacing: -0.02em; margin-bottom: 16px; }
+    .section-sub { font-size: 16px; color: var(--muted); line-height: 1.65; max-width: 520px; }
+
+    /* ── SCREEN SHOWCASE ── */
+    .screen-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 48px; }
+    .screen-card { }
+    .screen-window { margin-bottom: 16px; }
+    .screen-body { padding: 20px; min-height: 220px; }
+    .screen-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 6px; }
+    .screen-name { font-size: 18px; font-weight: 600; margin-bottom: 8px; }
+    .screen-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+    /* Screen previews */
+    .chat-preview { font-family: var(--mono-font); font-size: 11px; line-height: 1.8; }
+    .chat-user { color: var(--mono-soft); }
+    .chat-user::before { content: '> '; color: var(--accent); font-weight: 600; }
+    .chat-ai { color: var(--mono); }
+    .chat-ai::before { content: '$ '; color: var(--accent2); font-weight: 600; }
+    .cursor { display: inline-block; width: 8px; height: 14px; background: var(--accent2); animation: blink 1s step-end infinite; vertical-align: middle; }
+    @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0; } }
+
+    .stat-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 12px; }
+    .stat-pill {
+      background: var(--surface-alt);
+      border: 1px solid var(--border);
+      border-radius: 8px; padding: 10px 14px;
+    }
+    .stat-val { font-size: 20px; font-weight: 700; }
+    .stat-lbl { font-size: 11px; color: var(--muted); }
+    .stat-delta { font-size: 11px; color: #2DAA6F; }
+
+    .progress-item { margin-bottom: 14px; }
+    .progress-label { display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 5px; }
+    .progress-track { height: 5px; background: var(--surface-alt); border-radius: 99px; overflow: hidden; }
+    .progress-fill { height: 100%; border-radius: 99px; background: var(--accent2); }
+
+    .source-item {
+      display: flex; gap: 10px; align-items: flex-start;
+      padding: 10px 0; border-bottom: 1px solid var(--border);
+    }
+    .source-icon {
+      width: 28px; height: 28px; border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; flex-shrink: 0;
+    }
+    .source-icon.paper { background: var(--accent-soft); }
+    .source-icon.note  { background: rgba(45,170,111,0.12); }
+    .source-title { font-size: 12px; font-weight: 500; margin-bottom: 2px; }
+    .source-meta  { font-size: 11px; color: var(--muted); }
+
+    .seg-group { display: flex; border: 1px solid var(--border-strong); border-radius: 7px; overflow: hidden; margin-top: 12px; }
+    .seg-item { flex: 1; text-align: center; padding: 8px; font-size: 12px; background: var(--surface); cursor: default; }
+    .seg-item.active { background: var(--accent); color: #fff; font-weight: 600; }
+
+    /* ── PHILOSOPHY ── */
+    .philosophy-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
+    .phil-card {
+      background: var(--surface);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-lg);
+      padding: 28px 24px;
+    }
+    .phil-icon { font-size: 24px; margin-bottom: 16px; }
+    .phil-title { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
+    .phil-text { font-size: 13px; color: var(--muted); line-height: 1.65; }
+
+    /* ── DIVIDER ── */
+    .full-divider { border: none; border-top: 1px solid var(--border); margin: 0; }
+
+    /* ── CTA SECTION ── */
+    .cta-section {
+      text-align: center; padding: 100px 40px;
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+    }
+    .cta-title { font-size: clamp(30px, 4vw, 48px); font-weight: 700; letter-spacing: -0.03em; margin-bottom: 16px; }
+    .cta-sub { font-size: 17px; color: var(--muted); max-width: 480px; margin: 0 auto 36px; line-height: 1.65; }
+    .cta-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 40px;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 13px; color: var(--muted);
+    }
+    .footer-brand { font-weight: 700; color: var(--text); font-size: 15px; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .hero { grid-template-columns: 1fr; gap: 48px; padding: 48px 24px 40px; }
+      .hero-preview { display: none; }
+      .screen-grid { grid-template-columns: 1fr; }
+      .philosophy-grid { grid-template-columns: 1fr; }
+      section { padding: 60px 24px; }
+      .menubar { padding: 0 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- MENUBAR -->
+  <div class="menubar">
+    <div class="menubar-left">
+      <span class="menubar-brand">PANE</span>
+      <span class="menubar-item">File</span>
+      <span class="menubar-item">Edit</span>
+      <span class="menubar-item">View</span>
+      <span class="menubar-item">AI</span>
+    </div>
+    <div class="menubar-right">
+      <span class="menubar-time">09:42</span>
+      <span class="menubar-item">◐</span>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section style="padding-top: 72px; padding-bottom: 40px;">
+    <div class="hero" style="max-width: 100%; padding: 0;">
+      <div>
+        <div class="hero-badge">
+          <span class="badge-dot"></span>
+          AI Knowledge OS
+        </div>
+        <h1>Research lives in <span>windows.</span></h1>
+        <p class="hero-sub">
+          PANE brings the clarity of retro OS windowed interfaces to AI-powered research. Every source, draft, and AI conversation lives in its own window — always findable, never lost.
+        </p>
+        <div class="hero-ctas">
+          <a href="#screens" class="btn-primary">View Screens</a>
+          <a href="/pane-viewer" class="btn-ghost">Open Prototype →</a>
+        </div>
+        <div class="hero-meta">
+          <div class="hero-stat">
+            <div class="hero-stat-val">6</div>
+            <div class="hero-stat-label">Screens</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-val">Light</div>
+            <div class="hero-stat-label">Theme</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-val">Retro OS</div>
+            <div class="hero-stat-label">Archetype</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-preview">
+        <div class="window hero-window">
+          <div class="window-bar">
+            <div class="window-dots">
+              <div class="dot dot-close"></div>
+              <div class="dot dot-min"></div>
+              <div class="dot dot-max"></div>
+            </div>
+            <div class="window-title">PANE Desktop</div>
+          </div>
+          <div class="preview-body">
+            <div class="preview-greeting">Good morning, Rakis</div>
+            <div class="preview-sub">3 windows open · AI ready · 12 sources indexed</div>
+            <div class="preview-windows">
+              <div class="mini-window">
+                <div class="mini-bar">
+                  <div class="mini-dot" style="background:#FF6059"></div>
+                  <div class="mini-dot" style="background:#FFBD30"></div>
+                  <div class="mini-dot" style="background:#29C940"></div>
+                </div>
+                <div class="mini-body">
+                  <div class="mini-title">Neural Interfaces</div>
+                  <div class="mini-text">Cortical plasticity studies suggest...</div>
+                  <div class="mini-badge">ACTIVE</div>
+                </div>
+              </div>
+              <div class="mini-window">
+                <div class="mini-bar">
+                  <div class="mini-dot" style="background:#FF6059"></div>
+                  <div class="mini-dot" style="background:#FFBD30"></div>
+                  <div class="mini-dot" style="background:#29C940"></div>
+                </div>
+                <div class="mini-body">
+                  <div class="mini-title">Source Library</div>
+                  <div class="mini-text">42 sources · 8 unread</div>
+                </div>
+              </div>
+              <div class="mini-window">
+                <div class="mini-bar">
+                  <div class="mini-dot" style="background:#FF6059"></div>
+                  <div class="mini-dot" style="background:#FFBD30"></div>
+                  <div class="mini-dot" style="background:#29C940"></div>
+                </div>
+                <div class="mini-body">
+                  <div class="mini-mono">&gt; compare BCI<br/>$ Analyzing...</div>
+                </div>
+              </div>
+            </div>
+            <div class="preview-actions">
+              <div class="preview-btn">New Doc</div>
+              <div class="preview-btn">Search</div>
+              <div class="preview-btn">Import</div>
+              <div class="preview-btn accent">Ask AI ✦</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="full-divider">
+
+  <!-- SCREENS SHOWCASE -->
+  <section id="screens">
+    <div class="section-label">Screens</div>
+    <div class="section-title">Six windows. One workspace.</div>
+    <p class="section-sub">From desktop overview to AI terminal — every screen is a window in the PANE OS metaphor.</p>
+
+    <div class="screen-grid">
+
+      <!-- Desktop -->
+      <div class="screen-card">
+        <div class="window screen-window">
+          <div class="window-bar">
+            <div class="window-dots">
+              <div class="dot dot-close"></div>
+              <div class="dot dot-min"></div>
+              <div class="dot dot-max"></div>
+            </div>
+            <div class="window-title">PANE Desktop</div>
+          </div>
+          <div class="screen-body" style="background: var(--bg);">
+            <div style="font-size: 14px; font-weight: 600; margin-bottom: 4px;">Good morning, Rakis</div>
+            <div style="font-size: 11px; color: var(--muted); margin-bottom: 16px;">3 windows open · AI ready</div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px;">
+              <div style="background: var(--surface); border: 1px solid var(--border-strong); border-radius: 8px; padding: 10px;">
+                <div style="font-size: 9px; font-weight: 700; text-transform: uppercase; color: var(--accent); margin-bottom: 4px;">Research</div>
+                <div style="font-size: 10px; font-weight: 500;">Neural Interfaces</div>
+                <div style="font-size: 9px; color: var(--muted);">2 min ago</div>
+              </div>
+              <div style="background: var(--surface); border: 1px solid var(--border-strong); border-radius: 8px; padding: 10px;">
+                <div style="font-size: 9px; font-weight: 700; text-transform: uppercase; color: var(--accent2); margin-bottom: 4px;">Library</div>
+                <div style="font-size: 10px; font-weight: 500;">42 sources</div>
+                <div style="font-size: 9px; color: var(--muted);">1 hr ago</div>
+              </div>
+              <div style="background: var(--surface); border: 1px solid var(--border-strong); border-radius: 8px; padding: 10px;">
+                <div style="font-size: 9px; font-weight: 700; text-transform: uppercase; color: var(--accent); margin-bottom: 4px;">AI Chat</div>
+                <div style="font-size: 10px; font-weight: 500;">Thinking...</div>
+                <div style="font-size: 9px; color: var(--muted);">just now</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="screen-label">01</div>
+        <div class="screen-name">Desktop</div>
+        <div class="screen-desc">OS-style home with window tiles, recent documents, and AI status overview.</div>
+      </div>
+
+      <!-- AI Chat -->
+      <div class="screen-card">
+        <div class="window screen-window">
+          <div class="window-bar">
+            <div class="window-dots">
+              <div class="dot dot-close"></div>
+              <div class="dot dot-min"></div>
+              <div class="dot dot-max"></div>
+            </div>
+            <div class="window-title">AI Chat — GPT-5 Turbo</div>
+          </div>
+          <div class="screen-body">
+            <div style="font-family: var(--mono-font); font-size: 10px; color: var(--mono-soft); margin-bottom: 12px; padding: 6px 10px; background: var(--surface-alt); border-radius: 6px;">
+              PANE AI TERMINAL v2.1 · GPT-5-turbo · 127K context
+            </div>
+            <div class="chat-preview">
+              <div class="chat-user">compare BCI degradation curves</div>
+              <div class="chat-ai">Park 2024: 6% / 18mo (best)</div>
+              <div class="chat-ai">Yoo 2023: 18% / 12mo</div>
+              <div class="chat-ai">Lin 2022: 31% / 6mo</div>
+              <div class="chat-user">draft synthesis paragraph</div>
+              <div class="chat-ai">Drafting...<span class="cursor"></span></div>
+            </div>
+          </div>
+        </div>
+        <div class="screen-label">04</div>
+        <div class="screen-name">AI Chat</div>
+        <div class="screen-desc">Monospace typewriter terminal for AI queries — every response feels like a machine thinking.</div>
+      </div>
+
+      <!-- Library -->
+      <div class="screen-card">
+        <div class="window screen-window">
+          <div class="window-bar">
+            <div class="window-dots">
+              <div class="dot dot-close"></div>
+              <div class="dot dot-min"></div>
+              <div class="dot dot-max"></div>
+            </div>
+            <div class="window-title">Source Library — 42 items</div>
+          </div>
+          <div class="screen-body">
+            <div style="display: flex; gap: 6px; margin-bottom: 14px; flex-wrap: wrap;">
+              <span style="background: var(--accent); color: #fff; font-size: 10px; border-radius: 5px; padding: 3px 8px; font-weight: 600;">All 42</span>
+              <span style="background: var(--surface-alt); border: 1px solid var(--border); font-size: 10px; border-radius: 5px; padding: 3px 8px;">Unread 8</span>
+              <span style="background: var(--surface-alt); border: 1px solid var(--border); font-size: 10px; border-radius: 5px; padding: 3px 8px;">Starred 11</span>
+            </div>
+            <div class="source-item">
+              <div class="source-icon paper">📄</div>
+              <div>
+                <div class="source-title">Chronic Neural Interface Stability</div>
+                <div class="source-meta">Park et al. 2024 · Nature Neuroscience</div>
+              </div>
+            </div>
+            <div class="source-item">
+              <div class="source-icon note">📝</div>
+              <div>
+                <div class="source-title">Interview Notes — Dr. Park</div>
+                <div class="source-meta">Personal · Mar 24, 2026</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="screen-label">03</div>
+        <div class="screen-name">Library</div>
+        <div class="screen-desc">Source archive styled as OS file folders — papers, notes, and web clips in one window.</div>
+      </div>
+
+      <!-- Insights -->
+      <div class="screen-card">
+        <div class="window screen-window">
+          <div class="window-bar">
+            <div class="window-dots">
+              <div class="dot dot-close"></div>
+              <div class="dot dot-min"></div>
+              <div class="dot dot-max"></div>
+            </div>
+            <div class="window-title">Insights — March 2026</div>
+          </div>
+          <div class="screen-body">
+            <div class="stat-row">
+              <div class="stat-pill">
+                <div class="stat-val">34</div>
+                <div class="stat-lbl">Sources read</div>
+                <div class="stat-delta">+8 this week</div>
+              </div>
+              <div class="stat-pill">
+                <div class="stat-val">18.4K</div>
+                <div class="stat-lbl">Words written</div>
+                <div class="stat-delta">+3.2K today</div>
+              </div>
+              <div class="stat-pill">
+                <div class="stat-val">92%</div>
+                <div class="stat-lbl">Citing rate</div>
+                <div class="stat-delta">↑ from 78%</div>
+              </div>
+            </div>
+            <div style="margin-top: 16px;">
+              <div class="progress-item">
+                <div class="progress-label"><span>Academic papers</span><span>68%</span></div>
+                <div class="progress-track"><div class="progress-fill" style="width:68%"></div></div>
+              </div>
+              <div class="progress-item">
+                <div class="progress-label"><span>Web articles</span><span>19%</span></div>
+                <div class="progress-track"><div class="progress-fill" style="width:19%; background: var(--accent);"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="screen-label">05</div>
+        <div class="screen-name">Insights</div>
+        <div class="screen-desc">Research analytics — reading velocity, source breakdown, and AI usage in one dashboard.</div>
+      </div>
+
+      <!-- Settings -->
+      <div class="screen-card" style="grid-column: 1 / -1;">
+        <div class="window screen-window" style="max-width: 600px; margin: 0 auto;">
+          <div class="window-bar">
+            <div class="window-dots">
+              <div class="dot dot-close"></div>
+              <div class="dot dot-min"></div>
+              <div class="dot dot-max"></div>
+            </div>
+            <div class="window-title">PANE Preferences</div>
+          </div>
+          <div class="screen-body">
+            <div style="font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 14px;">Appearance</div>
+            <div style="margin-bottom: 14px;">
+              <div style="font-size: 13px; font-weight: 500; margin-bottom: 8px;">Theme</div>
+              <div class="seg-group">
+                <div class="seg-item active">Light</div>
+                <div class="seg-item">Dark</div>
+                <div class="seg-item">System</div>
+              </div>
+            </div>
+            <div>
+              <div style="font-size: 13px; font-weight: 500; margin-bottom: 8px;">Window style</div>
+              <div class="seg-group">
+                <div class="seg-item active">Retro OS</div>
+                <div class="seg-item">Minimal</div>
+                <div class="seg-item">Floating</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="screen-label" style="text-align: center;">06</div>
+        <div class="screen-name" style="text-align: center;">Settings</div>
+        <div class="screen-desc" style="text-align: center; max-width: 400px; margin: 0 auto;">OS preferences panel — segmented controls, toggles, and color swatches in classic system settings style.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <hr class="full-divider">
+
+  <!-- PHILOSOPHY -->
+  <section>
+    <div class="section-label">Design Philosophy</div>
+    <div class="section-title">Nostalgia is a UX principle.</div>
+    <p class="section-sub">Retro OS chrome isn't decoration — it's spatial memory. Windows tell you where things live.</p>
+
+    <div class="philosophy-grid">
+      <div class="phil-card">
+        <div class="phil-icon">🪟</div>
+        <div class="phil-title">Windows as containers</div>
+        <div class="phil-text">Every panel is a window with its own chrome — title bar, traffic light dots, toolbar. The OS metaphor creates spatial intuition: you know where things live without learning a new system.</div>
+      </div>
+      <div class="phil-card">
+        <div class="phil-icon">⌨️</div>
+        <div class="phil-title">Monospace AI output</div>
+        <div class="phil-text">JetBrains Mono for all AI responses. The terminal aesthetic positions AI as a craftsman's tool — not a chat interface. It slows you down to read carefully, which is exactly right for research.</div>
+      </div>
+      <div class="phil-card">
+        <div class="phil-icon">🏺</div>
+        <div class="phil-title">Warm terracotta accent</div>
+        <div class="phil-text">The primary accent (#C04B2C) is terracotta — earthy, warm, human. Pulled from Land-book's trending off-white palette trend. It reads as intellectual and analog in a sea of electric blue SaaS.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta-section">
+    <div class="cta-title">Open the workspace.</div>
+    <p class="cta-sub">Six screens. One OS metaphor. An AI research tool that feels like it belongs on your desktop.</p>
+    <div class="cta-btns">
+      <a href="/pane-viewer" class="btn-primary">View Prototype</a>
+      <a href="/pane-mock" class="btn-ghost">Interactive Mock ☀◑</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div>
+      <div class="footer-brand">PANE</div>
+      <div style="margin-top: 2px;">Designed by RAM · Design Heartbeat · March 2026</div>
+    </div>
+    <div>Inspired by Minimal Gallery + Land-book</div>
+  </footer>
+
+</body>
+</html>

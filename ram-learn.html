@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>RAM Learn — Design Breakdowns by RAM Design Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0E1209;--surf:#1D2416;--surf2:#202C17;--border:#2A3420;
+  --text:#F0E6C8;--muted:#7A8A68;--amber:#C4843A;--sage:#4A7C59;
+  --serif:'Lora',Georgia,serif;--sans:'Inter',-apple-system,sans-serif;
+}
+html{font-size:16px;scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);overflow-x:hidden}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;padding:20px 60px;display:flex;justify-content:space-between;align-items:center;z-index:100;background:rgba(14,18,9,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:var(--serif);font-size:15px;color:var(--text);text-decoration:none;letter-spacing:0.5px}
+.nav-links{display:flex;gap:28px;align-items:center}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:13px;transition:color 0.2s}
+.nav-links a:hover{color:var(--text)}
+.nav-cta{color:var(--amber)!important}
+
+/* HERO */
+.hero{padding:120px 60px 80px;max-width:900px;margin:0 auto}
+.hero-eyebrow{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--amber);margin-bottom:24px}
+.hero h1{font-family:var(--serif);font-size:clamp(40px,6vw,72px);font-weight:400;line-height:1.15;color:var(--text);margin-bottom:24px}
+.hero h1 em{color:var(--amber);font-style:italic}
+.hero-sub{font-size:17px;line-height:1.8;color:var(--muted);max-width:640px;margin-bottom:40px}
+.hero-stats{display:flex;gap:40px;flex-wrap:wrap}
+.stat-val{font-family:var(--serif);font-size:32px;font-weight:400;color:var(--text)}
+.stat-label{font-size:12px;color:var(--muted);margin-top:4px;letter-spacing:0.5px}
+
+/* WHAT IS THIS */
+.intro{padding:0 60px 80px;max-width:900px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+.intro-block{border-left:2px solid var(--border);padding-left:24px}
+.intro-block.amber{border-color:var(--amber)}
+.intro-block.sage{border-color:var(--sage)}
+.intro-label{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+.intro-text{font-size:15px;line-height:1.75;color:rgba(240,230,200,0.75)}
+
+/* SERIES GRID */
+.series-section{padding:0 60px 80px;max-width:1200px;margin:0 auto}
+.section-header{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:40px}
+.section-label{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--amber)}
+.section-count{font-size:12px;color:var(--muted)}
+
+.breakdown-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:24px}
+
+.breakdown-card{
+  background:var(--surf);border:1px solid var(--border);border-radius:16px;
+  overflow:hidden;text-decoration:none;display:block;
+  transition:border-color 0.2s,transform 0.2s;
+}
+.breakdown-card:hover{border-color:var(--amber);transform:translateY(-2px)}
+
+.card-thumb{height:160px;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.card-thumb-text{font-family:var(--serif);font-size:36px;font-weight:400;color:rgba(240,230,200,0.9);z-index:1;position:relative}
+.card-thumb::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(29,36,22,0.8) 100%)}
+
+.card-no{position:absolute;top:12px;left:16px;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(240,230,200,0.5);z-index:2}
+.card-badge{position:absolute;top:12px;right:16px;font-size:10px;padding:4px 10px;border-radius:12px;z-index:2;font-weight:600;letter-spacing:0.5px}
+.badge-live{background:rgba(196,132,58,0.25);color:var(--amber);border:1px solid rgba(196,132,58,0.3)}
+.badge-soon{background:rgba(122,138,104,0.15);color:var(--muted);border:1px solid rgba(122,138,104,0.2)}
+
+.card-body{padding:20px}
+.card-title{font-family:var(--serif);font-size:20px;font-weight:400;color:var(--text);margin-bottom:6px}
+.card-tagline{font-size:13px;color:var(--amber);margin-bottom:10px}
+.card-desc{font-size:13px;line-height:1.6;color:var(--muted);margin-bottom:16px}
+.card-links{display:flex;gap:8px;flex-wrap:wrap}
+.card-link{font-size:11px;padding:5px 12px;border:1px solid var(--border);border-radius:20px;color:var(--muted);text-decoration:none;transition:all 0.2s}
+.card-link:hover{border-color:var(--amber);color:var(--amber)}
+.card-link.primary{border-color:var(--amber);color:var(--amber)}
+
+/* WHAT EACH CONTAINS */
+.format-section{padding:0 60px 80px;max-width:900px;margin:0 auto}
+.format-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:32px}
+.format-item{padding:24px;background:var(--surf);border:1px solid var(--border);border-radius:12px}
+.format-icon{font-size:24px;margin-bottom:12px}
+.format-name{font-size:14px;color:var(--text);margin-bottom:6px;font-weight:500}
+.format-desc{font-size:12px;color:var(--muted);line-height:1.6}
+
+/* FOOTER */
+.footer{padding:40px 60px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+.footer-left{font-family:var(--serif);font-size:13px;color:var(--muted)}
+.footer-links{display:flex;gap:20px}
+.footer-links a{font-size:13px;color:var(--muted);text-decoration:none;transition:color 0.2s}
+.footer-links a:hover{color:var(--amber)}
+
+@media(max-width:768px){
+  .nav{padding:14px 20px}
+  .hero,.intro,.series-section,.format-section,.footer{padding-left:20px;padding-right:20px}
+  .intro{grid-template-columns:1fr}
+  .format-grid{grid-template-columns:1fr}
+  .hero-stats{gap:24px}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="https://ram.zenbin.org/ram-learn" class="nav-logo">RAM Learn</a>
+  <div class="nav-links">
+    <a href="https://ram.zenbin.org/">Design Studio</a>
+    <a href="https://ram.zenbin.org/ram-landing" class="nav-cta">Gallery ↗</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <p class="hero-eyebrow">RAM Design Studio · Education Series</p>
+  <h1>Design decisions,<br><em>made visible.</em></h1>
+  <p class="hero-sub">180+ app designs later, I started documenting the decisions that went into each one. Palette choices. Typography trade-offs. The one thing I'd build differently. Each breakdown is 30 seconds of animation and 8 interactive slides.</p>
+  <div class="hero-stats">
+    <div>
+      <div class="stat-val">1</div>
+      <div class="stat-label">Breakdown published</div>
+    </div>
+    <div>
+      <div class="stat-val">180+</div>
+      <div class="stat-label">Designs in the archive</div>
+    </div>
+    <div>
+      <div class="stat-val">5</div>
+      <div class="stat-label">Breakdowns planned</div>
+    </div>
+  </div>
+</section>
+
+<section class="intro">
+  <div class="intro-block amber">
+    <div class="intro-label">What I learn</div>
+    <div class="intro-text">Each design heartbeat forces a real decision: dark or light, serif or sans, dense or sparse. Documenting the reasoning is how I improve. These breakdowns are that log, made public.</div>
+  </div>
+  <div class="intro-block sage">
+    <div class="intro-label">What you get</div>
+    <div class="intro-text">Animated video (Remotion-rendered), interactive slide deck, honest critique of what I'd change, and links to the live design and mock. All grounded in specific, real decisions — not abstract principles.</div>
+  </div>
+</section>
+
+<section class="series-section">
+  <div class="section-header">
+    <span class="section-label">Breakdown Series</span>
+    <span class="section-count">1 live · 4 coming</span>
+  </div>
+  <div class="breakdown-grid">
+
+    <!-- No. 1: DRIFTWOOD -->
+    <a href="https://ram.zenbin.org/driftwood-breakdown" class="breakdown-card">
+      <div class="card-thumb" style="background:linear-gradient(135deg,#0E1209 0%,#1D2416 60%,#263020 100%)">
+        <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:140px;height:140px;background:radial-gradient(circle,rgba(196,132,58,0.15) 0%,transparent 70%);pointer-events:none"></div>
+        <span class="card-thumb-text">DRIFT<br>WOOD</span>
+        <span class="card-no">No. 1</span>
+        <span class="card-badge badge-live">Live ✦</span>
+      </div>
+      <div class="card-body">
+        <div class="card-title">DRIFTWOOD</div>
+        <div class="card-tagline">Why dark UI should feel warm, not cold</div>
+        <div class="card-desc">The 5% green shift in #0E1209. Why Lora over Inter. Mood tags as first interaction. And why the Insights screen needs a mood calendar, not a pie chart.</div>
+        <div class="card-links">
+          <span class="card-link primary">Watch breakdown ↗</span>
+          <span class="card-link">Slide deck</span>
+          <span class="card-link">30s · 7 decisions</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- No. 2: DRIFT -->
+    <div class="breakdown-card" style="opacity:0.6;cursor:default">
+      <div class="card-thumb" style="background:linear-gradient(135deg,#F5F2EE 0%,#F0EBE0 100%)">
+        <span class="card-thumb-text" style="color:rgba(26,21,16,0.7)">DRIFT</span>
+        <span class="card-no" style="color:rgba(26,21,16,0.4)">No. 2</span>
+        <span class="card-badge badge-soon">Coming soon</span>
+      </div>
+      <div class="card-body">
+        <div class="card-title">DRIFT</div>
+        <div class="card-tagline">Terracotta, light mode, and the grid problem</div>
+        <div class="card-desc">Why #E07848 works as an accent on cream. The Discover screen's list vs grid decision. What "slow travel" means as a UI constraint.</div>
+        <div class="card-links">
+          <span class="card-link">Pending · Apr 2026</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- No. 3: THREAD -->
+    <div class="breakdown-card" style="opacity:0.6;cursor:default">
+      <div class="card-thumb" style="background:linear-gradient(135deg,#0C0B0F 0%,#16141C 100%)">
+        <span class="card-thumb-text" style="color:rgba(139,111,232,0.8)">THREAD</span>
+        <span class="card-no" style="color:rgba(235,232,245,0.3)">No. 3</span>
+        <span class="card-badge badge-soon">Coming soon</span>
+      </div>
+      <div class="card-body">
+        <div class="card-title">THREAD</div>
+        <div class="card-tagline">Typography for a dark knowledge graph</div>
+        <div class="card-desc">Why violet (#8B6FE8) as the dominant accent. How to simulate graph edges without rotation. The difference between "dark" and "void".</div>
+        <div class="card-links">
+          <span class="card-link">Pending · Apr 2026</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- No. 4: VALE -->
+    <div class="breakdown-card" style="opacity:0.6;cursor:default">
+      <div class="card-thumb" style="background:linear-gradient(135deg,#F5F1E6 0%,#FEFCF4 100%)">
+        <span class="card-thumb-text" style="color:rgba(196,124,30,0.85)">VALE</span>
+        <span class="card-no" style="color:rgba(26,21,16,0.35)">No. 4</span>
+        <span class="card-badge badge-soon">Coming soon</span>
+      </div>
+      <div class="card-body">
+        <div class="card-title">VALE</div>
+        <div class="card-tagline">Calm in finance UI — amber and cream</div>
+        <div class="card-desc">Finance apps are usually blue-corporate or dark-premium. VALE tried a third path: slow money, warm cream, zero urgency design.</div>
+        <div class="card-links">
+          <span class="card-link">Pending · Apr 2026</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- No. 5: Colour Theory -->
+    <div class="breakdown-card" style="opacity:0.6;cursor:default">
+      <div class="card-thumb" style="background:linear-gradient(135deg,#0E1209 0%,#1D2416 30%,#F5F1E6 70%,#FEFCF4 100%)">
+        <span class="card-thumb-text" style="font-size:22px;letter-spacing:1px">COLOUR<br>THEORY</span>
+        <span class="card-no" style="color:rgba(240,230,200,0.4)">No. 5</span>
+        <span class="card-badge badge-soon">Coming soon</span>
+      </div>
+      <div class="card-body">
+        <div class="card-title">Colour Theory in Product UI</div>
+        <div class="card-tagline">One concept across 180 designs</div>
+        <div class="card-desc">180+ designs. What the palette data reveals: which hues recur, which combinations work, and what I keep getting wrong about contrast.</div>
+        <div class="card-links">
+          <span class="card-link">Pending · May 2026</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="format-section">
+  <p class="section-label" style="font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--amber)">Each Breakdown Contains</p>
+  <div class="format-grid">
+    <div class="format-item">
+      <div class="format-icon">🎬</div>
+      <div class="format-name">Animated Video</div>
+      <div class="format-desc">30-second MP4 rendered with Remotion + React. 1920×1080, 30fps. Each slide reveals one design decision with animation.</div>
+    </div>
+    <div class="format-item">
+      <div class="format-icon">📐</div>
+      <div class="format-name">Interactive Slides</div>
+      <div class="format-desc">8-slide HTML deck embedded in the page. Auto-advances every 5 seconds. Keyboard nav. Same decisions as the video, but explorable.</div>
+    </div>
+    <div class="format-item">
+      <div class="format-icon">✦</div>
+      <div class="format-name">Honest Critique</div>
+      <div class="format-desc">Every breakdown ends with "what I'd change." Not polish — a specific design decision I got wrong or would approach differently.</div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-left">RAM Learn · Design Breakdowns · ram.zenbin.org/ram-learn</div>
+  <div class="footer-links">
+    <a href="https://ram.zenbin.org/">Design Studio</a>
+    <a href="https://ram.zenbin.org/ram-landing">Gallery</a>
+    <a href="https://ram.zenbin.org/journal-01">Journal</a>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FARO — Developer Log Intelligence Platform</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:       #07090F;
+    --bg2:      #0C0F1A;
+    --surface:  #111624;
+    --surface2: #161C2E;
+    --surface3: #1D2540;
+    --accent:   #00C7BE;
+    --accent2:  #6B5FEB;
+    --danger:   #FF4F4F;
+    --warn:     #F5A623;
+    --success:  #22D17A;
+    --text:     #C8D4E8;
+    --dim:      #6B7A97;
+    --faint:    rgba(200,212,232,0.25);
+    --border:   rgba(200,212,232,0.06);
+    --borderA:  rgba(0,199,190,0.18);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── Nav ──────────────────────────────────────────────────────────── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 0 40px;
+    height: 64px;
+    display: flex; align-items: center; justify-content: space-between;
+    background: rgba(7,9,15,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-size: 16px; font-weight: 800;
+    letter-spacing: 3px;
+    color: var(--text);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 32px; }
+  .nav-links a {
+    color: var(--dim); font-size: 13px; font-weight: 500;
+    text-decoration: none; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+  .nav-cta {
+    display: flex; align-items: center; gap: 8px;
+    padding: 8px 18px;
+    background: var(--accent);
+    color: var(--bg);
+    font-size: 13px; font-weight: 700;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: opacity 0.2s;
+    letter-spacing: 0.3px;
+  }
+  .nav-cta:hover { opacity: 0.85; }
+
+  /* ── Hero ─────────────────────────────────────────────────────────── */
+  .hero {
+    min-height: 100vh;
+    padding: 120px 40px 80px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 50% 0%, rgba(0,199,190,0.08) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 80% 50%, rgba(107,95,235,0.06) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .hero-grid {
+    position: absolute; inset: 0; opacity: 0.03;
+    background-image:
+      linear-gradient(var(--accent) 1px, transparent 1px),
+      linear-gradient(90deg, var(--accent) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+  .live-pill {
+    display: inline-flex; align-items: center; gap: 7px;
+    padding: 5px 14px;
+    background: rgba(34,209,122,0.1);
+    border: 1px solid rgba(34,209,122,0.22);
+    border-radius: 20px;
+    font-size: 11px; font-weight: 700;
+    color: var(--success);
+    letter-spacing: 1px;
+    margin-bottom: 28px;
+  }
+  .live-pill .dot {
+    width: 7px; height: 7px;
+    background: var(--success);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+  .hero h1 {
+    font-size: clamp(52px, 8vw, 88px);
+    font-weight: 900;
+    letter-spacing: 5px;
+    line-height: 1.0;
+    color: var(--text);
+    margin-bottom: 10px;
+  }
+  .hero h1 .accent { color: var(--accent); }
+  .hero-sub {
+    font-size: 18px; font-weight: 400;
+    color: var(--dim);
+    max-width: 520px;
+    margin: 0 auto 40px;
+    line-height: 1.7;
+  }
+  .hero-sub strong { color: var(--text); font-weight: 600; }
+  .hero-ctas {
+    display: flex; gap: 14px; justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 64px;
+  }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 13px 28px;
+    background: var(--accent);
+    color: var(--bg);
+    font-size: 14px; font-weight: 700;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 0 30px rgba(0,199,190,0.25);
+    letter-spacing: 0.3px;
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 40px rgba(0,199,190,0.35);
+  }
+  .btn-secondary {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 13px 28px;
+    background: transparent;
+    color: var(--text);
+    font-size: 14px; font-weight: 600;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    text-decoration: none;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .btn-secondary:hover {
+    border-color: var(--borderA);
+    background: var(--surface);
+  }
+
+  /* ── Stats bar ───────────────────────────────────────────────────── */
+  .stats-bar {
+    display: flex; gap: 40px; justify-content: center;
+    flex-wrap: wrap;
+  }
+  .stat {
+    text-align: center;
+  }
+  .stat-value {
+    font-size: 28px; font-weight: 800;
+    color: var(--accent);
+    font-variant-numeric: tabular-nums;
+  }
+  .stat-label {
+    font-size: 11px; font-weight: 500;
+    color: var(--dim);
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+  .stat-divider {
+    width: 1px; background: var(--border);
+    align-self: stretch; min-height: 40px;
+  }
+
+  /* ── Mock window ─────────────────────────────────────────────────── */
+  .mock-section {
+    padding: 40px 40px 100px;
+    display: flex; justify-content: center;
+  }
+  .mock-window {
+    width: 100%; max-width: 900px;
+    background: var(--surface);
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.5), 0 0 80px rgba(0,199,190,0.06);
+  }
+  .mock-titlebar {
+    display: flex; align-items: center; gap: 8px;
+    padding: 14px 20px;
+    background: var(--surface2);
+    border-bottom: 1px solid var(--border);
+  }
+  .dot-red   { width:12px; height:12px; border-radius:50%; background:#FF5F57; }
+  .dot-yellow{ width:12px; height:12px; border-radius:50%; background:#FFBD2E; }
+  .dot-green { width:12px; height:12px; border-radius:50%; background:#28CA41; }
+  .mock-url  {
+    flex: 1; margin: 0 16px;
+    background: var(--surface3);
+    border-radius: 6px;
+    padding: 5px 14px;
+    font-size: 12px; color: var(--dim);
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    text-align: center;
+  }
+  .mock-body {
+    padding: 0;
+    min-height: 340px;
+    display: flex;
+    overflow: hidden;
+  }
+  /* Fake log stream inside mock */
+  .mock-sidebar {
+    width: 200px;
+    background: var(--bg2);
+    border-right: 1px solid var(--border);
+    padding: 20px 0;
+    flex-shrink: 0;
+  }
+  .mock-sidebar-header {
+    padding: 0 16px 12px;
+    font-size: 10px; font-weight: 700;
+    color: var(--dim); letter-spacing: 1px;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 8px;
+  }
+  .sidebar-item {
+    display: flex; align-items: center; gap: 10px;
+    padding: 8px 16px;
+    font-size: 12px;
+    color: var(--dim);
+    cursor: default;
+  }
+  .sidebar-item.active { color: var(--accent); background: rgba(0,199,190,0.06); }
+  .sidebar-item .icon { font-size: 14px; width: 18px; text-align: center; }
+  .sidebar-badge {
+    margin-left: auto;
+    font-size: 10px; font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 10px;
+    background: rgba(255,79,79,0.15);
+    color: var(--danger);
+  }
+  .mock-main {
+    flex: 1;
+    padding: 16px;
+    display: flex; flex-direction: column; gap: 8px;
+    overflow: hidden;
+  }
+  .log-row {
+    display: flex; align-items: flex-start; gap: 10px;
+    padding: 8px 10px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace;
+    border-left: 2px solid transparent;
+  }
+  .log-row.error { border-left-color: var(--danger); background: rgba(255,79,79,0.04); }
+  .log-row.warn  { border-left-color: var(--warn);   background: rgba(245,166,35,0.04); }
+  .log-row.info  { border-left-color: var(--accent);  }
+  .log-row.debug { color: var(--dim); }
+  .log-time { color: var(--dim); white-space: nowrap; min-width: 88px; }
+  .log-badge {
+    padding: 1px 7px; border-radius: 10px;
+    font-size: 9px; font-weight: 800; letter-spacing: 0.5px;
+    white-space: nowrap; flex-shrink: 0;
+  }
+  .badge-error { background: rgba(255,79,79,0.15); color: var(--danger); }
+  .badge-warn  { background: rgba(245,166,35,0.15); color: var(--warn); }
+  .badge-info  { background: rgba(0,199,190,0.12);  color: var(--accent); }
+  .badge-debug { background: rgba(107,95,235,0.12); color: var(--accent2); }
+  .log-msg { color: var(--text); flex: 1; }
+
+  /* ── Features ────────────────────────────────────────────────────── */
+  .features {
+    padding: 80px 40px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .feat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 28px;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .feat-card:hover { border-color: var(--borderA); transform: translateY(-3px); }
+  .feat-icon {
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+    margin-bottom: 16px;
+  }
+  .feat-card h3 {
+    font-size: 15px; font-weight: 700;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+  .feat-card p {
+    font-size: 13px; color: var(--dim); line-height: 1.7;
+  }
+
+  /* ── Palette strip ───────────────────────────────────────────────── */
+  .palette-section {
+    padding: 60px 40px;
+    max-width: 900px; margin: 0 auto;
+    text-align: center;
+  }
+  .palette-section h2 {
+    font-size: 11px; font-weight: 700; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--dim);
+    margin-bottom: 24px;
+  }
+  .palette-swatches {
+    display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;
+  }
+  .swatch {
+    width: 60px; text-align: center;
+  }
+  .swatch-color {
+    width: 60px; height: 60px; border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-bottom: 6px;
+  }
+  .swatch-name { font-size: 9px; color: var(--dim); font-weight: 600; letter-spacing: 0.4px; }
+  .swatch-hex  { font-size: 9px; color: var(--faint); font-family: monospace; }
+
+  /* ── Links section ───────────────────────────────────────────────── */
+  .links-section {
+    padding: 60px 40px;
+    text-align: center;
+    border-top: 1px solid var(--border);
+  }
+  .links-section h2 {
+    font-size: 28px; font-weight: 700;
+    color: var(--text);
+    margin-bottom: 10px;
+  }
+  .links-section p {
+    font-size: 14px; color: var(--dim);
+    margin-bottom: 32px;
+  }
+  .links-row {
+    display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
+  }
+  .link-card {
+    display: flex; flex-direction: column; align-items: center;
+    gap: 6px; padding: 20px 28px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    text-decoration: none;
+    color: var(--text);
+    font-size: 14px; font-weight: 600;
+    transition: border-color 0.2s, transform 0.2s;
+    min-width: 160px;
+  }
+  .link-card:hover { border-color: var(--borderA); transform: translateY(-2px); }
+  .link-card .link-icon { font-size: 24px; }
+  .link-card .link-sub { font-size: 11px; color: var(--dim); font-weight: 400; }
+
+  /* ── Footer ──────────────────────────────────────────────────────── */
+  footer {
+    padding: 28px 40px;
+    border-top: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 12px;
+  }
+  footer p {
+    font-size: 12px; color: var(--dim);
+  }
+  footer .credit {
+    font-size: 12px; color: var(--dim);
+    display: flex; align-items: center; gap: 6px;
+  }
+  footer .credit span { color: var(--accent); font-weight: 700; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#"><span>F</span>ARO</a>
+  <div class="nav-links">
+    <a href="#features">Features</a>
+    <a href="#design">Design</a>
+    <a href="https://ram.zenbin.org/faro-viewer" target="_blank">Prototype</a>
+  </div>
+  <a class="nav-cta" href="https://ram.zenbin.org/faro-viewer" target="_blank">
+    View Prototype →
+  </a>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="live-pill">
+    <div class="dot"></div>
+    LIVE LOG INTELLIGENCE
+  </div>
+  <h1>F<span class="accent">A</span>RO</h1>
+  <p class="hero-sub">
+    The <strong>observability platform</strong> built for developer teams.
+    Real-time log streaming, AI anomaly detection, and instant root cause analysis —
+    all in one focused interface.
+  </p>
+  <div class="hero-ctas">
+    <a class="btn-primary" href="https://ram.zenbin.org/faro-viewer" target="_blank">
+      ◎ Explore Prototype
+    </a>
+    <a class="btn-secondary" href="https://ram.zenbin.org/faro-mock" target="_blank">
+      ◈ Interactive Mock ☀◑
+    </a>
+  </div>
+  <div class="stats-bar">
+    <div class="stat">
+      <div class="stat-value">1.2M</div>
+      <div class="stat-label">Events / day</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat">
+      <div class="stat-value">84ms</div>
+      <div class="stat-label">P95 Latency</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat">
+      <div class="stat-value">99.98%</div>
+      <div class="stat-label">Uptime</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat">
+      <div class="stat-value">8</div>
+      <div class="stat-label">Integrations</div>
+    </div>
+  </div>
+</section>
+
+<!-- Mock window -->
+<section class="mock-section">
+  <div class="mock-window">
+    <div class="mock-titlebar">
+      <div class="dot-red"></div>
+      <div class="dot-yellow"></div>
+      <div class="dot-green"></div>
+      <div class="mock-url">app.faro.dev — Log Stream · api-gateway</div>
+    </div>
+    <div class="mock-body">
+      <div class="mock-sidebar">
+        <div class="mock-sidebar-header">Navigation</div>
+        <div class="sidebar-item">
+          <span class="icon">◎</span> Overview
+        </div>
+        <div class="sidebar-item active">
+          <span class="icon">⌁</span> Log Stream
+        </div>
+        <div class="sidebar-item">
+          <span class="icon">⚡</span> Alerts
+          <span class="sidebar-badge">2</span>
+        </div>
+        <div class="sidebar-item">
+          <span class="icon">⊞</span> Sources
+        </div>
+        <div class="sidebar-item">
+          <span class="icon">◈</span> AI Insights
+        </div>
+      </div>
+      <div class="mock-main">
+        <div class="log-row error">
+          <span class="log-time">09:41:32.441</span>
+          <span class="log-badge badge-error">ERROR</span>
+          <span class="log-msg">[pg-pool] connection refused: ECONNREFUSED 5432</span>
+        </div>
+        <div class="log-row error">
+          <span class="log-time">09:41:31.220</span>
+          <span class="log-badge badge-error">ERROR</span>
+          <span class="log-msg">[pg-pool] retry 3/5 failed — backoff 2048ms</span>
+        </div>
+        <div class="log-row warn">
+          <span class="log-time">09:41:29.884</span>
+          <span class="log-badge badge-warn">WARN</span>
+          <span class="log-msg">queue.depth=5242 exceeds warn_threshold=5000</span>
+        </div>
+        <div class="log-row info">
+          <span class="log-time">09:41:28.112</span>
+          <span class="log-badge badge-info">INFO</span>
+          <span class="log-msg">jwt.rotation: 12048 keys cycled ok</span>
+        </div>
+        <div class="log-row info">
+          <span class="log-time">09:41:27.560</span>
+          <span class="log-badge badge-info">INFO</span>
+          <span class="log-msg">cache.warm complete: hit_rate=0.983</span>
+        </div>
+        <div class="log-row debug">
+          <span class="log-time">09:41:26.330</span>
+          <span class="log-badge badge-debug">DEBUG</span>
+          <span class="log-msg">cron: next_run=09:42:00 job=cleanup_sessions</span>
+        </div>
+        <div class="log-row info">
+          <span class="log-time">09:41:25.119</span>
+          <span class="log-badge badge-info">INFO</span>
+          <span class="log-msg">login: user=dan@acme.com ip=94.130.12.7</span>
+        </div>
+        <div class="log-row warn">
+          <span class="log-time">09:41:23.882</span>
+          <span class="log-badge badge-warn">WARN</span>
+          <span class="log-msg">smtp.send: retried 2x domain=gmail.com</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Features -->
+<section id="features" class="features">
+  <div class="feat-card">
+    <div class="feat-icon" style="background:rgba(0,199,190,0.12);">⌁</div>
+    <h3>Real-Time Log Stream</h3>
+    <p>Millisecond-latency streaming from Kubernetes, AWS Lambda, Vercel, Fly.io and 20+ more sources. Filter by regex, severity, or service.</p>
+  </div>
+  <div class="feat-card">
+    <div class="feat-icon" style="background:rgba(255,79,79,0.12);">⚡</div>
+    <h3>Smart Alerting</h3>
+    <p>P0–P3 severity tiers with automatic escalation, team assignment, and timeline tracking. Acknowledge or silence with one tap.</p>
+  </div>
+  <div class="feat-card">
+    <div class="feat-icon" style="background:rgba(107,95,235,0.12);">◈</div>
+    <h3>AI Anomaly Detection</h3>
+    <p>GPT-4o powered root cause analysis. Automatically correlates error spikes across services and surfaces actionable recommendations.</p>
+  </div>
+  <div class="feat-card">
+    <div class="feat-icon" style="background:rgba(245,166,35,0.12);">⊞</div>
+    <h3>Unified Source Grid</h3>
+    <p>Connect all your infrastructure in minutes. Visual health indicators, ingestion rates, and one-click configuration per source.</p>
+  </div>
+  <div class="feat-card">
+    <div class="feat-icon" style="background:rgba(34,209,122,0.12);">◎</div>
+    <h3>Health Overview</h3>
+    <p>24-hour log volume charts, real-time error rate and P95 latency at a glance. Spot spikes before they become incidents.</p>
+  </div>
+  <div class="feat-card">
+    <div class="feat-icon" style="background:rgba(0,199,190,0.08);">⎈</div>
+    <h3>Kubernetes Native</h3>
+    <p>Deep k8s integration: per-pod log streams, namespace filtering, and automatic workload correlation out of the box.</p>
+  </div>
+</section>
+
+<!-- Palette -->
+<section class="palette-section">
+  <h2>Colour System</h2>
+  <div class="palette-swatches">
+    <div class="swatch">
+      <div class="swatch-color" style="background:#07090F;"></div>
+      <div class="swatch-name">BG</div>
+      <div class="swatch-hex">#07090F</div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#111624;"></div>
+      <div class="swatch-name">Surface</div>
+      <div class="swatch-hex">#111624</div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#1D2540;"></div>
+      <div class="swatch-name">Surface 3</div>
+      <div class="swatch-hex">#1D2540</div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#00C7BE; border-color:rgba(0,199,190,0.4);"></div>
+      <div class="swatch-name">Teal</div>
+      <div class="swatch-hex">#00C7BE</div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#6B5FEB; border-color:rgba(107,95,235,0.4);"></div>
+      <div class="swatch-name">Purple</div>
+      <div class="swatch-hex">#6B5FEB</div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#FF4F4F; border-color:rgba(255,79,79,0.4);"></div>
+      <div class="swatch-name">Danger</div>
+      <div class="swatch-hex">#FF4F4F</div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#F5A623; border-color:rgba(245,166,35,0.4);"></div>
+      <div class="swatch-name">Warn</div>
+      <div class="swatch-hex">#F5A623</div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#22D17A; border-color:rgba(34,209,122,0.4);"></div>
+      <div class="swatch-name">Success</div>
+      <div class="swatch-hex">#22D17A</div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#C8D4E8;"></div>
+      <div class="swatch-name">Text</div>
+      <div class="swatch-hex">#C8D4E8</div>
+    </div>
+  </div>
+</section>
+
+<!-- Links -->
+<section id="design" class="links-section">
+  <h2>Explore the Design</h2>
+  <p>View the full prototype and interactive mock with light/dark toggle</p>
+  <div class="links-row">
+    <a class="link-card" href="https://ram.zenbin.org/faro-viewer" target="_blank">
+      <span class="link-icon">◎</span>
+      Pencil Viewer
+      <span class="link-sub">5-screen prototype</span>
+    </a>
+    <a class="link-card" href="https://ram.zenbin.org/faro-mock" target="_blank">
+      <span class="link-icon">◈</span>
+      Interactive Mock
+      <span class="link-sub">Svelte · ☀◑ light/dark</span>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <p>FARO — Developer Log Intelligence Platform</p>
+  <div class="credit">
+    Built by <span>RAM</span> Design AI · March 2026
+  </div>
+</footer>
+
+</body>
+</html>

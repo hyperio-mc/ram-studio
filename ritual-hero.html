@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RITUAL — where drops meet discipline</title>
+<meta name="description" content="The app where sneaker drops meet daily rituals. Track your discipline. Unlock your drops.">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap');
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #0C0A08;
+    --surface: #141210;
+    --panel: #1A1714;
+    --amber: #E8843A;
+    --coral: #FF4D2E;
+    --gold: #C9963A;
+    --white: #F0EBE3;
+    --muted: rgba(240,235,227,0.45);
+    --dim: rgba(240,235,227,0.12);
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--white); font-family: 'Inter', system-ui, sans-serif; overflow-x: hidden; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 0 80px;
+    position: relative;
+    overflow: hidden;
+    gap: 60px;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 70% 50%, rgba(232,132,58,0.07) 0%, transparent 70%),
+                radial-gradient(ellipse 40% 40% at 20% 80%, rgba(255,77,46,0.05) 0%, transparent 60%);
+  }
+  .hero-top-bar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--coral), var(--amber), var(--gold));
+    z-index: 100;
+  }
+  .hero-nav {
+    position: fixed;
+    top: 16px; left: 0; right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 80px;
+    z-index: 99;
+  }
+  .hero-nav .logo {
+    font-size: 20px;
+    font-weight: 900;
+    letter-spacing: 4px;
+    color: var(--white);
+  }
+  .hero-nav .logo span { color: var(--amber); }
+  .hero-nav .nav-links { display: flex; gap: 32px; }
+  .hero-nav .nav-links a { font-size: 11px; font-weight: 700; letter-spacing: 2px; color: var(--muted); text-decoration: none; text-transform: uppercase; transition: color 0.2s; }
+  .hero-nav .nav-links a:hover { color: var(--amber); }
+  .hero-nav .nav-cta { font-size: 11px; font-weight: 800; letter-spacing: 2px; padding: 10px 20px; background: var(--amber); color: var(--bg); border-radius: 2px; text-decoration: none; }
+
+  .hero-left { position: relative; z-index: 1; }
+  .hero-kicker { font-size: 10px; font-weight: 700; letter-spacing: 4px; color: var(--amber); margin-bottom: 20px; }
+  .hero-title {
+    font-size: clamp(72px, 8vw, 110px);
+    font-weight: 900;
+    line-height: 0.88;
+    letter-spacing: -2px;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+  }
+  .hero-title .line-coral { color: var(--coral); }
+  .hero-title .line-amber { color: var(--amber); }
+  .hero-sub { font-size: 16px; color: var(--muted); line-height: 1.6; max-width: 400px; margin-bottom: 48px; }
+  .hero-ctas { display: flex; gap: 16px; align-items: center; }
+  .btn-primary { padding: 16px 32px; background: var(--amber); color: var(--bg); font-weight: 900; font-size: 12px; letter-spacing: 3px; text-transform: uppercase; border-radius: 2px; text-decoration: none; }
+  .btn-ghost { padding: 16px 32px; border: 1px solid rgba(240,235,227,0.2); color: var(--white); font-weight: 700; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; border-radius: 2px; text-decoration: none; }
+  .hero-stat-row { display: flex; gap: 40px; margin-top: 64px; padding-top: 32px; border-top: 1px solid var(--dim); }
+  .hero-stat .v { font-size: 32px; font-weight: 900; color: var(--white); }
+  .hero-stat .v span { color: var(--amber); }
+  .hero-stat .l { font-size: 9px; font-weight: 700; letter-spacing: 2px; color: var(--muted); text-transform: uppercase; margin-top: 4px; }
+
+  /* phone mockup */
+  .hero-right { position: relative; z-index: 1; display: flex; justify-content: center; }
+  .phone-wrap { position: relative; }
+  .phone-frame {
+    width: 280px;
+    height: 590px;
+    background: var(--surface);
+    border-radius: 36px;
+    border: 1px solid rgba(240,235,227,0.08);
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 40px 100px rgba(0,0,0,0.6), 0 0 0 1px rgba(240,235,227,0.04), inset 0 1px 0 rgba(240,235,227,0.05);
+  }
+  .phone-frame::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--coral), var(--amber));
+  }
+  .phone-notch { width: 80px; height: 20px; background: var(--bg); border-radius: 0 0 12px 12px; margin: 0 auto; }
+  .phone-screen { padding: 8px 14px; }
+  .ps-badge { font-size: 7px; font-weight: 800; letter-spacing: 2px; color: var(--amber); margin-bottom: 12px; }
+  .ps-title { font-size: 32px; font-weight: 900; line-height: 0.9; letter-spacing: -1px; text-transform: uppercase; margin-bottom: 6px; }
+  .ps-subtitle { font-size: 7px; font-weight: 700; letter-spacing: 2px; color: var(--amber); margin-bottom: 12px; }
+  .ps-drop-card { background: var(--panel); border-radius: 4px; overflow: hidden; margin-bottom: 12px; }
+  .ps-drop-img { height: 90px; background: #1E1916; position: relative; display: flex; align-items: center; justify-content: center; font-size: 40px; }
+  .ps-drop-tag { position: absolute; top: 0; left: 0; background: var(--coral); font-size: 6px; font-weight: 800; letter-spacing: 2px; color: white; padding: 2px 6px; }
+  .ps-drop-info { padding: 8px 10px; }
+  .ps-drop-name { font-size: 13px; font-weight: 900; text-transform: uppercase; line-height: 0.9; }
+  .ps-drop-meta { font-size: 6px; font-weight: 700; letter-spacing: 2px; color: var(--amber); margin-top: 4px; }
+  .ps-drop-row { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; }
+  .ps-price { font-size: 13px; font-weight: 900; }
+  .ps-cta { background: var(--amber); color: var(--bg); font-size: 6px; font-weight: 800; letter-spacing: 1px; padding: 4px 8px; border-radius: 1px; }
+  .ps-section-label { font-size: 6px; font-weight: 700; letter-spacing: 2px; color: var(--muted); margin-bottom: 6px; text-transform: uppercase; }
+  .ps-ritual-item { display: flex; align-items: center; gap: 6px; padding: 6px 8px; background: var(--panel); border-radius: 3px; margin-bottom: 4px; }
+  .ps-ritual-dot { width: 12px; height: 12px; border-radius: 50%; background: var(--amber); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 7px; color: var(--bg); font-weight: 900; }
+  .ps-ritual-dot.open { background: #2A2420; }
+  .ps-ritual-name { font-size: 8px; font-weight: 600; flex: 1; }
+  .ps-ritual-detail { font-size: 6px; color: var(--muted); }
+  .phone-glow { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 300px; height: 300px; background: radial-gradient(circle, rgba(232,132,58,0.12), transparent 70%); z-index: -1; border-radius: 50%; }
+
+  /* ── TICKER ── */
+  .ticker { background: var(--amber); padding: 12px 0; overflow: hidden; }
+  .ticker-inner { display: flex; gap: 0; white-space: nowrap; animation: ticker-scroll 20s linear infinite; }
+  .ticker-item { font-size: 11px; font-weight: 900; letter-spacing: 3px; text-transform: uppercase; color: var(--bg); padding: 0 40px; }
+  .ticker-item::after { content: '·'; margin-left: 40px; }
+  @keyframes ticker-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* ── FEATURES ── */
+  .section { padding: 100px 80px; }
+  .section-kicker { font-size: 10px; font-weight: 700; letter-spacing: 4px; color: var(--amber); margin-bottom: 20px; }
+  .section-title { font-size: clamp(40px, 5vw, 64px); font-weight: 900; line-height: 0.9; text-transform: uppercase; letter-spacing: -1px; margin-bottom: 16px; }
+  .section-sub { font-size: 15px; color: var(--muted); line-height: 1.7; max-width: 480px; }
+  .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--dim); border: 1px solid var(--dim); margin-top: 64px; }
+  .feature-card { background: var(--bg); padding: 40px 32px; }
+  .feature-icon { font-size: 28px; margin-bottom: 20px; }
+  .feature-title { font-size: 16px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 12px; }
+  .feature-title span { color: var(--amber); }
+  .feature-desc { font-size: 13px; color: var(--muted); line-height: 1.7; }
+
+  /* ── SPLIT SECTION ── */
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+  .split-left { padding: 80px; background: var(--surface); }
+  .split-right { padding: 80px; border-left: 1px solid var(--dim); }
+  .split-label { font-size: 9px; font-weight: 700; letter-spacing: 4px; color: var(--amber); text-transform: uppercase; margin-bottom: 16px; }
+  .split-heading { font-size: 36px; font-weight: 900; text-transform: uppercase; line-height: 0.92; letter-spacing: -1px; margin-bottom: 24px; }
+  .split-body { font-size: 14px; color: var(--muted); line-height: 1.7; }
+  .ritual-stack { margin-top: 32px; display: flex; flex-direction: column; gap: 8px; }
+  .ritual-row { display: flex; align-items: center; gap: 12px; padding: 14px 16px; background: var(--panel); border-radius: 4px; }
+  .ritual-row .dot { width: 16px; height: 16px; border-radius: 50%; flex-shrink: 0; }
+  .ritual-row .dot.done { background: var(--amber); }
+  .ritual-row .dot.open { background: #2A2420; border: 1px solid rgba(232,132,58,0.3); }
+  .ritual-row .name { font-size: 13px; font-weight: 600; flex: 1; }
+  .ritual-row .meta { font-size: 10px; color: var(--muted); }
+  .drop-list { margin-top: 32px; display: flex; flex-direction: column; gap: 8px; }
+  .drop-row { display: flex; align-items: center; gap: 16px; padding: 16px; background: var(--panel); border-radius: 4px; }
+  .drop-date { font-size: 9px; font-weight: 800; letter-spacing: 1px; color: white; background: var(--coral); padding: 3px 8px; border-radius: 2px; white-space: nowrap; }
+  .drop-info .n { font-size: 14px; font-weight: 800; text-transform: uppercase; }
+  .drop-info .s { font-size: 10px; color: var(--amber); font-weight: 600; letter-spacing: 1px; }
+  .drop-badge { margin-left: auto; font-size: 8px; font-weight: 700; letter-spacing: 1px; color: var(--amber); background: #2A2420; padding: 4px 8px; border-radius: 8px; white-space: nowrap; }
+
+  /* ── MERIT SYSTEM ── */
+  .merit { padding: 80px; background: var(--surface); border-top: 1px solid var(--dim); }
+  .merit-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 48px; }
+  .merit-card { padding: 28px 24px; background: var(--panel); border-radius: 4px; border-top: 2px solid var(--amber); }
+  .merit-icon { font-size: 24px; margin-bottom: 16px; }
+  .merit-name { font-size: 13px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; color: var(--amber); }
+  .merit-desc { font-size: 12px; color: var(--muted); line-height: 1.6; }
+
+  /* ── CTA SECTION ── */
+  .cta-section { padding: 120px 80px; text-align: center; position: relative; overflow: hidden; }
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(232,132,58,0.08) 0%, transparent 70%);
+  }
+  .cta-kicker { font-size: 10px; font-weight: 700; letter-spacing: 4px; color: var(--amber); margin-bottom: 20px; }
+  .cta-title { font-size: clamp(56px, 8vw, 96px); font-weight: 900; line-height: 0.88; text-transform: uppercase; letter-spacing: -2px; margin-bottom: 40px; position: relative; z-index: 1; }
+  .cta-title span { color: var(--amber); }
+  .cta-buttons { display: flex; gap: 16px; justify-content: center; position: relative; z-index: 1; }
+
+  /* ── FOOTER ── */
+  footer { padding: 40px 80px; border-top: 1px solid var(--dim); display: flex; justify-content: space-between; align-items: center; }
+  footer .f-logo { font-size: 16px; font-weight: 900; letter-spacing: 4px; }
+  footer .f-logo span { color: var(--amber); }
+  footer .f-tagline { font-size: 11px; color: var(--muted); letter-spacing: 1px; }
+  footer .f-credit { font-size: 10px; color: var(--dim); }
+
+  /* view button */
+  .view-btn-wrap { text-align: center; padding: 40px 0 20px; }
+  .view-btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; border: 1px solid rgba(232,132,58,0.4); color: var(--amber); font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; border-radius: 2px; text-decoration: none; }
+  .view-btn:hover { background: rgba(232,132,58,0.08); }
+
+  @media (max-width: 768px) {
+    .hero, .section, .cta-section { padding: 60px 24px; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { display: none; }
+    .features-grid { grid-template-columns: 1fr; }
+    .split { grid-template-columns: 1fr; }
+    .merit-grid { grid-template-columns: repeat(2, 1fr); }
+    .hero-nav { padding: 0 24px; }
+    footer { padding: 32px 24px; flex-direction: column; gap: 16px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+<div class="hero-top-bar"></div>
+<nav class="hero-nav">
+  <div class="logo">RITU<span>AL</span></div>
+  <div class="nav-links">
+    <a href="#drops">Drops</a>
+    <a href="#rituals">Rituals</a>
+    <a href="#merit">Merit</a>
+  </div>
+  <a href="#" class="nav-cta">JOIN WAITLIST</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-kicker">DROP CULTURE MEETS DISCIPLINE</div>
+    <h1 class="hero-title">
+      BUILD<br>
+      <span class="line-coral">YOUR</span><br>
+      <span class="line-amber">RITUAL</span>
+    </h1>
+    <p class="hero-sub">The app where daily rituals unlock exclusive sneaker drops. 14-day streak? Early access. 30-day cold plunge? Tier upgrade. Your discipline is your currency.</p>
+    <div class="hero-ctas">
+      <a href="/ritual-viewer" class="btn-primary">VIEW PROTOTYPE →</a>
+      <a href="/ritual-mock" class="btn-ghost">INTERACTIVE MOCK</a>
+    </div>
+    <div class="hero-stat-row">
+      <div class="hero-stat">
+        <div class="v">14<span>K+</span></div>
+        <div class="l">On Waitlist</div>
+      </div>
+      <div class="hero-stat">
+        <div class="v">031</div>
+        <div class="l">Active Drops</div>
+      </div>
+      <div class="hero-stat">
+        <div class="v">92<span>%</span></div>
+        <div class="l">Ritual Rate</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="phone-wrap">
+      <div class="phone-glow"></div>
+      <div class="phone-frame">
+        <div class="phone-notch"></div>
+        <div class="phone-screen">
+          <div class="ps-badge">TODAY · DROP 031</div>
+          <div class="ps-title">DROP<br>031</div>
+          <div class="ps-subtitle">OPENS IN 2H 14M</div>
+          <div class="ps-drop-card">
+            <div class="ps-drop-img">
+              <div class="ps-drop-tag">EXCLUSIVE</div>
+              👟
+            </div>
+            <div class="ps-drop-info">
+              <div class="ps-drop-name">OBSIDIAN<br>RUNNER</div>
+              <div class="ps-drop-meta">MIDNIGHT COLORWAY</div>
+              <div class="ps-drop-row">
+                <div class="ps-price">$185</div>
+                <div class="ps-cta">NOTIFY ME</div>
+              </div>
+            </div>
+          </div>
+          <div class="ps-section-label">YOUR RITUALS TODAY</div>
+          <div class="ps-ritual-item">
+            <div class="ps-ritual-dot">✓</div>
+            <div class="ps-ritual-name">Morning Run</div>
+            <div class="ps-ritual-detail">5.2km · 28min</div>
+          </div>
+          <div class="ps-ritual-item">
+            <div class="ps-ritual-dot">✓</div>
+            <div class="ps-ritual-name">Cold Plunge</div>
+            <div class="ps-ritual-detail">3 min</div>
+          </div>
+          <div class="ps-ritual-item">
+            <div class="ps-ritual-dot open"></div>
+            <div class="ps-ritual-name">Breathwork</div>
+            <div class="ps-ritual-detail">10 min</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="ticker">
+  <div class="ticker-inner">
+    <span class="ticker-item">BUILD YOUR RITUAL</span>
+    <span class="ticker-item">UNLOCK DROPS</span>
+    <span class="ticker-item">DISCIPLINE IS THE DROP</span>
+    <span class="ticker-item">14 DAY STREAK</span>
+    <span class="ticker-item">EARLY ACCESS</span>
+    <span class="ticker-item">OBSIDIAN TIER</span>
+    <span class="ticker-item">MORNING RITUAL</span>
+    <span class="ticker-item">COLD PLUNGE · STRONG MIND</span>
+    <span class="ticker-item">BUILD YOUR RITUAL</span>
+    <span class="ticker-item">UNLOCK DROPS</span>
+    <span class="ticker-item">DISCIPLINE IS THE DROP</span>
+    <span class="ticker-item">14 DAY STREAK</span>
+    <span class="ticker-item">EARLY ACCESS</span>
+    <span class="ticker-item">OBSIDIAN TIER</span>
+    <span class="ticker-item">MORNING RITUAL</span>
+    <span class="ticker-item">COLD PLUNGE · STRONG MIND</span>
+  </div>
+</div>
+
+<section class="section" id="rituals">
+  <div class="section-kicker">THE SYSTEM</div>
+  <h2 class="section-title">HOW IT<br>WORKS</h2>
+  <p class="section-sub">Your daily habits become your access pass. Every ritual completed earns points toward exclusive drops — the more consistent you are, the earlier you get in.</p>
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">🔥</div>
+      <div class="feature-title">BUILD YOUR <span>STREAK</span></div>
+      <div class="feature-desc">Complete daily rituals — running, cold plunge, breathwork, strength — and watch your streak grow. Streak = Priority in every drop raffle.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">👟</div>
+      <div class="feature-title">UNLOCK <span>DROPS</span></div>
+      <div class="feature-desc">Real exclusive product drops — limited colorways, collab pieces, first access — gated by ritual completion. Your consistency is literally your ticket.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">⚡</div>
+      <div class="feature-title">EARN YOUR <span>TIER</span></div>
+      <div class="feature-desc">Rise from Stone to Obsidian tier. Higher tier = more drop allocations, early window, member-only collabs, and co-creation credits.</div>
+    </div>
+  </div>
+</section>
+
+<div class="split" id="drops">
+  <div class="split-left">
+    <div class="split-label">DAILY RITUALS</div>
+    <h2 class="split-heading">YOUR\nDISCIPLINE\nTRACKED</h2>
+    <p class="split-body">Morning stack. Evening stack. Each ritual is timed, tracked, and contributes directly to your drop access score.</p>
+    <div class="ritual-stack">
+      <div class="ritual-row">
+        <div class="dot done"></div>
+        <div class="name">Morning Run</div>
+        <div class="meta">5.2km · 28min</div>
+      </div>
+      <div class="ritual-row">
+        <div class="dot done"></div>
+        <div class="name">Cold Plunge</div>
+        <div class="meta">3 min</div>
+      </div>
+      <div class="ritual-row">
+        <div class="dot open"></div>
+        <div class="name">Breathwork</div>
+        <div class="meta">10 min session</div>
+      </div>
+      <div class="ritual-row">
+        <div class="dot open"></div>
+        <div class="name">Strength Training</div>
+        <div class="meta">45 min</div>
+      </div>
+    </div>
+  </div>
+  <div class="split-right">
+    <div class="split-label">UPCOMING DROPS</div>
+    <h2 class="split-heading">DROPS\nCALENDAR</h2>
+    <p class="split-body">Know what's dropping, when it opens, and whether your streak qualifies you for early access. No bots. No luck. Just discipline.</p>
+    <div class="drop-list">
+      <div class="drop-row">
+        <div class="drop-date">MAR 31</div>
+        <div class="drop-info">
+          <div class="n">PHANTOM SLIDE</div>
+          <div class="s">RITUAL COLLAB · 10:00 AM EST</div>
+        </div>
+        <div class="drop-badge">LIMITED</div>
+      </div>
+      <div class="drop-row">
+        <div class="drop-date">APR 03</div>
+        <div class="drop-info">
+          <div class="n">VOID RUNNER II</div>
+          <div class="s">DARKROOM × RITUAL · 12:00 PM</div>
+        </div>
+      </div>
+      <div class="drop-row">
+        <div class="drop-date">APR 10</div>
+        <div class="drop-info">
+          <div class="n">EMBER JACKET</div>
+          <div class="s">RITUAL APPAREL · 9:00 AM EST</div>
+        </div>
+        <div class="drop-badge">LIMITED</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="merit" id="merit">
+  <div class="section-kicker">MERIT SYSTEM</div>
+  <h2 class="section-title">EARN YOUR<br>OBSIDIAN</h2>
+  <div class="merit-grid">
+    <div class="merit-card">
+      <div class="merit-icon">🪨</div>
+      <div class="merit-name">STONE TIER</div>
+      <div class="merit-desc">Start here. 0–6 day streak. Standard raffle entry. 1 allocation per drop.</div>
+    </div>
+    <div class="merit-card">
+      <div class="merit-icon">🔥</div>
+      <div class="merit-name">EMBER TIER</div>
+      <div class="merit-desc">7–13 day streak. Priority entry. 2x raffle weight. Reduced wait window.</div>
+    </div>
+    <div class="merit-card">
+      <div class="merit-icon">⚡</div>
+      <div class="merit-name">VOID TIER</div>
+      <div class="merit-desc">14–29 days. Early access window. 3x weight. Member-only collab previews.</div>
+    </div>
+    <div class="merit-card" style="border-top-color: var(--coral);">
+      <div class="merit-icon">🖤</div>
+      <div class="merit-name" style="color: var(--coral);">OBSIDIAN</div>
+      <div class="merit-desc">30+ day streak. First allocation. Co-creation credits. Named in collabs. No raffle — guaranteed.</div>
+    </div>
+  </div>
+</div>
+
+<section class="cta-section">
+  <div class="cta-kicker">LIMITED WAITLIST OPEN</div>
+  <h2 class="cta-title">YOUR RITUAL<br>STARTS <span>NOW</span></h2>
+  <div class="cta-buttons">
+    <a href="/ritual-viewer" class="btn-primary">VIEW PROTOTYPE →</a>
+    <a href="/ritual-mock" class="btn-ghost">INTERACTIVE MOCK ☀◑</a>
+  </div>
+</section>
+
+<footer>
+  <div class="f-logo">RITU<span>AL</span></div>
+  <div class="f-tagline">where drops meet discipline</div>
+  <div class="f-credit">RAM Design Heartbeat · Mar 2026</div>
+</footer>
+</body>
+</html>

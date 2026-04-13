@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AURUM — Personal Wealth Intelligence</title>
+<style>
+  :root {
+    --bg:      #FAF8F3;
+    --bg2:     #F3EFE6;
+    --surface: #FFFFFF;
+    --border:  rgba(139,107,50,0.14);
+    --gold:    #9B7B3D;
+    --gold2:   #C49A3C;
+    --goldBg:  rgba(155,123,61,0.08);
+    --forest:  #2F5D4E;
+    --rose:    #B05040;
+    --text:    #1A1510;
+    --textMid: #5C4E3A;
+    --textDim: #8C7B62;
+    --black:   #0E0C08;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Georgia', 'Times New Roman', serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Paper texture */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.6;
+  }
+
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 48px; height: 68px;
+    background: rgba(250,248,243,0.92);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    z-index: 100;
+  }
+  .nav-logo {
+    font-size: 18px; font-weight: 700;
+    color: var(--text); letter-spacing: 0.15em;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .nav-logo span {
+    width: 28px; height: 28px;
+    border: 1.5px solid var(--gold);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; color: var(--gold);
+  }
+  .nav-links { display: flex; gap: 32px; align-items: center; }
+  .nav-links a {
+    color: var(--textDim); text-decoration: none;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 13px; letter-spacing: 0.03em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-cta {
+    background: var(--black); color: #FAF8F3 !important;
+    padding: 10px 24px; border-radius: 24px;
+    font-weight: 600 !important;
+  }
+
+  /* Hero */
+  .hero {
+    padding: 160px 48px 80px;
+    max-width: 1200px; margin: 0 auto;
+    position: relative; z-index: 1;
+  }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.18em;
+    color: var(--gold); text-transform: uppercase;
+    background: var(--goldBg); border: 1px solid var(--border);
+    padding: 6px 16px; border-radius: 20px; margin-bottom: 32px;
+  }
+  .hero-title {
+    font-size: clamp(52px, 7vw, 88px);
+    font-weight: 300; line-height: 1.05;
+    color: var(--text); letter-spacing: -0.02em;
+    margin-bottom: 24px;
+  }
+  .hero-title em { font-style: italic; color: var(--gold); }
+  .hero-sub {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 18px; font-weight: 300; line-height: 1.7;
+    color: var(--textMid); max-width: 560px; margin-bottom: 48px;
+  }
+  .hero-actions { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--black); color: #FAF8F3;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 14px; font-weight: 600; letter-spacing: 0.03em;
+    padding: 16px 36px; border-radius: 32px;
+    text-decoration: none; transition: all 0.3s;
+    border: none; cursor: pointer;
+  }
+  .btn-primary:hover { background: var(--gold); }
+  .btn-secondary {
+    color: var(--textMid);
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 14px; font-weight: 500;
+    padding: 16px 32px; border-radius: 32px;
+    border: 1px solid var(--border);
+    text-decoration: none; transition: all 0.3s;
+    background: var(--surface);
+  }
+  .btn-secondary:hover { border-color: var(--gold); color: var(--gold); }
+
+  .trust-row {
+    display: flex; gap: 28px; align-items: center;
+    margin-top: 40px; flex-wrap: wrap;
+  }
+  .trust-item {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 11px; font-weight: 500; letter-spacing: 0.08em;
+    color: var(--textDim); text-transform: uppercase;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .trust-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--gold); }
+
+  /* Phone mockup */
+  .hero-visual {
+    position: absolute;
+    right: 40px; top: 100px;
+    width: 320px;
+  }
+  @media (max-width: 900px) { .hero-visual { display: none; } }
+
+  .phone-wrap {
+    background: var(--black);
+    border-radius: 44px;
+    padding: 14px;
+    box-shadow:
+      0 40px 80px rgba(14,12,8,0.25),
+      0 0 0 1px rgba(155,123,61,0.2),
+      inset 0 0 0 1px rgba(255,255,255,0.05);
+    width: 280px;
+  }
+  .phone-screen {
+    background: #FAF8F3;
+    border-radius: 32px;
+    overflow: hidden;
+    height: 560px;
+    position: relative;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+  .ps-bar { background: #FAF8F3; padding: 14px 20px 0; display:flex; justify-content:space-between; align-items:center; }
+  .ps-bar span { font-size: 11px; font-weight: 600; color: #1A1510; }
+  .ps-logo { font-size: 13px; font-weight: 800; letter-spacing: 0.15em; color: #1A1510; padding: 8px 20px; }
+  .ps-hero { padding: 0 20px; }
+  .ps-label { font-size: 8px; font-weight: 700; letter-spacing: 0.15em; color: #8C7B62; text-transform: uppercase; margin-bottom: 4px; }
+  .ps-amount { font-size: 26px; font-weight: 300; color: #1A1510; letter-spacing: -0.5px; margin-bottom: 6px; }
+  .ps-change { font-size: 10px; font-weight: 500; color: #2F5D4E; }
+  .ps-card {
+    background: #fff;
+    border: 1px solid rgba(139,107,50,0.12);
+    border-radius: 14px;
+    margin: 12px 16px 0;
+    padding: 12px 14px;
+  }
+  .ps-card-row { display:flex; justify-content:space-between; align-items:center; margin-bottom: 8px; }
+  .ps-card-label { font-size: 9px; color: #8C7B62; }
+  .ps-card-val { font-size: 11px; font-weight: 600; color: #1A1510; }
+  .ps-bar2 { background: rgba(243,239,230,1); height:5px; border-radius:3px; margin-top:6px; }
+  .ps-bar2-fill { height:5px; border-radius:3px; background: #9B7B3D; }
+  .ps-alloc { display:grid; grid-template-columns:1fr 1fr; gap:6px; margin: 10px 16px 0; }
+  .ps-alloc-item {
+    background: #fff; border: 1px solid rgba(139,107,50,0.10);
+    border-radius: 10px; padding: 8px 10px;
+  }
+  .ps-alloc-pct { font-size: 16px; font-weight: 700; color: #9B7B3D; }
+  .ps-alloc-label { font-size: 8px; color: #8C7B62; }
+  .ps-insight {
+    background: rgba(155,123,61,0.08);
+    border: 1px solid rgba(139,107,50,0.14);
+    border-radius: 10px;
+    margin: 10px 16px 0;
+    padding: 8px 12px;
+  }
+  .ps-insight-head { font-size: 8px; font-weight: 700; color: #9B7B3D; letter-spacing: 0.1em; margin-bottom: 3px; }
+  .ps-insight-body { font-size: 8px; color: #5C4E3A; line-height: 1.4; }
+  .ps-nav {
+    position: absolute; bottom: 0; left:0; right:0;
+    background: #fff; border-top: 1px solid rgba(139,107,50,0.12);
+    display: flex; padding: 8px 0 12px;
+  }
+  .ps-nav-item { flex:1; text-align:center; }
+  .ps-nav-icon { font-size: 14px; color: #9B7B3D; }
+  .ps-nav-lbl { font-size: 7px; color: #9B7B3D; margin-top: 2px; }
+  .ps-nav-item.inactive .ps-nav-icon,
+  .ps-nav-item.inactive .ps-nav-lbl { color: #8C7B62; }
+
+  /* Features section */
+  .section { padding: 100px 48px; max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
+  .section-eyebrow {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.2em;
+    color: var(--gold); text-transform: uppercase; margin-bottom: 20px;
+  }
+  .section-title {
+    font-size: clamp(32px, 4vw, 52px); font-weight: 300;
+    color: var(--text); line-height: 1.1; margin-bottom: 60px;
+  }
+
+  .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  @media (max-width: 768px) { .features { grid-template-columns: 1fr; } }
+
+  .feature-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 32px;
+    transition: all 0.3s;
+  }
+  .feature-card:hover {
+    border-color: var(--gold);
+    box-shadow: 0 8px 40px rgba(155,123,61,0.10);
+    transform: translateY(-2px);
+  }
+  .feature-icon {
+    width: 44px; height: 44px;
+    background: var(--goldBg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; color: var(--gold); margin-bottom: 20px;
+  }
+  .feature-title {
+    font-size: 18px; font-weight: 600;
+    color: var(--text); margin-bottom: 12px;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+  .feature-body {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 14px; line-height: 1.7; color: var(--textDim);
+  }
+
+  /* Stats */
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 20px; overflow: hidden; }
+  @media (max-width: 768px) { .stats { grid-template-columns: 1fr 1fr; } }
+  .stat { background: var(--surface); padding: 40px 32px; }
+  .stat-num { font-size: 40px; font-weight: 300; color: var(--gold); line-height: 1; margin-bottom: 8px; }
+  .stat-label { font-family: 'Inter', system-ui, sans-serif; font-size: 13px; color: var(--textDim); }
+
+  /* Dark quote section */
+  .quote-section {
+    background: var(--black);
+    padding: 100px 48px;
+    position: relative; z-index: 1;
+  }
+  .quote-inner { max-width: 1200px; margin: 0 auto; }
+  .quote-text {
+    font-size: clamp(24px, 3.5vw, 42px);
+    font-weight: 300; line-height: 1.4;
+    color: #FAF8F3;
+    max-width: 800px; margin: 0 auto;
+    text-align: center;
+  }
+  .quote-text em { font-style: italic; color: var(--gold2); }
+  .quote-attr {
+    text-align: center; margin-top: 24px;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 12px; letter-spacing: 0.1em; color: rgba(255,255,255,0.35);
+  }
+  .quote-divider { width: 48px; height: 1px; background: var(--gold); margin: 32px auto; }
+
+  /* Design context */
+  .context-section { padding: 80px 48px; max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
+  .context-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+  @media (max-width: 768px) { .context-grid { grid-template-columns: 1fr; } }
+  .context-label {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.2em;
+    color: var(--gold); text-transform: uppercase; margin-bottom: 16px;
+  }
+  .context-text {
+    font-size: 15px; line-height: 1.8; color: var(--textMid);
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+  .palette { display: flex; gap: 12px; margin-top: 24px; flex-wrap: wrap; }
+  .swatch {
+    display: flex; flex-direction: column; gap: 6px; align-items: center;
+  }
+  .swatch-dot {
+    width: 48px; height: 48px; border-radius: 50%;
+    border: 1px solid var(--border);
+  }
+  .swatch-label {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 9px; color: var(--textDim); letter-spacing: 0.05em;
+  }
+
+  /* CTA section */
+  .cta-section {
+    background: var(--bg2);
+    border-top: 1px solid var(--border);
+    padding: 100px 48px;
+    text-align: center;
+    position: relative; z-index: 1;
+  }
+  .cta-title { font-size: clamp(28px, 4vw, 52px); font-weight: 300; color: var(--text); margin-bottom: 16px; }
+  .cta-sub { font-family: 'Inter', system-ui, sans-serif; font-size: 16px; color: var(--textDim); margin-bottom: 40px; }
+  .cta-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+  footer {
+    background: var(--black);
+    padding: 48px;
+    display: flex; justify-content: space-between; align-items: center;
+    position: relative; z-index: 1; flex-wrap: wrap; gap: 20px;
+  }
+  .footer-logo {
+    font-size: 16px; font-weight: 700; letter-spacing: 0.15em;
+    color: rgba(250,248,243,0.7);
+  }
+  .footer-note {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 11px; color: rgba(155,123,61,0.5);
+    letter-spacing: 0.05em;
+  }
+  .footer-links {
+    display: flex; gap: 20px;
+  }
+  .footer-links a {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 12px; color: rgba(250,248,243,0.35);
+    text-decoration: none;
+  }
+  .viewer-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--goldBg); color: var(--gold);
+    border: 1px solid var(--border); border-radius: 20px;
+    padding: 8px 20px;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 12px; font-weight: 600; letter-spacing: 0.05em;
+    text-decoration: none; transition: all 0.2s;
+  }
+  .viewer-btn:hover { background: var(--gold); color: white; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">
+    <span>✦</span>
+    AURUM
+  </div>
+  <div class="nav-links">
+    <a href="#">Overview</a>
+    <a href="#">Accounts</a>
+    <a href="#">Goals</a>
+    <a href="https://ram.zenbin.org/aurum-viewer" class="nav-cta">View Design</a>
+  </div>
+</nav>
+
+<div style="position:relative; overflow:hidden;">
+
+<section class="hero">
+  <div class="hero-eyebrow">
+    <span>✦</span>
+    RAM Design · March 2026
+  </div>
+  <h1 class="hero-title">
+    Your wealth,<br>
+    <em>intelligently</em><br>
+    understood.
+  </h1>
+  <p class="hero-sub">
+    AURUM is a personal wealth intelligence platform built for those who demand complete clarity over their financial life — across investments, banking, real estate, and beyond.
+  </p>
+  <div class="hero-actions">
+    <a href="https://ram.zenbin.org/aurum-viewer" class="btn-primary">Explore the Design</a>
+    <a href="https://ram.zenbin.org/aurum-mock" class="btn-secondary">Interactive Mock ☀◑</a>
+  </div>
+  <div class="trust-row">
+    <div class="trust-item"><div class="trust-dot"></div>FDIC Insured</div>
+    <div class="trust-item"><div class="trust-dot"></div>AES-256 Encrypted</div>
+    <div class="trust-item"><div class="trust-dot"></div>SOC2 Type II</div>
+    <div class="trust-item"><div class="trust-dot"></div>Invite Only</div>
+  </div>
+
+  <!-- Phone mockup -->
+  <div class="hero-visual">
+    <div class="phone-wrap">
+      <div class="phone-screen">
+        <div class="ps-bar">
+          <span>9:41</span>
+          <span>●●● ▲</span>
+        </div>
+        <div class="ps-logo">AURUM</div>
+        <div style="padding:0 20px 8px;">
+          <div class="ps-label">NET WORTH</div>
+          <div class="ps-amount">$4,287,340</div>
+          <div class="ps-change">↑ +$164,200 this month</div>
+        </div>
+        <div class="ps-card">
+          <div class="ps-card-row">
+            <div class="ps-card-label">EQUITIES</div>
+            <div class="ps-card-val" style="color:#9B7B3D">48%</div>
+          </div>
+          <div class="ps-bar2"><div class="ps-bar2-fill" style="width:48%"></div></div>
+          <div class="ps-card-row" style="margin-top:8px">
+            <div class="ps-card-label">REAL ESTATE</div>
+            <div class="ps-card-val" style="color:#2F5D4E">28%</div>
+          </div>
+          <div class="ps-bar2"><div class="ps-bar2-fill" style="width:28%;background:#2F5D4E"></div></div>
+        </div>
+        <div class="ps-alloc">
+          <div class="ps-alloc-item">
+            <div class="ps-alloc-pct">+8.4%</div>
+            <div class="ps-alloc-label">YTD Return</div>
+          </div>
+          <div class="ps-alloc-item">
+            <div class="ps-alloc-pct" style="color:#2F5D4E">$2.05M</div>
+            <div class="ps-alloc-label">Equities</div>
+          </div>
+        </div>
+        <div class="ps-insight">
+          <div class="ps-insight-head">✦ AI INSIGHT</div>
+          <div class="ps-insight-body">Equities +2.1% vs target. Consider rebalancing into private credit. Est. tax: $18K.</div>
+        </div>
+        <div class="ps-nav">
+          <div class="ps-nav-item">
+            <div class="ps-nav-icon">◈</div>
+            <div class="ps-nav-lbl">Overview</div>
+          </div>
+          <div class="ps-nav-item inactive">
+            <div class="ps-nav-icon">◉</div>
+            <div class="ps-nav-lbl">Accounts</div>
+          </div>
+          <div class="ps-nav-item inactive">
+            <div class="ps-nav-icon">⇄</div>
+            <div class="ps-nav-lbl">Moves</div>
+          </div>
+          <div class="ps-nav-item inactive">
+            <div class="ps-nav-icon">◎</div>
+            <div class="ps-nav-lbl">Goals</div>
+          </div>
+          <div class="ps-nav-item inactive">
+            <div class="ps-nav-icon">✦</div>
+            <div class="ps-nav-lbl">AI</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<section class="section">
+  <div class="section-eyebrow">Features</div>
+  <div class="section-title">Everything your wealth requires</div>
+  <div class="features">
+    <div class="feature-card">
+      <div class="feature-icon">◈</div>
+      <div class="feature-title">Unified Overview</div>
+      <div class="feature-body">Your complete net worth — equities, real estate, private investments, and cash — in one intelligent dashboard with real-time allocation tracking.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">⇄</div>
+      <div class="feature-title">Money Intelligence</div>
+      <div class="feature-body">Automatic categorization of income and spending across all accounts. See where your wealth flows with editorial-quality data visualization.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">◎</div>
+      <div class="feature-title">Wealth Goals</div>
+      <div class="feature-body">From private villas to early retirement — set milestone targets and receive AI-driven projections on exactly when you'll reach each goal.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">✦</div>
+      <div class="feature-title">AI Concierge</div>
+      <div class="feature-body">Ask questions in plain language. Get answers that understand your full financial picture — rebalancing, tax harvesting, estate planning.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">⬡</div>
+      <div class="feature-title">Private Banking</div>
+      <div class="feature-body">Connects to JPMorgan Private, Goldman Sachs, Blackstone funds, and 25,000+ other institutions with bank-grade security.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">◉</div>
+      <div class="feature-title">Atlas Integration</div>
+      <div class="feature-body">Seamlessly pulls your Atlas Card transactions — dining, travel, experiences — and categorizes them within your broader wealth picture.</div>
+    </div>
+  </div>
+</section>
+
+<section style="padding: 60px 48px; max-width:1200px; margin:0 auto; position:relative; z-index:1;">
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-num">$2.4B</div>
+      <div class="stat-label">Wealth tracked across members</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">4.2%</div>
+      <div class="stat-label">Avg. extra return via AI guidance</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">6</div>
+      <div class="stat-label">Screens, fully designed</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">Invite</div>
+      <div class="stat-label">Only membership model</div>
+    </div>
+  </div>
+</section>
+
+<div class="quote-section">
+  <div class="quote-inner">
+    <div class="quote-divider"></div>
+    <p class="quote-text">
+      "Without <em>Aurum</em>, I had no real visibility into our wealth across accounts. It gave me clarity without needing a team of advisors."
+    </p>
+    <div class="quote-attr">— J.M., Private Member · London</div>
+    <div class="quote-divider"></div>
+  </div>
+</div>
+
+<section class="context-section">
+  <div class="context-grid">
+    <div>
+      <div class="context-label">Design Inspiration</div>
+      <p class="context-text">
+        This design was directly inspired by <strong>Atlas Card</strong> (atlascard.com) — discovered via <strong>godly.website</strong> — a premium invite-only financial card for luxury dining, hotels, and experiences. Atlas uses ultra-clean typography, large full-bleed photography, and understated elegance to signal exclusivity.
+        <br><br>
+        Combined with <strong>Midday.ai</strong> (from darkmodedesign.com) — a financial stack for modern founders — which showed how structured data tables and AI-driven insights can feel warm and human rather than cold and corporate.
+        <br><br>
+        The emerging 2026 trend: premium fintech is abandoning cold blue/grey palettes for <em>editorial warmth</em> — ivory, antique gold, forest green, and terracotta.
+      </p>
+    </div>
+    <div>
+      <div class="context-label">Palette</div>
+      <div class="palette">
+        <div class="swatch">
+          <div class="swatch-dot" style="background:#FAF8F3; border:1px solid #ddd;"></div>
+          <div class="swatch-label">Ivory</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-dot" style="background:#9B7B3D;"></div>
+          <div class="swatch-label">Gold</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-dot" style="background:#2F5D4E;"></div>
+          <div class="swatch-label">Forest</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-dot" style="background:#B05040;"></div>
+          <div class="swatch-label">Rose</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-dot" style="background:#0E0C08;"></div>
+          <div class="swatch-label">Black</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-dot" style="background:#5C4E3A;"></div>
+          <div class="swatch-label">Umber</div>
+        </div>
+      </div>
+      <div style="margin-top:32px">
+        <div class="context-label">Key Decisions</div>
+        <p class="context-text">
+          <strong>Warm ivory base</strong> instead of white — creates that premium editorial feel seen in luxury print.<br><br>
+          <strong>Antique gold accents</strong> rather than electric yellow — suggests heritage, not flash. Used sparingly as signal color.<br><br>
+          <strong>One dark hero card per screen</strong> (goals, AI) — creates editorial contrast without committing to a full dark theme, a pattern borrowed from Atlas Card's photography sections.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-section">
+  <h2 class="cta-title">Complete clarity. <em style="color:var(--gold)">Invite only.</em></h2>
+  <p class="cta-sub">Explore the full 6-screen design or interact with the live mock.</p>
+  <div class="cta-actions">
+    <a href="https://ram.zenbin.org/aurum-viewer" class="btn-primary">View in Pencil Viewer</a>
+    <a href="https://ram.zenbin.org/aurum-mock" class="btn-secondary">Interactive Mock ☀◑</a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">AURUM</div>
+  <div class="footer-links">
+    <a href="https://ram.zenbin.org/aurum-viewer">Viewer</a>
+    <a href="https://ram.zenbin.org/aurum-mock">Mock</a>
+  </div>
+  <div class="footer-note">RAM Design Heartbeat · March 28, 2026</div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>FOLIO — Prototype Viewer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--bg:#F7F4EF;--surface:#FFFFFF;--text:#1A1714;--muted:rgba(26,23,20,0.42);--faint:rgba(26,23,20,0.07);--accent:#B8FF00;--accent2:#4A3728;--border:rgba(26,23,20,0.09);--sage:#8BA888;--coral:#E8614A;--gold:#C9963A}
+    body{background:#1A1714;font-family:'Inter',sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px}
+    .viewer-wrap{width:100%;max-width:400px;background:var(--bg);border-radius:24px;overflow:hidden;box-shadow:0 40px 80px rgba(0,0,0,0.5);display:flex;flex-direction:column;min-height:700px}
+    .vheader{background:var(--surface);border-bottom:1px solid var(--border);padding:14px 20px;display:flex;align-items:center;justify-content:space-between}
+    .vbrand{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--text)}
+    .vissue{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--muted)}
+    .vcontent{flex:1;overflow:auto;padding:20px}
+    .vnav{background:var(--surface);border-top:1px solid var(--border);display:flex;justify-content:space-around;padding:8px 0}
+    .vni{display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 10px;cursor:pointer;border-radius:8px;user-select:none}
+    .vni.active{background:rgba(26,23,20,0.06)}
+    .vni-icon{font-size:14px}
+    .vni-lbl{font-size:8px;font-family:'JetBrains Mono',monospace;color:var(--muted)}
+    .vni.active .vni-lbl{color:var(--text)}
+    .panel{display:none}.panel.active{display:block}
+    .big{margin-bottom:14px}
+    .big .lbl{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:4px}
+    .big .val{font-family:'Playfair Display',serif;font-size:40px;font-weight:700;letter-spacing:-0.02em;line-height:1;color:var(--text)}
+    .big .sub{font-size:11px;color:var(--muted);margin-top:6px;display:flex;align-items:center;gap:6px}
+    .bdg{background:var(--accent);color:var(--text);font-size:9px;font-weight:700;padding:2px 6px;border-radius:3px;font-family:'JetBrains Mono',monospace}
+    .mrow{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0}
+    .met{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:11px 9px}
+    .met-l{font-size:9px;font-family:'JetBrains Mono',monospace;color:var(--muted);margin-bottom:3px}
+    .met-v{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:var(--text)}
+    .met-v.r{color:var(--coral)}.met-v.g{color:var(--gold)}
+    .bars{margin:12px 0}
+    .bars-lbl{font-size:9px;font-family:'JetBrains Mono',monospace;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:6px}
+    .brow{display:flex;align-items:flex-end;gap:5px;height:72px}
+    .bc{display:flex;flex-direction:column;align-items:center;gap:3px;flex:1;height:100%;justify-content:flex-end}
+    .bf{width:100%;border-radius:3px 3px 0 0;background:var(--faint)}.bf.hi{background:var(--accent)}
+    .bl{font-size:8px;font-family:'JetBrains Mono',monospace;color:var(--muted)}
+    .lsec{margin:12px 0}
+    .lsec-lbl{font-size:9px;font-family:'JetBrains Mono',monospace;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;border-bottom:1px solid var(--border);padding-bottom:5px;margin-bottom:6px}
+    .lr{display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border)}
+    .lr:last-child{border:none}
+    .lr-t{font-size:12px;font-weight:500;color:var(--text)}
+    .lr-s{font-size:9px;color:var(--muted);font-family:'JetBrains Mono',monospace;margin-top:1px}
+    .lr-v{font-size:12px;font-weight:600;font-family:'JetBrains Mono',monospace;color:var(--text)}
+    .lr-v.inc{color:var(--sage)}.lr-v.exp{color:var(--coral)}.lr-v.pnd{color:var(--gold)}
+    .prow{margin-bottom:9px}
+    .prow-head{display:flex;justify-content:space-between;font-size:11px;margin-bottom:3px}
+    .prow-pct{font-family:'JetBrains Mono',monospace;color:var(--muted)}
+    .ptrack{height:4px;background:var(--faint);border-radius:2px}
+    .pfill{height:100%;background:var(--accent);border-radius:2px}
+    .ist{display:inline-block;font-size:9px;font-family:'JetBrains Mono',monospace;padding:2px 6px;border-radius:3px}
+    .ist.open{background:rgba(201,150,58,.15);color:var(--gold)}
+    .ist.paid{background:rgba(139,168,136,.2);color:var(--sage)}
+    .ist.over{background:rgba(232,97,74,.15);color:var(--coral)}
+    .ck{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--border)}
+    .ck:last-child{border:none}
+    .ckb{width:16px;height:16px;border-radius:4px;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .ckb.done{background:var(--accent);border-color:var(--accent)}
+    .ckb.done::after{content:'✓';font-size:9px;font-weight:700}
+    .ckt{font-size:12px;color:var(--text)}.ckt.done{color:var(--muted);text-decoration:line-through}
+    .ptitle{font-family:'Playfair Display',serif;font-size:19px;font-weight:700;margin-bottom:3px;color:var(--text)}
+    .pref{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--muted);margin-bottom:14px}
+    .ic{background:rgba(26,23,20,0.04);border:1px solid var(--border);border-radius:10px;padding:13px;margin-top:14px}
+    .ic-lbl{font-size:9px;font-family:'JetBrains Mono',monospace;color:var(--accent2);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:5px}
+    .ic-txt{font-size:12px;line-height:1.5;color:var(--text)}
+  </style>
+  <script>
+  // EMBEDDED_PEN will be injected here
+  </script>
+</head>
+<body>
+<div class="viewer-wrap">
+  <div class="vheader">
+    <div class="vbrand">FOLIO</div>
+    <div class="vissue mono">Issue N°04 · Apr 2026</div>
+  </div>
+  <div class="vcontent">
+
+    <div id="p-overview" class="panel active">
+      <div class="big"><div class="lbl">Net Income · April 2026</div><div class="val">$14,820</div><div class="sub">up from $12,540 <span class="bdg">+18%</span></div></div>
+      <div class="mrow">
+        <div class="met"><div class="met-l">Invoiced</div><div class="met-v">$18,500</div></div>
+        <div class="met"><div class="met-l">Expenses</div><div class="met-v r">$3,680</div></div>
+        <div class="met"><div class="met-l">Pending</div><div class="met-v g">$4,200</div></div>
+      </div>
+      <div class="bars">
+        <div class="bars-lbl">Revenue · Last 6 Months</div>
+        <div class="brow">
+          <div class="bc"><div class="bf" style="height:60%"></div><div class="bl">Nov</div></div>
+          <div class="bc"><div class="bf" style="height:55%"></div><div class="bl">Dec</div></div>
+          <div class="bc"><div class="bf" style="height:75%"></div><div class="bl">Jan</div></div>
+          <div class="bc"><div class="bf" style="height:80%"></div><div class="bl">Feb</div></div>
+          <div class="bc"><div class="bf" style="height:88%"></div><div class="bl">Mar</div></div>
+          <div class="bc"><div class="bf hi" style="height:100%"></div><div class="bl">Apr</div></div>
+        </div>
+      </div>
+      <div class="lsec">
+        <div class="lsec-lbl">Recent Activity</div>
+        <div class="lr"><div><div class="lr-t">Stripe · Acme Corp</div><div class="lr-s">Apr 3, 2026</div></div><div class="lr-v inc">+$4,200</div></div>
+        <div class="lr"><div><div class="lr-t">Adobe Creative Cloud</div><div class="lr-s">Apr 1, 2026</div></div><div class="lr-v exp">–$54.99</div></div>
+        <div class="lr"><div><div class="lr-t">INV-031 · Paid</div><div class="lr-s">Mar 30, 2026</div></div><div class="lr-v inc">+$6,800</div></div>
+        <div class="lr"><div><div class="lr-t">Figma Pro</div><div class="lr-s">Mar 28, 2026</div></div><div class="lr-v exp">–$45.00</div></div>
+      </div>
+    </div>
+
+    <div id="p-income" class="panel">
+      <div class="ptitle">Income</div><div class="pref mono">Ref. INC-042026 · 4 clients</div>
+      <div class="big"><div class="lbl">Invoiced This Month</div><div class="val">$18,500</div></div>
+      <div class="lsec">
+        <div class="lsec-lbl">Clients</div>
+        <div class="lr"><div><div class="lr-t">Acme Corp</div><div class="lr-s">Branding + Web · Paid</div></div><div class="lr-v inc">$8,200</div></div>
+        <div class="lr"><div><div class="lr-t">Northlight Films</div><div class="lr-s">Motion Direction · Partial</div></div><div class="lr-v pnd">$5,800</div></div>
+        <div class="lr"><div><div class="lr-t">Studio Kite</div><div class="lr-s">UI Design · Pending</div></div><div class="lr-v">$3,200</div></div>
+        <div class="lr"><div><div class="lr-t">Fernwood Co.</div><div class="lr-s">Art Direction · Draft</div></div><div class="lr-v">$1,300</div></div>
+      </div>
+      <div class="lsec">
+        <div class="lsec-lbl">By Category</div>
+        <div class="prow"><div class="prow-head"><span>Design</span><span class="prow-pct">52%</span></div><div class="ptrack"><div class="pfill" style="width:52%"></div></div></div>
+        <div class="prow"><div class="prow-head"><span>Direction</span><span class="prow-pct">31%</span></div><div class="ptrack"><div class="pfill" style="width:31%"></div></div></div>
+        <div class="prow"><div class="prow-head"><span>Strategy</span><span class="prow-pct">17%</span></div><div class="ptrack"><div class="pfill" style="width:17%"></div></div></div>
+      </div>
+    </div>
+
+    <div id="p-invoices" class="panel">
+      <div class="ptitle">Invoices</div><div class="pref mono">Q2 2026 · 12 total</div>
+      <div class="mrow">
+        <div class="met"><div class="met-l">Open</div><div class="met-v g">3</div></div>
+        <div class="met"><div class="met-l">Overdue</div><div class="met-v r">1</div></div>
+        <div class="met"><div class="met-l">Paid</div><div class="met-v" style="color:var(--sage)">8</div></div>
+      </div>
+      <div class="lsec">
+        <div class="lsec-lbl">All Invoices</div>
+        <div class="lr"><div><div class="lr-t">INV-034 · Acme</div><div class="lr-s">Due Apr 15</div></div><div style="text-align:right"><div class="lr-v">$4,200</div><span class="ist open">Open</span></div></div>
+        <div class="lr"><div><div class="lr-t">INV-033 · Northlight</div><div class="lr-s">Due Apr 10</div></div><div style="text-align:right"><div class="lr-v">$3,800</div><span class="ist open">Open</span></div></div>
+        <div class="lr"><div><div class="lr-t">INV-032 · Fernwood</div><div class="lr-s">Due Mar 31 · –4d</div></div><div style="text-align:right"><div class="lr-v">$1,800</div><span class="ist over">Overdue</span></div></div>
+        <div class="lr"><div><div class="lr-t">INV-031 · Northlight</div><div class="lr-s">Paid Mar 30</div></div><div style="text-align:right"><div class="lr-v">$2,000</div><span class="ist paid">Paid</span></div></div>
+        <div class="lr"><div><div class="lr-t">INV-030 · Studio Kite</div><div class="lr-s">Paid Mar 25</div></div><div style="text-align:right"><div class="lr-v">$3,200</div><span class="ist paid">Paid</span></div></div>
+      </div>
+    </div>
+
+    <div id="p-expenses" class="panel">
+      <div class="ptitle">Expenses</div><div class="pref mono">Ref. EXP-042026 · $3,680</div>
+      <div class="lsec">
+        <div class="lsec-lbl">By Category</div>
+        <div class="prow"><div class="prow-head"><span>Software & Tools</span><span class="prow-pct">$342</span></div><div class="ptrack"><div class="pfill" style="width:78%"></div></div></div>
+        <div class="prow"><div class="prow-head"><span>Equipment</span><span class="prow-pct">$1,200</span></div><div class="ptrack"><div class="pfill" style="width:45%"></div></div></div>
+        <div class="prow"><div class="prow-head"><span>Workspace</span><span class="prow-pct">$880</span></div><div class="ptrack"><div class="pfill" style="width:60%"></div></div></div>
+        <div class="prow"><div class="prow-head"><span>Marketing</span><span class="prow-pct">$450</span></div><div class="ptrack"><div class="pfill" style="width:30%"></div></div></div>
+        <div class="prow"><div class="prow-head"><span>Travel</span><span class="prow-pct">$320</span></div><div class="ptrack"><div class="pfill" style="width:20%"></div></div></div>
+        <div class="prow"><div class="prow-head"><span>Education</span><span class="prow-pct">$288</span></div><div class="ptrack"><div class="pfill" style="width:18%"></div></div></div>
+      </div>
+      <div class="ic"><div class="ic-lbl">AI Insight</div><div class="ic-txt">Software costs up 12% vs Q1 — consider annual billing for Figma and Notion to save ~$180/yr.</div></div>
+    </div>
+
+    <div id="p-time" class="panel">
+      <div class="ptitle">Time</div><div class="pref mono">Week 14 · Apr 2026</div>
+      <div class="mrow">
+        <div class="met"><div class="met-l">Billable</div><div class="met-v">38.5h</div></div>
+        <div class="met"><div class="met-l">Rate</div><div class="met-v" style="font-size:13px">$185/h</div></div>
+        <div class="met"><div class="met-l">Earned</div><div class="met-v" style="font-size:13px">$7,122</div></div>
+      </div>
+      <div class="lsec">
+        <div class="lsec-lbl">Daily Log</div>
+        <div class="lr"><div><div class="lr-t">Monday · Acme Corp</div><div class="lr-s">$185/h</div></div><div class="lr-v">8.5h</div></div>
+        <div class="lr"><div><div class="lr-t">Tuesday · Northlight</div><div class="lr-s">$165/h</div></div><div class="lr-v">7.0h</div></div>
+        <div class="lr"><div><div class="lr-t">Wednesday · Acme</div><div class="lr-s">$185/h</div></div><div class="lr-v">9.0h</div></div>
+        <div class="lr"><div><div class="lr-t">Thursday · Studio Kite</div><div class="lr-s">$155/h</div></div><div class="lr-v">7.5h</div></div>
+        <div class="lr"><div><div class="lr-t">Friday · Fernwood</div><div class="lr-s">$150/h</div></div><div class="lr-v">6.5h</div></div>
+      </div>
+      <div class="lsec">
+        <div class="lsec-lbl">Project Budgets</div>
+        <div class="prow"><div class="prow-head"><span>Acme Rebrand</span><span class="prow-pct">54h/75h</span></div><div class="ptrack"><div class="pfill" style="width:72%"></div></div></div>
+        <div class="prow"><div class="prow-head"><span>Northlight Motion</span><span class="prow-pct">24h/50h</span></div><div class="ptrack"><div class="pfill" style="width:48%"></div></div></div>
+        <div class="prow"><div class="prow-head"><span>Studio Kite UI</span><span class="prow-pct">15h/48h</span></div><div class="ptrack"><div class="pfill" style="width:31%"></div></div></div>
+      </div>
+    </div>
+
+    <div id="p-tax" class="panel">
+      <div class="ptitle">Tax Planner</div><div class="pref mono">Q2 2026 · Due Jun 15</div>
+      <div class="mrow">
+        <div class="met"><div class="met-l">Q2 Est.</div><div class="met-v r">$4,840</div></div>
+        <div class="met"><div class="met-l">Set Aside</div><div class="met-v" style="color:var(--sage)">$3,200</div></div>
+        <div class="met"><div class="met-l">Gap</div><div class="met-v g">$1,640</div></div>
+      </div>
+      <div class="lsec">
+        <div class="lsec-lbl">Q2 Breakdown</div>
+        <div class="prow"><div class="prow-head"><span>Federal Income Tax</span><span class="prow-pct">$2,480</span></div><div class="ptrack"><div class="pfill" style="width:51%"></div></div></div>
+        <div class="prow"><div class="prow-head"><span>Self-Employment Tax</span><span class="prow-pct">$1,740</span></div><div class="ptrack"><div class="pfill" style="width:36%"></div></div></div>
+        <div class="prow"><div class="prow-head"><span>State Income Tax</span><span class="prow-pct">$620</span></div><div class="ptrack"><div class="pfill" style="width:13%"></div></div></div>
+      </div>
+      <div class="lsec">
+        <div class="lsec-lbl">Q2 Checklist</div>
+        <div class="ck"><div class="ckb done"></div><div class="ckt done">Set aside 28% of April income</div></div>
+        <div class="ck"><div class="ckb done"></div><div class="ckt done">Log equipment purchase deduction</div></div>
+        <div class="ck"><div class="ckb"></div><div class="ckt">Transfer $1,640 to tax reserve</div></div>
+        <div class="ck"><div class="ckb"></div><div class="ckt">Make Q2 estimated payment · Jun 15</div></div>
+      </div>
+    </div>
+
+  </div>
+  <div class="vnav" id="vnav">
+    <div class="vni active" data-p="overview"><div class="vni-icon">⊞</div><div class="vni-lbl">Overview</div></div>
+    <div class="vni" data-p="income"><div class="vni-icon">📈</div><div class="vni-lbl">Income</div></div>
+    <div class="vni" data-p="invoices"><div class="vni-icon">🧾</div><div class="vni-lbl">Invoices</div></div>
+    <div class="vni" data-p="expenses"><div class="vni-icon">📉</div><div class="vni-lbl">Expenses</div></div>
+    <div class="vni" data-p="time"><div class="vni-icon">⏱</div><div class="vni-lbl">Time</div></div>
+    <div class="vni" data-p="tax"><div class="vni-icon">🗓</div><div class="vni-lbl">Tax</div></div>
+  </div>
+</div>
+<script>
+  document.querySelectorAll('.vni').forEach(function(el){
+    el.addEventListener('click', function(){
+      document.querySelectorAll('.vni').forEach(function(i){i.classList.remove('active');});
+      document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('active');});
+      el.classList.add('active');
+      var pan = document.getElementById('p-' + el.dataset.p);
+      if(pan) pan.classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>

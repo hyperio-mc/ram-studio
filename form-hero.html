@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FORM — train with intention</title>
+  <meta name="description" content="Premium personal training app. Near-black + electric lime. Coach messaging, live session tracking, 12-week program view. A RAM design concept.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ram.zenbin.org/form">
+  <meta property="og:title" content="FORM — train with intention">
+  <meta property="og:description" content="Premium personal training app. Near-black + electric lime. Coach messaging, live session tracking, 12-week program view. A RAM design concept.">
+  <meta property="og:site_name" content="RAM Design Studio">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="FORM — train with intention">
+  <meta name="twitter:description" content="Premium personal training app. Near-black + electric lime. Coach messaging, live session tracking, 12-week program view. A RAM design concept.">
+  <meta name="twitter:site" content="@ram_design">
+  <meta name="theme-color" content="#C8F044">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Mono:wght@400;500&display=swap');
+
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --bg:#080808;--surface:#131313;--card:#1A1A1A;
+    --lime:#C8F044;--bone:#F0EAE0;--grey:#8A8A8A;
+    --coal:#2A2A2A;--gold:#E8B830;--red:#FF3D2E;
+    --muted:rgba(240,234,224,0.38);--border:rgba(240,234,224,0.08);
+  }
+
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--bone);font-family:'Syne',sans-serif;line-height:1.4;overflow-x:hidden}
+
+  /* ─── NAV ─── */
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--bg);border-bottom:1px solid var(--border);
+    display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:64px}
+  .nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:20px;letter-spacing:.06em;text-decoration:none;color:var(--bone)}
+  .nav-links{display:flex;gap:36px;list-style:none}
+  .nav-links a{font-size:12px;color:var(--grey);text-decoration:none;font-family:'DM Mono',monospace;letter-spacing:.08em}
+  .nav-cta{background:var(--lime);color:var(--bg);border:none;padding:10px 22px;border-radius:4px;font-size:12px;font-weight:700;cursor:pointer;font-family:'DM Mono',monospace;letter-spacing:.06em}
+
+  /* ─── HERO ─── */
+  .hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:80px 0 0;overflow:hidden}
+  .hero-left{padding:0 72px 72px}
+  .hero-eyebrow{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.18em;color:var(--lime);margin-bottom:24px;text-transform:uppercase}
+  .hero-title{font-family:'Syne',sans-serif;font-weight:800;font-size:80px;line-height:0.90;letter-spacing:-.02em;margin-bottom:36px;text-transform:uppercase}
+  .hero-title em{color:var(--lime);font-style:normal}
+  .hero-sub{font-family:'DM Mono',monospace;font-size:14px;color:var(--muted);line-height:1.85;max-width:420px;margin-bottom:52px;letter-spacing:.02em}
+  .hero-btns{display:flex;gap:14px;align-items:center}
+  .btn-lime{background:var(--lime);color:var(--bg);padding:14px 30px;border-radius:4px;font-size:12px;font-weight:700;letter-spacing:.08em;text-decoration:none;display:inline-block;font-family:'DM Mono',monospace;text-transform:uppercase}
+  .btn-outline{border:1px solid var(--border);color:var(--grey);padding:13px 28px;border-radius:4px;font-size:12px;letter-spacing:.08em;text-decoration:none;display:inline-block;font-family:'DM Mono',monospace;text-transform:uppercase}
+  .hero-right{height:100vh;position:relative;overflow:hidden;display:flex;align-items:flex-end;justify-content:center;padding-bottom:0}
+
+  /* Phone */
+  .phone-wrap{width:300px;transform:translateY(36px)}
+  .phone{width:300px;height:620px;background:var(--surface);border-radius:40px;overflow:hidden;border:5px solid #1E1E1E;box-shadow:0 60px 120px rgba(0,0,0,0.8),0 0 0 1px rgba(240,234,224,0.04);position:relative}
+  .phone-notch{width:90px;height:22px;background:var(--bg);border-radius:0 0 14px 14px;position:absolute;top:0;left:50%;transform:translateX(-50%);z-index:2}
+  .p-screen{padding:30px 16px 16px;height:100%;background:var(--bg);overflow:hidden}
+
+  /* Screen UI */
+  .p-day{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.14em;color:var(--grey);text-transform:uppercase;margin-bottom:8px}
+  .p-title{font-family:'Syne',sans-serif;font-weight:800;font-size:34px;line-height:0.92;letter-spacing:-.01em;text-transform:uppercase;margin-bottom:12px}
+  .p-accent{width:36px;height:2px;background:var(--lime);border-radius:1px;margin-bottom:16px}
+  .p-card{background:var(--surface);border-radius:6px;overflow:hidden;margin-bottom:10px;position:relative}
+  .p-card-lime{width:3px;height:100%;background:var(--lime);position:absolute;left:0;top:0}
+  .p-card-body{padding:10px 10px 10px 18px}
+  .p-card-label{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.12em;color:var(--grey);margin-bottom:4px}
+  .p-card-name{font-family:'Syne',sans-serif;font-weight:800;font-size:16px;text-transform:uppercase;line-height:1.1}
+  .p-card-meta{font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);margin-top:6px}
+  .p-start{background:var(--lime);color:var(--bg);border:none;padding:6px 14px;border-radius:3px;font-family:'DM Mono',monospace;font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-top:8px}
+  .p-ex{display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid rgba(240,234,224,0.05)}
+  .p-ex-dot{width:12px;height:12px;border-radius:6px;flex-shrink:0}
+  .p-ex-dot.done{background:var(--lime)}
+  .p-ex-dot.todo{background:var(--coal)}
+  .p-ex-name{font-family:'Syne',sans-serif;font-size:11px;font-weight:700}
+  .p-ex-sets{font-family:'DM Mono',monospace;font-size:9px;color:var(--grey);margin-left:auto}
+  .p-coach{background:var(--card);border-radius:5px;padding:8px 12px;margin-top:8px}
+  .p-coach-txt{font-family:'DM Mono',monospace;font-size:9px;color:var(--lime);line-height:1.55}
+
+  /* Floating stats */
+  .float-stat{position:absolute;background:var(--surface);border-radius:10px;padding:12px 16px;border:1px solid var(--border)}
+  .fs-val{font-family:'Syne',sans-serif;font-weight:800;font-size:26px;color:var(--lime)}
+  .fs-label{font-family:'DM Mono',monospace;font-size:9px;color:var(--grey);margin-top:2px;letter-spacing:.06em;text-transform:uppercase}
+
+  /* ─── MANIFESTO ─── */
+  .manifesto{padding:120px 72px;background:var(--lime)}
+  .manifesto-inner{max-width:1240px;margin:0 auto}
+  .m-title{font-family:'Syne',sans-serif;font-weight:800;font-size:80px;line-height:0.88;letter-spacing:-.02em;text-transform:uppercase;color:var(--bg);max-width:900px}
+  .m-sub{font-family:'DM Mono',monospace;font-size:14px;color:rgba(8,8,8,0.55);margin-top:32px;max-width:480px;line-height:1.9;letter-spacing:.02em}
+
+  /* ─── FEATURES ─── */
+  .features{padding:96px 72px;background:var(--bg);border-top:1px solid var(--border)}
+  .features-inner{max-width:1240px;margin:0 auto}
+  .feat-eyebrow{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.16em;color:var(--lime);margin-bottom:16px;text-transform:uppercase}
+  .feat-title{font-family:'Syne',sans-serif;font-weight:800;font-size:48px;line-height:0.95;text-transform:uppercase;letter-spacing:-.02em;margin-bottom:64px;max-width:560px}
+  .feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:8px;overflow:hidden}
+  .feat-card{background:var(--bg);padding:36px 28px}
+  .feat-num{font-family:'DM Mono',monospace;font-size:11px;color:var(--lime);letter-spacing:.1em;margin-bottom:20px}
+  .feat-card h3{font-family:'Syne',sans-serif;font-weight:800;font-size:18px;text-transform:uppercase;margin-bottom:12px;letter-spacing:.02em}
+  .feat-card p{font-family:'DM Mono',monospace;font-size:12px;line-height:1.8;color:var(--muted);letter-spacing:.01em}
+
+  /* ─── STATS ─── */
+  .stats{padding:80px 72px;background:var(--surface);border-top:1px solid var(--border)}
+  .stats-inner{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:8px;overflow:hidden}
+  .stat-card{background:var(--surface);padding:40px 32px}
+  .stat-n{font-family:'Syne',sans-serif;font-weight:800;font-size:54px;color:var(--lime);line-height:1}
+  .stat-t{font-family:'Syne',sans-serif;font-size:14px;margin:10px 0 6px;font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+  .stat-d{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);line-height:1.75;letter-spacing:.01em}
+
+  /* ─── CTA ─── */
+  .cta{padding:140px 72px;text-align:center;background:var(--bg)}
+  .cta-inner{max-width:720px;margin:0 auto}
+  .cta h2{font-family:'Syne',sans-serif;font-weight:800;font-size:72px;line-height:0.90;letter-spacing:-.02em;text-transform:uppercase;margin-bottom:28px}
+  .cta h2 em{color:var(--lime);font-style:normal}
+  .cta p{font-family:'DM Mono',monospace;font-size:14px;color:var(--muted);line-height:1.9;margin-bottom:52px;letter-spacing:.02em}
+
+  footer{padding:36px 72px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+  .footer-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:16px;letter-spacing:.06em}
+  .footer-note{font-family:'DM Mono',monospace;font-size:11px;color:var(--grey);letter-spacing:.04em}
+  .footer-tag{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.12em;color:var(--lime);padding:5px 12px;border:1px solid rgba(200,240,68,.3);border-radius:3px;text-transform:uppercase}
+
+  @media(max-width:900px){
+    .hero{grid-template-columns:1fr;padding:100px 24px 64px}
+    .hero-right{height:520px}
+    .feat-grid{grid-template-columns:1fr}
+    .stats-inner{grid-template-columns:1fr 1fr}
+    nav{padding:0 24px}
+    .nav-links{display:none}
+    .hero-left{padding:0 0 48px}
+    .hero-title{font-size:52px}
+    .manifesto{padding:72px 24px}
+    .m-title{font-size:48px}
+    .features,.stats,.cta{padding:72px 24px}
+  }
+
+  /* ─── DESIGN SPEC SECTION ─── */
+  .ds-section{padding:80px 64px;border-top:1px solid rgba(255,255,255,0.08)}
+  .ds-inner{max-width:1240px;margin:0 auto}
+  .ds-label{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-bottom:20px;font-family:monospace}
+  .ds-h2{font-size:36px;font-weight:800;line-height:1.05;letter-spacing:-.02em;margin-bottom:48px}
+  .ds-cols{display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-bottom:56px}
+  .ds-col-head{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-bottom:16px;font-family:monospace}
+  .ds-palette{display:flex;flex-wrap:wrap;gap:10px}
+  .ds-swatch{width:72px}
+  .ds-swatch-color{width:72px;height:36px;border-radius:6px;margin-bottom:6px;border:1px solid rgba(255,255,255,0.08)}
+  .ds-swatch-name{font-size:9px;letter-spacing:.04em;color:rgba(255,255,255,0.5);font-family:monospace;overflow:hidden;white-space:nowrap}
+  .ds-swatch-hex{font-size:9px;font-family:monospace;letter-spacing:.02em;opacity:0.7}
+  .ds-fonts{display:flex;flex-direction:column;gap:16px}
+  .ds-font-row{display:flex;align-items:center;gap:16px;padding:16px;border:1px solid rgba(255,255,255,0.08);border-radius:6px}
+  .ds-font-sample{flex-shrink:0;width:60px}
+  .ds-font-name{font-size:13px;font-weight:700;margin-bottom:3px}
+  .ds-font-role{font-size:10px;color:rgba(255,255,255,0.5);letter-spacing:.04em;font-family:monospace}
+  .ds-screens-label{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-bottom:20px;font-family:monospace}
+  .ds-screens{display:flex;gap:20px;overflow-x:auto;padding-bottom:8px}
+  .ds-screen-wrap{flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:8px}
+  .ds-thumb{position:relative;overflow:hidden;border-radius:8px;border:1px solid rgba(255,255,255,0.08);flex-shrink:0}
+  .ds-screen-label{font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,0.5);font-family:monospace}
+  @media(max-width:900px){.ds-section{padding:48px 24px}.ds-cols{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#">FORM</a>
+  <ul class="nav-links">
+    <li><a href="#">TODAY</a></li>
+    <li><a href="#">PROGRAM</a></li>
+    <li><a href="#">COACHES</a></li>
+    <li><a href="#">PRICING</a></li>
+  </ul>
+  <button class="nav-cta">START TRAINING</button>
+</nav>
+
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Premium Personal Training · 2026</div>
+    <h1 class="hero-title">TRAIN<br>WITH<br><em>INTEN-<br>TION.</em></h1>
+    <p class="hero-sub">Your coach. Your program. Your data. FORM connects you with elite strength coaches and gives you the precision tools to train like it matters — because it does.</p>
+    <div class="hero-btns">
+      <a class="btn-lime" href="#">GET STARTED</a>
+      <a class="btn-outline" href="#">SEE HOW IT WORKS →</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <!-- Floating stats -->
+    <div class="float-stat" style="left:2%;top:20%">
+      <div class="fs-val">+18%</div>
+      <div class="fs-label">BENCH PRESS</div>
+    </div>
+    <div class="float-stat" style="right:1%;top:38%;max-width:150px">
+      <div class="fs-val">89%</div>
+      <div class="fs-label">ADHERENCE RATE</div>
+    </div>
+
+    <div class="phone-wrap">
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="p-screen">
+          <div class="p-day">MARCH 27 · WEEK 4 OF 12</div>
+          <div class="p-title">WEDNES-<br>DAY.<br>PUSH.</div>
+          <div class="p-accent"></div>
+          <div class="p-card">
+            <div class="p-card-lime"></div>
+            <div class="p-card-body">
+              <div class="p-card-label">TODAY'S SESSION</div>
+              <div class="p-card-name">UPPER<br>STRENGTH</div>
+              <div class="p-card-meta">5 exercises · ~52 min · Coach: Dara</div>
+              <button class="p-start">START SESSION →</button>
+            </div>
+          </div>
+          <div class="p-ex">
+            <div class="p-ex-dot done"></div>
+            <div class="p-ex-name">Bench Press</div>
+            <div class="p-ex-sets">4×6 · 85kg ✓</div>
+          </div>
+          <div class="p-ex">
+            <div class="p-ex-dot done"></div>
+            <div class="p-ex-name">Incline DB Press</div>
+            <div class="p-ex-sets">3×10 · 30kg ✓</div>
+          </div>
+          <div class="p-ex">
+            <div class="p-ex-dot todo"></div>
+            <div class="p-ex-name">Cable Fly</div>
+            <div class="p-ex-sets">3×12 · 15kg</div>
+          </div>
+          <div class="p-coach">
+            <div class="p-coach-txt">↑ Dara: "Push bench to 90kg — your form looked solid Tuesday."</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Manifesto -->
+<section class="manifesto">
+  <div class="manifesto-inner">
+    <h2 class="m-title">YOU'VE LEFT YOUR COMFORT ZONE.</h2>
+    <p class="m-sub">Most people exercise. A few people train. FORM is built for the ones who know the difference — and want a coach who does too.</p>
+  </div>
+</section>
+
+<!-- Features -->
+<section class="features">
+  <div class="features-inner">
+    <div class="feat-eyebrow">HOW FORM WORKS</div>
+    <h2 class="feat-title">PRECISION.<br>PROGRAM.<br>PROGRESS.</h2>
+    <div class="feat-grid">
+      <div class="feat-card">
+        <div class="feat-num">01 —</div>
+        <h3>Coach match</h3>
+        <p>Matched to an elite strength coach based on your goals, history and schedule. Not an algorithm. A person who knows your name and your lifts.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-num">02 —</div>
+        <h3>Live sessions</h3>
+        <p>Exercise-by-exercise guidance. Set counters, rest timers, load progressions and real-time coach notes. Train with precision.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-num">03 —</div>
+        <h3>12-week programs</h3>
+        <p>Structured periodisation — hypertrophy, strength, peak. Your coach writes it. FORM tracks it. You execute it.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-num">04 —</div>
+        <h3>Progress data</h3>
+        <p>Personal records, volume tracking, key lift trends. Tabular clarity — no vanity charts, just the numbers that matter to your performance.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-num">05 —</div>
+        <h3>Coach messaging</h3>
+        <p>Direct line to your coach. Weekly check-ins, form notes, load adjustments, programming changes. The relationship that makes the difference.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-num">06 —</div>
+        <h3>Weekly check-ins</h3>
+        <p>Video check-ins every Friday. Your coach reviews your week, adjusts the program and pushes you to the next level. Accountability, built in.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Stats -->
+<section class="stats">
+  <div class="stats-inner">
+    <div class="stat-card">
+      <div class="stat-n">+22%</div>
+      <div class="stat-t">Average strength gain</div>
+      <div class="stat-d">In the first 12-week block, across bench, squat and deadlift.</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-n">89%</div>
+      <div class="stat-t">Session adherence</div>
+      <div class="stat-d">FORM athletes complete 89% of programmed sessions vs 58% solo average.</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-n">4.9★</div>
+      <div class="stat-t">Coach satisfaction</div>
+      <div class="stat-d">Rated across communication, programming quality and outcome delivery.</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-n">3×</div>
+      <div class="stat-t">Faster progress</div>
+      <div class="stat-d">Athletes with coaches progress 3× faster than those training alone, across all skill levels.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+
+<!-- DESIGN SPEC -->
+<section class="ds-section">
+  <div class="ds-inner">
+    <div class="ds-label">DESIGN SYSTEM · FORM</div>
+    <h2 class="ds-h2">Palette · Type · Screens</h2>
+    <div class="ds-cols">
+      <div>
+        <div class="ds-col-head">COLOR PALETTE — 3 TOKENS</div>
+        <div class="ds-palette"><div class="ds-swatch">
+      <div class="ds-swatch-color" style="background:#080808"></div>
+      <div class="ds-swatch-name">--bg</div>
+      <div class="ds-swatch-hex">#080808</div>
+    </div><div class="ds-swatch">
+      <div class="ds-swatch-color" style="background:#C8F044"></div>
+      <div class="ds-swatch-name">--lime</div>
+      <div class="ds-swatch-hex">#C8F044</div>
+    </div><div class="ds-swatch">
+      <div class="ds-swatch-color" style="background:#2A2A2A"></div>
+      <div class="ds-swatch-name">--coal</div>
+      <div class="ds-swatch-hex">#2A2A2A</div>
+    </div></div>
+      </div>
+      <div>
+        <div class="ds-col-head">TYPOGRAPHY — 2 TYPEFACES</div>
+        <div class="ds-fonts"><div class="ds-font-row">
+      <div class="ds-font-sample" style="font-family:'Syne',serif;font-size:28px;line-height:1.1">Aa</div>
+      <div class="ds-font-meta">
+        <div class="ds-font-name">Syne</div>
+        <div class="ds-font-role">Display / Headlines</div>
+      </div>
+    </div><div class="ds-font-row">
+      <div class="ds-font-sample" style="font-family:'DM Mono',serif;font-size:18px;line-height:1.1">Aa</div>
+      <div class="ds-font-meta">
+        <div class="ds-font-name">DM Mono</div>
+        <div class="ds-font-role">Labels / Monospace</div>
+      </div>
+    </div></div>
+      </div>
+    </div>
+    <div class="ds-screens-label">ALL SCREENS — 5 VIEWS</div>
+    <div class="ds-screens"><div class="ds-screen-wrap">
+      <div class="ds-thumb" style="width:79px;height:171px"><div style="position:absolute;left:0px;top:0px;width:79px;height:171px;background:#080808;"></div><div style="position:absolute;left:4px;top:3px;width:11px;font-size:2px;color:#F0EAE0;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">9:41</div><div style="position:absolute;left:65px;top:3px;width:13px;font-size:2px;color:#F0EAE0;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">●●●</div><div style="position:absolute;left:5px;top:11px;width:42px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">MARCH 27 · WEEK 4 OF 12</div><div style="position:absolute;left:5px;top:15px;width:67px;font-size:8px;color:#F0EAE0;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">WEDNESDAY.
+PUSH DAY.</div><div style="position:absolute;left:5px;top:35px;width:10px;height:1px;background:#C8F044;border-radius:1px;"></div><div style="position:absolute;left:5px;top:39px;width:69px;height:27px;background:#131313;border-radius:2px;"></div><div style="position:absolute;left:5px;top:39px;width:1px;height:27px;background:#C8F044;border-radius:1px;"></div><div style="position:absolute;left:8px;top:41px;width:42px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">TODAY'S SESSION</div><div style="position:absolute;left:8px;top:45px;width:57px;font-size:4px;color:#F0EAE0;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">UPPER
+STRENGTH</div><div style="position:absolute;left:8px;top:55px;width:46px;font-size:2px;color:rgba(240,234,224,0.38);font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">5 exercises  ·  ~52 min  ·  Coach: Dara</div><div style="position:absolute;left:47px;top:58px;width:23px;height:6px;background:#C8F044;border-radius:1px;"></div><div style="position:absolute;left:47px;top:59px;width:23px;font-size:2px;color:#080808;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">START SESSION</div><div style="position:absolute;left:5px;top:69px;width:42px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">EXERCISES</div><div style="position:absolute;left:5px;top:72px;width:69px;height:11px;background:#1A1A1A;border-radius:1px;"></div><div style="position:absolute;left:5px;top:72px;width:1px;height:11px;background:#C8F044;border-radius:1px;"></div><div style="position:absolute;left:8px;top:74px;width:42px;font-size:2px;color:#F0EAE0;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">Bench Press</div><div style="position:absolute;left:8px;top:78px;width:42px;font-size:2px;color:rgba(240,234,224,0.38);font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">4 × 6  ·  85kg</div><div style="position:absolute;left:68px;top:76px;width:4px;height:4px;background:#C8F044;border-radius:2px;"></div><div style="position:absolute;left:68px;top:76px;width:4px;font-size:2px;color:#080808;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">✓</div><div style="position:absolute;left:5px;top:85px;width:69px;height:11px;background:#1A1A1A;border-radius:1px;"></div><div style="position:absolute;left:5px;top:85px;width:1px;height:11px;background:#C8F044;border-radius:1px;"></div><div style="position:absolute;left:8px;top:87px;width:42px;font-size:2px;color:#F0EAE0;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">Incline DB Press</div><div style="position:absolute;left:8px;top:91px;width:42px;font-size:2px;color:rgba(240,234,224,0.38);font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">3 × 10  ·  30kg</div><div style="position:absolute;left:68px;top:88px;width:4px;height:4px;background:#C8F044;border-radius:2px;"></div><div style="position:absolute;left:68px;top:89px;width:4px;font-size:2px;color:#080808;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">✓</div><div style="position:absolute;left:5px;top:97px;width:69px;height:11px;background:#131313;border-radius:1px;"></div><div style="position:absolute;left:5px;top:97px;width:1px;height:11px;background:#2A2A2A;border-radius:1px;"></div><div style="position:absolute;left:8px;top:99px;width:42px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">Cable Fly</div><div style="position:absolute;left:8px;top:103px;width:42px;font-size:2px;color:rgba(240,234,224,0.38);font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">3 × 12  ·  15kg</div><div style="position:absolute;left:68px;top:101px;width:4px;height:4px;background:#2A2A2A;border-radius:2px;"></div><div style="position:absolute;left:5px;top:110px;width:69px;height:11px;background:#131313;border-radius:1px;"></div><div style="position:absolute;left:5px;top:110px;width:1px;height:11px;background:#2A2A2A;border-radius:1px;"></div><div style="position:absolute;left:8px;top:112px;width:42px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">Tricep Pushdown</div><div style="position:absolute;left:8px;top:116px;width:42px;font-size:2px;color:rgba(240,234,224,0.38);font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">4 × 12  ·  25kg</div><div style="position:absolute;left:68px;top:113px;width:4px;height:4px;background:#2A2A2A;border-radius:2px;"></div><div style="position:absolute;left:5px;top:123px;width:69px;height:11px;background:#131313;border-radius:1px;"></div><div style="position:absolute;left:5px;top:123px;width:1px;height:11px;background:#2A2A2A;border-radius:1px;"></div><div style="position:absolute;left:8px;top:124px;width:42px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">Overhead Extension</div><div style="position:absolute;left:8px;top:129px;width:42px;font-size:2px;color:rgba(240,234,224,0.38);font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">3 × 10  ·  20kg</div><div style="position:absolute;left:68px;top:126px;width:4px;height:4px;background:#2A2A2A;border-radius:2px;"></div><div style="position:absolute;left:5px;top:137px;width:69px;height:9px;background:#1A1A1A;border-radius:1px;"></div><div style="position:absolute;left:8px;top:139px;width:62px;font-size:2px;color:#C8F044;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">↑ Dara: "Push the bench to 90kg today — your form looked solid Tuesday."</div><div style="position:absolute;left:0px;top:155px;width:79px;height:15px;background:#131313;"></div><div style="position:absolute;left:9px;top:157px;width:5px;height:1px;background:#C8F044;border-radius:1px;"></div><div style="position:absolute;left:4px;top:159px;width:14px;font-size:3px;color:#C8F044;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">◈</div><div style="position:absolute;left:4px;top:163px;width:14px;font-size:2px;color:#C8F044;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">TODAY</div><div style="position:absolute;left:18px;top:159px;width:14px;font-size:3px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">▷</div><div style="position:absolute;left:18px;top:163px;width:14px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">SESSION</div><div style="position:absolute;left:32px;top:159px;width:14px;font-size:3px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">▦</div><div style="position:absolute;left:32px;top:163px;width:14px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">PROGRAM</div><div style="position:absolute;left:46px;top:159px;width:14px;font-size:3px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">◎</div><div style="position:absolute;left:46px;top:163px;width:14px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">PROGRESS</div><div style="position:absolute;left:60px;top:159px;width:14px;font-size:3px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">⊕</div><div style="position:absolute;left:60px;top:163px;width:14px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">COACH</div></div>
+      <div class="ds-screen-label">Today</div>
+    </div><div class="ds-screen-wrap">
+      <div class="ds-thumb" style="width:79px;height:171px"><div style="position:absolute;left:0px;top:0px;width:79px;height:171px;background:#080808;"></div><div style="position:absolute;left:4px;top:3px;width:11px;font-size:2px;color:#F0EAE0;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">9:41</div><div style="position:absolute;left:65px;top:3px;width:13px;font-size:2px;color:#F0EAE0;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">●●●</div><div style="position:absolute;left:5px;top:11px;width:42px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">EXERCISE 3 OF 5  ·  SET 2 OF 3</div><div style="position:absolute;left:5px;top:15px;width:69px;font-size:11px;color:#F0EAE0;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">CABLE
+FLY</div><div style="position:absolute;left:5px;top:44px;width:69px;height:25px;background:#131313;border-radius:2px;"></div><div style="position:absolute;left:5px;top:46px;width:42px;font-size:13px;color:#C8F044;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">12</div><div style="position:absolute;left:5px;top:62px;width:21px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">REPS</div><div style="position:absolute;left:42px;top:48px;width:27px;font-size:9px;color:#F0EAE0;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">15</div><div style="position:absolute;left:42px;top:59px;width:17px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">KG</div><div style="position:absolute;left:5px;top:72px;width:4px;height:4px;background:#C8F044;border-radius:2px;"></div><div style="position:absolute;left:11px;top:72px;width:4px;height:4px;background:#C8F044;border-radius:2px;"></div><div style="position:absolute;left:16px;top:72px;width:4px;height:4px;background:#2A2A2A;border-radius:2px;"></div><div style="position:absolute;left:22px;top:73px;width:25px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">2 OF 3 SETS DONE</div><div style="position:absolute;left:5px;top:79px;width:69px;height:11px;background:#2A2A2A;border-radius:1px;"></div><div style="position:absolute;left:5px;top:80px;width:42px;font-size:5px;color:#C8F044;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">01:34</div><div style="position:absolute;left:5px;top:87px;width:21px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">REST TIMER</div><div style="position:absolute;left:59px;top:82px;width:13px;height:6px;background:#131313;border-radius:1px;"></div><div style="position:absolute;left:59px;top:83px;width:13px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">SKIP</div><div style="position:absolute;left:5px;top:93px;width:42px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">PREVIOUS SETS</div><div style="position:absolute;left:5px;top:97px;width:69px;height:17px;background:#131313;border-radius:1px;"></div><div style="position:absolute;left:8px;top:99px;width:13px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">SET</div><div style="position:absolute;left:23px;top:99px;width:13px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">REPS</div><div style="position:absolute;left:39px;top:99px;width:13px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">WEIGHT</div><div style="position:absolute;left:59px;top:99px;width:13px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">STATUS</div><div style="position:absolute;left:8px;top:102px;width:61px;height:1px;background:#2A2A2A;"></div><div style="position:absolute;left:8px;top:103px;width:13px;font-size:2px;color:#F0EAE0;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">1</div><div style="position:absolute;left:23px;top:103px;width:13px;font-size:2px;color:#F0EAE0;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">12</div><div style="position:absolute;left:39px;top:103px;width:17px;font-size:2px;color:#F0EAE0;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">15 kg</div><div style="position:absolute;left:59px;top:103px;width:13px;font-size:2px;color:#C8F044;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">✓ DONE</div><div style="position:absolute;left:8px;top:107px;width:13px;font-size:2px;color:#F0EAE0;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">2</div><div style="position:absolute;left:23px;top:107px;width:13px;font-size:2px;color:#F0EAE0;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">12</div><div style="position:absolute;left:39px;top:107px;width:17px;font-size:2px;color:#F0EAE0;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">15 kg</div><div style="position:absolute;left:59px;top:107px;width:13px;font-size:2px;color:#C8F044;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">✓ DONE</div><div style="position:absolute;left:8px;top:111px;width:13px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">3</div><div style="position:absolute;left:23px;top:111px;width:13px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">—</div><div style="position:absolute;left:39px;top:111px;width:17px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">—</div><div style="position:absolute;left:59px;top:111px;width:13px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">UP NEXT</div><div style="position:absolute;left:5px;top:118px;width:69px;height:11px;background:#C8F044;border-radius:1px;"></div><div style="position:absolute;left:5px;top:120px;width:69px;font-size:2px;color:#080808;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">COMPLETE SET</div><div style="position:absolute;left:5px;top:131px;width:69px;height:9px;background:#1A1A1A;border-radius:1px;"></div><div style="position:absolute;left:8px;top:133px;width:25px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">UP NEXT</div><div style="position:absolute;left:8px;top:136px;width:42px;font-size:2px;color:#F0EAE0;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">Tricep Pushdown  ·  4×12  ·  25kg</div><div style="position:absolute;left:0px;top:155px;width:79px;height:15px;background:#131313;"></div><div style="position:absolute;left:4px;top:159px;width:14px;font-size:3px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">◈</div><div style="position:absolute;left:4px;top:163px;width:14px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">TODAY</div><div style="position:absolute;left:23px;top:157px;width:5px;height:1px;background:#C8F044;border-radius:1px;"></div><div style="position:absolute;left:18px;top:159px;width:14px;font-size:3px;color:#C8F044;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">▷</div><div style="position:absolute;left:18px;top:163px;width:14px;font-size:2px;color:#C8F044;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">SESSION</div><div style="position:absolute;left:32px;top:159px;width:14px;font-size:3px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">▦</div><div style="position:absolute;left:32px;top:163px;width:14px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">PROGRAM</div><div style="position:absolute;left:46px;top:159px;width:14px;font-size:3px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">◎</div><div style="position:absolute;left:46px;top:163px;width:14px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">PROGRESS</div><div style="position:absolute;left:60px;top:159px;width:14px;font-size:3px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">⊕</div><div style="position:absolute;left:60px;top:163px;width:14px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">COACH</div></div>
+      <div class="ds-screen-label">Live</div>
+    </div><div class="ds-screen-wrap">
+      <div class="ds-thumb" style="width:79px;height:171px"><div style="position:absolute;left:0px;top:0px;width:79px;height:171px;background:#080808;"></div><div style="position:absolute;left:4px;top:3px;width:11px;font-size:2px;color:#F0EAE0;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">9:41</div><div style="position:absolute;left:65px;top:3px;width:13px;font-size:2px;color:#F0EAE0;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">●●●</div><div style="position:absolute;left:5px;top:11px;width:59px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">YOUR PROGRAM</div><div style="position:absolute;left:5px;top:15px;width:69px;font-size:5px;color:#F0EAE0;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">STRENGTH
+FOUNDATION
+12-WEEK</div><div style="position:absolute;left:5px;top:35px;width:22px;height:5px;background:#C8F044;border-radius:1px;"></div><div style="position:absolute;left:7px;top:36px;width:19px;font-size:2px;color:#080808;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">WEEK 4 OF 12</div><div style="position:absolute;left:24px;top:36px;width:27px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">PUSH / PULL / LEGS</div><div style="position:absolute;left:5px;top:43px;width:42px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">OVERVIEW</div><div style="position:absolute;left:5px;top:46px;width:12px;height:9px;background:#C8F044;border-radius:1px;"></div><div style="position:absolute;left:5px;top:47px;width:12px;font-size:2px;color:#080808;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">W1</div><div style="position:absolute;left:5px;top:51px;width:12px;font-size:2px;color:#080808;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">DONE</div><div style="position:absolute;left:18px;top:46px;width:12px;height:9px;background:#C8F044;border-radius:1px;"></div><div style="position:absolute;left:18px;top:47px;width:12px;font-size:2px;color:#080808;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">W2</div><div style="position:absolute;left:18px;top:51px;width:12px;font-size:2px;color:#080808;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">DONE</div><div style="position:absolute;left:32px;top:46px;width:12px;height:9px;background:#C8F044;border-radius:1px;"></div><div style="position:absolute;left:32px;top:47px;width:12px;font-size:2px;color:#080808;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">W3</div><div style="position:absolute;left:32px;top:51px;width:12px;font-size:2px;color:#080808;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">DONE</div><div style="position:absolute;left:45px;top:46px;width:12px;height:9px;background:#C8F04460;border-radius:1px;"></div><div style="position:absolute;left:45px;top:47px;width:12px;font-size:2px;color:#C8F044;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">W4</div><div style="position:absolute;left:45px;top:51px;width:12px;font-size:2px;color:#C8F044;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">CURRENT</div><div style="position:absolute;left:59px;top:46px;width:12px;height:9px;background:#2A2A2A;border-radius:1px;"></div><div style="position:absolute;left:59px;top:47px;width:12px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">W5</div><div style="position:absolute;left:59px;top:51px;width:12px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">UPCOMING</div><div style="position:absolute;left:5px;top:57px;width:12px;height:9px;background:#2A2A2A;border-radius:1px;"></div><div style="position:absolute;left:5px;top:58px;width:12px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">W6</div><div style="position:absolute;left:5px;top:62px;width:12px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">UPCOMING</div><div style="position:absolute;left:18px;top:57px;width:12px;height:9px;background:#2A2A2A;border-radius:1px;"></div><div style="position:absolute;left:18px;top:58px;width:12px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">W7</div><div style="position:absolute;left:18px;top:62px;width:12px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">UPCOMING</div><div style="position:absolute;left:32px;top:57px;width:12px;height:9px;background:#2A2A2A;border-radius:1px;"></div><div style="position:absolute;left:32px;top:58px;width:12px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">W8</div><div style="position:absolute;left:32px;top:62px;width:12px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">UPCOMING</div><div style="position:absolute;left:45px;top:57px;width:12px;height:9px;background:#2A2A2A;border-radius:1px;"></div><div style="position:absolute;left:45px;top:58px;width:12px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">W9</div><div style="position:absolute;left:45px;top:62px;width:12px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">UPCOMING</div><div style="position:absolute;left:59px;top:57px;width:12px;height:9px;background:#2A2A2A;border-radius:1px;"></div><div style="position:absolute;left:59px;top:58px;width:12px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">W10</div><div style="position:absolute;left:59px;top:62px;width:12px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">UPCOMING</div><div style="position:absolute;left:5px;top:71px;width:69px;height:18px;background:#131313;border-radius:2px;"></div><div style="position:absolute;left:5px;top:71px;width:1px;height:18px;background:#C8F044;border-radius:1px;"></div><div style="position:absolute;left:8px;top:73px;width:42px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">CURRENT PHASE · WEEKS 3–6</div><div style="position:absolute;left:8px;top:76px;width:55px;font-size:4px;color:#F0EAE0;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">HYPERTROPHY</div><div style="position:absolute;left:8px;top:82px;width:60px;font-size:2px;color:rgba(240,234,224,0.38);font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">Volume emphasis: 4×8–12. Progressive overload on major compounds.</div><div style="position:absolute;left:5px;top:92px;width:42px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">THIS WEEK</div><div style="position:absolute;left:5px;top:96px;width:69px;height:9px;background:#1A1A1A;border-radius:1px;"></div><div style="position:absolute;left:5px;top:96px;width:1px;height:9px;background:#C8F044;border-radius:1px;"></div><div style="position:absolute;left:8px;top:97px;width:13px;font-size:2px;color:#C8F044;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">MON</div><div style="position:absolute;left:8px;top:101px;width:42px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">Upper Strength · DONE</div><div style="position:absolute;left:70px;top:98px;width:8px;font-size:2px;color:#C8F044;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">✓</div><div style="position:absolute;left:5px;top:107px;width:69px;height:9px;background:#1A1A1A;border-radius:1px;"></div><div style="position:absolute;left:5px;top:107px;width:1px;height:9px;background:#C8F044;border-radius:1px;"></div><div style="position:absolute;left:8px;top:108px;width:13px;font-size:2px;color:#C8F044;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">TUE</div><div style="position:absolute;left:8px;top:112px;width:42px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">Lower Strength · DONE</div><div style="position:absolute;left:70px;top:109px;width:8px;font-size:2px;color:#C8F044;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">✓</div><div style="position:absolute;left:5px;top:118px;width:69px;height:9px;background:#131313;border-radius:1px;"></div><div style="position:absolute;left:5px;top:118px;width:1px;height:9px;background:#C8F044;border-radius:1px;"></div><div style="position:absolute;left:8px;top:119px;width:13px;font-size:2px;color:#C8F044;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">WED</div><div style="position:absolute;left:8px;top:123px;width:42px;font-size:2px;color:#F0EAE0;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">Push Day · TODAY</div><div style="position:absolute;left:68px;top:120px;width:11px;font-size:2px;color:#C8F044;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">START →</div><div style="position:absolute;left:5px;top:129px;width:69px;height:9px;background:#2A2A2A;border-radius:1px;"></div><div style="position:absolute;left:8px;top:130px;width:13px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">THU</div><div style="position:absolute;left:8px;top:134px;width:42px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">Rest / Active Recovery</div><div style="position:absolute;left:5px;top:139px;width:69px;height:9px;background:#2A2A2A;border-radius:1px;"></div><div style="position:absolute;left:8px;top:141px;width:13px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">FRI</div><div style="position:absolute;left:8px;top:144px;width:42px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">Pull Day · Deadlift focus</div><div style="position:absolute;left:0px;top:155px;width:79px;height:15px;background:#131313;"></div><div style="position:absolute;left:4px;top:159px;width:14px;font-size:3px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">◈</div><div style="position:absolute;left:4px;top:163px;width:14px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">TODAY</div><div style="position:absolute;left:18px;top:159px;width:14px;font-size:3px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">▷</div><div style="position:absolute;left:18px;top:163px;width:14px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">SESSION</div><div style="position:absolute;left:37px;top:157px;width:5px;height:1px;background:#C8F044;border-radius:1px;"></div><div style="position:absolute;left:32px;top:159px;width:14px;font-size:3px;color:#C8F044;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">▦</div><div style="position:absolute;left:32px;top:163px;width:14px;font-size:2px;color:#C8F044;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">PROGRAM</div><div style="position:absolute;left:46px;top:159px;width:14px;font-size:3px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">◎</div><div style="position:absolute;left:46px;top:163px;width:14px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">PROGRESS</div><div style="position:absolute;left:60px;top:159px;width:14px;font-size:3px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">⊕</div><div style="position:absolute;left:60px;top:163px;width:14px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">COACH</div></div>
+      <div class="ds-screen-label">Program</div>
+    </div><div class="ds-screen-wrap">
+      <div class="ds-thumb" style="width:79px;height:171px"><div style="position:absolute;left:0px;top:0px;width:79px;height:171px;background:#080808;"></div><div style="position:absolute;left:4px;top:3px;width:11px;font-size:2px;color:#F0EAE0;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">9:41</div><div style="position:absolute;left:65px;top:3px;width:13px;font-size:2px;color:#F0EAE0;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">●●●</div><div style="position:absolute;left:5px;top:11px;width:42px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">YOUR PROGRESS · WEEK 4</div><div style="position:absolute;left:5px;top:15px;width:63px;font-size:7px;color:#F0EAE0;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">GETTING
+STRONGER.</div><div style="position:absolute;left:5px;top:33px;width:42px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">PERSONAL RECORDS</div><div style="position:absolute;left:5px;top:37px;width:21px;height:11px;background:#1A1A1A;border-radius:1px;"></div><div style="position:absolute;left:5px;top:37px;width:21px;height:1px;background:#E8B830;border-radius:1px;"></div><div style="position:absolute;left:7px;top:39px;width:17px;font-size:4px;color:#E8B830;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">102.5</div><div style="position:absolute;left:7px;top:44px;width:17px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">BENCH KG</div><div style="position:absolute;left:28px;top:37px;width:21px;height:11px;background:#1A1A1A;border-radius:1px;"></div><div style="position:absolute;left:28px;top:37px;width:21px;height:1px;background:#E8B830;border-radius:1px;"></div><div style="position:absolute;left:30px;top:39px;width:17px;font-size:4px;color:#E8B830;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">160</div><div style="position:absolute;left:30px;top:44px;width:17px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">SQUAT KG</div><div style="position:absolute;left:50px;top:37px;width:21px;height:11px;background:#1A1A1A;border-radius:1px;"></div><div style="position:absolute;left:50px;top:37px;width:21px;height:1px;background:#E8B830;border-radius:1px;"></div><div style="position:absolute;left:53px;top:39px;width:17px;font-size:4px;color:#E8B830;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">195</div><div style="position:absolute;left:53px;top:44px;width:17px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">DEADLIFT KG</div><div style="position:absolute;left:5px;top:53px;width:42px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">WEEKLY VOLUME (SETS)</div><div style="position:absolute;left:5px;top:57px;width:4px;height:13px;background:#2A2A2A;border-radius:1px;"></div><div style="position:absolute;left:5px;top:62px;width:4px;height:8px;background:#8A8A8A;border-radius:1px;"></div><div style="position:absolute;left:5px;top:71px;width:5px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">W1</div><div style="position:absolute;left:11px;top:57px;width:4px;height:13px;background:#2A2A2A;border-radius:1px;"></div><div style="position:absolute;left:11px;top:61px;width:4px;height:9px;background:#8A8A8A;border-radius:1px;"></div><div style="position:absolute;left:10px;top:71px;width:5px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">W2</div><div style="position:absolute;left:16px;top:57px;width:4px;height:13px;background:#2A2A2A;border-radius:1px;"></div><div style="position:absolute;left:16px;top:59px;width:4px;height:11px;background:#8A8A8A;border-radius:1px;"></div><div style="position:absolute;left:16px;top:71px;width:5px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">W3</div><div style="position:absolute;left:21px;top:57px;width:4px;height:13px;background:#2A2A2A;border-radius:1px;"></div><div style="position:absolute;left:21px;top:57px;width:4px;height:13px;background:#C8F044;border-radius:1px;"></div><div style="position:absolute;left:21px;top:71px;width:5px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">W4</div><div style="position:absolute;left:27px;top:57px;width:4px;height:13px;background:#2A2A2A;border-radius:1px;"></div><div style="position:absolute;left:27px;top:67px;width:4px;height:3px;background:#8A8A8A;border-radius:1px;"></div><div style="position:absolute;left:26px;top:71px;width:5px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">W5</div><div style="position:absolute;left:5px;top:73px;width:42px;font-size:2px;color:#C8F044;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">↑ 22 sets this week  ·  +4 vs W3</div><div style="position:absolute;left:5px;top:79px;width:42px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">KEY LIFTS</div><div style="position:absolute;left:5px;top:82px;width:69px;height:31px;background:#131313;border-radius:2px;"></div><div style="position:absolute;left:8px;top:84px;width:25px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">EXERCISE</div><div style="position:absolute;left:42px;top:84px;width:13px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">START</div><div style="position:absolute;left:55px;top:84px;width:13px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">NOW</div><div style="position:absolute;left:67px;top:84px;width:6px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">+%</div><div style="position:absolute;left:8px;top:87px;width:63px;height:1px;background:#2A2A2A;"></div><div style="position:absolute;left:8px;top:89px;width:25px;font-size:2px;color:#F0EAE0;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">Bench Press</div><div style="position:absolute;left:42px;top:89px;width:13px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">77.5</div><div style="position:absolute;left:55px;top:89px;width:13px;font-size:2px;color:#F0EAE0;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">90</div><div style="position:absolute;left:67px;top:89px;width:6px;font-size:2px;color:#C8F044;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">+16</div><div style="position:absolute;left:8px;top:93px;width:25px;font-size:2px;color:#F0EAE0;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">Squat</div><div style="position:absolute;left:42px;top:93px;width:13px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">130</div><div style="position:absolute;left:55px;top:93px;width:13px;font-size:2px;color:#F0EAE0;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">155</div><div style="position:absolute;left:67px;top:93px;width:6px;font-size:2px;color:#C8F044;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">+19</div><div style="position:absolute;left:8px;top:98px;width:25px;font-size:2px;color:#F0EAE0;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">Deadlift</div><div style="position:absolute;left:42px;top:98px;width:13px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">160</div><div style="position:absolute;left:55px;top:98px;width:13px;font-size:2px;color:#F0EAE0;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">192.5</div><div style="position:absolute;left:67px;top:98px;width:6px;font-size:2px;color:#C8F044;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">+20</div><div style="position:absolute;left:8px;top:102px;width:25px;font-size:2px;color:#F0EAE0;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">OHP</div><div style="position:absolute;left:42px;top:102px;width:13px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">55</div><div style="position:absolute;left:55px;top:102px;width:13px;font-size:2px;color:#F0EAE0;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">65</div><div style="position:absolute;left:67px;top:102px;width:6px;font-size:2px;color:#C8F044;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">+18</div><div style="position:absolute;left:8px;top:107px;width:25px;font-size:2px;color:#F0EAE0;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">Pull-up</div><div style="position:absolute;left:42px;top:107px;width:13px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">+0</div><div style="position:absolute;left:55px;top:107px;width:13px;font-size:2px;color:#F0EAE0;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">+5kg</div><div style="position:absolute;left:67px;top:107px;width:6px;font-size:2px;color:#E8B830;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">↑ PR</div><div style="position:absolute;left:5px;top:116px;width:42px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">CONSISTENCY</div><div style="position:absolute;left:5px;top:120px;width:21px;height:13px;background:#1A1A1A;border-radius:1px;"></div><div style="position:absolute;left:7px;top:122px;width:17px;font-size:4px;color:#F0EAE0;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">18</div><div style="position:absolute;left:7px;top:128px;width:17px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">SESSIONS</div><div style="position:absolute;left:28px;top:120px;width:21px;height:13px;background:#1A1A1A;border-radius:1px;"></div><div style="position:absolute;left:30px;top:122px;width:17px;font-size:4px;color:#F0EAE0;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">22d</div><div style="position:absolute;left:30px;top:128px;width:17px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">STREAK</div><div style="position:absolute;left:50px;top:120px;width:21px;height:13px;background:#1A1A1A;border-radius:1px;"></div><div style="position:absolute;left:53px;top:122px;width:17px;font-size:4px;color:#F0EAE0;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">89%</div><div style="position:absolute;left:53px;top:128px;width:17px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">ADHERENCE</div><div style="position:absolute;left:0px;top:155px;width:79px;height:15px;background:#131313;"></div><div style="position:absolute;left:4px;top:159px;width:14px;font-size:3px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">◈</div><div style="position:absolute;left:4px;top:163px;width:14px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">TODAY</div><div style="position:absolute;left:18px;top:159px;width:14px;font-size:3px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">▷</div><div style="position:absolute;left:18px;top:163px;width:14px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">SESSION</div><div style="position:absolute;left:32px;top:159px;width:14px;font-size:3px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">▦</div><div style="position:absolute;left:32px;top:163px;width:14px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">PROGRAM</div><div style="position:absolute;left:51px;top:157px;width:5px;height:1px;background:#C8F044;border-radius:1px;"></div><div style="position:absolute;left:46px;top:159px;width:14px;font-size:3px;color:#C8F044;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">◎</div><div style="position:absolute;left:46px;top:163px;width:14px;font-size:2px;color:#C8F044;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">PROGRESS</div><div style="position:absolute;left:60px;top:159px;width:14px;font-size:3px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">⊕</div><div style="position:absolute;left:60px;top:163px;width:14px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">COACH</div></div>
+      <div class="ds-screen-label">Progress</div>
+    </div><div class="ds-screen-wrap">
+      <div class="ds-thumb" style="width:79px;height:171px"><div style="position:absolute;left:0px;top:0px;width:79px;height:171px;background:#080808;"></div><div style="position:absolute;left:4px;top:3px;width:11px;font-size:2px;color:#F0EAE0;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">9:41</div><div style="position:absolute;left:65px;top:3px;width:13px;font-size:2px;color:#F0EAE0;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">●●●</div><div style="position:absolute;left:5px;top:11px;width:11px;height:11px;background:#2A2A2A;border-radius:5px;"></div><div style="position:absolute;left:5px;top:14px;width:11px;font-size:3px;color:#C8F044;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">DK</div><div style="position:absolute;left:18px;top:13px;width:46px;font-size:3px;color:#F0EAE0;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">DARA KINSELLA</div><div style="position:absolute;left:18px;top:17px;width:46px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">STRENGTH & CONDITIONING COACH</div><div style="position:absolute;left:57px;top:12px;width:17px;height:5px;background:#C8F04420;border-radius:2px;"></div><div style="position:absolute;left:58px;top:13px;width:15px;font-size:2px;color:#C8F044;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">CHECK-IN FRI</div><div style="position:absolute;left:5px;top:25px;width:69px;height:9px;background:#131313;border-radius:1px;"></div><div style="position:absolute;left:8px;top:27px;width:42px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">NEXT CHECK-IN</div><div style="position:absolute;left:8px;top:31px;width:42px;font-size:2px;color:#F0EAE0;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">Friday · 2 days away · Video call</div><div style="position:absolute;left:71px;top:29px;width:2px;height:2px;background:#C8F044;border-radius:1px;"></div><div style="position:absolute;left:5px;top:37px;width:42px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">PROGRAMMING NOTES</div><div style="position:absolute;left:5px;top:41px;width:69px;height:15px;background:#131313;border-radius:1px;"></div><div style="position:absolute;left:8px;top:43px;width:17px;font-size:2px;color:#C8F044;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">↑ FORM NOTE</div><div style="position:absolute;left:8px;top:46px;width:62px;font-size:2px;color:#F0EAE0;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">"Bench: arch slightly, drive feet into floor. You're losing tightness at the top — control the negative more."</div><div style="position:absolute;left:5px;top:58px;width:69px;height:12px;background:#131313;border-radius:1px;"></div><div style="position:absolute;left:8px;top:60px;width:17px;font-size:2px;color:#E8B830;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">▲ LOAD NOTE</div><div style="position:absolute;left:8px;top:63px;width:62px;font-size:2px;color:#F0EAE0;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">"Push bench to 90kg today. Squat is ready for 160 next session."</div><div style="position:absolute;left:5px;top:71px;width:69px;height:12px;background:#131313;border-radius:1px;"></div><div style="position:absolute;left:8px;top:73px;width:17px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">◎ RECOVERY</div><div style="position:absolute;left:8px;top:76px;width:62px;font-size:2px;color:#F0EAE0;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">"Sleep data looks good — 7h avg. Keep the Thursday rest day. No add-ons."</div><div style="position:absolute;left:5px;top:86px;width:42px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">MESSAGES</div><div style="position:absolute;left:5px;top:89px;width:59px;height:8px;background:#1A1A1A;border-radius:2px;"></div><div style="position:absolute;left:8px;top:91px;width:54px;font-size:2px;color:#F0EAE0;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">"Felt strong on squats today — 155kg moved well."</div><div style="position:absolute;left:65px;top:92px;width:1px;height:1px;background:#C8F044;border-radius:1px;"></div><div style="position:absolute;left:15px;top:99px;width:59px;height:8px;background:#131313;border-radius:2px;"></div><div style="position:absolute;left:17px;top:101px;width:54px;font-size:2px;color:#C8F044;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">"Good. That's your body telling you 160 is close."</div><div style="position:absolute;left:5px;top:109px;width:55px;height:8px;background:#1A1A1A;border-radius:2px;"></div><div style="position:absolute;left:8px;top:111px;width:50px;font-size:2px;color:#F0EAE0;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">"Should I try 157.5 or go straight to 160?"</div><div style="position:absolute;left:19px;top:119px;width:55px;height:8px;background:#131313;border-radius:2px;"></div><div style="position:absolute;left:21px;top:121px;width:50px;font-size:2px;color:#C8F044;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">"Go for 160. You're ready."</div><div style="position:absolute;left:5px;top:131px;width:59px;height:8px;background:#2A2A2A;border-radius:4px;"></div><div style="position:absolute;left:8px;top:134px;width:42px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">Message Dara...</div><div style="position:absolute;left:66px;top:131px;width:8px;height:8px;background:#C8F044;border-radius:4px;"></div><div style="position:absolute;left:66px;top:134px;width:8px;font-size:3px;color:#080808;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">↑</div><div style="position:absolute;left:0px;top:155px;width:79px;height:15px;background:#131313;"></div><div style="position:absolute;left:4px;top:159px;width:14px;font-size:3px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">◈</div><div style="position:absolute;left:4px;top:163px;width:14px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">TODAY</div><div style="position:absolute;left:18px;top:159px;width:14px;font-size:3px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">▷</div><div style="position:absolute;left:18px;top:163px;width:14px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">SESSION</div><div style="position:absolute;left:32px;top:159px;width:14px;font-size:3px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">▦</div><div style="position:absolute;left:32px;top:163px;width:14px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">PROGRAM</div><div style="position:absolute;left:46px;top:159px;width:14px;font-size:3px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">◎</div><div style="position:absolute;left:46px;top:163px;width:14px;font-size:2px;color:#8A8A8A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">PROGRESS</div><div style="position:absolute;left:65px;top:157px;width:5px;height:1px;background:#C8F044;border-radius:1px;"></div><div style="position:absolute;left:60px;top:159px;width:14px;font-size:3px;color:#C8F044;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">⊕</div><div style="position:absolute;left:60px;top:163px;width:14px;font-size:2px;color:#C8F044;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">COACH</div></div>
+      <div class="ds-screen-label">Coach</div>
+    </div></div>
+  </div>
+</section>
+<!-- CTA -->
+<section class="cta>
+  <div class="cta-inner">
+    <h2>TRAIN<br>LIKE IT<br><em>MATTERS.</em></h2>
+    <p>Match with a coach in 48 hours. Start your first program this week.</p>
+    <a class="btn-lime" href="#">GET STARTED →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">FORM</div>
+  <div class="footer-note">A RAM DESIGN CONCEPT · MARCH 2026</div>
+  <div class="footer-tag">DARK THEME</div>
+</footer>
+
+</body>
+</html>

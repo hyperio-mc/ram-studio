@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GRAIN — know what you wear</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:      #F7F5F1;
+    --surface: #FFFFFF;
+    --linen:   #EDE9E2;
+    --border:  #DDD8CF;
+    --text:    #1C1916;
+    --muted:   #8A8178;
+    --sage:    #5E8A66;
+    --terra:   #C4763A;
+    --sky:     #5B7FA6;
+    --cream:   #F0EBE1;
+  }
+
+  html { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; }
+
+  body { min-height: 100vh; }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 48px; height: 64px;
+    background: rgba(247,245,241,0.92); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif; font-size: 22px; letter-spacing: 0.18em;
+    color: var(--text); text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a { font-size: 13px; color: var(--muted); text-decoration: none; letter-spacing: 0.06em; }
+  .nav-links a:hover { color: var(--text); }
+  .nav-cta {
+    font-size: 13px; font-weight: 500; letter-spacing: 0.06em;
+    padding: 8px 20px; border-radius: 24px;
+    background: var(--sage); color: #fff; text-decoration: none;
+    transition: opacity 0.2s;
+  }
+  .nav-cta:hover { opacity: 0.85; }
+
+  /* ── HERO ── */
+  .hero {
+    padding: 160px 48px 96px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+    max-width: 1280px; margin: 0 auto;
+  }
+  .hero-tag {
+    display: inline-block; font-size: 11px; font-weight: 500; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--sage);
+    border: 1px solid var(--sage); padding: 5px 12px; border-radius: 20px;
+    margin-bottom: 28px;
+  }
+  .hero-title {
+    font-family: 'Playfair Display', serif; font-size: 64px; line-height: 1.1;
+    color: var(--text); margin-bottom: 24px;
+  }
+  .hero-title em { font-style: italic; color: var(--terra); }
+  .hero-sub {
+    font-size: 18px; line-height: 1.7; color: var(--muted);
+    max-width: 440px; margin-bottom: 40px;
+  }
+  .hero-actions { display: flex; gap: 16px; align-items: center; }
+  .btn-primary {
+    font-size: 14px; font-weight: 500; letter-spacing: 0.06em;
+    padding: 14px 32px; border-radius: 32px;
+    background: var(--sage); color: #fff; text-decoration: none;
+    transition: transform 0.2s, opacity 0.2s;
+  }
+  .btn-primary:hover { transform: translateY(-1px); opacity: 0.9; }
+  .btn-ghost {
+    font-size: 14px; color: var(--muted); text-decoration: none;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .btn-ghost:hover { color: var(--text); }
+
+  /* ── PHONE MOCKUP ── */
+  .hero-visual { display: flex; justify-content: center; }
+  .phone {
+    width: 280px; height: 580px; border-radius: 40px;
+    background: var(--surface); border: 1px solid var(--border);
+    box-shadow: 0 32px 80px rgba(28,25,22,0.12), 0 4px 16px rgba(28,25,22,0.06);
+    overflow: hidden; position: relative; padding: 0;
+  }
+  .phone-screen {
+    width: 100%; height: 100%; background: var(--bg);
+    display: flex; flex-direction: column;
+  }
+  .ps-bar {
+    height: 44px; background: var(--surface); display: flex; align-items: center;
+    padding: 0 16px; border-bottom: 1px solid var(--border);
+    font-family: 'Playfair Display', serif; font-size: 15px; letter-spacing: 0.06em;
+  }
+  .ps-bar .back { color: var(--muted); font-size: 11px; font-family: 'Inter', sans-serif; margin-right: 8px; }
+  .ps-garment-header {
+    background: var(--surface); padding: 16px;
+    display: flex; align-items: flex-start; gap: 12px; border-bottom: 1px solid var(--border);
+  }
+  .ps-swatch {
+    width: 52px; height: 68px; border-radius: 8px;
+    background: linear-gradient(135deg, #C9B99A 0%, #A89070 100%);
+    flex-shrink: 0;
+  }
+  .ps-info { flex: 1; padding-top: 2px; }
+  .ps-brand { font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+  .ps-name { font-family: 'Playfair Display', serif; font-size: 14px; color: var(--text); margin: 2px 0 6px; }
+  .ps-score {
+    display: inline-flex; align-items: center; gap: 4px;
+    font-size: 10px; font-weight: 500; color: var(--sage);
+    background: rgba(94,138,102,0.1); padding: 3px 8px; border-radius: 10px;
+  }
+  .ps-section { padding: 14px 16px; border-bottom: 1px solid var(--border); }
+  .ps-section-label {
+    font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 10px;
+  }
+  .ps-bar-row { margin-bottom: 8px; }
+  .ps-bar-meta { display: flex; justify-content: space-between; margin-bottom: 4px; }
+  .ps-bar-name { font-size: 10px; color: var(--text); }
+  .ps-bar-pct { font-size: 10px; color: var(--muted); }
+  .ps-bar-track { height: 4px; background: var(--linen); border-radius: 2px; }
+  .ps-bar-fill { height: 4px; border-radius: 2px; }
+  .ps-care { display: flex; gap: 8px; flex-wrap: wrap; }
+  .ps-care-chip {
+    display: flex; flex-direction: column; align-items: center; gap: 3px;
+    width: 44px; height: 44px; border-radius: 8px;
+    background: var(--linen); justify-content: center;
+    font-size: 14px;
+  }
+  .ps-care-chip span { font-size: 8px; color: var(--muted); }
+  .ps-nav {
+    margin-top: auto; height: 60px; background: var(--surface);
+    border-top: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-around;
+    padding: 0 8px;
+  }
+  .ps-nav-item {
+    display: flex; flex-direction: column; align-items: center; gap: 3px;
+    font-size: 8px; color: var(--muted); padding: 6px 8px; border-radius: 8px;
+  }
+  .ps-nav-item.active { color: var(--sage); background: rgba(94,138,102,0.1); }
+  .ps-nav-icon { font-size: 16px; line-height: 1; }
+
+  /* ── STATS BAR ── */
+  .stats {
+    background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    padding: 40px 48px;
+  }
+  .stats-inner {
+    max-width: 1280px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px;
+  }
+  .stat-item { display: flex; flex-direction: column; gap: 6px; }
+  .stat-n {
+    font-family: 'Playfair Display', serif; font-size: 40px;
+    color: var(--text); line-height: 1;
+  }
+  .stat-n em { font-style: italic; color: var(--terra); }
+  .stat-label { font-size: 13px; color: var(--muted); line-height: 1.5; }
+
+  /* ── FEATURES ── */
+  .features { padding: 96px 48px; max-width: 1280px; margin: 0 auto; }
+  .features-label {
+    font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--terra); margin-bottom: 16px;
+  }
+  .features-title {
+    font-family: 'Playfair Display', serif; font-size: 44px; line-height: 1.2;
+    margin-bottom: 64px; max-width: 600px; color: var(--text);
+  }
+  .features-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+    background: var(--border); border: 1px solid var(--border);
+    border-radius: 16px; overflow: hidden;
+  }
+  .feature-card {
+    background: var(--surface); padding: 40px 32px;
+  }
+  .feat-icon {
+    width: 48px; height: 48px; border-radius: 12px; margin-bottom: 24px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+  }
+  .feat-icon.sage { background: rgba(94,138,102,0.12); }
+  .feat-icon.terra { background: rgba(196,118,58,0.12); }
+  .feat-icon.sky { background: rgba(91,127,166,0.12); }
+  .feat-title {
+    font-family: 'Playfair Display', serif; font-size: 20px;
+    margin-bottom: 10px; color: var(--text);
+  }
+  .feat-desc { font-size: 14px; line-height: 1.7; color: var(--muted); }
+
+  /* ── EDITORIAL ── */
+  .editorial {
+    background: var(--linen); padding: 96px 48px;
+    border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+  }
+  .ed-inner { max-width: 1280px; margin: 0 auto; }
+  .ed-label {
+    font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 48px;
+  }
+  .ed-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .ed-quote {
+    font-family: 'Playfair Display', serif; font-size: 32px; line-height: 1.4;
+    color: var(--text); font-style: italic;
+  }
+  .ed-quote cite {
+    display: block; margin-top: 24px; font-size: 13px; font-style: normal;
+    color: var(--muted); letter-spacing: 0.06em;
+  }
+  .ed-facts { display: flex; flex-direction: column; gap: 24px; }
+  .ed-fact {
+    padding: 24px; background: var(--surface); border-radius: 12px;
+    border: 1px solid var(--border);
+  }
+  .ed-fact-n {
+    font-family: 'Playfair Display', serif; font-size: 32px;
+    color: var(--terra); margin-bottom: 6px;
+  }
+  .ed-fact-text { font-size: 14px; line-height: 1.6; color: var(--muted); }
+
+  /* ── CTA ── */
+  .cta-section {
+    padding: 120px 48px; text-align: center;
+    max-width: 800px; margin: 0 auto;
+  }
+  .cta-title {
+    font-family: 'Playfair Display', serif; font-size: 52px; line-height: 1.15;
+    color: var(--text); margin-bottom: 20px;
+  }
+  .cta-sub { font-size: 17px; color: var(--muted); line-height: 1.7; margin-bottom: 40px; }
+  .cta-btns { display: flex; gap: 16px; justify-content: center; }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 40px 48px; border-top: 1px solid var(--border);
+    display: flex; justify-content: space-between; align-items: center;
+    max-width: 100%; background: var(--surface);
+  }
+  .footer-logo {
+    font-family: 'Playfair Display', serif; font-size: 16px; letter-spacing: 0.14em;
+    color: var(--text);
+  }
+  .footer-note { font-size: 12px; color: var(--muted); }
+  .footer-tag {
+    font-size: 11px; letter-spacing: 0.1em; color: var(--sage);
+    padding: 5px 12px; border: 1px solid var(--sage); border-radius: 20px;
+  }
+
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; padding: 120px 24px 64px; }
+    .hero-visual { display: none; }
+    .stats-inner { grid-template-columns: 1fr 1fr; }
+    .features-grid { grid-template-columns: 1fr; }
+    .ed-grid { grid-template-columns: 1fr; }
+    nav { padding: 0 24px; }
+    .nav-links { display: none; }
+  }
+
+  /* ─── DESIGN SPEC SECTION ─── */
+  .ds-section{padding:80px 64px;border-top:1px solid rgba(0,0,0,0.08)}
+  .ds-inner{max-width:1240px;margin:0 auto}
+  .ds-label{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgba(0,0,0,0.4);margin-bottom:20px;font-family:monospace}
+  .ds-h2{font-size:36px;font-weight:800;line-height:1.05;letter-spacing:-.02em;margin-bottom:48px}
+  .ds-cols{display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-bottom:56px}
+  .ds-col-head{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:rgba(0,0,0,0.4);margin-bottom:16px;font-family:monospace}
+  .ds-palette{display:flex;flex-wrap:wrap;gap:10px}
+  .ds-swatch{width:72px}
+  .ds-swatch-color{width:72px;height:36px;border-radius:6px;margin-bottom:6px;border:1px solid rgba(0,0,0,0.08)}
+  .ds-swatch-name{font-size:9px;letter-spacing:.04em;color:rgba(0,0,0,0.4);font-family:monospace;overflow:hidden;white-space:nowrap}
+  .ds-swatch-hex{font-size:9px;font-family:monospace;letter-spacing:.02em;opacity:0.7}
+  .ds-fonts{display:flex;flex-direction:column;gap:16px}
+  .ds-font-row{display:flex;align-items:center;gap:16px;padding:16px;border:1px solid rgba(0,0,0,0.08);border-radius:6px}
+  .ds-font-sample{flex-shrink:0;width:60px}
+  .ds-font-name{font-size:13px;font-weight:700;margin-bottom:3px}
+  .ds-font-role{font-size:10px;color:rgba(0,0,0,0.4);letter-spacing:.04em;font-family:monospace}
+  .ds-screens-label{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:rgba(0,0,0,0.4);margin-bottom:20px;font-family:monospace}
+  .ds-screens{display:flex;gap:20px;overflow-x:auto;padding-bottom:8px}
+  .ds-screen-wrap{flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:8px}
+  .ds-thumb{position:relative;overflow:hidden;border-radius:8px;border:1px solid rgba(0,0,0,0.08);flex-shrink:0}
+  .ds-screen-label{font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:rgba(0,0,0,0.4);font-family:monospace}
+  @media(max-width:900px){.ds-section{padding:48px 24px}.ds-cols{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#">GRAIN</a>
+  <ul class="nav-links">
+    <li><a href="#">Closet</a></li>
+    <li><a href="#">Materials</a></li>
+    <li><a href="#">Impact</a></li>
+    <li><a href="#">Learn</a></li>
+  </ul>
+  <a class="nav-cta" href="#">Join Waitlist</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-copy">
+    <span class="hero-tag">Fabric Transparency</span>
+    <h1 class="hero-title">Know what<br>you <em>wear</em></h1>
+    <p class="hero-sub">
+      Scan the label. Understand the fabric. See how your closet adds up —
+      fibre by fibre, wash by wash, year by year.
+    </p>
+    <div class="hero-actions">
+      <a class="btn-primary" href="#">Join the Waitlist</a>
+      <a class="btn-ghost" href="#">See how it works →</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="phone">
+      <div class="phone-screen">
+        <div class="ps-bar">
+          <span class="back">‹</span> Item Detail
+        </div>
+        <div class="ps-garment-header">
+          <div class="ps-swatch"></div>
+          <div class="ps-info">
+            <div class="ps-brand">EVERLANE</div>
+            <div class="ps-name">Linen Chore Coat</div>
+            <div class="ps-score">🌿 84 / 100</div>
+          </div>
+        </div>
+        <div class="ps-section">
+          <div class="ps-section-label">Composition</div>
+          <div class="ps-bar-row">
+            <div class="ps-bar-meta">
+              <span class="ps-bar-name">Linen (Flax)</span>
+              <span class="ps-bar-pct">72%</span>
+            </div>
+            <div class="ps-bar-track">
+              <div class="ps-bar-fill" style="width:72%; background:#5E8A66;"></div>
+            </div>
+          </div>
+          <div class="ps-bar-row">
+            <div class="ps-bar-meta">
+              <span class="ps-bar-name">Cotton (Organic)</span>
+              <span class="ps-bar-pct">22%</span>
+            </div>
+            <div class="ps-bar-track">
+              <div class="ps-bar-fill" style="width:22%; background:#5B7FA6;"></div>
+            </div>
+          </div>
+          <div class="ps-bar-row">
+            <div class="ps-bar-meta">
+              <span class="ps-bar-name">Elastane</span>
+              <span class="ps-bar-pct">6%</span>
+            </div>
+            <div class="ps-bar-track">
+              <div class="ps-bar-fill" style="width:6%; background:#C4763A;"></div>
+            </div>
+          </div>
+        </div>
+        <div class="ps-section">
+          <div class="ps-section-label">Care</div>
+          <div class="ps-care">
+            <div class="ps-care-chip">🫧<span>30°</span></div>
+            <div class="ps-care-chip">🚫🌀<span>no dry</span></div>
+            <div class="ps-care-chip">🪨<span>iron lo</span></div>
+            <div class="ps-care-chip">♻️<span>recycle</span></div>
+          </div>
+        </div>
+        <div class="ps-nav">
+          <div class="ps-nav-item"><span class="ps-nav-icon">👔</span>Closet</div>
+          <div class="ps-nav-item active"><span class="ps-nav-icon">🔍</span>Detail</div>
+          <div class="ps-nav-item"><span class="ps-nav-icon">🌿</span>Impact</div>
+          <div class="ps-nav-item"><span class="ps-nav-icon">📷</span>Scan</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="stats" style="background:var(--surface); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+  <div class="stats-inner">
+    <div class="stat-item">
+      <div class="stat-n">68<em>%</em></div>
+      <div class="stat-label">of consumers don't know their garment's fibre content</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-n">60<em>b</em></div>
+      <div class="stat-label">garments produced globally each year — doubling since 2000</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-n">3<em>×</em></div>
+      <div class="stat-label">longer a garment lasts when care instructions are followed</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-n">92<em>m</em></div>
+      <div class="stat-label">tonnes of textile waste generated annually worldwide</div>
+    </div>
+  </div>
+</section>
+
+<section class="features">
+  <div class="features-label">What GRAIN does</div>
+  <h2 class="features-title">Transparency, at the fibre level</h2>
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feat-icon sage">🌿</div>
+      <div class="feat-title">Composition Scan</div>
+      <p class="feat-desc">Photograph or manually enter any care label. GRAIN decodes fibre percentages, certifications, and country of origin into clear, actionable information.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feat-icon terra">♻️</div>
+      <div class="feat-title">Eco Impact Score</div>
+      <p class="feat-desc">Each fabric blend gets a 0–100 score based on water usage, biodegradability, carbon footprint, and recyclability. See your full closet's footprint at a glance.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feat-icon sky">📚</div>
+      <div class="feat-title">Material Library</div>
+      <p class="feat-desc">From merino wool to Tencel to recycled nylon — browse 80+ fabrics with full ecological profiles, care guides, and end-of-life options.</p>
+    </div>
+  </div>
+</section>
+
+<section class="editorial">
+  <div class="ed-inner">
+    <div class="ed-label">Why it matters</div>
+    <div class="ed-grid">
+      <blockquote class="ed-quote">
+        "The most sustainable garment is the one you already own —
+        if you know how to care for it."
+        <cite>— GRAIN Design Principle</cite>
+      </blockquote>
+      <div class="ed-facts">
+        <div class="ed-fact">
+          <div class="ed-fact-n">35%</div>
+          <div class="ed-fact-text">of microplastics in the ocean come from synthetic textile washing. GRAIN flags microplastic-shedding fabrics and suggests washing bags.</div>
+        </div>
+        <div class="ed-fact">
+          <div class="ed-fact-n">2,700 L</div>
+          <div class="ed-fact-text">of water to grow cotton for a single T-shirt. Knowing your fabric mix helps you choose better, wash less, and waste nothing.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- DESIGN SPEC -->
+<section class="ds-section">
+  <div class="ds-inner">
+    <div class="ds-label">DESIGN SYSTEM · GRAIN</div>
+    <h2 class="ds-h2">Palette · Type · Screens</h2>
+    <div class="ds-cols">
+      <div>
+        <div class="ds-col-head">COLOR PALETTE — 9 TOKENS</div>
+        <div class="ds-palette"><div class="ds-swatch">
+      <div class="ds-swatch-color" style="background:#F7F5F1"></div>
+      <div class="ds-swatch-name">--bg</div>
+      <div class="ds-swatch-hex">#F7F5F1</div>
+    </div><div class="ds-swatch">
+      <div class="ds-swatch-color" style="background:#FFFFFF"></div>
+      <div class="ds-swatch-name">--surface</div>
+      <div class="ds-swatch-hex">#FFFFFF</div>
+    </div><div class="ds-swatch">
+      <div class="ds-swatch-color" style="background:#EDE9E2"></div>
+      <div class="ds-swatch-name">--linen</div>
+      <div class="ds-swatch-hex">#EDE9E2</div>
+    </div><div class="ds-swatch">
+      <div class="ds-swatch-color" style="background:#1C1916"></div>
+      <div class="ds-swatch-name">--text</div>
+      <div class="ds-swatch-hex">#1C1916</div>
+    </div><div class="ds-swatch">
+      <div class="ds-swatch-color" style="background:#8A8178"></div>
+      <div class="ds-swatch-name">--muted</div>
+      <div class="ds-swatch-hex">#8A8178</div>
+    </div><div class="ds-swatch">
+      <div class="ds-swatch-color" style="background:#5E8A66"></div>
+      <div class="ds-swatch-name">--sage</div>
+      <div class="ds-swatch-hex">#5E8A66</div>
+    </div><div class="ds-swatch">
+      <div class="ds-swatch-color" style="background:#C4763A"></div>
+      <div class="ds-swatch-name">--terra</div>
+      <div class="ds-swatch-hex">#C4763A</div>
+    </div><div class="ds-swatch">
+      <div class="ds-swatch-color" style="background:#5B7FA6"></div>
+      <div class="ds-swatch-name">--sky</div>
+      <div class="ds-swatch-hex">#5B7FA6</div>
+    </div><div class="ds-swatch">
+      <div class="ds-swatch-color" style="background:#F0EBE1"></div>
+      <div class="ds-swatch-name">--cream</div>
+      <div class="ds-swatch-hex">#F0EBE1</div>
+    </div></div>
+      </div>
+      <div>
+        <div class="ds-col-head">TYPOGRAPHY — 2 TYPEFACES</div>
+        <div class="ds-fonts"><div class="ds-font-row">
+      <div class="ds-font-sample" style="font-family:'Playfair Display',serif;font-size:28px;line-height:1.1">Aa</div>
+      <div class="ds-font-meta">
+        <div class="ds-font-name">Playfair Display</div>
+        <div class="ds-font-role">Display / Headlines</div>
+      </div>
+    </div><div class="ds-font-row">
+      <div class="ds-font-sample" style="font-family:'Inter',serif;font-size:18px;line-height:1.1">Aa</div>
+      <div class="ds-font-meta">
+        <div class="ds-font-name">Inter</div>
+        <div class="ds-font-role">Labels / Monospace</div>
+      </div>
+    </div></div>
+      </div>
+    </div>
+    <div class="ds-screens-label">ALL SCREENS — 5 VIEWS</div>
+    <div class="ds-screens"><div class="ds-screen-wrap">
+      <div class="ds-thumb" style="width:79px;height:170px"><div style="position:absolute;left:0;top:0;width:79px;height:170px;background:#F7F5F1"></div>
+       <div style="position:absolute;left:6px;top:16px;width:32px;height:4px;background:#5E8A66;border-radius:2px"></div>
+       <div style="position:absolute;left:6px;top:24px;width:67px;height:12px;background:#FFFFFF;border-radius:3px"></div>
+       <div style="position:absolute;left:6px;top:40px;width:67px;height:32px;background:#FFFFFF;border-radius:4px"></div>
+       <div style="position:absolute;left:10px;top:44px;width:20px;height:3px;background:#5E8A66;border-radius:1px"></div>
+       <div style="position:absolute;left:10px;top:50px;width:40px;height:2px;background:#1C1916;opacity:0.5;border-radius:1px"></div>
+       <div style="position:absolute;left:6px;top:76px;width:67px;height:22px;background:#FFFFFF;border-radius:4px"></div>
+       <div style="position:absolute;left:6px;top:102px;width:67px;height:22px;background:#FFFFFF;border-radius:4px"></div>
+       <div style="position:absolute;left:0;bottom:0;width:79px;height:14px;background:#FFFFFF;border-top:1px solid #1C191622"></div></div>
+      <div class="ds-screen-label">Wardrobe</div>
+    </div><div class="ds-screen-wrap">
+      <div class="ds-thumb" style="width:79px;height:170px"><div style="position:absolute;left:0;top:0;width:79px;height:170px;background:#F7F5F1"></div>
+       <div style="position:absolute;left:6px;top:16px;width:40px;height:5px;background:#1C1916;opacity:0.7;border-radius:2px"></div>
+       <div style="position:absolute;left:6px;top:26px;width:67px;height:10px;background:#FFFFFF;border-radius:12px"></div>
+       <div style="position:absolute;left:6px;top:42px;width:67px;height:24px;background:#FFFFFF;border-radius:4px"></div><div style="position:absolute;left:10px;top:46px;width:28px;height:3px;background:#5E8A66;opacity:0.8;border-radius:1px"></div><div style="position:absolute;left:6px;top:70px;width:67px;height:24px;background:#FFFFFF;border-radius:4px"></div><div style="position:absolute;left:10px;top:74px;width:20px;height:3px;background:#5E8A66;opacity:0.8;border-radius:1px"></div><div style="position:absolute;left:6px;top:98px;width:67px;height:24px;background:#FFFFFF;border-radius:4px"></div><div style="position:absolute;left:10px;top:102px;width:28px;height:3px;background:#5E8A66;opacity:0.8;border-radius:1px"></div><div style="position:absolute;left:6px;top:126px;width:67px;height:24px;background:#FFFFFF;border-radius:4px"></div><div style="position:absolute;left:10px;top:130px;width:20px;height:3px;background:#5E8A66;opacity:0.8;border-radius:1px"></div>
+       <div style="position:absolute;left:0;bottom:0;width:79px;height:14px;background:#FFFFFF;border-top:1px solid #1C191622"></div></div>
+      <div class="ds-screen-label">Item</div>
+    </div><div class="ds-screen-wrap">
+      <div class="ds-thumb" style="width:79px;height:170px"><div style="position:absolute;left:0;top:0;width:79px;height:50px;background:#5E8A66"></div>
+       <div style="position:absolute;left:0;top:50px;width:79px;height:120px;background:#F7F5F1"></div>
+       <div style="position:absolute;left:6px;top:14px;width:36px;height:6px;background:rgba(255,255,255,0.9);border-radius:2px"></div>
+       <div style="position:absolute;left:6px;top:24px;width:22px;height:3px;background:rgba(255,255,255,0.6);border-radius:1px"></div>
+       <div style="position:absolute;left:6px;top:58px;width:67px;height:40px;background:#FFFFFF;border-radius:4px"></div>
+       <div style="position:absolute;left:6px;top:104px;width:67px;height:20px;background:#FFFFFF;border-radius:4px"></div>
+       <div style="position:absolute;left:6px;top:128px;width:67px;height:20px;background:#FFFFFF;border-radius:4px"></div>
+       <div style="position:absolute;left:0;bottom:0;width:79px;height:14px;background:#FFFFFF;border-top:1px solid #1C191622"></div></div>
+      <div class="ds-screen-label">Discover</div>
+    </div><div class="ds-screen-wrap">
+      <div class="ds-thumb" style="width:79px;height:170px"><div style="position:absolute;left:0;top:0;width:79px;height:170px;background:#F7F5F1"></div>
+       <div style="position:absolute;left:6px;top:16px;width:44px;height:5px;background:#1C1916;opacity:0.7;border-radius:2px"></div>
+       <div style="position:absolute;left:6px;top:26px;width:67px;height:34px;background:#FFFFFF;border-radius:6px"></div>
+       <div style="position:absolute;left:10px;top:30px;width:59px;height:4px;background:#5E8A66;border-radius:2px"></div>
+       <div style="position:absolute;left:10px;top:36px;width:49px;height:4px;background:#5E8A66;opacity:0.4;border-radius:2px"></div>
+       <div style="position:absolute;left:10px;top:42px;width:54px;height:4px;background:#5E8A66;opacity:0.25;border-radius:2px"></div>
+       <div style="position:absolute;left:6px;top:66px;width:67px;height:20px;background:#FFFFFF;border-radius:4px"></div><div style="position:absolute;left:6px;top:90px;width:67px;height:20px;background:#FFFFFF;border-radius:4px"></div><div style="position:absolute;left:6px;top:114px;width:67px;height:20px;background:#FFFFFF;border-radius:4px"></div>
+       <div style="position:absolute;left:0;bottom:0;width:79px;height:14px;background:#FFFFFF;border-top:1px solid #1C191622"></div></div>
+      <div class="ds-screen-label">Library</div>
+    </div><div class="ds-screen-wrap">
+      <div class="ds-thumb" style="width:79px;height:170px"><div style="position:absolute;left:0;top:0;width:79px;height:170px;background:#F7F5F1"></div>
+       <div style="position:absolute;left:26px;top:12px;width:28px;height:28px;background:#5E8A66;border-radius:50%"></div>
+       <div style="position:absolute;left:22px;top:44px;width:36px;height:4px;background:#1C1916;opacity:0.6;border-radius:2px"></div>
+       <div style="position:absolute;left:28px;top:52px;width:24px;height:3px;background:#1C1916;opacity:0.3;border-radius:1px"></div>
+       <div style="position:absolute;left:6px;top:64px;width:67px;height:20px;background:#FFFFFF;border-radius:4px"></div><div style="position:absolute;left:6px;top:88px;width:67px;height:20px;background:#FFFFFF;border-radius:4px"></div><div style="position:absolute;left:6px;top:112px;width:67px;height:20px;background:#FFFFFF;border-radius:4px"></div><div style="position:absolute;left:6px;top:136px;width:67px;height:20px;background:#FFFFFF;border-radius:4px"></div>
+       <div style="position:absolute;left:0;bottom:0;width:79px;height:14px;background:#FFFFFF;border-top:1px solid #1C191622"></div></div>
+      <div class="ds-screen-label">Profile</div>
+    </div></div>
+  </div>
+</section>
+<!-- CTA -->
+<section class="cta>
+  <h2 class="cta-title">Your closet,<br>fully understood.</h2>
+  <p class="cta-sub">Join the waitlist. Be first to know when GRAIN opens — early users get full access free for 6 months.</p>
+  <div class="cta-btns">
+    <a class="btn-primary" href="#">Join the Waitlist</a>
+    <a class="btn-ghost" href="#">Learn about materials →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">GRAIN</div>
+  <div class="footer-note">A RAM design concept — March 2026</div>
+  <div class="footer-tag">light theme</div>
+</footer>
+
+</body>
+</html>

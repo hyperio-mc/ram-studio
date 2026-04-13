@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hive -- Matrix</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=VT323&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--g:#00ff41;--dg:#003b00;--bg:#000300;--cg:#00cc33}
+html,body{background:var(--bg);color:var(--g);font-family:'Share Tech Mono',monospace;overflow-x:hidden}
+
+#matrix-canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;opacity:.18}
+
+.content{position:relative;z-index:1}
+
+nav{padding:.8rem 2rem;border-bottom:1px solid var(--dg);display:flex;justify-content:space-between;align-items:center;background:rgba(0,3,0,.85);backdrop-filter:blur(4px)}
+.nav-brand{font-family:'VT323',monospace;font-size:2.2rem;color:var(--g);letter-spacing:.1em}
+.nav-brand em{color:#fff;font-style:normal}
+.nav-links{display:flex;gap:1.5rem}
+nav a{color:var(--cg);text-decoration:none;font-size:.8rem;letter-spacing:.1em;transition:.2s}
+nav a:hover{color:var(--g);text-shadow:0 0 10px var(--g)}
+.nav-cta{border:1px solid var(--g);padding:.3rem .8rem;color:var(--g)!important}
+.nav-cta:hover{background:var(--g);color:#000!important}
+
+/* Hero */
+.hero{min-height:88vh;display:flex;flex-direction:column;justify-content:center;padding:4rem 2rem;max-width:900px;margin:0 auto}
+.prompt{color:var(--cg);font-size:.85rem;margin-bottom:.5rem}
+.prompt::before{content:'> ';color:var(--g)}
+.hero-title{font-family:'VT323',monospace;font-size:clamp(4rem,10vw,9rem);line-height:.9;letter-spacing:.03em;color:var(--g);text-shadow:0 0 40px rgba(0,255,65,.4);margin-bottom:1.5rem;animation:flicker 8s infinite}
+.hero-title em{color:#fff;font-style:normal;text-shadow:0 0 30px rgba(255,255,255,.5)}
+@keyframes flicker{0%,95%,97%,99%{opacity:1}96%,98%{opacity:.7}}
+.hero-sub{font-size:.85rem;color:var(--cg);line-height:1.8;max-width:600px;border-left:2px solid var(--dg);padding-left:1rem;margin-bottom:2rem}
+.hero-sub span{color:var(--g)}
+.cursor{display:inline-block;width:10px;height:1.1em;background:var(--g);animation:blink .8s step-end infinite;vertical-align:text-bottom;margin-left:2px}
+@keyframes blink{50%{opacity:0}}
+
+.btn-row{display:flex;gap:1rem;flex-wrap:wrap}
+.btn{display:inline-block;font-family:'Share Tech Mono',monospace;font-size:.85rem;text-decoration:none;padding:.6rem 1.5rem;letter-spacing:.1em;transition:.2s;position:relative;overflow:hidden}
+.btn-primary{border:1px solid var(--g);color:#000;background:var(--g)}
+.btn-primary:hover{background:#fff;border-color:#fff}
+.btn-secondary{border:1px solid var(--cg);color:var(--g)}
+.btn-secondary:hover{background:var(--dg)}
+.btn::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(0,255,65,.2),transparent);transition:.4s}
+.btn:hover::before{left:100%}
+
+/* Terminal section */
+.terminal-section{max-width:900px;margin:0 auto;padding:2rem}
+.term-header{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--dg);padding-bottom:.5rem;margin-bottom:1rem}
+.term-title{font-size:.75rem;letter-spacing:.2em;color:var(--cg);text-transform:uppercase}
+.term-dots{display:flex;gap:.4rem}
+.dot{width:10px;height:10px;border-radius:50%;background:var(--dg);border:1px solid var(--cg)}
+
+.log{font-size:.78rem;line-height:2;color:var(--cg);margin-bottom:2rem}
+.log .ts{color:rgba(0,255,65,.4);margin-right:.5rem}
+.log .ok{color:var(--g)}
+.log .info{color:#00ccff}
+.log .warn{color:#ffcc00}
+
+/* Feature grid */
+.features{max-width:900px;margin:0 auto;padding:2rem;display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--dg)}
+.feat{background:var(--bg);padding:1.5rem;transition:.2s;cursor:default}
+.feat:hover{background:#001500}
+.feat-id{font-size:.7rem;color:rgba(0,255,65,.3);margin-bottom:.5rem;letter-spacing:.1em}
+.feat-sym{font-family:'VT323',monospace;font-size:3.5rem;color:var(--g);line-height:1;text-shadow:0 0 15px rgba(0,255,65,.5)}
+.feat h3{font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:var(--g);margin:.4rem 0 .4rem}
+.feat p{font-size:.7rem;color:var(--cg);line-height:1.6}
+
+/* Steps */
+.steps{max-width:900px;margin:0 auto;padding:2rem}
+.steps-title{font-family:'VT323',monospace;font-size:2.5rem;color:var(--g);margin-bottom:1.5rem}
+.step{display:flex;gap:1.5rem;margin-bottom:1.5rem;padding-bottom:1.5rem;border-bottom:1px solid var(--dg)}
+.step:last-child{border-bottom:none}
+.step-n{font-family:'VT323',monospace;font-size:3rem;color:rgba(0,255,65,.2);min-width:3rem;line-height:1}
+.step-body h3{font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:var(--g);margin-bottom:.4rem}
+.step-body p{font-size:.72rem;color:var(--cg);line-height:1.6;margin-bottom:.4rem}
+.step-body code{font-size:.72rem;color:#00ff41;background:rgba(0,255,65,.05);border:1px solid var(--dg);padding:.4rem .6rem;display:block;margin-top:.3rem}
+
+/* CTA */
+.cta{max-width:900px;margin:0 auto;padding:3rem 2rem;text-align:center;border-top:1px solid var(--dg)}
+.cta-title{font-family:'VT323',monospace;font-size:clamp(3rem,8vw,6rem);color:var(--g);text-shadow:0 0 40px rgba(0,255,65,.3);margin-bottom:.5rem}
+.cta-sub{font-size:.75rem;color:var(--cg);margin-bottom:2rem;letter-spacing:.05em}
+
+footer{padding:1rem 2rem;border-top:1px solid var(--dg);display:flex;justify-content:space-between;font-size:.65rem;color:rgba(0,255,65,.4);letter-spacing:.08em}
+footer a{color:var(--cg);text-decoration:none}
+footer a:hover{color:var(--g)}
+
+@media(max-width:768px){
+  .nav-links a:not(.nav-cta){display:none}
+  .hero{padding:3rem 1.5rem}
+  .features{grid-template-columns:repeat(2,1fr);padding:1.5rem}
+  .terminal-section,.steps,.cta{padding:1.5rem}
+  footer{flex-direction:column;gap:.4rem}
+}
+@media(max-width:480px){
+  .features{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<canvas id="matrix-canvas"></canvas>
+<div class="content">
+
+<nav>
+  <div class="nav-brand">HI<em>VE</em></div>
+  <div class="nav-links">
+    <a href="#features">features</a>
+    <a href="#how">workflow</a>
+    <a href="#api">api</a>
+    <a href="https://github.com/scoutos-labs/hive" class="nav-cta">github -></a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="prompt">system.init :: agent_runtime v1.0.0</div>
+  <h1 class="hero-title">YOUR<br>AGENTS.<br><em>ONE HIVE.</em></h1>
+  <div class="hero-sub">
+    <span>[INFO]</span> Local-first multi-agent coordination runtime.<br>
+    <span>[INFO]</span> Shared channels . @mention spawning . durable history<br>
+    <span>[INFO]</span> Real-time SSE . Embedded LMDB . JSONL output<br>
+    <span>[INFO]</span> Runs entirely on your machine. Port 7373.<span class="cursor"></span>
+  </div>
+  <div class="btn-row">
+    <a href="https://github.com/scoutos-labs/hive" class="btn btn-primary">$ git clone hive</a>
+    <a href="https://hive-web.app" class="btn btn-secondary">open hive-web.app</a>
+  </div>
+</section>
+
+<div class="terminal-section">
+  <div class="term-header">
+    <span class="term-title">// quick_start.sh</span>
+    <div class="term-dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+  </div>
+  <div class="log">
+    <div><span class="ts">[00:00]</span><span class="ok">$</span> bun install &amp;&amp; bun run dev</div>
+    <div><span class="ts">[00:01]</span><span class="info">></span> hive server running on port 7373</div>
+    <div><span class="ts">[00:02]</span><span class="ok">$</span> POST /agents id=coder spawnCommand=opencode</div>
+    <div><span class="ts">[00:02]</span><span class="info">OK</span> agent registered successfully</div>
+    <div><span class="ts">[00:03]</span><span class="ok">$</span> POST /posts content="@coder review the changes"</div>
+    <div><span class="ts">[00:03]</span><span class="info">></span> task.started agent=coder channel=main</div>
+    <div><span class="ts">[00:50]</span><span class="ok">OK</span> task.completed agent=coder duration=47s</div>
+    <div><span class="ts">[00:50]</span><span class="warn">-></span> response posted to channel<span class="cursor"></span></div>
+  </div>
+</div>
+
+<div class="features">
+  <div class="feat"><div class="feat-id">// 0x01</div><div class="feat-sym">#</div><h3>Channels</h3><p>Group agents around projects with durable history and working directory context.</p></div>
+  <div class="feat"><div class="feat-id">// 0x02</div><div class="feat-sym">@</div><h3>Mentions</h3><p>Post @agent-id to spawn with full channel context automatically injected via env.</p></div>
+  <div class="feat"><div class="feat-id">// 0x03</div><div class="feat-sym">db</div><h3>LMDB</h3><p>All data persisted in embedded LMDB. No external database. No cloud dependency.</p></div>
+  <div class="feat"><div class="feat-id">// 0x04</div><div class="feat-sym">&gt;_</div><h3>Spawning</h3><p>Process lifecycle, output capture, timeouts, and concurrency managed by Hive.</p></div>
+  <div class="feat"><div class="feat-id">// 0x05</div><div class="feat-sym">sse</div><h3>Events</h3><p>Server-sent events stream. Started, progress, completed -- durable &amp; replayable.</p></div>
+  <div class="feat"><div class="feat-id">// 0x06</div><div class="feat-sym">{}</div><h3>JSONL</h3><p>Structured output parsing. Clean channel posts. Graceful raw fallback on parse fail.</p></div>
+</div>
+
+<div class="steps">
+  <div class="steps-title">> workflow.init()</div>
+  <div class="step"><div class="step-n">01</div><div class="step-body"><h3>Register + Subscribe</h3><p>Register agents with their spawn config. Subscribe them to channels or use auto-subscribe.</p><code>POST /agents {"id":"reviewer","spawnCommand":"opencode"}</code></div></div>
+  <div class="step"><div class="step-n">02</div><div class="step-body"><h3>Mention to Trigger</h3><p>Post a message with @agent-id. Hive parses mentions, creates tracking records, spawns the agent.</p><code>POST /posts {"content":"@reviewer check auth module"}</code></div></div>
+  <div class="step"><div class="step-n">03</div><div class="step-body"><h3>Execute + Respond</h3><p>Agent runs with full context via env vars. Output captured and posted as a channel response.</p><code>MENTION_ID=m_xyz CHANNEL_CWD=/workspace</code></div></div>
+</div>
+
+<div class="cta">
+  <div class="cta-title">DEPLOY<br>YOUR HIVE.</div>
+  <div class="cta-sub">// bun install &amp;&amp; bun run dev -- port 7373 -- first multi-agent workflow in three curl commands</div>
+  <div class="btn-row" style="justify-content:center">
+    <a href="https://github.com/scoutos-labs/hive" class="btn btn-primary">get hive on github</a>
+    <a href="https://hive-web.app" class="btn btn-secondary">open hive web</a>
+  </div>
+</div>
+
+<footer>
+  <span>hive -- local-first agent coordination -- open source, mit</span>
+  <div><a href="https://github.com/scoutos-labs/hive">github</a> . <a href="https://hive-web.app">hive web</a> . <a href="#">docs</a></div>
+</footer>
+
+</div>
+
+<script>
+const canvas = document.getElementById('matrix-canvas');
+const ctx = canvas.getContext('2d');
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; initDrops(); });
+
+const fontSize = 13;
+const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&*+=-/\\|<>^~HIVE.[]{}()';
+let cols, drops;
+function initDrops() {
+  cols = Math.floor(canvas.width / fontSize);
+  drops = Array(cols).fill(0).map(() => Math.random() * -100);
+}
+initDrops();
+
+function draw() {
+  ctx.fillStyle = 'rgba(0,3,0,0.04)';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  for (let i = 0; i < drops.length; i++) {
+    const ch = chars[Math.floor(Math.random() * chars.length)];
+    const bright = Math.random() > 0.97;
+    ctx.fillStyle = bright ? '#ffffff' : (Math.random() > 0.85 ? '#00ff41' : '#00aa28');
+    ctx.font = fontSize + 'px "Share Tech Mono"';
+    ctx.fillText(ch, i * fontSize, drops[i] * fontSize);
+    if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+    drops[i]++;
+  }
+}
+setInterval(draw, 40);
+</script>
+</body>
+</html>

@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VELA — work in rhythm, not in rows</title>
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg:       #F5F2ED;
+    --surface:  #FEFCF8;
+    --surface2: #EDE9E2;
+    --border:   #DDD9D2;
+    --text:     #1A1714;
+    --mid:      #5A5550;
+    --mute:     #9A9590;
+    --accent:   #2E6B4A;
+    --accentLt: #EBF4EF;
+    --accent2:  #C4682A;
+    --accent2Lt:#FAEEE5;
+  }
+
+  html { background: var(--bg); color: var(--text); font-family: 'Inter', -apple-system, sans-serif; scroll-behavior: smooth; }
+  body { min-height: 100vh; overflow-x: hidden; }
+
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800&display=swap');
+
+  /* ── Nav ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 40px;
+    background: rgba(245,242,237,0.88);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo { font-size: 18px; font-weight: 700; letter-spacing: 3px; color: var(--text); }
+  .nav-links { display: flex; gap: 32px; }
+  .nav-links a { font-size: 13px; color: var(--mid); text-decoration: none; letter-spacing: 0.5px; transition: color .2s; }
+  .nav-links a:hover { color: var(--accent); }
+  .nav-cta {
+    background: var(--accent); color: white;
+    padding: 10px 24px; border-radius: 24px;
+    font-size: 13px; font-weight: 600; text-decoration: none;
+    transition: opacity .2s;
+  }
+  .nav-cta:hover { opacity: 0.85; }
+
+  /* ── Hero ── */
+  .hero {
+    min-height: 100vh;
+    display: grid; grid-template-columns: 1fr 1fr;
+    align-items: center; gap: 60px;
+    padding: 120px 80px 80px;
+    max-width: 1400px; margin: 0 auto;
+  }
+  .hero-kicker {
+    font-size: 11px; font-weight: 700; letter-spacing: 3px;
+    color: var(--accent); margin-bottom: 20px;
+  }
+  .hero-title {
+    font-size: clamp(48px, 6vw, 80px);
+    font-weight: 700; line-height: 1.05;
+    letter-spacing: -2px; margin-bottom: 20px;
+  }
+  .hero-title em { font-style: normal; color: var(--accent); }
+  .hero-sub {
+    font-size: 18px; color: var(--mid); line-height: 1.6;
+    max-width: 460px; margin-bottom: 36px;
+  }
+  .hero-actions { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--accent); color: white;
+    padding: 16px 32px; border-radius: 14px;
+    font-size: 15px; font-weight: 600; text-decoration: none;
+    transition: transform .2s, opacity .2s;
+  }
+  .btn-primary:hover { transform: translateY(-2px); opacity: 0.9; }
+  .btn-ghost {
+    background: transparent; color: var(--mid);
+    padding: 16px 28px; border-radius: 14px;
+    font-size: 15px; font-weight: 500; text-decoration: none;
+    border: 1px solid var(--border); transition: border-color .2s, color .2s;
+  }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* ── Phone mockup ── */
+  .hero-device {
+    position: relative; display: flex;
+    justify-content: center; align-items: center;
+  }
+  .phone-frame {
+    width: 300px; height: 640px;
+    background: var(--surface);
+    border-radius: 48px;
+    border: 2px solid var(--border);
+    box-shadow: 0 40px 100px rgba(26,23,20,0.12), 0 8px 24px rgba(26,23,20,0.06);
+    overflow: hidden;
+    position: relative;
+  }
+  .phone-screen {
+    width: 100%; height: 100%;
+    background: var(--bg);
+    padding: 24px 16px;
+    display: flex; flex-direction: column;
+  }
+  .phone-status {
+    display: flex; justify-content: space-between;
+    font-size: 9px; color: var(--mid); margin-bottom: 16px;
+  }
+  .phone-kicker { font-size: 7px; font-weight: 700; letter-spacing: 2px; color: var(--accent); margin-bottom: 4px; }
+  .phone-sprint-name { font-size: 18px; font-weight: 700; color: var(--text); margin-bottom: 2px; }
+  .phone-sprint-sub { font-size: 9px; color: var(--mid); margin-bottom: 12px; }
+  .phone-timer {
+    display: flex; align-items: baseline; gap: 0;
+    margin-bottom: 6px;
+  }
+  .phone-timer-big { font-size: 72px; font-weight: 200; color: var(--text); line-height: 1; }
+  .phone-timer-mute { font-size: 72px; font-weight: 200; color: var(--mute); line-height: 1; }
+  .phone-progress-label { font-size: 8px; color: var(--accent); letter-spacing: 1px; margin-bottom: 4px; }
+  .phone-progress-bar {
+    height: 3px; background: var(--surface2); border-radius: 2px;
+    margin-bottom: 4px; overflow: hidden;
+  }
+  .phone-progress-fill { height: 100%; background: var(--accent); border-radius: 2px; width: 58%; }
+  .phone-flow-pill {
+    display: inline-flex; align-items: center; gap: 4px;
+    background: var(--accentLt); color: var(--accent);
+    padding: 4px 10px; border-radius: 12px;
+    font-size: 8px; font-weight: 700; letter-spacing: 1px;
+    margin-bottom: 12px;
+  }
+  .phone-divider { height: 1px; background: var(--border); margin-bottom: 12px; }
+  .phone-task-label { font-size: 7px; font-weight: 700; letter-spacing: 2px; color: var(--mute); margin-bottom: 6px; }
+  .phone-task-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 10px; padding: 10px 12px; margin-bottom: 12px;
+  }
+  .phone-task-name { font-size: 10px; font-weight: 500; color: var(--text); margin-bottom: 2px; }
+  .phone-task-sub { font-size: 8px; color: var(--mute); }
+  .phone-buttons { display: flex; gap: 6px; }
+  .phone-btn-main {
+    flex: 1; background: var(--accent); color: white;
+    padding: 10px 0; border-radius: 10px; text-align: center;
+    font-size: 10px; font-weight: 600;
+  }
+  .phone-btn-sec {
+    flex: 1; background: var(--surface2); color: var(--mid);
+    padding: 10px 0; border-radius: 10px; text-align: center;
+    font-size: 10px;
+  }
+  .phone-mantra { font-size: 7.5px; color: var(--mute); text-align: center; margin-top: 8px; }
+  .phone-notch {
+    position: absolute; top: 12px; left: 50%; transform: translateX(-50%);
+    width: 90px; height: 24px; background: var(--text);
+    border-radius: 12px; z-index: 10;
+  }
+
+  .phone-float {
+    position: absolute;
+    top: 40px; right: -60px;
+    width: 200px; height: 400px;
+    background: var(--surface);
+    border-radius: 40px;
+    border: 2px solid var(--border);
+    box-shadow: 0 20px 60px rgba(26,23,20,0.08);
+    overflow: hidden;
+    padding: 20px 14px;
+    opacity: 0.7;
+    transform: rotate(6deg);
+  }
+
+  /* ── Tagline strip ── */
+  .strip {
+    background: var(--accent);
+    padding: 20px 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .strip-inner {
+    display: inline-flex; gap: 80px;
+    animation: marquee 20s linear infinite;
+  }
+  .strip-item {
+    font-size: 13px; font-weight: 600; letter-spacing: 2px;
+    color: rgba(255,255,255,0.85); text-transform: uppercase;
+  }
+  @keyframes marquee { from { transform: translateX(0) } to { transform: translateX(-50%) } }
+
+  /* ── Features ── */
+  .features {
+    padding: 100px 80px;
+    max-width: 1400px; margin: 0 auto;
+  }
+  .features-header { text-align: center; margin-bottom: 64px; }
+  .features-kicker { font-size: 11px; font-weight: 700; letter-spacing: 3px; color: var(--accent); margin-bottom: 12px; }
+  .features-title { font-size: clamp(32px, 4vw, 52px); font-weight: 700; letter-spacing: -1.5px; }
+  .features-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .feature-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 40px 32px;
+    transition: transform .3s, box-shadow .3s;
+  }
+  .feature-card:hover { transform: translateY(-4px); box-shadow: 0 20px 60px rgba(26,23,20,0.07); }
+  .feature-icon {
+    font-size: 28px; margin-bottom: 20px;
+    width: 56px; height: 56px;
+    background: var(--accentLt);
+    border-radius: 16px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .feature-icon.clay { background: var(--accent2Lt); }
+  .feature-icon.purple { background: #F0EEF7; }
+  .feature-name { font-size: 18px; font-weight: 700; margin-bottom: 10px; }
+  .feature-desc { font-size: 14px; color: var(--mid); line-height: 1.6; }
+
+  /* ── Philosophy ── */
+  .philosophy {
+    background: var(--text);
+    padding: 100px 80px;
+    text-align: center;
+  }
+  .philosophy-kicker { font-size: 11px; font-weight: 700; letter-spacing: 3px; color: rgba(255,255,255,0.4); margin-bottom: 24px; }
+  .philosophy-quote {
+    font-size: clamp(28px, 4vw, 52px);
+    font-weight: 200; line-height: 1.3;
+    color: white; letter-spacing: -1px;
+    max-width: 900px; margin: 0 auto 28px;
+  }
+  .philosophy-quote strong { font-weight: 700; color: #A8D4BB; }
+  .philosophy-attr { font-size: 13px; color: rgba(255,255,255,0.4); letter-spacing: 1px; }
+
+  /* ── Stats ── */
+  .stats {
+    padding: 80px;
+    max-width: 1400px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+  .stat-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 20px; padding: 32px 28px;
+    text-align: center;
+  }
+  .stat-value { font-size: 48px; font-weight: 200; color: var(--text); letter-spacing: -2px; margin-bottom: 6px; }
+  .stat-label { font-size: 13px; color: var(--mute); }
+
+  /* ── Screens showcase ── */
+  .screens-section {
+    padding: 100px 80px;
+    max-width: 1400px; margin: 0 auto;
+  }
+  .screens-header { margin-bottom: 48px; }
+  .screens-scroll {
+    display: flex; gap: 20px; overflow-x: auto;
+    padding-bottom: 16px;
+    scrollbar-width: none;
+  }
+  .screens-scroll::-webkit-scrollbar { display: none; }
+  .screen-card {
+    flex-shrink: 0;
+    width: 220px; height: 440px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 32px;
+    overflow: hidden;
+    display: flex; flex-direction: column;
+    box-shadow: 0 10px 40px rgba(26,23,20,0.06);
+  }
+  .screen-label {
+    padding: 20px 20px 0;
+    font-size: 11px; font-weight: 700; letter-spacing: 2px;
+    color: var(--mute); text-transform: uppercase;
+  }
+  .screen-title {
+    padding: 4px 20px 16px;
+    font-size: 16px; font-weight: 700; color: var(--text);
+  }
+  .screen-preview {
+    flex: 1;
+    background: var(--bg);
+    margin: 0 12px 12px;
+    border-radius: 20px;
+    display: flex; flex-direction: column;
+    padding: 16px;
+    gap: 8px; overflow: hidden;
+  }
+
+  /* ── Footer ── */
+  footer {
+    background: var(--text); color: white;
+    padding: 60px 80px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-brand { font-size: 22px; font-weight: 700; letter-spacing: 2px; }
+  .footer-tagline { font-size: 13px; color: rgba(255,255,255,0.4); margin-top: 6px; }
+  .footer-links { display: flex; gap: 32px; }
+  .footer-links a { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 13px; transition: color .2s; }
+  .footer-links a:hover { color: white; }
+  .footer-credit { font-size: 11px; color: rgba(255,255,255,0.3); }
+
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; padding: 100px 32px 60px; }
+    .features { padding: 60px 32px; }
+    .features-grid { grid-template-columns: 1fr; }
+    .stats { grid-template-columns: repeat(2, 1fr); padding: 60px 32px; }
+    .philosophy { padding: 60px 32px; }
+    .screens-section { padding: 60px 32px; }
+    footer { flex-direction: column; gap: 32px; padding: 48px 32px; text-align: center; }
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    .phone-float { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav>
+  <div class="nav-logo">VELA</div>
+  <div class="nav-links">
+    <a href="#features">Features</a>
+    <a href="#philosophy">Philosophy</a>
+    <a href="vela-viewer">View Design</a>
+  </div>
+  <a class="nav-cta" href="vela-viewer">View Design ↗</a>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div>
+    <div class="hero-kicker">CREATIVE SPRINT RHYTHM</div>
+    <h1 class="hero-title">Work in <em>rhythm,</em><br>not in rows.</h1>
+    <p class="hero-sub">
+      VELA is a focus tool built around your biological rhythm — not arbitrary timers or task lists. Sprint. Flow. Recover. Repeat.
+    </p>
+    <div class="hero-actions">
+      <a class="btn-primary" href="vela-viewer">Explore Design</a>
+      <a class="btn-ghost" href="vela-mock">Interactive Mock ☀◑</a>
+    </div>
+  </div>
+  <div class="hero-device">
+    <!-- Floating back phone -->
+    <div class="phone-float">
+      <div style="font-size:7px;font-weight:700;letter-spacing:2px;color:#9A9590;margin-bottom:8px;">YOUR FLOW MAP</div>
+      <div style="font-size:18px;font-weight:700;color:#1A1714;margin-bottom:12px;">This Week</div>
+      <div style="display:flex;align-items:flex-end;gap:6px;height:80px;margin-bottom:8px;">
+        <div style="flex:1;background:#DDD9D2;border-radius:4px;height:50%"></div>
+        <div style="flex:1;background:#C4682A;border-radius:4px;height:70%"></div>
+        <div style="flex:1;background:#DDD9D2;border-radius:4px;height:60%"></div>
+        <div style="flex:1;background:#DDD9D2;border-radius:4px;height:28%"></div>
+        <div style="flex:1;background:#2E6B4A;border-radius:4px;height:90%"></div>
+        <div style="flex:1;height:0"></div>
+        <div style="flex:1;height:0"></div>
+      </div>
+      <div style="display:flex;justify-content:space-around;font-size:8px;color:#9A9590;margin-bottom:12px;">
+        <span>M</span><span>T</span><span>W</span><span>T</span><span style="color:#2E6B4A;font-weight:700">F</span><span>S</span><span>S</span>
+      </div>
+      <div style="height:1px;background:#DDD9D2;margin-bottom:12px;"></div>
+      <div style="font-size:22px;font-weight:700;color:#1A1714;">74%</div>
+      <div style="font-size:9px;color:#9A9590;">Flow Ratio</div>
+    </div>
+    <!-- Main phone -->
+    <div class="phone-frame">
+      <div class="phone-notch"></div>
+      <div class="phone-screen" style="padding-top: 48px;">
+        <div class="phone-status">
+          <span>9:41</span><span>100%</span>
+        </div>
+        <div class="phone-kicker">ACTIVE SPRINT</div>
+        <div class="phone-sprint-name">Deep Work</div>
+        <div class="phone-sprint-sub">Pentimento — Brand Identity</div>
+        <div class="phone-timer">
+          <span class="phone-timer-big">42</span>
+          <span class="phone-timer-mute">:17</span>
+        </div>
+        <div class="phone-progress-label">──────────────── 58%</div>
+        <div class="phone-flow-pill">⟳ IN FLOW STATE</div>
+        <div class="phone-divider"></div>
+        <div class="phone-task-label">CURRENT TASK</div>
+        <div class="phone-task-card">
+          <div class="phone-task-name">Refine wordmark — weight study</div>
+          <div class="phone-task-sub">3 of 5 tasks complete</div>
+        </div>
+        <div class="phone-buttons">
+          <div class="phone-btn-main">Pause</div>
+          <div class="phone-btn-sec">End Sprint</div>
+        </div>
+        <div class="phone-mantra">stillness vs motion · trust the rhythm</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Marquee strip -->
+<div class="strip">
+  <div class="strip-inner">
+    <span class="strip-item">Sprint</span>
+    <span class="strip-item">Flow</span>
+    <span class="strip-item">Recover</span>
+    <span class="strip-item">Repeat</span>
+    <span class="strip-item">Trust the Rhythm</span>
+    <span class="strip-item">Not a Server</span>
+    <span class="strip-item">Stillness vs Motion</span>
+    <span class="strip-item">Biological Clock</span>
+    <span class="strip-item">Sprint</span>
+    <span class="strip-item">Flow</span>
+    <span class="strip-item">Recover</span>
+    <span class="strip-item">Repeat</span>
+    <span class="strip-item">Trust the Rhythm</span>
+    <span class="strip-item">Not a Server</span>
+    <span class="strip-item">Stillness vs Motion</span>
+    <span class="strip-item">Biological Clock</span>
+  </div>
+</div>
+
+<!-- Features -->
+<section class="features" id="features">
+  <div class="features-header">
+    <div class="features-kicker">HOW IT WORKS</div>
+    <h2 class="features-title">Designed around your biology</h2>
+  </div>
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">◎</div>
+      <div class="feature-name">Sprint Sessions</div>
+      <div class="feature-desc">
+        Choose your duration — 25 to 120 min — and VELA guides you into deep work. The large, minimal timer stays out of your way until you need it.
+      </div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon clay">≋</div>
+      <div class="feature-name">Flow Map</div>
+      <div class="feature-desc">
+        See when your brain is at its sharpest across the week. VELA builds a rhythm profile from your sessions — not from self-reported data.
+      </div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon purple">◈</div>
+      <div class="feature-name">Rhythm Score</div>
+      <div class="feature-desc">
+        A weekly score measures consistency, depth, and recovery. Not productivity in hours — but the quality of your creative rhythm.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Philosophy -->
+<section class="philosophy" id="philosophy">
+  <div class="philosophy-kicker">THE PHILOSOPHY</div>
+  <blockquote class="philosophy-quote">
+    "Your brain is not a server. It doesn't perform under <strong>constant load.</strong> It needs contrast — stillness and motion — to think clearly."
+  </blockquote>
+  <div class="philosophy-attr">Inspired by Interval for macOS &amp; the science of ultradian rhythms</div>
+</section>
+
+<!-- Stats -->
+<div class="stats">
+  <div class="stat-card">
+    <div class="stat-value">87</div>
+    <div class="stat-label">Avg rhythm score</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-value">74<span style="font-size:28px">%</span></div>
+    <div class="stat-label">Flow ratio this week</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-value">90</div>
+    <div class="stat-label">Min optimal session</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-value">5</div>
+    <div class="stat-label">Screens in this prototype</div>
+  </div>
+</div>
+
+<!-- Screens showcase -->
+<section class="screens-section">
+  <div class="screens-header">
+    <div class="features-kicker">5 SCREENS</div>
+    <h2 class="features-title">The full prototype</h2>
+  </div>
+  <div class="screens-scroll">
+    
+      <div class="screen-card">
+        <div class="screen-label">Screen 1</div>
+        <div class="screen-title">Active Sprint</div>
+        <div class="screen-preview" style="background:#EBF4EF">
+          <div style="font-size:9px;font-weight:700;letter-spacing:2px;color:#2E6B4A;opacity:0.7">VELA</div>
+          <div style="font-size:13px;font-weight:700;color:#1A1714;">Active Sprint</div>
+          <div style="height:2px;background:#2E6B4A;border-radius:2px;opacity:0.4;margin:4px 0"></div>
+          <div style="display:flex;flex-direction:column;gap:6px;margin-top:4px">
+            <div style="height:8px;background:rgba(26,23,20,0.08);border-radius:4px;width:78%"></div><div style="height:8px;background:rgba(26,23,20,0.08);border-radius:4px;width:74%"></div><div style="height:8px;background:rgba(26,23,20,0.08);border-radius:4px;width:78%"></div><div style="height:8px;background:rgba(26,23,20,0.08);border-radius:4px;width:72%"></div><div style="height:8px;background:rgba(26,23,20,0.08);border-radius:4px;width:72%"></div>
+          </div>
+        </div>
+      </div>
+      <div class="screen-card">
+        <div class="screen-label">Screen 2</div>
+        <div class="screen-title">Flow Map</div>
+        <div class="screen-preview" style="background:#FAEEE5">
+          <div style="font-size:9px;font-weight:700;letter-spacing:2px;color:#C4682A;opacity:0.7">VELA</div>
+          <div style="font-size:13px;font-weight:700;color:#1A1714;">Flow Map</div>
+          <div style="height:2px;background:#C4682A;border-radius:2px;opacity:0.4;margin:4px 0"></div>
+          <div style="display:flex;flex-direction:column;gap:6px;margin-top:4px">
+            <div style="height:8px;background:rgba(26,23,20,0.08);border-radius:4px;width:70%"></div><div style="height:8px;background:rgba(26,23,20,0.08);border-radius:4px;width:65%"></div><div style="height:8px;background:rgba(26,23,20,0.08);border-radius:4px;width:77%"></div><div style="height:8px;background:rgba(26,23,20,0.08);border-radius:4px;width:66%"></div><div style="height:8px;background:rgba(26,23,20,0.08);border-radius:4px;width:78%"></div>
+          </div>
+        </div>
+      </div>
+      <div class="screen-card">
+        <div class="screen-label">Screen 3</div>
+        <div class="screen-title">Projects</div>
+        <div class="screen-preview" style="background:#E8F4F6">
+          <div style="font-size:9px;font-weight:700;letter-spacing:2px;color:#2A7A8A;opacity:0.7">VELA</div>
+          <div style="font-size:13px;font-weight:700;color:#1A1714;">Projects</div>
+          <div style="height:2px;background:#2A7A8A;border-radius:2px;opacity:0.4;margin:4px 0"></div>
+          <div style="display:flex;flex-direction:column;gap:6px;margin-top:4px">
+            <div style="height:8px;background:rgba(26,23,20,0.08);border-radius:4px;width:64%"></div><div style="height:8px;background:rgba(26,23,20,0.08);border-radius:4px;width:65%"></div><div style="height:8px;background:rgba(26,23,20,0.08);border-radius:4px;width:80%"></div><div style="height:8px;background:rgba(26,23,20,0.08);border-radius:4px;width:71%"></div><div style="height:8px;background:rgba(26,23,20,0.08);border-radius:4px;width:88%"></div>
+          </div>
+        </div>
+      </div>
+      <div class="screen-card">
+        <div class="screen-label">Screen 4</div>
+        <div class="screen-title">Rhythm Report</div>
+        <div class="screen-preview" style="background:#F0EEF7">
+          <div style="font-size:9px;font-weight:700;letter-spacing:2px;color:#7B6FA0;opacity:0.7">VELA</div>
+          <div style="font-size:13px;font-weight:700;color:#1A1714;">Rhythm Report</div>
+          <div style="height:2px;background:#7B6FA0;border-radius:2px;opacity:0.4;margin:4px 0"></div>
+          <div style="display:flex;flex-direction:column;gap:6px;margin-top:4px">
+            <div style="height:8px;background:rgba(26,23,20,0.08);border-radius:4px;width:69%"></div><div style="height:8px;background:rgba(26,23,20,0.08);border-radius:4px;width:82%"></div><div style="height:8px;background:rgba(26,23,20,0.08);border-radius:4px;width:93%"></div><div style="height:8px;background:rgba(26,23,20,0.08);border-radius:4px;width:76%"></div><div style="height:8px;background:rgba(26,23,20,0.08);border-radius:4px;width:72%"></div>
+          </div>
+        </div>
+      </div>
+      <div class="screen-card">
+        <div class="screen-label">Screen 5</div>
+        <div class="screen-title">New Sprint</div>
+        <div class="screen-preview" style="background:#EBF4EF">
+          <div style="font-size:9px;font-weight:700;letter-spacing:2px;color:#2E6B4A;opacity:0.7">VELA</div>
+          <div style="font-size:13px;font-weight:700;color:#1A1714;">New Sprint</div>
+          <div style="height:2px;background:#2E6B4A;border-radius:2px;opacity:0.4;margin:4px 0"></div>
+          <div style="display:flex;flex-direction:column;gap:6px;margin-top:4px">
+            <div style="height:8px;background:rgba(26,23,20,0.08);border-radius:4px;width:61%"></div><div style="height:8px;background:rgba(26,23,20,0.08);border-radius:4px;width:75%"></div><div style="height:8px;background:rgba(26,23,20,0.08);border-radius:4px;width:60%"></div><div style="height:8px;background:rgba(26,23,20,0.08);border-radius:4px;width:88%"></div><div style="height:8px;background:rgba(26,23,20,0.08);border-radius:4px;width:84%"></div>
+          </div>
+        </div>
+      </div>
+  </div>
+  <div style="margin-top:32px;text-align:center">
+    <a class="btn-primary" href="vela-viewer" style="display:inline-block">View in Pencil Viewer ↗</a>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div>
+    <div class="footer-brand">VELA</div>
+    <div class="footer-tagline">work in rhythm, not in rows</div>
+  </div>
+  <div class="footer-links">
+    <a href="vela-viewer">Viewer</a>
+    <a href="vela-mock">Mock ☀◑</a>
+  </div>
+  <div class="footer-credit">RAM Design Heartbeat · Mar 30, 2026</div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RAM Design Studio — Canvas Renderer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0a0a0f;
+    color: #e0e0e0;
+    font-family: 'Inter', 'Courier New', monospace;
+    min-height: 100vh;
+    padding: 2rem;
+  }
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid #1a1a2e;
+    padding-bottom: 1rem;
+  }
+  .logo { color: #00ffcc; font-size: 1rem; font-weight: 700; letter-spacing: .1em; font-family: 'Courier New', monospace; }
+  .subtitle { color: #555; font-size: .75rem; font-family: 'Courier New', monospace; }
+  .badge { background: #111; border: 1px solid #00ffcc33; color: #00ffcc; font-size: .7rem; padding: .2rem .6rem; border-radius: 4px; letter-spacing: .1em; font-family: 'Courier New', monospace; }
+  #app-info { margin-bottom: 1.5rem; display: flex; gap: 2rem; align-items: center; }
+  .app-name { font-size: 1.4rem; font-weight: 700; color: #fff; }
+  .app-meta { font-size: .75rem; color: #555; }
+  #screens-container { display: flex; gap: 2.5rem; flex-wrap: wrap; align-items: flex-start; }
+  .screen-wrapper { display: flex; flex-direction: column; align-items: center; gap: .75rem; }
+  .screen-label { font-size: .65rem; color: #444; text-transform: uppercase; letter-spacing: .2em; font-family: 'Courier New', monospace; }
+  .screen-name { font-size: .8rem; color: #888; font-weight: 600; }
+  .screen-frame {
+    border-radius: 40px;
+    overflow: hidden;
+    box-shadow:
+      0 0 0 10px #141420,
+      0 0 0 12px #0d0d1a,
+      0 30px 80px rgba(0,0,0,.7),
+      0 0 40px rgba(0,255,204,0.03);
+    position: relative;
+    flex-shrink: 0;
+  }
+  canvas { display: block; }
+  #drop-zone {
+    border: 2px dashed #1a1a2e;
+    border-radius: 12px;
+    padding: 3rem;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color .2s;
+    margin-bottom: 2rem;
+  }
+  #drop-zone:hover, #drop-zone.drag-over { border-color: #00ffcc; }
+  #drop-zone p { color: #555; font-size: .9rem; }
+  #drop-zone strong { color: #00ffcc; }
+  #file-input { display: none; }
+  .btn { background: #00ffcc; color: #0a0a0f; border: none; padding: .5rem 1.2rem; font-family: inherit; font-size: .8rem; font-weight: 700; border-radius: 4px; cursor: pointer; letter-spacing: .05em; margin-top: .75rem; display: inline-block; }
+  .btn:hover { background: #00e6b8; }
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <div class="logo">> ram design studio</div>
+    <div class="subtitle">.pen canvas renderer — no pencil.dev required</div>
+  </div>
+  <span class="badge">v2.8</span>
+</header>
+
+<div id="drop-zone" onclick="document.getElementById('file-input').click()">
+  <p>Drop a <strong>.pen file</strong> here or click to open</p>
+  <button class="btn">Open .pen file</button>
+</div>
+<input type="file" id="file-input" accept=".pen,.json">
+
+<div id="app-info" style="display:none">
+  <div>
+    <div class="app-name" id="app-name-label">Design Preview</div>
+    <div class="app-meta" id="app-meta-label"></div>
+  </div>
+</div>
+
+<div id="screens-container"></div>
+
+<script>
+// ─── Config ────────────────────────────────────────────────────────────────────
+const SCALE = 0.55;
+const PHONE_W = 375;
+const PHONE_H = 812;
+
+// ─── Color helpers ─────────────────────────────────────────────────────────────
+function hexToRgb(hex) {
+  if (!hex || typeof hex !== 'string') return null;
+  hex = hex.replace('#', '');
+  if (hex.length === 3) hex = hex.split('').map(c => c+c).join('');
+  if (hex.length !== 6) return null;
+  const n = parseInt(hex, 16);
+  return { r: (n>>16)&255, g: (n>>8)&255, b: n&255 };
+}
+
+function resolveColor(fill, vars) {
+  if (!fill) return null;
+
+  // Array of fills — use first visible one
+  if (Array.isArray(fill)) {
+    for (const f of fill) {
+      const c = resolveColor(f, vars);
+      if (c && c !== 'rgba(0,0,0,0)') return c;
+    }
+    return null;
+  }
+
+  // Variable reference  e.g. "$color.primary"
+  if (typeof fill === 'string' && fill.startsWith('$') && vars) {
+    const key = fill.slice(1);
+    const v = vars[key];
+    fill = (v && (v.value || v)) || fill;
+  }
+
+  if (typeof fill === 'string') {
+    if (fill.startsWith('#') || fill.startsWith('rgb') || fill === 'transparent') return fill;
+    return null;
+  }
+
+  if (typeof fill === 'object' && fill !== null) {
+    if (fill.type === 'color' || fill.type === 'solid') {
+      const hex = fill.color || fill.value || '#cccccc';
+      const op = fill.opacity !== undefined ? fill.opacity : 1;
+      if (op === 0) return 'rgba(0,0,0,0)';
+      const rgb = hexToRgb(hex);
+      if (rgb) return `rgba(${rgb.r},${rgb.g},${rgb.b},${op})`;
+      return hex;
+    }
+    if (fill.type === 'linear' || fill.type === 'gradient' || fill.type === 'radial') {
+      const stops = fill.stops || [];
+      return stops[0]?.color || '#e5e7eb';
+    }
+    // Plain {color, opacity} shorthand (pencil.dev native format)
+    if (fill.color) {
+      const op = fill.opacity !== undefined ? fill.opacity : 1;
+      const rgb = hexToRgb(fill.color);
+      if (rgb) return `rgba(${rgb.r},${rgb.g},${rgb.b},${op})`;
+    }
+  }
+  return null;
+}
+
+// ─── Padding parser ────────────────────────────────────────────────────────────
+function parsePadding(padding) {
+  if (!padding && padding !== 0) return { t:0, r:0, b:0, l:0 };
+  if (typeof padding === 'number') return { t:padding, r:padding, b:padding, l:padding };
+  if (Array.isArray(padding)) {
+    if (padding.length === 2) return { t:padding[0], r:padding[1], b:padding[0], l:padding[1] };
+    if (padding.length === 4) return { t:padding[0], r:padding[1], b:padding[2], l:padding[3] };
+  }
+  return { t:0, r:0, b:0, l:0 };
+}
+
+// ─── Round rect path ───────────────────────────────────────────────────────────
+function rRect(ctx, x, y, w, h, r) {
+  r = Math.min(Math.abs(r||0), Math.abs(w/2), Math.abs(h/2));
+  ctx.beginPath();
+  ctx.moveTo(x+r, y);
+  ctx.lineTo(x+w-r, y);
+  ctx.quadraticCurveTo(x+w, y, x+w, y+r);
+  ctx.lineTo(x+w, y+h-r);
+  ctx.quadraticCurveTo(x+w, y+h, x+w-r, y+h);
+  ctx.lineTo(x+r, y+h);
+  ctx.quadraticCurveTo(x, y+h, x, y+h-r);
+  ctx.lineTo(x, y+r);
+  ctx.quadraticCurveTo(x, y, x+r, y);
+  ctx.closePath();
+}
+
+// ─── Ellipse path ──────────────────────────────────────────────────────────────
+function rEllipse(ctx, x, y, w, h) {
+  ctx.beginPath();
+  ctx.ellipse(x + w/2, y + h/2, w/2, h/2, 0, 0, Math.PI * 2);
+  ctx.closePath();
+}
+
+// ─── Multiline text helper ─────────────────────────────────────────────────────
+function fillTextMultiline(ctx, text, x, y, maxW, lineH) {
+  const lines = text.split('\n');
+  let ly = y;
+  for (const rawLine of lines) {
+    if (maxW <= 0) { ctx.fillText(rawLine, x, ly); ly += lineH; continue; }
+    // Word-wrap within maxW
+    const words = rawLine.split(' ');
+    let line = '';
+    for (const word of words) {
+      const test = line ? line + ' ' + word : word;
+      if (ctx.measureText(test).width > maxW && line) {
+        ctx.fillText(line, x, ly, maxW);
+        line = word;
+        ly += lineH;
+      } else {
+        line = test;
+      }
+    }
+    if (line) { ctx.fillText(line, x, ly, maxW); ly += lineH; }
+  }
+}
+
+// ─── Measure node size (for auto-layout) ──────────────────────────────────────
+function measureNode(node) {
+  const w = typeof node.width === 'number' ? node.width : 80;
+  // Explicit height wins
+  if (typeof node.height === 'number' && node.height > 0) return { w, h: node.height };
+  // Text node — estimate height from font size
+  if (node.type === 'text') return { w, h: (node.fontSize || 14) + 8 };
+  // Auto-layout frame — compute height from children
+  if (node.children && node.children.length && node.layout) {
+    const pad = parsePadding(node.padding);
+    const gap = node.gap || 0;
+    const isH = node.layout === 'horizontal';
+    const sizes = node.children.map(measureNode);
+    if (isH) {
+      const maxH = Math.max(...sizes.map(s => s.h), 0);
+      return { w, h: pad.t + maxH + pad.b };
+    } else {
+      const totalH = sizes.reduce((s, m) => s + m.h, 0) + gap * Math.max(sizes.length - 1, 0);
+      return { w, h: pad.t + totalH + pad.b };
+    }
+  }
+  return { w, h: 30 };
+}
+
+// ─── Main draw function ────────────────────────────────────────────────────────
+function drawNode(ctx, node, vars, ox, oy, clipW, clipH) {
+  if (!node || !node.type) return;
+
+  // Treat group like an absolute-layout frame
+  const effectiveType = node.type === 'group' ? 'frame' : node.type;
+
+  const nw = typeof node.width === 'number' ? node.width : (clipW || 0);
+  // Use measureNode for height when not explicitly set
+  const nh = typeof node.height === 'number' ? node.height : measureNode(node).h;
+  const nx = (ox + (node.x||0)) * SCALE;
+  const ny = (oy + (node.y||0)) * SCALE;
+  const nws = nw * SCALE;
+  const nhs = nh * SCALE;
+  const r = (node.cornerRadius||0) * SCALE;
+
+  ctx.save();
+
+  // ── Node-level opacity ──
+  if (typeof node.opacity === 'number' && node.opacity < 1) {
+    ctx.globalAlpha = (ctx.globalAlpha || 1) * node.opacity;
+  }
+
+  // ── Shadow ──
+  const effect = Array.isArray(node.effects) ? node.effects[0] : node.effect;
+  if (effect && effectiveType !== 'text') {
+    if (effect.type === 'shadow' || effect.type === 'drop-shadow') {
+      ctx.shadowColor = resolveColor(effect.color, vars) || 'rgba(0,0,0,0.15)';
+      ctx.shadowBlur = (effect.blur||8) * SCALE;
+      ctx.shadowOffsetX = (effect.offset?.x||0) * SCALE;
+      ctx.shadowOffsetY = (effect.offset?.y||3) * SCALE;
+    }
+  }
+
+  // ── Shape path helper ──
+  const isEllipse = node.type === 'ellipse';
+  function shapePath() {
+    if (isEllipse) rEllipse(ctx, nx, ny, nws, nhs);
+    else rRect(ctx, nx, ny, nws, nhs, r);
+  }
+
+  // ── Fill ──
+  const fillColor = resolveColor(node.fill, vars);
+  if (fillColor && nws > 0 && nhs > 0 &&
+      effectiveType !== 'text' && fillColor !== 'rgba(0,0,0,0)') {
+    ctx.fillStyle = fillColor;
+    shapePath();
+    ctx.fill();
+  }
+
+  ctx.shadowColor = 'transparent';
+  ctx.shadowBlur = 0;
+  ctx.shadowOffsetX = 0;
+  ctx.shadowOffsetY = 0;
+
+  // ── Stroke ──
+  const stroke = node.stroke || node.border;
+  if (stroke?.fill) {
+    const sc = resolveColor(stroke.fill, vars);
+    if (sc) {
+      ctx.strokeStyle = sc;
+      ctx.lineWidth = Math.max((stroke.thickness||stroke.width||1) * SCALE, 0.5);
+      shapePath();
+      ctx.stroke();
+    }
+  }
+
+  // ── Text ──
+  if (node.type === 'text' && node.content) {
+    const fs = (node.fontSize||14) * SCALE;
+    const fw = node.fontWeight||'400';
+    ctx.font = `${fw} ${fs}px Inter, -apple-system, sans-serif`;
+    ctx.fillStyle = resolveColor(node.fill, vars) || '#111827';
+    ctx.textBaseline = 'middle';
+    const align = node.textAlign || 'left';
+    ctx.textAlign = align;
+    let tx = nx;
+    if (align === 'center' && nws > 0) tx = nx + nws/2;
+    else if (align === 'right' && nws > 0) tx = nx + nws;
+    const maxW = nws > 0 ? nws : (clipW ? clipW * SCALE : 400);
+    const lineH = fs * 1.4;
+    const hasNewlines = node.content.includes('\n');
+    const isWrapping = node.lineHeight || hasNewlines || (node.content.length > 30 && nws > 0);
+    if (isWrapping || hasNewlines) {
+      // Multi-line: baseline at top of first line
+      ctx.textBaseline = 'top';
+      fillTextMultiline(ctx, node.content, tx, ny + 2, maxW, lineH);
+    } else {
+      const ty = ny + nhs/2;
+      ctx.fillText(node.content, tx, ty, maxW);
+    }
+    ctx.restore();
+    return;
+  }
+
+  // ── Ellipse with no children — done ──
+  if (isEllipse) { ctx.restore(); return; }
+
+  // ── Children layout ──
+  if (node.children?.length) {
+    const pad = parsePadding(node.padding);
+    const gap = (node.gap||0);
+    const layout = node.layout || 'none';
+    const jc = node.justifyContent || 'start';
+    const ai = node.alignItems || 'start';
+    const innerW = nw - pad.l - pad.r;
+    const innerH = nh - pad.t - pad.b;
+
+    // Clip to frame — only when explicitly set
+    const shouldClip = (effectiveType === 'frame') && node.clipsContent === true;
+    if (shouldClip) {
+      ctx.save();
+      rRect(ctx, nx, ny, nws, nhs, r);
+      ctx.clip();
+    }
+
+    if (layout === 'none') {
+      node.children.forEach(child => {
+        drawNode(ctx, child, vars, ox+(node.x||0), oy+(node.y||0), innerW, innerH);
+      });
+    } else {
+      const children = node.children;
+      const sizes = children.map(measureNode);
+      const isH = layout === 'horizontal';
+
+      // Total content size
+      const totalMain = sizes.reduce((s,m) => s + (isH ? m.w : m.h), 0)
+                      + gap * (children.length - 1);
+      const availMain = isH ? innerW : innerH;
+
+      // Justify content offset
+      let mainStart = isH ? pad.l : pad.t;
+      if (jc === 'center') mainStart += (availMain - totalMain) / 2;
+      else if (jc === 'end') mainStart += availMain - totalMain;
+
+      const spaceGap = jc === 'space_between' && children.length > 1
+        ? (availMain - sizes.reduce((s,m) => s + (isH?m.w:m.h), 0)) / (children.length-1)
+        : gap;
+
+      let cursor = mainStart;
+      children.forEach((child, i) => {
+        const { w: cw, h: ch } = sizes[i];
+
+        // Cross-axis alignment
+        const crossAvail = isH ? innerH : innerW;
+        const crossSize = isH ? ch : cw;
+        let crossOff = isH ? pad.t : pad.l;
+        if (ai === 'center') crossOff += (crossAvail - crossSize) / 2;
+        else if (ai === 'end') crossOff += crossAvail - crossSize;
+
+        if (isH) {
+          // Horizontal: cursor = x-axis. Cross = y-axis (crossOff handles padding+alignment)
+          drawNode(ctx, child, vars,
+            ox + (node.x||0) + cursor - (child.x||0),
+            oy + (node.y||0) + crossOff - (child.y||0),
+            cw, innerH);
+        } else {
+          // Vertical: cursor = y-axis. Cross = x-axis.
+          // Cursor drives y position — child.y in auto-layout JSON is 0-based, ignored here
+          // For x: use max(crossOff, child.x) so BOTH padding AND designer x-inset are respected
+          const effectiveCrossX = Math.max(crossOff, (child.x||0));
+          drawNode(ctx, child, vars,
+            ox + (node.x||0) + effectiveCrossX - (child.x||0),
+            oy + (node.y||0) + cursor - (child.y||0),
+            innerW, ch);
+        }
+
+        cursor += (isH ? cw : ch) + spaceGap;
+      });
+    }
+
+    // Restore clip — outside both layout branches to avoid save/restore imbalance
+    if (shouldClip) ctx.restore();
+  }
+
+  ctx.restore();
+}
+
+// ─── Render full document ──────────────────────────────────────────────────────
+function renderPen(doc, containerEl) {
+  const container = containerEl || document.getElementById('screens-container');
+  container.innerHTML = '';
+
+  const vars = doc.variables || {};
+  const screens = doc.children || [];
+
+  document.getElementById('app-info').style.display = 'flex';
+  document.getElementById('app-meta-label').textContent =
+    `v${doc.version||'2.8'} · ${screens.length} screen${screens.length!==1?'s':''} · ${Object.keys(vars).length} variables`;
+
+  screens.forEach((screen, i) => {
+    const sw = screen.width || PHONE_W;
+    const sh = screen.height || PHONE_H;
+    const cw = Math.round(sw * SCALE);
+    const ch = Math.round(sh * SCALE);
+
+    const wrapper = document.createElement('div');
+    wrapper.className = 'screen-wrapper';
+
+    const nameEl = document.createElement('div');
+    nameEl.className = 'screen-name';
+    nameEl.textContent = screen.name || `Screen ${i+1}`;
+
+    const frame = document.createElement('div');
+    frame.className = 'screen-frame';
+    frame.style.width = cw + 'px';
+    frame.style.height = ch + 'px';
+
+    const canvas = document.createElement('canvas');
+    canvas.width = cw;
+    canvas.height = ch;
+
+    const ctx = canvas.getContext('2d');
+    ctx.imageSmoothingEnabled = true;
+    ctx.imageSmoothingQuality = 'high';
+
+    // Background safety fill (in case screen has no fill node)
+    ctx.fillStyle = resolveColor(screen.fill, vars) || '#f9fafb';
+    ctx.fillRect(0, 0, cw, ch);
+
+    // Route through layout engine — offsets screen.x/y so screen renders at canvas (0,0).
+    // This lets the screen's layout:'vertical' algorithm properly stack children via cursor,
+    // rather than relying on each child's raw .y value (which is 0 in auto-layout JSON).
+    drawNode(ctx, screen, vars, -(screen.x||0), -(screen.y||0), sw, sh);
+
+    const labelEl = document.createElement('div');
+    labelEl.className = 'screen-label';
+    labelEl.textContent = `screen ${i+1}`;
+
+    frame.appendChild(canvas);
+    wrapper.appendChild(nameEl);
+    wrapper.appendChild(frame);
+    wrapper.appendChild(labelEl);
+    container.appendChild(wrapper);
+  });
+}
+
+// ─── File loading ──────────────────────────────────────────────────────────────
+function loadFile(file) {
+  const reader = new FileReader();
+  reader.onload = e => {
+    try {
+      renderPen(JSON.parse(e.target.result));
+      document.getElementById('drop-zone').style.display = 'none';
+    } catch(err) { alert('Invalid .pen file: ' + err.message); }
+  };
+  reader.readAsText(file);
+}
+
+document.getElementById('file-input').addEventListener('change', e => {
+  if (e.target.files[0]) loadFile(e.target.files[0]);
+});
+
+const dz = document.getElementById('drop-zone');
+dz.addEventListener('dragover', e => { e.preventDefault(); dz.classList.add('drag-over'); });
+dz.addEventListener('dragleave', () => dz.classList.remove('drag-over'));
+dz.addEventListener('drop', e => {
+  e.preventDefault();
+  dz.classList.remove('drag-over');
+  if (e.dataTransfer.files[0]) loadFile(e.dataTransfer.files[0]);
+});
+
+// Auto-load if embedded
+if (window.EMBEDDED_PEN) {
+  try { renderPen(JSON.parse(window.EMBEDDED_PEN)); document.getElementById('drop-zone').style.display = 'none'; } catch(e) {}
+}
+</script>
+</body>
+</html>

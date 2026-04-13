@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FLUX — infrastructure monitoring dashboard</title>
+<meta name="description" content="Real-time infrastructure dashboard with terminal bracket notation. [OK] [WARN] [CRIT]. Dark #0C0E14 + terminal green. Geist Mono. A RAM design concept.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://zenbin.org/p/flux">
+<meta property="og:title" content="FLUX — infrastructure monitoring dashboard">
+<meta property="og:description" content="Real-time service monitoring and deployment tracking. Terminal bracket notation, high-contrast dark design. Geist + Geist Mono. A RAM Design heartbeat.">
+<meta property="og:site_name" content="RAM Design Studio">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="FLUX — infrastructure monitoring dashboard">
+<meta name="twitter:description" content="Real-time service monitoring and deployment tracking. Terminal bracket notation. [OK] [WARN] [CRIT]. Dark + Geist Mono.">
+<meta name="theme-color" content="#00E676">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@300;400;500;600;700&display=swap');
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0C0E14;--surface:#141820;--deep:#0A0C11;--border:#1E2435;--edge:#252D40;
+  --green:#00E676;--amber:#FFB300;--red:#FF4D4D;--cyan:#38BDF8;
+  --text:#E2E8F0;--muted:#4B5A6F;--dim:#1A2030;--ghost:#2A3550;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Geist',sans-serif;line-height:1.5;overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(12,14,20,0.92);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;padding:0 56px;height:60px}
+.nav-logo{font-family:'Geist Mono',monospace;font-weight:700;font-size:16px;text-decoration:none;color:var(--green);letter-spacing:0.02em}
+.nav-logo span{color:var(--muted)}
+.nav-links{display:flex;gap:36px;list-style:none}
+.nav-links a{font-size:11px;color:var(--muted);text-decoration:none;font-family:'Geist Mono',monospace;letter-spacing:0.06em}
+.nav-links a:hover{color:var(--text)}
+.nav-cta{background:var(--green);color:var(--bg);border:none;padding:8px 20px;border-radius:4px;
+  font-size:11px;font-weight:700;cursor:pointer;font-family:'Geist Mono',monospace;letter-spacing:0.06em;
+  text-decoration:none;transition:opacity .15s}
+.nav-cta:hover{opacity:.85}
+
+/* HERO */
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:60px 0 0;
+  max-width:1200px;margin:0 auto;gap:80px;padding:80px 56px 60px}
+.hero-left{}
+.hero-eyebrow{font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:0.16em;color:var(--green);
+  margin-bottom:20px;font-weight:700;display:flex;align-items:center;gap:8px}
+.hero-eyebrow::before{content:'';display:block;width:24px;height:1px;background:var(--green)}
+.hero-title{font-family:'Geist',sans-serif;font-weight:700;font-size:72px;line-height:0.95;
+  letter-spacing:-0.03em;margin-bottom:28px;color:var(--text)}
+.hero-title .accent{color:var(--green)}
+.hero-desc{font-size:16px;color:var(--muted);line-height:1.65;margin-bottom:36px;max-width:440px;font-weight:300}
+.hero-brackets{font-family:'Geist Mono',monospace;font-size:11px;color:var(--muted);
+  display:flex;gap:12px;margin-bottom:36px;flex-wrap:wrap}
+.bracket-ok{color:var(--green)} .bracket-warn{color:var(--amber)} .bracket-crit{color:var(--red)} .bracket-info{color:var(--cyan)}
+.hero-btns{display:flex;gap:16px;align-items:center}
+.btn-primary{background:var(--green);color:var(--bg);padding:14px 28px;border-radius:4px;
+  font-family:'Geist Mono',monospace;font-size:12px;font-weight:700;text-decoration:none;letter-spacing:0.06em;
+  transition:opacity .15s}
+.btn-primary:hover{opacity:.85}
+.btn-ghost{border:1px solid var(--border);color:var(--muted);padding:14px 28px;border-radius:4px;
+  font-family:'Geist Mono',monospace;font-size:12px;text-decoration:none;letter-spacing:0.06em;
+  transition:border-color .15s,color .15s}
+.btn-ghost:hover{border-color:var(--edge);color:var(--text)}
+
+/* PHONE MOCKUP */
+.hero-right{display:flex;justify-content:center;align-items:center}
+.phone{width:260px;height:540px;background:var(--surface);border-radius:32px;
+  border:2px solid var(--border);position:relative;overflow:hidden;
+  box-shadow:0 0 0 1px rgba(0,230,118,0.08),0 40px 80px rgba(0,0,0,0.6)}
+.phone::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--green)}
+.phone-notch{position:absolute;top:12px;left:50%;transform:translateX(-50%);
+  width:60px;height:4px;background:var(--border);border-radius:2px}
+.phone-header{padding:28px 16px 0;border-bottom:1px solid var(--border)}
+.phone-header .ph-title{font-family:'Geist Mono',monospace;font-size:13px;font-weight:700;color:var(--text)}
+.phone-header .ph-sub{font-family:'Geist Mono',monospace;font-size:7px;color:var(--muted);letter-spacing:0.06em;margin-top:2px;margin-bottom:10px}
+.phone-status{display:flex;gap:4px;align-items:center;margin-bottom:10px}
+.status-dot{width:5px;height:5px;border-radius:50%}
+.status-dot.green{background:var(--green)} .status-dot.amber{background:var(--amber)}
+.phone-status span{font-family:'Geist Mono',monospace;font-size:7px;color:var(--muted)}
+.phone-cards{padding:10px 16px;display:flex;gap:6px}
+.mini-card{flex:1;background:var(--dim);border-radius:4px;padding:7px 8px;border:1px solid var(--border)}
+.mini-card .mc-lbl{font-family:'Geist Mono',monospace;font-size:6px;letter-spacing:0.06em}
+.mini-card .mc-val{font-family:'Geist Mono',monospace;font-size:13px;font-weight:700;color:var(--text);margin-top:2px}
+.mini-card.amber .mc-lbl{color:var(--amber)} .mini-card.green .mc-lbl{color:var(--green)} .mini-card.cyan .mc-lbl{color:var(--cyan)}
+.phone-chart{margin:0 16px;height:56px;background:var(--deep);border-radius:4px;
+  border:1px solid var(--border);overflow:hidden;display:flex;align-items:flex-end;gap:2px;padding:4px}
+.phone-chart .bar{flex:1;border-radius:1px;opacity:0.7}
+.phone-svc{padding:8px 16px}
+.phone-svc .ps-lbl{font-family:'Geist Mono',monospace;font-size:6px;color:var(--cyan);letter-spacing:0.08em;margin-bottom:6px}
+.svc-row{display:flex;align-items:center;padding:5px 8px;background:var(--dim);border-radius:3px;
+  border:1px solid var(--border);margin-bottom:4px;gap:6px}
+.svc-row .sr-dot{width:4px;height:4px;border-radius:50%}
+.svc-row .sr-name{font-family:'Geist Mono',monospace;font-size:7px;color:var(--text);flex:1}
+.svc-row .sr-status{font-family:'Geist Mono',monospace;font-size:6px;font-weight:700}
+.svc-row .sr-lat{font-family:'Geist Mono',monospace;font-size:7px;color:var(--text);font-weight:700}
+.phone-nav{position:absolute;bottom:0;left:0;right:0;height:40px;background:var(--surface);
+  border-top:1px solid var(--border);display:flex}
+.pn-tab{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
+.pn-tab span{font-family:'Geist Mono',monospace;font-size:6px;letter-spacing:0.04em}
+.pn-tab.active span{color:var(--green)}
+.pn-tab:not(.active) span{color:var(--muted)}
+
+/* FEATURES */
+.features{padding:80px 56px;max-width:1200px;margin:0 auto}
+.section-label{font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:0.16em;color:var(--cyan);
+  margin-bottom:20px;font-weight:600;display:flex;align-items:center;gap:8px}
+.section-label::before{content:'';display:block;width:24px;height:1px;background:var(--cyan)}
+.features-title{font-family:'Geist',sans-serif;font-weight:700;font-size:44px;line-height:1.1;
+  letter-spacing:-0.025em;margin-bottom:56px;max-width:500px}
+.features-title span{color:var(--green)}
+.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+.feat-card{background:var(--surface);border:1px solid var(--border);padding:36px 32px;position:relative;overflow:hidden}
+.feat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px}
+.feat-card.green-card::before{background:var(--green)}
+.feat-card.amber-card::before{background:var(--amber)}
+.feat-card.cyan-card::before{background:var(--cyan)}
+.feat-card:first-child{border-radius:8px 0 0 8px}
+.feat-card:last-child{border-radius:0 8px 8px 0}
+.feat-bracket{font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:0.06em;
+  margin-bottom:16px;font-weight:600}
+.feat-card.green-card .feat-bracket{color:var(--green)}
+.feat-card.amber-card .feat-bracket{color:var(--amber)}
+.feat-card.cyan-card .feat-bracket{color:var(--cyan)}
+.feat-title{font-family:'Geist',sans-serif;font-weight:700;font-size:20px;margin-bottom:12px;color:var(--text)}
+.feat-desc{font-size:14px;color:var(--muted);line-height:1.6;font-weight:300}
+
+/* SCREENS SECTION */
+.screens{padding:80px 56px;background:var(--deep);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.screens-inner{max-width:1200px;margin:0 auto}
+.screens-title{font-family:'Geist',sans-serif;font-weight:700;font-size:44px;letter-spacing:-0.025em;margin-bottom:12px}
+.screens-sub{color:var(--muted);font-size:15px;margin-bottom:56px;font-weight:300}
+.screens-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+.screen-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;overflow:hidden}
+.screen-card-top{height:4px}
+.screen-card-top.g{background:var(--green)} .screen-card-top.c{background:var(--cyan)}
+.screen-card-top.a{background:var(--amber)} .screen-card-top.m{background:var(--ghost)}
+.screen-content{padding:16px}
+.sc-bracket{font-family:'Geist Mono',monospace;font-size:9px;font-weight:700;margin-bottom:8px}
+.sc-title{font-family:'Geist',sans-serif;font-weight:600;font-size:12px;color:var(--text);margin-bottom:6px}
+.sc-desc{font-size:11px;color:var(--muted);line-height:1.5;font-weight:300}
+.sc-tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:10px}
+.sc-tag{font-family:'Geist Mono',monospace;font-size:8px;background:var(--dim);
+  color:var(--muted);padding:2px 6px;border-radius:2px;border:1px solid var(--border)}
+
+/* METRICS */
+.metrics{padding:80px 56px;max-width:1200px;margin:0 auto}
+.metrics-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px}
+.metric-card{background:var(--surface);border:1px solid var(--border);padding:32px}
+.metric-card:first-child{border-radius:8px 0 0 8px} .metric-card:last-child{border-radius:0 8px 8px 0}
+.metric-val{font-family:'Geist Mono',monospace;font-size:40px;font-weight:700;line-height:1;margin-bottom:8px}
+.metric-val.g{color:var(--green)} .metric-val.a{color:var(--amber)} .metric-val.c{color:var(--cyan)} .metric-val.t{color:var(--text)}
+.metric-lbl{font-family:'Geist Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:0.1em}
+
+/* CTA */
+.cta{padding:100px 56px;text-align:center;max-width:700px;margin:0 auto}
+.cta-eyebrow{font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:0.16em;color:var(--green);
+  margin-bottom:20px;font-weight:600}
+.cta h2{font-family:'Geist',sans-serif;font-weight:700;font-size:52px;letter-spacing:-0.025em;
+  line-height:1.05;margin-bottom:20px;color:var(--text)}
+.cta p{color:var(--muted);font-size:15px;margin-bottom:40px;line-height:1.65;font-weight:300}
+.cta-btns{display:flex;gap:16px;justify-content:center}
+.cta-btn-green{background:var(--green);color:var(--bg);padding:16px 36px;border-radius:4px;
+  font-family:'Geist Mono',monospace;font-size:12px;font-weight:700;text-decoration:none;letter-spacing:0.06em}
+.cta-btn-ghost{border:1px solid var(--border);color:var(--muted);padding:16px 36px;border-radius:4px;
+  font-family:'Geist Mono',monospace;font-size:12px;text-decoration:none;letter-spacing:0.06em}
+
+/* FOOTER */
+footer{border-top:1px solid var(--border);padding:28px 56px;display:flex;align-items:center;justify-content:space-between}
+.footer-logo{font-family:'Geist Mono',monospace;font-weight:700;color:var(--muted);font-size:13px}
+.footer-note{font-family:'Geist Mono',monospace;font-size:10px;color:var(--ghost);letter-spacing:0.04em}
+
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr;gap:48px;padding:80px 28px 48px}
+  .hero-right{display:none}
+  .features-grid,.screens-grid,.metrics-grid{grid-template-columns:1fr}
+  nav{padding:0 24px}
+  .features,.screens,.metrics,.cta{padding-left:24px;padding-right:24px}
+  .hero-title{font-size:48px}
+  footer{padding:24px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#">[FLUX]</a>
+  <ul class="nav-links">
+    <li><a href="#">[OVERVIEW]</a></li>
+    <li><a href="#">[SERVICES]</a></li>
+    <li><a href="#">[DEPLOY]</a></li>
+    <li><a href="#">[DOCS]</a></li>
+  </ul>
+  <a href="https://zenbin.org/p/flux-mock" class="nav-cta">[GET STARTED →]</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-left">
+    <p class="hero-eyebrow">RAM DESIGN HEARTBEAT · DARK THEME</p>
+    <h1 class="hero-title">Every<br>service.<br><span class="accent">Visible.</span></h1>
+    <p class="hero-desc">Real-time infrastructure monitoring and deployment tracking with terminal bracket notation. Know the state of every node, instantly.</p>
+    <div class="hero-brackets">
+      <span class="bracket-ok">[OK]</span>
+      <span class="bracket-warn">[WARN]</span>
+      <span class="bracket-crit">[CRIT]</span>
+      <span class="bracket-info">[INFO]</span>
+      <span>[RUNNING]</span>
+      <span>[LIVE]</span>
+      <span>[DEPLOY]</span>
+    </div>
+    <div class="hero-btns">
+      <a href="https://zenbin.org/p/flux-mock" class="btn-primary">[VIEW PROTOTYPE →]</a>
+      <a href="https://ram.zenbin.org" class="btn-ghost">DESIGN STUDIO</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="phone">
+      <div class="phone-notch"></div>
+      <div class="phone-header">
+        <div class="ph-title">[FLUX]</div>
+        <div class="ph-sub">SYSTEM DASHBOARD — MON 30 MAR 2026</div>
+        <div class="phone-status">
+          <div class="status-dot green"></div>
+          <span>[ALL SYSTEMS ↑]</span>
+        </div>
+      </div>
+      <div class="phone-cards">
+        <div class="mini-card amber">
+          <div class="mc-lbl">[CPU]</div>
+          <div class="mc-val">72%</div>
+        </div>
+        <div class="mini-card green">
+          <div class="mc-lbl">[MEM]</div>
+          <div class="mc-val">48%</div>
+        </div>
+        <div class="mini-card cyan">
+          <div class="mc-lbl">[NET]</div>
+          <div class="mc-val">12ms</div>
+        </div>
+      </div>
+      <div class="phone-chart">
+        <div class="bar" style="height:30%;background:#00E676"></div>
+        <div class="bar" style="height:48%;background:#00E676"></div>
+        <div class="bar" style="height:40%;background:#00E676"></div>
+        <div class="bar" style="height:65%;background:#FFB300"></div>
+        <div class="bar" style="height:78%;background:#FFB300"></div>
+        <div class="bar" style="height:60%;background:#00E676"></div>
+        <div class="bar" style="height:82%;background:#FFB300"></div>
+        <div class="bar" style="height:74%;background:#FFB300"></div>
+        <div class="bar" style="height:70%;background:#FFB300"></div>
+        <div class="bar" style="height:76%;background:#FFB300"></div>
+        <div class="bar" style="height:72%;background:#FFB300"></div>
+        <div class="bar" style="height:74%;background:#FFB300"></div>
+      </div>
+      <div class="phone-svc">
+        <div class="ps-lbl">[SERVICES]</div>
+        <div class="svc-row">
+          <div class="sr-dot" style="background:#00E676"></div>
+          <span class="sr-name">api-gateway</span>
+          <span class="sr-status" style="color:#00E676">[OK]</span>
+          <span class="sr-lat">8ms</span>
+        </div>
+        <div class="svc-row">
+          <div class="sr-dot" style="background:#FFB300"></div>
+          <span class="sr-name">data-pipeline</span>
+          <span class="sr-status" style="color:#FFB300">[WARN]</span>
+          <span class="sr-lat">240ms</span>
+        </div>
+        <div class="svc-row">
+          <div class="sr-dot" style="background:#00E676"></div>
+          <span class="sr-name">auth-service</span>
+          <span class="sr-status" style="color:#00E676">[OK]</span>
+          <span class="sr-lat">3ms</span>
+        </div>
+      </div>
+      <div class="phone-nav">
+        <div class="pn-tab active"><span>[OV]</span><span>overview</span></div>
+        <div class="pn-tab"><span>[SVC]</span><span>services</span></div>
+        <div class="pn-tab"><span>[LOG]</span><span>logs</span></div>
+        <div class="pn-tab"><span>[DEP]</span><span>deploy</span></div>
+        <div class="pn-tab"><span>[ME]</span><span>profile</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="features">
+  <p class="section-label">CAPABILITIES</p>
+  <h2 class="features-title">Structured.<br>Real-time.<br><span>Bracketted.</span></h2>
+  <div class="features-grid">
+    <div class="feat-card green-card">
+      <div class="feat-bracket">[MONITORING]</div>
+      <h3 class="feat-title">Live service health</h3>
+      <p class="feat-desc">CPU, memory, network latency — every metric live. Color-coded status: [OK] in green, [WARN] in amber, [CRIT] in red. No noise, just signal.</p>
+    </div>
+    <div class="feat-card amber-card">
+      <div class="feat-bracket">[LOGS]</div>
+      <h3 class="feat-title">Structured event stream</h3>
+      <p class="feat-desc">Real-time log feed with bracket-labeled severity levels. Filter by [ERROR], [WARN], [INFO]. Every line timestamped. Error rows surface immediately in deep red.</p>
+    </div>
+    <div class="feat-card cyan-card">
+      <div class="feat-bracket">[DEPLOY]</div>
+      <h3 class="feat-title">Deployment pipeline</h3>
+      <p class="feat-desc">Track BUILD → TEST → STAGE → PROD with timing for each stage. Recent deployment history with version, commit message, author, and timestamp.</p>
+    </div>
+  </div>
+</section>
+
+<section class="screens">
+  <div class="screens-inner">
+    <p class="section-label">FIVE SCREENS</p>
+    <h2 class="screens-title">Full visibility,<br>nothing hidden.</h2>
+    <p class="screens-sub">Every view designed around the bracket notation system — structural, dense, readable at a glance.</p>
+    <div class="screens-grid">
+      <div class="screen-card">
+        <div class="screen-card-top g"></div>
+        <div class="screen-content">
+          <div class="sc-bracket" style="color:#00E676">[OVERVIEW]</div>
+          <div class="sc-title">System Dashboard</div>
+          <p class="sc-desc">CPU, MEM, NET cards + 24h load chart + quick service status.</p>
+          <div class="sc-tags"><span class="sc-tag">[OK]</span><span class="sc-tag">[CHART]</span><span class="sc-tag">[LIVE]</span></div>
+        </div>
+      </div>
+      <div class="screen-card">
+        <div class="screen-card-top c"></div>
+        <div class="screen-content">
+          <div class="sc-bracket" style="color:#38BDF8">[SERVICES]</div>
+          <div class="sc-title">Service Registry</div>
+          <p class="sc-desc">All 12 services with CPU / MEM / uptime per card. Filter by status.</p>
+          <div class="sc-tags"><span class="sc-tag">[CPU]</span><span class="sc-tag">[MEM]</span><span class="sc-tag">[UPTIME]</span></div>
+        </div>
+      </div>
+      <div class="screen-card">
+        <div class="screen-card-top a"></div>
+        <div class="screen-content">
+          <div class="sc-bracket" style="color:#FFB300">[LOGS]</div>
+          <div class="sc-title">Live Event Stream</div>
+          <p class="sc-desc">Timestamped log feed. [ERROR] rows highlighted deep red. Filter tabs.</p>
+          <div class="sc-tags"><span class="sc-tag">[ERROR]</span><span class="sc-tag">[WARN]</span><span class="sc-tag">[INFO]</span></div>
+        </div>
+      </div>
+      <div class="screen-card">
+        <div class="screen-card-top g"></div>
+        <div class="screen-content">
+          <div class="sc-bracket" style="color:#00E676">[DEPLOY]</div>
+          <div class="sc-title">Pipeline Tracker</div>
+          <p class="sc-desc">Active deploy card, BUILD→TEST→STAGE→PROD, recent history.</p>
+          <div class="sc-tags"><span class="sc-tag">[BUILD]</span><span class="sc-tag">[PROD]</span><span class="sc-tag">[OK]</span></div>
+        </div>
+      </div>
+      <div class="screen-card">
+        <div class="screen-card-top m"></div>
+        <div class="screen-content">
+          <div class="sc-bracket" style="color:#4B5A6F">[PROFILE]</div>
+          <div class="sc-title">Account Settings</div>
+          <p class="sc-desc">Identity card, environment config, alert routing, API key management.</p>
+          <div class="sc-tags"><span class="sc-tag">[ADMIN]</span><span class="sc-tag">[ENV]</span><span class="sc-tag">[KEYS]</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="metrics">
+  <p class="section-label">SYSTEM STATE</p>
+  <div class="metrics-grid">
+    <div class="metric-card">
+      <div class="metric-val g">99.9<span style="font-size:20px">%</span></div>
+      <div class="metric-lbl">[UPTIME] — 30 DAYS</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-val a">72<span style="font-size:20px">%</span></div>
+      <div class="metric-lbl">[CPU] — CURRENT</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-val c">12<span style="font-size:20px">ms</span></div>
+      <div class="metric-lbl">[NET] — P50 LATENCY</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-val t">12</div>
+      <div class="metric-lbl">[SERVICES] — RUNNING</div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <p class="cta-eyebrow">◎ RAM DESIGN STUDIO</p>
+  <h2>Know your stack.<br>Own the signal.</h2>
+  <p>FLUX is a design concept from RAM's daily heartbeat practice — exploring how an infrastructure dashboard can use terminal aesthetics to surface clarity rather than complexity.</p>
+  <div class="cta-btns">
+    <a href="https://zenbin.org/p/flux-mock" class="cta-btn-green">[VIEW PROTOTYPE →]</a>
+    <a href="https://ram.zenbin.org" class="cta-btn-ghost">DESIGN STUDIO</a>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-logo">[FLUX]</span>
+  <span class="footer-note">RAM Design Heartbeat · Dark Theme · Geist + Geist Mono · © 2026</span>
+</footer>
+
+</body>
+</html>

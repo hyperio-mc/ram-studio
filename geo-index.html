@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GEO Score Tracker -- Design Proposals</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#05080f;
+  --panel:#0d1117;
+  --border:#1f2937;
+  --accent:#6366f1;
+  --accent2:#22d3ee;
+  --accent3:#00ff88;
+  --text:#f1f5f9;
+  --muted:#64748b;
+  --d1:#3b82f6;
+  --d2:#6366f1;
+  --d3:#00ff88;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;overflow-x:hidden}
+
+/* stars bg */
+body::before{
+  content:'';position:fixed;inset:0;
+  background-image:
+    radial-gradient(1px 1px at 15% 25%, rgba(255,255,255,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 65% 15%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 85% 45%, rgba(255,255,255,0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 35% 75%, rgba(255,255,255,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 55% 55%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 25% 85%, rgba(255,255,255,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 75% 80%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 90% 10%, rgba(255,255,255,0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 10% 60%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 45% 40%, rgba(255,255,255,0.2) 0%, transparent 100%);
+  pointer-events:none;z-index:0;
+}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(5,8,15,0.85);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:0 2rem;height:56px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:'JetBrains Mono',monospace;font-size:.95rem;font-weight:700;color:var(--accent);letter-spacing:.05em}
+.nav-logo span{color:var(--text)}
+.nav-links{display:flex;gap:2rem;align-items:center}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:.82rem;font-weight:500;transition:color .2s}
+.nav-links a:hover{color:var(--text)}
+.nav-cta{background:var(--accent);color:#fff!important;padding:.4rem 1rem;border-radius:6px;font-weight:600!important;transition:opacity .2s!important}
+.nav-cta:hover{opacity:.9}
+
+.hero{padding:10rem 2rem 5rem;text-align:center;position:relative;z-index:1;max-width:900px;margin:0 auto}
+.hero-tag{display:inline-flex;align-items:center;gap:.5rem;font-family:'JetBrains Mono',monospace;font-size:.72rem;font-weight:500;color:var(--accent);border:1px solid rgba(99,102,241,.3);padding:.3rem .8rem;border-radius:20px;margin-bottom:1.5rem;letter-spacing:.08em}
+.hero-tag::before{content:'';width:6px;height:6px;background:var(--accent);border-radius:50%;display:inline-block}
+h1{font-size:clamp(2.8rem,7vw,5.5rem);font-weight:800;line-height:1.05;letter-spacing:-.03em;margin-bottom:1.5rem}
+h1 .geo{background:linear-gradient(135deg,#6366f1,#22d3ee,#00ff88);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{font-size:1.1rem;color:var(--muted);max-width:560px;margin:0 auto 2.5rem;line-height:1.7}
+.spec-link{display:inline-flex;align-items:center;gap:.5rem;font-family:'JetBrains Mono',monospace;font-size:.8rem;color:var(--accent2);text-decoration:none;border:1px solid rgba(34,211,238,.2);padding:.5rem 1.2rem;border-radius:6px;transition:border-color .2s,background .2s}
+.spec-link:hover{background:rgba(34,211,238,.05);border-color:rgba(34,211,238,.5)}
+
+.proposals{padding:3rem 2rem 6rem;position:relative;z-index:1;max-width:1200px;margin:0 auto}
+.proposals-label{font-family:'JetBrains Mono',monospace;font-size:.7rem;font-weight:700;color:var(--muted);letter-spacing:.15em;text-transform:uppercase;margin-bottom:2.5rem;text-align:center}
+
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:1.5rem}
+
+.proposal-card{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:16px;
+  overflow:hidden;
+  text-decoration:none;
+  color:var(--text);
+  display:flex;flex-direction:column;
+  transition:transform .25s,border-color .25s,box-shadow .25s;
+}
+.proposal-card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 24px 48px rgba(0,0,0,.5);
+}
+.proposal-card.d1:hover{border-color:rgba(59,130,246,.4);box-shadow:0 24px 48px rgba(59,130,246,.15)}
+.proposal-card.d2:hover{border-color:rgba(99,102,241,.4);box-shadow:0 24px 48px rgba(99,102,241,.15)}
+.proposal-card.d3:hover{border-color:rgba(0,255,136,.4);box-shadow:0 24px 48px rgba(0,255,136,.15)}
+
+.card-preview{
+  height:200px;
+  position:relative;
+  overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+}
+
+/* D1 Signal preview */
+.preview-signal{background:#0a0d14}
+.preview-signal .score-ring{
+  width:100px;height:100px;border-radius:50%;
+  border:4px solid #3b82f6;
+  display:flex;align-items:center;justify-content:center;
+  position:relative;animation:ringPulse 2.5s ease-in-out infinite;
+}
+.preview-signal .score-num{font-size:2.5rem;font-weight:900;color:#3b82f6;font-family:'JetBrains Mono',monospace}
+.preview-signal .bar-row{position:absolute;left:20px;right:20px;bottom:24px;display:flex;flex-direction:column;gap:6px}
+.bar-track{height:5px;background:rgba(255,255,255,.08);border-radius:3px;overflow:hidden}
+.bar-fill{height:100%;border-radius:3px;animation:barGrow 1.5s ease both}
+@keyframes ringPulse{0%,100%{box-shadow:0 0 0 0 rgba(59,130,246,.4)}50%{box-shadow:0 0 0 12px rgba(59,130,246,.0)}}
+@keyframes barGrow{from{width:0}to{width:var(--w)}}
+
+/* D2 Radar preview */
+.preview-radar{background:#f8fafc}
+.preview-radar .bento-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:20px;width:100%}
+.bento-tile{background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:10px;font-family:'Inter',sans-serif}
+.bento-tile .bt-label{font-size:.6rem;color:#94a3b8;font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px}
+.bento-tile .bt-val{font-size:1.4rem;font-weight:800;color:#1e293b}
+.bento-tile .bt-val.accent{color:#6366f1}
+.bento-tile .bt-val.green{color:#16a34a}
+.bento-tile.wide{grid-column:1/-1}
+.bento-sov{display:flex;height:8px;border-radius:4px;overflow:hidden;margin-top:6px}
+.bento-sov-seg{height:100%}
+
+/* D3 Pulse preview */
+.preview-pulse{background:#080b12}
+.preview-pulse .term-window{
+  background:#0d1117;border:1px solid #161b22;border-radius:8px;
+  width:80%;padding:12px;font-family:'JetBrains Mono',monospace;font-size:.65rem;
+}
+.term-title{display:flex;gap:5px;margin-bottom:8px;align-items:center}
+.term-dot{width:8px;height:8px;border-radius:50%}
+.term-line{margin:2px 0;line-height:1.6}
+.term-line.green{color:#00ff88}
+.term-line.blue{color:#58a6ff}
+.term-line.muted{color:#8b949e}
+.term-line.red{color:#f85149}
+.term-line.yellow{color:#d29922}
+
+.card-body{padding:1.75rem;flex:1;display:flex;flex-direction:column;gap:.75rem}
+.card-num{font-family:'JetBrains Mono',monospace;font-size:.7rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase}
+.card-num.d1{color:var(--d1)}
+.card-num.d2{color:var(--d2)}
+.card-num.d3{color:var(--d3)}
+.card-title{font-size:1.4rem;font-weight:800;letter-spacing:-.02em}
+.card-tagline{font-size:.82rem;color:var(--muted);font-style:italic;margin-bottom:.25rem}
+.card-desc{font-size:.88rem;color:var(--muted);line-height:1.6}
+.card-tags{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.5rem}
+.tag{font-family:'JetBrains Mono',monospace;font-size:.65rem;padding:.2rem .5rem;border-radius:4px;border:1px solid var(--border);color:var(--muted)}
+.card-screens{font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--muted);border-top:1px solid var(--border);padding-top:.75rem;margin-top:.25rem}
+.card-screens span{color:var(--text);font-weight:500}
+.card-cta{
+  margin-top:auto;
+  display:flex;gap:.75rem;flex-wrap:wrap;align-items:center;
+}
+.btn-primary{display:inline-block;padding:.55rem 1.25rem;border-radius:6px;font-size:.82rem;font-weight:700;text-decoration:none;transition:opacity .2s}
+.btn-primary.d1{background:#3b82f6;color:#fff}
+.btn-primary.d2{background:#6366f1;color:#fff}
+.btn-primary.d3{background:#00ff88;color:#080b12}
+.btn-primary:hover{opacity:.88}
+.btn-sec{display:inline-block;padding:.55rem 1.25rem;border-radius:6px;font-size:.82rem;font-weight:600;text-decoration:none;color:var(--muted);border:1px solid var(--border);transition:border-color .2s,color .2s}
+.btn-sec:hover{color:var(--text);border-color:rgba(255,255,255,.2)}
+
+.context-section{
+  position:relative;z-index:1;max-width:900px;margin:0 auto;padding:0 2rem 6rem;
+}
+.context-title{font-size:1.8rem;font-weight:800;letter-spacing:-.02em;margin-bottom:1rem}
+.context-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+@media(max-width:600px){.context-grid{grid-template-columns:1fr}}
+.context-card{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:1.25rem}
+.context-card h3{font-size:.8rem;font-weight:700;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.75rem;font-family:'JetBrains Mono',monospace}
+.context-card p,.context-card li{font-size:.85rem;color:var(--muted);line-height:1.7}
+.context-card ul{padding-left:1rem}
+.context-card li{margin-bottom:.25rem}
+
+footer{border-top:1px solid var(--border);padding:2rem;text-align:center;position:relative;z-index:1;font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--muted)}
+footer a{color:var(--accent);text-decoration:none}
+
+@media(max-width:768px){
+  .nav-links a:not(.nav-cta){display:none}
+  .cards{grid-template-columns:1fr}
+  h1{font-size:2.4rem}
+}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-logo">&gt; <span>geo</span>.score</div>
+  <div class="nav-links">
+    <a href="#proposals">proposals</a>
+    <a href="https://zenbin.org/p/geo-score-tracker-spec">spec</a>
+    <a href="https://zenbin.org/p/geo-score-tracker-spec" class="nav-cta">read spec</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-tag">Design Proposals -- March 2026</div>
+  <h1>Three visions for the<br><span class="geo">GEO Score Tracker</span></h1>
+  <p class="hero-sub">Three distinct design directions for the AI visibility monitoring tool. Each takes the same spec to a different aesthetic and experience target.</p>
+  <a href="https://zenbin.org/p/geo-score-tracker-spec" class="spec-link">// read the full spec &rarr;</a>
+</section>
+
+<section class="proposals" id="proposals">
+  <p class="proposals-label">// three_proposals</p>
+  <div class="cards">
+
+    <!-- SIGNAL -->
+    <a href="https://zenbin.org/p/geo-proposal-1" class="proposal-card d1">
+      <div class="card-preview preview-signal">
+        <div class="preview-signal__content" style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;width:100%;padding:20px;gap:16px">
+          <div class="score-ring">
+            <span class="score-num">73</span>
+          </div>
+          <div class="bar-row">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:2px">
+              <span style="font-family:JetBrains Mono,monospace;font-size:.55rem;color:#64748b">GPT-4o</span>
+              <span style="font-family:JetBrains Mono,monospace;font-size:.55rem;color:#3b82f6">78</span>
+            </div>
+            <div class="bar-track"><div class="bar-fill" style="--w:78%;background:#3b82f6"></div></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-top:4px;margin-bottom:2px">
+              <span style="font-family:JetBrains Mono,monospace;font-size:.55rem;color:#64748b">Perplexity</span>
+              <span style="font-family:JetBrains Mono,monospace;font-size:.55rem;color:#22c55e">82</span>
+            </div>
+            <div class="bar-track"><div class="bar-fill" style="--w:82%;background:#22c55e"></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-num d1">// 01 -- signal</div>
+        <div class="card-title">Signal</div>
+        <div class="card-tagline">Bloomberg Terminal meets Linear</div>
+        <div class="card-desc">Dense, data-forward analytics dashboard for power users and DevRel teams who live in metrics. Every pixel earns its place. Navy and electric blue, JetBrains Mono throughout.</div>
+        <div class="card-tags">
+          <span class="tag">dark theme</span>
+          <span class="tag">data-dense</span>
+          <span class="tag">power user</span>
+          <span class="tag">navy + blue</span>
+        </div>
+        <div class="card-screens">
+          4 screens: <span>Dashboard / Scan Results / Competitor Intel / Alert Inbox</span>
+        </div>
+        <div class="card-cta">
+          <a href="https://zenbin.org/p/geo-proposal-1" class="btn-primary d1">view proposal &rarr;</a>
+          <a href="https://zenbin.org/p/geo-d1" class="btn-sec">open .pen file</a>
+        </div>
+      </div>
+    </a>
+
+    <!-- RADAR -->
+    <a href="https://zenbin.org/p/geo-proposal-2" class="proposal-card d2">
+      <div class="card-preview preview-radar">
+        <div class="bento-grid">
+          <div class="bento-tile">
+            <div class="bt-label">GEO Score</div>
+            <div class="bt-val accent">73</div>
+          </div>
+          <div class="bento-tile">
+            <div class="bt-label">Mention Rate</div>
+            <div class="bt-val green">68%</div>
+          </div>
+          <div class="bento-tile wide">
+            <div class="bt-label">Share of Voice</div>
+            <div class="bento-sov">
+              <div class="bento-sov-seg" style="width:34%;background:#6366f1"></div>
+              <div class="bento-sov-seg" style="width:28%;background:#ef4444"></div>
+              <div class="bento-sov-seg" style="width:22%;background:#f59e0b"></div>
+              <div class="bento-sov-seg" style="width:16%;background:#94a3b8"></div>
+            </div>
+            <div style="display:flex;gap:8px;margin-top:5px">
+              <span style="font-size:.55rem;color:#6366f1;font-weight:600">SurrealDB 34%</span>
+              <span style="font-size:.55rem;color:#ef4444">MongoDB 28%</span>
+              <span style="font-size:.55rem;color:#f59e0b">Postgres 22%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-num d2">// 02 -- radar</div>
+        <div class="card-title">Radar</div>
+        <div class="card-tagline">Clean SaaS energy, Notion meets Linear</div>
+        <div class="card-desc">Light theme, bento grid layout, tactile and friendly. Built for founders and marketing teams who want clarity without complexity. Plus Jakarta Sans, warm cream and indigo.</div>
+        <div class="card-tags">
+          <span class="tag">light theme</span>
+          <span class="tag">bento grid</span>
+          <span class="tag">marketing-friendly</span>
+          <span class="tag">indigo + cream</span>
+        </div>
+        <div class="card-screens">
+          4 screens: <span>Overview / Prompt Library / Citation Map / Weekly Report</span>
+        </div>
+        <div class="card-cta">
+          <a href="https://zenbin.org/p/geo-proposal-2" class="btn-primary d2">view proposal &rarr;</a>
+          <a href="https://zenbin.org/p/geo-d2" class="btn-sec">open .pen file</a>
+        </div>
+      </div>
+    </a>
+
+    <!-- PULSE -->
+    <a href="https://zenbin.org/p/geo-proposal-3" class="proposal-card d3">
+      <div class="card-preview preview-pulse">
+        <div class="term-window">
+          <div class="term-title">
+            <div class="term-dot" style="background:#f85149"></div>
+            <div class="term-dot" style="background:#d29922"></div>
+            <div class="term-dot" style="background:#00ff88"></div>
+          </div>
+          <div class="term-line muted">$ geo scan --brand surrealdb</div>
+          <div class="term-line blue">[INFO] 15 prompts, 6 platforms</div>
+          <div class="term-line green">[OK] gpt-4o: score=88 mention=true</div>
+          <div class="term-line green">[OK] perplexity: score=91</div>
+          <div class="term-line yellow">[WARN] gemini: hallucination detected</div>
+          <div class="term-line green">[COMPLETE] GEO Score: 73/100 (+4)</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-num d3">// 03 -- pulse</div>
+        <div class="card-title">Pulse</div>
+        <div class="card-tagline">Neon developer tool, Warp meets Vercel</div>
+        <div class="card-desc">Dark, terminal-native, built for engineers who want to run a scan like a shell command and see results in real-time. Neon green on near-black, Space Grotesk, data as live output.</div>
+        <div class="card-tags">
+          <span class="tag">dark theme</span>
+          <span class="tag">terminal-native</span>
+          <span class="tag">developer-first</span>
+          <span class="tag">neon + dark</span>
+        </div>
+        <div class="card-screens">
+          4 screens: <span>Live Dashboard / Scan Terminal / Accuracy Report / SOV Battle</span>
+        </div>
+        <div class="card-cta">
+          <a href="https://zenbin.org/p/geo-proposal-3" class="btn-primary d3">view proposal &rarr;</a>
+          <a href="https://zenbin.org/p/geo-d3" class="btn-sec">open .pen file</a>
+        </div>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<section class="context-section">
+  <h2 class="context-title">About this project</h2>
+  <div class="context-grid">
+    <div class="context-card">
+      <h3>// the problem</h3>
+      <p>SurrealDB asked: "How do we track when AI recommends us?" GEO Score Tracker answers that -- a developer-first tool to measure brand visibility inside AI-generated answers across ChatGPT, Claude, Perplexity, Gemini, and Grok.</p>
+    </div>
+    <div class="context-card">
+      <h3>// key differentiators</h3>
+      <ul>
+        <li>Dev-tool prompt library (20+ database prompts)</li>
+        <li>Factual accuracy scoring -- hallucination detection</li>
+        <li>Citation tracking via Perplexity source URLs</li>
+        <li>Open-source core, $49/mo cloud tier</li>
+      </ul>
+    </div>
+    <div class="context-card">
+      <h3>// target users</h3>
+      <ul>
+        <li>DevRel teams at developer tool companies</li>
+        <li>Founders tracking SOV vs competitors</li>
+        <li>Marketing teams measuring content impact on AI</li>
+        <li>Agencies running GEO audits for clients</li>
+      </ul>
+    </div>
+    <div class="context-card">
+      <h3>// market context</h3>
+      <p>Profound raised $155M at $1B valuation in 2025 at $499-2000+/mo. GEO Score Tracker targets the same market at 8x lower price with developer-tool-specific features.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>GEO Score Tracker -- Design Proposals -- March 2026 -- authored by RAM</p>
+  <p style="margin-top:.5rem"><a href="https://zenbin.org/p/geo-score-tracker-spec">spec</a> &nbsp;&middot;&nbsp; <a href="https://zenbin.org">zenbin.org</a></p>
+</footer>
+</body>
+</html>

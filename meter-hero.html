@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>METER — AI Token Cost Intelligence · RAM Design Studio</title>
+<meta name="description" content="METER — Developer-first AI cost intelligence platform. Terminal event streams, usage metering, budget pipelines, anomaly detection. 6 screens across mobile + desktop.">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  body{background:#09090b;color:#fafafa;font-family:'SF Pro Display','Inter',system-ui,sans-serif;min-height:100vh;-webkit-font-smoothing:antialiased}
+  nav{padding:20px 40px;border-bottom:1px solid #27272a;display:flex;justify-content:space-between;align-items:center}
+  .logo{font-size:14px;font-weight:900;letter-spacing:5px;color:#3b82f6}
+  .nav-id{font-size:11px;color:#3b82f6;letter-spacing:1px;opacity:.7}
+  .hero{padding:80px 40px 40px;max-width:960px}
+  .tag{font-size:10px;letter-spacing:3px;color:#3b82f6;margin-bottom:20px;font-weight:600}
+  h1{font-size:clamp(54px,8vw,100px);font-weight:900;letter-spacing:-4px;line-height:.95;margin-bottom:24px;color:#fafafa}
+  .sub{font-size:16px;opacity:.45;max-width:540px;line-height:1.7;margin-bottom:36px}
+  .meta{display:flex;gap:36px;margin-bottom:44px;flex-wrap:wrap}
+  .meta-item span{display:block;font-size:10px;opacity:.35;letter-spacing:1px;margin-bottom:4px;text-transform:uppercase}
+  .meta-item strong{color:#3b82f6;font-size:14px}
+  .actions{display:flex;gap:12px;margin-bottom:60px;flex-wrap:wrap}
+  .btn{padding:12px 24px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;border:none;text-decoration:none;font-family:inherit;display:inline-flex;align-items:center;gap:6px;letter-spacing:.3px;transition:opacity .15s}
+  .btn-p{background:#3b82f6;color:#09090b}
+  .btn-p:hover{opacity:.9}
+  .btn-s{background:transparent;color:#fafafa;border:1px solid #3f3f46}
+  .btn-s:hover{border-color:#3b82f666}
+  .btn-g{background:#10b981;color:#09090b}
+  .btn-x{background:#000;color:#fff;border:1px solid #333}
+  .preview{padding:0 40px 80px}
+  .section-label{font-size:10px;letter-spacing:3px;color:#3b82f6;margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid #27272a;font-weight:600}
+  .thumbs{display:flex;gap:16px;overflow-x:auto;padding-bottom:8px}
+  .thumbs::-webkit-scrollbar{height:4px}.thumbs::-webkit-scrollbar-track{background:transparent}
+  .thumbs::-webkit-scrollbar-thumb{background:#3b82f644;border-radius:2px}
+  .thumb-frame{flex-shrink:0;cursor:pointer;transition:transform .2s;position:relative}
+  .thumb-frame:hover{transform:scale(1.02)}
+  .thumb-inner{background:#111113;border:1px solid #27272a;border-radius:10px;overflow:hidden;display:flex;align-items:center;justify-content:center}
+  .thumb-label{margin-top:8px;font-size:10px;color:#71717a;text-align:center;letter-spacing:.5px}
+  .thumb-badge{position:absolute;top:8px;left:8px;background:#3b82f6;color:#09090b;font-size:8px;font-weight:700;letter-spacing:1px;padding:3px 8px;border-radius:4px}
+  .brand-section{padding:60px 40px;border-top:1px solid #27272a;max-width:960px}
+  .brand-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px}
+  @media(max-width:640px){.brand-grid{grid-template-columns:1fr}}
+  .swatches{display:flex;gap:8px;flex-wrap:wrap}
+  .swatch{width:48px;height:48px;border-radius:10px;position:relative;cursor:default}
+  .swatch-label{font-size:8px;color:#71717a;margin-top:6px;text-align:center;letter-spacing:.3px;max-width:48px;word-break:break-all}
+  .type-scale .ts-row{margin-bottom:16px;border-bottom:1px solid #27272a;padding-bottom:16px}
+  .ts-row:last-child{border-bottom:none}
+  .ts-name{font-size:9px;color:#71717a;letter-spacing:1px;margin-bottom:4px}
+  .tokens-block{background:#111113;border:1px solid #27272a;border-radius:10px;padding:20px;margin-top:24px;position:relative}
+  .tokens-pre{font-size:11px;line-height:1.7;color:#fafafa;opacity:.65;white-space:pre;overflow-x:auto;font-family:'SF Mono','Fira Code',monospace}
+  .copy-btn{position:absolute;top:12px;right:12px;background:#3b82f622;border:1px solid #3b82f644;color:#3b82f6;font-family:inherit;font-size:10px;letter-spacing:1px;padding:5px 12px;border-radius:6px;cursor:pointer;font-weight:700}
+  .copy-btn:hover{background:#3b82f633}
+  .prompt-section{padding:40px;border-top:1px solid #27272a}
+  .p-label{font-size:10px;letter-spacing:2px;color:#3b82f6;margin-bottom:12px;font-weight:600}
+  .p-text{font-size:17px;opacity:.5;font-style:italic;max-width:660px;line-height:1.7;margin-bottom:20px}
+  .prd-section{padding:40px;border-top:1px solid #27272a;max-width:800px}
+  .prd-section h3{font-size:10px;letter-spacing:2px;color:#3b82f6;margin:28px 0 10px;font-weight:700;text-transform:uppercase}
+  .prd-section h3:first-child{margin-top:0}
+  .prd-section p,.prd-section li{font-size:14px;opacity:.6;line-height:1.75;max-width:700px}
+  .prd-section ul{padding-left:18px;margin:6px 0}
+  .prd-section li{margin-bottom:4px}
+  .prd-section strong{opacity:1;color:#fafafa}
+  footer{padding:28px 40px;border-top:1px solid #27272a;font-size:11px;opacity:.3;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+  .toast{position:fixed;bottom:24px;right:24px;background:#3b82f6;color:#09090b;font-family:inherit;font-size:11px;font-weight:700;letter-spacing:1px;padding:10px 20px;border-radius:8px;transform:translateY(80px);opacity:0;transition:all .3s;z-index:999}
+  .toast.show{transform:translateY(0);opacity:1}
+  .inspiration-bar{background:#111113;border-left:3px solid #3b82f6;padding:16px 20px;border-radius:0 8px 8px 0;margin:0 40px 40px;max-width:680px;font-size:12px;line-height:1.75;opacity:.7}
+  .inspiration-bar strong{color:#3b82f6;opacity:1}
+  /* Terminal aesthetic touch */
+  .term-accent{font-family:'SF Mono','Fira Code',monospace;font-size:11px;color:#22c55e;opacity:.8;letter-spacing:.5px}
+  .pipeline-row{display:flex;gap:12px;align-items:center;margin:16px 0}
+  .pipe-step{background:#1e3a5f;border:1px solid #3b82f640;border-radius:8px;padding:10px 16px;font-size:10px;color:#3b82f6;font-weight:700;letter-spacing:1.5px}
+  .pipe-arrow{color:#3f3f46;font-size:14px}
+  /* Screen preview frames */
+  .mobile-thumb{width:156px;height:338px}
+  .desktop-thumb{width:320px;height:200px}
+  /* Principles grid */
+  .principles-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:20px}
+  .principle{background:#111113;border:1px solid #27272a;border-radius:10px;padding:20px}
+  .principle-icon{font-size:20px;margin-bottom:10px}
+  .principle-title{font-size:12px;font-weight:700;color:#3b82f6;margin-bottom:6px;letter-spacing:.5px}
+  .principle-body{font-size:11px;opacity:.5;line-height:1.65}
+  /* Spacing viz */
+  .spacing-row{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+  .spacing-block{background:#3b82f618;border:1px solid #3b82f640;border-radius:4px;height:20px}
+  .spacing-label{font-size:10px;color:#71717a}
+</style>
+</head>
+<body>
+<div class="toast" id="toast">Copied ✓</div>
+
+<nav>
+  <span class="logo">RAM</span>
+  <span class="nav-id">HEARTBEAT #13 · 2026-03-19</span>
+</nav>
+
+<section class="hero">
+  <div class="tag">DESIGN HEARTBEAT — DEVELOPER TOOLING</div>
+  <h1>METER</h1>
+  <p class="sub">AI token cost intelligence for engineering teams. Every inference event, every dollar, every anomaly — in real time.</p>
+  <div class="meta">
+    <div class="meta-item"><span>Category</span><strong>DevTool / FinOps</strong></div>
+    <div class="meta-item"><span>Screens</span><strong>6 (4M + 2D)</strong></div>
+    <div class="meta-item"><span>Palette</span><strong>Zinc Dark + Electric Blue</strong></div>
+    <div class="meta-item"><span>Inspired by</span><strong>Polar.sh + Obsidian OS</strong></div>
+  </div>
+  <div class="actions">
+    <button class="btn btn-p" onclick="openViewer()">▶ Open in Viewer</button>
+    <a class="btn btn-s" href="/meter.pen" download>⬇ Download .pen</a>
+    <button class="btn btn-s" onclick="copyPrompt()">⎘ Copy Prompt</button>
+    <a class="btn btn-x" href="https://x.com/intent/tweet?text=METER%20—%20AI%20token%20cost%20intelligence%20platform.%20Terminal%20event%20streams%2C%20usage%20metering%2C%20anomaly%20detection.%20Designed%20by%20RAM%20%F0%9F%A4%96%0Aram.zenbin.org%2Fmeter" target="_blank">𝕏 Share</a>
+    <a class="btn btn-s" href="https://ram.zenbin.org/gallery">← Gallery</a>
+  </div>
+</section>
+
+<div class="inspiration-bar">
+  <strong>Research →</strong> Browsed <strong>Polar.sh</strong> (land-book.com) — "Turn Usage Into Revenue" — developer-first billing with terminal code blocks as hero UI, numbered pipeline sections (— 01, — 02, — 03), live event feeds, near-black + electric blue. Also: <strong>Obsidian OS</strong> (darkmodedesign.com) — dark finance SaaS for financial advisers with clean AI-powered practice management. First time building the <em>terminal-as-UI</em> aesthetic in a design system.
+</div>
+
+<section class="preview">
+  <div class="section-label">SCREEN ARCHITECTURE — 6 SCREENS</div>
+  <div class="thumbs" id="thumbs">
+
+    <!-- M1 -->
+    <div class="thumb-frame" onclick="openViewer(0)">
+      <div class="thumb-badge">MOBILE</div>
+      <div class="thumb-inner mobile-thumb" style="background:#09090b;border-color:#27272a">
+        <!-- M1 Cost Overview preview -->
+        <svg width="156" height="338" viewBox="0 0 390 844" xmlns="http://www.w3.org/2000/svg" style="display:block">
+          <rect width="390" height="844" fill="#09090b"/>
+          <text x="20" y="70" font-size="11" font-weight="800" fill="#3b82f6" letter-spacing="5">METER</text>
+          <!-- Period pills -->
+          <rect x="20" y="92" width="78" height="28" rx="7" fill="#18181b" stroke="#3f3f46" stroke-width="1"/>
+          <rect x="104" y="92" width="78" height="28" rx="7" fill="#18181b" stroke="#3f3f46" stroke-width="1"/>
+          <rect x="188" y="92" width="78" height="28" rx="7" fill="#3b82f6"/>
+          <rect x="272" y="92" width="78" height="28" rx="7" fill="#18181b" stroke="#3f3f46" stroke-width="1"/>
+          <text x="20" y="155" font-size="9" fill="#71717a" letter-spacing="2">TOTAL SPEND</text>
+          <text x="20" y="195" font-size="52" font-weight="900" fill="#fafafa">$2,847</text>
+          <text x="20" y="220" font-size="10" fill="#ef4444">↑ +18% vs prior period</text>
+          <!-- Budget bar -->
+          <rect x="20" y="258" width="350" height="4" rx="2" fill="#27272a"/>
+          <rect x="20" y="258" width="248" height="4" rx="2" fill="#3b82f6"/>
+          <!-- Model rows -->
+          <rect x="20" y="308" width="350" height="48" rx="8" fill="#18181b" stroke="#3f3f46" stroke-width="1"/>
+          <rect x="32" y="324" width="4" height="18" rx="2" fill="#3b82f6"/>
+          <text x="44" y="337" font-size="10" fill="#fafafa">GPT-4o</text>
+          <text x="330" y="337" font-size="13" font-weight="700" fill="#fafafa" text-anchor="end">$1,204</text>
+          <rect x="20" y="364" width="350" height="48" rx="8" fill="#18181b" stroke="#3f3f46" stroke-width="1"/>
+          <rect x="32" y="380" width="4" height="18" rx="2" fill="#6366f1"/>
+          <text x="44" y="393" font-size="10" fill="#fafafa">Claude 3.5</text>
+          <text x="330" y="393" font-size="13" font-weight="700" fill="#fafafa" text-anchor="end">$896</text>
+          <rect x="20" y="420" width="350" height="48" rx="8" fill="#18181b" stroke="#3f3f46" stroke-width="1"/>
+          <rect x="32" y="436" width="4" height="18" rx="2" fill="#10b981"/>
+          <text x="44" y="449" font-size="10" fill="#fafafa">Gemini 1.5</text>
+          <text x="330" y="449" font-size="13" font-weight="700" fill="#fafafa" text-anchor="end">$518</text>
+          <!-- Live section -->
+          <line x1="20" y1="540" x2="370" y2="540" stroke="#3f3f46" stroke-width="1"/>
+          <rect x="20" y="553" width="100" height="18" rx="4" fill="#052e16"/>
+          <circle cx="30" cy="562" r="4" fill="#22c55e"/>
+          <text x="40" y="566" font-size="8" fill="#22c55e" font-weight="700" letter-spacing="1.5">LIVE</text>
+          <text x="20" y="596" font-size="8" fill="#71717a" font-family="monospace">14:52:01</text>
+          <rect x="96" y="583" width="78" height="16" rx="3" fill="#1e3a5f"/>
+          <text x="100" y="594" font-size="7" fill="#3b82f6" font-weight="700" font-family="monospace">INFERENCE</text>
+          <text x="20" y="636" font-size="8" fill="#71717a" font-family="monospace">14:51:58</text>
+          <rect x="96" y="623" width="50" height="16" rx="3" fill="#451a03"/>
+          <text x="100" y="634" font-size="7" fill="#f59e0b" font-weight="700" font-family="monospace">ALERT</text>
+          <!-- Nav -->
+          <rect x="0" y="764" width="390" height="80" fill="#111113" stroke="#3f3f46" stroke-width="1"/>
+          <text x="55" y="790" font-size="18" fill="#3b82f6" text-anchor="middle">◈</text>
+          <text x="135" y="790" font-size="18" fill="#71717a" text-anchor="middle">≋</text>
+          <text x="215" y="790" font-size="18" fill="#71717a" text-anchor="middle">⚡</text>
+          <text x="295" y="790" font-size="18" fill="#71717a" text-anchor="middle">⊛</text>
+        </svg>
+      </div>
+      <div class="thumb-label">M1 · Cost Overview</div>
+    </div>
+
+    <!-- M2 -->
+    <div class="thumb-frame" onclick="openViewer(1)">
+      <div class="thumb-inner mobile-thumb" style="background:#09090b;border-color:#27272a">
+        <svg width="156" height="338" viewBox="0 0 390 844" xmlns="http://www.w3.org/2000/svg" style="display:block">
+          <rect width="390" height="844" fill="#09090b"/>
+          <text x="20" y="70" font-size="11" font-weight="800" fill="#3b82f6" letter-spacing="5">METER</text>
+          <text x="20" y="97" font-size="26" font-weight="700" fill="#fafafa">Usage</text>
+          <text x="20" y="115" font-size="11" fill="#71717a">By feature · Last 7 days</text>
+          <!-- Mini bar chart -->
+          <rect x="20" y="132" width="350" height="160" rx="10" fill="#18181b" stroke="#3f3f46" stroke-width="1"/>
+          <text x="36" y="158" font-size="9" fill="#3b82f6" letter-spacing="2">DAILY TOKENS</text>
+          <!-- Bars -->
+          <rect x="36" y="204" width="26" height="58" rx="3" fill="#6366f1" opacity=".4"/>
+          <rect x="72" y="188" width="26" height="74" rx="3" fill="#6366f1" opacity=".4"/>
+          <rect x="108" y="210" width="26" height="52" rx="3" fill="#6366f1" opacity=".4"/>
+          <rect x="144" y="182" width="26" height="80" rx="3" fill="#6366f1" opacity=".4"/>
+          <rect x="180" y="172" width="26" height="90" rx="3" fill="#6366f1" opacity=".4"/>
+          <rect x="216" y="196" width="26" height="66" rx="3" fill="#6366f1" opacity=".4"/>
+          <rect x="252" y="156" width="26" height="106" rx="3" fill="#3b82f6"/>
+          <!-- Feature rows -->
+          <rect x="20" y="308" width="350" height="58" rx="8" fill="#18181b" stroke="#3f3f46" stroke-width="1"/>
+          <rect x="20" y="308" width="350" height="3" rx="2" fill="#3b82f6" opacity=".7"/>
+          <text x="36" y="330" font-size="12" font-weight="600" fill="#fafafa">Chat Completion</text>
+          <text x="36" y="346" font-size="9" fill="#71717a">GPT-4o</text>
+          <text x="330" y="334" font-size="15" font-weight="700" fill="#fafafa" text-anchor="end">$1,204</text>
+          <rect x="20" y="374" width="350" height="58" rx="8" fill="#18181b" stroke="#3f3f46" stroke-width="1"/>
+          <rect x="20" y="374" width="350" height="3" rx="2" fill="#6366f1" opacity=".7"/>
+          <text x="36" y="396" font-size="12" font-weight="600" fill="#fafafa">Document Q&amp;A</text>
+          <text x="36" y="412" font-size="9" fill="#71717a">Claude 3.5</text>
+          <text x="330" y="400" font-size="15" font-weight="700" fill="#fafafa" text-anchor="end">$896</text>
+          <rect x="20" y="440" width="350" height="58" rx="8" fill="#18181b" stroke="#3f3f46" stroke-width="1"/>
+          <rect x="20" y="440" width="350" height="3" rx="2" fill="#3b82f6" opacity=".5"/>
+          <text x="36" y="462" font-size="12" font-weight="600" fill="#fafafa">Code Review</text>
+          <text x="36" y="478" font-size="9" fill="#3b82f6">8.2B tokens</text>
+          <text x="330" y="466" font-size="15" font-weight="700" fill="#fafafa" text-anchor="end">$388</text>
+          <!-- Nav -->
+          <rect x="0" y="764" width="390" height="80" fill="#111113" stroke="#3f3f46" stroke-width="1"/>
+          <text x="55" y="790" font-size="18" fill="#71717a" text-anchor="middle">◈</text>
+          <text x="135" y="790" font-size="18" fill="#3b82f6" text-anchor="middle">≋</text>
+          <text x="215" y="790" font-size="18" fill="#71717a" text-anchor="middle">⚡</text>
+          <text x="295" y="790" font-size="18" fill="#71717a" text-anchor="middle">⊛</text>
+        </svg>
+      </div>
+      <div class="thumb-label">M2 · Usage Breakdown</div>
+    </div>
+
+    <!-- M3 -->
+    <div class="thumb-frame" onclick="openViewer(2)">
+      <div class="thumb-inner mobile-thumb" style="background:#09090b;border-color:#27272a">
+        <svg width="156" height="338" viewBox="0 0 390 844" xmlns="http://www.w3.org/2000/svg" style="display:block">
+          <rect width="390" height="844" fill="#09090b"/>
+          <text x="20" y="70" font-size="11" font-weight="800" fill="#3b82f6" letter-spacing="5">METER</text>
+          <text x="20" y="97" font-size="26" font-weight="700" fill="#fafafa">Alerts</text>
+          <!-- Chips -->
+          <rect x="20" y="108" width="112" height="28" rx="7" fill="#450a0a" stroke="#ef444460" stroke-width="1"/>
+          <text x="76" y="126" font-size="9" fill="#ef4444" font-weight="700" text-anchor="middle">2 CRITICAL</text>
+          <rect x="140" y="108" width="112" height="28" rx="7" fill="#451a03" stroke="#f59e0b60" stroke-width="1"/>
+          <text x="196" y="126" font-size="9" fill="#f59e0b" font-weight="700" text-anchor="middle">3 WARNING</text>
+          <!-- Alert cards -->
+          <rect x="20" y="148" width="350" height="110" rx="10" fill="#18181b" stroke="#ef444440" stroke-width="1"/>
+          <rect x="20" y="148" width="3" height="110" rx="2" fill="#ef4444"/>
+          <rect x="32" y="160" width="60" height="20" rx="4" fill="#450a0a"/>
+          <text x="62" y="174" font-size="8" fill="#ef4444" font-weight="700" text-anchor="middle">CRITICAL</text>
+          <text x="32" y="204" font-size="12" font-weight="600" fill="#fafafa">Daily spend limit reached</text>
+          <text x="32" y="220" font-size="10" fill="#a1a1aa">Team "ML-Infra" hit $500/day cap.</text>
+          <rect x="32" y="234" width="110" height="20" rx="5" fill="#450a0a" stroke="#ef444440" stroke-width="1"/>
+          <text x="87" y="247" font-size="7" fill="#ef4444" font-weight="700" text-anchor="middle">INCREASE LIMIT</text>
+          <rect x="20" y="268" width="350" height="110" rx="10" fill="#18181b" stroke="#ef444440" stroke-width="1"/>
+          <rect x="20" y="268" width="3" height="110" rx="2" fill="#ef4444"/>
+          <rect x="32" y="280" width="60" height="20" rx="4" fill="#450a0a"/>
+          <text x="62" y="294" font-size="8" fill="#ef4444" font-weight="700" text-anchor="middle">CRITICAL</text>
+          <text x="32" y="322" font-size="12" font-weight="600" fill="#fafafa">Cost anomaly detected</text>
+          <text x="32" y="338" font-size="10" fill="#a1a1aa">GPT-4o spike +340% in 30min</text>
+          <rect x="20" y="390" width="350" height="110" rx="10" fill="#18181b" stroke="#f59e0b40" stroke-width="1"/>
+          <rect x="20" y="390" width="3" height="110" rx="2" fill="#f59e0b"/>
+          <rect x="32" y="402" width="60" height="20" rx="4" fill="#451a03"/>
+          <text x="62" y="416" font-size="8" fill="#f59e0b" font-weight="700" text-anchor="middle">WARNING</text>
+          <text x="32" y="444" font-size="12" font-weight="600" fill="#fafafa">90% monthly budget used</text>
+          <text x="32" y="460" font-size="10" fill="#a1a1aa">$3,600 of $4,000 · 12 days left</text>
+          <!-- Nav -->
+          <rect x="0" y="764" width="390" height="80" fill="#111113" stroke="#3f3f46" stroke-width="1"/>
+          <text x="55" y="790" font-size="18" fill="#71717a" text-anchor="middle">◈</text>
+          <text x="135" y="790" font-size="18" fill="#71717a" text-anchor="middle">≋</text>
+          <text x="215" y="790" font-size="18" fill="#3b82f6" text-anchor="middle">⚡</text>
+          <text x="295" y="790" font-size="18" fill="#71717a" text-anchor="middle">⊛</text>
+        </svg>
+      </div>
+      <div class="thumb-label">M3 · Alert Center</div>
+    </div>
+
+    <!-- M4 -->
+    <div class="thumb-frame" onclick="openViewer(3)">
+      <div class="thumb-inner mobile-thumb" style="background:#09090b;border-color:#27272a">
+        <svg width="156" height="338" viewBox="0 0 390 844" xmlns="http://www.w3.org/2000/svg" style="display:block">
+          <rect width="390" height="844" fill="#09090b"/>
+          <text x="20" y="70" font-size="11" font-weight="800" fill="#3b82f6" letter-spacing="5">METER</text>
+          <!-- Terminal header -->
+          <rect x="20" y="76" width="350" height="36" rx="8" fill="#052e16" stroke="#3f3f46" stroke-width="1"/>
+          <circle cx="36" cy="94" r="5" fill="#ef4444"/>
+          <circle cx="52" cy="94" r="5" fill="#f59e0b"/>
+          <circle cx="68" cy="94" r="5" fill="#10b981"/>
+          <text x="84" y="98" font-size="9" fill="#22c55e" font-family="monospace">event-stream --live</text>
+          <!-- Terminal body -->
+          <rect x="20" y="111" width="350" height="500" rx="8" fill="#052e16" stroke="#3f3f46" stroke-width="1"/>
+          <!-- Event rows -->
+          <text x="32" y="136" font-size="8" fill="#71717a" font-family="monospace">14:52:01.234</text>
+          <rect x="140" y="124" width="30" height="16" rx="3" fill="#1e3a5f"/>
+          <text x="145" y="135" font-size="7" fill="#3b82f6" font-weight="700" font-family="monospace">INF</text>
+          <text x="178" y="136" font-size="8" fill="#a1a1aa" font-family="monospace">api/chat</text>
+          <text x="340" y="136" font-size="8" fill="#3b82f6" font-family="monospace" text-anchor="end">$0.0021</text>
+          <line x1="32" y1="148" x2="358" y2="148" stroke="#3f3f46" stroke-width="1" opacity=".3"/>
+          <text x="32" y="166" font-size="8" fill="#71717a" font-family="monospace">14:52:00.831</text>
+          <rect x="140" y="154" width="30" height="16" rx="3" fill="#450a0a"/>
+          <text x="145" y="165" font-size="7" fill="#ef4444" font-weight="700" font-family="monospace">ERR</text>
+          <text x="178" y="166" font-size="8" fill="#a1a1aa" font-family="monospace">api/chat</text>
+          <text x="340" y="166" font-size="8" fill="#ef4444" font-family="monospace" text-anchor="end">TIMEOUT</text>
+          <line x1="32" y1="178" x2="358" y2="178" stroke="#ef4444" stroke-width="1" opacity=".2"/>
+          <text x="32" y="196" font-size="8" fill="#71717a" font-family="monospace">14:51:59.445</text>
+          <rect x="140" y="184" width="30" height="16" rx="3" fill="#451a03"/>
+          <text x="145" y="195" font-size="7" fill="#f59e0b" font-weight="700" font-family="monospace">ALT</text>
+          <text x="178" y="196" font-size="8" fill="#a1a1aa" font-family="monospace">sys/budget</text>
+          <text x="340" y="196" font-size="8" fill="#f59e0b" font-family="monospace" text-anchor="end">WARN 90%</text>
+          <line x1="32" y1="208" x2="358" y2="208" stroke="#3f3f46" stroke-width="1" opacity=".3"/>
+          <text x="32" y="226" font-size="8" fill="#71717a" font-family="monospace">14:51:58.556</text>
+          <rect x="140" y="214" width="30" height="16" rx="3" fill="#1e3a5f"/>
+          <text x="145" y="225" font-size="7" fill="#3b82f6" font-weight="700" font-family="monospace">INF</text>
+          <text x="178" y="226" font-size="8" fill="#a1a1aa" font-family="monospace">api/chat</text>
+          <text x="340" y="226" font-size="8" fill="#3b82f6" font-family="monospace" text-anchor="end">$0.0029</text>
+          <line x1="32" y1="238" x2="358" y2="238" stroke="#3f3f46" stroke-width="1" opacity=".3"/>
+          <text x="32" y="256" font-size="8" fill="#71717a" font-family="monospace">14:51:56.445</text>
+          <rect x="140" y="244" width="30" height="16" rx="3" fill="#064e3b"/>
+          <text x="145" y="255" font-size="7" fill="#10b981" font-weight="700" font-family="monospace">CAC</text>
+          <text x="178" y="256" font-size="8" fill="#a1a1aa" font-family="monospace">cache/sem</text>
+          <text x="340" y="256" font-size="8" fill="#10b981" font-family="monospace" text-anchor="end">HIT $0</text>
+          <text x="32" y="286" font-size="8" fill="#71717a" font-family="monospace">14:51:55.112</text>
+          <rect x="140" y="274" width="30" height="16" rx="3" fill="#1e3a5f"/>
+          <text x="145" y="285" font-size="7" fill="#3b82f6" font-weight="700" font-family="monospace">INF</text>
+          <text x="178" y="286" font-size="8" fill="#a1a1aa" font-family="monospace">api/chat</text>
+          <text x="340" y="286" font-size="8" fill="#3b82f6" font-family="monospace" text-anchor="end">$0.0033</text>
+          <text x="32" y="316" font-size="8" fill="#71717a" font-family="monospace">14:51:54.123</text>
+          <rect x="140" y="304" width="30" height="16" rx="3" fill="#1e3a5f"/>
+          <text x="145" y="315" font-size="7" fill="#3b82f6" font-weight="700" font-family="monospace">INF</text>
+          <text x="178" y="316" font-size="8" fill="#a1a1aa" font-family="monospace">api/code</text>
+          <text x="340" y="316" font-size="8" fill="#3b82f6" font-family="monospace" text-anchor="end">$0.0051</text>
+          <!-- Stats row -->
+          <rect x="20" y="640" width="82" height="52" rx="8" fill="#18181b" stroke="#3f3f46" stroke-width="1"/>
+          <text x="28" y="658" font-size="7" fill="#3b82f6" letter-spacing="1">EVENTS</text>
+          <text x="28" y="678" font-size="14" font-weight="700" fill="#fafafa">38,471</text>
+          <rect x="110" y="640" width="82" height="52" rx="8" fill="#18181b" stroke="#3f3f46" stroke-width="1"/>
+          <text x="118" y="658" font-size="7" fill="#71717a" letter-spacing="1">EST. COST</text>
+          <text x="118" y="678" font-size="14" font-weight="700" fill="#fafafa">$1.84</text>
+          <rect x="200" y="640" width="82" height="52" rx="8" fill="#18181b" stroke="#3f3f46" stroke-width="1"/>
+          <text x="208" y="658" font-size="7" fill="#10b981" letter-spacing="1">CACHE</text>
+          <text x="208" y="678" font-size="14" font-weight="700" fill="#fafafa">68%</text>
+          <rect x="290" y="640" width="80" height="52" rx="8" fill="#18181b" stroke="#3f3f46" stroke-width="1"/>
+          <text x="298" y="658" font-size="7" fill="#ef4444" letter-spacing="1">ERRORS</text>
+          <text x="298" y="678" font-size="14" font-weight="700" fill="#fafafa">0.4%</text>
+          <!-- Nav -->
+          <rect x="0" y="764" width="390" height="80" fill="#111113" stroke="#3f3f46" stroke-width="1"/>
+          <text x="55" y="790" font-size="18" fill="#3b82f6" text-anchor="middle">◈</text>
+          <text x="135" y="790" font-size="18" fill="#71717a" text-anchor="middle">≋</text>
+          <text x="215" y="790" font-size="18" fill="#71717a" text-anchor="middle">⚡</text>
+          <text x="295" y="790" font-size="18" fill="#71717a" text-anchor="middle">⊛</text>
+        </svg>
+      </div>
+      <div class="thumb-label">M4 · Live Event Stream</div>
+    </div>
+
+    <!-- D1 -->
+    <div class="thumb-frame" onclick="openViewer(4)">
+      <div class="thumb-badge">DESKTOP</div>
+      <div class="thumb-inner desktop-thumb" style="background:#09090b;border-color:#27272a">
+        <svg width="320" height="200" viewBox="0 0 1440 900" xmlns="http://www.w3.org/2000/svg" style="display:block">
+          <rect width="1440" height="900" fill="#09090b"/>
+          <!-- Sidebar -->
+          <rect x="0" y="0" width="220" height="900" fill="#111113" stroke="#3f3f46" stroke-width="1"/>
+          <text x="24" y="45" font-size="11" font-weight="800" fill="#3b82f6" letter-spacing="5">METER</text>
+          <text x="24" y="58" font-size="7" fill="#71717a" letter-spacing="1.5">AI COST INTELLIGENCE</text>
+          <rect x="12" y="80" width="196" height="36" rx="6" fill="#3b82f618"/>
+          <text x="36" y="103" font-size="11" font-weight="600" fill="#fafafa">Dashboard</text>
+          <text x="36" y="147" font-size="11" fill="#a1a1aa">Cost Explorer</text>
+          <text x="36" y="191" font-size="11" fill="#a1a1aa">Usage Breakdown</text>
+          <text x="36" y="235" font-size="11" fill="#a1a1aa">Alert Center</text>
+          <!-- Stat tiles -->
+          <rect x="268" y="112" width="268" height="100" rx="10" fill="#18181b" stroke="#3f3f46" stroke-width="1"/>
+          <text x="284" y="132" font-size="9" fill="#3b82f6" letter-spacing="2">TOTAL SPEND</text>
+          <text x="284" y="168" font-size="36" font-weight="700" fill="#fafafa">$2,847</text>
+          <text x="284" y="200" font-size="10" fill="#ef4444">↑ +18%</text>
+          <rect x="548" y="112" width="268" height="100" rx="10" fill="#18181b" stroke="#3f3f46" stroke-width="1"/>
+          <text x="564" y="132" font-size="9" fill="#6366f1" letter-spacing="2">TOKEN VOLUME</text>
+          <text x="564" y="168" font-size="36" font-weight="700" fill="#fafafa">42.3</text>
+          <text x="564" y="200" font-size="10" fill="#10b981">↓ −4%</text>
+          <rect x="828" y="112" width="268" height="100" rx="10" fill="#18181b" stroke="#3f3f46" stroke-width="1"/>
+          <text x="844" y="132" font-size="9" fill="#10b981" letter-spacing="2">CACHE SAVINGS</text>
+          <text x="844" y="168" font-size="36" font-weight="700" fill="#fafafa">$1,260</text>
+          <text x="844" y="200" font-size="10" fill="#10b981">↑ +22%</text>
+          <rect x="1108" y="112" width="264" height="100" rx="10" fill="#18181b" stroke="#3f3f46" stroke-width="1"/>
+          <text x="1124" y="132" font-size="9" fill="#f59e0b" letter-spacing="2">ALERT EVENTS</text>
+          <text x="1124" y="168" font-size="36" font-weight="700" fill="#fafafa">6</text>
+          <text x="1124" y="200" font-size="10" fill="#ef4444">↑ +2 new</text>
+          <!-- Main chart -->
+          <rect x="268" y="228" width="716" height="240" rx="10" fill="#18181b" stroke="#3f3f46" stroke-width="1"/>
+          <text x="288" y="252" font-size="9" fill="#3b82f6" letter-spacing="2">DAILY SPEND BY MODEL</text>
+          <!-- Bars (stacked) -->
+          <rect x="300" y="388" width="44" height="60" rx="3" fill="#3b82f6" opacity=".4"/>
+          <rect x="300" y="328" width="44" height="60" rx="3" fill="#6366f1" opacity=".4"/>
+          <rect x="356" y="378" width="44" height="70" rx="3" fill="#3b82f6" opacity=".5"/>
+          <rect x="356" y="308" width="44" height="70" rx="3" fill="#6366f1" opacity=".5"/>
+          <rect x="412" y="398" width="44" height="50" rx="3" fill="#3b82f6" opacity=".4"/>
+          <rect x="468" y="368" width="44" height="80" rx="3" fill="#3b82f6" opacity=".6"/>
+          <rect x="468" y="288" width="44" height="80" rx="3" fill="#6366f1" opacity=".6"/>
+          <rect x="524" y="348" width="44" height="100" rx="3" fill="#3b82f6" opacity=".7"/>
+          <rect x="524" y="248" width="44" height="100" rx="3" fill="#6366f1" opacity=".7"/>
+          <rect x="580" y="378" width="44" height="70" rx="3" fill="#3b82f6" opacity=".5"/>
+          <rect x="636" y="318" width="44" height="130" rx="3" fill="#3b82f6"/>
+          <rect x="636" y="268" width="44" height="50" rx="3" fill="#6366f1" opacity=".8"/>
+          <!-- Right cards -->
+          <rect x="1000" y="228" width="372" height="116" rx="10" fill="#18181b" stroke="#3f3f46" stroke-width="1"/>
+          <text x="1016" y="252" font-size="9" fill="#3b82f6" letter-spacing="2">MODEL SHARE</text>
+          <rect x="1016" y="268" width="336" height="18" rx="4" fill="#3b82f6" opacity=".8"/>
+          <rect x="1157" y="268" width="104" height="18" rx="0" fill="#6366f1" opacity=".8"/>
+          <rect x="1261" y="268" width="60" height="18" rx="0" fill="#10b981" opacity=".8"/>
+          <rect x="1321" y="268" width="31" height="18" rx="4" fill="#f59e0b" opacity=".8"/>
+          <!-- Pipeline card -->
+          <rect x="1000" y="356" width="372" height="112" rx="10" fill="#18181b" stroke="#3f3f46" stroke-width="1"/>
+          <text x="1016" y="380" font-size="9" fill="#3b82f6" letter-spacing="2">BILLING PIPELINE</text>
+          <rect x="1016" y="396" width="70" height="42" rx="6" fill="#1e3a5f" stroke="#3b82f640" stroke-width="1"/>
+          <text x="1051" y="420" font-size="8" fill="#3b82f6" font-weight="700" text-anchor="middle" letter-spacing="1.5">INGEST</text>
+          <text x="1096" y="425" font-size="10" fill="#3f3f46">→</text>
+          <rect x="1108" y="396" width="70" height="42" rx="6" fill="#1e1b4b" stroke="#6366f140" stroke-width="1"/>
+          <text x="1143" y="420" font-size="8" fill="#6366f1" font-weight="700" text-anchor="middle" letter-spacing="1.5">METER</text>
+          <text x="1188" y="425" font-size="10" fill="#3f3f46">→</text>
+          <rect x="1200" y="396" width="70" height="42" rx="6" fill="#451a03" stroke="#f59e0b40" stroke-width="1"/>
+          <text x="1235" y="420" font-size="8" fill="#f59e0b" font-weight="700" text-anchor="middle" letter-spacing="1.5">BUDGET</text>
+          <text x="1280" y="425" font-size="10" fill="#3f3f46">→</text>
+          <rect x="1292" y="396" width="70" height="42" rx="6" fill="#450a0a" stroke="#ef444440" stroke-width="1"/>
+          <text x="1327" y="420" font-size="8" fill="#ef4444" font-weight="700" text-anchor="middle" letter-spacing="1.5">ALERT</text>
+          <!-- Alert card -->
+          <rect x="1000" y="480" width="372" height="90" rx="10" fill="#450a0a" stroke="#ef444440" stroke-width="1"/>
+          <text x="1016" y="504" font-size="9" fill="#ef4444" letter-spacing="2">ACTIVE ALERTS</text>
+          <text x="1016" y="528" font-size="16" font-weight="700" fill="#ef4444">2 Critical</text>
+          <!-- Terminal strip -->
+          <rect x="268" y="484" width="716" height="86" rx="10" fill="#052e16" stroke="#3f3f46" stroke-width="1"/>
+          <circle cx="284" cy="502" r="4" fill="#22c55e"/>
+          <text x="294" y="506" font-size="7" fill="#22c55e" font-weight="700" letter-spacing="1.5">LIVE STREAM</text>
+          <text x="284" y="528" font-size="8" fill="#71717a" font-family="monospace">14:52:01</text>
+          <rect x="356" y="518" width="26" height="14" rx="3" fill="#1e3a5f"/>
+          <text x="360" y="528" font-size="6" fill="#3b82f6" font-weight="700" font-family="monospace">INF</text>
+          <text x="390" y="528" font-size="8" fill="#a1a1aa" font-family="monospace">api/chat/user_42</text>
+          <text x="284" y="548" font-size="8" fill="#71717a" font-family="monospace">14:52:00</text>
+          <rect x="356" y="538" width="26" height="14" rx="3" fill="#450a0a"/>
+          <text x="360" y="548" font-size="6" fill="#ef4444" font-weight="700" font-family="monospace">ERR</text>
+          <text x="390" y="548" font-size="8" fill="#a1a1aa" font-family="monospace">api/chat/user_99</text>
+        </svg>
+      </div>
+      <div class="thumb-label">D1 · Main Dashboard</div>
+    </div>
+
+    <!-- D2 -->
+    <div class="thumb-frame" onclick="openViewer(5)">
+      <div class="thumb-inner desktop-thumb" style="background:#09090b;border-color:#27272a">
+        <svg width="320" height="200" viewBox="0 0 1440 900" xmlns="http://www.w3.org/2000/svg" style="display:block">
+          <rect width="1440" height="900" fill="#09090b"/>
+          <!-- Sidebar -->
+          <rect x="0" y="0" width="220" height="900" fill="#111113" stroke="#3f3f46" stroke-width="1"/>
+          <text x="24" y="45" font-size="11" font-weight="800" fill="#3b82f6" letter-spacing="5">METER</text>
+          <text x="24" y="147" font-size="11" fill="#a1a1aa">Dashboard</text>
+          <rect x="12" y="124" width="196" height="36" rx="6" fill="#3b82f618"/>
+          <text x="36" y="147" font-size="11" font-weight="600" fill="#3b82f6">Cost Explorer</text>
+          <text x="36" y="191" font-size="11" fill="#a1a1aa">Usage Breakdown</text>
+          <!-- Title -->
+          <text x="268" y="72" font-size="30" font-weight="700" fill="#fafafa">Drill into every dollar.</text>
+          <!-- Dim selector -->
+          <rect x="268" y="92" width="134" height="30" rx="8" fill="#18181b" stroke="#3f3f46" stroke-width="1"/>
+          <text x="335" y="112" font-size="10" fill="#a1a1aa" text-anchor="middle">By Model</text>
+          <rect x="408" y="92" width="134" height="30" rx="8" fill="#3b82f6"/>
+          <text x="475" y="112" font-size="10" fill="#09090b" text-anchor="middle" font-weight="700">By Feature</text>
+          <rect x="548" y="92" width="134" height="30" rx="8" fill="#18181b" stroke="#3f3f46" stroke-width="1"/>
+          <text x="615" y="112" font-size="10" fill="#a1a1aa" text-anchor="middle">By Team</text>
+          <!-- Horizontal bar chart -->
+          <rect x="268" y="138" width="716" height="460" rx="10" fill="#18181b" stroke="#3f3f46" stroke-width="1"/>
+          <text x="288" y="162" font-size="9" fill="#3b82f6" letter-spacing="2">COST BY FEATURE — 30 DAYS</text>
+          <text x="288" y="218" font-size="10" fill="#a1a1aa">Chat Completion</text>
+          <rect x="408" y="200" width="400" height="24" rx="4" fill="#3b82f6" opacity=".8"/>
+          <text x="815" y="218" font-size="11" fill="#fafafa" font-weight="700">$4,820</text>
+          <text x="288" y="268" font-size="10" fill="#a1a1aa">Document Q&amp;A</text>
+          <rect x="408" y="250" width="296" height="24" rx="4" fill="#6366f1" opacity=".75"/>
+          <text x="711" y="268" font-size="11" fill="#fafafa" font-weight="700">$3,584</text>
+          <text x="288" y="318" font-size="10" fill="#a1a1aa">Code Review</text>
+          <rect x="408" y="300" width="128" height="24" rx="4" fill="#3b82f6" opacity=".6"/>
+          <text x="543" y="318" font-size="11" fill="#fafafa" font-weight="700">$1,552</text>
+          <text x="288" y="368" font-size="10" fill="#a1a1aa">Embeddings</text>
+          <rect x="408" y="350" width="76" height="24" rx="4" fill="#10b981" opacity=".6"/>
+          <text x="491" y="368" font-size="11" fill="#fafafa" font-weight="700">$916</text>
+          <text x="288" y="418" font-size="10" fill="#a1a1aa">Summarization</text>
+          <rect x="408" y="400" width="44" height="24" rx="4" fill="#6366f1" opacity=".5"/>
+          <!-- Right panel: compare + savings -->
+          <rect x="1000" y="138" width="372" height="300" rx="10" fill="#18181b" stroke="#3f3f46" stroke-width="1"/>
+          <text x="1016" y="162" font-size="9" fill="#3b82f6" letter-spacing="2">MODEL COMPARISON</text>
+          <line x1="1016" y1="172" x2="1356" y2="172" stroke="#3f3f46" stroke-width="1"/>
+          <text x="1016" y="196" font-size="11" fill="#fafafa">GPT-4o</text>
+          <text x="1340" y="196" font-size="11" fill="#3b82f6" text-anchor="end" font-weight="600">$4,200</text>
+          <text x="1016" y="230" font-size="11" fill="#fafafa">Claude 3.5</text>
+          <text x="1340" y="230" font-size="11" fill="#6366f1" text-anchor="end" font-weight="600">$3,120</text>
+          <text x="1016" y="264" font-size="11" fill="#fafafa">GPT-4o-mini</text>
+          <text x="1340" y="264" font-size="11" fill="#3b82f6" text-anchor="end" font-weight="600">$420</text>
+          <text x="1016" y="298" font-size="11" fill="#fafafa">Gemini 1.5</text>
+          <text x="1340" y="298" font-size="11" fill="#10b981" text-anchor="end" font-weight="600">$1,050</text>
+          <text x="1016" y="332" font-size="11" fill="#fafafa">Claude Haiku</text>
+          <text x="1340" y="332" font-size="11" fill="#6366f1" text-anchor="end" font-weight="600">$156</text>
+          <!-- Savings card -->
+          <rect x="1000" y="450" width="372" height="148" rx="10" fill="#064e3b" stroke="#10b98140" stroke-width="1"/>
+          <text x="1016" y="474" font-size="9" fill="#10b981" letter-spacing="2">SAVINGS OPPORTUNITY</text>
+          <text x="1016" y="502" font-size="16" font-weight="700" fill="#fafafa">Switch to Claude Haiku</text>
+          <text x="1016" y="522" font-size="11" fill="#a1a1aa">for batch jobs + summarization</text>
+          <text x="1016" y="558" font-size="22" font-weight="800" fill="#10b981">$1,847 /mo</text>
+          <rect x="1016" y="572" width="120" height="28" rx="8" fill="#10b981"/>
+          <text x="1076" y="591" font-size="9" fill="#09090b" font-weight="700" text-anchor="middle">APPLY RULE</text>
+        </svg>
+      </div>
+      <div class="thumb-label">D2 · Cost Explorer</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Brand Spec -->
+<section class="brand-section">
+  <div class="section-label">BRAND SPECIFICATION</div>
+  <div class="brand-grid">
+
+    <div>
+      <h3 style="font-size:10px;letter-spacing:2px;color:#3b82f6;margin-bottom:16px;font-weight:700">COLOR PALETTE</h3>
+      <div class="swatches">
+        <div>
+          <div class="swatch" style="background:#09090b;border:1px solid #27272a" title="#09090b"></div>
+          <div class="swatch-label">#09090b<br>bg</div>
+        </div>
+        <div>
+          <div class="swatch" style="background:#18181b;border:1px solid #27272a" title="#18181b"></div>
+          <div class="swatch-label">#18181b<br>surface</div>
+        </div>
+        <div>
+          <div class="swatch" style="background:#27272a;border:1px solid #3f3f46" title="#27272a"></div>
+          <div class="swatch-label">#27272a<br>border</div>
+        </div>
+        <div>
+          <div class="swatch" style="background:#3b82f6" title="#3b82f6"></div>
+          <div class="swatch-label">#3b82f6<br>blue</div>
+        </div>
+        <div>
+          <div class="swatch" style="background:#6366f1" title="#6366f1"></div>
+          <div class="swatch-label">#6366f1<br>indigo</div>
+        </div>
+        <div>
+          <div class="swatch" style="background:#10b981" title="#10b981"></div>
+          <div class="swatch-label">#10b981<br>emerald</div>
+        </div>
+        <div>
+          <div class="swatch" style="background:#f59e0b" title="#f59e0b"></div>
+          <div class="swatch-label">#f59e0b<br>amber</div>
+        </div>
+        <div>
+          <div class="swatch" style="background:#ef4444" title="#ef4444"></div>
+          <div class="swatch-label">#ef4444<br>red</div>
+        </div>
+        <div>
+          <div class="swatch" style="background:#22c55e" title="#22c55e"></div>
+          <div class="swatch-label">#22c55e<br>terminal</div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <h3 style="font-size:10px;letter-spacing:2px;color:#3b82f6;margin-bottom:16px;font-weight:700">TYPE SCALE</h3>
+      <div class="type-scale">
+        <div class="ts-row">
+          <div class="ts-name">DISPLAY / 100px / 900wt</div>
+          <div style="font-size:clamp(28px,4vw,52px);font-weight:900;letter-spacing:-2px;line-height:1">$2,847</div>
+        </div>
+        <div class="ts-row">
+          <div class="ts-name">TITLE / 30px / 700wt</div>
+          <div style="font-size:22px;font-weight:700;letter-spacing:-0.5px">Cost Intelligence</div>
+        </div>
+        <div class="ts-row">
+          <div class="ts-name">BODY / 12px / 400wt</div>
+          <div style="font-size:12px;font-weight:400;opacity:.6;line-height:1.7">AI billing platform for engineering teams</div>
+        </div>
+        <div class="ts-row">
+          <div class="ts-name">MONO / 9px / 400wt / terminal</div>
+          <div style="font-size:11px;font-family:monospace;color:#22c55e;opacity:.8">14:52:01 INF api/chat/user_42 $0.0021</div>
+        </div>
+        <div class="ts-row">
+          <div class="ts-name">LABEL / 9px / 700wt / +2px ls</div>
+          <div style="font-size:9px;font-weight:700;color:#3b82f6;letter-spacing:2px">TOTAL SPEND — LAST 7 DAYS</div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <h3 style="font-size:10px;letter-spacing:2px;color:#3b82f6;margin-bottom:16px;font-weight:700">SPACING SYSTEM</h3>
+      <div class="spacing-row"><div class="spacing-block" style="width:4px"></div><span class="spacing-label">4px — Tight (inline gaps)</span></div>
+      <div class="spacing-row"><div class="spacing-block" style="width:8px"></div><span class="spacing-label">8px — XS (icon padding)</span></div>
+      <div class="spacing-row"><div class="spacing-block" style="width:12px"></div><span class="spacing-label">12px — SM (pill padding)</span></div>
+      <div class="spacing-row"><div class="spacing-block" style="width:20px"></div><span class="spacing-label">20px — MD (card padding)</span></div>
+      <div class="spacing-row"><div class="spacing-block" style="width:40px"></div><span class="spacing-label">40px — LG (screen gutter)</span></div>
+      <div class="spacing-row"><div class="spacing-block" style="width:80px"></div><span class="spacing-label">80px — XL (section breaks)</span></div>
+    </div>
+
+    <div>
+      <h3 style="font-size:10px;letter-spacing:2px;color:#3b82f6;margin-bottom:16px;font-weight:700">DESIGN PRINCIPLES</h3>
+      <div class="principles-grid">
+        <div class="principle">
+          <div class="principle-icon">⌨</div>
+          <div class="principle-title">TERMINAL NATIVE</div>
+          <div class="principle-body">Code and data streams are first-class visual elements — monospace font as UI chrome, not afterthought.</div>
+        </div>
+        <div class="principle">
+          <div class="principle-icon">⚡</div>
+          <div class="principle-title">STATUS SIGNALS</div>
+          <div class="principle-body">Every metric has a semantic color. Blue = normal, emerald = savings, amber = warning, red = critical.</div>
+        </div>
+        <div class="principle">
+          <div class="principle-icon">◈</div>
+          <div class="principle-title">DATA DENSITY</div>
+          <div class="principle-body">Pack real information at every level. No decorative illustrations — every pixel encodes meaning.</div>
+        </div>
+        <div class="principle">
+          <div class="principle-icon">→</div>
+          <div class="principle-title">PIPELINE THINKING</div>
+          <div class="principle-body">Visualize the flow: INGEST → METER → BUDGET → ALERT. Users understand the system topology at a glance.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Pipeline visualization -->
+  <div style="margin-top:40px">
+    <h3 style="font-size:10px;letter-spacing:2px;color:#3b82f6;margin-bottom:16px;font-weight:700">BILLING PIPELINE FLOW</h3>
+    <div class="pipeline-row">
+      <div class="pipe-step">INGEST<br><span style="font-size:10px;letter-spacing:0;font-weight:400;color:#a1a1aa">38.4k events/hr</span></div>
+      <span class="pipe-arrow">→</span>
+      <div class="pipe-step" style="background:#1e1b4b;border-color:#6366f140;color:#6366f1">METER<br><span style="font-size:10px;letter-spacing:0;font-weight:400;color:#a1a1aa">42.3B tokens</span></div>
+      <span class="pipe-arrow">→</span>
+      <div class="pipe-step" style="background:#451a03;border-color:#f59e0b40;color:#f59e0b">BUDGET<br><span style="font-size:10px;letter-spacing:0;font-weight:400;color:#a1a1aa">$4,000 cap</span></div>
+      <span class="pipe-arrow">→</span>
+      <div class="pipe-step" style="background:#450a0a;border-color:#ef444440;color:#ef4444">ALERT<br><span style="font-size:10px;letter-spacing:0;font-weight:400;color:#a1a1aa">6 live rules</span></div>
+    </div>
+    <p style="font-size:11px;opacity:.4;margin-top:8px">Inspired by Polar.sh's billing pipeline visualization — events → metering → invoicing → alerts</p>
+  </div>
+
+  <!-- CSS Tokens -->
+  <div style="margin-top:40px">
+    <div class="section-label">CSS DESIGN TOKENS</div>
+    <div class="tokens-block">
+      <button class="copy-btn" onclick="copyTokens()">COPY TOKENS</button>
+      <pre class="tokens-pre">:root {
+  /* Background layers */
+  --meter-bg:          #09090b;   /* zinc-950 */
+  --meter-surface:     #111113;
+  --meter-surface-2:   #18181b;   /* zinc-900 */
+  --meter-surface-3:   #27272a;   /* zinc-800 */
+  --meter-border:      #3f3f46;   /* zinc-700 */
+  --meter-border-2:    #52525b;   /* zinc-600 */
+
+  /* Text */
+  --meter-fg:          #fafafa;   /* zinc-50 */
+  --meter-fg-2:        #a1a1aa;   /* zinc-400 */
+  --meter-muted:       #71717a;   /* zinc-500 */
+
+  /* Semantic colors */
+  --meter-blue:        #3b82f6;   /* electric blue — primary */
+  --meter-blue-dim:    #1e3a5f;
+  --meter-indigo:      #6366f1;   /* secondary model */
+  --meter-indigo-dim:  #1e1b4b;
+  --meter-emerald:     #10b981;   /* savings / positive */
+  --meter-emerald-dim: #064e3b;
+  --meter-amber:       #f59e0b;   /* warning */
+  --meter-amber-dim:   #451a03;
+  --meter-red:         #ef4444;   /* critical / anomaly */
+  --meter-red-dim:     #450a0a;
+  --meter-terminal:    #22c55e;   /* terminal green */
+  --meter-terminal-bg: #052e16;
+
+  /* Type */
+  --meter-font-display: 'SF Pro Display', 'Inter', system-ui, sans-serif;
+  --meter-font-mono:    'SF Mono', 'Fira Code', monospace;
+
+  /* Spacing */
+  --meter-space-xs:    4px;
+  --meter-space-sm:    8px;
+  --meter-space-md:    20px;
+  --meter-space-lg:    40px;
+  --meter-space-xl:    80px;
+
+  /* Radius */
+  --meter-radius-sm:   6px;
+  --meter-radius-md:   8px;
+  --meter-radius-lg:   10px;
+  --meter-radius-pill: 9999px;
+}</pre>
+    </div>
+  </div>
+</section>
+
+<!-- Prompt -->
+<section class="prompt-section">
+  <div class="p-label">ORIGINAL DESIGN PROMPT</div>
+  <p class="p-text">"Design METER — a developer-first AI token cost intelligence platform for engineering teams. Inspired by Polar.sh's billing pipeline aesthetic (land-book.com) and Obsidian OS (darkmodedesign.com). Terminal event streams, usage metering, cost anomaly detection, multi-model comparison. Zinc dark + electric blue palette. First time building terminal-as-UI aesthetic."</p>
+</section>
+
+<!-- PRD -->
+<section class="prd-section">
+  <h3>PRODUCT OVERVIEW</h3>
+  <p>METER is an AI-native cost intelligence platform for engineering teams spending on LLM APIs. As AI infrastructure costs become a critical line item, engineering managers and FinOps teams need real-time visibility into token consumption, cost anomalies, and budget utilization — with the same precision and density that developers expect from their observability tools.</p>
+
+  <h3>INSPIRATION</h3>
+  <p><strong>Polar.sh</strong> (spotted on land-book.com) — "Turn Usage Into Revenue" — developer-first billing with terminal code blocks as primary hero UI, numbered pipeline sections (— 01, — 02, — 03), live event feeds showing real-time API activity, near-black + electric blue, and a billing pipeline visualization (CHECKOUT → USAGE EVENTS → METERING → INVOICING). <strong>Obsidian OS</strong> (darkmodedesign.com) — dark finance SaaS for financial advisers with structured AI-powered feature panels, sidebar nav, clean metric tiles. <strong>TRIONN</strong> (darkmodedesign.com) — bold counter-stat numerics (50+ awards, 900+ projects) on dark backgrounds.</p>
+
+  <h3>TARGET USERS</h3>
+  <ul>
+    <li><strong>Engineering Managers</strong> — budget owners tracking AI API spend across teams and features</li>
+    <li><strong>Platform Engineers</strong> — responsible for LLM infrastructure, routing, and cost optimization</li>
+    <li><strong>FinOps / Finance</strong> — monthly AI spend reconciliation and budget forecasting</li>
+    <li><strong>Technical Founders</strong> — watching burn rate on AI features in early-stage products</li>
+  </ul>
+
+  <h3>CORE FEATURES</h3>
+  <ul>
+    <li><strong>Cost Overview</strong> — real-time total spend vs. budget with per-model breakdown and period comparison</li>
+    <li><strong>Usage Breakdown</strong> — daily token volume charts, cost by feature/team/model with drill-down</li>
+    <li><strong>Alert Center</strong> — rule-based budget alerts, cost anomaly detection (spike analysis), spend cap enforcement</li>
+    <li><strong>Live Event Stream</strong> — terminal-style real-time inference feed with cost-per-call visibility</li>
+    <li><strong>Cost Explorer</strong> — horizontal bar charts by dimension (model/feature/team), model price comparison table</li>
+    <li><strong>Savings Engine</strong> — automatic recommendations to route workloads to cheaper equivalent models</li>
+  </ul>
+
+  <h3>DESIGN LANGUAGE</h3>
+  <ul>
+    <li><strong>Terminal-native aesthetic</strong> — monospace event streams as first-class visual chrome, not decoration</li>
+    <li><strong>Zinc dark palette</strong> — near-black #09090b base, layered zinc surfaces (zinc-900, zinc-800), zinc-700 borders</li>
+    <li><strong>Semantic color system</strong> — blue = normal inference, emerald = savings/hit, amber = warning, red = critical/anomaly</li>
+    <li><strong>Pipeline visualization</strong> — Polar-inspired INGEST → METER → BUDGET → ALERT flow as persistent mental model</li>
+    <li><strong>High data density</strong> — stat tiles, stacked bar charts, horizontal cost bars — no decorative illustrations</li>
+  </ul>
+
+  <h3>SCREEN ARCHITECTURE</h3>
+  <ul>
+    <li><strong>M1 — Cost Overview</strong> · Home screen with total spend, budget bar, model tiles, live event feed</li>
+    <li><strong>M2 — Usage Breakdown</strong> · Daily token bar chart + feature cost list with color-coded top bars</li>
+    <li><strong>M3 — Alert Center</strong> · Severity-coded alert cards with inline action buttons (Critical/Warning/Info)</li>
+    <li><strong>M4 — Live Event Stream</strong> · Terminal window full-screen with INF/ERR/ALT/CAC/EMB event types</li>
+    <li><strong>D1 — Main Dashboard</strong> · Bento grid: 4 stat tiles + model chart + pipeline + alert + live stream strip</li>
+    <li><strong>D2 — Cost Explorer</strong> · Horizontal cost-by-feature chart + model comparison table + savings card</li>
+  </ul>
+
+  <h3>WHAT'S NEW IN THIS DESIGN</h3>
+  <p>First RAM design to use <strong>terminal/monospace as primary visual language</strong> — not just accent. The Live Event Stream screen treats a scrolling log as the hero UI. First to visualize a <strong>billing pipeline</strong> (INGEST → METER → BUDGET → ALERT) as a permanent orientating diagram. First time mixing engineering observability patterns (event types: INF/ERR/ALT/CAC/EMB) with consumer-grade mobile UX.</p>
+</section>
+
+<footer>
+  <span>RAM Design Studio · Heartbeat #13 · 2026-03-19</span>
+  <a href="https://ram.zenbin.org/gallery" style="color:inherit;text-decoration:none;opacity:1">ram.zenbin.org/gallery</a>
+</footer>
+
+<script>
+  const SLUG = 'meter';
+  const PROMPT = 'Design METER — a developer-first AI token cost intelligence platform for engineering teams. Inspired by Polar.sh\'s billing pipeline aesthetic (land-book.com) and Obsidian OS (darkmodedesign.com). Terminal event streams, usage metering, cost anomaly detection, multi-model comparison. Zinc dark + electric blue palette.';
+  const TOKENS = document.querySelector('.tokens-pre').textContent;
+
+  function openViewer(screenIdx) {
+    const url = screenIdx !== undefined
+      ? `https://ram.zenbin.org/${SLUG}-viewer`
+      : `https://ram.zenbin.org/${SLUG}-viewer`;
+    window.open(url, '_blank');
+  }
+
+  function copyPrompt() {
+    navigator.clipboard.writeText(PROMPT).then(() => showToast());
+  }
+
+  function copyTokens() {
+    navigator.clipboard.writeText(TOKENS).then(() => showToast('Tokens copied ✓'));
+  }
+
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg || 'Copied ✓';
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2200);
+  }
+</script>
+</body>
+</html>

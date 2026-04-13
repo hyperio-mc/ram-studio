@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GEO Score Tracker -- Radar Design Proposal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#f8fafc;--card:#ffffff;--card2:#f1f5f9;
+  --border:#e2e8f0;--border2:#cbd5e1;
+  --accent:#6366f1;--accentLight:#eef2ff;--accentMid:#4f46e5;
+  --text:#1e293b;--muted:#64748b;--dim:#94a3b8;
+  --green:#16a34a;--greenLight:#dcfce7;
+  --red:#dc2626;--redLight:#fee2e2;
+  --yellow:#d97706;--yellowLight:#fef3c7;
+  --orange:#ea580c;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;overflow-x:hidden}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(248,250,252,.95);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:0 2rem;height:56px;display:flex;align-items:center;justify-content:space-between}
+.nav-left{display:flex;align-items:center;gap:1.5rem}
+.nav-logo{font-size:.95rem;font-weight:800;color:var(--accent);letter-spacing:-.01em}
+.nav-back{font-size:.8rem;color:var(--muted);text-decoration:none;display:flex;align-items:center;gap:.4rem}
+.nav-back:hover{color:var(--text)}
+.nav-badge{background:var(--accentLight);color:var(--accent);font-family:'Fira Code',monospace;font-size:.65rem;font-weight:700;padding:.25rem .65rem;border-radius:20px;border:1px solid rgba(99,102,241,.2);letter-spacing:.05em}
+
+/* HERO */
+.hero{padding:9rem 2rem 4rem;max-width:1100px;margin:0 auto}
+.hero-row{display:flex;align-items:flex-start;gap:3rem}
+.hero-left{flex:1}
+.design-tag{font-family:'Fira Code',monospace;font-size:.7rem;font-weight:700;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;margin-bottom:1rem;display:flex;align-items:center;gap:.5rem}
+.design-tag .tag-pill{background:var(--accentLight);padding:.2rem .6rem;border-radius:12px;font-size:.65rem}
+h1{font-size:clamp(2.5rem,5vw,4rem);font-weight:800;letter-spacing:-.03em;line-height:1.05;margin-bottom:1rem;color:var(--text)}
+h1 em{font-style:normal;color:var(--accent)}
+.hero-sub{font-size:1rem;color:var(--muted);line-height:1.7;max-width:520px;margin-bottom:2rem}
+.palette-row{display:flex;gap:.4rem;align-items:center;margin-bottom:2rem;flex-wrap:wrap}
+.swatch{width:26px;height:26px;border-radius:8px;border:1px solid var(--border)}
+.hero-ctas{display:flex;gap:.75rem;flex-wrap:wrap}
+.btn-p{display:inline-flex;align-items:center;gap:.4rem;background:var(--accent);color:#fff;padding:.6rem 1.4rem;border-radius:8px;font-size:.85rem;font-weight:700;text-decoration:none;transition:background .2s}
+.btn-p:hover{background:var(--accentMid)}
+.btn-s{display:inline-flex;align-items:center;gap:.4rem;background:var(--card);color:var(--muted);padding:.6rem 1.4rem;border-radius:8px;font-size:.85rem;font-weight:600;text-decoration:none;border:1px solid var(--border);transition:border-color .2s,color .2s}
+.btn-s:hover{color:var(--text);border-color:var(--border2)}
+
+/* BENTO DEMO */
+.demo-panel{width:320px;flex-shrink:0}
+.bento{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.bento-tile{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.bento-tile.wide{grid-column:1/-1}
+.bento-tile.tall{grid-row:span 2}
+.bt-label{font-family:'Fira Code',monospace;font-size:.58rem;color:var(--dim);font-weight:600;text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px}
+.bt-val{font-size:2rem;font-weight:800;color:var(--text);line-height:1}
+.bt-val.accent{color:var(--accent)}
+.bt-val.green{color:var(--green)}
+.bt-sub{font-size:.65rem;color:var(--dim);margin-top:3px}
+.sov-bar{display:flex;height:8px;border-radius:6px;overflow:hidden;margin-top:8px;gap:2px}
+.sov-seg{height:100%;border-radius:3px}
+.sov-legend{display:flex;flex-wrap:wrap;gap:8px;margin-top:7px}
+.sov-leg-item{display:flex;align-items:center;gap:4px;font-size:.58rem;color:var(--muted)}
+.sov-dot{width:6px;height:6px;border-radius:50%}
+.prompt-mini{display:flex;flex-direction:column;gap:4px}
+.prompt-row-mini{display:flex;justify-content:space-between;align-items:center}
+.prompt-text-mini{font-size:.6rem;color:var(--muted);max-width:180px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.prompt-score-mini{font-family:'Fira Code',monospace;font-size:.7rem;font-weight:700;padding:1px 5px;border-radius:4px}
+.score-green{background:var(--greenLight);color:var(--green)}
+.score-yellow{background:var(--yellowLight);color:var(--yellow)}
+
+/* SCREENS */
+.screens{padding:4rem 2rem;max-width:1100px;margin:0 auto}
+.screens-title{font-size:1.6rem;font-weight:800;letter-spacing:-.02em;margin-bottom:.5rem}
+.screens-sub{color:var(--muted);font-size:.88rem;margin-bottom:2.5rem}
+.screen-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
+.screen-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.5rem;box-shadow:0 1px 4px rgba(0,0,0,.05)}
+.screen-card:hover{box-shadow:0 8px 24px rgba(99,102,241,.1);border-color:rgba(99,102,241,.2)}
+.screen-num{font-family:'Fira Code',monospace;font-size:.65rem;color:var(--accent);font-weight:700;letter-spacing:.1em;margin-bottom:.5rem}
+.screen-name{font-size:1.1rem;font-weight:700;margin-bottom:.5rem;color:var(--text)}
+.screen-desc{font-size:.83rem;color:var(--muted);line-height:1.6}
+.screen-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.75rem}
+.stag{font-family:'Fira Code',monospace;font-size:.62rem;padding:.2rem .5rem;border-radius:20px;background:var(--accentLight);color:var(--accent);font-weight:600}
+
+/* PRINCIPLES */
+.why-section{padding:3rem 2rem;max-width:1100px;margin:0 auto;background:var(--card);border-radius:16px;border:1px solid var(--border)}
+.why-title{font-size:1.4rem;font-weight:800;letter-spacing:-.02em;margin-bottom:1.5rem}
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.why-item{display:flex;flex-direction:column;gap:.5rem}
+.why-icon{width:36px;height:36px;border-radius:10px;background:var(--accentLight);display:flex;align-items:center;justify-content:center;font-family:'Fira Code',monospace;font-size:.85rem;color:var(--accent);font-weight:700}
+.why-label{font-size:.88rem;font-weight:700;color:var(--text)}
+.why-text{font-size:.8rem;color:var(--muted);line-height:1.6}
+
+.wrap{padding:4rem 2rem 6rem;max-width:1100px;margin:0 auto}
+
+/* BOTTOM CTA */
+.bottom-cta{padding:4rem 2rem 6rem;max-width:700px;margin:0 auto;text-align:center}
+.bottom-cta h2{font-size:1.8rem;font-weight:800;letter-spacing:-.02em;margin-bottom:.75rem;color:var(--text)}
+.bottom-cta p{color:var(--muted);margin-bottom:2rem}
+.cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+
+footer{border-top:1px solid var(--border);padding:1.5rem 2rem;display:flex;justify-content:space-between;align-items:center;font-family:'Fira Code',monospace;font-size:.7rem;color:var(--dim)}
+footer a{color:var(--accent);text-decoration:none}
+
+@media(max-width:768px){
+  .hero-row{flex-direction:column}
+  .demo-panel{width:100%}
+  .screen-grid,.why-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-left">
+    <div class="nav-logo">radar</div>
+    <a href="https://zenbin.org/p/geo-index" class="nav-back">&larr; all proposals</a>
+  </div>
+  <div class="nav-badge">DESIGN 02</div>
+</nav>
+
+<section class="hero">
+  <div class="hero-row">
+    <div class="hero-left">
+      <div class="design-tag">02 / radar <span class="tag-pill">light theme</span></div>
+      <h1>Clean. Clear.<br><em>Everyone gets it</em><br>on first look.</h1>
+      <p class="hero-sub">Bento grid layout, warm and tactile. Built for the entire team -- DevRel engineers, marketing leads, and founders who want shared visibility without a learning curve.</p>
+      <div class="palette-row">
+        <div class="swatch" style="background:#f8fafc"></div>
+        <div class="swatch" style="background:#ffffff"></div>
+        <div class="swatch" style="background:#6366f1"></div>
+        <div class="swatch" style="background:#16a34a"></div>
+        <div class="swatch" style="background:#dc2626"></div>
+        <div class="swatch" style="background:#d97706"></div>
+      </div>
+      <div class="hero-ctas">
+        <a href="https://zenbin.org/p/geo-d2" class="btn-p">open .pen file &rarr;</a>
+        <a href="https://zenbin.org/p/geo-index" class="btn-s">&larr; all proposals</a>
+      </div>
+    </div>
+    <div class="demo-panel">
+      <div class="bento">
+        <div class="bento-tile">
+          <div class="bt-label">GEO Score</div>
+          <div class="bt-val accent">73</div>
+          <div class="bt-sub" style="color:#16a34a">+4 pts this week</div>
+        </div>
+        <div class="bento-tile">
+          <div class="bt-label">Mention Rate</div>
+          <div class="bt-val green">68%</div>
+          <div class="bt-sub">6 platforms</div>
+        </div>
+        <div class="bento-tile wide">
+          <div class="bt-label">Share of Voice</div>
+          <div class="sov-bar">
+            <div class="sov-seg" style="width:34%;background:#6366f1"></div>
+            <div class="sov-seg" style="width:28%;background:#ef4444"></div>
+            <div class="sov-seg" style="width:22%;background:#f59e0b"></div>
+            <div class="sov-seg" style="width:16%;background:#94a3b8"></div>
+          </div>
+          <div class="sov-legend">
+            <div class="sov-leg-item"><div class="sov-dot" style="background:#6366f1"></div>SurrealDB 34%</div>
+            <div class="sov-leg-item"><div class="sov-dot" style="background:#ef4444"></div>MongoDB 28%</div>
+            <div class="sov-leg-item"><div class="sov-dot" style="background:#f59e0b"></div>Postgres 22%</div>
+            <div class="sov-leg-item"><div class="sov-dot" style="background:#94a3b8"></div>Neo4j 16%</div>
+          </div>
+        </div>
+        <div class="bento-tile wide">
+          <div class="bt-label">Top Prompts</div>
+          <div class="prompt-mini">
+            <div class="prompt-row-mini">
+              <div class="prompt-text-mini">Vector + graph database?</div>
+              <div class="prompt-score-mini score-green">91</div>
+            </div>
+            <div class="prompt-row-mini">
+              <div class="prompt-text-mini">AI agent memory database?</div>
+              <div class="prompt-score-mini score-green">88</div>
+            </div>
+            <div class="prompt-row-mini">
+              <div class="prompt-text-mini">Best multi-model DB 2025?</div>
+              <div class="prompt-score-mini score-yellow">71</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="screens">
+  <h2 class="screens-title">Four screens</h2>
+  <p class="screens-sub">A complete workflow from high-level overview to granular citation analysis.</p>
+  <div class="screen-grid">
+    <div class="screen-card">
+      <div class="screen-num">01 / overview</div>
+      <div class="screen-name">Overview Dashboard</div>
+      <div class="screen-desc">The bento grid home. GEO score, mention rate, SOV bar, top performing prompts -- all in a single tactile grid. Cards slide in on load with staggered animation.</div>
+      <div class="screen-tags">
+        <span class="stag">bento grid</span>
+        <span class="stag">SOV chart</span>
+        <span class="stag">score card</span>
+      </div>
+    </div>
+    <div class="screen-card">
+      <div class="screen-num">02 / prompts</div>
+      <div class="screen-name">Prompt Library</div>
+      <div class="screen-desc">Categorized prompt cards with pack tags, filter tabs by category, last score, last run date, and platform coverage per prompt. Import packs or write custom ones.</div>
+      <div class="screen-tags">
+        <span class="stag">category filter</span>
+        <span class="stag">prompt packs</span>
+        <span class="stag">score history</span>
+      </div>
+    </div>
+    <div class="screen-card">
+      <div class="screen-num">03 / citations</div>
+      <div class="screen-name">Citation Map</div>
+      <div class="screen-desc">Perplexity source URLs ranked by citation frequency. Your domain in green, competitor pages in red, neutral sources in gray. Content gap insight card highlights opportunities.</div>
+      <div class="screen-tags">
+        <span class="stag">Perplexity URLs</span>
+        <span class="stag">domain breakdown</span>
+        <span class="stag">content gaps</span>
+      </div>
+    </div>
+    <div class="screen-card">
+      <div class="screen-num">04 / reports</div>
+      <div class="screen-name">Weekly Report</div>
+      <div class="screen-desc">Executive-ready weekly digest with score trend line chart, platform breakdown table, competitor SOV deltas, and one-click PDF / CSV export for stakeholder sharing.</div>
+      <div class="screen-tags">
+        <span class="stag">trend chart</span>
+        <span class="stag">PDF export</span>
+        <span class="stag">competitor delta</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="why-section">
+    <h2 class="why-title">Why Radar works for this product</h2>
+    <div class="why-grid">
+      <div class="why-item">
+        <div class="why-icon">@</div>
+        <div class="why-label">Accessible to the whole team</div>
+        <div class="why-text">Light theme with clear typography means marketing managers and founders can read dashboards alongside engineers. No learning curve, no "what does this mean?"</div>
+      </div>
+      <div class="why-item">
+        <div class="why-icon">#</div>
+        <div class="why-label">Data that tells stories</div>
+        <div class="why-text">The bento grid format makes it natural to compare cells and spot patterns. The SOV bar is immediately intuitive: how much of the AI "shelf space" do you own?</div>
+      </div>
+      <div class="why-item">
+        <div class="why-icon">*</div>
+        <div class="why-label">Shareable by design</div>
+        <div class="why-text">Light-background exports look great in Google Slides decks and email digests. Weekly reports are built to be forwarded. GEO scores become a shared language.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bottom-cta">
+  <h2>Open in pencil.dev</h2>
+  <p>The .pen file contains all 4 screens at full 375px mobile width, ready to explore, handoff, and iterate.</p>
+  <div class="cta-btns">
+    <a href="https://zenbin.org/p/geo-d2" class="btn-p">open .pen file &rarr;</a>
+    <a href="https://zenbin.org/p/geo-proposal-3" class="btn-s">next: Pulse &rarr;</a>
+  </div>
+</section>
+
+<footer>
+  <span>Radar -- GEO Score Tracker Design 02</span>
+  <a href="https://zenbin.org/p/geo-index">&larr; all proposals</a>
+</footer>
+</body>
+</html>

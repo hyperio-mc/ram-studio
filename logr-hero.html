@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LOGR — Every event. Every insight. Zero noise.</title>
+<meta name="description" content="Developer event observability platform. Real-time log streaming, SQL-powered queries, anomaly detection. A RAM design concept.">
+<meta property="og:title" content="LOGR — Every event. Every insight. Zero noise.">
+<meta property="og:description" content="Developer event observability. Dark terminal-first UI with electric indigo accents.">
+<meta name="theme-color" content="#4F6EF7">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#08090E;
+  --surface:#0E1018;
+  --card:#131726;
+  --border:#1E2436;
+  --accent:#4F6EF7;
+  --accent2:#34D399;
+  --accent3:#F59E0B;
+  --danger:#F43F5E;
+  --text:#E2E8F0;
+  --sub:#94A3B8;
+  --muted:#4A5568;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+
+/* ── Nav ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 32px;height:60px;display:flex;align-items:center;justify-content:space-between;background:var(--bg);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:18px;color:var(--accent);letter-spacing:4px}
+.nav-links{display:flex;gap:28px}
+.nav-links a{color:var(--sub);text-decoration:none;font-size:13px;font-weight:500;transition:color .2s}
+.nav-links a:hover{color:var(--text)}
+.nav-cta{background:var(--accent);color:#fff;padding:8px 20px;border-radius:8px;font-size:13px;font-weight:600;text-decoration:none;transition:opacity .2s}
+.nav-cta:hover{opacity:.85}
+
+/* ── Hero ── */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:100px 32px 80px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(79,110,247,0.12) 0%,transparent 70%);pointer-events:none}
+.hero-eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;letter-spacing:3px;color:var(--accent);margin-bottom:24px;display:flex;align-items:center;gap:8px}
+.hero-eyebrow::before,.hero-eyebrow::after{content:'';flex:1;height:1px;background:var(--border);max-width:60px}
+.hero h1{font-size:clamp(52px,8vw,96px);font-weight:900;line-height:1.0;letter-spacing:-3px;color:var(--text);margin-bottom:24px}
+.hero h1 .accent{color:var(--accent)}
+.hero-sub{font-size:clamp(15px,2vw,20px);color:var(--sub);max-width:560px;margin:0 auto 48px;font-weight:400;line-height:1.6}
+.hero-actions{display:flex;gap:16px;flex-wrap:wrap;justify-content:center}
+.btn-primary{background:var(--accent);color:#fff;padding:14px 32px;border-radius:10px;font-size:15px;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:transform .15s,opacity .15s}
+.btn-primary:hover{transform:translateY(-2px);opacity:.9}
+.btn-secondary{background:var(--card);color:var(--text);padding:14px 28px;border-radius:10px;font-size:15px;font-weight:500;text-decoration:none;border:1px solid var(--border);display:inline-flex;align-items:center;gap:8px;transition:border-color .2s}
+.btn-secondary:hover{border-color:var(--accent)}
+
+/* ── Live ticker ── */
+.ticker{margin-top:60px;display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 20px;font-family:'JetBrains Mono',monospace;font-size:12px}
+.ticker-dot{width:8px;height:8px;border-radius:50%;background:var(--accent2);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.ticker-label{color:var(--sub)}
+.ticker-value{color:var(--text);font-weight:600}
+.ticker-sep{color:var(--muted);padding:0 8px}
+
+/* ── Screens preview ── */
+.screens-section{padding:80px 32px;max-width:1200px;margin:0 auto}
+.section-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:3px;color:var(--accent);margin-bottom:16px;text-transform:uppercase}
+.section-title{font-size:clamp(28px,4vw,48px);font-weight:800;letter-spacing:-1.5px;color:var(--text);margin-bottom:12px}
+.section-sub{font-size:16px;color:var(--sub);margin-bottom:56px;max-width:480px}
+.screens-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+.screen-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px 16px;aspect-ratio:9/16;display:flex;flex-direction:column;gap:10px;transition:border-color .2s,transform .2s;cursor:pointer}
+.screen-card:hover{border-color:var(--accent);transform:translateY(-4px)}
+.sc-label{font-size:9px;font-weight:700;letter-spacing:2px;color:var(--accent);text-transform:uppercase}
+.sc-title{font-size:13px;font-weight:700;color:var(--text)}
+.sc-bar{height:4px;border-radius:2px;background:var(--accent);opacity:.6}
+.sc-bar-sm{height:3px;border-radius:2px;background:var(--border);margin-top:2px}
+.sc-metric{background:var(--surface);border-radius:8px;padding:8px;display:flex;flex-direction:column;gap:4px}
+.sc-num{font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:700;color:var(--text)}
+.sc-sublabel{font-size:8px;color:var(--sub);text-transform:uppercase;letter-spacing:1px}
+.sc-tag{display:inline-block;padding:2px 6px;border-radius:4px;font-size:8px;font-weight:700}
+.sc-row{display:flex;align-items:center;gap:6px;padding:5px 0;border-bottom:1px solid var(--border)}
+.sc-dot{width:5px;height:5px;border-radius:50%}
+.sc-txt{font-size:8px;color:var(--sub);flex:1}
+.sc-mono{font-family:'JetBrains Mono',monospace;font-size:7px;color:var(--accent2)}
+.sc-mono-kw{font-family:'JetBrains Mono',monospace;font-size:7px;color:var(--accent);font-weight:700}
+.sc-editor{background:#060710;border-radius:6px;padding:6px 8px;flex:1;display:flex;flex-direction:column;gap:3px}
+
+/* ── Features ── */
+.features-section{padding:80px 32px;max-width:1200px;margin:0 auto}
+.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px}
+.feature-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px}
+.feature-icon{font-size:28px;margin-bottom:16px}
+.feature-title{font-size:18px;font-weight:700;color:var(--text);margin-bottom:10px}
+.feature-desc{font-size:14px;color:var(--sub);line-height:1.6}
+
+/* ── Stats ── */
+.stats-section{padding:60px 32px;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.stats-inner{max-width:960px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:32px;text-align:center}
+.stat-num{font-size:clamp(32px,5vw,52px);font-weight:900;color:var(--text);letter-spacing:-2px}
+.stat-num .unit{color:var(--accent);font-size:.6em}
+.stat-label{font-size:13px;color:var(--sub);margin-top:6px}
+
+/* ── Query demo ── */
+.query-section{padding:80px 32px;max-width:1200px;margin:0 auto}
+.query-demo{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start;margin-top:48px}
+.editor-card{background:#070810;border:1px solid var(--accent);border-radius:16px;overflow:hidden}
+.editor-header{background:var(--card);padding:12px 16px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--border)}
+.editor-dot{width:10px;height:10px;border-radius:50%}
+.editor-filename{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--sub);margin-left:8px}
+.editor-body{padding:20px;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.8}
+.kw{color:var(--accent);font-weight:700}
+.tbl{color:var(--accent2)}
+.str{color:var(--accent3)}
+.ln{color:var(--muted);margin-right:16px;user-select:none}
+.results-card{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden}
+.results-header{padding:14px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.results-title{font-size:14px;font-weight:600;color:var(--text)}
+.results-meta{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent2)}
+.result-row{display:flex;align-items:center;justify-content:space-between;padding:11px 16px;border-bottom:1px solid var(--border)}
+.result-row:last-child{border-bottom:none}
+.result-name{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text)}
+.result-count{font-size:13px;font-weight:700}
+
+/* ── CTA ── */
+.cta-section{padding:100px 32px;text-align:center;position:relative;overflow:hidden}
+.cta-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 50%,rgba(79,110,247,0.1) 0%,transparent 70%);pointer-events:none}
+.cta-section h2{font-size:clamp(32px,5vw,60px);font-weight:900;letter-spacing:-2px;margin-bottom:20px}
+.cta-section p{font-size:18px;color:var(--sub);max-width:480px;margin:0 auto 40px}
+
+/* ── Footer ── */
+footer{border-top:1px solid var(--border);padding:32px;display:flex;align-items:center;justify-content:space-between}
+.footer-brand{font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--accent);font-weight:600;letter-spacing:3px}
+.footer-meta{font-size:12px;color:var(--muted)}
+.footer-links{display:flex;gap:20px}
+.footer-links a{font-size:12px;color:var(--muted);text-decoration:none}
+.footer-links a:hover{color:var(--sub)}
+
+/* ── RAM badge ── */
+.ram-badge{position:fixed;bottom:24px;right:24px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:10px 16px;font-size:11px;font-weight:600;color:var(--sub);letter-spacing:1px;z-index:99;text-decoration:none;transition:border-color .2s}
+.ram-badge:hover{border-color:var(--accent);color:var(--accent)}
+
+@media(max-width:768px){
+  .screens-grid{grid-template-columns:repeat(3,1fr)}
+  .features-grid{grid-template-columns:1fr}
+  .stats-inner{grid-template-columns:repeat(2,1fr)}
+  .query-demo{grid-template-columns:1fr}
+  nav .nav-links{display:none}
+}
+@media(max-width:520px){
+  .screens-grid{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">LOGR</div>
+  <div class="nav-links">
+    <a href="#screens">Screens</a>
+    <a href="#features">Features</a>
+    <a href="#query">Query</a>
+  </div>
+  <a class="nav-cta" href="logr-viewer">View Prototype →</a>
+</nav>
+
+<!-- ── Hero ── -->
+<section class="hero">
+  <div class="hero-eyebrow">Developer Observability</div>
+  <h1>Every event.<br><span class="accent">Zero noise.</span></h1>
+  <p class="hero-sub">Stream, query, and alert on application events in real time. LOGR gives every team the observability stack once reserved for hyperscalers.</p>
+  <div class="hero-actions">
+    <a class="btn-primary" href="logr-viewer">▶  View Prototype</a>
+    <a class="btn-secondary" href="logr-mock">Interactive Mock ☀◑</a>
+  </div>
+  <div class="ticker">
+    <span class="ticker-dot"></span>
+    <span class="ticker-label">LIVE</span>
+    <span class="ticker-value">2,406,182</span>
+    <span class="ticker-label">events today</span>
+    <span class="ticker-sep">·</span>
+    <span class="ticker-value">847</span>
+    <span class="ticker-label">events/sec</span>
+    <span class="ticker-sep">·</span>
+    <span class="ticker-value">42ms</span>
+    <span class="ticker-label">P99</span>
+  </div>
+</section>
+
+<!-- ── Screens ── -->
+<section id="screens" class="screens-section">
+  <div class="section-label">5 Screens</div>
+  <div class="section-title">Designed for developers</div>
+  <p class="section-sub">From live log tailing to SQL-powered analytics — every screen built around the data you actually need.</p>
+
+  <div class="screens-grid">
+    <!-- Screen 1: Overview -->
+    <div class="screen-card" onclick="window.open('logr-viewer','_blank')">
+      <div class="sc-label">01</div>
+      <div class="sc-title">Dashboard</div>
+      <div class="sc-metric">
+        <div class="sc-sublabel">Events / 24H</div>
+        <div class="sc-num">2.4M</div>
+      </div>
+      <div class="sc-metric">
+        <div class="sc-sublabel">P99 Latency</div>
+        <div class="sc-num" style="color:var(--accent2)">42ms</div>
+      </div>
+      <div class="sc-bar"></div>
+      <div class="sc-bar-sm"></div>
+      <div class="sc-bar-sm" style="width:80%"></div>
+      <div style="display:flex;gap:4px;margin-top:4px">
+        <div class="sc-dot" style="background:var(--accent2)"></div>
+        <div class="sc-txt">api-gateway 99.9%</div>
+      </div>
+      <div style="display:flex;gap:4px">
+        <div class="sc-dot" style="background:var(--danger)"></div>
+        <div class="sc-txt">data-pipeline 94.1%</div>
+      </div>
+    </div>
+    <!-- Screen 2: Stream -->
+    <div class="screen-card" onclick="window.open('logr-viewer','_blank')">
+      <div class="sc-label">02</div>
+      <div class="sc-title">Event Stream</div>
+      <div style="background:var(--surface);border-radius:6px;padding:5px 6px;font-size:8px;color:var(--muted)">⌕ level:error service:…</div>
+      <div style="display:flex;gap:4px;flex-wrap:wrap;margin-top:2px">
+        <div class="sc-tag" style="background:var(--accent);color:#fff">ALL</div>
+        <div class="sc-tag" style="background:var(--danger)22;color:var(--danger)">ERROR</div>
+        <div class="sc-tag" style="background:var(--accent3)22;color:var(--accent3)">WARN</div>
+      </div>
+      <div class="sc-row"><div class="sc-dot" style="background:var(--danger)"></div><div class="sc-txt">Timeout on db connection</div></div>
+      <div class="sc-row"><div class="sc-dot" style="background:var(--accent3)"></div><div class="sc-txt">Rate limit approaching</div></div>
+      <div class="sc-row"><div class="sc-dot" style="background:var(--accent2)"></div><div class="sc-txt">Session authenticated</div></div>
+      <div class="sc-row"><div class="sc-dot" style="background:var(--accent2)"></div><div class="sc-txt">Batch processed 2,400</div></div>
+      <div class="sc-row"><div class="sc-dot" style="background:var(--danger)"></div><div class="sc-txt">Webhook parse failed</div></div>
+    </div>
+    <!-- Screen 3: Query -->
+    <div class="screen-card" onclick="window.open('logr-viewer','_blank')">
+      <div class="sc-label">03</div>
+      <div class="sc-title">Query</div>
+      <div class="sc-editor">
+        <div><span class="sc-mono-kw">SELECT</span> <span class="sc-mono">event_name,</span></div>
+        <div><span class="sc-mono">count(*)</span></div>
+        <div><span class="sc-mono-kw">FROM</span> <span class="sc-mono" style="color:var(--accent2)">events</span></div>
+        <div><span class="sc-mono-kw">WHERE</span> <span class="sc-mono">level =</span></div>
+        <div><span class="sc-mono" style="color:var(--accent3)">'ERROR'</span></div>
+        <div><span class="sc-mono-kw">GROUP BY</span></div>
+        <div><span class="sc-mono">event_name</span></div>
+      </div>
+      <div style="background:var(--accent);border-radius:5px;padding:4px 8px;font-size:8px;font-weight:700;color:#fff;text-align:center">▶ Run Query</div>
+      <div class="sc-row" style="border-bottom:1px solid var(--border)">
+        <div class="sc-mono">db.connection.timeout</div>
+        <div style="font-size:8px;color:var(--danger);font-weight:700">1,284</div>
+      </div>
+    </div>
+    <!-- Screen 4: Alerts -->
+    <div class="screen-card" onclick="window.open('logr-viewer','_blank')">
+      <div class="sc-label">04</div>
+      <div class="sc-title">Alerts</div>
+      <div style="background:var(--danger)14;border:1px solid var(--danger)44;border-radius:8px;padding:8px;margin-top:4px">
+        <div style="font-size:8px;font-weight:700;color:var(--danger);text-transform:uppercase;letter-spacing:1px">CRITICAL</div>
+        <div style="font-size:9px;color:var(--text);margin-top:4px;line-height:1.4">P99 Latency Exceeded</div>
+        <div style="font-size:7px;color:var(--danger);margin-top:3px">847ms › 500ms baseline</div>
+      </div>
+      <div style="background:var(--accent3)14;border:1px solid var(--accent3)44;border-radius:8px;padding:8px">
+        <div style="font-size:8px;font-weight:700;color:var(--accent3);text-transform:uppercase;letter-spacing:1px">WARNING</div>
+        <div style="font-size:9px;color:var(--text);margin-top:4px;line-height:1.4">Error Rate Spike</div>
+        <div style="font-size:7px;color:var(--accent3);margin-top:3px">3.2% › 0.1% baseline</div>
+      </div>
+      <div style="background:var(--accent)14;border:1px solid var(--accent)44;border-radius:8px;padding:8px">
+        <div style="font-size:8px;font-weight:700;color:var(--accent);text-transform:uppercase">INFO</div>
+        <div style="font-size:9px;color:var(--text);margin-top:4px">Unusual Traffic</div>
+      </div>
+    </div>
+    <!-- Screen 5: Sources -->
+    <div class="screen-card" onclick="window.open('logr-viewer','_blank')">
+      <div class="sc-label">05</div>
+      <div class="sc-title">Sources</div>
+      <div class="sc-editor" style="padding:6px">
+        <div style="font-size:7px;color:var(--accent3)">npm install @logr/sdk</div>
+        <div class="sc-mono">import { Logr }</div>
+        <div class="sc-mono">from "@logr/sdk"</div>
+        <div class="sc-mono">const client =</div>
+        <div class="sc-mono"> new Logr({ token:</div>
+        <div class="sc-mono" style="color:var(--accent2)"> "lgr_live_…"</div>
+        <div class="sc-mono">})</div>
+      </div>
+      <div class="sc-row"><div class="sc-dot" style="background:var(--accent2)"></div><div class="sc-txt">Vercel · 1.2M/day</div></div>
+      <div class="sc-row"><div class="sc-dot" style="background:var(--accent2)"></div><div class="sc-txt">Supabase · 840K/day</div></div>
+      <div class="sc-row"><div class="sc-dot" style="background:var(--accent3)"></div><div class="sc-txt">Cloudflare · 3.1M/day</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Stats ── -->
+<section class="stats-section">
+  <div class="stats-inner">
+    <div>
+      <div class="stat-num">2.4<span class="unit">M</span></div>
+      <div class="stat-label">Events per 24 hours</div>
+    </div>
+    <div>
+      <div class="stat-num">42<span class="unit">ms</span></div>
+      <div class="stat-label">P99 query latency</div>
+    </div>
+    <div>
+      <div class="stat-num">0.1<span class="unit">%</span></div>
+      <div class="stat-label">Error rate baseline</div>
+    </div>
+    <div>
+      <div class="stat-num">4<span class="unit">+</span></div>
+      <div class="stat-label">Connected sources</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Features ── -->
+<section id="features" class="features-section">
+  <div class="section-label">Features</div>
+  <div class="section-title">The full observability stack</div>
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">≋</div>
+      <div class="feature-title">Real-time Event Stream</div>
+      <div class="feature-desc">Tail live events with blazing speed. Filter by service, severity level, trace ID, or any custom attribute. Colour-coded by log level with left-border severity indicators.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">◈</div>
+      <div class="feature-title">SQL Query Builder</div>
+      <div class="feature-desc">Full syntax-highlighted SQL editor with monospace font, line numbers, and keyword colouring. Run ad-hoc queries against your event store in under 50ms.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">⚡</div>
+      <div class="feature-title">Anomaly Alerts</div>
+      <div class="feature-desc">ML-powered anomaly detection flags P99 spikes, error rate surges, and unusual traffic patterns. Severity tiered: CRITICAL → WARNING → INFO with mini sparklines.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">⬡</div>
+      <div class="feature-title">Bento Dashboard</div>
+      <div class="feature-desc">Glanceable overview with live metric cards, service health indicators, micro sparklines, and an active alerts banner. Designed for the lock-screen glance reflex.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">⊞</div>
+      <div class="feature-title">Universal Ingestion</div>
+      <div class="feature-desc">One-line SDK integration for Node.js, Python, Go. Pre-built connectors for Vercel, Supabase, Cloudflare, GitHub Actions — up and running in under 2 minutes.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">◑</div>
+      <div class="feature-title">Dark-First Design</div>
+      <div class="feature-desc">Near-black #08090E background with electric indigo primary and mint green for success states. Monospace JetBrains Mono for all data values — terminal precision meets polished UI.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Query demo ── -->
+<section id="query" class="query-section">
+  <div class="section-label">Query Builder</div>
+  <div class="section-title">SQL, not YAML config hell</div>
+  <p class="section-sub">Run any analysis against your event stream. Syntax highlighting, line numbers, results in milliseconds.</p>
+  <div class="query-demo">
+    <div class="editor-card">
+      <div class="editor-header">
+        <div class="editor-dot" style="background:#F43F5E"></div>
+        <div class="editor-dot" style="background:#F59E0B"></div>
+        <div class="editor-dot" style="background:#34D399"></div>
+        <div class="editor-filename">query.sql</div>
+      </div>
+      <div class="editor-body">
+        <div><span class="ln">1</span><span class="kw">SELECT</span> event_name, count(*)</div>
+        <div><span class="ln">2</span><span class="kw">FROM</span> <span class="tbl">events</span></div>
+        <div><span class="ln">3</span><span class="kw">WHERE</span> level = <span class="str">'ERROR'</span></div>
+        <div><span class="ln">4</span><span class="kw">AND</span> ts &gt;= now() - interval <span class="str">'1h'</span></div>
+        <div><span class="ln">5</span><span class="kw">GROUP BY</span> event_name</div>
+        <div><span class="ln">6</span><span class="kw">ORDER BY</span> count(*) <span class="kw">DESC</span></div>
+      </div>
+    </div>
+    <div class="results-card">
+      <div class="results-header">
+        <div class="results-title">Results</div>
+        <div class="results-meta">12 rows · 38ms</div>
+      </div>
+      <div class="result-row"><div class="result-name">db.connection.timeout</div><div class="result-count" style="color:var(--danger)">1,284</div></div>
+      <div class="result-row"><div class="result-name">auth.token.invalid</div><div class="result-count" style="color:var(--danger)">892</div></div>
+      <div class="result-row"><div class="result-name">webhook.parse.failed</div><div class="result-count" style="color:var(--accent3)">621</div></div>
+      <div class="result-row"><div class="result-name">rate_limit.exceeded</div><div class="result-count" style="color:var(--accent3)">448</div></div>
+      <div class="result-row"><div class="result-name">cache.miss</div><div class="result-count" style="color:var(--sub)">312</div></div>
+      <div class="result-row"><div class="result-name">queue.retry</div><div class="result-count" style="color:var(--sub)">201</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section class="cta-section">
+  <h2>Ship with confidence.<br>Debug at the speed of thought.</h2>
+  <p>One ingestion endpoint. Infinite observability.</p>
+  <div class="hero-actions" style="justify-content:center">
+    <a class="btn-primary" href="logr-viewer">View Prototype →</a>
+    <a class="btn-secondary" href="logr-mock">Interactive Mock ☀◑</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-brand">LOGR</div>
+  <div class="footer-meta">A RAM Design Heartbeat · March 2026</div>
+  <div class="footer-links">
+    <a href="logr-viewer">Prototype</a>
+    <a href="logr-mock">Mock</a>
+  </div>
+</footer>
+
+<a class="ram-badge" href="/">⬡ RAM</a>
+
+</body>
+</html>

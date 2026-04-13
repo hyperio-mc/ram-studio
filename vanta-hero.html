@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>VANTA — AI Model Registry</title>
+<style>
+  :root {
+    --bg: #0E0D0C;
+    --surface: #1C1A18;
+    --card: #242220;
+    --border: #2E2B28;
+    --text: #F0EDE6;
+    --muted: #6B665F;
+    --accent: #C8FF00;
+    --accent2: #5B4EFF;
+    --accent3: #FF6B35;
+    --success: #00E5A0;
+    --dim: #3A3630;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', system-ui, sans-serif;
+    overflow-x: hidden;
+  }
+  /* Grain overlay */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 1000; opacity: 0.4;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 48px;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg);
+    backdrop-filter: blur(20px);
+  }
+  .nav-logo {
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    font-size: 16px; font-weight: 700;
+    color: var(--text); letter-spacing: 0.15em;
+  }
+  .nav-logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 32px; }
+  .nav-links a {
+    color: var(--muted); text-decoration: none;
+    font-size: 13px; letter-spacing: 0.05em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+  .nav-cta {
+    background: var(--accent); color: var(--bg);
+    padding: 10px 22px; border-radius: 6px;
+    font-size: 13px; font-weight: 700;
+    text-decoration: none; letter-spacing: 0.05em;
+    transition: opacity 0.2s;
+  }
+  .nav-cta:hover { opacity: 0.85; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 100px 48px 80px;
+    position: relative; overflow: hidden;
+  }
+  .hero-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 80px; align-items: center; max-width: 1200px; margin: 0 auto; width: 100%;
+  }
+  .hero-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; color: var(--accent);
+    letter-spacing: 0.2em; margin-bottom: 24px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .hero-eyebrow::before {
+    content: ''; width: 32px; height: 1px; background: var(--accent);
+  }
+  .hero-title {
+    font-size: clamp(52px, 5vw, 80px);
+    font-weight: 800; line-height: 0.95;
+    letter-spacing: -0.04em; margin-bottom: 28px;
+  }
+  .hero-title .accent { color: var(--accent); }
+  .hero-desc {
+    font-size: 17px; color: var(--muted); line-height: 1.65;
+    max-width: 440px; margin-bottom: 40px;
+  }
+  .hero-actions { display: flex; gap: 14px; align-items: center; }
+  .btn-primary {
+    background: var(--accent); color: var(--bg);
+    padding: 14px 28px; border-radius: 8px;
+    font-size: 14px; font-weight: 700;
+    text-decoration: none; letter-spacing: 0.05em;
+    transition: transform 0.15s, opacity 0.15s;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn-primary:hover { transform: translateY(-1px); opacity: 0.9; }
+  .btn-secondary {
+    color: var(--muted); font-size: 14px;
+    text-decoration: none; letter-spacing: 0.05em;
+    display: inline-flex; align-items: center; gap: 8px;
+    transition: color 0.2s;
+  }
+  .btn-secondary:hover { color: var(--text); }
+
+  /* Hero stats */
+  .hero-stats {
+    display: flex; gap: 32px; margin-top: 52px; padding-top: 32px;
+    border-top: 1px solid var(--border);
+  }
+  .stat-item { }
+  .stat-value {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 28px; font-weight: 700;
+    color: var(--text); display: block;
+  }
+  .stat-label {
+    font-size: 11px; color: var(--muted); letter-spacing: 0.1em;
+    text-transform: uppercase; margin-top: 4px;
+  }
+
+  /* Phone mockup */
+  .phone-wrapper {
+    display: flex; justify-content: center; position: relative;
+  }
+  .phone-frame {
+    width: 300px;
+    background: var(--surface);
+    border-radius: 40px;
+    border: 1px solid var(--border);
+    padding: 12px;
+    box-shadow:
+      0 0 0 1px rgba(200,255,0,0.08),
+      0 40px 100px rgba(0,0,0,0.6),
+      inset 0 1px 0 rgba(255,255,255,0.05);
+    position: relative;
+  }
+  .phone-screen {
+    border-radius: 30px; overflow: hidden;
+    background: var(--bg);
+    aspect-ratio: 9/19.4;
+    position: relative;
+  }
+  .phone-screen-inner {
+    padding: 20px 14px 12px;
+    height: 100%;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+  }
+  .phone-notch {
+    width: 80px; height: 8px;
+    background: var(--surface);
+    border-radius: 4px; margin: 0 auto 16px;
+  }
+  .ps-eyebrow { color: var(--accent); font-size: 8px; letter-spacing: 0.15em; margin-bottom: 4px; }
+  .ps-title { color: var(--text); font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+  .ps-sub { color: var(--muted); font-size: 9px; margin-bottom: 14px; }
+
+  /* Mini search in phone */
+  .ps-search {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px; padding: 8px 10px;
+    color: var(--muted); font-size: 9px;
+    margin-bottom: 10px;
+  }
+  /* Mini pills */
+  .ps-pills { display: flex; gap: 6px; margin-bottom: 12px; }
+  .ps-pill {
+    padding: 4px 10px; border-radius: 12px;
+    font-size: 8px; font-weight: 600;
+  }
+  .ps-pill.active { background: var(--accent); color: var(--bg); }
+  .ps-pill.inactive { background: var(--dim); color: var(--muted); }
+
+  /* Mini model card */
+  .ps-model-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 12px;
+    margin-bottom: 8px;
+    position: relative;
+    overflow: hidden;
+  }
+  .ps-model-card.active {
+    background: #1F2100;
+    border-color: var(--accent);
+  }
+  .ps-model-card::before {
+    content: '';
+    position: absolute; left: 0; top: 0; bottom: 0;
+    width: 3px;
+  }
+  .ps-model-card.active::before { background: var(--accent); }
+  .ps-model-card.inactive::before { background: var(--dim); }
+  .ps-card-name { color: var(--text); font-size: 9px; font-weight: 700; margin-bottom: 2px; }
+  .ps-card-provider { color: var(--muted); font-size: 7px; text-transform: uppercase; }
+  .ps-card-score {
+    position: absolute; right: 12px; top: 10px;
+    font-size: 14px; font-weight: 700;
+  }
+  .ps-model-card.active .ps-card-score { color: var(--accent); }
+  .ps-model-card.inactive .ps-card-score { color: var(--text); }
+
+  /* Floating glow */
+  .phone-glow {
+    position: absolute;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(200,255,0,0.15) 0%, transparent 70%);
+    border-radius: 50%;
+    top: -40px; right: -40px; pointer-events: none;
+  }
+
+  /* SECTION: How it works */
+  .section {
+    padding: 100px 48px;
+    max-width: 1200px; margin: 0 auto;
+  }
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; color: var(--accent);
+    letter-spacing: 0.2em; text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .section-title {
+    font-size: 42px; font-weight: 800;
+    letter-spacing: -0.03em; margin-bottom: 16px;
+    line-height: 1.05;
+  }
+  .section-sub {
+    font-size: 16px; color: var(--muted); max-width: 520px; line-height: 1.6;
+  }
+
+  /* Feature grid */
+  .feature-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1px; background: var(--border);
+    border: 1px solid var(--border); border-radius: 16px; overflow: hidden;
+    margin-top: 60px;
+  }
+  .feature-card {
+    background: var(--surface); padding: 36px 32px;
+    transition: background 0.2s;
+  }
+  .feature-card:hover { background: var(--card); }
+  .feature-icon {
+    font-size: 24px; margin-bottom: 20px; display: block;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--accent);
+  }
+  .feature-title {
+    font-size: 18px; font-weight: 700; margin-bottom: 10px;
+  }
+  .feature-desc { font-size: 14px; color: var(--muted); line-height: 1.6; }
+
+  /* Models marquee section */
+  .models-section {
+    padding: 80px 0; overflow: hidden;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .models-label {
+    text-align: center; margin-bottom: 40px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; color: var(--muted); letter-spacing: 0.15em;
+  }
+  .models-track {
+    display: flex; gap: 0;
+    animation: marquee 22s linear infinite;
+    width: max-content;
+  }
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .model-chip {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 12px 24px;
+    border-right: 1px solid var(--border);
+    white-space: nowrap;
+  }
+  .model-chip-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--dim); }
+  .model-chip-dot.active { background: var(--accent); }
+  .model-chip-name {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; color: var(--muted);
+  }
+  .model-chip-score {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; color: var(--accent);
+    font-weight: 700;
+  }
+
+  /* Benchmark table section */
+  .bench-section { padding: 80px 48px; max-width: 1200px; margin: 0 auto; }
+  .bench-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 40px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+  }
+  .bench-table th {
+    padding: 12px 16px; text-align: left;
+    font-size: 9px; letter-spacing: 0.15em;
+    color: var(--muted); text-transform: uppercase;
+    border-bottom: 1px solid var(--border);
+  }
+  .bench-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+  }
+  .bench-table tr:hover td { background: var(--surface); }
+  .bench-table tr.highlight td { background: #1F2100; }
+  .bench-score { color: var(--accent); font-weight: 700; }
+  .bench-badge {
+    display: inline-block; padding: 3px 8px;
+    border-radius: 4px; font-size: 9px; font-weight: 700;
+    letter-spacing: 0.1em;
+  }
+  .bench-badge.active { background: #1A2200; color: var(--accent); }
+  .bench-badge.standby { background: var(--dim); color: var(--muted); }
+  .bench-badge.trending { background: #221500; color: var(--accent3); }
+
+  /* CTA section */
+  .cta-section {
+    padding: 100px 48px;
+    text-align: center;
+    border-top: 1px solid var(--border);
+    background: linear-gradient(180deg, transparent 0%, rgba(200,255,0,0.02) 100%);
+  }
+  .cta-title {
+    font-size: 56px; font-weight: 800;
+    letter-spacing: -0.04em; margin-bottom: 16px;
+  }
+  .cta-sub { font-size: 17px; color: var(--muted); margin-bottom: 40px; }
+
+  /* Footer */
+  footer {
+    padding: 40px 48px;
+    border-top: 1px solid var(--border);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-logo {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px; font-weight: 700; color: var(--muted);
+  }
+  .footer-logo span { color: var(--accent); }
+  .footer-copy { font-size: 12px; color: var(--muted); }
+
+  /* Animated grid background */
+  .hero::after {
+    content: '';
+    position: absolute; inset: 0; pointer-events: none;
+    background-image:
+      linear-gradient(var(--border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 60px 60px;
+    opacity: 0.3;
+    mask-image: radial-gradient(ellipse at 60% 50%, black 30%, transparent 70%);
+  }
+
+  @media (max-width: 900px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .phone-wrapper { display: none; }
+    .feature-grid { grid-template-columns: 1fr; }
+  }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">VAN<span>T</span>A</div>
+  <div class="nav-links">
+    <a href="#features">Features</a>
+    <a href="#models">Models</a>
+    <a href="#benchmarks">Benchmarks</a>
+    <a href="/vanta-viewer">View Design ↗</a>
+  </div>
+  <a href="/vanta-mock" class="nav-cta">Try Demo →</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-grid">
+    <div class="hero-content">
+      <div class="hero-eyebrow">AI MODEL REGISTRY</div>
+      <h1 class="hero-title">Your AI<br>model<br><span class="accent">control room.</span></h1>
+      <p class="hero-desc">Discover, benchmark, compare, and deploy the world's best AI models — from one unified interface. Built for teams that move fast without breaking things.</p>
+      <div class="hero-actions">
+        <a href="/vanta-mock" class="btn-primary">⚡ Open Registry →</a>
+        <a href="/vanta-viewer" class="btn-secondary">View prototype ↗</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <span class="stat-value">17</span>
+          <span class="stat-label">Active Models</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-value">28.4B</span>
+          <span class="stat-label">Tokens / Week</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-value">1.2ms</span>
+          <span class="stat-label">Avg Latency</span>
+        </div>
+      </div>
+    </div>
+    <div class="phone-wrapper">
+      <div class="phone-glow"></div>
+      <div class="phone-frame">
+        <div class="phone-screen">
+          <div class="phone-screen-inner">
+            <div class="phone-notch"></div>
+            <div class="ps-eyebrow">VANTA · MODEL REGISTRY</div>
+            <div class="ps-title">Discovery</div>
+            <div class="ps-sub">17 models active</div>
+            <div class="ps-search">⌕  Search models, tasks...</div>
+            <div class="ps-pills">
+              <span class="ps-pill active">All</span>
+              <span class="ps-pill inactive">Vision</span>
+              <span class="ps-pill inactive">Code</span>
+              <span class="ps-pill inactive">Embed</span>
+            </div>
+            <div class="ps-model-card active inactive">
+              <div class="ps-card-name">claude-3-7-sonnet</div>
+              <div class="ps-card-provider">Anthropic</div>
+              <div class="ps-card-score" style="color:var(--accent)">94.2</div>
+            </div>
+            <div class="ps-model-card inactive">
+              <div class="ps-card-name">gpt-4o</div>
+              <div class="ps-card-provider">OpenAI</div>
+              <div class="ps-card-score">91.8</div>
+            </div>
+            <div class="ps-model-card inactive">
+              <div class="ps-card-name">gemini-2.0-flash</div>
+              <div class="ps-card-provider">Google DeepMind</div>
+              <div class="ps-card-score">89.1</div>
+            </div>
+            <div class="ps-model-card inactive">
+              <div class="ps-card-name">llama-3.3-70b</div>
+              <div class="ps-card-provider">Meta · Self-Hosted</div>
+              <div class="ps-card-score">87.3</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="models-section" id="models">
+  <div class="models-label">MODELS IN REGISTRY</div>
+  <div class="models-track" id="track">
+    <!-- doubled for infinite loop -->
+  </div>
+</div>
+
+<section class="section" id="features">
+  <div class="section-label">CAPABILITIES</div>
+  <h2 class="section-title">Everything your AI<br>stack needs.</h2>
+  <p class="section-sub">From discovery to production deployment, VANTA gives teams complete visibility and control over their model infrastructure.</p>
+  <div class="feature-grid">
+    <div class="feature-card">
+      <span class="feature-icon">◈</span>
+      <div class="feature-title">Smart Discovery</div>
+      <p class="feature-desc">Browse and filter 17+ frontier models by capability, provider, cost, and benchmark score. Updated as new models ship.</p>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">⊞</span>
+      <div class="feature-title">Side-by-Side Compare</div>
+      <p class="feature-desc">Pit any two models against each other across 7+ benchmarks. See winner highlights and cost deltas at a glance.</p>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">⚡</span>
+      <div class="feature-title">One-Click Deploy</div>
+      <p class="feature-desc">Configure endpoints, set rate limits, define fallback models, and go live in production — no code required.</p>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">▦</span>
+      <div class="feature-title">Usage Analytics</div>
+      <p class="feature-desc">Real-time token consumption, cost tracking, and model utilization breakdown. Know exactly what you're spending and where.</p>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">⊙</span>
+      <div class="feature-title">Auto Failover</div>
+      <p class="feature-desc">Define fallback chains so your app keeps running even when primary models go down. Zero downtime switching.</p>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">⌛</span>
+      <div class="feature-title">Live Benchmarks</div>
+      <p class="feature-desc">Continuously tracked scores across MMLU, HumanEval, MATH, and more. Know exactly how your models rank today.</p>
+    </div>
+  </div>
+</section>
+
+<section class="bench-section" id="benchmarks">
+  <div class="section-label">LIVE BENCHMARKS</div>
+  <h2 class="section-title">Numbers don't lie.</h2>
+  <table class="bench-table">
+    <thead>
+      <tr>
+        <th>Model</th>
+        <th>Provider</th>
+        <th>Overall</th>
+        <th>MMLU</th>
+        <th>HumanEval</th>
+        <th>MATH</th>
+        <th>Cost / 1M</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="highlight">
+        <td style="font-weight:700">claude-3-7-sonnet</td>
+        <td style="color:var(--muted)">Anthropic</td>
+        <td class="bench-score">94.2</td>
+        <td>88.4</td>
+        <td>92.0</td>
+        <td>96.7</td>
+        <td style="color:var(--muted)">$3.00</td>
+        <td><span class="bench-badge active">✓ ACTIVE</span></td>
+      </tr>
+      <tr>
+        <td style="font-weight:700">gpt-4o</td>
+        <td style="color:var(--muted)">OpenAI</td>
+        <td class="bench-score" style="color:var(--text)">91.8</td>
+        <td>87.2</td>
+        <td>90.2</td>
+        <td>93.1</td>
+        <td style="color:var(--muted)">$2.50</td>
+        <td><span class="bench-badge standby">STANDBY</span></td>
+      </tr>
+      <tr>
+        <td style="font-weight:700">gemini-2.0-flash</td>
+        <td style="color:var(--muted)">Google DeepMind</td>
+        <td class="bench-score" style="color:var(--text)">89.1</td>
+        <td>85.6</td>
+        <td>88.4</td>
+        <td>91.2</td>
+        <td style="color:var(--muted)">$0.10</td>
+        <td><span class="bench-badge trending">↗ RISING</span></td>
+      </tr>
+      <tr>
+        <td style="font-weight:700">llama-3.3-70b</td>
+        <td style="color:var(--muted)">Meta</td>
+        <td class="bench-score" style="color:var(--text)">87.3</td>
+        <td>83.1</td>
+        <td>85.9</td>
+        <td>88.4</td>
+        <td style="color:var(--muted)">Self-hosted</td>
+        <td><span class="bench-badge standby">STANDBY</span></td>
+      </tr>
+      <tr>
+        <td style="font-weight:700">mistral-large-2</td>
+        <td style="color:var(--muted)">Mistral AI</td>
+        <td class="bench-score" style="color:var(--text)">85.9</td>
+        <td>81.2</td>
+        <td>84.1</td>
+        <td>87.0</td>
+        <td style="color:var(--muted)">$2.00</td>
+        <td><span class="bench-badge standby">STANDBY</span></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="cta-section">
+  <h2 class="cta-title">One registry.<br>Every model.</h2>
+  <p class="cta-sub">Stop juggling API keys, pricing pages, and benchmark PDFs. VANTA brings it all into one place.</p>
+  <div style="display:flex;gap:16px;justify-content:center;align-items:center">
+    <a href="/vanta-mock" class="btn-primary" style="font-size:16px;padding:16px 36px">⚡ Open Registry →</a>
+    <a href="/vanta-viewer" class="btn-secondary" style="font-size:15px">See prototype ↗</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">VAN<span>T</span>A</div>
+  <div class="footer-copy">Design by RAM · ram.zenbin.org/vanta</div>
+</footer>
+
+<script>
+// Build model marquee
+const models = [
+  ['claude-3-7-sonnet', '94.2', true],
+  ['gpt-4o', '91.8', false],
+  ['gemini-2.0-flash', '89.1', false],
+  ['llama-3.3-70b', '87.3', false],
+  ['mistral-large-2', '85.9', false],
+  ['qwen-2.5-72b', '84.1', false],
+  ['deepseek-v3', '83.7', false],
+  ['phi-4', '82.0', false],
+];
+const track = document.getElementById('track');
+const doubled = [...models, ...models, ...models, ...models];
+doubled.forEach(([name, score, active]) => {
+  const chip = document.createElement('div');
+  chip.className = 'model-chip';
+  chip.innerHTML = `
+    <div class="model-chip-dot ${active?'active':''}"></div>
+    <span class="model-chip-name">${name}</span>
+    <span class="model-chip-score">${score}</span>
+  `;
+  track.appendChild(chip);
+});
+</script>
+</body>
+</html>

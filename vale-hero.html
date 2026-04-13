@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VALE — morning writing companion</title>
+<meta name="description" content="Morning pages app. Daily writing prompts, personal journal, saved passages, writing patterns. Warm near-white + dusty plum. Lora + JetBrains Mono. A RAM design concept.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://zenbin.org/p/vale">
+<meta property="og:title" content="VALE — morning writing companion">
+<meta property="og:description" content="Morning pages app. Daily writing prompts, personal journal archive, saved passages from your own writing. Warm near-white + dusty plum. Lora + JetBrains Mono.">
+<meta property="og:site_name" content="RAM Design Studio">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="VALE — morning writing companion">
+<meta name="twitter:description" content="Morning pages app. Daily writing prompts, personal journal archive, saved passages from your own writing.">
+<meta name="twitter:site" content="@ram_design">
+<meta name="theme-color" content="#7C5C8A">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@300;400;500&display=swap');
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#FDFCF9;--surface:#F5F3EE;--card:#FFFFFF;--cream:#F0EDE5;
+  --ink:#2C2417;--plum:#7C5C8A;--plum2:#A37FB5;--warm:#C09060;--rose:#B07070;--sage:#6B8870;
+  --mist:rgba(44,36,23,0.36);--dim:rgba(44,36,23,0.12);
+  --border:rgba(44,36,23,0.09);
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:'Lora',serif;line-height:1.5;overflow-x:hidden}
+
+/* ─── NAV ─── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(253,252,249,0.92);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;padding:0 56px;height:64px}
+.nav-logo{font-family:'Lora',serif;font-weight:700;font-size:22px;font-style:italic;text-decoration:none;color:var(--plum)}
+.nav-links{display:flex;gap:40px;list-style:none}
+.nav-links a{font-size:10px;color:var(--mist);text-decoration:none;font-family:'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase}
+.nav-cta{background:var(--plum);color:white;border:none;padding:10px 22px;border-radius:8px;font-size:10px;font-weight:700;cursor:pointer;font-family:'JetBrains Mono',monospace;letter-spacing:.08em}
+
+/* ─── HERO ─── */
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:80px 0 0;overflow:hidden}
+.hero-left{padding:0 64px 72px}
+.hero-greeting{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.18em;color:var(--plum);margin-bottom:6px;text-transform:uppercase;font-weight:700}
+.hero-date{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--mist);margin-bottom:28px;letter-spacing:.04em}
+.hero-title{font-family:'Lora',serif;font-style:italic;font-size:80px;line-height:0.93;letter-spacing:-.02em;margin-bottom:28px;color:var(--ink)}
+.hero-title span{color:var(--plum)}
+.hero-rule{height:1px;background:var(--border);margin:28px 0}
+.hero-deck{font-family:'Lora',serif;font-size:19px;line-height:1.6;color:var(--mist);margin-bottom:14px;font-style:italic;max-width:440px}
+.hero-sub{font-family:'Inter',sans-serif;font-size:13px;color:var(--mist);line-height:1.9;max-width:400px;margin-bottom:44px;font-weight:300}
+.hero-btns{display:flex;gap:14px;align-items:center}
+.btn-plum{background:var(--plum);color:white;padding:14px 30px;border-radius:10px;font-size:10px;font-weight:700;letter-spacing:.1em;text-decoration:none;display:inline-block;font-family:'JetBrains Mono',monospace}
+.btn-ghost{border:1.5px solid var(--border);color:var(--mist);padding:13px 28px;border-radius:10px;font-size:10px;letter-spacing:.1em;text-decoration:none;display:inline-block;font-family:'JetBrains Mono',monospace}
+
+.hero-right{height:100vh;position:relative;overflow:hidden;display:flex;align-items:flex-end;justify-content:center;padding-bottom:0}
+
+/* Floating passage cards */
+.float-passage{position:absolute;background:rgba(255,255,255,0.92);border:1px solid var(--border);border-radius:12px;padding:16px 20px;backdrop-filter:blur(8px);max-width:260px}
+.fp-label{font-family:'JetBrains Mono',monospace;font-size:7px;color:var(--plum);letter-spacing:.1em;text-transform:uppercase;font-weight:700;margin-bottom:6px}
+.fp-text{font-family:'Lora',serif;font-size:12px;color:var(--ink);line-height:1.5;font-style:italic}
+.fp-meta{font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--mist);margin-top:8px}
+
+/* Streak badge */
+.float-streak{position:absolute;background:var(--plum);color:white;border-radius:14px;padding:12px 20px;text-align:center}
+.fs-num{font-family:'Lora',serif;font-size:32px;font-weight:700;line-height:1}
+.fs-label{font-family:'JetBrains Mono',monospace;font-size:7px;letter-spacing:.1em;margin-top:4px;opacity:.75}
+
+/* Phone */
+.phone-wrap{width:290px;transform:translateY(32px)}
+.phone{width:290px;height:600px;background:var(--surface);border-radius:38px;overflow:hidden;
+  border:1px solid var(--border);
+  box-shadow:0 2px 6px rgba(44,36,23,0.06),0 12px 40px rgba(44,36,23,0.10),0 40px 80px rgba(44,36,23,0.06);
+  position:relative}
+.phone-notch{width:80px;height:18px;background:var(--bg);border-radius:0 0 12px 12px;position:absolute;top:0;left:50%;transform:translateX(-50%);z-index:2}
+.p-screen{padding:26px 14px 14px;height:100%;overflow:hidden;background:var(--bg)}
+.p-greeting{font-family:'JetBrains Mono',monospace;font-size:7px;color:var(--plum);font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+.p-name{font-family:'Lora',serif;font-size:22px;font-weight:700;color:var(--ink);line-height:1;margin:2px 0 10px}
+.p-rule{height:1px;background:var(--border);margin-bottom:10px}
+.p-prompt-card{background:var(--surface);border-radius:6px;padding:8px 10px;margin-bottom:8px;border-top:2px solid var(--plum)}
+.p-prompt-lbl{font-family:'JetBrains Mono',monospace;font-size:6px;color:var(--plum);font-weight:700;letter-spacing:.1em;margin-bottom:4px}
+.p-prompt-txt{font-family:'Lora',serif;font-size:10px;color:var(--ink);line-height:1.4;font-style:italic}
+.p-recent-lbl{font-family:'JetBrains Mono',monospace;font-size:6px;color:var(--mist);letter-spacing:.1em;text-transform:uppercase;margin-bottom:5px}
+.p-entry{display:flex;gap:8px;align-items:flex-start;padding:6px 0;border-bottom:1px solid var(--border)}
+.p-entry-bar{width:2px;height:36px;border-radius:1px;flex-shrink:0;margin-top:2px}
+.p-entry-date{font-family:'JetBrains Mono',monospace;font-size:6px;color:var(--mist);margin-bottom:2px}
+.p-entry-title{font-family:'Lora',serif;font-size:10px;color:var(--ink);line-height:1.35}
+.p-nav{position:absolute;bottom:0;left:0;right:0;height:50px;background:var(--bg);
+  border-top:1px solid var(--border);display:flex;align-items:center}
+.p-nav-tab{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px}
+.p-nav-icon{font-size:10px;line-height:1}
+.p-nav-lbl{font-family:'JetBrains Mono',monospace;font-size:5px;letter-spacing:.06em;text-transform:uppercase}
+
+/* ─── SECTION: HOW IT WORKS ─── */
+.section-how{padding:120px 80px;background:var(--surface)}
+.section-how .eyebrow{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em;color:var(--plum);text-transform:uppercase;margin-bottom:16px;font-weight:700}
+.section-how h2{font-family:'Lora',serif;font-style:italic;font-size:52px;line-height:1.1;margin-bottom:56px;color:var(--ink)}
+.how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:40px}
+.how-card{background:var(--bg);border-radius:16px;padding:36px 32px}
+.how-num{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--plum);letter-spacing:.12em;margin-bottom:20px;font-weight:700}
+.how-title{font-family:'Lora',serif;font-size:22px;font-weight:700;color:var(--ink);margin-bottom:12px;line-height:1.2}
+.how-desc{font-family:'Inter',sans-serif;font-size:14px;color:var(--mist);line-height:1.7;font-weight:300}
+
+/* ─── SECTION: PHILOSOPHY ─── */
+.section-phil{padding:120px 80px;background:var(--bg)}
+.phil-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.phil-left .eyebrow{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em;color:var(--plum);text-transform:uppercase;margin-bottom:16px;font-weight:700}
+.phil-left h2{font-family:'Lora',serif;font-style:italic;font-size:48px;line-height:1.1;margin-bottom:24px;color:var(--ink)}
+.phil-left p{font-family:'Inter',sans-serif;font-size:15px;color:var(--mist);line-height:1.85;margin-bottom:16px;font-weight:300}
+.phil-right{display:flex;flex-direction:column;gap:20px}
+.passage-card{background:var(--surface);border-radius:12px;padding:24px 28px;border-left:3px solid var(--plum)}
+.passage-card p{font-family:'Lora',serif;font-size:16px;font-style:italic;color:var(--ink);line-height:1.6;margin-bottom:10px}
+.passage-card .meta{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--mist);letter-spacing:.04em}
+.passage-card.warm{border-left-color:var(--warm)}
+.passage-card.sage{border-left-color:var(--sage)}
+
+/* ─── CTA ─── */
+.cta{padding:120px 80px;background:var(--plum);text-align:center}
+.cta .eyebrow{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;color:rgba(255,255,255,0.5);text-transform:uppercase;margin-bottom:20px}
+.cta h2{font-family:'Lora',serif;font-style:italic;font-size:64px;line-height:0.95;color:white;margin-bottom:20px}
+.cta p{font-family:'Inter',sans-serif;font-size:16px;color:rgba(255,255,255,0.65);max-width:500px;margin:0 auto 44px;line-height:1.7;font-weight:300}
+.cta-btns{display:flex;gap:16px;justify-content:center}
+.cta-btn-white{background:white;color:var(--plum);padding:16px 36px;border-radius:12px;font-size:10px;font-weight:700;letter-spacing:.1em;text-decoration:none;font-family:'JetBrains Mono',monospace}
+.cta-btn-ghost{border:1.5px solid rgba(255,255,255,0.3);color:white;padding:15px 34px;border-radius:12px;font-size:10px;letter-spacing:.1em;text-decoration:none;font-family:'JetBrains Mono',monospace}
+
+/* ─── FOOTER ─── */
+footer{background:var(--ink);padding:40px 80px;display:flex;justify-content:space-between;align-items:center}
+.footer-logo{font-family:'Lora',serif;font-size:20px;font-style:italic;color:var(--bg);font-weight:700}
+.footer-note{font-family:'JetBrains Mono',monospace;font-size:9px;color:rgba(253,252,249,0.3);letter-spacing:.08em;text-transform:uppercase}
+
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr;padding-bottom:60px}
+  .hero-right{height:500px}
+  .hero-left{padding:0 28px 40px}
+  .hero-title{font-size:60px}
+  .section-how,.section-phil,.cta{padding:72px 28px}
+  .how-grid,.phil-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">Vale</a>
+  <ul class="nav-links">
+    <li><a href="#write">Writing</a></li>
+    <li><a href="#philosophy">Philosophy</a></li>
+    <li><a href="https://ram.zenbin.org" target="_blank">Studio</a></li>
+  </ul>
+  <button class="nav-cta">PROTOTYPE →</button>
+</nav>
+
+<section class="hero">
+  <div class="hero-left">
+    <p class="hero-greeting">GOOD MORNING</p>
+    <p class="hero-date">Today is Monday, 30 March 2026</p>
+    <h1 class="hero-title">Write<br>what<br><span>stays.</span></h1>
+    <hr class="hero-rule">
+    <p class="hero-deck">A morning pages companion. The place where daily writing becomes a personal archive you'll want to return to.</p>
+    <p class="hero-sub">VALE is built around a single conviction: the best writing you'll ever do happens in the first 20 minutes of the day, before the world gets to you. Keep it all. Search it. Find the sentences worth saving.</p>
+    <div class="hero-btns">
+      <a href="https://zenbin.org/p/vale-mock" class="btn-plum">VIEW PROTOTYPE →</a>
+      <a href="https://raw.githubusercontent.com/hyperio-mc/design-studio-queue/main/queue.json" class="btn-ghost">GALLERY</a>
+    </div>
+  </div>
+  <div class="hero-right">
+
+    <!-- Floating passage cards -->
+    <div class="float-passage" style="top:16%;left:2%">
+      <div class="fp-label">SAVED PASSAGE · 27 MAR</div>
+      <div class="fp-text">"There is a kind of afternoon that only exists in memory."</div>
+      <div class="fp-meta">Your writing · 201 words that day</div>
+    </div>
+
+    <div class="float-passage" style="top:38%;right:2%">
+      <div class="fp-label">TODAY'S PROMPT</div>
+      <div class="fp-text">Write about a place you return to in your mind, that no longer exists in the world.</div>
+    </div>
+
+    <div class="float-streak" style="top:13%;right:8%">
+      <div class="fs-num">47</div>
+      <div class="fs-label">DAY STREAK</div>
+    </div>
+
+    <!-- Phone mockup -->
+    <div class="phone-wrap">
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="p-screen">
+          <div class="p-greeting">GOOD MORNING</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:7px;color:var(--mist);margin-bottom:4px">Today is Monday, 30 March 2026</div>
+          <div class="p-name">Anna.</div>
+          <div class="p-rule"></div>
+          <div class="p-prompt-card">
+            <div class="p-prompt-lbl">TODAY'S PROMPT</div>
+            <div class="p-prompt-txt">Write about a place you return to in your mind, that no longer exists in the world.</div>
+          </div>
+          <div class="p-recent-lbl">RECENT ENTRIES</div>
+          <div class="p-entry">
+            <div class="p-entry-bar" style="background:var(--plum)"></div>
+            <div>
+              <div class="p-entry-date">SUN 29 MAR · 312 WORDS</div>
+              <div class="p-entry-title">On the feeling of a late Sunday</div>
+            </div>
+          </div>
+          <div class="p-entry">
+            <div class="p-entry-bar" style="background:var(--warm)"></div>
+            <div>
+              <div class="p-entry-date">SAT 28 MAR · 489 WORDS</div>
+              <div class="p-entry-title">Things I keep meaning to say</div>
+            </div>
+          </div>
+          <div class="p-entry">
+            <div class="p-entry-bar" style="background:var(--sage)"></div>
+            <div>
+              <div class="p-entry-date">FRI 27 MAR · 201 WORDS</div>
+              <div class="p-entry-title">The particular quality of afternoon light</div>
+            </div>
+          </div>
+        </div>
+        <div class="p-nav">
+          <div class="p-nav-tab"><span class="p-nav-icon" style="color:var(--plum)">○</span><span class="p-nav-lbl" style="color:var(--plum)">MORNING</span></div>
+          <div class="p-nav-tab"><span class="p-nav-icon" style="color:var(--mist)">◈</span><span class="p-nav-lbl" style="color:var(--mist)">TODAY</span></div>
+          <div class="p-nav-tab"><span class="p-nav-icon" style="color:var(--mist)">≡</span><span class="p-nav-lbl" style="color:var(--mist)">ARCHIVE</span></div>
+          <div class="p-nav-tab"><span class="p-nav-icon" style="color:var(--mist)">◇</span><span class="p-nav-lbl" style="color:var(--mist)">PASSAGE</span></div>
+          <div class="p-nav-tab"><span class="p-nav-icon" style="color:var(--mist)">∘</span><span class="p-nav-lbl" style="color:var(--mist)">MIND</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section-how" id="write">
+  <p class="eyebrow">◈ HOW IT WORKS</p>
+  <h2>Twenty minutes.<br>Every morning.</h2>
+  <div class="how-grid">
+    <div class="how-card">
+      <div class="how-num">01 — PROMPT</div>
+      <h3 class="how-title">A daily prompt, thoughtfully chosen</h3>
+      <p class="how-desc">Each morning VALE offers one writing prompt — specific, unusual, generative. Not "how are you feeling?" but "write about a place that exists only in your memory." The kind of question that unlocks something.</p>
+    </div>
+    <div class="how-card">
+      <div class="how-num">02 — ARCHIVE</div>
+      <h3 class="how-title">A table of contents for your life</h3>
+      <p class="how-desc">Every entry is kept. Searchable. Browsable as a timeline. Your archive becomes a personal literary journal — titles, word counts, moods — the record of a writing life.</p>
+    </div>
+    <div class="how-card">
+      <div class="how-num">03 — PASSAGES</div>
+      <h3 class="how-title">Save the sentences worth keeping</h3>
+      <p class="how-desc">As you write, mark any sentence as a Passage. VALE collects them — your own best lines, saved separately from the noise. The private anthology you've been building without knowing it.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PHILOSOPHY -->
+<section class="section-phil" id="philosophy">
+  <div class="phil-grid">
+    <div class="phil-left">
+      <p class="eyebrow">◈ DESIGN PHILOSOPHY</p>
+      <h2>The feel of a well-worn journal.</h2>
+      <p>Inspired by Soft Union — a literary magazine with a "GOOD MORNING, today is..." greeting that felt more like opening a notebook than launching an app. That intimacy is the target.</p>
+      <p>Warm near-white (#FDFCF9) not white. Lora serif not a grotesque. JetBrains Mono for dates, word counts, and metadata — the typewriter register. Dusty plum (#7C5C8A) for the moments that matter.</p>
+    </div>
+    <div class="phil-right">
+      <div class="passage-card">
+        <p>"There is a kind of afternoon that only exists in memory."</p>
+        <div class="meta">27 MARCH 2026 · SAVED PASSAGE · YOUR WRITING</div>
+      </div>
+      <div class="passage-card warm">
+        <p>"She kept the door open not because she expected anyone but because she liked the light that came with the possibility."</p>
+        <div class="meta">22 FEBRUARY 2026 · SAVED PASSAGE · YOUR WRITING</div>
+      </div>
+      <div class="passage-card sage">
+        <p>"Home is not a place. It is a quality of attention."</p>
+        <div class="meta">03 JANUARY 2026 · MOST RESONANT SENTENCE · YOUR WRITING</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <p class="eyebrow">◈ RAM DESIGN STUDIO</p>
+  <h2>Good morning.<br>Start writing.</h2>
+  <p>VALE is a design concept from RAM's daily heartbeat practice — exploring how a writing tool can feel more like a notebook than an app.</p>
+  <div class="cta-btns">
+    <a href="https://zenbin.org/p/vale-mock" class="cta-btn-white">VIEW PROTOTYPE →</a>
+    <a href="https://ram.zenbin.org" class="cta-btn-ghost">DESIGN STUDIO</a>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-logo">Vale</span>
+  <span class="footer-note">RAM Design Heartbeat · Light Theme · Lora + JetBrains Mono · © 2026</span>
+</footer>
+
+</body>
+</html>

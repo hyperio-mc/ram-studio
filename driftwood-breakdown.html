@@ -1,0 +1,1229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DRIFTWOOD — Design Breakdown No. 1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ─── RESET + ROOT ───────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:      #0E1209;
+  --surf:    #1D2416;
+  --surf2:   #263020;
+  --border:  #2A3420;
+  --text:    #F0E6C8;
+  --muted:   #7A8A68;
+  --amber:   #C4843A;
+  --sage:    #4A7C59;
+  --cream:   #F0E6C8;
+  --black:   #000000;
+  --dur:     600ms;
+  --ease:    cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+html, body {
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  overflow: hidden;
+}
+
+/* ─── DECK CONTAINER ─────────────────────────────────────────────── */
+.deck {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* ─── SLIDES ─────────────────────────────────────────────────────── */
+.slide {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px;
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease);
+  pointer-events: none;
+}
+
+.slide.active {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.slide.exit {
+  opacity: 0;
+  transform: translateY(-24px);
+  transition: opacity 400ms var(--ease), transform 400ms var(--ease);
+}
+
+/* ─── PROGRESS BAR ───────────────────────────────────────────────── */
+.progress {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--amber);
+  transition: width 5s linear;
+  z-index: 100;
+  width: 0%;
+}
+
+/* ─── NAV DOTS ───────────────────────────────────────────────────── */
+.dots {
+  position: fixed;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 100;
+}
+
+.dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--muted);
+  cursor: pointer;
+  transition: background 0.3s, transform 0.3s;
+}
+
+.dot.active {
+  background: var(--amber);
+  transform: scale(1.4);
+}
+
+/* ─── SLIDE NAV ARROWS ───────────────────────────────────────────── */
+.nav-btn {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(29, 36, 22, 0.8);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  z-index: 100;
+  font-size: 18px;
+  transition: all 0.2s;
+}
+.nav-btn:hover { color: var(--text); border-color: var(--amber); }
+.nav-prev { left: 20px; }
+.nav-next { right: 20px; }
+
+/* ─── SLIDE LABEL (top-left) ─────────────────────────────────────── */
+.slide-label {
+  position: fixed;
+  top: 24px; left: 32px;
+  font-size: 11px;
+  letter-spacing: 3px;
+  color: var(--muted);
+  text-transform: uppercase;
+  z-index: 100;
+  font-family: 'Inter', sans-serif;
+}
+
+/* ─── SLIDE COUNTER ──────────────────────────────────────────────── */
+.slide-counter {
+  position: fixed;
+  top: 24px; right: 32px;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  color: var(--muted);
+  z-index: 100;
+  letter-spacing: 1px;
+}
+
+/* ─── TYPOGRAPHY ─────────────────────────────────────────────────── */
+.serif { font-family: 'Lora', serif; }
+
+h1.display {
+  font-family: 'Lora', serif;
+  font-size: clamp(48px, 7vw, 96px);
+  font-weight: 400;
+  line-height: 1.1;
+  color: var(--text);
+}
+
+h2.heading {
+  font-family: 'Lora', serif;
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--text);
+  margin-bottom: 24px;
+}
+
+p.body {
+  font-size: 17px;
+  line-height: 1.8;
+  color: rgba(240, 230, 200, 0.75);
+  max-width: 600px;
+}
+
+p.sub {
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 20px;
+  font-family: 'Inter', sans-serif;
+}
+
+.annotation {
+  font-size: 13px;
+  color: var(--muted);
+  font-style: italic;
+  line-height: 1.6;
+  max-width: 480px;
+}
+
+/* ─── SLIDE 1: TITLE ─────────────────────────────────────────────── */
+.s1-inner {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+
+.s1-title {
+  font-family: 'Lora', serif;
+  font-size: clamp(64px, 12vw, 140px);
+  font-weight: 400;
+  letter-spacing: -2px;
+  color: var(--text);
+  line-height: 1;
+  position: relative;
+}
+
+.s1-title::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background: var(--amber);
+  transition: width 1.2s var(--ease) 0.6s;
+}
+
+.slide.active .s1-title::after { width: 80%; }
+
+.s1-sub {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  letter-spacing: 4px;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-top: 28px;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.6s var(--ease) 0.8s, transform 0.6s var(--ease) 0.8s;
+}
+
+.slide.active .s1-sub { opacity: 1; transform: translateY(0); }
+
+.s1-byline {
+  font-family: 'Lora', serif;
+  font-size: 15px;
+  color: rgba(240, 230, 200, 0.4);
+  margin-top: 48px;
+  font-style: italic;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.6s var(--ease) 1.2s, transform 0.6s var(--ease) 1.2s;
+}
+
+.slide.active .s1-byline { opacity: 1; transform: translateY(0); }
+
+/* ─── SLIDE 2: BRIEF ─────────────────────────────────────────────── */
+.s2-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  max-width: 1100px;
+  width: 100%;
+}
+
+.s2-compare {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.swatch-compare {
+  display: flex;
+  gap: 16px;
+}
+
+.swatch-item {
+  flex: 1;
+  border-radius: 12px;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: opacity 0.5s var(--ease), transform 0.5s var(--ease);
+}
+
+.slide.active .swatch-item:nth-child(1) { opacity: 1; transform: translateX(0); transition-delay: 0.3s; }
+.slide.active .swatch-item:nth-child(2) { opacity: 1; transform: translateX(0); transition-delay: 0.5s; }
+
+.swatch-color {
+  height: 120px;
+  display: flex;
+  align-items: flex-end;
+  padding: 12px;
+}
+
+.swatch-hex {
+  font-family: 'Inter', monospace;
+  font-size: 11px;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+.swatch-meta {
+  background: var(--surf);
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-top: none;
+  border-radius: 0 0 12px 12px;
+}
+
+.swatch-name { font-size: 13px; color: var(--text); margin-bottom: 4px; }
+.swatch-note { font-size: 11px; color: var(--muted); line-height: 1.5; }
+
+.blockquote {
+  border-left: 3px solid var(--amber);
+  padding-left: 20px;
+  margin-top: 28px;
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: opacity 0.5s var(--ease) 0.8s, transform 0.5s var(--ease) 0.8s;
+}
+
+.slide.active .blockquote { opacity: 1; transform: translateX(0); }
+
+.blockquote p {
+  font-family: 'Lora', serif;
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--text);
+  font-style: italic;
+}
+
+/* ─── SLIDE 3: PALETTE ───────────────────────────────────────────── */
+.s3-layout {
+  max-width: 900px;
+  width: 100%;
+}
+
+.palette-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  margin-top: 40px;
+}
+
+.palette-chip {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.4s var(--ease), transform 0.4s var(--ease);
+}
+
+.slide.active .palette-chip:nth-child(1) { opacity: 1; transform: translateY(0); transition-delay: 0.1s; }
+.slide.active .palette-chip:nth-child(2) { opacity: 1; transform: translateY(0); transition-delay: 0.25s; }
+.slide.active .palette-chip:nth-child(3) { opacity: 1; transform: translateY(0); transition-delay: 0.4s; }
+.slide.active .palette-chip:nth-child(4) { opacity: 1; transform: translateY(0); transition-delay: 0.55s; }
+.slide.active .palette-chip:nth-child(5) { opacity: 1; transform: translateY(0); transition-delay: 0.7s; }
+
+.chip-swatch {
+  height: 100px;
+  border-radius: 10px 10px 0 0;
+  position: relative;
+}
+
+.chip-body {
+  background: var(--surf);
+  border: 1px solid var(--border);
+  border-top: none;
+  border-radius: 0 0 10px 10px;
+  padding: 10px;
+}
+
+.chip-name { font-size: 11px; color: var(--text); margin-bottom: 2px; font-weight: 500; }
+.chip-hex { font-family: 'Inter', monospace; font-size: 10px; color: var(--muted); }
+.chip-role { font-size: 10px; color: var(--muted); margin-top: 4px; line-height: 1.4; }
+
+.palette-note {
+  margin-top: 32px;
+  font-size: 14px;
+  color: var(--muted);
+  font-style: italic;
+  line-height: 1.7;
+  opacity: 0;
+  transition: opacity 0.5s var(--ease) 0.9s;
+}
+
+.slide.active .palette-note { opacity: 1; }
+
+/* ─── SLIDE 4: TYPOGRAPHY ────────────────────────────────────────── */
+.s4-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: start;
+  max-width: 1000px;
+  width: 100%;
+}
+
+.type-card {
+  background: var(--surf);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 36px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s var(--ease), transform 0.5s var(--ease);
+  position: relative;
+}
+
+.type-card.chosen {
+  border-color: var(--amber);
+  background: rgba(196, 132, 58, 0.05);
+}
+
+.chosen-badge {
+  position: absolute;
+  top: -1px; right: 20px;
+  background: var(--amber);
+  color: #0E1209;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  padding: 5px 12px;
+  border-radius: 0 0 8px 8px;
+  text-transform: uppercase;
+}
+
+.slide.active .type-card:nth-child(1) { opacity: 1; transform: translateY(0); transition-delay: 0.2s; }
+.slide.active .type-card:nth-child(2) { opacity: 1; transform: translateY(0); transition-delay: 0.4s; }
+
+.type-label {
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+
+.type-sample-lora {
+  font-family: 'Lora', serif;
+  font-size: 28px;
+  line-height: 1.4;
+  color: var(--text);
+  font-style: italic;
+  margin-bottom: 12px;
+}
+
+.type-sample-inter {
+  font-family: 'Inter', sans-serif;
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--text);
+  margin-bottom: 12px;
+}
+
+.type-verdict {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.6;
+  margin-top: 16px;
+}
+
+.type-verdict.good { color: rgba(196,132,58,0.8); }
+
+/* ─── SLIDE 5: MOOD TAGS ─────────────────────────────────────────── */
+.s5-layout {
+  max-width: 800px;
+  width: 100%;
+}
+
+.mood-demo {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 32px;
+  margin-bottom: 12px;
+}
+
+.mood-tag {
+  font-size: 15px;
+  padding: 10px 18px;
+  border-radius: 24px;
+  border: 1px solid rgba(74,124,89,0.3);
+  background: rgba(74,124,89,0.08);
+  color: var(--text);
+  opacity: 0;
+  transform: scale(0.85);
+  transition: opacity 0.35s var(--ease), transform 0.35s var(--ease);
+  cursor: default;
+}
+
+.mood-tag.active-tag {
+  background: rgba(196,132,58,0.18);
+  border-color: rgba(196,132,58,0.5);
+  color: var(--amber);
+}
+
+.slide.active .mood-tag:nth-child(1) { opacity: 1; transform: scale(1); transition-delay: 0.15s; }
+.slide.active .mood-tag:nth-child(2) { opacity: 1; transform: scale(1); transition-delay: 0.3s; }
+.slide.active .mood-tag:nth-child(3) { opacity: 1; transform: scale(1); transition-delay: 0.45s; }
+.slide.active .mood-tag:nth-child(4) { opacity: 1; transform: scale(1); transition-delay: 0.6s; }
+.slide.active .mood-tag:nth-child(5) { opacity: 1; transform: scale(1); transition-delay: 0.75s; }
+
+.mood-insight {
+  margin-top: 36px;
+  padding: 24px;
+  background: var(--surf);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--sage);
+  border-radius: 0 12px 12px 0;
+  opacity: 0;
+  transition: opacity 0.5s var(--ease) 1s;
+}
+
+.slide.active .mood-insight { opacity: 1; }
+
+/* ─── SLIDE 6: SCREEN PREVIEW ────────────────────────────────────── */
+.s6-layout {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 80px;
+  align-items: center;
+  max-width: 1000px;
+  width: 100%;
+}
+
+.phone-shell {
+  width: 260px;
+  background: var(--surf);
+  border-radius: 36px;
+  padding: 28px 20px;
+  border: 1px solid var(--border);
+  box-shadow: 0 40px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.04);
+  position: relative;
+  overflow: hidden;
+}
+
+.phone-shell::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 50%; transform: translateX(-50%);
+  width: 80px; height: 2px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 0 0 4px 4px;
+}
+
+.phone-glow {
+  position: absolute;
+  top: -40px; left: 50%; transform: translateX(-50%);
+  width: 200px; height: 200px;
+  background: radial-gradient(circle, rgba(196,132,58,0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.p-date-line { font-size: 11px; color: var(--muted); letter-spacing: 1.5px; margin-bottom: 2px; text-transform: uppercase; }
+.p-heading { font-family: 'Lora', serif; font-size: 20px; color: var(--text); margin-bottom: 4px; }
+
+.streak-row {
+  display: flex; align-items: center; gap: 8px;
+  margin-bottom: 16px;
+}
+
+.streak-count {
+  font-size: 13px; font-weight: 600;
+  color: var(--amber);
+}
+
+.streak-number {
+  display: inline-block;
+  font-variant-numeric: tabular-nums;
+}
+
+.p-moods {
+  display: flex; gap: 6px; flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+
+.p-mood-chip {
+  font-size: 11px; padding: 5px 10px;
+  border-radius: 20px;
+  border: 1px solid rgba(74,124,89,0.3);
+  background: rgba(74,124,89,0.1);
+  color: rgba(240,230,200,0.8);
+}
+
+.p-mood-chip.sel {
+  background: rgba(196,132,58,0.2);
+  border-color: rgba(196,132,58,0.4);
+  color: var(--amber);
+}
+
+.p-body-text {
+  font-family: 'Lora', serif;
+  font-size: 12px;
+  line-height: 1.7;
+  color: rgba(240,230,200,0.7);
+  font-style: italic;
+  margin-bottom: 14px;
+}
+
+.p-entry-card {
+  background: rgba(196,132,58,0.06);
+  border: 1px solid rgba(196,132,58,0.12);
+  border-radius: 10px;
+  padding: 10px 12px;
+  margin-bottom: 8px;
+}
+
+.p-ec-title { font-size: 11px; color: var(--text); margin-bottom: 2px; }
+.p-ec-sub { font-size: 10px; color: var(--muted); line-height: 1.5; }
+
+.s6-text { max-width: 440px; }
+
+/* ─── SLIDE 7: WHAT I'D CHANGE ───────────────────────────────────── */
+.s7-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  max-width: 1000px;
+  width: 100%;
+}
+
+.change-before, .change-after {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.5s var(--ease), transform 0.5s var(--ease);
+}
+
+.slide.active .change-before { opacity: 1; transform: translateY(0); transition-delay: 0.2s; }
+.slide.active .change-after  { opacity: 1; transform: translateY(0); transition-delay: 0.5s; }
+
+.change-label {
+  font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 16px;
+}
+
+.change-label.bad  { color: rgba(232, 112, 112, 0.8); }
+.change-label.good { color: var(--sage); }
+
+.insight-list-preview {
+  background: var(--surf);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.insight-row {
+  display: flex; justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+}
+
+.insight-row:last-child { border-bottom: none; }
+.insight-row .name { color: var(--text); }
+.insight-row .val  { color: var(--muted); }
+
+/* Mood calendar grid */
+.mood-calendar {
+  background: var(--surf);
+  border: 1px solid rgba(74,124,89,0.4);
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.cal-title {
+  font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--sage); margin-bottom: 12px;
+}
+
+.cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+
+.cal-cell {
+  width: 100%; aspect-ratio: 1;
+  border-radius: 3px;
+  opacity: 0;
+  transition: opacity 0.04s linear;
+}
+
+.slide.active .cal-cell { opacity: 1; }
+
+.cal-legend {
+  display: flex; gap: 8px; align-items: center;
+  margin-top: 10px;
+}
+
+.leg-item { display: flex; align-items: center; gap: 4px; font-size: 10px; color: var(--muted); }
+.leg-dot  { width: 8px; height: 8px; border-radius: 2px; }
+
+/* ─── SLIDE 8: END CARD ──────────────────────────────────────────── */
+.s8-inner {
+  text-align: center;
+  max-width: 700px;
+}
+
+.s8-number {
+  font-family: 'Lora', serif;
+  font-size: 13px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 32px;
+  opacity: 0;
+  transition: opacity 0.5s var(--ease) 0.2s;
+}
+
+.slide.active .s8-number { opacity: 1; }
+
+.s8-title {
+  font-family: 'Lora', serif;
+  font-size: clamp(36px, 6vw, 72px);
+  font-weight: 400;
+  color: var(--text);
+  line-height: 1.2;
+  margin-bottom: 16px;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.6s var(--ease) 0.4s, transform 0.6s var(--ease) 0.4s;
+}
+
+.slide.active .s8-title { opacity: 1; transform: translateY(0); }
+
+.s8-url {
+  font-family: 'Inter', monospace;
+  font-size: 14px;
+  color: var(--amber);
+  margin-bottom: 36px;
+  letter-spacing: 1px;
+  opacity: 0;
+  transition: opacity 0.5s var(--ease) 0.8s;
+}
+
+.slide.active .s8-url { opacity: 1; }
+
+.s8-links {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  opacity: 0;
+  transition: opacity 0.5s var(--ease) 1s;
+}
+
+.slide.active .s8-links { opacity: 1; }
+
+.s8-link {
+  padding: 12px 24px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 13px;
+  transition: all 0.2s;
+}
+
+.s8-link:hover, .s8-link.primary {
+  border-color: var(--amber);
+  color: var(--amber);
+}
+
+.s8-upcoming {
+  margin-top: 48px;
+  font-size: 13px;
+  color: var(--muted);
+  opacity: 0;
+  transition: opacity 0.5s var(--ease) 1.2s;
+}
+
+.slide.active .s8-upcoming { opacity: 1; }
+
+.upcoming-list {
+  display: flex; gap: 8px; flex-wrap: wrap; justify-content: center;
+  margin-top: 10px;
+}
+
+.upcoming-item {
+  font-size: 11px;
+  padding: 5px 12px;
+  background: var(--surf);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  color: var(--muted);
+}
+
+/* ─── KEYBOARD HINT ──────────────────────────────────────────────── */
+.kbd-hint {
+  position: fixed;
+  bottom: 60px;
+  right: 28px;
+  font-size: 11px;
+  color: rgba(122,138,104,0.5);
+  letter-spacing: 0.5px;
+  z-index: 100;
+}
+
+/* ─── AUTO-PLAY INDICATOR ────────────────────────────────────────── */
+.auto-badge {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 1px;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 20px;
+  border: 1px solid transparent;
+  transition: all 0.2s;
+}
+
+.auto-badge:hover {
+  border-color: var(--border);
+  color: var(--text);
+}
+
+.auto-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--amber);
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.5; transform: scale(0.7); }
+}
+
+.auto-badge.paused .auto-dot { animation: none; background: var(--muted); }
+
+/* ─── CALENDAR CELL ANIMATION ────────────────────────────────────── */
+@keyframes calFill {
+  from { opacity: 0; transform: scale(0.6); }
+  to   { opacity: 1; transform: scale(1); }
+}
+</style>
+</head>
+<body>
+
+<!-- Progress bar -->
+<div class="progress" id="progress"></div>
+
+<!-- Labels -->
+<div class="slide-label">RAM Design Studio</div>
+<div class="slide-counter" id="counter">1 / 8</div>
+
+<!-- Auto-play toggle -->
+<div class="auto-badge" id="autoBadge" onclick="toggleAuto()">
+  <span class="auto-dot"></span>
+  <span id="autoLabel">Auto</span>
+</div>
+
+<!-- Nav buttons -->
+<button class="nav-btn nav-prev" onclick="prevSlide()">←</button>
+<button class="nav-btn nav-next" onclick="nextSlide()">→</button>
+
+<!-- Dots -->
+<div class="dots" id="dots"></div>
+
+<!-- Keyboard hint -->
+<div class="kbd-hint">← → to navigate · Space to pause</div>
+
+<!-- ── DECK ─────────────────────────────────────────────────────── -->
+<div class="deck" id="deck">
+
+  <!-- SLIDE 1: TITLE -->
+  <div class="slide" data-slide="0">
+    <div class="s1-inner">
+      <div class="s1-title">DRIFTWOOD</div>
+      <div class="s1-sub">Design Breakdown · No. 1</div>
+      <div class="s1-byline">by RAM Design Studio · March 2026</div>
+    </div>
+  </div>
+
+  <!-- SLIDE 2: THE BRIEF -->
+  <div class="slide" data-slide="1">
+    <div class="s2-layout">
+      <div>
+        <p class="sub">The Brief</p>
+        <h2 class="heading">Nature-dark,<br>not tech-dark.</h2>
+        <p class="body">Most dark UIs borrow from developer tools: near-black surfaces, neon accents, cold greys. DRIFTWOOD needed something warmer — the dark of a forest at dusk, not a terminal window.</p>
+        <div class="blockquote">
+          <p>"A journaling app should feel like candlelight, not a cockpit."</p>
+        </div>
+      </div>
+      <div class="s2-compare">
+        <div class="swatch-compare">
+          <div class="swatch-item">
+            <div class="swatch-color" style="background:#000000;">
+              <span class="swatch-hex" style="color:rgba(255,255,255,0.3)">#000000</span>
+            </div>
+            <div class="swatch-meta">
+              <div class="swatch-name">Pure Black</div>
+              <div class="swatch-note">Feels harsh. No depth. Absorbs everything.</div>
+            </div>
+          </div>
+          <div class="swatch-item">
+            <div class="swatch-color" style="background:#0E1209; border: 1px solid rgba(196,132,58,0.3);">
+              <span class="swatch-hex" style="color:rgba(196,132,58,0.7)">#0E1209</span>
+            </div>
+            <div class="swatch-meta" style="border-color:rgba(196,132,58,0.3)">
+              <div class="swatch-name" style="color:var(--amber)">Forest Night ✦</div>
+              <div class="swatch-note">Slightly green-shifted. Organic. Breathes.</div>
+            </div>
+          </div>
+        </div>
+        <p class="annotation">The 5% green shift in #0E1209 is invisible at a glance but makes the whole app feel alive — like the background has atmosphere, not just absence.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 3: PALETTE -->
+  <div class="slide" data-slide="2">
+    <div class="s3-layout">
+      <p class="sub">The Palette</p>
+      <h2 class="heading">Five colours.<br>All borrowed from nature.</h2>
+      <div class="palette-grid">
+        <div class="palette-chip">
+          <div class="chip-swatch" style="background:#0E1209; border:1px solid rgba(255,255,255,0.08)"></div>
+          <div class="chip-body">
+            <div class="chip-name">Forest Night</div>
+            <div class="chip-hex">#0E1209</div>
+            <div class="chip-role">Background — the canvas</div>
+          </div>
+        </div>
+        <div class="palette-chip">
+          <div class="chip-swatch" style="background:#1D2416"></div>
+          <div class="chip-body">
+            <div class="chip-name">Deep Moss</div>
+            <div class="chip-hex">#1D2416</div>
+            <div class="chip-role">Surface — cards, inputs</div>
+          </div>
+        </div>
+        <div class="palette-chip">
+          <div class="chip-swatch" style="background:#C4843A"></div>
+          <div class="chip-body">
+            <div class="chip-name">Aged Amber</div>
+            <div class="chip-hex">#C4843A</div>
+            <div class="chip-role">Accent — CTA, streaks</div>
+          </div>
+        </div>
+        <div class="palette-chip">
+          <div class="chip-swatch" style="background:#4A7C59"></div>
+          <div class="chip-body">
+            <div class="chip-name">Quiet Sage</div>
+            <div class="chip-hex">#4A7C59</div>
+            <div class="chip-role">Accent 2 — tags, calm</div>
+          </div>
+        </div>
+        <div class="palette-chip">
+          <div class="chip-swatch" style="background:#F0E6C8; border:1px solid rgba(255,255,255,0.1)"></div>
+          <div class="chip-body">
+            <div class="chip-name">Candle Glow</div>
+            <div class="chip-hex">#F0E6C8</div>
+            <div class="chip-role">Text — warm, not white</div>
+          </div>
+        </div>
+      </div>
+      <p class="palette-note">Every hex was tuned away from its "obvious" equivalent. Warm cream instead of white (#FFF), amber instead of orange (#FF7F00), sage instead of green (#00FF00). The goal: a palette you can stare at for an hour without strain.</p>
+    </div>
+  </div>
+
+  <!-- SLIDE 4: TYPOGRAPHY -->
+  <div class="slide" data-slide="3">
+    <div class="s4-layout">
+      <div class="type-card chosen">
+        <div class="chosen-badge">Chosen ✦</div>
+        <div class="type-label">Lora — Serif</div>
+        <div class="type-sample-lora">"Write every day. Especially then."</div>
+        <div class="type-verdict good">Serif creates intimacy. The bracketed strokes of a letter feel like handwriting — intentional, personal, warm. Every product app uses sans-serif. A journal shouldn't.</div>
+      </div>
+      <div class="type-card">
+        <div class="type-label">Inter — Sans-serif</div>
+        <div class="type-sample-inter">"Write every day. Especially then."</div>
+        <div class="type-verdict">Clean and legible, but optimised for interfaces, not introspection. Feels like reading a dashboard. Good for data — wrong for a diary.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 5: MOOD TAGS -->
+  <div class="slide" data-slide="4">
+    <div class="s5-layout">
+      <p class="sub">Decision · Mood Tags First</p>
+      <h2 class="heading">The question before<br>the blank page.</h2>
+      <div class="mood-demo">
+        <span class="mood-tag active-tag">😌 Calm</span>
+        <span class="mood-tag">🌤 Good</span>
+        <span class="mood-tag">🌿 Grounded</span>
+        <span class="mood-tag">🌧 Heavy</span>
+        <span class="mood-tag">⚡ Charged</span>
+      </div>
+      <p class="annotation">Appears on every screen — Today, Write, Timeline, Insights. Selecting your mood is the first micro-interaction of every session.</p>
+      <div class="mood-insight">
+        <p style="font-size:15px; color:var(--text); margin-bottom:8px;">Why this works:</p>
+        <p style="font-size:14px; color:rgba(240,230,200,0.65); line-height:1.7;">Most journaling apps open to a blank white editor — cognitively expensive, emotionally cold. Asking "how are you?" first is a micro-ritual. It sets context before you type a word. After 6 months, your mood log becomes a dataset about yourself. That's the hidden value.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 6: SCREEN PREVIEW -->
+  <div class="slide" data-slide="5">
+    <div class="s6-layout">
+      <div class="phone-shell">
+        <div class="phone-glow"></div>
+        <div class="p-date-line">Sunday, March 22</div>
+        <div class="p-heading">Today's Entry</div>
+        <div class="streak-row">
+          <span>🔥</span>
+          <span class="streak-count">
+            <span class="streak-number" id="streakNum">1</span>-day streak
+          </span>
+        </div>
+        <div class="p-moods">
+          <span class="p-mood-chip sel">😌 Calm</span>
+          <span class="p-mood-chip">🌤 Good</span>
+          <span class="p-mood-chip">🌿 Grounded</span>
+        </div>
+        <div class="p-body-text">"The morning light filters through the blinds, soft and unassuming. I lie still for a few minutes..."</div>
+        <div class="p-entry-card">
+          <div class="p-ec-title">Sat, Mar 21 · 😌 · 412w</div>
+          <div class="p-ec-sub">Walked to the market. The peaches were perfectly ripe...</div>
+        </div>
+        <div class="p-entry-card">
+          <div class="p-ec-title">Fri, Mar 20 · 🌧 · 681w</div>
+          <div class="p-ec-sub">A difficult conversation I had been avoiding...</div>
+        </div>
+      </div>
+      <div class="s6-text">
+        <p class="sub">Today Screen</p>
+        <h2 class="heading">The 5 screens,<br>each earning its place.</h2>
+        <p class="body">Today, Write, Timeline, Insights, Profile. No screen is decorative — each is a different relationship with time: the present (Today), the act (Write), the past (Timeline), the pattern (Insights), the self (Profile).</p>
+        <div class="blockquote" style="margin-top:24px; opacity:1; transform:none;">
+          <p>"Five tabs, five different modes of the same person."</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 7: WHAT I'D CHANGE -->
+  <div class="slide" data-slide="6">
+    <div class="s7-layout">
+      <div class="change-before">
+        <div class="change-label bad">✗ What shipped</div>
+        <div class="insight-list-preview">
+          <div style="font-size:11px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-bottom:12px;">Mood this month</div>
+          <div class="insight-row"><span class="name">😌 Calm</span><span class="val">32%</span></div>
+          <div class="insight-row"><span class="name">🌤 Good</span><span class="val">27%</span></div>
+          <div class="insight-row"><span class="name">🌿 Grounded</span><span class="val">23%</span></div>
+          <div class="insight-row"><span class="name">🌧 Heavy</span><span class="val">18%</span></div>
+        </div>
+        <p style="font-size:13px;color:var(--muted);margin-top:12px;font-style:italic;line-height:1.6;">Percentages are accurate but dead. They tell you <em>what</em>, not <em>when</em>. You can't see that Heavy always follows a Friday.</p>
+      </div>
+      <div class="change-after">
+        <div class="change-label good">✦ What I'd build instead</div>
+        <div class="mood-calendar">
+          <div class="cal-title">March 2026 · Mood Calendar</div>
+          <div class="cal-grid" id="calGrid"></div>
+          <div class="cal-legend">
+            <div class="leg-item"><div class="leg-dot" style="background:#7A8A68;opacity:0.3"></div>No entry</div>
+            <div class="leg-item"><div class="leg-dot" style="background:#C4843A"></div>Calm</div>
+            <div class="leg-item"><div class="leg-dot" style="background:#4A7C59"></div>Good</div>
+            <div class="leg-item"><div class="leg-dot" style="background:#5B8EB8"></div>Heavy</div>
+          </div>
+        </div>
+        <p style="font-size:13px;color:rgba(74,124,89,0.9);margin-top:12px;font-style:italic;line-height:1.6;">A GitHub-style contribution calendar, coloured by mood. Patterns emerge. You see the month as a whole. The data becomes a story.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 8: END -->
+  <div class="slide" data-slide="7">
+    <div class="s8-inner">
+      <div class="s8-number">Design Breakdown · No. 1 of many</div>
+      <div class="s8-title">DRIFTWOOD<br><em style="color:var(--amber)">is live.</em></div>
+      <div class="s8-url">ram.zenbin.org/driftwood</div>
+      <div class="s8-links">
+        <a href="https://ram.zenbin.org/driftwood" class="s8-link primary">View hero page ↗</a>
+        <a href="https://ram.zenbin.org/driftwood-mock" class="s8-link">Interactive mock ☀◑ ↗</a>
+        <a href="https://ram.zenbin.org/ram-learn" class="s8-link">Design breakdowns ↗</a>
+      </div>
+      <div class="s8-upcoming">
+        <div style="margin-bottom:8px;color:var(--muted)">Coming up in this series:</div>
+        <div class="upcoming-list">
+          <span class="upcoming-item">DRIFT · Terracotta palette</span>
+          <span class="upcoming-item">THREAD · Dark PKM typography</span>
+          <span class="upcoming-item">VALE · Cream finance UI</span>
+          <span class="upcoming-item">Colour theory for product</span>
+          <span class="upcoming-item">When dark ≠ dramatic</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /deck -->
+
+<script>
+const SLIDES = document.querySelectorAll('.slide');
+const TOTAL  = SLIDES.length;
+let current  = 0;
+let autoPlay = true;
+let timer    = null;
+let progTimer = null;
+
+// Build dots
+const dotsEl = document.getElementById('dots');
+SLIDES.forEach((_, i) => {
+  const d = document.createElement('div');
+  d.className = 'dot' + (i === 0 ? ' active' : '');
+  d.addEventListener('click', () => goTo(i));
+  dotsEl.appendChild(d);
+});
+
+function updateUI() {
+  document.getElementById('counter').textContent = (current + 1) + ' / ' + TOTAL;
+  document.querySelectorAll('.dot').forEach((d, i) => {
+    d.classList.toggle('active', i === current);
+  });
+}
+
+function goTo(idx, resetAuto) {
+  if (idx < 0 || idx >= TOTAL) return;
+
+  SLIDES[current].classList.remove('active');
+  SLIDES[current].classList.add('exit');
+  setTimeout(() => SLIDES[current].classList.remove('exit'), 500);
+
+  current = idx;
+  SLIDES[current].classList.add('active');
+  updateUI();
+
+  // Trigger slide-specific animations
+  if (current === 5) startStreakCounter();
+  if (current === 6) buildCalendar();
+
+  if (resetAuto !== false && autoPlay) resetProgress();
+}
+
+function nextSlide() { goTo((current + 1) % TOTAL); }
+function prevSlide() { goTo((current - 1 + TOTAL) % TOTAL); }
+
+// Progress bar + auto advance
+function resetProgress() {
+  clearTimeout(timer);
+  clearTimeout(progTimer);
+  const bar = document.getElementById('progress');
+  bar.style.transition = 'none';
+  bar.style.width = '0%';
+  void bar.offsetWidth; // reflow
+  bar.style.transition = 'width 5s linear';
+  bar.style.width = '100%';
+  timer = setTimeout(() => goTo((current + 1) % TOTAL), 5100);
+}
+
+function toggleAuto() {
+  autoPlay = !autoPlay;
+  const badge = document.getElementById('autoBadge');
+  const label = document.getElementById('autoLabel');
+  if (autoPlay) {
+    badge.classList.remove('paused');
+    label.textContent = 'Auto';
+    resetProgress();
+  } else {
+    badge.classList.add('paused');
+    label.textContent = 'Paused';
+    clearTimeout(timer);
+    const bar = document.getElementById('progress');
+    bar.style.transition = 'none';
+    bar.style.width = '0%';
+  }
+}
+
+// Keyboard nav
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') nextSlide();
+  else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') prevSlide();
+  else if (e.key === ' ') { e.preventDefault(); toggleAuto(); }
+});
+
+// Click anywhere to advance (but not on interactive elements)
+document.getElementById('deck').addEventListener('click', e => {
+  if (!e.target.closest('a, button, .dot, .nav-btn, .auto-badge')) nextSlide();
+});
+
+// Streak counter animation (slide 6)
+function startStreakCounter() {
+  const el = document.getElementById('streakNum');
+  if (!el) return;
+  let n = 1;
+  el.textContent = n;
+  const interval = setInterval(() => {
+    n++;
+    el.textContent = n;
+    if (n >= 47) clearInterval(interval);
+  }, 40);
+}
+
+// Mood calendar (slide 7)
+function buildCalendar() {
+  const grid = document.getElementById('calGrid');
+  if (!grid || grid.children.length > 0) return;
+
+  const moods = [
+    '#C4843A','#4A7C59','#5B8EB8','#C4843A','#4A7C59','#4A7C59','#C4843A',
+    '#5B8EB8','#5B8EB8','#C4843A','#4A7C59','#C4843A','#C4843A','#4A7C59',
+    '#4A7C59','#C4843A','#5B8EB8','#C4843A','#4A7C59','#C4843A','#C4843A',
+    '#C4843A','#4A7C59','rgba(122,138,104,0.2)','rgba(122,138,104,0.2)','rgba(122,138,104,0.2)','rgba(122,138,104,0.2)',
+    'rgba(122,138,104,0.2)',
+  ];
+
+  moods.forEach((color, i) => {
+    const cell = document.createElement('div');
+    cell.className = 'cal-cell';
+    cell.style.background = color;
+    cell.style.borderRadius = '3px';
+    cell.style.animation = `calFill 0.3s ease ${i * 0.03}s both`;
+    grid.appendChild(cell);
+  });
+}
+
+// INIT
+SLIDES[0].classList.add('active');
+updateUI();
+resetProgress();
+</script>
+</body>
+</html>

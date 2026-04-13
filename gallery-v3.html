@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gallery — RAM Design Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --ink: #0E0E10;
+  --ink2: #1A1A1E;
+  --ink3: #26262E;
+  --dim: #94939F;
+  --dim2: #5A5966;
+  --rule: #2A2A34;
+  --bg: #F9F7F3;
+  --bg2: #F0EDE7;
+  --text: #18160F;
+  --muted: #7A7570;
+  --border: #E0DDD6;
+  --accent: #C0392B;
+  --mono: 'SF Mono','Fira Code',ui-monospace,monospace;
+  --serif: 'Playfair Display',Georgia,serif;
+  --sans: 'Inter',system-ui,sans-serif;
+}
+
+html { font-size: 16px; scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--sans); overflow-x: hidden; }
+
+/* ── NAV ──────────────────────────────────────────────── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 300;
+  height: 52px; padding: 0 48px;
+  display: flex; align-items: center; justify-content: space-between;
+  background: var(--ink); border-bottom: 1px solid var(--rule);
+}
+.nav-logo { font-family: var(--mono); font-size: 10px; font-weight: 700; letter-spacing: 4px; color: rgba(255,255,255,0.35); text-decoration: none; text-transform: uppercase; transition: color .2s; }
+.nav-logo:hover { color: rgba(255,255,255,0.8); }
+.nav-right { display: flex; gap: 24px; align-items: center; }
+.nav-link { font-family: var(--mono); font-size: 10px; letter-spacing: 2px; color: var(--dim); text-decoration: none; transition: color .2s; text-transform: uppercase; }
+.nav-link:hover { color: rgba(255,255,255,0.7); }
+.nav-cta { font-family: var(--mono); font-size: 10px; font-weight: 700; letter-spacing: 2px; padding: 7px 16px; background: var(--accent); color: #fff; text-decoration: none; text-transform: uppercase; transition: opacity .15s; }
+.nav-cta:hover { opacity: .85; }
+
+/* ── HERO (dark) ──────────────────────────────────────── */
+.hero {
+  background: var(--ink);
+  padding: 52px 0 0;
+  position: relative; overflow: hidden;
+}
+.hero-inner {
+  padding: 72px 48px 56px;
+  display: grid; grid-template-columns: 1fr auto;
+  align-items: end; gap: 48px; position: relative; z-index: 1;
+}
+.hero-eyebrow { font-family: var(--mono); font-size: 9px; letter-spacing: 5px; color: var(--dim2); text-transform: uppercase; margin-bottom: 24px; }
+.hero-title {
+  font-family: var(--serif); font-size: clamp(48px, 7vw, 96px);
+  font-weight: 700; line-height: .97; letter-spacing: -3px; color: #fff;
+  margin-bottom: 32px;
+}
+.hero-title em { font-style: italic; font-weight: 400; color: rgba(255,255,255,.35); }
+.hero-sub { font-family: var(--mono); font-size: 11px; color: var(--dim); line-height: 1.9; max-width: 380px; }
+.hero-stats { flex-shrink: 0; }
+.stat-pair { display: flex; gap: 40px; }
+.stat { text-align: right; }
+.stat-val { font-family: var(--serif); font-size: 56px; font-weight: 700; color: var(--accent); display: block; letter-spacing: -3px; line-height: 1; }
+.stat-lbl { font-family: var(--mono); font-size: 8px; letter-spacing: 3px; color: var(--dim2); display: block; margin-top: 8px; text-transform: uppercase; }
+
+/* Ambient glow */
+.hero::before {
+  content: ''; position: absolute; top: -200px; right: -100px;
+  width: 600px; height: 600px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(192,57,43,.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* ── MARQUEE ──────────────────────────────────────────── */
+.marquee-wrap {
+  border-top: 1px solid var(--rule);
+  background: var(--ink2); padding: 14px 0; overflow: hidden;
+}
+.marquee-track { display: flex; gap: 0; width: max-content; animation: marquee 60s linear infinite; }
+.marquee-track:hover { animation-play-state: paused; }
+.marquee-item { font-family: var(--mono); font-size: 10px; letter-spacing: 3px; color: var(--dim2); text-transform: uppercase; padding: 0 32px; border-right: 1px solid var(--rule); white-space: nowrap; }
+.marquee-item span { color: var(--dim); margin-right: 8px; }
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* ── CONTROLS ─────────────────────────────────────────── */
+.controls-wrap {
+  position: sticky; top: 52px; z-index: 200;
+  background: rgba(249,247,243,.97); border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(12px);
+}
+.controls {
+  padding: 11px 48px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap;
+}
+.search-box {
+  position: relative; flex-shrink: 0;
+}
+.search-input {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 1px;
+  background: #fff; border: 1px solid var(--border); color: var(--text);
+  padding: 7px 28px 7px 10px; outline: none; width: 200px; border-radius: 0;
+  transition: border-color .15s;
+}
+.search-input:focus { border-color: var(--text); }
+.search-input::placeholder { color: var(--muted); }
+.search-clear { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); background: none; border: none; color: var(--muted); cursor: pointer; font-size: 11px; display: none; }
+.vsep { width: 1px; height: 22px; background: var(--border); flex-shrink: 0; }
+.pill-group { display: flex; gap: 2px; }
+.pill {
+  font-family: var(--mono); font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase;
+  padding: 5px 12px; background: transparent; border: 1px solid var(--border); color: var(--muted);
+  cursor: pointer; transition: all .12s; white-space: nowrap;
+}
+.pill:hover { border-color: var(--text); color: var(--text); }
+.pill.on { background: var(--text); border-color: var(--text); color: var(--bg); font-weight: 600; }
+.pill.studio.on { background: var(--accent); border-color: var(--accent); color: #fff; }
+.sort-sel {
+  font-family: var(--mono); font-size: 9px; letter-spacing: 1px; text-transform: uppercase;
+  background: transparent; border: 1px solid var(--border); color: var(--muted);
+  padding: 5px 10px; cursor: pointer; outline: none; margin-left: auto;
+}
+.result-info { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; color: var(--muted); white-space: nowrap; }
+
+/* ── BENTO FEATURED ───────────────────────────────────── */
+.bento-section { padding: 40px 48px 0; }
+.bento-label { font-family: var(--mono); font-size: 9px; letter-spacing: 4px; color: var(--muted); text-transform: uppercase; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; }
+.bento-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; grid-template-rows: auto auto; gap: 1px; border: 1px solid var(--border); }
+.bento-card { background: var(--bg); text-decoration: none; overflow: hidden; display: flex; flex-direction: column; position: relative; transition: background .15s; border: none; }
+.bento-card:hover { background: var(--bg2); }
+.bento-card.main { grid-column: 1 / 3; }
+
+/* ── MAIN GRID ────────────────────────────────────────── */
+.grid-section { padding: 0 48px 60px; }
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px; border: 1px solid var(--border); border-top: none;
+}
+.design-card { background: var(--bg); text-decoration: none; display: flex; flex-direction: column; overflow: hidden; transition: background .15s; }
+.design-card:hover { background: var(--bg2); }
+
+/* ── PHONE THUMBNAIL ──────────────────────────────────── */
+.thumb-wrap { position: relative; overflow: hidden; flex-shrink: 0; }
+.thumb-wrap.tall { height: 260px; }
+.thumb-wrap.short { height: 180px; }
+.thumb-bg { position: absolute; inset: 0; }
+
+/* Phone frame container — centered in thumb */
+.phone { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-52%) scale(1); }
+.phone.sm { width: 88px; height: 158px; }
+.phone.lg { width: 120px; height: 216px; }
+.phone-shell { width: 100%; height: 100%; border-radius: 18px; overflow: hidden; border: 2px solid rgba(255,255,255,0.18); box-shadow: 0 16px 48px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,.06); display: flex; flex-direction: column; position: relative; }
+.phone.sm .phone-shell { border-radius: 14px; }
+/* status bar */
+.ph-status { height: 10px; display: flex; align-items: center; justify-content: space-between; padding: 0 6px; flex-shrink: 0; }
+.ph-status-dot { width: 3px; height: 3px; border-radius: 50%; }
+.ph-status-bars { display: flex; gap: 1px; align-items: flex-end; }
+.ph-status-bar { width: 2px; border-radius: 0.5px; }
+/* nav bar */
+.ph-nav { height: 14px; display: flex; align-items: center; padding: 0 6px; gap: 4px; flex-shrink: 0; }
+.ph-nav-stub { height: 2px; border-radius: 1px; flex: 1; max-width: 32px; }
+.ph-nav-icon { width: 6px; height: 6px; border-radius: 1px; margin-left: auto; }
+/* content area */
+.ph-body { flex: 1; padding: 5px; display: flex; flex-direction: column; gap: 3px; overflow: hidden; }
+.ph-row { display: flex; gap: 2px; }
+.ph-block { border-radius: 2px; }
+/* bottom tabs */
+.ph-tabs { height: 12px; display: flex; align-items: center; justify-content: space-around; padding: 0 6px; flex-shrink: 0; }
+.ph-tab { width: 8px; height: 2px; border-radius: 1px; }
+.ph-tab.active { width: 12px; }
+
+/* Archetype-specific SVG overlays in thumbnail */
+.thumb-pattern { position: absolute; inset: 0; opacity: .08; }
+
+/* Badges */
+.thumb-badges { position: absolute; top: 10px; left: 10px; display: flex; flex-direction: column; gap: 4px; }
+.badge { font-family: var(--mono); font-size: 7px; font-weight: 700; letter-spacing: 1.5px; padding: 3px 7px; text-transform: uppercase; }
+.badge-studio { background: rgba(192,57,43,.18); color: #C0392B; border: 1px solid rgba(192,57,43,.3); }
+.badge-dark   { background: rgba(0,0,0,.4); color: rgba(255,255,255,.65); }
+.badge-light  { background: rgba(255,255,255,.35); color: rgba(0,0,0,.5); border: 1px solid rgba(0,0,0,.1); }
+.arch-badge { position: absolute; top: 10px; right: 10px; font-family: var(--mono); font-size: 7px; font-weight: 700; letter-spacing: 1.5px; padding: 3px 7px; text-transform: uppercase; background: rgba(0,0,0,.35); backdrop-filter: blur(4px); }
+
+/* ── CARD BODY ────────────────────────────────────────── */
+.card-body { padding: 16px 18px 12px; flex: 1; display: flex; flex-direction: column; gap: 5px; border-top: 1px solid var(--border); }
+.card-name { font-family: var(--serif); font-size: 19px; font-weight: 400; color: var(--text); line-height: 1.2; }
+.bento-card.main .card-name { font-size: 26px; }
+.card-tagline { font-family: var(--mono); font-size: 10px; color: var(--muted); line-height: 1.7; flex: 1; }
+.card-chips { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 2px; }
+.chip { font-family: var(--mono); font-size: 8px; letter-spacing: 1px; text-transform: uppercase; padding: 2px 7px; border: 1px solid var(--border); color: var(--muted); }
+.chip.accent { border-color: rgba(192,57,43,.4); color: var(--accent); }
+.card-foot { padding: 10px 18px; border-top: 1px solid var(--border); display: flex; align-items: center; gap: 8px; }
+.card-date { font-family: var(--mono); font-size: 9px; color: var(--muted); flex: 1; }
+.mock-link { font-family: var(--mono); font-size: 8px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 4px 10px; border: 1px solid var(--accent); color: var(--accent); text-decoration: none; flex-shrink: 0; transition: all .12s; }
+.mock-link:hover { background: var(--accent); color: #fff; }
+.go-arrow { font-size: 13px; color: var(--muted); }
+
+/* ── PAGINATION ───────────────────────────────────────── */
+.pag { padding: 32px 48px; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+.pag-info { font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: 1px; }
+.pag-btns { display: flex; gap: 2px; }
+.pag-btn { font-family: var(--mono); font-size: 9px; letter-spacing: 1px; padding: 6px 12px; background: transparent; border: 1px solid var(--border); color: var(--muted); cursor: pointer; transition: all .12s; text-transform: uppercase; }
+.pag-btn:hover { border-color: var(--text); color: var(--text); }
+.pag-btn.on { background: var(--text); border-color: var(--text); color: var(--bg); font-weight: 700; }
+.pag-btn:disabled { opacity: .3; cursor: not-allowed; }
+
+/* ── STATE ────────────────────────────────────────────── */
+.state { grid-column: 1/-1; padding: 80px 40px; text-align: center; }
+.state-icon { font-size: 32px; opacity: .15; margin-bottom: 16px; }
+.state-title { font-family: var(--serif); font-size: 22px; margin-bottom: 8px; }
+.state-sub { font-family: var(--mono); font-size: 11px; color: var(--muted); }
+@keyframes spin { to { transform: rotate(360deg); } }
+.spinner { width: 22px; height: 22px; border: 1px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin .8s linear infinite; margin: 0 auto 16px; }
+
+/* ── FOOTER ───────────────────────────────────────────── */
+footer { padding: 22px 48px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+.foot-text { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; color: var(--muted); text-transform: uppercase; }
+.foot-right { display: flex; gap: 16px; align-items: center; }
+#last-updated { font-family: var(--mono); font-size: 9px; color: var(--muted); }
+.refresh-btn { font-family: var(--mono); font-size: 9px; letter-spacing: 1px; padding: 5px 12px; background: transparent; border: 1px solid var(--border); color: var(--muted); cursor: pointer; text-transform: uppercase; transition: all .12s; }
+.refresh-btn:hover { color: var(--text); border-color: var(--muted); }
+
+/* ── RESPONSIVE ───────────────────────────────────────── */
+@media (max-width: 900px) {
+  .hero-inner { grid-template-columns: 1fr; }
+  .stat-pair { justify-content: flex-start; }
+  .stat { text-align: left; }
+  .bento-grid { grid-template-columns: 1fr 1fr; }
+  .bento-card.main { grid-column: 1 / -1; }
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+  nav, .controls, .bento-section, .grid-section, .pag, footer { padding-left: 24px; padding-right: 24px; }
+  .hero-inner { padding-left: 24px; padding-right: 24px; }
+}
+@media (max-width: 540px) {
+  .gallery-grid { grid-template-columns: 1fr; }
+  .bento-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="https://ram.zenbin.org/">RAM Design Studio</a>
+  <div class="nav-right">
+    <a class="nav-link" href="https://ram.zenbin.org/pen-viewer">Pen Viewer</a>
+    <a class="nav-cta" href="https://ram.zenbin.org/submit">Submit Idea →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow">Community Gallery · RAM Design Studio</div>
+      <h1 class="hero-title">
+        Every design<br>
+        starts with<br>
+        <em>a single prompt.</em>
+      </h1>
+      <p class="hero-sub">Hundreds of prototypes — each built in one session, from nothing to complete design system. Browse below. Steal ideas. Ship something.</p>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-pair">
+        <div class="stat">
+          <span class="stat-val" id="stat-total">—</span>
+          <span class="stat-lbl">Designs</span>
+        </div>
+        <div class="stat">
+          <span class="stat-val" id="stat-beats">—</span>
+          <span class="stat-lbl">Studio Beats</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="marquee-wrap">
+    <div class="marquee-track" id="marquee-track">
+      <!-- Populated by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- CONTROLS -->
+<div class="controls-wrap">
+  <div class="controls">
+    <div class="search-box">
+      <input class="search-input" id="search" type="text" placeholder="Search designs..." autocomplete="off">
+      <button class="search-clear" id="search-clear" onclick="clearSearch()">×</button>
+    </div>
+    <div class="vsep"></div>
+    <div class="pill-group" id="theme-pills">
+      <button class="pill on" data-val="all">All</button>
+      <button class="pill" data-val="dark">⬛ Dark</button>
+      <button class="pill" data-val="light">⬜ Light</button>
+    </div>
+    <div class="vsep"></div>
+    <div class="pill-group" id="arch-pills">
+      <button class="pill on" data-val="all">All</button>
+      <button class="pill" data-val="productivity">Productivity</button>
+      <button class="pill" data-val="finance">Finance</button>
+      <button class="pill" data-val="health">Health</button>
+      <button class="pill" data-val="social">Social</button>
+      <button class="pill" data-val="music">Music</button>
+      <button class="pill" data-val="food">Food</button>
+      <button class="pill" data-val="travel">Travel</button>
+      <button class="pill studio" data-val="studio">★ Studio</button>
+    </div>
+    <select class="sort-sel" id="sort-sel">
+      <option value="newest">Newest First</option>
+      <option value="oldest">Oldest First</option>
+      <option value="name">Name A–Z</option>
+    </select>
+    <span class="result-info" id="result-info"></span>
+  </div>
+</div>
+
+<!-- BENTO FEATURED -->
+<section class="bento-section" id="bento-section" style="display:none">
+  <div class="bento-label">
+    <span>Latest Drops</span>
+    <span id="bento-date" style="color:var(--muted)"></span>
+  </div>
+  <div class="bento-grid" id="bento-grid"></div>
+</section>
+
+<!-- MAIN GRID -->
+<section class="grid-section">
+  <div class="gallery-grid" id="gallery-grid">
+    <div class="state"><div class="spinner"></div><div class="state-title">Loading gallery...</div></div>
+  </div>
+</section>
+
+<!-- PAGINATION -->
+<div class="pag" id="pag" style="display:none">
+  <span class="pag-info" id="pag-info"></span>
+  <div class="pag-btns" id="pag-btns"></div>
+</div>
+
+<footer>
+  <span class="foot-text">RAM Design Studio · Community Gallery</span>
+  <div class="foot-right">
+    <span id="last-updated"></span>
+    <button class="refresh-btn" onclick="loadGallery(true)">↻ Refresh</button>
+  </div>
+</footer>
+
+<script>
+const QUEUE_URL = 'https://raw.githubusercontent.com/hyperio-mc/design-studio-queue/main/queue.json';
+const PER_PAGE  = 28;
+
+// ── Palette map ──────────────────────────────────────────────────────────────
+const PAL = {
+  productivity: { bg:'#05050a', surf:'#0d0c18', acc:'#c8a84b', acc2:'#7060d4' },
+  social:       { bg:'#0d0610', surf:'#160920', acc:'#c840ff', acc2:'#ff60c0' },
+  finance:      { bg:'#060c14', surf:'#0a1428', acc:'#3a8fff', acc2:'#20d4a0' },
+  health:       { bg:'#060f08', surf:'#0a1e0d', acc:'#3acd7a', acc2:'#60b0e8' },
+  travel:       { bg:'#060a14', surf:'#0d1428', acc:'#4a9fff', acc2:'#f5d060' },
+  music:        { bg:'#0a0a12', surf:'#141420', acc:'#c8953a', acc2:'#e040fb' },
+  food:         { bg:'#0d0b09', surf:'#1e1612', acc:'#d4863a', acc2:'#4acd8a' },
+  education:    { bg:'#07080f', surf:'#10121e', acc:'#6060ff', acc2:'#40d0f0' },
+  commerce:     { bg:'#0f0808', surf:'#1e1010', acc:'#e06030', acc2:'#f0c040' },
+  creative:     { bg:'#080808', surf:'#141414', acc:'#ff6060', acc2:'#ff40c0' },
+  ai:           { bg:'#080a10', surf:'#10141e', acc:'#06b6d4', acc2:'#8b5cf6' },
+  light_default:{ bg:'#faf7f2', surf:'#f0ece4', acc:'#4a3728', acc2:'#7b9b6b' },
+  light_blue:   { bg:'#f5f8ff', surf:'#eaeff8', acc:'#1a56d0', acc2:'#10b981' },
+  light_green:  { bg:'#f5fbf7', surf:'#e8f5ec', acc:'#1a8040', acc2:'#2060c0' },
+  light_warm:   { bg:'#fff9f5', surf:'#f5ede4', acc:'#c0392b', acc2:'#7b52c0' },
+};
+
+function getPal(d) {
+  const t = (d.theme || '').toLowerCase();
+  const a = (d.archetype || '').toLowerCase();
+  if (t === 'light') {
+    if (a.includes('financ') || a.includes('bank')) return PAL.light_blue;
+    if (a.includes('health') || a.includes('wellness')) return PAL.light_green;
+    if (a.includes('creativ') || a.includes('editorial') || a.includes('video')) return PAL.light_warm;
+    return PAL.light_default;
+  }
+  for (const k of Object.keys(PAL)) {
+    if (!k.startsWith('light') && a.includes(k)) return PAL[k];
+  }
+  if (a.includes('ai') || a.includes('machine') || a.includes('workforce') || a.includes('agent')) return PAL.ai;
+  if (a.includes('task') || a.includes('project') || a.includes('work')) return PAL.productivity;
+  if (a.includes('video') || a.includes('media') || a.includes('stream') || a.includes('podcast')) return PAL.creative;
+  if (a.includes('shop') || a.includes('store')) return PAL.commerce;
+  return PAL.productivity;
+}
+
+// ── Phone thumbnail HTML ────────────────────────────────────────────────────
+function phoneHTML(d, large = false) {
+  const p = getPal(d);
+  const sz = large ? 'lg' : 'sm';
+  const a = (d.archetype || '').toLowerCase();
+
+  // Build content rows based on archetype
+  let rows = '';
+  if (a.includes('financ') || a.includes('analyt') || a.includes('bank')) {
+    // Chart bars
+    rows = [0.3,0.7,0.5,0.9,0.6,0.8,0.4].map((h,i) =>
+      `<div class="ph-block" style="width:${100/7}%;height:${Math.round(h*26)}px;background:${i===3||i===5?p.acc:p.acc2};opacity:${i===3||i===5?0.9:0.35};align-self:flex-end;border-radius:1px 1px 0 0"></div>`
+    ).join('');
+    rows = `<div class="ph-row" style="align-items:flex-end;height:28px;gap:1px">${rows}</div>
+            <div class="ph-row"><div class="ph-block" style="flex:1;height:5px;background:${p.acc};opacity:.6;border-radius:1px"></div></div>
+            <div class="ph-row" style="gap:2px"><div class="ph-block" style="flex:.6;height:4px;background:rgba(255,255,255,.12);border-radius:1px"></div><div class="ph-block" style="flex:.4;height:4px;background:rgba(255,255,255,.08);border-radius:1px"></div></div>
+            <div class="ph-row" style="gap:2px"><div class="ph-block" style="flex:.4;height:4px;background:rgba(255,255,255,.12);border-radius:1px"></div><div class="ph-block" style="flex:.6;height:4px;background:rgba(255,255,255,.08);border-radius:1px"></div></div>`;
+  } else if (a.includes('health') || a.includes('wellness') || a.includes('fitness')) {
+    // Ring + stats
+    rows = `<div class="ph-row" style="justify-content:center"><div style="width:28px;height:28px;border-radius:50%;border:3px solid ${p.acc};opacity:.8;position:relative"><div style="position:absolute;inset:3px;border-radius:50%;border:2px solid ${p.acc2};opacity:.5"></div></div></div>
+            <div class="ph-row"><div class="ph-block" style="flex:1;height:4px;background:${p.acc};opacity:.7;border-radius:2px"></div></div>
+            <div class="ph-row" style="gap:2px"><div class="ph-block" style="flex:.5;height:12px;background:${p.acc};opacity:.15;border-radius:2px"></div><div class="ph-block" style="flex:.5;height:12px;background:${p.acc2};opacity:.12;border-radius:2px"></div></div>`;
+  } else if (a.includes('music') || a.includes('audio') || a.includes('podcast')) {
+    // Waveform
+    const bars = [0.2,0.5,0.8,1.0,0.7,0.9,0.4,0.6,0.3,0.8,0.5,0.9,0.2,0.7];
+    rows = `<div class="ph-row" style="align-items:center;height:24px;gap:1px">${bars.map(h=>`<div style="flex:1;height:${Math.round(h*22)}px;background:${p.acc};opacity:${0.3+0.7*h};border-radius:1px"></div>`).join('')}</div>
+            <div class="ph-row"><div class="ph-block" style="flex:1;height:4px;background:${p.acc};opacity:.8;border-radius:2px"></div></div>
+            <div class="ph-row" style="justify-content:center;gap:6px"><div style="width:14px;height:14px;border-radius:50%;background:${p.acc};opacity:.9"></div><div style="width:10px;height:10px;border-radius:50%;border:1.5px solid rgba(255,255,255,.3);margin-top:2px"></div></div>`;
+  } else if (a.includes('social') || a.includes('messag') || a.includes('chat')) {
+    // Message bubbles
+    rows = `<div class="ph-row" style="justify-content:flex-end"><div class="ph-block" style="width:58%;height:10px;background:${p.acc};opacity:.8;border-radius:4px 4px 1px 4px"></div></div>
+            <div class="ph-row"><div class="ph-block" style="width:62%;height:10px;background:rgba(255,255,255,.1);border-radius:4px 4px 4px 1px"></div></div>
+            <div class="ph-row" style="justify-content:flex-end"><div class="ph-block" style="width:44%;height:8px;background:${p.acc};opacity:.7;border-radius:4px 4px 1px 4px"></div></div>
+            <div class="ph-row"><div class="ph-block" style="width:70%;height:14px;background:rgba(255,255,255,.08);border-radius:4px 4px 4px 1px"></div></div>`;
+  } else {
+    // Default — app list / dashboard
+    rows = `<div class="ph-row"><div class="ph-block" style="flex:.35;height:18px;background:${p.acc};opacity:.9;border-radius:3px"></div></div>
+            <div class="ph-row" style="gap:2px"><div class="ph-block" style="flex:1;height:5px;background:rgba(255,255,255,.1);border-radius:1px"></div><div class="ph-block" style="flex:.4;height:5px;background:${p.acc2};opacity:.5;border-radius:1px"></div></div>
+            <div class="ph-row"><div class="ph-block" style="flex:1;height:2px;background:rgba(255,255,255,.06);border-radius:1px"></div></div>
+            <div class="ph-row" style="gap:2px"><div class="ph-block" style="flex:.5;height:12px;background:${p.acc};opacity:.12;border-radius:2px"></div><div class="ph-block" style="flex:.5;height:12px;background:rgba(255,255,255,.06);border-radius:2px"></div></div>
+            <div class="ph-row"><div class="ph-block" style="flex:1;height:4px;background:rgba(255,255,255,.08);border-radius:1px"></div></div>`;
+  }
+
+  return `
+    <div class="phone ${sz}">
+      <div class="phone-shell" style="background:${p.surf}">
+        <div class="ph-status" style="background:${p.bg}">
+          <div class="ph-status-dot" style="background:${p.acc};opacity:.6"></div>
+          <div class="ph-status-bars">
+            ${[4,6,8,10].map((h,i)=>`<div class="ph-status-bar" style="height:${h}px;background:rgba(255,255,255,.3)"></div>`).join('')}
+          </div>
+        </div>
+        <div class="ph-nav" style="background:${p.bg}">
+          <div class="ph-nav-stub" style="background:rgba(255,255,255,.12)"></div>
+          <div class="ph-nav-icon" style="background:${p.acc};opacity:.7"></div>
+        </div>
+        <div class="ph-body" style="background:${p.surf}">${rows}</div>
+        <div class="ph-tabs" style="background:${p.bg}">
+          <div class="ph-tab active" style="background:${p.acc}"></div>
+          <div class="ph-tab" style="background:rgba(255,255,255,.2)"></div>
+          <div class="ph-tab" style="background:rgba(255,255,255,.2)"></div>
+          <div class="ph-tab" style="background:rgba(255,255,255,.2)"></div>
+        </div>
+      </div>
+    </div>`;
+}
+
+// ── Arch label ───────────────────────────────────────────────────────────────
+function archLabel(arch) {
+  if (!arch) return 'DESIGN';
+  const a = arch.toLowerCase();
+  const map = { financ:'FINANCE', bank:'FINANCE', health:'HEALTH', wellness:'HEALTH', fitness:'HEALTH', social:'SOCIAL', music:'AUDIO', audio:'AUDIO', podcast:'AUDIO', food:'FOOD', travel:'TRAVEL', edu:'EDU', learn:'EDU', commerce:'COMMERCE', shop:'COMMERCE', creativ:'CREATIVE', design:'CREATIVE', ai:'AI', machine:'AI', workforce:'AI', agent:'AI', video:'MEDIA', media:'MEDIA', stream:'MEDIA', productivity:'PROD', task:'PROD', project:'PROD' };
+  for (const [k, v] of Object.entries(map)) { if (a.includes(k)) return v; }
+  return arch.split(/[-_]/)[0].toUpperCase().slice(0, 8);
+}
+
+function fmtDate(d) {
+  const s = d.published_at || d.submitted_at;
+  if (!s) return 'Recent';
+  return new Date(s).toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric' });
+}
+function trunc(s, n) { return !s ? '' : s.length > n ? s.slice(0, n-1)+'…' : s; }
+function isStudio(d) { return d.source === 'heartbeat' || d.credit === 'RAM Design Heartbeat' || d.credit?.includes('RAM'); }
+
+function thumbWrap(d, tall = false) {
+  const p = getPal(d);
+  const archCol = p.acc;
+  return `
+    <div class="thumb-wrap ${tall ? 'tall' : 'short'}" style="position:relative;overflow:hidden">
+      <div class="thumb-bg" style="background:${p.bg}">
+        <!-- Subtle grid pattern -->
+        <svg width="100%" height="100%" style="position:absolute;inset:0;opacity:.04" xmlns="http://www.w3.org/2000/svg">
+          <defs><pattern id="g${Math.random().toString(36).slice(2,6)}" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M 20 0 L 0 0 0 20" fill="none" stroke="white" stroke-width="0.5"/></pattern></defs>
+          <rect width="100%" height="100%" fill="url(#g${Math.random().toString(36).slice(2,6)})"/>
+        </svg>
+        <!-- Radial accent glow -->
+        <div style="position:absolute;top:30%;left:50%;transform:translate(-50%,-50%);width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,${p.acc}22 0%,transparent 70%)"></div>
+      </div>
+      ${phoneHTML(d, tall)}
+      <div class="thumb-badges">
+        ${isStudio(d) ? '<span class="badge badge-studio">★ Studio</span>' : ''}
+        ${d.theme === 'dark' ? '<span class="badge badge-dark">Dark</span>' : d.theme === 'light' ? '<span class="badge badge-light">Light</span>' : ''}
+      </div>
+      <div class="arch-badge" style="color:${archCol}">${archLabel(d.archetype)}</div>
+    </div>`;
+}
+
+// ── Card builders ────────────────────────────────────────────────────────────
+function bentoCard(d, main = false) {
+  const url = d.design_url || '#';
+  const name = d.app_name || '?';
+  return `
+    <a class="bento-card${main?' main':''}" href="${url}" target="_blank" rel="noopener">
+      ${thumbWrap(d, true)}
+      <div class="card-body">
+        <div class="card-name">${name}</div>
+        <div class="card-tagline">${trunc(d.tagline || d.prompt, 100)}</div>
+        <div class="card-chips">
+          ${d.screens ? `<span class="chip">${d.screens} screens</span>` : ''}
+          ${d.elements ? `<span class="chip">${d.elements} elements</span>` : ''}
+          ${d.heartbeat ? `<span class="chip accent">#${d.heartbeat}</span>` : ''}
+        </div>
+      </div>
+      <div class="card-foot">
+        <span class="card-date">${fmtDate(d)}</span>
+        ${d.mock_url ? `<a class="mock-link" href="${d.mock_url}" target="_blank" rel="noopener" onclick="event.stopPropagation()">Try Mock ✦</a>` : ''}
+        <span class="go-arrow">→</span>
+      </div>
+    </a>`;
+}
+
+function gridCard(d) {
+  const url = d.design_url || '#';
+  const name = d.app_name || '?';
+  return `
+    <a class="design-card" href="${url}" target="_blank" rel="noopener">
+      ${thumbWrap(d, false)}
+      <div class="card-body">
+        <div class="card-name">${name}</div>
+        <div class="card-tagline">${trunc(d.tagline || d.prompt, 65)}</div>
+        <div class="card-chips">
+          ${d.screens ? `<span class="chip">${d.screens}s</span>` : ''}
+          ${d.elements ? `<span class="chip">${d.elements}el</span>` : ''}
+        </div>
+      </div>
+      <div class="card-foot">
+        <span class="card-date">${fmtDate(d)}</span>
+        ${d.mock_url ? `<a class="mock-link" href="${d.mock_url}" target="_blank" rel="noopener" onclick="event.stopPropagation()">Mock ✦</a>` : ''}
+        <span class="go-arrow">→</span>
+      </div>
+    </a>`;
+}
+
+// ── State ─────────────────────────────────────────────────────────────────────
+let all = [], filtered = [], page = 1, themeF = 'all', archF = 'all', query = '', sortMode = 'newest';
+
+function apply() {
+  const q = query.toLowerCase();
+  filtered = all.filter(d => {
+    const n = (d.app_name || '').toLowerCase();
+    const pr = (d.prompt || '').toLowerCase();
+    const a = (d.archetype || '').toLowerCase();
+    const th = (d.theme || '').toLowerCase();
+    if (q && !n.includes(q) && !pr.includes(q) && !a.includes(q)) return false;
+    if (themeF !== 'all' && th !== themeF) return false;
+    if (archF === 'studio') { if (!isStudio(d)) return false; }
+    else if (archF !== 'all') { if (!a.includes(archF.toLowerCase())) return false; }
+    return true;
+  });
+  if (sortMode === 'newest') filtered.sort((a,b) => new Date(b.published_at||b.submitted_at||0)-new Date(a.published_at||a.submitted_at||0));
+  else if (sortMode === 'oldest') filtered.sort((a,b) => new Date(a.published_at||a.submitted_at||0)-new Date(b.published_at||b.submitted_at||0));
+  else filtered.sort((a,b) => (a.app_name||'').localeCompare(b.app_name||''));
+  page = 1;
+  renderPage();
+}
+
+function renderPage() {
+  const total = filtered.length;
+  const pages = Math.ceil(total / PER_PAGE);
+  const slice = filtered.slice((page-1)*PER_PAGE, page*PER_PAGE);
+  document.getElementById('result-info').textContent = total === all.length ? `${all.length} designs` : `${total} of ${all.length}`;
+  const grid = document.getElementById('gallery-grid');
+  if (!total) {
+    grid.innerHTML = `<div class="state"><div class="state-icon">◎</div><div class="state-title">No designs found</div><div class="state-sub">Try adjusting your search or filters.</div></div>`;
+    document.getElementById('pag').style.display = 'none';
+    return;
+  }
+  grid.innerHTML = slice.map(gridCard).join('');
+  const pag = document.getElementById('pag');
+  if (pages <= 1) { pag.style.display = 'none'; return; }
+  pag.style.display = 'flex';
+  document.getElementById('pag-info').textContent = `Page ${page} of ${pages}  ·  ${total} designs`;
+  const btns = [];
+  btns.push(`<button class="pag-btn" onclick="goPage(${page-1})" ${page===1?'disabled':''}>← Prev</button>`);
+  for (let p2=1; p2<=pages; p2++) {
+    if (p2===1||p2===pages||Math.abs(p2-page)<=2) btns.push(`<button class="pag-btn${p2===page?' on':''}" onclick="goPage(${p2})">${p2}</button>`);
+    else if (Math.abs(p2-page)===3) btns.push(`<span class="pag-btn" style="border:none;cursor:default">…</span>`);
+  }
+  btns.push(`<button class="pag-btn" onclick="goPage(${page+1})" ${page===pages?'disabled':''}>Next →</button>`);
+  document.getElementById('pag-btns').innerHTML = btns.join('');
+}
+
+function goPage(n) {
+  const pages = Math.ceil(filtered.length / PER_PAGE);
+  if (n<1||n>pages) return;
+  page = n;
+  renderPage();
+  document.querySelector('.grid-section').scrollIntoView({ behavior:'smooth', block:'start' });
+}
+
+function renderBento(designs) {
+  const studio = designs.filter(isStudio).slice(0, 3);
+  if (!studio.length) return;
+  document.getElementById('bento-section').style.display = 'block';
+  document.getElementById('bento-date').textContent = fmtDate(studio[0]);
+  const [main, s2, s3] = studio;
+  let html = main ? bentoCard(main, true) : '';
+  if (s2) html += bentoCard(s2);
+  if (s3) html += bentoCard(s3);
+  document.getElementById('bento-grid').innerHTML = html;
+}
+
+function buildMarquee(designs) {
+  const names = designs.filter(isStudio).map(d => d.app_name).filter(Boolean);
+  const items = names.slice(0, 30).map(n => `<span class="marquee-item"><span>✦</span>${n}</span>`).join('');
+  const track = document.getElementById('marquee-track');
+  track.innerHTML = items + items; // duplicate for seamless loop
+}
+
+// ── Events ────────────────────────────────────────────────────────────────────
+document.getElementById('search').addEventListener('input', e => {
+  query = e.target.value.trim();
+  document.getElementById('search-clear').style.display = query ? 'block' : 'none';
+  apply();
+});
+function clearSearch() {
+  document.getElementById('search').value = '';
+  query = '';
+  document.getElementById('search-clear').style.display = 'none';
+  apply();
+}
+document.getElementById('sort-sel').addEventListener('change', e => { sortMode = e.target.value; apply(); });
+document.getElementById('theme-pills').addEventListener('click', e => {
+  const btn = e.target.closest('[data-val]'); if (!btn) return;
+  document.querySelectorAll('#theme-pills [data-val]').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on'); themeF = btn.dataset.val; apply();
+});
+document.getElementById('arch-pills').addEventListener('click', e => {
+  const btn = e.target.closest('[data-val]'); if (!btn) return;
+  document.querySelectorAll('#arch-pills [data-val]').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on'); archF = btn.dataset.val; apply();
+});
+
+// ── Load ──────────────────────────────────────────────────────────────────────
+async function loadGallery(silent = false) {
+  if (!silent) document.getElementById('gallery-grid').innerHTML = '<div class="state"><div class="spinner"></div><div class="state-title">Loading...</div></div>';
+  try {
+    const res = await fetch(QUEUE_URL + '?t=' + Date.now());
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const q = await res.json();
+    const subs = Array.isArray(q) ? q : (q.submissions || []);
+    all = subs.filter(s => s.status === 'done' || (!s.status && s.design_url)).reverse();
+    const beats = all.filter(isStudio).length;
+    document.getElementById('stat-total').textContent = all.length;
+    document.getElementById('stat-beats').textContent = beats;
+    document.getElementById('last-updated').textContent = 'Updated ' + new Date().toLocaleTimeString();
+    buildMarquee(all);
+    renderBento(all);
+    apply();
+  } catch (err) {
+    if (!silent) document.getElementById('gallery-grid').innerHTML = `<div class="state"><div class="state-icon">⚠</div><div class="state-title">Could not load</div><div class="state-sub">${err.message}</div></div>`;
+    document.getElementById('last-updated').textContent = 'Error: ' + err.message;
+  }
+}
+loadGallery();
+setInterval(() => loadGallery(true), 5 * 60 * 1000);
+</script>
+</body>
+</html>

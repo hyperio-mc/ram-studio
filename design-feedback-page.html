@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Request a Refactor — RAM Design Studio</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:      #F8F6F1;
+    --ink:     #1A1714;
+    --muted:   #7A7570;
+    --rule:    #DDD9D3;
+    --accent:  #C0392B;
+    --surface: #EFECE6;
+    --mono: 'SF Mono', 'Fira Code', ui-monospace, monospace;
+    --serif: 'Georgia', 'Times New Roman', serif;
+  }
+
+  html { font-size: 16px; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--serif);
+    min-height: 100vh;
+  }
+
+  /* ── NAV ───────────────────────────────────────────────────────── */
+  .nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    padding: 18px 60px;
+    display: flex; justify-content: space-between; align-items: center;
+    z-index: 100;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    background: rgba(248,246,241,0.9);
+    border-bottom: 1px solid var(--rule);
+  }
+  .nav-logo {
+    font-family: var(--mono); font-size: 11px; font-weight: 700;
+    letter-spacing: 4px; color: var(--muted); text-decoration: none;
+  }
+  .nav-logo:hover { color: var(--ink); }
+  .nav-links {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 2px;
+    display: flex; gap: 28px;
+  }
+  .nav-links a { color: var(--muted); text-decoration: none; }
+  .nav-links a:hover { color: var(--ink); }
+
+  /* Ambient orbs */
+  .orb { position: fixed; border-radius: 50%; filter: blur(100px); pointer-events: none; z-index: 0; }
+  .orb-1 { width:600px; height:600px; background:radial-gradient(circle,rgba(192,57,43,0.12) 0%,transparent 70%); top:-150px; right:-100px; }
+  .orb-2 { width:400px; height:400px; background:radial-gradient(circle,rgba(41,128,185,0.10) 0%,transparent 70%); bottom:0; left:5%; }
+
+  /* ── MAIN ──────────────────────────────────────────────────────── */
+  .main {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 140px 32px 100px;
+    position: relative; z-index: 1;
+  }
+
+  .eyebrow {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 4px;
+    color: var(--accent); font-weight: 700; margin-bottom: 20px;
+  }
+
+  h1 {
+    font-size: clamp(2.4rem, 5vw, 4rem);
+    font-weight: 700; letter-spacing: -0.025em; line-height: 1.1;
+    margin-bottom: 18px;
+  }
+
+  .intro {
+    font-size: 1.05rem; line-height: 1.75; color: var(--muted);
+    max-width: 560px; margin-bottom: 52px;
+  }
+
+  /* ── FORM ──────────────────────────────────────────────────────── */
+  #feedback-form {
+    border: 1px solid var(--rule);
+    background: var(--bg);
+  }
+
+  .form-section {
+    padding: 32px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .form-section:last-of-type { border-bottom: none; }
+
+  .field-label {
+    font-family: var(--mono); font-size: 9px; letter-spacing: 3px;
+    font-weight: 700; color: var(--muted);
+    margin-bottom: 10px; display: block;
+  }
+
+  .field-hint {
+    font-family: var(--mono); font-size: 9px; letter-spacing: 1px;
+    color: var(--muted); opacity: 0.7; margin-top: 6px;
+  }
+
+  .design-display {
+    border: 1px solid var(--rule);
+    padding: 16px 20px;
+    background: var(--surface);
+    font-family: var(--mono);
+  }
+  .design-name {
+    font-size: 18px; font-weight: 700; letter-spacing: 2px; color: var(--ink);
+  }
+  .design-url {
+    font-size: 10px; color: var(--muted); margin-top: 4px; letter-spacing: 1px;
+  }
+  .design-not-found {
+    color: var(--accent); font-family: var(--mono); font-size: 12px;
+    padding: 12px 0;
+  }
+
+  .refactor-options {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    margin-top: 2px;
+  }
+  .refactor-option input[type="radio"] { display: none; }
+  .refactor-option label {
+    display: block;
+    padding: 16px 14px;
+    background: var(--bg);
+    cursor: pointer;
+    transition: background 0.2s;
+    font-family: var(--mono);
+  }
+  .refactor-option label:hover { background: var(--surface); }
+  .refactor-option input:checked + label {
+    background: var(--ink); color: var(--bg);
+  }
+  .refactor-option input:checked + label .opt-title { color: var(--bg); }
+  .refactor-option input:checked + label .opt-desc  { color: rgba(248,246,241,0.55); }
+  .opt-title {
+    font-size: 11px; font-weight: 700; letter-spacing: 2px;
+    color: var(--ink); margin-bottom: 4px;
+  }
+  .opt-desc  {
+    font-size: 10px; color: var(--muted); line-height: 1.5;
+  }
+
+  textarea {
+    width: 100%; min-height: 140px;
+    border: 1px solid var(--rule); background: var(--surface);
+    color: var(--ink); font-family: var(--serif); font-size: 15px;
+    line-height: 1.7; padding: 16px; resize: vertical;
+    outline: none; transition: border-color 0.2s;
+    margin-top: 2px;
+  }
+  textarea:focus { border-color: var(--ink); }
+  textarea::placeholder { color: var(--muted); font-style: italic; }
+
+  .char-count {
+    font-family: var(--mono); font-size: 9px; color: var(--muted);
+    text-align: right; margin-top: 6px; letter-spacing: 1px;
+  }
+  .char-count.warn { color: var(--accent); }
+
+  input[type="text"] {
+    width: 100%; border: 1px solid var(--rule); background: var(--surface);
+    color: var(--ink); font-family: var(--mono); font-size: 13px;
+    padding: 12px 14px; outline: none; transition: border-color 0.2s;
+    margin-top: 2px;
+  }
+  input[type="text"]:focus { border-color: var(--ink); }
+  input[type="text"]::placeholder { color: var(--muted); }
+
+  /* Security notice */
+  .security-notice {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--accent);
+    padding: 16px 20px;
+    margin-bottom: 32px;
+  }
+  .security-notice p {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 1px;
+    color: var(--muted); line-height: 1.7;
+  }
+  .security-notice strong { color: var(--ink); font-weight: 700; }
+
+  .submit-row {
+    display: flex; gap: 16px; align-items: center; flex-wrap: wrap;
+    padding: 28px 32px;
+    border-top: 1px solid var(--rule);
+    background: var(--surface);
+  }
+
+  .btn-submit {
+    font-family: var(--mono); font-size: 10px; font-weight: 700;
+    letter-spacing: 2px; padding: 14px 36px;
+    background: var(--ink); color: var(--bg); border: 1.5px solid var(--ink);
+    cursor: pointer; transition: background 0.2s, border-color 0.2s, transform 0.15s, box-shadow 0.15s;
+  }
+  .btn-submit:hover:not(:disabled) {
+    background: var(--accent); border-color: var(--accent);
+    transform: translate(-2px,-2px); box-shadow: 3px 3px 0 var(--ink);
+  }
+  .btn-submit:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  .submit-note {
+    font-family: var(--mono); font-size: 9px; letter-spacing: 1px; color: var(--muted);
+  }
+
+  /* ── STATUS ────────────────────────────────────────────────────── */
+  #status-box {
+    display: none;
+    border: 1px solid var(--rule);
+    padding: 40px 32px;
+    text-align: center;
+    background: var(--surface);
+    margin-top: 24px;
+  }
+  #status-box.success { border-color: #2ECC71; }
+  #status-box.error   { border-color: var(--accent); }
+
+  .status-icon {
+    font-size: 2rem; margin-bottom: 16px;
+  }
+  .status-title {
+    font-size: 1.4rem; font-weight: 700; letter-spacing: -0.015em; margin-bottom: 10px;
+  }
+  .status-msg {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 1px;
+    color: var(--muted); line-height: 1.7;
+  }
+
+  /* ── RECENT REFACTORS ──────────────────────────────────────────── */
+  .recent-sec {
+    margin-top: 60px; padding-top: 48px; border-top: 1px solid var(--rule);
+  }
+  .recent-label {
+    font-family: var(--mono); font-size: 9px; letter-spacing: 3px;
+    color: var(--accent); font-weight: 700; margin-bottom: 20px;
+  }
+  .recent-list { display: flex; flex-direction: column; gap: 1px; background: var(--rule); }
+  .recent-item {
+    background: var(--bg);
+    padding: 16px 20px;
+    display: flex; justify-content: space-between; align-items: baseline;
+    gap: 16px;
+  }
+  .recent-design {
+    font-family: var(--mono); font-size: 11px; font-weight: 700;
+    letter-spacing: 2px; color: var(--ink);
+  }
+  .recent-type {
+    font-family: var(--mono); font-size: 9px; letter-spacing: 2px;
+    color: var(--muted); text-transform: uppercase; flex-shrink: 0;
+  }
+  .recent-status {
+    font-family: var(--mono); font-size: 9px; letter-spacing: 1px;
+    color: #2ECC71; flex-shrink: 0;
+  }
+  .recent-status.pending { color: var(--accent); }
+
+  /* ── RESPONSIVE ────────────────────────────────────────────────── */
+  @media (max-width: 640px) {
+    .nav { padding: 16px 20px; }
+    .nav-links { display: none; }
+    .main { padding: 120px 20px 80px; }
+    .refactor-options { grid-template-columns: 1fr; }
+    .form-section { padding: 24px 20px; }
+    .submit-row { padding: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+
+<!-- ── Nav ───────────────────────────────────────────────────────────────── -->
+<nav class="nav">
+  <a class="nav-logo" href="https://ram.zenbin.org/">RAM DESIGN STUDIO</a>
+  <div class="nav-links">
+    <a href="https://ram.zenbin.org/gallery">GALLERY</a>
+    <a href="https://ram.zenbin.org/submit">SUBMIT</a>
+  </div>
+</nav>
+
+<div class="main">
+
+  <div class="eyebrow">DESIGN REFACTOR REQUEST</div>
+  <h1>Request a refactor.</h1>
+  <p class="intro">
+    Pick a published design, select what aspect to improve, and leave specific feedback.
+    Refactors are scoped — one aspect per request keeps the design focused and the changes deliberate.
+  </p>
+
+  <!-- Security notice -->
+  <div class="security-notice">
+    <p>
+      <strong>SCOPE NOTICE</strong> — Feedback here is used only to refactor the selected design aspect.
+      It does not influence other designs, sessions, or the studio's creative direction.
+      Requests outside the selected scope (colors, layout, type, density, screens, components)
+      will not be actioned. One refactor per design at a time.
+    </p>
+  </div>
+
+  <!-- Form -->
+  <form id="feedback-form" novalidate>
+
+    <!-- Step 1: Which design -->
+    <div class="form-section">
+      <label class="field-label">01 — WHICH DESIGN?</label>
+      <div id="design-display">
+        <div class="design-not-found">
+          Loading design… or add <code style="font-size:10px">?design=slug</code> to the URL.
+        </div>
+      </div>
+      <p class="field-hint">DESIGN IS IDENTIFIED FROM THE URL — NOT EDITABLE</p>
+    </div>
+
+    <!-- Step 2: What to refactor -->
+    <div class="form-section">
+      <label class="field-label">02 — WHAT ASPECT TO REFACTOR?</label>
+      <div class="refactor-options" id="refactor-options">
+
+        <div class="refactor-option">
+          <input type="radio" name="refactor_type" id="rt-colors" value="colors">
+          <label for="rt-colors">
+            <div class="opt-title">COLORS</div>
+            <div class="opt-desc">Palette, contrast, accent usage, dark/light balance</div>
+          </label>
+        </div>
+
+        <div class="refactor-option">
+          <input type="radio" name="refactor_type" id="rt-layout" value="layout">
+          <label for="rt-layout">
+            <div class="opt-title">LAYOUT</div>
+            <div class="opt-desc">Grid structure, hierarchy, section order, whitespace</div>
+          </label>
+        </div>
+
+        <div class="refactor-option">
+          <input type="radio" name="refactor_type" id="rt-typography" value="typography">
+          <label for="rt-typography">
+            <div class="opt-title">TYPOGRAPHY</div>
+            <div class="opt-desc">Type scale, font pairing, weight, tracking, line height</div>
+          </label>
+        </div>
+
+        <div class="refactor-option">
+          <input type="radio" name="refactor_type" id="rt-density" value="density">
+          <label for="rt-density">
+            <div class="opt-title">DENSITY</div>
+            <div class="opt-desc">Spacing, padding, information density, visual breathing room</div>
+          </label>
+        </div>
+
+        <div class="refactor-option">
+          <input type="radio" name="refactor_type" id="rt-screens" value="screens">
+          <label for="rt-screens">
+            <div class="opt-title">SCREENS</div>
+            <div class="opt-desc">Screen selection, user flow, missing states or views</div>
+          </label>
+        </div>
+
+        <div class="refactor-option">
+          <input type="radio" name="refactor_type" id="rt-components" value="components">
+          <label for="rt-components">
+            <div class="opt-title">COMPONENTS</div>
+            <div class="opt-desc">Buttons, cards, inputs, navigation, specific UI elements</div>
+          </label>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Step 3: Specific feedback -->
+    <div class="form-section">
+      <label class="field-label" for="feedback-text">03 — SPECIFIC FEEDBACK</label>
+      <textarea
+        id="feedback-text"
+        name="feedback"
+        maxlength="500"
+        placeholder="Describe the specific change you'd like to see. Be concrete — 'the phosphor green is too bright against charcoal, try a cooler mint' rather than 'make it nicer'."
+        required
+      ></textarea>
+      <div class="char-count" id="char-count">0 / 500</div>
+      <p class="field-hint">MAX 500 CHARACTERS · DESIGN-SPECIFIC ONLY · NO EXTERNAL REFERENCES</p>
+    </div>
+
+    <!-- Step 4: Credit -->
+    <div class="form-section">
+      <label class="field-label" for="credit-field">04 — YOUR NAME (OPTIONAL)</label>
+      <input
+        type="text"
+        id="credit-field"
+        name="credit"
+        placeholder="Name or handle"
+        maxlength="60"
+        autocomplete="off"
+      >
+    </div>
+
+    <!-- Submit -->
+    <div class="submit-row">
+      <button type="submit" class="btn-submit" id="submit-btn" disabled>
+        SUBMIT REFACTOR REQUEST →
+      </button>
+      <p class="submit-note">
+        Refactor requests are reviewed and actioned within the next design session.
+      </p>
+    </div>
+
+  </form>
+
+  <!-- Status -->
+  <div id="status-box">
+    <div class="status-icon" id="status-icon">✓</div>
+    <div class="status-title" id="status-title">Request submitted.</div>
+    <p class="status-msg" id="status-msg"></p>
+  </div>
+
+  <!-- Recent refactors -->
+  <div class="recent-sec" id="recent-sec" style="display:none">
+    <div class="recent-label">RECENT REFACTOR REQUESTS</div>
+    <div class="recent-list" id="recent-list"></div>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+// ── Load designs dynamically from the gallery queue (same source as gallery page)
+const QUEUE_URL = 'https://raw.githubusercontent.com/hyperio-mc/design-studio-queue/main/queue.json';
+
+const urlParams  = new URLSearchParams(window.location.search);
+const designSlug = (urlParams.get('design') || '').replace(/[^a-z0-9\-_]/g, '').slice(0, 60);
+const designDisplay = document.getElementById('design-display');
+
+let design = null; // resolved after queue loads
+
+function buildLookupKey(s) {
+  // Try to derive a slug from the design_url path
+  const url = s.design_url || s.viewer_url || '';
+  const urlSlug = url.replace(/.*\//, '').toLowerCase();
+  const name = (s.app_name || s.appName || s.name || '').toLowerCase();
+  const id = (s.id || s.slug || '').toLowerCase();
+  return [urlSlug, name, id].filter(Boolean);
+}
+
+async function loadDesignRegistry() {
+  designDisplay.innerHTML = `<div class="design-not-found" style="color:var(--muted)">Loading designs…</div>`;
+  try {
+    const res = await fetch(QUEUE_URL + '?t=' + Date.now());
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const queue = await res.json();
+    const subs = Array.isArray(queue) ? queue : (queue.submissions || []);
+    const done = subs.filter(s => s.status === 'done' || (!s.status && s.design_url));
+
+    // Build a lookup map: any reasonable slug key → design entry
+    const registry = {};
+    done.forEach(s => {
+      const keys = buildLookupKey(s);
+      keys.forEach(k => { if (k && !registry[k]) registry[k] = s; });
+    });
+
+    // Try to match the ?design= param
+    const needle = designSlug.toLowerCase();
+    const matched = registry[needle] || null;
+
+    if (matched) {
+      design = {
+        name:      matched.app_name || matched.appName || matched.name || matched.id,
+        url:       matched.design_url || matched.viewer_url,
+        archetype: matched.archetype || 'studio',
+      };
+      designDisplay.innerHTML = `
+        <div class="design-display">
+          <div class="design-name">${design.name}</div>
+          <div class="design-url">${design.url}</div>
+        </div>`;
+    } else if (designSlug) {
+      designDisplay.innerHTML = `<div class="design-not-found">Design "${designSlug}" not found in the gallery. Visit a published design page and click "Request Refactor" from there.</div>`;
+    } else {
+      designDisplay.innerHTML = `<div class="design-not-found">No design specified. Visit a published design page and click 'Request Refactor' from there, or add <code style="font-size:10px">?design=slug</code> to the URL.</div>`;
+    }
+  } catch (err) {
+    designDisplay.innerHTML = `<div class="design-not-found">Could not load design registry (${err.message}). Please try refreshing.</div>`;
+  }
+  validateForm();
+}
+
+loadDesignRegistry();
+
+// ── Char counter
+const textArea  = document.getElementById('feedback-text');
+const charCount = document.getElementById('char-count');
+const submitBtn = document.getElementById('submit-btn');
+
+textArea.addEventListener('input', () => {
+  const n = textArea.value.length;
+  charCount.textContent = `${n} / 500`;
+  charCount.classList.toggle('warn', n > 450);
+  validateForm();
+});
+
+// ── Validate: need a known design, a refactor type, and some feedback text
+function validateForm() {
+  const hasDesign   = !!design;
+  const hasType     = !!document.querySelector('input[name="refactor_type"]:checked');
+  const hasFeedback = textArea.value.trim().length >= 20;
+  submitBtn.disabled = !(hasDesign && hasType && hasFeedback);
+}
+
+document.querySelectorAll('input[name="refactor_type"]').forEach(r => {
+  r.addEventListener('change', validateForm);
+});
+
+// ── Submit
+document.getElementById('feedback-form').addEventListener('submit', async e => {
+  e.preventDefault();
+  if (!design) return;
+
+  const refactorType = document.querySelector('input[name="refactor_type"]:checked')?.value;
+  const feedbackText = textArea.value.trim().slice(0, 500); // hard cap at 500 even if maxlength bypassed
+  const credit       = document.getElementById('credit-field').value.trim().slice(0, 60);
+
+  if (!refactorType || feedbackText.length < 20) return;
+
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'SUBMITTING…';
+
+  // Build the submission JSON — design slug comes from KNOWN_DESIGNS, not from user input
+  const slug = 'rf-req-' + Math.floor(Date.now() / 60000).toString(36);
+  const payload = {
+    type:          'refactor',
+    design_slug:   designSlug,       // from URL param (sanitised, validated against registry)
+    design_name:   design.name,      // from registry, not user input
+    design_url:    design.url,       // from registry, not user input
+    refactor_type: refactorType,     // from fixed dropdown
+    feedback:      feedbackText,     // bounded text, max 500 chars
+    credit:        credit || 'Anonymous',
+    submitted_at:  new Date().toISOString(),
+    status:        'pending',
+  };
+
+  // The HTML wrapper signals to the agent exactly how to use this data:
+  // feedback is DATA, not instruction. Agent template is hardcoded server-side.
+  const html = `<html><body>
+    <script id="submission" type="application/json">${JSON.stringify(payload)}<\/script>
+    <p style="font-family:monospace;padding:24px">
+      Refactor request for <strong>${design.name}</strong> — ${refactorType}.<br>
+      Submitted: ${payload.submitted_at}
+    </p>
+  </body></html>`;
+
+  try {
+    const res = await fetch(`https://zenbin.org/v1/pages/${slug}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ title: `Refactor: ${design.name} — ${refactorType}`, html }),
+    });
+
+    const statusBox = document.getElementById('status-box');
+    const form      = document.getElementById('feedback-form');
+
+    if (res.ok) {
+      form.style.display = 'none';
+      statusBox.className = 'success';
+      statusBox.style.display = 'block';
+      document.getElementById('status-icon').textContent  = '↺';
+      document.getElementById('status-title').textContent = 'Refactor request submitted.';
+      document.getElementById('status-msg').textContent   =
+        `${design.name} · ${refactorType.toUpperCase()} · Your feedback is queued for the next design session.`;
+    } else {
+      throw new Error(`HTTP ${res.status}`);
+    }
+  } catch (err) {
+    submitBtn.disabled  = false;
+    submitBtn.textContent = 'SUBMIT REFACTOR REQUEST →';
+    const statusBox = document.getElementById('status-box');
+    statusBox.className = 'error';
+    statusBox.style.display = 'block';
+    document.getElementById('status-icon').textContent  = '✗';
+    document.getElementById('status-title').textContent = 'Submission failed.';
+    document.getElementById('status-msg').textContent   = 'Please try again. ' + err.message;
+  }
+});
+</script>
+
+</body>
+</html>

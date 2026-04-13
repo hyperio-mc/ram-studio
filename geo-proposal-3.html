@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GEO Score Tracker -- Pulse Design Proposal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#080b12;--panel:#0d1117;--panel2:#0a0f18;
+  --border:#161b22;--border2:#21262d;
+  --accent:#00ff88;--accentDim:#003322;
+  --blue:#58a6ff;--blueDim:#0d2040;
+  --orange:#ff6b35;--orangeDim:#3d1a0a;
+  --text:#e6edf3;--muted:#8b949e;--dim:#30363d;
+  --red:#f85149;--yellow:#d29922;--purple:#bc8cff;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Space Grotesk',sans-serif;overflow-x:hidden}
+
+/* scan line effect */
+body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,255,136,.006) 2px,rgba(0,255,136,.006) 4px);pointer-events:none;z-index:0}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(8,11,18,.95);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:0 2rem;height:48px;display:flex;align-items:center;justify-content:space-between}
+.nav-left{display:flex;align-items:center;gap:1.5rem}
+.nav-logo{font-family:'Space Mono',monospace;font-size:.85rem;font-weight:700;color:var(--accent);letter-spacing:.05em}
+.nav-back{font-size:.78rem;color:var(--muted);text-decoration:none;font-family:'Space Mono',monospace}
+.nav-back:hover{color:var(--text)}
+.nav-badge{background:var(--accentDim);color:var(--accent);font-family:'Space Mono',monospace;font-size:.62rem;font-weight:700;padding:.2rem .6rem;border:1px solid rgba(0,255,136,.25);letter-spacing:.1em}
+
+/* HERO */
+.hero{padding:8rem 2rem 4rem;max-width:1100px;margin:0 auto;position:relative;z-index:1}
+.hero-row{display:flex;align-items:flex-start;gap:3rem}
+.hero-left{flex:1}
+.design-tag{font-family:'Space Mono',monospace;font-size:.68rem;font-weight:700;color:var(--accent);letter-spacing:.18em;text-transform:uppercase;margin-bottom:1rem;display:flex;align-items:center;gap:.75rem}
+.design-tag .line{width:32px;height:1px;background:var(--accent)}
+h1{font-size:clamp(2.5rem,5vw,4rem);font-weight:700;letter-spacing:-.02em;line-height:1.05;margin-bottom:1rem}
+h1 em{font-style:normal;color:var(--accent)}
+h1 .outline{-webkit-text-stroke:1px var(--text);color:transparent}
+.hero-sub{font-size:1rem;color:var(--muted);line-height:1.7;max-width:520px;margin-bottom:2rem}
+.palette-row{display:flex;gap:.4rem;align-items:center;margin-bottom:2rem}
+.swatch{width:26px;height:26px;border:1px solid var(--border2)}
+.hero-ctas{display:flex;gap:.75rem;flex-wrap:wrap}
+.btn-p{display:inline-flex;align-items:center;gap:.4rem;background:var(--accent);color:var(--bg);padding:.6rem 1.4rem;font-size:.85rem;font-weight:700;text-decoration:none;transition:opacity .2s;font-family:'Space Mono',monospace;letter-spacing:.03em}
+.btn-p:hover{opacity:.85}
+.btn-s{display:inline-flex;align-items:center;gap:.4rem;background:transparent;color:var(--muted);padding:.6rem 1.4rem;font-size:.85rem;font-weight:500;text-decoration:none;border:1px solid var(--border2);transition:border-color .2s,color .2s;font-family:'Space Mono',monospace}
+.btn-s:hover{color:var(--text);border-color:var(--border2)}
+
+/* TERMINAL DEMO */
+.demo-panel{width:340px;flex-shrink:0}
+.term-window{background:var(--panel);border:1px solid var(--border);overflow:hidden}
+.term-bar{height:34px;background:var(--panel2);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 12px;gap:6px}
+.term-dot{width:10px;height:10px;border-radius:50%}
+.term-title-text{font-family:'Space Mono',monospace;font-size:.62rem;color:var(--muted);margin-left:auto;margin-right:auto}
+.term-body{padding:14px;font-family:'Space Mono',monospace;font-size:.65rem;line-height:1.9}
+.t{display:block}
+.t.accent{color:var(--accent)}
+.t.blue{color:var(--blue)}
+.t.muted{color:var(--muted)}
+.t.red{color:var(--red)}
+.t.yellow{color:var(--yellow)}
+.t.orange{color:var(--orange)}
+.cursor{display:inline-block;width:7px;height:13px;background:var(--accent);animation:blink .9s step-end infinite;vertical-align:middle}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+
+.score-mini{margin-top:10px;padding:10px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.score-mini-num{font-family:'Space Mono',monospace;font-size:1.6rem;font-weight:700;color:var(--accent)}
+.score-mini-label{font-family:'Space Mono',monospace;font-size:.58rem;color:var(--muted);letter-spacing:.1em}
+.score-mini-delta{font-family:'Space Mono',monospace;font-size:.75rem;color:var(--accent)}
+
+/* SCREENS */
+.screens{padding:4rem 2rem;max-width:1100px;margin:0 auto;position:relative;z-index:1}
+.screens-label{font-family:'Space Mono',monospace;font-size:.68rem;color:var(--muted);letter-spacing:.15em;text-transform:uppercase;margin-bottom:1rem}
+.screens-title{font-size:1.6rem;font-weight:700;letter-spacing:-.02em;margin-bottom:.5rem}
+.screens-sub{color:var(--muted);font-size:.88rem;margin-bottom:2.5rem}
+.screen-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border)}
+.screen-card{background:var(--bg);padding:1.75rem;transition:background .2s}
+.screen-card:hover{background:var(--panel)}
+.screen-num{font-family:'Space Mono',monospace;font-size:.62rem;color:var(--accent);font-weight:700;letter-spacing:.12em;margin-bottom:.6rem}
+.screen-name{font-size:1.05rem;font-weight:700;margin-bottom:.5rem}
+.screen-desc{font-size:.82rem;color:var(--muted);line-height:1.6}
+.screen-items{margin-top:.85rem;display:flex;flex-direction:column;gap:.35rem}
+.s-item{font-family:'Space Mono',monospace;font-size:.65rem;color:var(--muted);display:flex;gap:.5rem;align-items:baseline}
+.s-item::before{content:'>';color:var(--accent);flex-shrink:0}
+
+/* PRINCIPLES */
+.principles{padding:3rem 2rem 4rem;max-width:1100px;margin:0 auto;position:relative;z-index:1}
+.pr-label{font-family:'Space Mono',monospace;font-size:.68rem;color:var(--muted);letter-spacing:.15em;text-transform:uppercase;margin-bottom:1.5rem}
+.pr-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--border)}
+.pr-card{background:var(--panel);padding:1.5rem}
+.pr-num{font-family:'Space Mono',monospace;font-size:.62rem;color:var(--accent);font-weight:700;letter-spacing:.12em;margin-bottom:.5rem}
+.pr-title{font-size:.95rem;font-weight:700;margin-bottom:.5rem}
+.pr-text{font-size:.8rem;color:var(--muted);line-height:1.65}
+
+/* LIVE STATS BAR */
+.stats-bar{background:var(--panel);border:1px solid var(--border);padding:1rem 2rem;max-width:1100px;margin:0 auto 2rem;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;position:relative;z-index:1}
+.stat-cell{padding:.75rem 1rem;border-right:1px solid var(--border)}
+.stat-cell:last-child{border-right:none}
+.stat-val{font-family:'Space Mono',monospace;font-size:1.5rem;font-weight:700}
+.stat-lbl{font-family:'Space Mono',monospace;font-size:.58rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-top:3px}
+
+/* CTA */
+.bottom-cta{padding:4rem 2rem 6rem;max-width:700px;margin:0 auto;text-align:center;position:relative;z-index:1}
+.bottom-cta h2{font-size:1.8rem;font-weight:700;letter-spacing:-.02em;margin-bottom:.75rem}
+.bottom-cta h2 em{font-style:normal;color:var(--accent)}
+.bottom-cta p{color:var(--muted);margin-bottom:2rem;font-size:.9rem}
+.cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+
+footer{border-top:1px solid var(--border);padding:1.25rem 2rem;display:flex;justify-content:space-between;align-items:center;position:relative;z-index:1;font-family:'Space Mono',monospace;font-size:.65rem;color:var(--muted)}
+footer a{color:var(--accent);text-decoration:none}
+
+@media(max-width:768px){
+  .hero-row{flex-direction:column}
+  .demo-panel{width:100%}
+  .screen-grid,.pr-grid{grid-template-columns:1fr}
+  .stats-bar{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-left">
+    <div class="nav-logo">&gt; pulse</div>
+    <a href="https://zenbin.org/p/geo-index" class="nav-back">&lt;-- all proposals</a>
+  </div>
+  <div class="nav-badge">DESIGN 03</div>
+</nav>
+
+<section class="hero">
+  <div class="hero-row">
+    <div class="hero-left">
+      <div class="design-tag"><span class="line"></span> 03 / pulse</div>
+      <h1>Run a scan.<br>See it <em>live</em>.<br><span class="outline">Ship faster.</span></h1>
+      <p class="hero-sub">Terminal-native GEO monitoring for engineers who live in the command line. Every scan feels like a live deployment log. Neon on dark, Space Mono, zero friction from CLI to dashboard.</p>
+      <div class="palette-row">
+        <div class="swatch" style="background:#080b12;border-color:#21262d"></div>
+        <div class="swatch" style="background:#0d1117;border-color:#21262d"></div>
+        <div class="swatch" style="background:#00ff88;border:1px solid #003322"></div>
+        <div class="swatch" style="background:#58a6ff;border:1px solid #0d2040"></div>
+        <div class="swatch" style="background:#ff6b35;border:1px solid #3d1a0a"></div>
+        <div class="swatch" style="background:#f85149;border:1px solid #3d1514"></div>
+      </div>
+      <div class="hero-ctas">
+        <a href="https://zenbin.org/p/geo-d3" class="btn-p">open .pen file &rarr;</a>
+        <a href="https://zenbin.org/p/geo-index" class="btn-s">&lt;-- all proposals</a>
+      </div>
+    </div>
+    <div class="demo-panel">
+      <div class="term-window">
+        <div class="term-bar">
+          <div class="term-dot" style="background:#f85149"></div>
+          <div class="term-dot" style="background:#d29922"></div>
+          <div class="term-dot" style="background:#00ff88"></div>
+          <div class="term-title-text">geo-scan -- SurrealDB</div>
+        </div>
+        <div class="term-body">
+          <span class="t muted">$ geo scan --brand surrealdb \</span>
+          <span class="t muted">  --pack database-selection</span>
+          <span class="t blue">[INFO] 15 prompts loaded</span>
+          <span class="t blue">[INFO] platforms: gpt-4o claude perplexity</span>
+          <span class="t muted">[RUN] prompt 1/15...</span>
+          <span class="t accent">[OK] gpt-4o: score=88 mention=true</span>
+          <span class="t accent">[OK] perplexity: score=91 citations=3</span>
+          <span class="t yellow">[WARN] claude-3.5: sentiment=mixed</span>
+          <span class="t muted">[RUN] prompt 2/15...</span>
+          <span class="t accent">[OK] gpt-4o: score=71</span>
+          <span class="t red">[FLAG] gemini: hallucination detected</span>
+          <span class="t muted">  claim: "no transaction support"</span>
+          <span class="t accent">[COMPLETE] 15/15 processed</span>
+          <span class="t accent">[RESULT] GEO Score: 73/100 (+4 pts)</span>
+          <span class="t muted">cost: $0.43 | duration: 2m 18s</span>
+          <span class="t muted">$ <span class="cursor"></span></span>
+        </div>
+        <div class="score-mini">
+          <div>
+            <div class="score-mini-num">73</div>
+            <div class="score-mini-label">GEO SCORE</div>
+          </div>
+          <div class="score-mini-delta">+4 pts</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="stats-bar">
+  <div class="stat-cell">
+    <div class="stat-val" style="color:#00ff88">68%</div>
+    <div class="stat-lbl">mention rate</div>
+  </div>
+  <div class="stat-cell">
+    <div class="stat-val" style="color:#58a6ff">34%</div>
+    <div class="stat-lbl">share of voice</div>
+  </div>
+  <div class="stat-cell">
+    <div class="stat-val" style="color:#d29922">91%</div>
+    <div class="stat-lbl">accuracy score</div>
+  </div>
+  <div class="stat-cell">
+    <div class="stat-val" style="color:#f85149">2</div>
+    <div class="stat-lbl">flags open</div>
+  </div>
+</div>
+
+<section class="screens">
+  <p class="screens-label">// four_screens</p>
+  <h2 class="screens-title">What the team sees</h2>
+  <p class="screens-sub">Four focused views, each serving one workflow mode.</p>
+  <div class="screen-grid">
+    <div class="screen-card">
+      <div class="screen-num">01 / dashboard</div>
+      <div class="screen-name">Live Dashboard</div>
+      <div class="screen-desc">Large GEO score with pulse ring, platform grid (6 cells), 30-day trend bar chart, alert strip, and recent runs. Everything visible without scrolling.</div>
+      <div class="screen-items">
+        <div class="s-item">Score pulse ring with neon glow</div>
+        <div class="s-item">6-platform score grid</div>
+        <div class="s-item">30-day trend bar chart</div>
+        <div class="s-item">Live alert strip (orange for critical)</div>
+      </div>
+    </div>
+    <div class="screen-card">
+      <div class="screen-num">02 / scan</div>
+      <div class="screen-name">Run Scan Terminal</div>
+      <div class="screen-desc">Full terminal emulator view. Watch the scan execute in real-time with streaming log output -- green OKs, yellow warnings, red flags. Feels like a CI/CD run.</div>
+      <div class="screen-items">
+        <div class="s-item">Live log output with color coding</div>
+        <div class="s-item">Per-platform per-prompt results</div>
+        <div class="s-item">Blinking cursor while running</div>
+        <div class="s-item">Final score + cost summary</div>
+      </div>
+    </div>
+    <div class="screen-card">
+      <div class="screen-num">03 / accuracy</div>
+      <div class="screen-name">Hallucination Report</div>
+      <div class="screen-desc">Claim-by-claim accuracy breakdown. Each AI claim is verified against your source of truth docs. VERIFIED in green, FLAG in red with correction text. Exportable fix kit.</div>
+      <div class="screen-items">
+        <div class="s-item">Per-claim verification status</div>
+        <div class="s-item">Hallucination text with correction</div>
+        <div class="s-item">Platform attribution per claim</div>
+        <div class="s-item">Export correction kit button</div>
+      </div>
+    </div>
+    <div class="screen-card">
+      <div class="screen-num">04 / sov</div>
+      <div class="screen-name">SOV Battle</div>
+      <div class="screen-desc">Share of voice head-to-head. Per prompt-category breakdown showing your SOV vs top competitor with delta. Opportunity insight card for biggest gaps. 7D/30D/90D selector.</div>
+      <div class="screen-items">
+        <div class="s-item">Brand selector tabs</div>
+        <div class="s-item">Per-category SOV vs competitor table</div>
+        <div class="s-item">Opportunity insight card</div>
+        <div class="s-item">Time range selector</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="principles">
+  <p class="pr-label">// design_principles</p>
+  <div class="pr-grid">
+    <div class="pr-card">
+      <div class="pr-num">01 / terminal_native</div>
+      <div class="pr-title">Scans feel like deploys</div>
+      <div class="pr-text">Engineers are comfortable with log output. Showing scan results as streaming terminal lines makes the tool immediately familiar. Less UI to learn, more signal to act on.</div>
+    </div>
+    <div class="pr-card">
+      <div class="pr-num">02 / color_as_code</div>
+      <div class="pr-title">Green = OK, Red = fix it</div>
+      <div class="pr-text">The color system matches terminal conventions developers already know. No legend needed. Red hallucinations stand out immediately. Green OKs are satisfying to watch scroll past.</div>
+    </div>
+    <div class="pr-card">
+      <div class="pr-num">03 / zero_chrome</div>
+      <div class="pr-title">No decorative pixels</div>
+      <div class="pr-text">Every element is either data or navigation. No gradients for style, no card shadows for depth. The dark background makes the neon accents pop without any decoration needed.</div>
+    </div>
+  </div>
+</section>
+
+<section class="bottom-cta">
+  <h2>Ship the <em>Pulse</em> design.</h2>
+  <p>Four screens, full mobile width, ready for handoff. The .pen file is live on zenbin and can be downloaded from the pen viewer.</p>
+  <div class="cta-btns">
+    <a href="https://zenbin.org/p/geo-d3" class="btn-p">open .pen file &rarr;</a>
+    <a href="https://zenbin.org/p/geo-index" class="btn-s">&lt;-- back to index</a>
+  </div>
+</section>
+
+<footer>
+  <span>Pulse -- GEO Score Tracker Design 03</span>
+  <a href="https://zenbin.org/p/geo-index">&lt;-- all proposals</a>
+</footer>
+</body>
+</html>

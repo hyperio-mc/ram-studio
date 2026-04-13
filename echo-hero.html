@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ECHO — AI-Native Incident Operations Platform</title>
+<meta name="description" content="Real-time service health, AI-triaged incidents, automated timelines, and plain-language postmortems. Resolve faster. Understand deeper. A RAM design concept.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ram.zenbin.org/echo">
+<meta property="og:title" content="ECHO — AI-Native Incident Operations">
+<meta property="og:description" content="Resolve faster. Understand deeper. Circular pulse-ring health grid, AI triage scoring, automated timelines. Near-pure-black + teal. A RAM Design heartbeat.">
+<meta property="og:site_name" content="RAM Design Studio">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ECHO — AI Incident Operations Platform">
+<meta name="twitter:description" content="Real-time service health, AI-triaged incidents, plain-language postmortems. Inspired by Evervault + Linear. Dark theme. Teal + near-black.">
+<meta name="theme-color" content="#22D3A8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#06070F;
+  --surface:#0D1020;
+  --raised:#131728;
+  --deep:#040509;
+  --border:#1C2238;
+  --glow:#1A2040;
+  --text:#E4E8F5;
+  --muted:#4A5370;
+  --dim:#2A3050;
+  --faint:#232840;
+  --green:#22D3A8;
+  --orange:#FF7B35;
+  --red:#FF4560;
+  --blue:#60A5FA;
+  --purple:#A78BFA;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;line-height:1.5;overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(6,7,15,0.88);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;padding:0 56px;height:60px}
+.nav-logo{font-family:'Space Mono',monospace;font-weight:700;font-size:17px;
+  text-decoration:none;color:var(--text);letter-spacing:-0.02em}
+.nav-logo span{color:var(--green)}
+.nav-links{display:flex;gap:36px;list-style:none}
+.nav-links a{font-size:11px;color:var(--muted);text-decoration:none;letter-spacing:0.05em}
+.nav-links a:hover{color:var(--text)}
+.nav-badge{background:var(--green);color:var(--bg);border:none;padding:7px 18px;border-radius:20px;
+  font-size:10px;font-weight:700;cursor:pointer;letter-spacing:0.06em;font-family:'Space Mono',monospace;
+  text-decoration:none;transition:opacity .15s}
+.nav-badge:hover{opacity:.85}
+
+/* HERO */
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;
+  max-width:1200px;margin:0 auto;gap:80px;padding:100px 56px 60px}
+.hero-eyebrow{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.14em;color:var(--green);
+  margin-bottom:24px;font-weight:700;display:flex;align-items:center;gap:12px}
+.hero-eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--green);
+  animation:pulse-dot 1.6s ease-in-out infinite}
+@keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(0.6)}}
+.hero-title{font-size:80px;line-height:0.93;
+  letter-spacing:-0.04em;margin-bottom:28px;color:var(--text);font-weight:700}
+.hero-title .accent{color:var(--green)}
+.hero-desc{font-size:15px;color:var(--muted);line-height:1.7;margin-bottom:32px;max-width:480px;font-weight:300}
+.hero-tags{display:flex;gap:8px;margin-bottom:36px;flex-wrap:wrap}
+.hero-tag{font-family:'Space Mono',monospace;font-size:8px;background:var(--raised);color:var(--muted);
+  padding:4px 12px;border-radius:20px;letter-spacing:0.06em;border:1px solid var(--border)}
+.hero-btns{display:flex;gap:16px;align-items:center}
+.btn-primary{background:var(--green);color:var(--bg);padding:14px 32px;border-radius:8px;
+  font-size:11px;font-weight:700;text-decoration:none;letter-spacing:0.06em;font-family:'Space Mono',monospace;
+  transition:opacity .15s}
+.btn-primary:hover{opacity:.85}
+.btn-ghost{border:1px solid var(--border);color:var(--muted);padding:14px 32px;border-radius:8px;
+  font-size:11px;text-decoration:none;letter-spacing:0.04em;
+  transition:border-color .15s,color .15s}
+.btn-ghost:hover{border-color:var(--dim);color:var(--text)}
+
+/* PHONE MOCKUP */
+.hero-right{display:flex;justify-content:center;align-items:center}
+.phone{width:256px;height:530px;background:var(--surface);border-radius:36px;
+  border:1px solid var(--border);position:relative;overflow:hidden;
+  box-shadow:0 0 0 1px var(--faint),0 40px 80px rgba(0,0,0,0.6),0 8px 32px rgba(34,211,168,0.06)}
+.phone-notch{position:absolute;top:12px;left:50%;transform:translateX(-50%);
+  width:52px;height:4px;background:var(--faint);border-radius:2px}
+.phone-hdr{padding:26px 14px 8px;border-bottom:1px solid var(--border)}
+.phone-hdr .ph-title{font-family:'Space Mono',monospace;font-size:15px;font-weight:700;color:var(--text);letter-spacing:-0.02em}
+.phone-hdr .ph-sub{font-family:'Space Mono',monospace;font-size:6px;color:var(--muted);letter-spacing:0.06em;margin-top:3px}
+.phone-strip{margin:8px 14px;background:var(--raised);border-radius:8px;display:flex;padding:6px 0}
+.strip-item{flex:1;text-align:center;border-right:1px solid var(--border);padding:3px 0}
+.strip-item:last-child{border:none}
+.strip-item .si-val{font-family:'Space Mono',monospace;font-size:13px;font-weight:700}
+.strip-item.ok .si-val{color:var(--green)}
+.strip-item.warn .si-val{color:var(--orange)}
+.strip-item.crit .si-val{color:var(--red)}
+.strip-item .si-lbl{font-size:6px;color:var(--muted);letter-spacing:0.04em;margin-top:2px}
+.phone-sec{padding:5px 14px 4px}
+.phone-sec .ps-lbl{font-family:'Space Mono',monospace;font-size:6px;color:var(--muted);letter-spacing:0.08em;margin-bottom:5px}
+.pulse-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:4px 0}
+.pulse-cell{display:flex;flex-direction:column;align-items:center;gap:3px}
+.pulse-ring{width:28px;height:28px;border-radius:50%;position:relative;display:flex;align-items:center;justify-content:center}
+.pulse-ring::before{content:'';position:absolute;inset:-5px;border-radius:50%;opacity:0.15}
+.pulse-ring::after{content:'';position:absolute;inset:-2px;border-radius:50%;opacity:0.25}
+.pulse-ring.ok{background:rgba(34,211,168,0.25)}
+.pulse-ring.ok::before{background:#22D3A8;opacity:0.07}
+.pulse-ring.ok::after{background:#22D3A8;opacity:0.12}
+.pulse-ring.warn{background:rgba(255,123,53,0.35)}
+.pulse-ring.warn::before{background:#FF7B35;opacity:0.1}
+.pulse-ring.warn::after{background:#FF7B35;opacity:0.18}
+.pulse-ring.crit{background:rgba(255,69,96,0.4)}
+.pulse-ring.crit::before{background:#FF4560;opacity:0.12}
+.pulse-ring.crit::after{background:#FF4560;opacity:0.22}
+.pulse-center{width:10px;height:10px;border-radius:50%;z-index:1}
+.pulse-center.ok{background:#22D3A8}
+.pulse-center.warn{background:#FF7B35}
+.pulse-center.crit{background:#FF4560}
+.pulse-name{font-size:6px;color:var(--muted);text-align:center;letter-spacing:0.01em}
+.phone-ai-chip{margin:6px 14px 0;background:var(--raised);border-radius:6px;border:1px solid var(--glow);padding:5px 8px;display:flex;align-items:flex-start;gap:5px}
+.chip-icon{color:var(--purple);font-size:9px;margin-top:1px;flex-shrink:0}
+.chip-text{font-family:'Space Mono',monospace;font-size:6px;color:var(--blue);line-height:1.4}
+.phone-nav{position:absolute;bottom:0;left:0;right:0;height:44px;background:var(--bg);
+  border-top:1px solid var(--border);display:flex}
+.pn-tab{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
+.pn-tab .pn-icon{font-size:9px}
+.pn-tab .pn-lbl{font-size:5px;letter-spacing:0.03em}
+.pn-tab.active .pn-icon,.pn-tab.active .pn-lbl{color:var(--green)}
+.pn-tab:not(.active) .pn-icon,.pn-tab:not(.active) .pn-lbl{color:var(--dim)}
+
+/* STATUS PANEL */
+.status-bar{padding:12px 56px;background:var(--surface);border-bottom:1px solid var(--border);
+  display:flex;align-items:center;gap:32px;overflow-x:auto}
+.sb-item{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.sb-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.sb-dot.ok{background:var(--green)}
+.sb-dot.warn{background:var(--orange)}
+.sb-dot.crit{background:var(--red)}
+.sb-text{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.03em}
+.sb-text.ok{color:var(--green)}
+.sb-text.warn{color:var(--orange)}
+.sb-text.crit{color:var(--red)}
+
+/* FEATURES */
+.features{padding:80px 56px;max-width:1200px;margin:0 auto}
+.section-eyebrow{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.14em;color:var(--green);
+  margin-bottom:20px;font-weight:700;display:flex;align-items:center;gap:12px}
+.section-eyebrow::before{content:'';display:block;width:28px;height:1px;background:var(--green);opacity:0.5}
+.features-title{font-size:52px;line-height:1.05;letter-spacing:-0.03em;margin-bottom:56px;max-width:540px;font-weight:700}
+.features-title em{font-style:normal;color:var(--green)}
+.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border)}
+.feat-card{background:var(--surface);padding:40px 32px}
+.feat-card:first-child{border-radius:8px 0 0 8px}
+.feat-card:last-child{border-radius:0 8px 8px 0}
+.feat-icon{font-family:'Space Mono',monospace;font-size:13px;color:var(--green);margin-bottom:20px;font-weight:700;
+  background:var(--raised);border-radius:8px;display:inline-block;padding:8px 12px}
+.feat-title{font-size:18px;font-weight:600;margin-bottom:12px;color:var(--text);letter-spacing:-0.02em}
+.feat-desc{font-size:14px;color:var(--muted);line-height:1.65;font-weight:300}
+
+/* SCREENS SECTION */
+.screens-section{padding:80px 56px;background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.screens-inner{max-width:1200px;margin:0 auto}
+.screens-title{font-size:46px;font-weight:700;letter-spacing:-0.03em;margin-bottom:10px;line-height:1.1}
+.screens-sub{color:var(--muted);font-size:14px;margin-bottom:52px;font-weight:300}
+.screens-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.screen-card{background:var(--bg);border:1px solid var(--border);border-radius:10px;overflow:hidden}
+.screen-top{height:3px}
+.screen-top.green{background:var(--green)} .screen-top.orange{background:var(--orange)}
+.screen-top.red{background:var(--red)} .screen-top.blue{background:var(--blue)}
+.screen-top.purple{background:var(--purple)}
+.screen-body{padding:18px}
+.sc-eyebrow{font-family:'Space Mono',monospace;font-size:8px;letter-spacing:0.1em;color:var(--green);margin-bottom:8px;font-weight:700}
+.sc-title{font-size:14px;font-weight:600;color:var(--text);margin-bottom:6px;letter-spacing:-0.02em}
+.sc-desc{font-size:11px;color:var(--muted);line-height:1.55}
+.sc-tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:10px}
+.sc-tag{font-size:8px;background:var(--raised);color:var(--muted);
+  padding:2px 8px;border-radius:10px;letter-spacing:0.03em;border:1px solid var(--border)}
+
+/* INSPIRATION */
+.inspiration{padding:80px 56px;max-width:1200px;margin:0 auto}
+.insp-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.insp-eyebrow{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.14em;color:var(--green);
+  margin-bottom:16px;font-weight:700;display:flex;align-items:center;gap:12px}
+.insp-eyebrow::before{content:'';display:block;width:28px;height:1px;background:var(--green);opacity:0.5}
+.insp-title{font-size:36px;font-weight:700;line-height:1.1;letter-spacing:-0.025em;margin-bottom:16px}
+.insp-title .accent{color:var(--green)}
+.insp-text{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:20px;font-weight:300}
+.insp-sources{display:flex;flex-direction:column;gap:12px}
+.insp-source{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:14px 16px}
+.insp-source-name{font-family:'Space Mono',monospace;font-size:10px;color:var(--green);font-weight:700;letter-spacing:0.04em;margin-bottom:4px}
+.insp-source-note{font-size:12px;color:var(--muted);line-height:1.5}
+.insp-visual{background:var(--surface);border-radius:16px;height:320px;
+  display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(4,1fr);gap:0;
+  border:1px solid var(--border);overflow:hidden;padding:20px;gap:8px;align-items:center}
+.pulse-demo{display:flex;flex-direction:column;align-items:center;gap:4px}
+.pd-ring{border-radius:50%;position:relative;display:flex;align-items:center;justify-content:center}
+.pd-ring.ok{width:38px;height:38px;background:rgba(34,211,168,0.2);box-shadow:0 0 0 6px rgba(34,211,168,0.08),0 0 0 12px rgba(34,211,168,0.04)}
+.pd-ring.warn{width:38px;height:38px;background:rgba(255,123,53,0.25);box-shadow:0 0 0 6px rgba(255,123,53,0.1),0 0 0 12px rgba(255,123,53,0.05)}
+.pd-ring.crit{width:38px;height:38px;background:rgba(255,69,96,0.3);box-shadow:0 0 0 6px rgba(255,69,96,0.12),0 0 0 12px rgba(255,69,96,0.06)}
+.pd-dot{border-radius:50%;width:12px;height:12px}
+.pd-dot.ok{background:#22D3A8}
+.pd-dot.warn{background:#FF7B35}
+.pd-dot.crit{background:#FF4560}
+.pd-label{font-size:7px;color:var(--muted);letter-spacing:0.02em;text-align:center}
+.pd-ms{font-family:'Space Mono',monospace;font-size:7px}
+.pd-ms.ok{color:var(--green)}
+.pd-ms.warn{color:var(--orange)}
+.pd-ms.crit{color:var(--red)}
+
+/* PALETTE SECTION */
+.palette-section{padding:60px 56px;max-width:1200px;margin:0 auto}
+.palette-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
+.palette-card{border-radius:10px;overflow:hidden}
+.palette-swatch{height:70px;position:relative}
+.palette-info{background:var(--surface);border:1px solid var(--border);border-top:none;
+  border-radius:0 0 10px 10px;padding:10px 12px}
+.palette-hex{font-family:'Space Mono',monospace;font-size:10px;font-weight:700;color:var(--text);letter-spacing:0.02em}
+.palette-name{font-size:9px;color:var(--muted);margin-top:3px}
+
+/* CTA */
+.cta-section{padding:100px 56px;text-align:center;max-width:680px;margin:0 auto}
+.cta-eyebrow{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:0.14em;color:var(--green);
+  margin-bottom:20px;font-weight:700}
+.cta-title{font-size:52px;font-weight:700;line-height:1.05;letter-spacing:-0.03em;margin-bottom:20px;color:var(--text)}
+.cta-title .accent{color:var(--green)}
+.cta-desc{color:var(--muted);font-size:15px;margin-bottom:40px;line-height:1.65;font-weight:300}
+.cta-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.cta-btn-primary{background:var(--green);color:var(--bg);padding:16px 36px;border-radius:8px;
+  font-size:10px;font-weight:700;text-decoration:none;letter-spacing:0.08em;font-family:'Space Mono',monospace}
+.cta-btn-ghost{border:1px solid var(--border);color:var(--muted);padding:16px 36px;border-radius:8px;
+  font-size:11px;text-decoration:none;letter-spacing:0.04em}
+
+/* FOOTER */
+footer{border-top:1px solid var(--border);padding:28px 56px;
+  display:flex;align-items:center;justify-content:space-between}
+.footer-logo{font-family:'Space Mono',monospace;font-weight:700;font-size:15px;color:var(--muted);letter-spacing:-0.02em}
+.footer-logo span{color:var(--green)}
+.footer-note{font-family:'Space Mono',monospace;font-size:9px;color:var(--dim);letter-spacing:0.04em}
+
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr;gap:48px;padding:80px 24px 48px}
+  .hero-right{display:none}
+  .features-grid,.screens-grid{grid-template-columns:1fr 1fr}
+  .palette-grid{grid-template-columns:repeat(3,1fr)}
+  .insp-grid{grid-template-columns:1fr}
+  nav{padding:0 24px}
+  .features,.screens-section,.inspiration,.palette-section,.cta-section{padding-left:24px;padding-right:24px}
+  footer{padding:24px;flex-direction:column;gap:8px;text-align:center}
+  .hero-title{font-size:54px}
+  .status-bar{padding:12px 24px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="https://ram.zenbin.org/echo" class="nav-logo">ECHO<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#features">Features</a></li>
+    <li><a href="#screens">Screens</a></li>
+    <li><a href="#inspiration">Inspiration</a></li>
+  </ul>
+  <a href="https://ram.zenbin.org/echo-mock" class="nav-badge">PROTOTYPE →</a>
+</nav>
+
+<div class="status-bar">
+  <div class="sb-item"><div class="sb-dot ok"></div><span class="sb-text ok">9 HEALTHY</span></div>
+  <div class="sb-item"><div class="sb-dot warn"></div><span class="sb-text warn">2 DEGRADED</span></div>
+  <div class="sb-item"><div class="sb-dot crit"></div><span class="sb-text crit">1 CRITICAL — INC-2847</span></div>
+  <div class="sb-item" style="margin-left:auto;font-family:'Space Mono',monospace;font-size:9px;color:#2A3050">LIVE · 14:41 UTC</div>
+</div>
+
+<section class="hero">
+  <div class="hero-left">
+    <p class="hero-eyebrow"><span class="dot"></span>RAM DESIGN STUDIO · HEARTBEAT · DARK THEME</p>
+    <h1 class="hero-title">Resolve<br><span class="accent">faster.</span></h1>
+    <p class="hero-desc">Echo is an AI-native incident operations hub for platform engineering teams. Real-time service health, AI-triaged incidents, automated timelines, and plain-language postmortems — all in one dark-panel interface.</p>
+    <div class="hero-tags">
+      <span class="hero-tag">SRE · PLATFORM ENG</span>
+      <span class="hero-tag">AI-NATIVE TRIAGE</span>
+      <span class="hero-tag">INCIDENT OPS</span>
+      <span class="hero-tag">ROOT CAUSE AI</span>
+    </div>
+    <div class="hero-btns">
+      <a href="https://ram.zenbin.org/echo-mock" class="btn-primary">INTERACTIVE MOCK →</a>
+      <a href="https://ram.zenbin.org/echo-viewer" class="btn-ghost">Pencil Viewer</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="phone">
+      <div class="phone-notch"></div>
+      <div class="phone-hdr">
+        <div class="ph-title">Echo</div>
+        <div class="ph-sub">12 SERVICES · 2 DEGRADED · 1 CRITICAL</div>
+      </div>
+      <div class="phone-strip">
+        <div class="strip-item ok"><div class="si-val">9</div><div class="si-lbl">Healthy</div></div>
+        <div class="strip-item warn"><div class="si-val">2</div><div class="si-lbl">Degraded</div></div>
+        <div class="strip-item crit"><div class="si-val">1</div><div class="si-lbl">Critical</div></div>
+      </div>
+      <div class="phone-sec">
+        <div class="ps-lbl">SERVICE HEALTH</div>
+        <div class="pulse-grid">
+          <div class="pulse-cell"><div class="pulse-ring ok"><div class="pulse-center ok"></div></div><div class="pulse-name">API GW</div></div>
+          <div class="pulse-cell"><div class="pulse-ring ok"><div class="pulse-center ok"></div></div><div class="pulse-name">Auth</div></div>
+          <div class="pulse-cell"><div class="pulse-ring ok"><div class="pulse-center ok"></div></div><div class="pulse-name">CDN</div></div>
+          <div class="pulse-cell"><div class="pulse-ring warn"><div class="pulse-center warn"></div></div><div class="pulse-name">Database</div></div>
+          <div class="pulse-cell"><div class="pulse-ring ok"><div class="pulse-center ok"></div></div><div class="pulse-name">Queue</div></div>
+          <div class="pulse-cell"><div class="pulse-ring ok"><div class="pulse-center ok"></div></div><div class="pulse-name">Search</div></div>
+          <div class="pulse-cell"><div class="pulse-ring crit"><div class="pulse-center crit"></div></div><div class="pulse-name">Payments</div></div>
+          <div class="pulse-cell"><div class="pulse-ring ok"><div class="pulse-center ok"></div></div><div class="pulse-name">Storage</div></div>
+          <div class="pulse-cell"><div class="pulse-ring ok"><div class="pulse-center ok"></div></div><div class="pulse-name">Cache</div></div>
+        </div>
+      </div>
+      <div class="phone-ai-chip">
+        <div class="chip-icon">✦</div>
+        <div class="chip-text">AI: Payments spike correlates with DB pool saturation (91% confidence) → INC-2847</div>
+      </div>
+      <div class="phone-nav">
+        <div class="pn-tab active"><span class="pn-icon">⬡</span><span class="pn-lbl">Pulse</span></div>
+        <div class="pn-tab"><span class="pn-icon">⚡</span><span class="pn-lbl">Incidents</span></div>
+        <div class="pn-tab"><span class="pn-icon">⊶</span><span class="pn-lbl">Timeline</span></div>
+        <div class="pn-tab"><span class="pn-icon">✦</span><span class="pn-lbl">AI Brief</span></div>
+        <div class="pn-tab"><span class="pn-icon">◎</span><span class="pn-lbl">Team</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="features" id="features">
+  <p class="section-eyebrow">THE PLATFORM</p>
+  <h2 class="features-title">Operations for <em>teams and agents.</em></h2>
+  <div class="features-grid">
+    <div class="feat-card">
+      <div class="feat-icon">⬡ PULSE</div>
+      <h3 class="feat-title">Circular Health Grid</h3>
+      <p class="feat-desc">12 services rendered as concentric pulse rings — outer glow, mid ring, inner fill, centre dot — each color-coded by status. Health at a glance, not a table.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">✦ AI TRIAGE</div>
+      <h3 class="feat-title">AI Confidence Scores</h3>
+      <p class="feat-desc">Every incident carries an AI-generated root cause probability. "91% — DB connection pool saturation." Not just an alert — an insight, with evidence attached.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">⊶ BRIEF</div>
+      <h3 class="feat-title">Plain-Language Postmortems</h3>
+      <p class="feat-desc">AI Brief generates structured postmortems in plain English — what happened, root cause, resolution, and Space Mono-formatted AI suggestions for prevention.</p>
+    </div>
+  </div>
+</section>
+
+<section class="screens-section" id="screens">
+  <div class="screens-inner">
+    <p class="section-eyebrow">FIVE SCREENS</p>
+    <h2 class="screens-title">The full incident lifecycle.</h2>
+    <p class="screens-sub">From pulse rings to postmortem — every moment of an incident, designed.</p>
+    <div class="screens-grid">
+      <div class="screen-card">
+        <div class="screen-top green"></div>
+        <div class="screen-body">
+          <div class="sc-eyebrow">01 · PULSE</div>
+          <div class="sc-title">Health Grid</div>
+          <p class="sc-desc">12 circular pulse rings, status summary strip, live AI insight chip.</p>
+          <div class="sc-tags"><span class="sc-tag">Circles</span><span class="sc-tag">Real-time</span><span class="sc-tag">AI chip</span></div>
+        </div>
+      </div>
+      <div class="screen-card">
+        <div class="screen-top red"></div>
+        <div class="screen-body">
+          <div class="sc-eyebrow">02 · INCIDENTS</div>
+          <div class="sc-title">Triage Feed</div>
+          <p class="sc-desc">P1/P2/P3 incident cards with AI triage confidence + severity badges.</p>
+          <div class="sc-tags"><span class="sc-tag">AI score</span><span class="sc-tag">Priority</span></div>
+        </div>
+      </div>
+      <div class="screen-card">
+        <div class="screen-top orange"></div>
+        <div class="screen-body">
+          <div class="sc-eyebrow">03 · TIMELINE</div>
+          <div class="sc-title">Event Stream</div>
+          <p class="sc-desc">Vertical timeline with 7 events, root cause marker, AI callout box.</p>
+          <div class="sc-tags"><span class="sc-tag">Timeline</span><span class="sc-tag">Root cause</span></div>
+        </div>
+      </div>
+      <div class="screen-card">
+        <div class="screen-top purple"></div>
+        <div class="screen-body">
+          <div class="sc-eyebrow">04 · AI BRIEF</div>
+          <div class="sc-title">Auto Postmortem</div>
+          <p class="sc-desc">4-section structured brief with Space Mono AI suggestions block.</p>
+          <div class="sc-tags"><span class="sc-tag">AI text</span><span class="sc-tag">Structured</span></div>
+        </div>
+      </div>
+      <div class="screen-card">
+        <div class="screen-top blue"></div>
+        <div class="screen-body">
+          <div class="sc-eyebrow">05 · TEAM</div>
+          <div class="sc-title">On-call Roster</div>
+          <p class="sc-desc">Escalation ladder with circle step indicators, response metrics, rotation schedule.</p>
+          <div class="sc-tags"><span class="sc-tag">On-call</span><span class="sc-tag">Escalation</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="inspiration" id="inspiration">
+  <div class="insp-grid">
+    <div>
+      <p class="insp-eyebrow">DESIGN INSPIRATION</p>
+      <h2 class="insp-title">Informed by <span class="accent">Evervault</span> + Linear</h2>
+      <p class="insp-text">Two sources drove this design. First, Evervault's Customers page — featured on Godly.website — with its near-pure-black background (rgb(1,3,20)) and razor-sharp developer-tool precision. Second, Linear's homepage on Dark Mode Design, where the language "product development for teams AND agents" reframes AI as a first-class participant in every workflow.</p>
+      <div class="insp-sources">
+        <div class="insp-source">
+          <div class="insp-source-name">↗ EVERVAULT — GODLY.WEBSITE</div>
+          <div class="insp-source-note">Near-pure-black bg rgb(1,3,20). Precision data typography for security engineering. Translated into #06070F — a slight navy tint to push depth.</div>
+        </div>
+        <div class="insp-source">
+          <div class="insp-source-name">↗ LINEAR.APP — DARKMODEDESIGN.COM</div>
+          <div class="insp-source-note">rgb(8,9,10) ultra-dark. "Teams AND agents" framing. AI-native language pushed throughout every surface of this design.</div>
+        </div>
+      </div>
+    </div>
+    <div class="insp-visual">
+      <div class="pulse-demo"><div class="pd-ring ok"><div class="pd-dot ok"></div></div><div class="pd-label">API GW</div><div class="pd-ms ok">12ms</div></div><div class="pulse-demo"><div class="pd-ring ok"><div class="pd-dot ok"></div></div><div class="pd-label">Auth</div><div class="pd-ms ok">18ms</div></div><div class="pulse-demo"><div class="pd-ring ok"><div class="pd-dot ok"></div></div><div class="pd-label">CDN</div><div class="pd-ms ok">4ms</div></div><div class="pulse-demo"><div class="pd-ring warn"><div class="pd-dot warn"></div></div><div class="pd-label">Database</div><div class="pd-ms warn">142ms</div></div><div class="pulse-demo"><div class="pd-ring ok"><div class="pd-dot ok"></div></div><div class="pd-label">Queue</div><div class="pd-ms ok">8ms</div></div><div class="pulse-demo"><div class="pd-ring ok"><div class="pd-dot ok"></div></div><div class="pd-label">Search</div><div class="pd-ms ok">31ms</div></div><div class="pulse-demo"><div class="pd-ring crit"><div class="pd-dot crit"></div></div><div class="pd-label">Payments</div><div class="pd-ms crit">—</div></div><div class="pulse-demo"><div class="pd-ring ok"><div class="pd-dot ok"></div></div><div class="pd-label">Storage</div><div class="pd-ms ok">22ms</div></div><div class="pulse-demo"><div class="pd-ring ok"><div class="pd-dot ok"></div></div><div class="pd-label">Cache</div><div class="pd-ms ok">2ms</div></div><div class="pulse-demo"><div class="pd-ring warn"><div class="pd-dot warn"></div></div><div class="pd-label">Email</div><div class="pd-ms warn">88ms</div></div><div class="pulse-demo"><div class="pd-ring ok"><div class="pd-dot ok"></div></div><div class="pd-label">Analytics</div><div class="pd-ms ok">45ms</div></div><div class="pulse-demo"><div class="pd-ring ok"><div class="pd-dot ok"></div></div><div class="pd-label">CI/CD</div><div class="pd-ms ok">11ms</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="palette-section">
+  <p class="section-eyebrow">COLOUR PALETTE</p>
+  <div class="palette-grid">
+    
+    <div class="palette-card">
+      <div class="palette-swatch" style="background:#06070F;border:1px solid rgba(255,255,255,0.04)"></div>
+      <div class="palette-info">
+        <div class="palette-hex">#06070F</div>
+        <div class="palette-name">Near Black</div>
+      </div>
+    </div>
+    <div class="palette-card">
+      <div class="palette-swatch" style="background:#0D1020;border:1px solid rgba(255,255,255,0.04)"></div>
+      <div class="palette-info">
+        <div class="palette-hex">#0D1020</div>
+        <div class="palette-name">Surface</div>
+      </div>
+    </div>
+    <div class="palette-card">
+      <div class="palette-swatch" style="background:#E4E8F5;border:1px solid rgba(255,255,255,0.04)"></div>
+      <div class="palette-info">
+        <div class="palette-hex">#E4E8F5</div>
+        <div class="palette-name">Text</div>
+      </div>
+    </div>
+    <div class="palette-card">
+      <div class="palette-swatch" style="background:#22D3A8;border:1px solid rgba(255,255,255,0.04)"></div>
+      <div class="palette-info">
+        <div class="palette-hex">#22D3A8</div>
+        <div class="palette-name">Teal</div>
+      </div>
+    </div>
+    <div class="palette-card">
+      <div class="palette-swatch" style="background:#FF7B35;border:1px solid rgba(255,255,255,0.04)"></div>
+      <div class="palette-info">
+        <div class="palette-hex">#FF7B35</div>
+        <div class="palette-name">Orange</div>
+      </div>
+    </div>
+    <div class="palette-card">
+      <div class="palette-swatch" style="background:#60A5FA;border:1px solid rgba(255,255,255,0.04)"></div>
+      <div class="palette-info">
+        <div class="palette-hex">#60A5FA</div>
+        <div class="palette-name">Electric Blue</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <p class="cta-eyebrow">◎ RAM DESIGN STUDIO</p>
+  <h2 class="cta-title">Understand <span class="accent">deeper.</span></h2>
+  <p class="cta-desc">Echo is a design concept from RAM's daily heartbeat practice — exploring how incident operations tools can adopt the precision of the best developer-tool design, with AI not bolted on but built in from the very first screen.</p>
+  <div class="cta-btns">
+    <a href="https://ram.zenbin.org/echo-mock" class="cta-btn-primary">INTERACTIVE PROTOTYPE →</a>
+    <a href="https://ram.zenbin.org" class="cta-btn-ghost">RAM Design Studio</a>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-logo">ECHO<span>.</span></span>
+  <span class="footer-note">RAM DESIGN HEARTBEAT · DARK THEME · INTER + SPACE MONO · © 2026</span>
+</footer>
+
+</body>
+</html>

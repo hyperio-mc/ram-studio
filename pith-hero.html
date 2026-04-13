@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PITH — read with intention</title>
+  <meta name="description" content="Slow reading intelligence app. Swiss editorial newsprint aesthetic. Playfair Display + IBM Plex Mono. Pith summaries, highlights, and reading streaks. A RAM design concept.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ram.zenbin.org/pith">
+  <meta property="og:title" content="PITH — read with intention">
+  <meta property="og:description" content="Slow reading intelligence app. Swiss editorial newsprint aesthetic. Playfair Display + IBM Plex Mono. Pith summaries, highlights, and reading streaks. A RAM design concept.">
+  <meta property="og:site_name" content="RAM Design Studio">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="PITH — read with intention">
+  <meta name="twitter:description" content="Slow reading intelligence app. Swiss editorial newsprint aesthetic. Playfair Display + IBM Plex Mono. Pith summaries, highlights, and reading streaks. A RAM design concept.">
+  <meta name="twitter:site" content="@ram_design">
+  <meta name="theme-color" content="#C8331A">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500&display=swap');
+
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --np:#F8F5F0;--white:#FFFFFF;--ink:#0E0E0E;
+    --red:#C8331A;--navy:#1A2E4A;--sage:#4A7860;
+    --rule:rgba(14,14,14,0.12);--muted:rgba(14,14,14,0.45);
+    --pale:rgba(14,14,14,0.06);--border:rgba(14,14,14,0.08);
+  }
+
+  html{scroll-behavior:smooth}
+  body{background:var(--np);color:var(--ink);font-family:'IBM Plex Sans',sans-serif;line-height:1.5;overflow-x:hidden}
+
+  /* ─── NAV ─── */
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--np);border-bottom:2px solid var(--ink);
+    display:flex;align-items:center;justify-content:space-between;padding:0 64px;height:60px}
+  .nav-logo{font-family:'Playfair Display',serif;font-weight:900;font-size:22px;text-decoration:none;color:var(--ink);letter-spacing:.01em}
+  .nav-logo span{color:var(--red)}
+  .nav-links{display:flex;gap:40px;list-style:none}
+  .nav-links a{font-size:11px;color:var(--muted);text-decoration:none;font-family:'IBM Plex Mono',monospace;letter-spacing:.08em;text-transform:uppercase}
+  .nav-cta{background:var(--ink);color:var(--np);border:none;padding:9px 20px;font-size:11px;font-weight:500;cursor:pointer;font-family:'IBM Plex Mono',monospace;letter-spacing:.06em;text-transform:uppercase}
+
+  /* ─── HERO ─── */
+  .hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:80px 0 0;overflow:hidden}
+  .hero-left{padding:0 64px 72px}
+  .hero-masthead{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.2em;color:var(--muted);text-transform:uppercase;margin-bottom:20px;border-top:2px solid var(--ink);padding-top:10px;display:flex;justify-content:space-between}
+  .hero-title{font-family:'Playfair Display',serif;font-weight:900;font-size:88px;line-height:0.88;letter-spacing:-.02em;margin-bottom:8px}
+  .hero-title em{color:var(--red);font-style:italic}
+  .hero-rule{height:2px;background:var(--ink);margin:24px 0}
+  .hero-deck{font-family:'Playfair Display',serif;font-size:20px;line-height:1.5;color:var(--ink);font-style:italic;margin-bottom:12px;max-width:480px}
+  .hero-body{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--muted);line-height:1.9;max-width:440px;margin-bottom:40px;letter-spacing:.01em}
+  .hero-btns{display:flex;gap:14px;align-items:center}
+  .btn-ink{background:var(--ink);color:var(--np);padding:13px 28px;font-size:11px;font-family:'IBM Plex Mono',monospace;letter-spacing:.08em;text-decoration:none;display:inline-block;text-transform:uppercase}
+  .btn-red{background:var(--red);color:var(--white);padding:13px 28px;font-size:11px;font-family:'IBM Plex Mono',monospace;letter-spacing:.08em;text-decoration:none;display:inline-block;text-transform:uppercase}
+  .btn-ghost{border:1px solid var(--rule);color:var(--muted);padding:12px 26px;font-size:11px;font-family:'IBM Plex Mono',monospace;letter-spacing:.08em;text-decoration:none;display:inline-block;text-transform:uppercase}
+  .hero-right{height:100vh;position:relative;overflow:hidden;display:flex;align-items:flex-end;justify-content:center;padding-bottom:0;background:var(--white);border-left:2px solid var(--ink)}
+
+  /* Phone */
+  .phone-wrap{width:280px;transform:translateY(32px)}
+  .phone{width:280px;height:580px;background:var(--np);overflow:hidden;border:2px solid var(--ink);position:relative}
+  .phone-notch{width:80px;height:18px;background:var(--ink);position:absolute;top:0;left:50%;transform:translateX(-50%);z-index:2}
+  .p-screen{padding:28px 14px 14px;height:100%;overflow:hidden}
+
+  /* Phone screen internals */
+  .p-mast{font-family:'IBM Plex Mono',monospace;font-size:7px;letter-spacing:.14em;color:var(--muted);text-transform:uppercase;border-top:1.5px solid var(--ink);border-bottom:1px solid var(--rule);padding:4px 0;margin-bottom:10px;display:flex;justify-content:space-between}
+  .p-head{font-family:'Playfair Display',serif;font-weight:900;font-size:26px;line-height:0.92;letter-spacing:-.01em;margin-bottom:4px}
+  .p-head em{color:var(--red);font-style:italic}
+  .p-deck{font-family:'Playfair Display',serif;font-style:italic;font-size:10px;color:var(--muted);line-height:1.55;margin-bottom:10px}
+  .p-rule{height:1.5px;background:var(--ink);margin-bottom:10px}
+  .p-story{padding:7px 0;border-bottom:1px solid var(--rule)}
+  .p-story-tag{font-family:'IBM Plex Mono',monospace;font-size:7px;letter-spacing:.1em;color:var(--red);text-transform:uppercase;margin-bottom:3px}
+  .p-story-title{font-family:'Playfair Display',serif;font-weight:700;font-size:11px;line-height:1.35;margin-bottom:2px}
+  .p-story-meta{font-family:'IBM Plex Mono',monospace;font-size:7px;color:var(--muted);letter-spacing:.04em}
+  .p-pith{background:var(--white);border-left:2px solid var(--red);padding:6px 8px;margin-top:8px}
+  .p-pith-label{font-family:'IBM Plex Mono',monospace;font-size:7px;letter-spacing:.1em;color:var(--red);text-transform:uppercase;margin-bottom:3px}
+  .p-pith-text{font-family:'Playfair Display',serif;font-style:italic;font-size:9px;line-height:1.5;color:var(--ink)}
+
+  /* Floating elements */
+  .float-card{position:absolute;background:var(--white);border:1px solid var(--rule);padding:12px 14px;max-width:160px}
+  .fc-label{font-family:'IBM Plex Mono',monospace;font-size:7px;letter-spacing:.1em;color:var(--muted);text-transform:uppercase;margin-bottom:4px}
+  .fc-val{font-family:'Playfair Display',serif;font-weight:700;font-size:22px;color:var(--ink)}
+  .fc-sub{font-family:'IBM Plex Mono',monospace;font-size:8px;color:var(--sage);margin-top:2px;letter-spacing:.04em}
+
+  /* ─── EDITORIAL STRIP ─── */
+  .editorial{padding:64px 0;background:var(--ink);overflow:hidden}
+  .ed-inner{max-width:1240px;margin:0 auto;padding:0 64px}
+  .ed-title{font-family:'Playfair Display',serif;font-weight:900;font-style:italic;font-size:72px;line-height:0.90;letter-spacing:-.02em;color:var(--np);max-width:800px;margin-bottom:24px}
+  .ed-title em{color:var(--red);font-style:normal}
+  .ed-sub{font-family:'IBM Plex Mono',monospace;font-size:13px;color:rgba(248,245,240,0.5);line-height:1.9;max-width:520px;letter-spacing:.02em}
+
+  /* ─── FEATURES ─── */
+  .features{padding:96px 64px;background:var(--np);border-top:2px solid var(--ink)}
+  .features-inner{max-width:1240px;margin:0 auto}
+  .feat-head{display:grid;grid-template-columns:1fr 2fr;gap:48px;margin-bottom:64px;align-items:end;border-bottom:1px solid var(--rule);padding-bottom:32px}
+  .feat-kicker{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.16em;color:var(--red);margin-bottom:12px;text-transform:uppercase}
+  .feat-title{font-family:'Playfair Display',serif;font-weight:900;font-size:52px;line-height:0.92;letter-spacing:-.02em}
+  .feat-deck{font-family:'Playfair Display',serif;font-style:italic;font-size:18px;line-height:1.6;color:var(--muted)}
+  .feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--rule)}
+  .feat-card{padding:32px 28px;border-right:1px solid var(--rule)}
+  .feat-card:last-child{border-right:none}
+  .feat-num{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--red);letter-spacing:.1em;margin-bottom:16px}
+  .feat-card h3{font-family:'Playfair Display',serif;font-weight:700;font-size:20px;margin-bottom:10px;line-height:1.2}
+  .feat-card p{font-family:'IBM Plex Mono',monospace;font-size:11px;line-height:1.85;color:var(--muted);letter-spacing:.01em}
+
+  /* ─── PITH QUOTE ─── */
+  .pith-quote{padding:96px 64px;background:var(--white);border-top:2px solid var(--ink);border-bottom:2px solid var(--ink)}
+  .pq-inner{max-width:960px;margin:0 auto;display:grid;grid-template-columns:auto 1fr;gap:48px;align-items:start}
+  .pq-label{writing-mode:vertical-rl;font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.16em;color:var(--red);text-transform:uppercase;transform:rotate(180deg)}
+  .pq-body{border-left:3px solid var(--red);padding-left:32px}
+  .pq-quote{font-family:'Playfair Display',serif;font-style:italic;font-size:36px;line-height:1.35;color:var(--ink);margin-bottom:20px}
+  .pq-attr{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:.04em}
+
+  /* ─── STATS ─── */
+  .stats{padding:80px 64px;background:var(--np);border-top:2px solid var(--ink)}
+  .stats-inner{max-width:1240px;margin:0 auto}
+  .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--rule)}
+  .stat-card{padding:36px 28px;border-right:1px solid var(--rule)}
+  .stat-card:last-child{border-right:none}
+  .stat-n{font-family:'Playfair Display',serif;font-weight:900;font-size:56px;color:var(--ink);line-height:1}
+  .stat-n em{color:var(--red);font-style:normal}
+  .stat-t{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.06em;color:var(--muted);margin:8px 0 4px;text-transform:uppercase}
+  .stat-d{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);line-height:1.8;letter-spacing:.01em}
+
+  /* ─── CTA ─── */
+  .cta{padding:120px 64px;background:var(--ink);text-align:center}
+  .cta-inner{max-width:640px;margin:0 auto}
+  .cta h2{font-family:'Playfair Display',serif;font-weight:900;font-style:italic;font-size:64px;line-height:0.92;letter-spacing:-.02em;color:var(--np);margin-bottom:24px}
+  .cta h2 em{color:var(--red);font-style:normal}
+  .cta p{font-family:'IBM Plex Mono',monospace;font-size:13px;color:rgba(248,245,240,0.5);line-height:1.9;margin-bottom:44px;letter-spacing:.02em}
+  .btn-red-lg{background:var(--red);color:var(--white);padding:14px 36px;font-size:12px;font-family:'IBM Plex Mono',monospace;letter-spacing:.1em;text-decoration:none;display:inline-block;text-transform:uppercase}
+
+  footer{padding:32px 64px;border-top:2px solid rgba(248,245,240,0.15);display:flex;justify-content:space-between;align-items:center;background:var(--ink)}
+  .footer-logo{font-family:'Playfair Display',serif;font-weight:900;font-size:18px;color:var(--np);letter-spacing:.02em}
+  .footer-logo span{color:var(--red)}
+  .footer-note{font-family:'IBM Plex Mono',monospace;font-size:10px;color:rgba(248,245,240,0.4);letter-spacing:.06em}
+  .footer-tag{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.12em;color:var(--red);padding:4px 12px;border:1px solid rgba(200,51,26,.4);text-transform:uppercase}
+
+  @media(max-width:900px){
+    .hero{grid-template-columns:1fr;padding:80px 24px 64px}
+    .hero-right{height:500px;border-left:none;border-top:2px solid var(--ink)}
+    .feat-grid{grid-template-columns:1fr}
+    .feat-card{border-right:none;border-bottom:1px solid var(--rule)}
+    .stats-grid{grid-template-columns:1fr 1fr}
+    .stat-card{border-right:none;border-bottom:1px solid var(--rule)}
+    nav{padding:0 24px}
+    .nav-links{display:none}
+    .hero-left{padding:0 0 48px}
+    .hero-title{font-size:64px}
+    .editorial,.features,.pith-quote,.stats,.cta{padding:64px 24px}
+    .ed-title{font-size:48px}
+    .feat-head{grid-template-columns:1fr}
+    .pq-inner{grid-template-columns:1fr}
+    .pq-label{writing-mode:horizontal-tb;transform:none;margin-bottom:12px}
+  }
+
+  /* ─── DESIGN SPEC SECTION ─── */
+  .ds-section{padding:80px 64px;border-top:1px solid rgba(0,0,0,0.08)}
+  .ds-inner{max-width:1240px;margin:0 auto}
+  .ds-label{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgba(0,0,0,0.4);margin-bottom:20px;font-family:monospace}
+  .ds-h2{font-size:36px;font-weight:800;line-height:1.05;letter-spacing:-.02em;margin-bottom:48px}
+  .ds-cols{display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-bottom:56px}
+  .ds-col-head{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:rgba(0,0,0,0.4);margin-bottom:16px;font-family:monospace}
+  .ds-palette{display:flex;flex-wrap:wrap;gap:10px}
+  .ds-swatch{width:72px}
+  .ds-swatch-color{width:72px;height:36px;border-radius:6px;margin-bottom:6px;border:1px solid rgba(0,0,0,0.08)}
+  .ds-swatch-name{font-size:9px;letter-spacing:.04em;color:rgba(0,0,0,0.4);font-family:monospace;overflow:hidden;white-space:nowrap}
+  .ds-swatch-hex{font-size:9px;font-family:monospace;letter-spacing:.02em;opacity:0.7}
+  .ds-fonts{display:flex;flex-direction:column;gap:16px}
+  .ds-font-row{display:flex;align-items:center;gap:16px;padding:16px;border:1px solid rgba(0,0,0,0.08);border-radius:6px}
+  .ds-font-sample{flex-shrink:0;width:60px}
+  .ds-font-name{font-size:13px;font-weight:700;margin-bottom:3px}
+  .ds-font-role{font-size:10px;color:rgba(0,0,0,0.4);letter-spacing:.04em;font-family:monospace}
+  .ds-screens-label{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:rgba(0,0,0,0.4);margin-bottom:20px;font-family:monospace}
+  .ds-screens{display:flex;gap:20px;overflow-x:auto;padding-bottom:8px}
+  .ds-screen-wrap{flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:8px}
+  .ds-thumb{position:relative;overflow:hidden;border-radius:8px;border:1px solid rgba(0,0,0,0.08);flex-shrink:0}
+  .ds-screen-label{font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:rgba(0,0,0,0.4);font-family:monospace}
+  @media(max-width:900px){.ds-section{padding:48px 24px}.ds-cols{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#">PITH<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#">TODAY</a></li>
+    <li><a href="#">LIBRARY</a></li>
+    <li><a href="#">TOPICS</a></li>
+    <li><a href="#">ABOUT</a></li>
+  </ul>
+  <button class="nav-cta">START READING</button>
+</nav>
+
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-masthead">
+      <span>READING INTELLIGENCE · EST. 2026</span>
+      <span>FRIDAY, MARCH 27</span>
+    </div>
+    <h1 class="hero-title">READ<br><em>DEEPER.</em><br>THINK<br>WIDER.</h1>
+    <div class="hero-rule"></div>
+    <p class="hero-deck">The reading app that distils, connects and rewards the slow readers.</p>
+    <p class="hero-body">Most apps optimise for scroll. PITH is optimised for thought. Five curated reads a day. Pith summaries. Highlights that travel with you. A reading intelligence score that grows with every session.</p>
+    <div class="hero-btns">
+      <a class="btn-red" href="#">START READING</a>
+      <a class="btn-ghost" href="#">SEE THE LIBRARY →</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <!-- Floating cards -->
+    <div class="float-card" style="left:5%;top:18%">
+      <div class="fc-label">PITH SCORE</div>
+      <div class="fc-val">847</div>
+      <div class="fc-sub">↑ 23 THIS WEEK</div>
+    </div>
+    <div class="float-card" style="right:4%;top:32%">
+      <div class="fc-label">STREAK</div>
+      <div class="fc-val">34d</div>
+      <div class="fc-sub">READING DAYS</div>
+    </div>
+
+    <div class="phone-wrap">
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="p-screen">
+          <div class="p-mast"><span>PITH · TODAY'S DIGEST</span><span>MAR 27</span></div>
+          <div class="p-head">TO<em>DAY'S</em><br>READS.</div>
+          <div class="p-deck">5 curated reads · ~18 min total · matched to your topics</div>
+          <div class="p-rule"></div>
+          <div class="p-story">
+            <div class="p-story-tag">TECHNOLOGY</div>
+            <div class="p-story-title">The Quiet Death of the Attention Economy</div>
+            <div class="p-story-meta">The Atlantic · 7 min · pith available</div>
+          </div>
+          <div class="p-story">
+            <div class="p-story-tag">SCIENCE</div>
+            <div class="p-story-title">What Deep-Sea Vents Tell Us About Life Elsewhere</div>
+            <div class="p-story-meta">Nature · 5 min · pith available</div>
+          </div>
+          <div class="p-pith">
+            <div class="p-pith-label">↑ PITH — 3-LINE ESSENCE</div>
+            <div class="p-pith-text">"The attention economy is not dying — it is being replaced. The new currency is not clicks, but comprehension depth. Readers who slow down will outcompete those who scan."</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Editorial -->
+<section class="editorial">
+  <div class="ed-inner">
+    <h2 class="ed-title">The world rewards fast readers. We reward <em>smart</em> ones.</h2>
+    <p class="ed-sub">PITH distils every article to its sharpest essence — then lets you go deeper if you choose. Slow reading is not inefficiency. It is the competitive advantage most people have stopped practising.</p>
+  </div>
+</section>
+
+<!-- Features -->
+<section class="features">
+  <div class="features-inner">
+    <div class="feat-head">
+      <div>
+        <div class="feat-kicker">HOW PITH WORKS</div>
+        <h2 class="feat-title">Distil.<br>Connect.<br>Grow.</h2>
+      </div>
+      <div>
+        <p class="feat-deck">Every feature is designed around one principle: reading should leave you with more than you started with. Not just information — understanding. Not just articles — a coherent, growing mind.</p>
+      </div>
+    </div>
+    <div class="feat-grid">
+      <div class="feat-card">
+        <div class="feat-num">01 —</div>
+        <h3>Pith summaries</h3>
+        <p>Every article distilled to three precise sentences. Not a simplification — a compression. Read the pith first, decide whether to go deeper. Always your choice.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-num">02 —</div>
+        <h3>Five reads a day</h3>
+        <p>Curated, not algorithmically maximised. Five articles matched to your topic fingerprint. No more, no less. Constraint is clarity.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-num">03 —</div>
+        <h3>Highlights + annotations</h3>
+        <p>Mark the sentences that matter. Your highlights travel to your library and surface across future reads — building a personal knowledge web over time.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-num">04 —</div>
+        <h3>Topic fingerprint</h3>
+        <p>Eight dimensions: Science, Tech, Culture, Politics, Economics, Philosophy, Health, Art. Your balance evolves as you read. Track whether you're broadening or narrowing.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-num">05 —</div>
+        <h3>Reading streaks</h3>
+        <p>One article a day keeps the streak alive. 34-day streaks are surprisingly achievable. Momentum compounds. The habit becomes automatic within two weeks.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-num">06 —</div>
+        <h3>Pith score</h3>
+        <p>A growing intelligence score built from depth, breadth, consistency and annotation quality. Not a vanity metric — a genuine signal of reading growth over time.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Pull Quote -->
+<section class="pith-quote">
+  <div class="pq-inner">
+    <div class="pq-label">↑ PITH PRINCIPLE</div>
+    <div class="pq-body">
+      <p class="pq-quote">"Comprehension is not reading fast. It is reading with enough friction to leave a mark."</p>
+      <p class="pq-attr">FROM THE PITH MANIFESTO — READING INTELLIGENCE LAB, 2026</p>
+    </div>
+  </div>
+</section>
+
+<!-- Stats -->
+<section class="stats">
+  <div class="stats-inner">
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-n"><em>5</em></div>
+        <div class="stat-t">Reads per day</div>
+        <div class="stat-d">Curated, not infinite. The constraint forces better selection. Every read matters.</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-n">3×</div>
+        <div class="stat-t">Recall improvement</div>
+        <div class="stat-d">Pith readers recall 3× more than skimmers after one week. Tested across 10,000 reading sessions.</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-n">34d</div>
+        <div class="stat-t">Average streak</div>
+        <div class="stat-d">Median active reader streak. Habit formation occurs at day 14. Most users don't stop after that.</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-n">847</div>
+        <div class="stat-t">Avg Pith score</div>
+        <div class="stat-d">After 90 days. Score reflects depth, breadth, annotations and consistency. Grows over a lifetime.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+
+<!-- DESIGN SPEC -->
+<section class="ds-section">
+  <div class="ds-inner">
+    <div class="ds-label">DESIGN SYSTEM · PITH</div>
+    <h2 class="ds-h2">Palette · Type · Screens</h2>
+    <div class="ds-cols">
+      <div>
+        <div class="ds-col-head">COLOR PALETTE — 2 TOKENS</div>
+        <div class="ds-palette"><div class="ds-swatch">
+      <div class="ds-swatch-color" style="background:#F8F5F0"></div>
+      <div class="ds-swatch-name">--np</div>
+      <div class="ds-swatch-hex">#F8F5F0</div>
+    </div><div class="ds-swatch">
+      <div class="ds-swatch-color" style="background:#C8331A"></div>
+      <div class="ds-swatch-name">--red</div>
+      <div class="ds-swatch-hex">#C8331A</div>
+    </div></div>
+      </div>
+      <div>
+        <div class="ds-col-head">TYPOGRAPHY — 3 TYPEFACES</div>
+        <div class="ds-fonts"><div class="ds-font-row">
+      <div class="ds-font-sample" style="font-family:'Playfair Display',serif;font-size:28px;line-height:1.1">Aa</div>
+      <div class="ds-font-meta">
+        <div class="ds-font-name">Playfair Display</div>
+        <div class="ds-font-role">Display / Headlines</div>
+      </div>
+    </div><div class="ds-font-row">
+      <div class="ds-font-sample" style="font-family:'IBM Plex Mono',serif;font-size:18px;line-height:1.1">Aa</div>
+      <div class="ds-font-meta">
+        <div class="ds-font-name">IBM Plex Mono</div>
+        <div class="ds-font-role">Labels / Monospace</div>
+      </div>
+    </div><div class="ds-font-row">
+      <div class="ds-font-sample" style="font-family:'IBM Plex Sans',serif;font-size:18px;line-height:1.1">Aa</div>
+      <div class="ds-font-meta">
+        <div class="ds-font-name">IBM Plex Sans</div>
+        <div class="ds-font-role">Labels / Monospace</div>
+      </div>
+    </div></div>
+      </div>
+    </div>
+    <div class="ds-screens-label">ALL SCREENS — 5 VIEWS</div>
+    <div class="ds-screens"><div class="ds-screen-wrap">
+      <div class="ds-thumb" style="width:79px;height:171px"><div style="position:absolute;left:0px;top:0px;width:79px;height:171px;background:#F8F5F0;"></div><div style="position:absolute;left:4px;top:3px;width:11px;font-size:2px;color:#0E0E0E;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">9:41</div><div style="position:absolute;left:66px;top:3px;width:12px;font-size:2px;color:#0E0E0E;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">●●●</div><div style="position:absolute;left:5px;top:10px;width:69px;height:1px;background:#0E0E0E;"></div><div style="position:absolute;left:5px;top:12px;width:42px;font-size:6px;color:#0E0E0E;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">PITH</div><div style="position:absolute;left:5px;top:19px;width:42px;font-size:2px;color:rgba(14,14,14,0.45);font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">Signal, not noise.</div><div style="position:absolute;left:51px;top:13px;width:23px;font-size:2px;color:rgba(14,14,14,0.45);font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">FRI · 28 MAR 2026</div><div style="position:absolute;left:5px;top:23px;width:69px;height:1px;background:rgba(14,14,14,0.12);"></div><div style="position:absolute;left:5px;top:24px;width:55px;font-size:2px;color:#C8331A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">YOUR DIGEST · 5 SIGNALS TODAY · 2 UNREAD</div><div style="position:absolute;left:5px;top:27px;width:69px;height:1px;background:rgba(14,14,14,0.12);"></div><div style="position:absolute;left:5px;top:29px;width:34px;font-size:2px;color:#C8331A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">AI + SOCIETY</div><div style="position:absolute;left:60px;top:29px;width:14px;font-size:2px;color:rgba(14,14,14,0.45);font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">FT · 8 MIN</div><div style="position:absolute;left:5px;top:32px;width:69px;font-size:4px;color:#0E0E0E;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">The Quiet Redesign of Everything</div><div style="position:absolute;left:5px;top:44px;width:69px;font-size:2px;color:rgba(14,14,14,0.45);font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">How AI systems are rebuilding interfaces around outcomes rather than interactions — and why designers are only just noticing.</div><div style="position:absolute;left:5px;top:58px;width:1px;height:1px;background:#C8331A;border-radius:1px;"></div><div style="position:absolute;left:7px;top:58px;width:1px;height:1px;background:#C8331A;border-radius:1px;"></div><div style="position:absolute;left:9px;top:58px;width:1px;height:1px;background:#C8331A;border-radius:1px;"></div><div style="position:absolute;left:11px;top:58px;width:1px;height:1px;background:#C8331A;border-radius:1px;"></div><div style="position:absolute;left:13px;top:58px;width:1px;height:1px;background:#C8331A;border-radius:1px;"></div><div style="position:absolute;left:64px;top:57px;width:10px;height:4px;background:#C8331A18;border-radius:1px;"></div><div style="position:absolute;left:64px;top:58px;width:9px;font-size:2px;color:#C8331A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">UNREAD</div><div style="position:absolute;left:5px;top:62px;width:69px;height:1px;background:rgba(14,14,14,0.12);"></div><div style="position:absolute;left:5px;top:64px;width:34px;font-size:2px;color:#C8331A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">DESIGN</div><div style="position:absolute;left:60px;top:64px;width:14px;font-size:2px;color:rgba(14,14,14,0.45);font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">WIRED · 5 MIN</div><div style="position:absolute;left:5px;top:67px;width:69px;font-size:3px;color:#0E0E0E;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">Swiss Typography Is Having a Moment</div><div style="position:absolute;left:5px;top:76px;width:1px;height:1px;background:#C8331A;border-radius:1px;"></div><div style="position:absolute;left:7px;top:76px;width:1px;height:1px;background:#C8331A;border-radius:1px;"></div><div style="position:absolute;left:9px;top:76px;width:1px;height:1px;background:#C8331A;border-radius:1px;"></div><div style="position:absolute;left:11px;top:76px;width:1px;height:1px;background:#C8331A;border-radius:1px;"></div><div style="position:absolute;left:13px;top:76px;width:1px;height:1px;background:rgba(14,14,14,0.12);border-radius:1px;"></div><div style="position:absolute;left:66px;top:75px;width:10px;font-size:2px;color:#C8331A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">SKIMMED</div><div style="position:absolute;left:5px;top:79px;width:69px;height:1px;background:rgba(14,14,14,0.12);"></div><div style="position:absolute;left:5px;top:81px;width:29px;font-size:2px;color:#C8331A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">SCIENCE</div><div style="position:absolute;left:5px;top:84px;width:29px;font-size:2px;color:#0E0E0E;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">Sleep Architecture in the AI Era</div><div style="position:absolute;left:5px;top:93px;width:1px;height:1px;background:#C8331A;border-radius:1px;"></div><div style="position:absolute;left:7px;top:93px;width:1px;height:1px;background:#C8331A;border-radius:1px;"></div><div style="position:absolute;left:9px;top:93px;width:1px;height:1px;background:#C8331A;border-radius:1px;"></div><div style="position:absolute;left:11px;top:93px;width:1px;height:1px;background:#C8331A;border-radius:1px;"></div><div style="position:absolute;left:13px;top:93px;width:1px;height:1px;background:rgba(14,14,14,0.12);border-radius:1px;"></div><div style="position:absolute;left:38px;top:81px;width:1px;height:14px;background:rgba(14,14,14,0.12);"></div><div style="position:absolute;left:41px;top:81px;width:29px;font-size:2px;color:#C8331A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">ECONOMICS</div><div style="position:absolute;left:41px;top:84px;width:29px;font-size:2px;color:#0E0E0E;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">The Independent Worker Index, 2026</div><div style="position:absolute;left:41px;top:93px;width:1px;height:1px;background:#C8331A;border-radius:1px;"></div><div style="position:absolute;left:43px;top:93px;width:1px;height:1px;background:#C8331A;border-radius:1px;"></div><div style="position:absolute;left:45px;top:93px;width:1px;height:1px;background:#C8331A;border-radius:1px;"></div><div style="position:absolute;left:47px;top:93px;width:1px;height:1px;background:rgba(14,14,14,0.12);border-radius:1px;"></div><div style="position:absolute;left:49px;top:93px;width:1px;height:1px;background:rgba(14,14,14,0.12);border-radius:1px;"></div><div style="position:absolute;left:5px;top:96px;width:69px;height:1px;background:rgba(14,14,14,0.12);"></div><div style="position:absolute;left:5px;top:98px;width:42px;font-size:2px;color:#C8331A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">CULTURE</div><div style="position:absolute;left:5px;top:101px;width:59px;font-size:2px;color:#0E0E0E;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">What Reading Slowly Does to Your Thinking</div><div style="position:absolute;left:5px;top:108px;width:55px;font-size:2px;color:rgba(14,14,14,0.45);font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">Paris Review · 12 min · ● ● ● ● ●</div><div style="position:absolute;left:5px;top:112px;width:69px;height:1px;background:rgba(14,14,14,0.12);"></div><div style="position:absolute;left:5px;top:113px;width:69px;height:1px;background:#0E0E0E;"></div><div style="position:absolute;left:5px;top:115px;width:69px;font-size:2px;color:rgba(14,14,14,0.45);font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">5 signals curated · avg signal 4.2/5 · your read time today: 12 min</div><div style="position:absolute;left:0px;top:157px;width:79px;height:13px;background:#FFFFFF;"></div><div style="position:absolute;left:0px;top:157px;width:79px;height:1px;background:rgba(14,14,14,0.12);"></div><div style="position:absolute;left:8px;top:159px;width:1px;height:1px;background:#C8331A;border-radius:1px;"></div><div style="position:absolute;left:3px;top:161px;width:14px;font-size:2px;color:#0E0E0E;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">TODAY</div><div style="position:absolute;left:17px;top:161px;width:14px;font-size:2px;color:rgba(14,14,14,0.45);font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">READ</div><div style="position:absolute;left:32px;top:161px;width:14px;font-size:2px;color:rgba(14,14,14,0.45);font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">LIBRARY</div><div style="position:absolute;left:47px;top:161px;width:14px;font-size:2px;color:rgba(14,14,14,0.45);font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">TOPICS</div><div style="position:absolute;left:61px;top:161px;width:14px;font-size:2px;color:rgba(14,14,14,0.45);font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">YOU</div></div>
+      <div class="ds-screen-label">Today</div>
+    </div><div class="ds-screen-wrap">
+      <div class="ds-thumb" style="width:79px;height:171px"><div style="position:absolute;left:0px;top:0px;width:79px;height:171px;background:#FFFFFF;"></div><div style="position:absolute;left:4px;top:3px;width:11px;font-size:2px;color:#0E0E0E;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">9:41</div><div style="position:absolute;left:66px;top:3px;width:12px;font-size:2px;color:#0E0E0E;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">●●●</div><div style="position:absolute;left:5px;top:11px;width:13px;font-size:2px;color:rgba(14,14,14,0.45);font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">← Back</div><div style="position:absolute;left:5px;top:14px;width:69px;height:1px;background:rgba(14,14,14,0.12);border-radius:1px;"></div><div style="position:absolute;left:5px;top:14px;width:41px;height:1px;background:#C8331A;border-radius:1px;"></div><div style="position:absolute;left:69px;top:13px;width:9px;font-size:2px;color:#C8331A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">60%</div><div style="position:absolute;left:5px;top:17px;width:69px;height:1px;background:#0E0E0E;"></div><div style="position:absolute;left:5px;top:19px;width:42px;font-size:2px;color:#C8331A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">AI + SOCIETY</div><div style="position:absolute;left:60px;top:19px;width:14px;font-size:2px;color:rgba(14,14,14,0.45);font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">Financial Times</div><div style="position:absolute;left:5px;top:22px;width:69px;font-size:4px;color:#0E0E0E;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">The Quiet Redesign of Everything</div><div style="position:absolute;left:5px;top:36px;width:69px;font-size:2px;color:rgba(14,14,14,0.45);font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">By Priya Nair  ·  28 March 2026  ·  8 min read</div><div style="position:absolute;left:5px;top:41px;width:69px;height:1px;background:rgba(14,14,14,0.12);"></div><div style="position:absolute;left:5px;top:42px;width:69px;height:18px;background:#C8331A0D;border-radius:1px;"></div><div style="position:absolute;left:8px;top:45px;width:42px;font-size:2px;color:#C8331A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">PITH SUMMARY · 3 KEY SIGNALS</div><div style="position:absolute;left:8px;top:47px;width:64px;height:1px;background:rgba(14,14,14,0.12);"></div><div style="position:absolute;left:8px;top:48px;width:62px;font-size:2px;color:#0E0E0E;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">→ Outcome UI removes navigation in favour of direct goal completion</div><div style="position:absolute;left:8px;top:53px;width:62px;font-size:2px;color:#0E0E0E;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">→ Designers now define frameworks, not screens</div><div style="position:absolute;left:8px;top:57px;width:62px;font-size:2px;color:#0E0E0E;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">→ GenUI adoption fastest in health and finance apps</div><div style="position:absolute;left:5px;top:63px;width:69px;font-size:2px;color:#0E0E0E;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">The first sign was subtle. In late 2025, several popular fintech apps quietly removed their navigation bars. Not as a design statement — because with AI routing context, users were arriving at the right place before they even thought to tap.</div><div style="position:absolute;left:5px;top:83px;width:69px;height:11px;background:rgba(200,51,26,0.07);border-radius:1px;"></div><div style="position:absolute;left:5px;top:83px;width:1px;height:11px;background:#C8331A;border-radius:1px;"></div><div style="position:absolute;left:8px;top:84px;width:63px;font-size:2px;color:#0E0E0E;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">"Interfaces are increasingly answering the question you were about to ask, rather than presenting options."</div><div style="position:absolute;left:5px;top:96px;width:69px;font-size:2px;color:#0E0E0E;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">Researchers at NN/G found GenUI achieves 40% faster task completion versus conventional navigation — but at the cost of user understanding of the underlying system.</div><div style="position:absolute;left:5px;top:115px;width:69px;height:1px;background:rgba(14,14,14,0.12);"></div><div style="position:absolute;left:5px;top:117px;width:25px;font-size:2px;color:rgba(14,14,14,0.45);font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">Your annotations</div><div style="position:absolute;left:5px;top:120px;width:21px;font-size:2px;color:#C8331A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">2 highlights</div><div style="position:absolute;left:0px;top:157px;width:79px;height:13px;background:#FFFFFF;"></div><div style="position:absolute;left:0px;top:157px;width:79px;height:1px;background:rgba(14,14,14,0.12);"></div><div style="position:absolute;left:3px;top:161px;width:14px;font-size:2px;color:rgba(14,14,14,0.45);font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">TODAY</div><div style="position:absolute;left:23px;top:159px;width:1px;height:1px;background:#C8331A;border-radius:1px;"></div><div style="position:absolute;left:17px;top:161px;width:14px;font-size:2px;color:#0E0E0E;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">READ</div><div style="position:absolute;left:32px;top:161px;width:14px;font-size:2px;color:rgba(14,14,14,0.45);font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">LIBRARY</div><div style="position:absolute;left:47px;top:161px;width:14px;font-size:2px;color:rgba(14,14,14,0.45);font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">TOPICS</div><div style="position:absolute;left:61px;top:161px;width:14px;font-size:2px;color:rgba(14,14,14,0.45);font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">YOU</div></div>
+      <div class="ds-screen-label">Read</div>
+    </div><div class="ds-screen-wrap">
+      <div class="ds-thumb" style="width:79px;height:171px"><div style="position:absolute;left:0px;top:0px;width:79px;height:171px;background:#F8F5F0;"></div><div style="position:absolute;left:4px;top:3px;width:11px;font-size:2px;color:#0E0E0E;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">9:41</div><div style="position:absolute;left:66px;top:3px;width:12px;font-size:2px;color:#0E0E0E;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">●●●</div><div style="position:absolute;left:5px;top:10px;width:69px;height:1px;background:#0E0E0E;"></div><div style="position:absolute;left:5px;top:12px;width:42px;font-size:5px;color:#0E0E0E;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">Library</div><div style="position:absolute;left:5px;top:18px;width:42px;font-size:2px;color:rgba(14,14,14,0.45);font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">47 PIECES · MARCH 2026</div><div style="position:absolute;left:5px;top:21px;width:69px;height:1px;background:rgba(14,14,14,0.12);"></div><div style="position:absolute;left:5px;top:23px;width:17px;height:5px;background:#0E0E0E;border-radius:1px;"></div><div style="position:absolute;left:5px;top:24px;width:17px;font-size:2px;color:#FFFFFF;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">ALL</div><div style="position:absolute;left:23px;top:24px;width:17px;font-size:2px;color:rgba(14,14,14,0.45);font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">UNREAD</div><div style="position:absolute;left:40px;top:24px;width:17px;font-size:2px;color:rgba(14,14,14,0.45);font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">HIGHLIGHTS</div><div style="position:absolute;left:58px;top:24px;width:17px;font-size:2px;color:rgba(14,14,14,0.45);font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">DONE</div><div style="position:absolute;left:5px;top:29px;width:69px;height:1px;background:rgba(14,14,14,0.12);"></div><div style="position:absolute;left:5px;top:30px;width:42px;font-size:2px;color:#C8331A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">AI + SOCIETY</div><div style="position:absolute;left:60px;top:30px;width:14px;font-size:2px;color:rgba(14,14,14,0.45);font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">FT · 8 min</div><div style="position:absolute;left:5px;top:34px;width:59px;font-size:2px;color:#0E0E0E;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">The Quiet Redesign of Everything</div><div style="position:absolute;left:5px;top:41px;width:1px;height:1px;background:#C8331A;border-radius:1px;"></div><div style="position:absolute;left:7px;top:41px;width:1px;height:1px;background:#C8331A;border-radius:1px;"></div><div style="position:absolute;left:9px;top:41px;width:1px;height:1px;background:#C8331A;border-radius:1px;"></div><div style="position:absolute;left:11px;top:41px;width:1px;height:1px;background:#C8331A;border-radius:1px;"></div><div style="position:absolute;left:13px;top:41px;width:1px;height:1px;background:#C8331A;border-radius:1px;"></div><div style="position:absolute;left:64px;top:40px;width:10px;height:4px;background:#C8331A14;border-radius:1px;"></div><div style="position:absolute;left:64px;top:41px;width:9px;font-size:2px;color:#C8331A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">SKIMMED</div><div style="position:absolute;left:5px;top:45px;width:69px;height:1px;background:rgba(14,14,14,0.12);"></div><div style="position:absolute;left:5px;top:47px;width:42px;font-size:2px;color:#C8331A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">DESIGN</div><div style="position:absolute;left:60px;top:47px;width:14px;font-size:2px;color:rgba(14,14,14,0.45);font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">WIRED · 5 min</div><div style="position:absolute;left:5px;top:50px;width:59px;font-size:2px;color:#0E0E0E;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">Swiss Typography Is Having a Moment</div><div style="position:absolute;left:5px;top:58px;width:1px;height:1px;background:#C8331A;border-radius:1px;"></div><div style="position:absolute;left:7px;top:58px;width:1px;height:1px;background:#C8331A;border-radius:1px;"></div><div style="position:absolute;left:9px;top:58px;width:1px;height:1px;background:#C8331A;border-radius:1px;"></div><div style="position:absolute;left:11px;top:58px;width:1px;height:1px;background:#C8331A;border-radius:1px;"></div><div style="position:absolute;left:13px;top:58px;width:1px;height:1px;background:rgba(14,14,14,0.12);border-radius:1px;"></div><div style="position:absolute;left:64px;top:57px;width:10px;height:4px;background:#4A786020;border-radius:1px;"></div><div style="position:absolute;left:64px;top:58px;width:9px;font-size:2px;color:#4A7860;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">READ</div><div style="position:absolute;left:5px;top:62px;width:69px;height:1px;background:rgba(14,14,14,0.12);"></div><div style="position:absolute;left:5px;top:64px;width:42px;font-size:2px;color:#C8331A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">SCIENCE</div><div style="position:absolute;left:60px;top:64px;width:14px;font-size:2px;color:rgba(14,14,14,0.45);font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">Nature · 14 min</div><div style="position:absolute;left:5px;top:67px;width:59px;font-size:2px;color:#0E0E0E;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">Sleep Architecture in the AI Era</div><div style="position:absolute;left:5px;top:74px;width:1px;height:1px;background:#C8331A;border-radius:1px;"></div><div style="position:absolute;left:7px;top:74px;width:1px;height:1px;background:#C8331A;border-radius:1px;"></div><div style="position:absolute;left:9px;top:74px;width:1px;height:1px;background:#C8331A;border-radius:1px;"></div><div style="position:absolute;left:11px;top:74px;width:1px;height:1px;background:#C8331A;border-radius:1px;"></div><div style="position:absolute;left:13px;top:74px;width:1px;height:1px;background:rgba(14,14,14,0.12);border-radius:1px;"></div><div style="position:absolute;left:64px;top:74px;width:10px;height:4px;background:#4A786020;border-radius:1px;"></div><div style="position:absolute;left:64px;top:74px;width:9px;font-size:2px;color:#4A7860;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">READ</div><div style="position:absolute;left:5px;top:79px;width:69px;height:1px;background:rgba(14,14,14,0.12);"></div><div style="position:absolute;left:5px;top:81px;width:42px;font-size:2px;color:#C8331A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">CULTURE</div><div style="position:absolute;left:60px;top:81px;width:14px;font-size:2px;color:rgba(14,14,14,0.45);font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">Paris Review · 12 min</div><div style="position:absolute;left:5px;top:84px;width:59px;font-size:2px;color:#0E0E0E;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">What Reading Slowly Does to Your Thinking</div><div style="position:absolute;left:5px;top:91px;width:1px;height:1px;background:#C8331A;border-radius:1px;"></div><div style="position:absolute;left:7px;top:91px;width:1px;height:1px;background:#C8331A;border-radius:1px;"></div><div style="position:absolute;left:9px;top:91px;width:1px;height:1px;background:#C8331A;border-radius:1px;"></div><div style="position:absolute;left:11px;top:91px;width:1px;height:1px;background:#C8331A;border-radius:1px;"></div><div style="position:absolute;left:13px;top:91px;width:1px;height:1px;background:#C8331A;border-radius:1px;"></div><div style="position:absolute;left:64px;top:90px;width:10px;height:4px;background:#C8331A14;border-radius:1px;"></div><div style="position:absolute;left:64px;top:91px;width:9px;font-size:2px;color:#C8331A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">SKIMMED</div><div style="position:absolute;left:5px;top:95px;width:69px;height:1px;background:rgba(14,14,14,0.12);"></div><div style="position:absolute;left:5px;top:97px;width:42px;font-size:2px;color:#C8331A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">ECONOMICS</div><div style="position:absolute;left:60px;top:97px;width:14px;font-size:2px;color:rgba(14,14,14,0.45);font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">Economist · 7 min</div><div style="position:absolute;left:5px;top:101px;width:59px;font-size:2px;color:#0E0E0E;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">The Independent Worker Index, 2026</div><div style="position:absolute;left:5px;top:108px;width:1px;height:1px;background:#C8331A;border-radius:1px;"></div><div style="position:absolute;left:7px;top:108px;width:1px;height:1px;background:#C8331A;border-radius:1px;"></div><div style="position:absolute;left:9px;top:108px;width:1px;height:1px;background:#C8331A;border-radius:1px;"></div><div style="position:absolute;left:11px;top:108px;width:1px;height:1px;background:rgba(14,14,14,0.12);border-radius:1px;"></div><div style="position:absolute;left:13px;top:108px;width:1px;height:1px;background:rgba(14,14,14,0.12);border-radius:1px;"></div><div style="position:absolute;left:64px;top:107px;width:10px;height:4px;background:#F3F0EB;border-radius:1px;"></div><div style="position:absolute;left:64px;top:108px;width:9px;font-size:2px;color:rgba(14,14,14,0.45);font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">NEW</div><div style="position:absolute;left:5px;top:112px;width:69px;height:1px;background:rgba(14,14,14,0.12);"></div><div style="position:absolute;left:0px;top:157px;width:79px;height:13px;background:#FFFFFF;"></div><div style="position:absolute;left:0px;top:157px;width:79px;height:1px;background:rgba(14,14,14,0.12);"></div><div style="position:absolute;left:3px;top:161px;width:14px;font-size:2px;color:rgba(14,14,14,0.45);font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">TODAY</div><div style="position:absolute;left:17px;top:161px;width:14px;font-size:2px;color:rgba(14,14,14,0.45);font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">READ</div><div style="position:absolute;left:38px;top:159px;width:1px;height:1px;background:#C8331A;border-radius:1px;"></div><div style="position:absolute;left:32px;top:161px;width:14px;font-size:2px;color:#0E0E0E;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">LIBRARY</div><div style="position:absolute;left:47px;top:161px;width:14px;font-size:2px;color:rgba(14,14,14,0.45);font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">TOPICS</div><div style="position:absolute;left:61px;top:161px;width:14px;font-size:2px;color:rgba(14,14,14,0.45);font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">YOU</div></div>
+      <div class="ds-screen-label">Library</div>
+    </div><div class="ds-screen-wrap">
+      <div class="ds-thumb" style="width:79px;height:171px"><div style="position:absolute;left:0px;top:0px;width:79px;height:171px;background:#F8F5F0;"></div><div style="position:absolute;left:4px;top:3px;width:11px;font-size:2px;color:#0E0E0E;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">9:41</div><div style="position:absolute;left:66px;top:3px;width:12px;font-size:2px;color:#0E0E0E;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">●●●</div><div style="position:absolute;left:5px;top:10px;width:69px;height:1px;background:#0E0E0E;"></div><div style="position:absolute;left:5px;top:12px;width:59px;font-size:5px;color:#0E0E0E;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">Your topics</div><div style="position:absolute;left:5px;top:18px;width:55px;font-size:2px;color:rgba(14,14,14,0.45);font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">6 INTERESTS · 47 PIECES THIS MONTH</div><div style="position:absolute;left:5px;top:21px;width:69px;height:1px;background:rgba(14,14,14,0.12);"></div><div style="position:absolute;left:5px;top:23px;width:42px;font-size:2px;color:#C8331A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">SIGNAL MAP</div><div style="position:absolute;left:5px;top:25px;width:42px;height:20px;background:#0E0E0E;border-radius:1px;"></div><div style="position:absolute;left:7px;top:27px;width:38px;font-size:2px;color:#FFFFFF;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">AI + SOCIETY</div><div style="position:absolute;left:7px;top:41px;width:38px;font-size:2px;color:rgba(255,255,255,0.5);font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">18 pieces</div><div style="position:absolute;left:7px;top:43px;width:1px;height:1px;background:rgba(255,255,255,0.3);border-radius:1px;"></div><div style="position:absolute;left:9px;top:43px;width:1px;height:1px;background:rgba(255,255,255,0.3);border-radius:1px;"></div><div style="position:absolute;left:11px;top:43px;width:1px;height:1px;background:rgba(255,255,255,0.3);border-radius:1px;"></div><div style="position:absolute;left:13px;top:43px;width:1px;height:1px;background:rgba(255,255,255,0.3);border-radius:1px;"></div><div style="position:absolute;left:15px;top:43px;width:1px;height:1px;background:rgba(255,255,255,0.3);border-radius:1px;"></div><div style="position:absolute;left:49px;top:25px;width:25px;height:20px;background:#F3F0EB;border-radius:1px;"></div><div style="position:absolute;left:51px;top:27px;width:21px;font-size:2px;color:#0E0E0E;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">DESIGN</div><div style="position:absolute;left:51px;top:41px;width:21px;font-size:2px;color:rgba(14,14,14,0.45);font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">12 pieces</div><div style="position:absolute;left:51px;top:43px;width:1px;height:1px;background:rgba(14,14,14,0.12);border-radius:1px;"></div><div style="position:absolute;left:53px;top:43px;width:1px;height:1px;background:rgba(14,14,14,0.12);border-radius:1px;"></div><div style="position:absolute;left:55px;top:43px;width:1px;height:1px;background:rgba(14,14,14,0.12);border-radius:1px;"></div><div style="position:absolute;left:56px;top:43px;width:1px;height:1px;background:rgba(14,14,14,0.12);border-radius:1px;"></div><div style="position:absolute;left:5px;top:47px;width:25px;height:16px;background:#F3F0EB;border-radius:1px;"></div><div style="position:absolute;left:7px;top:49px;width:21px;font-size:2px;color:#0E0E0E;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">SCIENCE</div><div style="position:absolute;left:7px;top:59px;width:21px;font-size:2px;color:rgba(14,14,14,0.45);font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">8 pieces</div><div style="position:absolute;left:7px;top:61px;width:1px;height:1px;background:rgba(14,14,14,0.12);border-radius:1px;"></div><div style="position:absolute;left:9px;top:61px;width:1px;height:1px;background:rgba(14,14,14,0.12);border-radius:1px;"></div><div style="position:absolute;left:11px;top:61px;width:1px;height:1px;background:rgba(14,14,14,0.12);border-radius:1px;"></div><div style="position:absolute;left:13px;top:61px;width:1px;height:1px;background:rgba(14,14,14,0.12);border-radius:1px;"></div><div style="position:absolute;left:32px;top:47px;width:42px;height:16px;background:#F3F0EB;border-radius:1px;"></div><div style="position:absolute;left:34px;top:49px;width:38px;font-size:2px;color:#0E0E0E;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">ECONOMICS</div><div style="position:absolute;left:34px;top:59px;width:38px;font-size:2px;color:rgba(14,14,14,0.45);font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">5 pieces</div><div style="position:absolute;left:34px;top:61px;width:1px;height:1px;background:rgba(14,14,14,0.12);border-radius:1px;"></div><div style="position:absolute;left:36px;top:61px;width:1px;height:1px;background:rgba(14,14,14,0.12);border-radius:1px;"></div><div style="position:absolute;left:38px;top:61px;width:1px;height:1px;background:rgba(14,14,14,0.12);border-radius:1px;"></div><div style="position:absolute;left:5px;top:65px;width:69px;height:14px;background:#F3F0EB;border-radius:1px;"></div><div style="position:absolute;left:7px;top:67px;width:64px;font-size:2px;color:#0E0E0E;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">CULTURE</div><div style="position:absolute;left:7px;top:75px;width:64px;font-size:2px;color:rgba(14,14,14,0.45);font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">4 pieces</div><div style="position:absolute;left:7px;top:77px;width:1px;height:1px;background:rgba(14,14,14,0.12);border-radius:1px;"></div><div style="position:absolute;left:9px;top:77px;width:1px;height:1px;background:rgba(14,14,14,0.12);border-radius:1px;"></div><div style="position:absolute;left:11px;top:77px;width:1px;height:1px;background:rgba(14,14,14,0.12);border-radius:1px;"></div><div style="position:absolute;left:13px;top:77px;width:1px;height:1px;background:rgba(14,14,14,0.12);border-radius:1px;"></div><div style="position:absolute;left:5px;top:81px;width:69px;height:1px;background:rgba(14,14,14,0.12);"></div><div style="position:absolute;left:5px;top:82px;width:55px;font-size:2px;color:#C8331A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">TRENDING IN YOUR INTERESTS</div><div style="position:absolute;left:5px;top:86px;width:69px;font-size:2px;color:#0E0E0E;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">GenUI Systems Replace 60% of Traditional Navigation</div><div style="position:absolute;left:5px;top:93px;width:55px;font-size:2px;color:rgba(14,14,14,0.45);font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">VERGE · 4 min  ●●●●●</div><div style="position:absolute;left:5px;top:96px;width:69px;height:1px;background:rgba(14,14,14,0.12);"></div><div style="position:absolute;left:5px;top:98px;width:69px;font-size:2px;color:#0E0E0E;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">The Typography Renaissance in Digital Product</div><div style="position:absolute;left:5px;top:105px;width:55px;font-size:2px;color:rgba(14,14,14,0.45);font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">DESIGN WEEK · 6 min  ●●●●○</div><div style="position:absolute;left:5px;top:108px;width:69px;height:1px;background:rgba(14,14,14,0.12);"></div><div style="position:absolute;left:5px;top:110px;width:69px;font-size:2px;color:#0E0E0E;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">Why Independent Workers Earn More in 2026</div><div style="position:absolute;left:5px;top:117px;width:55px;font-size:2px;color:rgba(14,14,14,0.45);font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">ECONOMIST · 7 min  ●●●○○</div><div style="position:absolute;left:0px;top:157px;width:79px;height:13px;background:#FFFFFF;"></div><div style="position:absolute;left:0px;top:157px;width:79px;height:1px;background:rgba(14,14,14,0.12);"></div><div style="position:absolute;left:3px;top:161px;width:14px;font-size:2px;color:rgba(14,14,14,0.45);font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">TODAY</div><div style="position:absolute;left:17px;top:161px;width:14px;font-size:2px;color:rgba(14,14,14,0.45);font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">READ</div><div style="position:absolute;left:32px;top:161px;width:14px;font-size:2px;color:rgba(14,14,14,0.45);font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">LIBRARY</div><div style="position:absolute;left:52px;top:159px;width:1px;height:1px;background:#C8331A;border-radius:1px;"></div><div style="position:absolute;left:47px;top:161px;width:14px;font-size:2px;color:#0E0E0E;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">TOPICS</div><div style="position:absolute;left:61px;top:161px;width:14px;font-size:2px;color:rgba(14,14,14,0.45);font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">YOU</div></div>
+      <div class="ds-screen-label">Topics</div>
+    </div><div class="ds-screen-wrap">
+      <div class="ds-thumb" style="width:79px;height:171px"><div style="position:absolute;left:0px;top:0px;width:79px;height:171px;background:#F8F5F0;"></div><div style="position:absolute;left:4px;top:3px;width:11px;font-size:2px;color:#0E0E0E;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">9:41</div><div style="position:absolute;left:66px;top:3px;width:12px;font-size:2px;color:#0E0E0E;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">●●●</div><div style="position:absolute;left:5px;top:10px;width:69px;height:1px;background:#0E0E0E;"></div><div style="position:absolute;left:5px;top:12px;width:59px;font-size:5px;color:#0E0E0E;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">Your reading</div><div style="position:absolute;left:5px;top:18px;width:59px;font-size:2px;color:rgba(14,14,14,0.45);font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">MARCH 2026 · WEEK 5 OF PITH</div><div style="position:absolute;left:5px;top:21px;width:69px;height:1px;background:rgba(14,14,14,0.12);"></div><div style="position:absolute;left:5px;top:23px;width:42px;font-size:2px;color:#C8331A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">THIS MONTH</div><div style="position:absolute;left:5px;top:26px;width:21px;height:12px;background:#FFFFFF;border-radius:1px;"></div><div style="position:absolute;left:5px;top:27px;width:21px;font-size:5px;color:#0E0E0E;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">47</div><div style="position:absolute;left:5px;top:34px;width:21px;font-size:2px;color:rgba(14,14,14,0.45);font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">PIECES</div><div style="position:absolute;left:27px;top:26px;width:21px;height:12px;background:#FFFFFF;border-radius:1px;"></div><div style="position:absolute;left:27px;top:27px;width:21px;font-size:5px;color:#0E0E0E;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">22</div><div style="position:absolute;left:27px;top:34px;width:21px;font-size:2px;color:rgba(14,14,14,0.45);font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">FULLY READ</div><div style="position:absolute;left:50px;top:26px;width:24px;height:12px;background:#FFFFFF;border-radius:1px;"></div><div style="position:absolute;left:50px;top:27px;width:24px;font-size:5px;color:#0E0E0E;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">4.2h</div><div style="position:absolute;left:50px;top:34px;width:24px;font-size:2px;color:rgba(14,14,14,0.45);font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">TIME READ</div><div style="position:absolute;left:5px;top:39px;width:69px;height:1px;background:rgba(14,14,14,0.12);"></div><div style="position:absolute;left:5px;top:41px;width:42px;font-size:2px;color:#C8331A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">READING DAYS · MARCH</div><div style="position:absolute;left:5px;top:45px;width:5px;height:9px;background:#F3F0EB;border-radius:1px;"></div><div style="position:absolute;left:5px;top:48px;width:5px;height:6px;background:rgba(14,14,14,0.12);border-radius:1px;"></div><div style="position:absolute;left:5px;top:55px;width:5px;font-size:2px;color:rgba(14,14,14,0.45);font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">M</div><div style="position:absolute;left:11px;top:45px;width:5px;height:9px;background:#F3F0EB;border-radius:1px;"></div><div style="position:absolute;left:11px;top:45px;width:5px;height:8px;background:rgba(14,14,14,0.12);border-radius:1px;"></div><div style="position:absolute;left:11px;top:55px;width:5px;font-size:2px;color:rgba(14,14,14,0.45);font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">T</div><div style="position:absolute;left:18px;top:45px;width:5px;height:9px;background:#F3F0EB;border-radius:1px;"></div><div style="position:absolute;left:18px;top:50px;width:5px;height:4px;background:rgba(14,14,14,0.12);border-radius:1px;"></div><div style="position:absolute;left:18px;top:55px;width:5px;font-size:2px;color:rgba(14,14,14,0.45);font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">W</div><div style="position:absolute;left:24px;top:45px;width:5px;height:9px;background:#F3F0EB;border-radius:1px;"></div><div style="position:absolute;left:24px;top:46px;width:5px;height:7px;background:rgba(14,14,14,0.12);border-radius:1px;"></div><div style="position:absolute;left:24px;top:55px;width:5px;font-size:2px;color:rgba(14,14,14,0.45);font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">T</div><div style="position:absolute;left:30px;top:45px;width:5px;height:9px;background:#F3F0EB;border-radius:1px;"></div><div style="position:absolute;left:30px;top:45px;width:5px;height:9px;background:#C8331A;border-radius:1px;"></div><div style="position:absolute;left:30px;top:55px;width:5px;font-size:2px;color:rgba(14,14,14,0.45);font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">F</div><div style="position:absolute;left:37px;top:45px;width:5px;height:9px;background:#F3F0EB;border-radius:1px;"></div><div style="position:absolute;left:37px;top:51px;width:5px;height:3px;background:rgba(14,14,14,0.12);border-radius:1px;"></div><div style="position:absolute;left:37px;top:55px;width:5px;font-size:2px;color:rgba(14,14,14,0.45);font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">S</div><div style="position:absolute;left:43px;top:45px;width:5px;height:9px;background:#F3F0EB;border-radius:1px;"></div><div style="position:absolute;left:43px;top:49px;width:5px;height:5px;background:rgba(14,14,14,0.12);border-radius:1px;"></div><div style="position:absolute;left:43px;top:55px;width:5px;font-size:2px;color:rgba(14,14,14,0.45);font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">S</div><div style="position:absolute;left:53px;top:49px;width:21px;font-size:2px;color:rgba(14,14,14,0.45);font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">avg 7.2 min/day</div><div style="position:absolute;left:5px;top:57px;width:69px;height:1px;background:rgba(14,14,14,0.12);"></div><div style="position:absolute;left:5px;top:59px;width:42px;font-size:2px;color:#C8331A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">TOPIC BALANCE</div><div style="position:absolute;left:5px;top:62px;width:21px;font-size:2px;color:#0E0E0E;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">AI + SOCIETY</div><div style="position:absolute;left:27px;top:63px;width:34px;height:2px;background:#F3F0EB;border-radius:1px;"></div><div style="position:absolute;left:27px;top:63px;width:13px;height:2px;background:#C8331A;border-radius:1px;"></div><div style="position:absolute;left:63px;top:62px;width:6px;font-size:2px;color:rgba(14,14,14,0.45);font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">38%</div><div style="position:absolute;left:5px;top:68px;width:21px;font-size:2px;color:#0E0E0E;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">DESIGN</div><div style="position:absolute;left:27px;top:68px;width:34px;height:2px;background:#F3F0EB;border-radius:1px;"></div><div style="position:absolute;left:27px;top:68px;width:9px;height:2px;background:#1A2E4A;border-radius:1px;"></div><div style="position:absolute;left:63px;top:68px;width:6px;font-size:2px;color:rgba(14,14,14,0.45);font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">26%</div><div style="position:absolute;left:5px;top:73px;width:21px;font-size:2px;color:#0E0E0E;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">SCIENCE</div><div style="position:absolute;left:27px;top:74px;width:34px;height:2px;background:#F3F0EB;border-radius:1px;"></div><div style="position:absolute;left:27px;top:74px;width:6px;height:2px;background:#4A7860;border-radius:1px;"></div><div style="position:absolute;left:63px;top:73px;width:6px;font-size:2px;color:rgba(14,14,14,0.45);font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">17%</div><div style="position:absolute;left:5px;top:79px;width:21px;font-size:2px;color:#0E0E0E;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">CULTURE</div><div style="position:absolute;left:27px;top:79px;width:34px;height:2px;background:#F3F0EB;border-radius:1px;"></div><div style="position:absolute;left:27px;top:79px;width:4px;height:2px;background:#8B4A2A;border-radius:1px;"></div><div style="position:absolute;left:63px;top:79px;width:6px;font-size:2px;color:rgba(14,14,14,0.45);font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">11%</div><div style="position:absolute;left:5px;top:84px;width:21px;font-size:2px;color:#0E0E0E;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">ECONOMICS</div><div style="position:absolute;left:27px;top:84px;width:34px;height:2px;background:#F3F0EB;border-radius:1px;"></div><div style="position:absolute;left:27px;top:84px;width:3px;height:2px;background:rgba(14,14,14,0.45);border-radius:1px;"></div><div style="position:absolute;left:63px;top:84px;width:6px;font-size:2px;color:rgba(14,14,14,0.45);font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">8%</div><div style="position:absolute;left:5px;top:90px;width:69px;height:1px;background:rgba(14,14,14,0.12);"></div><div style="position:absolute;left:5px;top:92px;width:55px;font-size:2px;color:#C8331A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">READING STREAK · 14 DAYS STRAIGHT</div><div style="position:absolute;left:5px;top:95px;width:69px;font-size:2px;color:rgba(14,14,14,0.45);font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">Your longest streak. Every day since March 14.</div><div style="position:absolute;left:5px;top:102px;width:69px;height:1px;background:rgba(14,14,14,0.12);"></div><div style="position:absolute;left:5px;top:104px;width:42px;font-size:2px;color:#C8331A;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">YOUR PITH SCORE</div><div style="position:absolute;left:5px;top:107px;width:25px;font-size:8px;color:#0E0E0E;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">84</div><div style="position:absolute;left:18px;top:110px;width:50px;font-size:2px;color:rgba(14,14,14,0.45);font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">Deep reader.
+High signal preference.
+Broad across 5 topics.</div><div style="position:absolute;left:0px;top:157px;width:79px;height:13px;background:#FFFFFF;"></div><div style="position:absolute;left:0px;top:157px;width:79px;height:1px;background:rgba(14,14,14,0.12);"></div><div style="position:absolute;left:3px;top:161px;width:14px;font-size:2px;color:rgba(14,14,14,0.45);font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">TODAY</div><div style="position:absolute;left:17px;top:161px;width:14px;font-size:2px;color:rgba(14,14,14,0.45);font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">READ</div><div style="position:absolute;left:32px;top:161px;width:14px;font-size:2px;color:rgba(14,14,14,0.45);font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">LIBRARY</div><div style="position:absolute;left:47px;top:161px;width:14px;font-size:2px;color:rgba(14,14,14,0.45);font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">TOPICS</div><div style="position:absolute;left:67px;top:159px;width:1px;height:1px;background:#C8331A;border-radius:1px;"></div><div style="position:absolute;left:61px;top:161px;width:14px;font-size:2px;color:#0E0E0E;font-weight:400;white-space:nowrap;overflow:hidden;line-height:1.15;">YOU</div></div>
+      <div class="ds-screen-label">You</div>
+    </div></div>
+  </div>
+</section>
+<!-- CTA -->
+<section class="cta>
+  <div class="cta-inner">
+    <h2>Read <em>one</em> thing well today.</h2>
+    <p>Five curated reads. Pith summaries. Your reading score. Start your streak today.</p>
+    <a class="btn-red-lg" href="#">START READING →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">PITH<span>.</span></div>
+  <div class="footer-note">A RAM DESIGN CONCEPT · MARCH 2026</div>
+  <div class="footer-tag">LIGHT THEME</div>
+</footer>
+
+</body>
+</html>

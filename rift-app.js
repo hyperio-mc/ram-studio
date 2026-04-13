@@ -1,862 +1,508 @@
 'use strict';
-// rift-app.js
-// RIFT — AI-Native Code Review Command Center
-//
-// Design Heartbeat — Mar 20, 2026
-// Inspired by:
-//   • Linear.app (darkmodedesign.com) — "AI workflows at core", near-black dark,
-//     single violet accent, bento feature grid, "calmer, more consistent" MAR 2026 UI refresh
-//   • Lusion.co (lusion.co via godly.website) — deep space dark, immersive cinematic dark
-//   • Godly.website curation — AuthKit, Amie.so — clean dark product SaaS patterns
-//   • DarkModeDesign.com showcase — Forge, Superset, OWO — dark dev-tool aesthetics
-
 const fs   = require('fs');
 const path = require('path');
 
-// ── Palette ───────────────────────────────────────────────────────────────────
-const P = {
-  bg:         '#07070F',   // deep space near-black (Linear-inspired)
-  surface:    '#0E0E1C',   // elevated surface
-  surface2:   '#16162A',   // higher elevation
-  surface3:   '#1E1E38',   // card bg
-  border:     '#1E1E36',   // subtle border
-  border2:    '#2C2C4E',   // stronger border
-  border3:    '#3A3A60',   // active border
+const SLUG      = 'rift';
+const NAME      = 'RIFT';
+const TAGLINE   = 'Engineering health, at a glance.';
+const THEME     = 'dark';
+const HEARTBEAT = 468;
+const W = 390, H = 844;
 
-  violet:     '#7B5CF5',   // electric violet — single accent
-  violetHi:   '#9B82FF',   // lighter violet
-  violetLo:   '#5B3FD0',   // deeper violet
-  violetGlow: '#7B5CF514', // transparent glow bg
+// Palette — Land-book Fintech/Data Dark + Saaspo Linear Look
+const BG      = '#0A0E14';
+const SURF    = '#0F1923';
+const CARD    = '#142232';
+const CARD2   = '#1C2E40';
+const BORDER  = 'rgba(0,212,255,0.12)';
+const ACC     = '#00D4FF';
+const ACC2    = '#7FFF00';
+const RED     = '#FF4F5E';
+const AMBER   = '#FFB347';
+const TEXT    = '#E8F4F8';
+const TEXT2   = '#7BA8C0';
+const TEXT3   = '#4A6E85';
+const MONO    = '#A8D4E8';
 
-  fg:         '#E8E8F2',   // near-white with slight blue tint
-  fg2:        '#6E6E9A',   // muted secondary
-  fg3:        '#3C3C60',   // very muted tertiary
-  fg4:        '#28284A',   // near-invisible
+function rect(x, y, w, h, fill, opts = {}) {
+  const el = { type: 'rect', x, y, width: w, height: h, fill };
+  if (opts.rx !== undefined) el.rx = opts.rx;
+  if (opts.opacity !== undefined) el.opacity = opts.opacity;
+  if (opts.stroke) el.stroke = opts.stroke;
+  if (opts.sw) el.strokeWidth = opts.sw;
+  return el;
+}
 
-  green:      '#34D399',   // approved / success
-  greenLo:    '#34D39914', // muted green bg
-  amber:      '#FBBF24',   // needs review / warning
-  amberLo:    '#FBBF2414', // muted amber bg
-  red:        '#F87171',   // blocked / declined
-  redLo:      '#F8717114', // muted red bg
-  blue:       '#60A5FA',   // info / link
-  mono:       '#94A3C0',   // monospace code color
-};
+function text(x, y, content, size, fill, opts = {}) {
+  const el = { type: 'text', x, y, content, fontSize: size, fill };
+  if (opts.fw) el.fontWeight = opts.fw;
+  if (opts.font) el.fontFamily = opts.font;
+  if (opts.anchor) el.textAnchor = opts.anchor;
+  if (opts.ls) el.letterSpacing = opts.ls;
+  if (opts.opacity !== undefined) el.opacity = opts.opacity;
+  return el;
+}
 
-let _id = 0;
-const uid = () => `rft${++_id}`;
+function circle(cx, cy, r, fill, opts = {}) {
+  const el = { type: 'circle', cx, cy, r, fill };
+  if (opts.opacity !== undefined) el.opacity = opts.opacity;
+  if (opts.stroke) el.stroke = opts.stroke;
+  if (opts.sw) el.strokeWidth = opts.sw;
+  return el;
+}
 
-// ── Core primitives ───────────────────────────────────────────────────────────
-const F = (x, y, w, h, fill, opts = {}) => ({
-  id: uid(), type: 'frame', x, y, width: w, height: h,
-  fill: fill || P.bg,
-  clip: opts.clip !== undefined ? opts.clip : false,
-  ...(opts.r !== undefined ? { cornerRadius: opts.r } : {}),
-  ...(opts.stroke ? { stroke: { align: 'inside', thickness: opts.sw || 1, fill: opts.stroke } } : {}),
-  ...(opts.opacity !== undefined ? { opacity: opts.opacity } : {}),
-  children: opts.ch || [],
-});
+function line(x1, y1, x2, y2, stroke, opts = {}) {
+  const el = { type: 'line', x1, y1, x2, y2, stroke };
+  if (opts.sw) el.strokeWidth = opts.sw;
+  if (opts.opacity !== undefined) el.opacity = opts.opacity;
+  return el;
+}
 
-const T = (content, x, y, w, h, opts = {}) => ({
-  id: uid(), type: 'text', content, x, y, width: w, height: h,
-  textGrowth: 'fixed-width-height',
-  fontSize: opts.size || 13,
-  fontWeight: String(opts.weight || 400),
-  fill: opts.fill || P.fg,
-  textAlign: opts.align || 'left',
-  ...(opts.ls !== undefined ? { letterSpacing: opts.ls } : {}),
-  ...(opts.lh !== undefined ? { lineHeight: opts.lh } : {}),
-  ...(opts.opacity !== undefined ? { opacity: opts.opacity } : {}),
-  ...(opts.font ? { fontFamily: opts.font } : {}),
-});
+function statusBar(els) {
+  els.push(rect(0, 0, W, 44, BG));
+  els.push(text(16, 30, '9:41', 14, TEXT, { fw: 600, font: 'monospace' }));
+  els.push(text(374, 30, '●●●', 10, TEXT2, { anchor: 'end' }));
+}
 
-const E = (x, y, w, h, fill, opts = {}) => ({
-  id: uid(), type: 'ellipse', x, y, width: w, height: h, fill,
-  ...(opts.stroke ? { stroke: { align: 'inside', thickness: opts.sw || 1, fill: opts.stroke } } : {}),
-  ...(opts.opacity !== undefined ? { opacity: opts.opacity } : {}),
-});
-
-const R = (x, y, w, h, fill, opts = {}) => F(x, y, w, h, fill, opts); // alias
-
-const Line  = (x, y, w, fill = P.border) => F(x, y, w, 1, fill);
-const VLine = (x, y, h, fill = P.border) => F(x, y, 1, h, fill);
-
-const Pill = (x, y, text, bg, fg, opts = {}) => {
-  const w = Math.max(text.length * 6.8 + 20, 38);
-  return F(x, y, w, 20, bg, {
-    r: 10,
-    ch: [T(text, 10, 3, w - 20, 14, { size: 9, fill: fg, weight: 700, ls: 0.6, align: 'center' })],
-    ...(opts.stroke ? { stroke: { align: 'inside', thickness: 1, fill: opts.stroke } } : {}),
+function bottomNav(els, activeIdx) {
+  const tabs = [
+    { icon: '⬡', label: 'Health' },
+    { icon: '⚡', label: 'Deploy' },
+    { icon: '◈', label: 'Dash' },
+    { icon: '⚑', label: 'Alerts' },
+    { icon: '⊙', label: 'Team' },
+  ];
+  els.push(rect(0, 782, W, 62, SURF, { opacity: 0.92 }));
+  els.push(rect(0, 782, W, 1, ACC, { opacity: 0.15 }));
+  const tw = W / tabs.length;
+  tabs.forEach((tab, i) => {
+    const cx = tw * i + tw / 2;
+    const isActive = i === activeIdx;
+    const icColor  = isActive ? ACC  : TEXT3;
+    const txColor  = isActive ? ACC  : TEXT3;
+    if (isActive) {
+      els.push(rect(cx - 20, 787, 40, 3, ACC, { rx: 1 }));
+    }
+    els.push(text(cx, 808, tab.icon, isActive ? 16 : 14, icColor, { anchor: 'middle' }));
+    els.push(text(cx, 823, tab.label, 10, txColor, { anchor: 'middle', fw: isActive ? 600 : 400 }));
   });
-};
+}
 
-const Dot = (x, y, color) => E(x, y, 6, 6, color);
+function sectionHeader(els, y, title, actionLabel) {
+  els.push(text(20, y, title, 12, TEXT2, { fw: 600, ls: 1.5 }));
+  if (actionLabel) els.push(text(370, y, actionLabel, 11, ACC, { anchor: 'end', fw: 500 }));
+}
 
-// ── Layout constants ──────────────────────────────────────────────────────────
-const W   = 1280;
-const H   = 800;
-const PAD = 24;
+function screen1() {
+  const els = [];
+  els.push(rect(0, 0, W, H, BG));
+  els.push(rect(95, 20, 200, 200, ACC, { opacity: 0.04, rx: 100 }));
+  statusBar(els);
 
-// ── Glow orb (decorative) ─────────────────────────────────────────────────────
-const GlowOrb = (x, y, r, color, opacity = 0.12) =>
-  E(x - r, y - r, r * 2, r * 2, color, { opacity });
+  els.push(text(20, 74, 'RIFT', 20, TEXT, { fw: 700, ls: 3 }));
+  els.push(text(20, 92, 'Engineering health', 12));
+  els.push(circle(362, 78, 16, CARD2));
+  els.push(text(362, 83, 'JL', 10, ACC, { anchor: 'middle', fw: 700 }));
 
-// ── Top nav bar ───────────────────────────────────────────────────────────────
-function TopNav(activeLabel) {
-  const navItems = ['Review', 'Dashboard', 'Agents', 'Insights', 'Settings'];
-  const ch = [
-    F(0, 0, W, 52, P.bg, {}),
-    Line(0, 51, W, P.border),
-    // Logo
-    F(16, 14, 24, 24, P.violet, { r: 6,
-      ch: [T('R', 6, 4, 12, 16, { size: 12, fill: '#fff', weight: 700, align: 'center' })] }),
-    T('RIFT', 48, 17, 48, 18, { size: 13, fill: P.fg, weight: 700, ls: 2 }),
-    Pill(108, 17, 'BETA', P.violetGlow, P.violet, { stroke: P.violet }),
-  ];
-  let navX = 220;
-  navItems.forEach(label => {
-    const isActive = label === activeLabel;
-    ch.push(T(label, navX, 17, 70, 18, { size: 12, fill: isActive ? P.fg : P.fg2, weight: isActive ? 600 : 400 }));
-    if (isActive) ch.push(F(navX, 47, 70, 2, P.violet, {}));
-    navX += 80;
+  // DORA Score hero card
+  els.push(rect(16, 106, W - 32, 100, CARD, { rx: 12, stroke: BORDER, sw: 1 }));
+  els.push(rect(16, 106, W - 32, 100, ACC, { rx: 12, opacity: 0.03 }));
+  els.push(text(32, 128, 'DORA SCORE', 10, TEXT2, { fw: 600, ls: 2 }));
+  els.push(text(32, 164, '87', 42, ACC, { fw: 700, font: 'monospace' }));
+  els.push(text(82, 164, '/100', 16));
+  els.push(text(32, 185, 'Top 15% of engineering teams', 11, ACC2, { fw: 500 }));
+
+  const barHeights = [22, 34, 18, 40, 28, 36, 42];
+  barHeights.forEach((bh, i) => {
+    const bx = 258 + i * 15;
+    const by = 186 - bh;
+    els.push(rect(bx, by, 10, bh, ACC, { rx: 2, opacity: i === 6 ? 0.9 : 0.3 + i * 0.08 }));
   });
-  // Right side
-  ch.push(
-    F(W - 200, 14, 80, 24, P.surface2, { r: 12,
-      ch: [
-        E(8, 7, 10, 10, P.green, {}),
-        T('main', 24, 5, 48, 14, { size: 11, fill: P.fg2 }),
-      ] }),
-    E(W - 108, 16, 20, 20, P.surface3, { stroke: P.border2, sw: 1 }),
-    T('KR', W - 105, 19, 14, 12, { size: 9, fill: P.violet, weight: 700, align: 'center' }),
-  );
-  return F(0, 0, W, 52, 'transparent', { ch });
-}
+  els.push(text(260, 196, 'deploys/day', 9, TEXT3));
 
-// ── Left sidebar ──────────────────────────────────────────────────────────────
-function LeftSidebar(activeSection, items) {
-  const SIDEBAR_W = 220;
-  const ch = [
-    F(0, 0, SIDEBAR_W, H - 52, P.bg, {}),
-    VLine(SIDEBAR_W - 1, 0, H - 52, P.border),
+  // 2x2 bento tiles
+  const tiles = [
+    { label: 'DEPLOY FREQ', value: '4.2', unit: '/day', color: ACC2,  trend: '+12%' },
+    { label: 'LEAD TIME',   value: '2.8', unit: 'hrs',  color: ACC,   trend: '-18%' },
+    { label: 'MTTR',        value: '14',  unit: 'min',  color: AMBER, trend: '-5%'  },
+    { label: 'CHANGE FAIL', value: '3.2', unit: '%',    color: RED,   trend: '+0.4%'},
   ];
-  let y = 12;
-  items.forEach(({ label, icon, badge, section }) => {
-    if (label === '---') { ch.push(Line(12, y, SIDEBAR_W - 24, P.border)); y += 16; return; }
-    const isActive = label === activeSection;
-    ch.push(
-      F(8, y, SIDEBAR_W - 16, 28, isActive ? P.surface2 : 'transparent', {
-        r: 6,
-        ch: [
-          T(icon || '·', 10, 6, 16, 16, { size: 12, fill: isActive ? P.violet : P.fg3 }),
-          T(label, 32, 7, SIDEBAR_W - 80, 14, { size: 11, fill: isActive ? P.fg : P.fg2, weight: isActive ? 600 : 400 }),
-          ...(badge ? [Pill(SIDEBAR_W - 60, 4, badge, isActive ? P.violet : P.surface3, isActive ? '#fff' : P.fg2)] : []),
-        ],
-      }),
-    );
-    y += 32;
+  tiles.forEach((t, i) => {
+    const col = i % 2;
+    const row = Math.floor(i / 2);
+    const tx = 16 + col * (W / 2 - 8);
+    const ty = 222 + row * 92;
+    const tw2 = W / 2 - 24;
+    els.push(rect(tx, ty, tw2, 80, CARD, { rx: 10, stroke: BORDER, sw: 1 }));
+    els.push(text(tx + 12, ty + 21, t.label, 9, TEXT3, { fw: 600, ls: 1.5 }));
+    els.push(text(tx + 12, ty + 52, t.value, 26, t.color, { fw: 700, font: 'monospace' }));
+    const vw = t.value.length * 15;
+    els.push(text(tx + 14 + vw, ty + 52, t.unit, 11));
+    els.push(text(tx + 12, ty + 68, t.trend, 10, t.color, { fw: 500 }));
   });
-  return F(0, 52, SIDEBAR_W, H - 52, 'transparent', { ch, clip: true });
+
+  // Recent deploys
+  sectionHeader(els, 424, 'RECENT DEPLOYS', 'all');
+  const deploys = [
+    { repo: 'api-gateway',   sha: 'a3f9c1', status: 'success', time: '2m ago',  env: 'prod'    },
+    { repo: 'web-frontend',  sha: 'b7d2e4', status: 'success', time: '14m ago', env: 'prod'    },
+    { repo: 'auth-service',  sha: 'c1a8f2', status: 'failed',  time: '1h ago',  env: 'staging' },
+    { repo: 'data-pipeline', sha: 'd4c7b9', status: 'pending', time: '2h ago',  env: 'prod'    },
+  ];
+  deploys.forEach((d, i) => {
+    const dy = 440 + i * 68;
+    els.push(rect(16, dy, W - 32, 60, CARD, { rx: 8, stroke: BORDER, sw: 1 }));
+    const dotColor = d.status === 'success' ? ACC2 : d.status === 'failed' ? RED : AMBER;
+    els.push(circle(34, dy + 19, 5, dotColor));
+    els.push(text(46, dy + 23, d.repo, 13, TEXT, { fw: 600 }));
+    els.push(text(46, dy + 39, d.sha, 11, MONO, { font: 'monospace' }));
+    els.push(rect(W - 82, dy + 11, 56, 18, CARD2, { rx: 4 }));
+    els.push(text(W - 54, dy + 23, d.env, 10, TEXT2, { anchor: 'middle', fw: 500 }));
+    els.push(text(W - 36, dy + 39, d.time, 10, TEXT3, { anchor: 'end' }));
+    if (i < deploys.length - 1) els.push(line(32, dy + 60, W - 32, dy + 60, BORDER, { sw: 1 }));
+  });
+
+  bottomNav(els, 2);
+  return els;
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// SCREEN 1 — HERO LANDING
-// ─────────────────────────────────────────────────────────────────────────────
-function Screen1_Hero() {
-  const ch = [
-    // Ambient glow
-    GlowOrb(W * 0.35, 350, 380, P.violet, 0.08),
-    GlowOrb(W * 0.7, 200, 220, P.blue, 0.05),
+function screen2() {
+  const els = [];
+  els.push(rect(0, 0, W, H, BG));
+  statusBar(els);
+  els.push(text(20, 74, 'Code Health', 18, TEXT, { fw: 700 }));
+  els.push(text(20, 92, 'Repos · Last 7 days', 12));
 
-    // Nav
-    F(0, 0, W, 60, P.bg, {
-      ch: [
-        F(PAD, 16, 28, 28, P.violet, { r: 8,
-          ch: [T('R', 8, 5, 12, 18, { size: 14, fill: '#fff', weight: 800, align: 'center' })] }),
-        T('RIFT', 60, 20, 56, 20, { size: 14, fill: P.fg, weight: 700, ls: 2 }),
-        T('Product', 200, 21, 60, 18, { size: 12, fill: P.fg2 }),
-        T('Docs', 268, 21, 40, 18, { size: 12, fill: P.fg2 }),
-        T('Changelog', 316, 21, 80, 18, { size: 12, fill: P.fg2 }),
-        T('Pricing', 400, 21, 60, 18, { size: 12, fill: P.fg2 }),
-        F(W - 200, 14, 80, 32, P.surface2, { r: 8, stroke: P.border2,
-          ch: [T('Log in', 16, 8, 48, 16, { size: 12, fill: P.fg2 })] }),
-        F(W - 108, 14, 92, 32, P.violet, { r: 8,
-          ch: [T('Get access', 10, 8, 72, 16, { size: 12, fill: '#fff', weight: 600 })] }),
-        Line(0, 59, W, P.border),
-      ],
-    }),
+  // Overall health bar
+  els.push(rect(16, 106, W - 32, 72, CARD, { rx: 10, stroke: BORDER, sw: 1 }));
+  els.push(text(30, 126, 'OVERALL HEALTH INDEX', 9, TEXT3, { fw: 600, ls: 1.5 }));
+  els.push(rect(30, 137, W - 60, 8, CARD2, { rx: 4 }));
+  els.push(rect(30, 137, (W - 60) * 0.87, 8, ACC, { rx: 4 }));
+  els.push(text(30, 162, '87% — Healthy', 11));
+  els.push(text(W - 36, 162, '13 issues found', 11, RED, { anchor: 'end' }));
 
-    // Badge
-    F(W / 2 - 130, 100, 260, 28, P.violetGlow, { r: 14, stroke: P.violet,
-      ch: [
-        E(14, 11, 6, 6, P.violet, {}),
-        T('Introducing RIFT Agent v2 — Now in beta', 26, 7, 220, 14, { size: 10, fill: P.violetHi, weight: 500 }),
-      ] }),
-
-    // Hero headline
-    T('Every line of code,', W / 2 - 380, 152, 760, 72, {
-      size: 64, weight: 300, fill: P.fg, align: 'center', ls: -1.5, lh: 1.1,
-    }),
-    T('reviewed by intelligence.', W / 2 - 380, 228, 760, 72, {
-      size: 64, weight: 700, fill: P.fg, align: 'center', ls: -1.5, lh: 1.1,
-    }),
-
-    // Sub
-    T('RIFT connects AI agents to your pull request workflow. Catch bugs,\nenforce conventions, and ship faster — without slowing your team down.',
-      W / 2 - 280, 318, 560, 52, {
-        size: 16, fill: P.fg2, align: 'center', lh: 1.6, weight: 400,
-      }),
-
-    // CTA row
-    F(W / 2 - 160, 392, 148, 44, P.violet, { r: 10,
-      ch: [T('Start free trial', 16, 13, 116, 18, { size: 13, fill: '#fff', weight: 600 })] }),
-    F(W / 2 + 4, 392, 136, 44, P.surface2, { r: 10, stroke: P.border2,
-      ch: [T('Watch demo →', 14, 13, 108, 18, { size: 13, fill: P.fg2, weight: 500 })] }),
-
-    // Social proof
-    T('Trusted by 1,200+ engineering teams', W / 2 - 140, 454, 280, 16, { size: 11, fill: P.fg3, align: 'center' }),
-
-    // Feature preview card
-    F(W / 2 - 440, 500, 880, 240, P.surface, { r: 16, stroke: P.border,
-      ch: [
-        // Code diff strip
-        F(20, 20, 840, 200, P.surface2, { r: 10, stroke: P.border2,
-          ch: [
-            // Code lines
-            ...[
-              { y: 16, line: '  async function processPayment(order: Order) {', indent: 0, type: 'neutral' },
-              { y: 38, line: '-   const charge = await stripe.charge(order.amount);', indent: 2, type: 'removed' },
-              { y: 60, line: '+   const charge = await stripe.charge({', indent: 2, type: 'added' },
-              { y: 82, line: '+     amount: order.amount,', indent: 4, type: 'added' },
-              { y: 104, line: '+     idempotencyKey: order.id,  // RIFT: prevents duplicate charges', indent: 4, type: 'added' },
-              { y: 126, line: '+   });', indent: 2, type: 'added' },
-            ].map(({ y, line, type }) => {
-              const bg = type === 'removed' ? '#F8717118' : type === 'added' ? '#34D39918' : 'transparent';
-              const fg = type === 'removed' ? P.red : type === 'added' ? P.green : P.mono;
-              return F(0, y, 840, 22, bg, { ch: [T(line, 16, 3, 800, 16, { size: 11, fill: fg, font: 'monospace' })] });
-            }),
-            // RIFT AI annotation
-            F(540, 100, 280, 52, P.bg, { r: 8, stroke: P.violet,
-              ch: [
-                F(10, 10, 16, 16, P.violetGlow, { r: 8,
-                  ch: [T('⚡', 3, 2, 10, 12, { size: 9 })] }),
-                T('RIFT Agent', 32, 8, 120, 12, { size: 9, fill: P.violet, weight: 600, ls: 0.5 }),
-                T('Adding idempotency key prevents\nduplicate charges on retry', 10, 26, 260, 20, { size: 9, fill: P.fg2, lh: 1.4 }),
-              ] }),
-          ],
-        }),
-      ],
-    }),
+  sectionHeader(els, 194, 'REPOSITORIES', 'filter');
+  const repos = [
+    { name: 'api-gateway',   cov: 84, debt: 'Low',    issues: 2,  grade: 'A'  },
+    { name: 'web-frontend',  cov: 71, debt: 'Medium', issues: 7,  grade: 'B'  },
+    { name: 'auth-service',  cov: 93, debt: 'Low',    issues: 0,  grade: 'A+' },
+    { name: 'data-pipeline', cov: 58, debt: 'High',   issues: 14, grade: 'C'  },
+    { name: 'mobile-client', cov: 66, debt: 'Medium', issues: 5,  grade: 'B-' },
+    { name: 'infra-modules', cov: 79, debt: 'Low',    issues: 3,  grade: 'B+' },
   ];
-  return F(0, 0, W, H, P.bg, { ch });
+  repos.forEach((r, i) => {
+    const ry = 212 + i * 90;
+    els.push(rect(16, ry, W - 32, 80, CARD, { rx: 10, stroke: BORDER, sw: 1 }));
+    const gradeColor = r.grade.startsWith('A') ? ACC2 : r.grade.startsWith('B') ? ACC : r.grade.startsWith('C') ? AMBER : RED;
+    els.push(rect(W - 60, ry + 14, 40, 40, CARD2, { rx: 8 }));
+    els.push(text(W - 40, ry + 38, r.grade, 14, gradeColor, { fw: 700, anchor: 'middle' }));
+    els.push(text(32, ry + 25, r.name, 13, TEXT, { fw: 600, font: 'monospace' }));
+    els.push(text(32, ry + 42, 'Coverage: ' + r.cov + '%', 11));
+    els.push(rect(32, ry + 52, 180, 5, CARD2, { rx: 2 }));
+    const covColor = r.cov >= 80 ? ACC2 : r.cov >= 60 ? ACC : RED;
+    els.push(rect(32, ry + 52, Math.round(180 * r.cov / 100), 5, covColor, { rx: 2 }));
+    const debtColor = r.debt === 'Low' ? ACC2 : r.debt === 'Medium' ? AMBER : RED;
+    els.push(rect(32, ry + 63, 62, 14, CARD2, { rx: 4 }));
+    els.push(text(63, ry + 73, r.debt + ' debt', 9, debtColor, { anchor: 'middle', fw: 500 }));
+    if (r.issues > 0) {
+      els.push(rect(102, ry + 63, 50, 14, CARD2, { rx: 4 }));
+      els.push(text(127, ry + 73, r.issues + ' issues', 9, RED, { anchor: 'middle', fw: 500 }));
+    }
+  });
+  bottomNav(els, 0);
+  return els;
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// SCREEN 2 — CODE REVIEW INTERFACE
-// ─────────────────────────────────────────────────────────────────────────────
-function Screen2_Review() {
-  const MAIN_X = 220;
-  const MAIN_W = W - 220 - 300;
-  const PANEL_X = W - 300;
+function screen3() {
+  const els = [];
+  els.push(rect(0, 0, W, H, BG));
+  statusBar(els);
+  els.push(text(20, 74, 'Incidents', 18, TEXT, { fw: 700 }));
+  els.push(text(20, 92, 'Last 30 days', 12));
 
-  const sidebarItems = [
-    { label: 'Review', icon: '◈', section: 'Review', badge: '3' },
-    { label: 'All PRs', icon: '⊞' },
-    { label: 'Assigned to me', icon: '◎', badge: '5' },
-    { label: 'Waiting review', icon: '◷', badge: '12' },
-    { label: '---' },
-    { label: 'Drafts', icon: '◻' },
-    { label: 'Merged', icon: '✓' },
-    { label: 'Closed', icon: '✕' },
-    { label: '---' },
-    { label: 'Repositories', icon: '⬡' },
-    { label: 'RIFT Agents', icon: '⬢', badge: 'AI' },
+  const summaryTiles = [
+    { label: 'TOTAL', value: '12', color: TEXT  },
+    { label: 'OPEN',  value: '2',  color: RED   },
+    { label: 'MTTR',  value: '14m',color: ACC   },
   ];
+  summaryTiles.forEach((t, i) => {
+    const tw3 = (W - 48) / 3;
+    const tx = 16 + i * (tw3 + 8);
+    els.push(rect(tx, 106, tw3, 62, CARD, { rx: 8, stroke: BORDER, sw: 1 }));
+    els.push(text(tx + tw3 / 2, 126, t.label, 8, TEXT3, { fw: 600, ls: 1.5, anchor: 'middle' }));
+    els.push(text(tx + tw3 / 2, 154, t.value, 22, t.color, { fw: 700, font: 'monospace', anchor: 'middle' }));
+  });
 
-  const codeLines = [
-    { ln: 1,  txt: 'import { stripe } from "@/lib/payments";',              type: 'neutral' },
-    { ln: 2,  txt: 'import { Order, PaymentResult } from "@/types";',        type: 'neutral' },
-    { ln: 3,  txt: '',                                                        type: 'neutral' },
-    { ln: 4,  txt: 'export async function processPayment(',                  type: 'neutral' },
-    { ln: 5,  txt: '  order: Order',                                         type: 'neutral' },
-    { ln: 6,  txt: '): Promise<PaymentResult> {',                            type: 'neutral' },
-    { ln: 7,  txt: '-  const charge = await stripe.charge(order.amount);',  type: 'removed' },
-    { ln: 8,  txt: '+  const charge = await stripe.charge({',                type: 'added' },
-    { ln: 9,  txt: '+    amount: order.amount,',                             type: 'added' },
-    { ln: 10, txt: '+    idempotencyKey: order.id,',                        type: 'added' },
-    { ln: 11, txt: '+  });',                                                  type: 'added' },
-    { ln: 12, txt: '  return { chargeId: charge.id, status: "ok" };',       type: 'neutral' },
-    { ln: 13, txt: '}',                                                       type: 'neutral' },
+  sectionHeader(els, 186, 'TIMELINE — APRIL', '');
+  els.push(rect(40, 200, 310, 1, CARD2));
+  const days = ['Apr 1', 'Apr 8', 'Apr 15', 'Apr 22', 'Apr 29'];
+  days.forEach((d, i) => {
+    const dx = 40 + i * 77;
+    els.push(text(dx, 212, d, 8, TEXT3, { anchor: 'middle' }));
+  });
+  const incidents = [
+    { x: 55,  sev: 'P1', color: RED   },
+    { x: 105, sev: 'P2', color: AMBER },
+    { x: 155, sev: 'P3', color: ACC   },
+    { x: 198, sev: 'P2', color: AMBER },
+    { x: 260, sev: 'P1', color: RED   },
+    { x: 285, sev: 'P3', color: ACC   },
+    { x: 312, sev: 'P2', color: AMBER },
+    { x: 338, sev: 'P3', color: ACC   },
   ];
+  incidents.forEach(inc => {
+    els.push(circle(inc.x, 197, 7, inc.color, { opacity: 0.85 }));
+    els.push(text(inc.x, 201, inc.sev.charAt(1), 7, BG, { anchor: 'middle', fw: 700 }));
+  });
 
-  const ch = [
-    // BG
-    F(0, 0, W, H, P.bg, {}),
-    TopNav('Review'),
-    LeftSidebar('Review', sidebarItems),
-
-    // Diff panel header
-    F(MAIN_X, 52, MAIN_W, 48, P.bg, {
-      ch: [
-        F(16, 12, MAIN_W - 32, 24, 'transparent', {
-          ch: [
-            T('feat/payment-idempotency', 0, 3, 240, 18, { size: 13, fill: P.fg, weight: 600 }),
-            Pill(244, 2, 'RIFT REVIEWED', P.violetGlow, P.violet),
-            Pill(320, 2, '+142  −38', P.greenLo, P.green),
-          ],
-        }),
-        Line(0, 47, MAIN_W, P.border),
-      ],
-    }),
-
-    // File header
-    F(MAIN_X, 100, MAIN_W, 36, P.surface, {
-      ch: [
-        T('▶', 16, 11, 12, 14, { size: 10, fill: P.fg3 }),
-        T('src/lib/payments/process.ts', 32, 11, 300, 14, { size: 11, fill: P.fg, font: 'monospace', weight: 500 }),
-        Pill(MAIN_W - 120, 8, '+15  −7', P.greenLo, P.green),
-        Line(0, 35, MAIN_W, P.border),
-      ],
-    }),
-
-    // Code diff
-    ...codeLines.map(({ ln, txt, type }, i) => {
-      const bg = type === 'removed' ? '#F8717112' : type === 'added' ? '#34D39912' : 'transparent';
-      const prefix = type === 'removed' ? '−' : type === 'added' ? '+' : ' ';
-      const prefixColor = type === 'removed' ? P.red : type === 'added' ? P.green : P.fg4;
-      const textColor = type === 'removed' ? '#F87171CC' : type === 'added' ? '#34D399CC' : P.mono;
-      return F(MAIN_X, 136 + i * 22, MAIN_W, 22, bg, {
-        ch: [
-          T(String(ln), 8, 4, 24, 14, { size: 10, fill: P.fg3, align: 'right', font: 'monospace' }),
-          T(prefix, 36, 4, 12, 14, { size: 10, fill: prefixColor, font: 'monospace' }),
-          T(txt, 52, 4, MAIN_W - 60, 14, { size: 10, fill: textColor, font: 'monospace' }),
-        ],
-      });
-    }),
-
-    // RIFT AI annotation on line 10
-    F(MAIN_X + 52, 348, MAIN_W - 60, 56, P.bg, { r: 8, stroke: P.violet,
-      ch: [
-        F(10, 10, 20, 20, P.violetGlow, { r: 10,
-          ch: [T('⚡', 5, 3, 10, 14, { size: 10 })] }),
-        T('RIFT Agent', 36, 8, 100, 14, { size: 10, fill: P.violet, weight: 700, ls: 0.4 }),
-        T('Idempotency key prevents duplicate charges if the request is retried.', 36, 24, MAIN_W - 120, 14, { size: 10, fill: P.fg2 }),
-        T('Pattern: payment-safety · Confidence 98%', 36, 38, 300, 12, { size: 9, fill: P.fg3 }),
-      ],
-    }),
-
-    // Right panel — review summary
-    F(PANEL_X, 52, 300, H - 52, P.surface, { stroke: P.border,
-      ch: [
-        F(0, 0, 300, H - 52, 'transparent', {
-          ch: [
-            // PR info
-            F(16, 16, 268, 96, P.surface2, { r: 10, stroke: P.border2,
-              ch: [
-                T('feat/payment-idempotency', 12, 12, 244, 14, { size: 11, fill: P.fg, weight: 600 }),
-                T('#PR-2847', 12, 28, 100, 12, { size: 9, fill: P.fg3, font: 'monospace' }),
-                F(12, 44, 244, 36, 'transparent', {
-                  ch: [
-                    E(0, 5, 24, 24, P.surface3, { stroke: P.border2 }),
-                    T('KR', 3, 7, 18, 10, { size: 9, fill: P.violet, weight: 700, align: 'center' }),
-                    T('Kevin Roux  ·  2 hours ago', 28, 6, 180, 12, { size: 10, fill: P.fg2 }),
-                  ],
-                }),
-              ],
-            }),
-
-            // RIFT summary
-            T('RIFT ANALYSIS', 16, 128, 200, 12, { size: 9, fill: P.fg3, weight: 700, ls: 1.2 }),
-            F(16, 144, 268, 80, P.violetGlow, { r: 8, stroke: P.border2,
-              ch: [
-                T('⚡ Summary', 12, 10, 180, 14, { size: 10, fill: P.violet, weight: 600 }),
-                T('1 critical fix, 2 style suggestions.\nIdempotency pattern adds safety.\nTests recommended for retry path.', 12, 28, 244, 42, { size: 9, fill: P.fg2, lh: 1.5 }),
-              ],
-            }),
-
-            // Checks
-            T('CHECKS', 16, 240, 200, 12, { size: 9, fill: P.fg3, weight: 700, ls: 1.2 }),
-            ...[
-              { label: 'RIFT Agent', status: 'Passed', color: P.green },
-              { label: 'CI / Build', status: 'Passing', color: P.green },
-              { label: 'Coverage', status: '78% ↓', color: P.amber },
-              { label: 'Security', status: 'Scanning…', color: P.fg3 },
-            ].map(({ label, status, color }, i) =>
-              F(16, 258 + i * 32, 268, 28, P.surface2, { r: 6,
-                ch: [
-                  Dot(12, 11, color),
-                  T(label, 24, 7, 140, 14, { size: 11, fill: P.fg }),
-                  T(status, 268 - 80, 7, 72, 14, { size: 10, fill: color, align: 'right' }),
-                ],
-              }),
-            ),
-
-            // Reviewers
-            T('REVIEWERS', 16, 396, 200, 12, { size: 9, fill: P.fg3, weight: 700, ls: 1.2 }),
-            ...[
-              { name: 'Ana P.', status: 'Approved', color: P.green },
-              { name: 'Marcus L.', status: 'Requested changes', color: P.amber },
-              { name: 'RIFT Agent', status: 'Approved', color: P.violet },
-            ].map(({ name, status, color }, i) =>
-              F(16, 414 + i * 34, 268, 28, 'transparent', {
-                ch: [
-                  E(0, 4, 20, 20, P.surface3, { stroke: P.border2 }),
-                  T(name.slice(0, 2).toUpperCase(), 3, 6, 14, 8, { size: 8, fill: color, weight: 700, align: 'center' }),
-                  T(name, 26, 7, 120, 14, { size: 11, fill: P.fg }),
-                  T(status, 26, 21, 160, 10, { size: 9, fill: color }),
-                ],
-              }),
-            ),
-
-            // Action buttons
-            F(16, 544, 268, 40, P.green, { r: 8,
-              ch: [T('Approve & Merge', 40, 12, 188, 16, { size: 12, fill: '#fff', weight: 600, align: 'center' })] }),
-            F(16, 592, 268, 36, P.surface2, { r: 8, stroke: P.border2,
-              ch: [T('Request changes', 40, 10, 188, 16, { size: 12, fill: P.fg2, align: 'center' })] }),
-          ],
-        }),
-      ],
-    }),
+  sectionHeader(els, 230, 'INCIDENTS', 'all');
+  const incidentList = [
+    { title: 'API Gateway 503s',    time: '2h ago',  status: 'open',     sev: 'P1', dur: null,  service: 'api-gateway'  },
+    { title: 'Auth token expiry',   time: '8h ago',  status: 'open',     sev: 'P2', dur: null,  service: 'auth-service' },
+    { title: 'DB connection pool',  time: '2d ago',  status: 'resolved', sev: 'P1', dur: '22m', service: 'postgres'     },
+    { title: 'Frontend CDN miss',   time: '3d ago',  status: 'resolved', sev: 'P3', dur: '8m',  service: 'cdn'          },
+    { title: 'Kafka consumer lag',  time: '5d ago',  status: 'resolved', sev: 'P2', dur: '41m', service: 'data-pipeline'},
+    { title: 'TLS cert renewal',    time: '8d ago',  status: 'resolved', sev: 'P1', dur: '6m',  service: 'infra'        },
   ];
-  return F(0, 0, W, H, P.bg, { ch });
+  incidentList.forEach((inc, i) => {
+    const iy = 248 + i * 82;
+    const sevColor = inc.sev === 'P1' ? RED : inc.sev === 'P2' ? AMBER : ACC;
+    els.push(rect(16, iy, W - 32, 74, CARD, { rx: 8, stroke: BORDER, sw: 1 }));
+    els.push(rect(16, iy, 3, 74, sevColor, { rx: 1, opacity: 0.85 }));
+    els.push(circle(34, iy + 21, 5, sevColor));
+    const statColor = inc.status === 'open' ? RED : ACC2;
+    els.push(rect(W - 82, iy + 8, 66, 16, statColor, { rx: 8, opacity: 0.15 }));
+    els.push(text(W - 49, iy + 19, inc.status, 9, statColor, { anchor: 'middle', fw: 600 }));
+    els.push(text(46, iy + 23, inc.title, 13, TEXT, { fw: 600 }));
+    els.push(text(32, iy + 40, inc.service, 10, MONO, { font: 'monospace', opacity: 0.7 }));
+    els.push(text(32, iy + 55, inc.time, 10));
+    if (inc.dur) els.push(text(W - 36, iy + 55, inc.dur + ' MTTR', 10, TEXT2, { anchor: 'end' }));
+    if (i < incidentList.length - 1) els.push(line(32, iy + 74, W - 32, iy + 74, BORDER, { sw: 1 }));
+  });
+
+  bottomNav(els, 3);
+  return els;
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// SCREEN 3 — BENTO DASHBOARD
-// ─────────────────────────────────────────────────────────────────────────────
-function Screen3_Dashboard() {
-  const MAIN_X = 220;
-  const MAIN_W = W - 220;
+function screen4() {
+  const els = [];
+  els.push(rect(0, 0, W, H, BG));
+  statusBar(els);
+  els.push(text(20, 74, 'Velocity', 18, TEXT, { fw: 700 }));
+  els.push(text(20, 92, 'Sprint 42 · Apr 1–14', 12));
 
-  const sidebarItems = [
-    { label: 'Review', icon: '◈', badge: '3' },
-    { label: 'Dashboard', icon: '⬡', section: 'Dashboard' },
-    { label: 'All PRs', icon: '⊞' },
-    { label: '---' },
-    { label: 'Repositories', icon: '⬡' },
-    { label: 'RIFT Agents', icon: '⬢', badge: 'AI' },
-    { label: 'Analytics', icon: '◷' },
-    { label: '---' },
-    { label: 'Settings', icon: '⚙' },
+  // Sprint progress
+  els.push(rect(16, 106, W - 32, 92, CARD, { rx: 12, stroke: BORDER, sw: 1 }));
+  els.push(text(30, 126, 'SPRINT PROGRESS', 9, TEXT3, { fw: 600, ls: 1.5 }));
+  els.push(text(30, 158, '34', 32, ACC2, { fw: 700, font: 'monospace' }));
+  els.push(text(72, 158, '/ 42 pts', 14));
+  els.push(text(30, 175, '81% complete · 2 days left', 11));
+  els.push(rect(30, 183, W - 60, 6, CARD2, { rx: 3 }));
+  els.push(rect(30, 183, Math.round((W - 60) * 0.81), 6, ACC2, { rx: 3 }));
+  for (let d = 0; d <= 14; d++) {
+    const mx = 30 + Math.round(d * (W - 60) / 14);
+    els.push(rect(mx, 182, 1, 8, d <= 12 ? TEXT3 : ACC, { opacity: 0.4 }));
+  }
+
+  sectionHeader(els, 214, 'PR METRICS', '');
+  const prMetrics = [
+    { label: 'Avg Cycle Time', value: '6.2h', trend: '-22%', color: ACC2 },
+    { label: 'Review Lag',     value: '1.8h', trend: '-31%', color: ACC  },
+    { label: 'Merge Rate',     value: '94%',  trend: '+3%',  color: ACC2 },
   ];
+  prMetrics.forEach((m, i) => {
+    const my = 232 + i * 56;
+    els.push(rect(16, my, W - 32, 48, CARD, { rx: 8, stroke: BORDER, sw: 1 }));
+    els.push(text(32, my + 22, m.label, 12));
+    els.push(text(W - 36, my + 22, m.value, 14, m.color, { fw: 700, font: 'monospace', anchor: 'end' }));
+    els.push(text(W - 36, my + 38, m.trend, 10, m.color, { anchor: 'end', fw: 500 }));
+  });
 
-  // Stat cards
-  const statCard = (x, y, w, h, label, value, sub, accent) =>
-    F(MAIN_X + PAD + x, 100 + y, w, h, P.surface, { r: 12, stroke: P.border,
-      ch: [
-        T(label, 16, 14, w - 32, 12, { size: 9, fill: P.fg3, weight: 700, ls: 1 }),
-        T(value, 16, 32, w - 32, 36, { size: 28, fill: P.fg, weight: 700 }),
-        T(sub, 16, h - 28, w - 32, 14, { size: 10, fill: accent }),
-        F(w - 28, h - 32, 16, 16, accent + '22', { r: 8,
-          ch: [T('↑', 4, 1, 8, 14, { size: 10, fill: accent, weight: 700 })] }),
-      ],
-    });
-
-  // Mini sparkline (fake)
-  const Sparkline = (x, y, w, h, color) => {
-    const pts = [0.4, 0.6, 0.45, 0.75, 0.6, 0.9, 0.8, 1.0];
-    const bars = pts.map((v, i) => {
-      const bh = Math.round(v * h);
-      return F(x + i * (w / 8), y + h - bh, Math.floor(w / 8) - 2, bh, color + '44', { r: 2 });
-    });
-    return bars;
-  };
-
-  const ch = [
-    F(0, 0, W, H, P.bg, {}),
-    TopNav('Dashboard'),
-    LeftSidebar('Dashboard', sidebarItems),
-
-    // Header
-    F(MAIN_X, 52, MAIN_W, 48, P.bg, {
-      ch: [
-        T('Team Dashboard', 24, 14, 300, 20, { size: 15, fill: P.fg, weight: 600 }),
-        T('Last 30 days  ·  acme-corp / monorepo', 24, 33, 300, 12, { size: 10, fill: P.fg3 }),
-        F(MAIN_W - 128, 13, 112, 28, P.surface2, { r: 6, stroke: P.border2,
-          ch: [T('Last 30 days  ▾', 10, 7, 92, 14, { size: 11, fill: P.fg2 })] }),
-        Line(0, 47, MAIN_W, P.border),
-      ],
-    }),
-
-    // Row 1 stat cards
-    statCard(0, 0, 174, 100, 'PRS MERGED', '142', '↑ 18% vs last month', P.green),
-    statCard(190, 0, 174, 100, 'AVG REVIEW TIME', '1.4h', '↓ 42% faster with RIFT', P.violet),
-    statCard(380, 0, 174, 100, 'BUGS CAUGHT', '67', '↑ 31% catch rate', P.amber),
-    statCard(570, 0, 174, 100, 'COVERAGE', '84%', '↑ 3pts this month', P.blue),
-
-    // RIFT Agent activity card (wide)
-    F(MAIN_X + PAD + 760, 100, MAIN_W - 784, 220, P.surface, { r: 12, stroke: P.border,
-      ch: [
-        T('RIFT AGENT', 16, 14, 200, 12, { size: 9, fill: P.fg3, weight: 700, ls: 1 }),
-        Pill(16, 30, 'ACTIVE', P.greenLo, P.green),
-        T('247', 16, 64, 100, 36, { size: 28, fill: P.fg, weight: 700 }),
-        T('reviews this month', 16, 100, 150, 12, { size: 10, fill: P.fg3 }),
-        // sparkline bars inline
-        ...Sparkline(16, 124, MAIN_W - 820, 52, P.violet),
-      ],
-    }),
-
-    // Row 2 — PR velocity chart (large)
-    F(MAIN_X + PAD, 218, 480, 200, P.surface, { r: 12, stroke: P.border,
-      ch: [
-        T('PR VELOCITY', 16, 14, 300, 12, { size: 9, fill: P.fg3, weight: 700, ls: 1 }),
-        T('Reviews per day', 16, 30, 300, 14, { size: 12, fill: P.fg }),
-        // Fake bar chart
-        ...Array.from({ length: 14 }, (_, i) => {
-          const heights = [28, 44, 36, 52, 40, 68, 56, 72, 48, 60, 76, 52, 64, 80];
-          const bh = heights[i];
-          const isToday = i === 13;
-          return F(16 + i * 32, 180 - bh, 24, bh, isToday ? P.violet : P.surface3, { r: 4 });
-        }),
-        // X axis
-        Line(16, 182, 448, P.border),
-        ...['M', 'T', 'W', 'T', 'F', 'S', 'S', 'M', 'T', 'W', 'T', 'F', 'S', 'T'].map((d, i) =>
-          T(d, 16 + i * 32, 185, 24, 12, { size: 8, fill: P.fg3, align: 'center' }),
-        ),
-      ],
-    }),
-
-    // Recent PRs list
-    F(MAIN_X + PAD + 496, 218, 248, 200, P.surface, { r: 12, stroke: P.border,
-      ch: [
-        T('RECENT MERGES', 16, 14, 200, 12, { size: 9, fill: P.fg3, weight: 700, ls: 1 }),
-        ...[
-          { title: 'feat/payment-idempotency', tag: 'RIFT ✓', color: P.violet },
-          { title: 'fix/auth-token-refresh', tag: 'Approved', color: P.green },
-          { title: 'refactor/query-optimizer', tag: 'Merged', color: P.fg3 },
-          { title: 'chore/dependency-updates', tag: 'Auto', color: P.blue },
-          { title: 'feat/export-csv-endpoint', tag: 'RIFT ✓', color: P.violet },
-        ].map(({ title, tag, color }, i) =>
-          F(0, 36 + i * 34, 248, 32, 'transparent', {
-            ch: [
-              Line(16, 0, 216),
-              T(title.length > 22 ? title.slice(0, 22) + '…' : title, 16, 10, 140, 12, { size: 10, fill: P.fg }),
-              Pill(178, 9, tag, color + '20', color),
-            ],
-          }),
-        ),
-      ],
-    }),
-
-    // Team members row
-    F(MAIN_X + PAD + 760, 340, MAIN_W - 784, 78, P.surface, { r: 12, stroke: P.border,
-      ch: [
-        T('TEAM VELOCITY', 16, 12, 200, 12, { size: 9, fill: P.fg3, weight: 700, ls: 1 }),
-        ...[
-          { name: 'K.R', prs: 34, color: P.violet },
-          { name: 'A.P', prs: 28, color: P.green },
-          { name: 'M.L', prs: 22, color: P.blue },
-          { name: 'S.K', prs: 18, color: P.amber },
-        ].map(({ name, prs, color }, i) =>
-          F(16 + i * 90, 30, 80, 36, P.surface2, { r: 6,
-            ch: [
-              T(name, 8, 5, 64, 14, { size: 11, fill: color, weight: 600 }),
-              T(`${prs} PRs`, 8, 20, 64, 12, { size: 9, fill: P.fg3 }),
-            ],
-          }),
-        ),
-      ],
-    }),
-
-    // RIFT insights card
-    F(MAIN_X + PAD, 432, 736, 68, P.violetGlow, { r: 12, stroke: P.border2,
-      ch: [
-        T('⚡', 16, 22, 20, 24, { size: 18 }),
-        T('RIFT WEEKLY INSIGHT', 44, 12, 200, 12, { size: 9, fill: P.violet, weight: 700, ls: 1 }),
-        T('Payment module shows 3× more retry-related bugs. RIFT recommends adding idempotency tests to CI.', 44, 28, 600, 26, { size: 10, fill: P.fg2, lh: 1.5 }),
-        F(660, 18, 64, 28, P.violet, { r: 6,
-          ch: [T('See plan', 8, 8, 48, 12, { size: 10, fill: '#fff', weight: 600 })] }),
-      ],
-    }),
+  sectionHeader(els, 410, 'TOP CONTRIBUTORS', '');
+  const contributors = [
+    { name: 'J. Lim',     prs: 8, pts: 12, avatar: 'JL' },
+    { name: 'A. Patel',   prs: 6, pts: 10, avatar: 'AP' },
+    { name: 'M. Osei',    prs: 7, pts: 9,  avatar: 'MO' },
+    { name: 'S. Torres',  prs: 5, pts: 8,  avatar: 'ST' },
+    { name: 'K. Nakamura',prs: 4, pts: 7,  avatar: 'KN' },
   ];
-  return F(0, 0, W, H, P.bg, { ch });
+  contributors.forEach((c, i) => {
+    const cy = 428 + i * 66;
+    els.push(rect(16, cy, W - 32, 58, CARD, { rx: 8, stroke: BORDER, sw: 1 }));
+    els.push(text(32, cy + 34, '#' + (i + 1), 12, i === 0 ? ACC : TEXT3, { fw: 700, font: 'monospace' }));
+    els.push(circle(68, cy + 29, 16, CARD2));
+    els.push(text(68, cy + 33, c.avatar, 9, ACC, { anchor: 'middle', fw: 700 }));
+    els.push(text(92, cy + 26, c.name, 13, TEXT, { fw: 600 }));
+    els.push(text(92, cy + 42, c.prs + ' PRs merged', 11));
+    els.push(rect(W - 70, cy + 17, 54, 24, CARD2, { rx: 6 }));
+    els.push(text(W - 43, cy + 33, c.pts + ' pts', 12, ACC2, { anchor: 'middle', fw: 700, font: 'monospace' }));
+  });
+
+  bottomNav(els, 4);
+  return els;
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// SCREEN 4 — AI AGENT PANEL
-// ─────────────────────────────────────────────────────────────────────────────
-function Screen4_Agent() {
-  const MAIN_X = 220;
-  const MAIN_W = W - 220;
+function screen5() {
+  const els = [];
+  els.push(rect(0, 0, W, H, BG));
+  statusBar(els);
+  els.push(text(20, 74, 'Alerts', 18, TEXT, { fw: 700 }));
+  els.push(rect(85, 62, 22, 16, RED, { rx: 8 }));
+  els.push(text(96, 73, '5', 10, '#FFFFFF', { anchor: 'middle', fw: 700 }));
+  els.push(text(20, 92, 'Real-time · 8 active', 12));
 
-  const sidebarItems = [
-    { label: 'Review', icon: '◈', badge: '3' },
-    { label: 'Dashboard', icon: '⬡' },
-    { label: 'RIFT Agents', icon: '⬢', section: 'RIFT Agents', badge: 'AI' },
-    { label: '---' },
-    { label: 'Repositories', icon: '⬡' },
-    { label: 'Analytics', icon: '◷' },
-    { label: 'Settings', icon: '⚙' },
+  const filters = ['All', 'Critical', 'Warning', 'Info'];
+  const fwidths  = [36, 58, 58, 36];
+  const fxs      = [0, 44, 110, 176];
+  filters.forEach((f, i) => {
+    const fx = 16 + fxs[i];
+    const isActive = i === 0;
+    els.push(rect(fx, 102, fwidths[i], 24, isActive ? ACC : CARD2, { rx: 12 }));
+    els.push(text(fx + fwidths[i] / 2, 117, f, 11, isActive ? BG : TEXT2, { anchor: 'middle', fw: 600 }));
+  });
+
+  const alerts = [
+    { title: 'High CPU on prod-api-02',  sev: 'critical', time: '3m ago',  service: 'api-gateway',   acked: false, value: '94%'  },
+    { title: 'Disk usage >85%',           sev: 'warning',  time: '12m ago', service: 'postgres',      acked: false, value: '87%'  },
+    { title: 'Slow query detected',       sev: 'warning',  time: '28m ago', service: 'postgres',      acked: true,  value: '4.2s' },
+    { title: 'Memory pressure spike',     sev: 'critical', time: '1h ago',  service: 'auth-service',  acked: false, value: '91%'  },
+    { title: 'Cert expiry in 14 days',    sev: 'warning',  time: '2h ago',  service: 'infra',         acked: true,  value: '14d'  },
+    { title: 'P99 latency elevated',      sev: 'info',     time: '3h ago',  service: 'data-pipeline', acked: false, value: '1.8s' },
+    { title: 'Successful backup run',     sev: 'info',     time: '6h ago',  service: 'backup',        acked: true,  value: 'OK'   },
+    { title: 'Spike in 404 errors',       sev: 'warning',  time: '8h ago',  service: 'web-frontend',  acked: true,  value: '2.3%' },
   ];
+  alerts.forEach((a, i) => {
+    const ay = 140 + i * 76;
+    const sevColor = a.sev === 'critical' ? RED : a.sev === 'warning' ? AMBER : ACC;
+    els.push(rect(16, ay, W - 32, 68, CARD, { rx: 8, stroke: BORDER, sw: 1, opacity: a.acked ? 0.65 : 1 }));
+    els.push(rect(16, ay, 3, 68, sevColor, { rx: 1, opacity: a.acked ? 0.35 : 0.9 }));
+    els.push(circle(34, ay + 21, 5, sevColor, { opacity: a.acked ? 0.5 : 1 }));
+    els.push(text(46, ay + 23, a.title, 13, a.acked ? TEXT2 : TEXT, { fw: a.acked ? 400 : 600 }));
+    els.push(text(46, ay + 40, a.service, 10, MONO, { font: 'monospace', opacity: 0.7 }));
+    els.push(text(46, ay + 55, a.time, 10));
+    els.push(rect(W - 74, ay + 11, 58, 22, CARD2, { rx: 6 }));
+    els.push(text(W - 45, ay + 25, a.value, 12, sevColor, { anchor: 'middle', fw: 700, font: 'monospace' }));
+    if (a.acked) els.push(text(W - 36, ay + 55, 'acked', 9, TEXT3, { anchor: 'end' }));
+    if (i < alerts.length - 1) els.push(line(32, ay + 68, W - 32, ay + 68, BORDER, { sw: 1 }));
+  });
 
-  const chatMessages = [
-    {
-      role: 'system',
-      text: 'RIFT Agent connected to acme-corp/monorepo · Analyzing PR #2847',
-    },
-    {
-      role: 'user',
-      text: 'Why did you flag the payment function? Explain the idempotency issue.',
-    },
-    {
-      role: 'agent',
-      text: 'The original stripe.charge() call had no idempotency key. If the network times out mid-request, a retry would create a duplicate charge.\n\nBy adding idempotencyKey: order.id, Stripe will deduplicate requests with the same key within 24 hours — preventing double-billing on retries.',
-      refs: ['Stripe docs', 'PR #2301'],
-    },
-    {
-      role: 'user',
-      text: 'Should we add a test for this?',
-    },
-    {
-      role: 'agent',
-      text: 'Yes. I\'d suggest a test that:\n1. Calls processPayment() twice with the same order ID\n2. Mocks stripe.charge() to verify it receives the same idempotencyKey\n3. Asserts the charge is only created once\n\nWant me to generate the test file?',
-      refs: [],
-    },
-  ];
-
-  const CH = [];
-  CH.push(F(0, 0, W, H, P.bg, {}));
-  CH.push(TopNav('Agents'));
-  CH.push(LeftSidebar('RIFT Agents', sidebarItems));
-
-  // Header
-  CH.push(F(MAIN_X, 52, MAIN_W, 48, P.bg, {
-    ch: [
-      F(16, 12, 28, 28, P.violetGlow, { r: 14, stroke: P.violet,
-        ch: [T('⚡', 8, 5, 12, 18, { size: 11 })] }),
-      T('RIFT Agent', 52, 13, 200, 16, { size: 13, fill: P.fg, weight: 600 }),
-      Pill(52, 31, 'CONNECTED · PR #2847', P.greenLo, P.green),
-      F(MAIN_W - 160, 14, 48, 26, P.surface2, { r: 6, stroke: P.border2,
-        ch: [T('⚙', 14, 5, 20, 16, { size: 12, fill: P.fg3 })] }),
-      F(MAIN_W - 104, 14, 88, 26, P.surface2, { r: 6, stroke: P.border2,
-        ch: [T('New session', 8, 6, 72, 14, { size: 11, fill: P.fg2 })] }),
-      Line(0, 47, MAIN_W, P.border),
-    ],
-  }));
-
-  // Left: chat panel
-  const CHAT_W = MAIN_W * 0.6;
-  CH.push(F(MAIN_X, 100, CHAT_W, H - 160, P.bg, { clip: true,
-    ch: chatMessages.map((msg, i) => {
-      const isAgent = msg.role === 'agent';
-      const isSystem = msg.role === 'system';
-      const yPos = i * 100 + 12;
-      const bg = isSystem ? P.surface : isAgent ? P.surface : 'transparent';
-      const msgW = CHAT_W - 48;
-      const textColor = isSystem ? P.fg3 : P.fg;
-      const lines = msg.text.split('\n');
-      const textH = Math.max(lines.length * 16, 32);
-      const cardH = textH + (isAgent && msg.refs?.length ? 32 : 0) + 32;
-      const inner = [
-        ...(isAgent ? [
-          F(12, 12, 20, 20, P.violetGlow, { r: 10,
-            ch: [T('⚡', 5, 3, 10, 14, { size: 9 })] }),
-          T('RIFT Agent', 38, 14, 120, 12, { size: 9, fill: P.violet, weight: 600, ls: 0.4 }),
-        ] : isSystem ? [
-          T('● SYSTEM', 12, 12, 200, 12, { size: 9, fill: P.fg3, weight: 700, ls: 0.8 }),
-        ] : [
-          E(12, 12, 20, 20, P.surface3, { stroke: P.border2 }),
-          T('KR', 14, 15, 16, 10, { size: 8, fill: P.violet, weight: 700, align: 'center' }),
-          T('You', 38, 14, 60, 12, { size: 9, fill: P.fg2, weight: 500 }),
-        ]),
-        T(msg.text, 12, isSystem ? 28 : 34, msgW - 24, textH,
-          { size: 11, fill: textColor, lh: 1.6 }),
-        ...(isAgent && msg.refs?.length ? msg.refs.map((ref, ri) =>
-          Pill(12 + ri * 72, cardH - 20, ref, P.surface3, P.fg2, { stroke: P.border }),
-        ) : []),
-      ];
-      return F(16, yPos, msgW, cardH, bg, {
-        r: isSystem ? 0 : 10,
-        stroke: isSystem ? undefined : P.border,
-        ch: inner,
-      });
-    }),
-  }));
-
-  // Input bar
-  CH.push(F(MAIN_X, H - 60, CHAT_W, 56, P.bg, {
-    ch: [
-      Line(0, 0, CHAT_W, P.border),
-      F(16, 10, CHAT_W - 100, 36, P.surface2, { r: 10, stroke: P.border2,
-        ch: [T('Ask RIFT a question about this PR…', 12, 10, CHAT_W - 140, 16, { size: 12, fill: P.fg3 })] }),
-      F(CHAT_W - 80, 10, 64, 36, P.violet, { r: 10,
-        ch: [T('Send', 12, 10, 40, 16, { size: 12, fill: '#fff', weight: 600 })] }),
-    ],
-  }));
-
-  // Right: context panel
-  const CTX_X = MAIN_X + CHAT_W;
-  const CTX_W = MAIN_W - CHAT_W;
-  CH.push(F(CTX_X, 100, CTX_W, H - 100, P.surface, { stroke: P.border,
-    ch: [
-      T('CONTEXT', 16, 14, 150, 12, { size: 9, fill: P.fg3, weight: 700, ls: 1.2 }),
-      // PR context
-      F(12, 32, CTX_W - 24, 80, P.surface2, { r: 8, stroke: P.border2,
-        ch: [
-          T('PR #2847', 12, 10, 150, 14, { size: 11, fill: P.fg, weight: 600 }),
-          T('feat/payment-idempotency', 12, 26, CTX_W - 48, 12, { size: 9, fill: P.fg3, font: 'monospace' }),
-          T('+142  −38  · 5 files', 12, 42, 180, 12, { size: 9, fill: P.fg2 }),
-          Pill(12, 58, 'RIFT REVIEWED', P.violetGlow, P.violet),
-        ],
-      }),
-
-      // Files touched
-      T('FILES IN SCOPE', 16, 126, 150, 12, { size: 9, fill: P.fg3, weight: 700, ls: 1.2 }),
-      ...[
-        'src/lib/payments/process.ts',
-        'src/lib/payments/types.ts',
-        'tests/payments.test.ts',
-        'package.json',
-      ].map((file, i) =>
-        F(12, 144 + i * 28, CTX_W - 24, 24, 'transparent', {
-          ch: [
-            T('📄', 8, 5, 16, 14, { size: 10 }),
-            T(file.length > 22 ? '…' + file.slice(-20) : file, 28, 6, CTX_W - 52, 12, {
-              size: 9, fill: P.mono, font: 'monospace',
-            }),
-          ],
-        }),
-      ),
-
-      // Related issues
-      T('RELATED ISSUES', 16, 268, 150, 12, { size: 9, fill: P.fg3, weight: 700, ls: 1.2 }),
-      ...[
-        { id: '#2301', title: 'Double charge incident', color: P.red },
-        { id: '#1987', title: 'Stripe retry behavior', color: P.amber },
-      ].map(({ id, title, color }, i) =>
-        F(12, 286 + i * 34, CTX_W - 24, 28, P.surface2, { r: 6,
-          ch: [
-            Pill(8, 4, id, color + '20', color),
-            T(title, CTX_W - 140, 7, 120, 14, { size: 9, fill: P.fg2 }),
-          ],
-        }),
-      ),
-    ],
-  }));
-
-  return F(0, 0, W, H, P.bg, { ch: CH });
+  bottomNav(els, 3);
+  return els;
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// SCREEN 5 — ONBOARDING / CONNECT REPO
-// ─────────────────────────────────────────────────────────────────────────────
-function Screen5_Onboarding() {
-  const steps = ['Create account', 'Connect repo', 'Configure agent', 'Review first PR'];
+function screen6() {
+  const els = [];
+  els.push(rect(0, 0, W, H, BG));
+  statusBar(els);
+  els.push(text(20, 74, 'Integrations', 18, TEXT, { fw: 700 }));
+  els.push(text(20, 92, '7 connected · 1 needs attention', 12));
 
-  const ch = [
-    F(0, 0, W, H, P.bg, {}),
-    GlowOrb(W * 0.5, H * 0.4, 400, P.violet, 0.06),
+  els.push(rect(16, 106, W - 32, 58, CARD, { rx: 10, stroke: BORDER, sw: 1 }));
+  els.push(text(30, 126, 'DATA SOURCE HEALTH', 9, TEXT3, { fw: 600, ls: 1.5 }));
+  let sx = 30;
+  const segments = [{ w: 0.57, color: ACC2 }, { w: 0.29, color: AMBER }, { w: 0.14, color: RED }];
+  segments.forEach(s => {
+    const sw2 = Math.round((W - 60) * s.w) - 2;
+    els.push(rect(sx, 135, sw2, 10, s.color, { rx: 2, opacity: 0.8 }));
+    sx += sw2 + 2;
+  });
+  els.push(text(30, 154, '4 healthy', 10));
+  els.push(text(104, 154, '2 degraded', 10));
+  els.push(text(188, 154, '1 error', 10));
 
-    // Progress stepper
-    F(W / 2 - 400, 32, 800, 40, 'transparent', {
-      ch: steps.map((step, i) => {
-        const isActive = i === 1;
-        const isDone   = i === 0;
-        const x = i * 200;
-        return F(x, 0, 200, 40, 'transparent', {
-          ch: [
-            // connector
-            ...(i > 0 ? [F(x - 100, 14, 100, 2, isDone || isActive ? P.violet : P.border, {})] : []),
-            // circle
-            E(x + 100 - 14, 0, 28, 28, isDone ? P.violet : isActive ? P.violetGlow : P.surface2, {
-              stroke: isDone || isActive ? P.violet : P.border2,
-            }),
-            T(isDone ? '✓' : String(i + 1), x + 100 - 7, 7, 14, 14, {
-              size: 10, fill: isDone ? '#fff' : isActive ? P.violet : P.fg3, weight: 600, align: 'center',
-            }),
-            T(step, x + 60, 32, 80, 12, { size: 9, fill: isActive ? P.fg : P.fg3, align: 'center', weight: isActive ? 600 : 400 }),
-          ],
-        });
-      }),
-    }),
-
-    // Main card
-    F(W / 2 - 260, 100, 520, 440, P.surface, { r: 16, stroke: P.border,
-      ch: [
-        // Header
-        F(0, 0, 520, 72, P.bg, { r: 16, stroke: P.border,
-          ch: [
-            T('Connect your repository', 32, 24, 400, 24, { size: 18, fill: P.fg, weight: 600 }),
-          ],
-        }),
-        F(0, 72, 520, 1, P.border, {}),
-
-        // Git provider buttons
-        T('Choose your Git provider', 32, 96, 300, 16, { size: 12, fill: P.fg2 }),
-        ...[
-          { label: 'GitHub', icon: '⬡', active: true },
-          { label: 'GitLab', icon: '⬡', active: false },
-          { label: 'Bitbucket', icon: '⬡', active: false },
-        ].map(({ label, icon, active }, i) =>
-          F(32 + i * 148, 120, 132, 48, active ? P.violetGlow : P.surface2, {
-            r: 10, stroke: active ? P.violet : P.border2,
-            ch: [
-              T(icon, 12, 16, 20, 16, { size: 14, fill: active ? P.violet : P.fg3 }),
-              T(label, 36, 16, 80, 16, { size: 12, fill: active ? P.violet : P.fg2, weight: active ? 600 : 400 }),
-            ],
-          }),
-        ),
-
-        // Org selector
-        T('Organization', 32, 190, 200, 14, { size: 11, fill: P.fg2, weight: 500 }),
-        F(32, 210, 456, 40, P.surface2, { r: 8, stroke: P.border2,
-          ch: [
-            T('acme-corp', 14, 12, 380, 16, { size: 12, fill: P.fg }),
-            T('▾', 432, 13, 12, 14, { size: 11, fill: P.fg3 }),
-          ],
-        }),
-
-        // Repo search
-        T('Repository', 32, 264, 200, 14, { size: 11, fill: P.fg2, weight: 500 }),
-        F(32, 284, 456, 40, P.surface2, { r: 8, stroke: P.violet,
-          ch: [
-            T('⌕', 14, 12, 14, 16, { size: 12, fill: P.fg3 }),
-            T('monorepo', 32, 12, 380, 16, { size: 12, fill: P.fg }),
-          ],
-        }),
-
-        // Permissions
-        F(32, 340, 456, 52, P.violetGlow, { r: 8, stroke: P.border2,
-          ch: [
-            T('🔒', 12, 16, 20, 20, { size: 14 }),
-            T('RIFT only requests read access to pull requests and code.\nWrite access is never requested.', 36, 12, 400, 28, { size: 10, fill: P.fg2, lh: 1.5 }),
-          ],
-        }),
-
-        // CTA
-        F(32, 408, 456, 44, P.violet, { r: 10,
-          ch: [T('Connect Repository →', 96, 13, 264, 18, { size: 13, fill: '#fff', weight: 600, align: 'center' })] }),
-      ],
-    }),
+  sectionHeader(els, 180, 'CONNECTED TOOLS', '');
+  const integrations = [
+    { name: 'GitHub',    desc: 'Repos, PRs, commits',    status: 'healthy',  icon: 'GH', lastSync: '1m ago'  },
+    { name: 'PagerDuty', desc: 'Incident management',    status: 'healthy',  icon: 'PD', lastSync: '2m ago'  },
+    { name: 'Datadog',   desc: 'Metrics & APM',          status: 'healthy',  icon: 'DD', lastSync: '1m ago'  },
+    { name: 'Jira',      desc: 'Sprints & velocity',     status: 'degraded', icon: 'JR', lastSync: '8m ago'  },
+    { name: 'SonarQube', desc: 'Code quality analysis',  status: 'healthy',  icon: 'SQ', lastSync: '5m ago'  },
+    { name: 'ArgoCD',    desc: 'Deployment pipelines',   status: 'degraded', icon: 'AC', lastSync: '12m ago' },
+    { name: 'Slack',     desc: 'Alert notifications',    status: 'error',    icon: 'SL', lastSync: '2h ago'  },
   ];
-  return F(0, 0, W, H, P.bg, { ch });
+  integrations.forEach((intg, i) => {
+    const iy = 198 + i * 78;
+    const statColor = intg.status === 'healthy' ? ACC2 : intg.status === 'degraded' ? AMBER : RED;
+    els.push(rect(16, iy, W - 32, 70, CARD, { rx: 10, stroke: BORDER, sw: 1 }));
+    els.push(rect(28, iy + 14, 36, 36, CARD2, { rx: 8 }));
+    els.push(text(46, iy + 36, intg.icon, 11, ACC, { anchor: 'middle', fw: 700, font: 'monospace' }));
+    els.push(text(76, iy + 29, intg.name, 13, TEXT, { fw: 600 }));
+    els.push(text(76, iy + 45, intg.desc, 11));
+    els.push(circle(W - 50, iy + 22, 5, statColor));
+    els.push(text(W - 42, iy + 26, intg.status, 10, statColor, { fw: 600 }));
+    els.push(text(W - 36, iy + 44, intg.lastSync, 10, TEXT3, { anchor: 'end' }));
+    if (i < integrations.length - 1) els.push(line(28, iy + 70, W - 28, iy + 70, BORDER, { sw: 1 }));
+  });
+
+  bottomNav(els, 4);
+  return els;
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// ASSEMBLE .pen
-// ─────────────────────────────────────────────────────────────────────────────
-const screens = [
-  { name: 'Hero Landing',        fn: Screen1_Hero       },
-  { name: 'Code Review',         fn: Screen2_Review     },
-  { name: 'Team Dashboard',      fn: Screen3_Dashboard  },
-  { name: 'AI Agent Panel',      fn: Screen4_Agent      },
-  { name: 'Onboarding',          fn: Screen5_Onboarding },
+// ─── ASSEMBLE ────────────────────────────────────────────────────────────────
+const screenDefs = [
+  { name: 'Dashboard',    fn: screen1 },
+  { name: 'Code Health',  fn: screen2 },
+  { name: 'Incidents',    fn: screen3 },
+  { name: 'Velocity',     fn: screen4 },
+  { name: 'Alerts',       fn: screen5 },
+  { name: 'Integrations', fn: screen6 },
 ];
 
-const doc = {
-  version:  '2.8',
-  type:     'document',
-  name:     'RIFT — AI Code Review',
-  children: screens.map(({ name, fn }, i) => {
-    const screen = fn();
-    screen.name = name;
-    screen.x    = i * (W + 80);
-    screen.y    = 0;
-    return screen;
-  }),
+function elToSvg(el) {
+  if (el.type === 'rect') {
+    const a = [`x="${el.x}" y="${el.y}" width="${el.width}" height="${el.height}" fill="${el.fill}"`];
+    if (el.rx !== undefined) a.push(`rx="${el.rx}"`);
+    if (el.opacity !== undefined) a.push(`opacity="${el.opacity}"`);
+    if (el.stroke) a.push(`stroke="${el.stroke}"`);
+    if (el.strokeWidth) a.push(`stroke-width="${el.strokeWidth}"`);
+    return `<rect ${a.join(' ')}/>`;
+  }
+  if (el.type === 'text') {
+    const a = [`x="${el.x}" y="${el.y}" fill="${el.fill}" font-size="${el.fontSize}"`];
+    a.push(`font-weight="${el.fontWeight || 400}"`);
+    a.push(`font-family="${el.fontFamily || 'Inter, system-ui, sans-serif'}"`);
+    if (el.textAnchor) a.push(`text-anchor="${el.textAnchor}"`);
+    if (el.letterSpacing) a.push(`letter-spacing="${el.letterSpacing}"`);
+    if (el.opacity !== undefined) a.push(`opacity="${el.opacity}"`);
+    return `<text ${a.join(' ')}>${el.content}</text>`;
+  }
+  if (el.type === 'circle') {
+    const a = [`cx="${el.cx}" cy="${el.cy}" r="${el.r}" fill="${el.fill}"`];
+    if (el.opacity !== undefined) a.push(`opacity="${el.opacity}"`);
+    if (el.stroke) a.push(`stroke="${el.stroke}"`);
+    if (el.strokeWidth) a.push(`stroke-width="${el.strokeWidth}"`);
+    return `<circle ${a.join(' ')}/>`;
+  }
+  if (el.type === 'line') {
+    const a = [`x1="${el.x1}" y1="${el.y1}" x2="${el.x2}" y2="${el.y2}" stroke="${el.stroke}"`];
+    a.push(`stroke-width="${el.strokeWidth || 1}"`);
+    if (el.opacity !== undefined) a.push(`opacity="${el.opacity}"`);
+    return `<line ${a.join(' ')}/>`;
+  }
+  return '';
+}
+
+const screens = screenDefs.map(({ name, fn }) => {
+  const elements = fn();
+  const svgParts = elements.map(elToSvg).filter(Boolean);
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">${svgParts.join('')}</svg>`;
+  return { name, svg, elements };
+});
+
+const totalElements = screens.reduce((sum, s) => sum + s.elements.length, 0);
+
+const pen = {
+  version: '2.8',
+  metadata: {
+    name: NAME, tagline: TAGLINE, author: 'RAM',
+    date: new Date().toISOString().split('T')[0],
+    theme: THEME, heartbeat: HEARTBEAT, elements: totalElements, slug: SLUG,
+    palette: { bg: BG, surface: SURF, card: CARD, accent: ACC, accent2: ACC2, text: TEXT, text2: TEXT2 },
+    inspiration: 'Land-book Fintech/Data Dark palette + Saaspo Linear Look: deep navy, electric cyan, chartreuse data, tinted borders',
+  },
+  screens: screens.map(s => ({ name: s.name, svg: s.svg, elements: s.elements })),
 };
 
-const OUT = path.join(__dirname, 'rift-app.pen');
-fs.writeFileSync(OUT, JSON.stringify(doc, null, 2));
-console.log(`✅ RIFT design written → ${OUT}`);
-console.log(`   Screens: ${screens.length}  |  Size: ${(fs.statSync(OUT).size / 1024).toFixed(1)} KB`);
+fs.writeFileSync(path.join(__dirname, `${SLUG}.pen`), JSON.stringify(pen, null, 2));
+console.log(`${NAME}: ${screens.length} screens, ${totalElements} elements`);
+console.log(`Written: ${SLUG}.pen`);

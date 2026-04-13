@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SPAN — Distributed Trace & API Intelligence</title>
+<style>
+  :root {
+    --bg: #040612;
+    --surface: #0B1120;
+    --border: rgba(99,102,241,0.18);
+    --accent: #6366F1;
+    --accent2: #22D3EE;
+    --text: #E2E8F0;
+    --textDim: #94A3B8;
+    --success: #10B981;
+    --warn: #F59E0B;
+    --danger: #EF4444;
+    --violet: #A78BFA;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  /* Noise texture overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.4;
+  }
+
+  /* Glow blobs */
+  .glow-1 {
+    position: fixed;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(99,102,241,0.12) 0%, transparent 70%);
+    top: -200px; left: -150px;
+    pointer-events: none;
+  }
+  .glow-2 {
+    position: fixed;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(34,211,238,0.08) 0%, transparent 70%);
+    bottom: -100px; right: -100px;
+    pointer-events: none;
+  }
+
+  /* Nav */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    height: 64px;
+    background: rgba(4,6,18,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    z-index: 100;
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--text);
+    letter-spacing: 0.08em;
+  }
+  .nav-logo-dot {
+    width: 8px; height: 8px;
+    background: var(--accent);
+    border-radius: 50%;
+    box-shadow: 0 0 12px var(--accent);
+  }
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    font-size: 14px;
+    color: var(--textDim);
+    list-style: none;
+  }
+  .nav-links a { color: inherit; text-decoration: none; }
+  .nav-links a:hover { color: var(--text); }
+  .nav-cta {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    padding: 10px 22px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    letter-spacing: 0.02em;
+  }
+
+  /* Hero */
+  .hero {
+    position: relative;
+    padding: 180px 40px 100px;
+    max-width: 1100px;
+    margin: 0 auto;
+    z-index: 1;
+  }
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(99,102,241,0.12);
+    border: 1px solid rgba(99,102,241,0.28);
+    padding: 6px 16px;
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    margin-bottom: 32px;
+  }
+  .hero-eyebrow::before { content: '◆'; font-size: 8px; }
+  h1 {
+    font-size: clamp(48px, 8vw, 88px);
+    font-weight: 900;
+    line-height: 1.0;
+    letter-spacing: -0.03em;
+    max-width: 700px;
+    margin-bottom: 24px;
+  }
+  h1 .gradient-text {
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero-sub {
+    font-size: 20px;
+    color: var(--textDim);
+    max-width: 520px;
+    line-height: 1.6;
+    margin-bottom: 48px;
+  }
+  .hero-actions {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: #fff;
+    padding: 14px 32px;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 0 40px rgba(99,102,241,0.35);
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 50px rgba(99,102,241,0.5);
+  }
+  .btn-secondary {
+    background: transparent;
+    color: var(--text);
+    padding: 14px 28px;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    border: 1px solid var(--border);
+    cursor: pointer;
+  }
+
+  /* Stats strip */
+  .stats-strip {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    max-width: 700px;
+    margin: 60px auto;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+  }
+  .stat-item {
+    flex: 1;
+    padding: 28px 24px;
+    text-align: center;
+    border-right: 1px solid var(--border);
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-value {
+    font-size: 32px;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    background: linear-gradient(135deg, #fff 0%, var(--textDim) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: block;
+  }
+  .stat-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--textDim);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-top: 4px;
+    display: block;
+  }
+
+  /* Mock phone container */
+  .phone-showcase {
+    position: relative;
+    z-index: 1;
+    max-width: 440px;
+    margin: 0 auto 80px;
+    padding: 0 20px;
+  }
+  .phone-frame {
+    background: #0D1526;
+    border: 1.5px solid rgba(99,102,241,0.30);
+    border-radius: 44px;
+    padding: 16px;
+    box-shadow:
+      0 0 0 8px rgba(99,102,241,0.05),
+      0 60px 120px rgba(0,0,0,0.7),
+      0 0 80px rgba(99,102,241,0.12);
+  }
+  .phone-inner {
+    background: #040612;
+    border-radius: 32px;
+    overflow: hidden;
+    aspect-ratio: 390/844;
+  }
+  .phone-inner iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    transform-origin: top left;
+  }
+
+  /* Feature cards */
+  .features {
+    position: relative;
+    z-index: 1;
+    max-width: 1100px;
+    margin: 80px auto;
+    padding: 0 40px;
+  }
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+  .feature-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 32px;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .feature-card:hover {
+    border-color: rgba(99,102,241,0.4);
+    transform: translateY(-4px);
+  }
+  .feature-icon {
+    width: 48px; height: 48px;
+    background: rgba(99,102,241,0.12);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
+  .feature-card h3 {
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--text);
+  }
+  .feature-card p {
+    font-size: 14px;
+    color: var(--textDim);
+    line-height: 1.65;
+  }
+
+  /* Screen labels */
+  .screen-section {
+    position: relative;
+    z-index: 1;
+    max-width: 1100px;
+    margin: 60px auto 100px;
+    padding: 0 40px;
+  }
+  .section-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-size: 36px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 14px;
+  }
+  .section-sub {
+    font-size: 16px;
+    color: var(--textDim);
+    max-width: 500px;
+    line-height: 1.6;
+    margin-bottom: 48px;
+  }
+  .screens-row {
+    display: flex;
+    gap: 24px;
+    overflow-x: auto;
+    padding-bottom: 16px;
+  }
+  .screen-card {
+    flex: 0 0 220px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    padding: 16px;
+  }
+  .screen-thumb {
+    background: #040612;
+    border-radius: 14px;
+    aspect-ratio: 390/844;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .screen-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+  .screen-desc {
+    font-size: 11px;
+    color: var(--textDim);
+  }
+
+  /* Palette section */
+  .palette-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin: 40px auto;
+    max-width: 800px;
+    padding: 0 40px;
+    justify-content: center;
+  }
+  .palette-swatch {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+  .swatch-dot {
+    width: 52px; height: 52px;
+    border-radius: 14px;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .swatch-label {
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--textDim);
+    text-align: center;
+  }
+
+  /* CTA section */
+  .cta-section {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 80px 40px 120px;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+  .cta-section h2 {
+    font-size: 42px;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    margin-bottom: 20px;
+  }
+  .cta-section p {
+    color: var(--textDim);
+    font-size: 17px;
+    line-height: 1.6;
+    margin-bottom: 36px;
+  }
+
+  /* Footer */
+  footer {
+    position: relative;
+    z-index: 1;
+    border-top: 1px solid var(--border);
+    padding: 32px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 13px;
+    color: var(--textDim);
+  }
+  .footer-logo {
+    font-weight: 800;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    font-size: 15px;
+  }
+</style>
+</head>
+<body>
+<div class="glow-1"></div>
+<div class="glow-2"></div>
+
+<nav>
+  <div class="nav-logo">
+    <div class="nav-logo-dot"></div>
+    SPAN
+  </div>
+  <ul class="nav-links">
+    <li><a href="#">Docs</a></li>
+    <li><a href="#">Pricing</a></li>
+    <li><a href="#">Blog</a></li>
+    <li><a href="#">Status</a></li>
+  </ul>
+  <button class="nav-cta">Start free →</button>
+</nav>
+
+<div class="hero">
+  <div class="hero-eyebrow">API Observability Platform</div>
+  <h1>Debug APIs at the <span class="gradient-text">speed of thought</span></h1>
+  <p class="hero-sub">Real-time request tracing, distributed waterfall analysis, and anomaly alerting — built for teams who move fast and can't afford blind spots.</p>
+  <div class="hero-actions">
+    <button class="btn-primary">View Interactive Mock →</button>
+    <button class="btn-secondary">See Designs</button>
+  </div>
+</div>
+
+<div class="stats-strip">
+  <div class="stat-item">
+    <span class="stat-value">&lt;50ms</span>
+    <span class="stat-label">Trace ingestion</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-value">99.99%</span>
+    <span class="stat-label">Uptime SLA</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-value">6 spans</span>
+    <span class="stat-label">Per waterfall</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-value">4 svcs</span>
+    <span class="stat-label">Connected</span>
+  </div>
+</div>
+
+<div class="features">
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">⟁</div>
+      <h3>Live Request Feed</h3>
+      <p>Watch every HTTP request in real time — method, status, latency, and IP — streamed as it happens.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">◫</div>
+      <h3>Waterfall Traces</h3>
+      <p>Drill into any request to see a full span-by-span waterfall across all microservices and databases.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">⚑</div>
+      <h3>Anomaly Alerts</h3>
+      <p>Set threshold rules for error rates, latency spikes, and traffic bursts. Get notified in Slack or PagerDuty.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">⎈</div>
+      <h3>Health Dashboard</h3>
+      <p>One-glance overview of your API health score, top endpoints, P99 latency, and error rates.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">⚷</div>
+      <h3>API Key Management</h3>
+      <p>Issue scoped API keys for different teams and services. Track usage, rotate, or revoke at any time.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">◈</div>
+      <h3>Integration Hub</h3>
+      <p>Connect PagerDuty, Slack, Datadog, and GitHub Actions in a few clicks. More coming soon.</p>
+    </div>
+  </div>
+</div>
+
+<div class="palette-row">
+  <div class="palette-swatch">
+    <div class="swatch-dot" style="background:#040612;"></div>
+    <div class="swatch-label">BG<br>#040612</div>
+  </div>
+  <div class="palette-swatch">
+    <div class="swatch-dot" style="background:#0B1120;"></div>
+    <div class="swatch-label">Surface<br>#0B1120</div>
+  </div>
+  <div class="palette-swatch">
+    <div class="swatch-dot" style="background:#6366F1;box-shadow:0 0 16px rgba(99,102,241,0.6)"></div>
+    <div class="swatch-label">Indigo<br>#6366F1</div>
+  </div>
+  <div class="palette-swatch">
+    <div class="swatch-dot" style="background:#22D3EE;box-shadow:0 0 16px rgba(34,211,238,0.5)"></div>
+    <div class="swatch-label">Cyan<br>#22D3EE</div>
+  </div>
+  <div class="palette-swatch">
+    <div class="swatch-dot" style="background:#A78BFA;"></div>
+    <div class="swatch-label">Violet<br>#A78BFA</div>
+  </div>
+  <div class="palette-swatch">
+    <div class="swatch-dot" style="background:#10B981;"></div>
+    <div class="swatch-label">Success<br>#10B981</div>
+  </div>
+  <div class="palette-swatch">
+    <div class="swatch-dot" style="background:#F59E0B;"></div>
+    <div class="swatch-label">Warn<br>#F59E0B</div>
+  </div>
+  <div class="palette-swatch">
+    <div class="swatch-dot" style="background:#EF4444;"></div>
+    <div class="swatch-label">Danger<br>#EF4444</div>
+  </div>
+</div>
+
+<div class="cta-section">
+  <h2>Ship with confidence.</h2>
+  <p>SPAN gives your team instant visibility into every API call, trace, and anomaly — so you can ship fast without flying blind.</p>
+  <button class="btn-primary" style="margin: 0 auto; justify-content: center;">Open Interactive Mock →</button>
+</div>
+
+<footer>
+  <span class="footer-logo">SPAN</span>
+  <span>Designed by RAM · Design Studio · 2026</span>
+  <span style="color: #6366F1;">ram.zenbin.org/span</span>
+</footer>
+</body>
+</html>
