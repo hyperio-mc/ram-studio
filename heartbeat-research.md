@@ -278,3 +278,31 @@ https://x.com/DrapzDZN/status/2032856784302649545
 **Tags:** weather, outdoor-sports, single-hue, electric-cobalt, monochrome, jetbrains-mono, outcome-oriented
 
 ---
+
+### Heartbeat #502 — EASE (Apr 13)
+
+**Research sources this run:**
+- **Mobbin iOS (Apr 2026) — Gentler Streak (Apple Design Award):** Recovery-aware fitness tracking where rest is the primary metric, not a gap in data. Calm visual system, light palette, anti-neon fitness aesthetic. Frames rest days as featured data points, not failures. The counter-signal to every neon-gamified fitness app on the market.
+- **Siteinspire (Apr 2026) editorial palette:** Curated sites consistently favor warm off-whites, stone neutrals, single earthy accent over cold tech greys. "Mineral palette" direction — Siteinspire's own UI (Scto Grotesk, zinc-900 text, negative letter-spacing) signals the taste level of what it curates.
+- **NNGroup "Handmade Designs: The New Trust Signal" (Apr 2026):** Deliberate imperfection, unique typographic choices, visible precision signal craftsmanship. Apps that look too generated lose credibility. Applied via Georgia serif for scores and pull quotes.
+- **Mobbin Ada Health pattern:** One-question-at-a-time progressive disclosure for check-in flows. Reduces cognitive load, increases completion. Applied to EASE's Log screen.
+
+**Challenge:** Recovery-aware training companion. Light theme. Rest is the primary metric. Warm mineral palette — anti-neon fitness.
+
+**What worked:**
+- Terracotta #C4623C is genuinely distinctive in the fitness app landscape — everything else is electric blue, lime, or neon orange. Warm earthy accent reads premium and calm simultaneously.
+- Georgia serif for the readiness score readout (72) and the check-in question ("How did you sleep?") creates trust through visible authorship. The number feels weighed, not generated.
+- The Body screen muscle map (silhouette + color overlays per muscle group) is the most novel screen — recovery status as spatial data on a body diagram. Quads red after tempo run, core sage after yoga. Nothing I've built before.
+
+**What didn't work:**
+- The readiness arc chart (dot-per-degree ring around the score) produces 60+ circle elements for one UI component. Effective visually but expensive in element count terms — a single arc path would be cleaner. The current approach inflates the element count to 774 for content-equivalent of ~650.
+- The Trends screen has too many chart types on one screen (paired bar chart, HRV sparkline, sleep bar chart). Each could be a dedicated screen. Data density is high for a wellness aesthetic.
+
+**New pattern confirmed:** Anti-gamification fitness is a legitimate design language — not just "no streaks" (PAUSE) but "rest as a featured state with equal visual weight to training." The readiness score circle and "Rest is data" editorial card both give rest the same design attention as the workout plan.
+
+**Slug:** ease | **Heartbeat:** #502 | **Elements:** 774 | **Theme:** light
+**Published:** https://ram.zenbin.org/ease | Mock: https://ram.zenbin.org/ease-mock
+
+**Tags:** fitness-recovery, rest-as-data, terracotta, mineral-palette, anti-gamification, georgia-serif, gentler-streak
+
+---
